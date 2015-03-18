@@ -1,0 +1,702 @@
+/******************************************************************
+Site Name:
+Author:
+
+Stylesheet: Main Stylesheet
+
+Here's where the magic happens. Here, you'll see we are calling in
+the separate media queries. The base mobile goes outside any query
+and is called at the beginning, after that we call the rest
+of the styles inside media queries.
+
+Helpful articles on Sass file organization:
+http://thesassway.com/advanced/modular-css-naming-conventions
+
+******************************************************************/
+/*********************
+IMPORTING PARTIALS
+These files are needed at the beginning so that we establish all
+our mixins, functions, and variables that we'll be using across
+the whole project.
+*********************/
+/*@import "partials/normalize";*/
+/*@import "partials/variables";*/
+/*@import "partials/typography";*/
+/*@import "partials/functions";*/
+/*@import "partials/mixins";*/
+/*********************
+BASE (MOBILE) SIZE
+This are the mobile styles. It's what people see on their phones. If
+you set a great foundation, you won't need to add too many styles in
+the other stylesheets. Remember, keep it light: Speed is Important.
+*********************/
+/******************************************************************
+Site Name:
+Author:
+
+Stylesheet: Base Mobile Stylesheet
+
+Be light and don't over style since everything here will be
+loaded by mobile devices. You want to keep it as minimal as
+possible. This is called at the top of the main stylsheet
+and will be used across all viewports.
+
+******************************************************************/
+/*********************
+GLOBAL
+*********************/
+/* line 18, ../scss/breakpoints/_base.scss */
+body {
+  background-color: #F3F3F5;
+}
+
+/* line 22, ../scss/breakpoints/_base.scss */
+.white-background {
+  background-color: #fff;
+}
+
+/* line 26, ../scss/breakpoints/_base.scss */
+.btn-openaid {
+  background-color: #444;
+  padding: 5px 28px;
+  color: #fff;
+  border: 0;
+  font-size: 12px;
+  border-radius: 2px;
+}
+
+/* line 35, ../scss/breakpoints/_base.scss */
+.btn-cancel {
+  margin-left: 5px;
+  background-color: #CBCCDA;
+}
+
+/* line 40, ../scss/breakpoints/_base.scss */
+.align-right {
+  text-align: right;
+}
+
+/* line 44, ../scss/breakpoints/_base.scss */
+hr {
+  border-top: 1px solid #ddd;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+/* line 50, ../scss/breakpoints/_base.scss */
+.svg-loader {
+  text-align: center;
+  margin: 70px 0 60px;
+}
+
+/* line 56, ../scss/breakpoints/_base.scss */
+filter-bar {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+}
+
+/* line 65, ../scss/breakpoints/_base.scss */
+.filters-closed filter-bar {
+  width: 40px;
+}
+
+/*********************
+NAVBAR
+*********************/
+/* line 72, ../scss/breakpoints/_base.scss */
+.navbar {
+  background-color: #333;
+  border-radius: 0 !important;
+  border: 0 !important;
+  -webkit-box-shadow: 0px 1px 2px 0px #444444;
+  -moz-box-shadow: 0px 1px 2px 0px #444444;
+  box-shadow: 0px 1px 2px 0px #444444;
+}
+
+/* line 81, ../scss/breakpoints/_base.scss */
+.navbar .active .btn.btn-default {
+  background-color: #FF7F00;
+  color: #fff;
+}
+
+/* line 86, ../scss/breakpoints/_base.scss */
+.navbar .btn.btn-default, .navbar .btn-group .btn {
+  padding-top: 2px;
+  padding-bottom: 2px;
+  margin-top: 12px;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  background-color: #525261;
+  color: #fff;
+  border: 0;
+}
+
+/* line 99, ../scss/breakpoints/_base.scss */
+.navbar .active .btn.btn-default:hover, .navbar .btn.btn-default:hover, .navbar .btn-group .btn:hover,
+.navbar .active .btn.btn-default:active, .navbar .btn.btn-default:active, .navbar .btn-group .btn:active,
+.navbar .active .btn.btn-default:focus, .navbar .btn.btn-default:focus, .navbar .btn-group .btn:focus {
+  background-color: #797990;
+  color: #fff;
+}
+
+/* line 104, ../scss/breakpoints/_base.scss */
+.navbar-brand img {
+  width: auto;
+  height: 20px;
+}
+
+/* line 109, ../scss/breakpoints/_base.scss */
+.navbar-brand {
+  margin-right: 20px;
+  padding-top: 17px;
+}
+
+/* line 114, ../scss/breakpoints/_base.scss */
+.nav > li > a {
+  padding: 10px 10px;
+}
+
+/* line 118, ../scss/breakpoints/_base.scss */
+.navbar .btn-group.navbar-right .btn {
+  margin-right: 15px;
+}
+
+/* line 122, ../scss/breakpoints/_base.scss */
+.glyphicon-user {
+  margin-right: 5px;
+}
+
+/*********************
+SEARCH BAR
+*********************/
+/* line 130, ../scss/breakpoints/_base.scss */
+.search-box input[type='text'] {
+  padding-left: 24px;
+}
+
+/* line 134, ../scss/breakpoints/_base.scss */
+.search-box .btn {
+  padding: 7px 9px 0px;
+  line-height: 24px;
+}
+
+/* line 139, ../scss/breakpoints/_base.scss */
+.glyphicon-search {
+  font-size: 18px;
+  color: #BDBDBD;
+}
+
+/*********************
+FILTER BAR
+*********************/
+/* line 149, ../scss/breakpoints/_base.scss */
+#filter-wrapper {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  border-right: 2px solid #F3F3F5;
+}
+
+/* line 158, ../scss/breakpoints/_base.scss */
+#filter-button {
+  position: relative;
+  background-color: #555;
+  border-radius: 0;
+  border: 0;
+  height: 40px;
+  width: 40px;
+  text-align: center;
+  padding: 13px 9px 0px;
+  cursor: pointer;
+}
+
+/* line 170, ../scss/breakpoints/_base.scss */
+.filter-header.filter-header-toggle, .filter-header.filter-header-toggle:hover {
+  height: 40px;
+  background-color: #444;
+  border-bottom: 0;
+  cursor: default;
+}
+
+/* line 177, ../scss/breakpoints/_base.scss */
+.filter-header.filter-header-toggle .filter-header-text {
+  color: #79796A;
+  padding-left: 6px;
+}
+
+/* line 182, ../scss/breakpoints/_base.scss */
+.filter-button-icon {
+  display: block;
+  width: 100%;
+  height: 3px;
+  border-radius: 1px;
+  background-color: #fff;
+}
+
+/* line 190, ../scss/breakpoints/_base.scss */
+.filter-button-icon + .filter-button-icon {
+  margin-top: 2px;
+}
+
+/* line 194, ../scss/breakpoints/_base.scss */
+#filter-headers {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 9901;
+  -webkit-box-shadow: 2px 2px 7px 0px rgba(25, 25, 25, 0.33);
+  -moz-box-shadow: 2px 2px 7px 0px rgba(25, 25, 25, 0.33);
+  box-shadow: 2px 2px 7px 0px rgba(25, 25, 25, 0.33);
+}
+
+/* line 204, ../scss/breakpoints/_base.scss */
+#filter-headers.col-xs-4 {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/* line 209, ../scss/breakpoints/_base.scss */
+#filter-headers.filters-hidden {
+  width: 40px;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+
+/* line 216, ../scss/breakpoints/_base.scss */
+.filter-reset-button {
+  background-color: #525261;
+  color: #fff;
+  padding: 4px 18px;
+  border-radius: 2px;
+  font-size: 12px;
+  float: right;
+  margin-top: 8px;
+  margin-right: 14px;
+}
+
+/* line 227, ../scss/breakpoints/_base.scss */
+.filter-reset-button:hover, .filter-reset-button:focus {
+  color: #FF9933;
+  text-decoration: none;
+}
+
+/* line 232, ../scss/breakpoints/_base.scss */
+.filter-header {
+  position: relative;
+  height: 38px;
+  width: 100%;
+  overflow: hidden;
+  border-bottom: 1px solid #DBDBEA;
+  background-color: #fff;
+}
+/* line 240, ../scss/breakpoints/_base.scss */
+.filter-header .filter-header-text {
+  color: #FF9933;
+  font-size: 16px;
+  font-weight: bold;
+}
+/* line 246, ../scss/breakpoints/_base.scss */
+.filter-header .filter-header-amount, .filter-header .glyphicon-chevron-right {
+  float: right;
+}
+/* line 250, ../scss/breakpoints/_base.scss */
+.filter-header .glyphicon-chevron-right {
+  top: 8px;
+  right: 10px;
+  font-size: 20px;
+  color: #444;
+}
+/* line 257, ../scss/breakpoints/_base.scss */
+.filter-header .filter-header-amount {
+  margin-top: 11px;
+  margin-right: 13px;
+  border-radius: 3px;
+  background-color: #444;
+  color: #fff;
+  font-size: 10px;
+  padding: 1px 4px;
+  font-weight: bold;
+}
+/* line 268, ../scss/breakpoints/_base.scss */
+.filter-header .filter-link {
+  height: 38px;
+  width: 40px;
+  padding-top: 6px;
+  padding-left: 7px;
+  padding-right: 7px;
+}
+/* line 277, ../scss/breakpoints/_base.scss */
+.filter-header .filter-icon {
+  display: block;
+  background-image: url("../../images/glyph-filters.png");
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  width: 100%;
+  height: 100%;
+}
+/* line 286, ../scss/breakpoints/_base.scss */
+.filter-header .filter-recipient_countries {
+  background-position: 0 0;
+}
+/* line 287, ../scss/breakpoints/_base.scss */
+.filter-header .filter-recipient_regions {
+  background-position: 0 -40px;
+}
+/* line 288, ../scss/breakpoints/_base.scss */
+.filter-header .filter-budget {
+  background-position: 0 -80px;
+}
+/* line 289, ../scss/breakpoints/_base.scss */
+.filter-header .filter-sectors {
+  background-position: 0 -121px;
+}
+/* line 290, ../scss/breakpoints/_base.scss */
+.filter-header .filter-start_end_date {
+  background-position: 0 -163px;
+}
+/* line 291, ../scss/breakpoints/_base.scss */
+.filter-header .filter-participating_organisations {
+  background-position: 0 -204px;
+}
+/* line 292, ../scss/breakpoints/_base.scss */
+.filter-header .filter-policy_markers {
+  background-position: 0 -244px;
+}
+/* line 293, ../scss/breakpoints/_base.scss */
+.filter-header .filter-activity_status {
+  background-position: 0 -285px;
+}
+/* line 294, ../scss/breakpoints/_base.scss */
+.filter-header .filter-document_link {
+  background-position: 0 -326px;
+}
+
+/* line 298, ../scss/breakpoints/_base.scss */
+.filter-header > a, .filter-header > span {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* line 303, ../scss/breakpoints/_base.scss */
+.filter-header:hover, .filter-header.filter-active {
+  cursor: pointer;
+  background-color: #FF9933;
+}
+/* line 307, ../scss/breakpoints/_base.scss */
+.filter-header:hover .filter-header-text, .filter-header.filter-active .filter-header-text {
+  color: #fff;
+}
+
+/*********************
+Filter panel
+*********************/
+/* line 317, ../scss/breakpoints/_base.scss */
+.filter-panel {
+  position: absolute;
+  left: 0;
+  top: 40px;
+  background-color: #fff;
+  width: 64%;
+  -webkit-box-shadow: 2px 2px 7px 0px rgba(25, 25, 25, 0.33);
+  -moz-box-shadow: 2px 2px 7px 0px rgba(25, 25, 25, 0.33);
+  box-shadow: 2px 2px 7px 0px rgba(25, 25, 25, 0.33);
+}
+/* line 327, ../scss/breakpoints/_base.scss */
+.filter-panel .search-box input, .filter-panel .search-box button {
+  height: 26px;
+}
+/* line 331, ../scss/breakpoints/_base.scss */
+.filter-panel .search-box, .filter-panel .btn-openaid {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+/* line 336, ../scss/breakpoints/_base.scss */
+.filter-panel .search-box .btn {
+  padding: 4px 9px 0px;
+  line-height: 20px;
+}
+/* line 341, ../scss/breakpoints/_base.scss */
+.filter-panel .glyphicon-search {
+  font-size: 16px;
+}
+/* line 345, ../scss/breakpoints/_base.scss */
+.filter-panel .pagination {
+  margin: 10px 15px 10px;
+}
+/* line 349, ../scss/breakpoints/_base.scss */
+.filter-panel .filter-panel-header-wrapper {
+  border-bottom: 1px solid #ddd;
+}
+/* line 353, ../scss/breakpoints/_base.scss */
+.filter-panel .filter-panel-header {
+  margin-top: 16px;
+  margin-left: 10px;
+  font-size: 16px;
+}
+/* line 359, ../scss/breakpoints/_base.scss */
+.filter-panel .table {
+  color: #444;
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+/* line 365, ../scss/breakpoints/_base.scss */
+.filter-panel .table tbody {
+  border-bottom: 1px solid #ddd;
+}
+/* line 369, ../scss/breakpoints/_base.scss */
+.filter-panel .table .th-first {
+  padding-left: 15px;
+  width: 60%;
+}
+/* line 375, ../scss/breakpoints/_base.scss */
+.filter-panel .table .checkbox {
+  margin: 0 0 0 10px;
+}
+/* line 379, ../scss/breakpoints/_base.scss */
+.filter-panel .table label {
+  color: #FF9933;
+  font-weight: bold;
+}
+
+/*********************
+TOOL BAR
+*********************/
+/* line 389, ../scss/breakpoints/_base.scss */
+#tool-bar {
+  background-color: #444;
+  height: 40px;
+}
+
+/*********************
+TABS
+*********************/
+/* line 400, ../scss/breakpoints/_base.scss */
+.tabs-wrapper .tab-headers {
+  margin-top: 20px;
+  padding-left: 80px;
+  padding-right: 30px;
+}
+/* line 406, ../scss/breakpoints/_base.scss */
+.tabs-wrapper .tab-header {
+  display: inline-block;
+  background-color: #EEE;
+  text-align: center;
+  border-right: 1px solid #ddd;
+  width: 19%;
+  color: #444;
+  font-weight: bold;
+  font-size: 14px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+/* line 419, ../scss/breakpoints/_base.scss */
+.tabs-wrapper .tab-header:last-child {
+  border-right: 0;
+}
+/* line 423, ../scss/breakpoints/_base.scss */
+.tabs-wrapper .tab-header:hover, .tabs-wrapper .tab-header.active {
+  background-color: #444;
+  color: #fff;
+  text-decoration: none;
+}
+/* line 429, ../scss/breakpoints/_base.scss */
+.tabs-wrapper .col-xs-4 {
+  padding-left: 80px;
+}
+
+/*********************
+Tab bubble chart vis 
+*********************/
+/* line 439, ../scss/breakpoints/_base.scss */
+.bubble-chart-wrapper {
+  margin-top: 40px;
+}
+
+/*********************
+MAIN AREA
+*********************/
+/* line 447, ../scss/breakpoints/_base.scss */
+#main-content {
+  min-height: 600px;
+}
+
+/* line 451, ../scss/breakpoints/_base.scss */
+#main-visualisation-wrapper {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  min-height: 720px;
+  position: relative;
+}
+
+/*********************
+FOOTER
+*********************/
+/* line 462, ../scss/breakpoints/_base.scss */
+footer {
+  background-color: #333;
+  min-height: 450px;
+  color: #fff;
+  padding-top: 110px;
+}
+
+/* line 469, ../scss/breakpoints/_base.scss */
+footer img {
+  margin-top: 10px;
+}
+
+/* line 473, ../scss/breakpoints/_base.scss */
+footer .row {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+/*********************
+LARGER MOBILE DEVICES
+This is for devices like the Galaxy Note or something that's
+larger than an iPhone but smaller than a tablet. Let's call them
+tweeners.
+*********************/
+@media only screen and (min-width: 481px) {
+  /******************************************************************
+  Site Name:
+  Author:
+  
+  Stylesheet: 481px and Up Stylesheet
+  
+  This stylesheet is loaded for larger devices. It's set to
+  481px because at 480px it would load on a landscaped iPhone.
+  This isn't ideal because then you would be loading all those
+  extra styles on that same mobile connection.
+  
+  A word of warning. This size COULD be a larger mobile device,
+  so you still want to keep it pretty light and simply expand
+  upon your base.scss styles.
+  
+  ******************************************************************/
+  /*
+  IMPORTANT NOTE ABOUT SASS 3.3 & UP
+  You can't use @extend within media queries
+  anymore, so just be aware that if you drop
+  them in here, they won't work.
+  */
+}
+/*********************
+TABLET & SMALLER LAPTOPS
+This is the average viewing window. So Desktops, Laptops, and
+in general anyone not viewing on a mobile device. Here's where
+you can add resource intensive styles.
+*********************/
+@media only screen and (min-width: 768px) {
+  /******************************************************************
+  Site Name:
+  Author:
+  
+  Stylesheet: Tablet & Small Desktop Stylesheet
+  
+  Here's where you can start getting into the good stuff.
+  This size will work on iPads, other tablets, and desktops.
+  So you can start working with more styles, background images,
+  and other resources. You'll also notice the grid starts to
+  come into play. Have fun!
+  
+  ******************************************************************/
+}
+/*********************
+DESKTOP
+This is the average viewing window. So Desktops, Laptops, and
+in general anyone not viewing on a mobile device. Here's where
+you can add resource intensive styles.
+*********************/
+@media only screen and (min-width: 1030px) {
+  /******************************************************************
+  Site Name:
+  Author:
+  
+  Stylesheet: Desktop Stylsheet
+  
+  This is the desktop size. It's larger than an iPad so it will only
+  be seen on the Desktop.
+  
+  ******************************************************************/
+}
+/*********************
+LARGE VIEWING SIZE
+This is for the larger monitors and possibly full screen viewers.
+*********************/
+@media only screen and (min-width: 1240px) {
+  /******************************************************************
+  Site Name: 
+  Author: 
+  
+  Stylesheet: Super Large Monitor Stylesheet
+  
+  You can add some advanced styles here if you like. This kicks in
+  on larger screens.
+  
+  ******************************************************************/
+}
+/*********************
+RETINA (2x RESOLUTION DEVICES)
+This applies to the retina iPhone (4s) and iPad (2,3) along with
+other displays with a 2x resolution. You can also create a media
+query for retina AND a certain size if you want. Go Nuts.
+*********************/
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min--moz-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5) {
+  /******************************************************************
+  Site Name: 
+  Author: 
+  
+  Stylesheet: Retina Screens & Devices Stylesheet
+  
+  When handling retina screens you need to make adjustments, especially
+  if you're not using font icons. Here you can add them in one neat
+  place.
+  
+  ******************************************************************/
+  /* 
+  
+  EXAMPLE 
+  Let's say you have an image and you need to make sure it looks ok
+  on retina screens. Let's say we have an icon which dimension are
+  24px x 24px. In your regular stylesheets, it would look something
+  like this:
+  
+  .icon {
+  	width: 24px;
+  	height: 24px;
+  	background: url(img/test.png) no-repeat;
+  }
+  
+  For retina screens, we have to make some adjustments, so that image
+  doesn't look blurry. So, taking into account the image above and the
+  dimensions, this is what we would put in our retina stylesheet:
+  
+  .icon {
+  	background: url(img/test@2x.png) no-repeat;
+  	background-size: 24px 24px;
+  }
+  
+  So, you would create the same icon, but at double the resolution, meaning 
+  it would be 48px x 48px. You'd name it the same, but with a @2x at the end
+  (this is pretty standard practice). Set the background image so it matches
+  the original dimensions and you are good to go. 
+  
+  */
+}
+/*********************
+PRINT STYLESHEET
+Feel free to customize this. Remember to add things that won't make
+sense to print at the bottom. Things like nav, ads, and forms should
+be set to display none.
+*********************/
+@media print {
+  /*@import "partials/print";*/
+}

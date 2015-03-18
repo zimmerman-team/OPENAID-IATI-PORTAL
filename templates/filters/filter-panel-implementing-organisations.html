@@ -1,0 +1,53 @@
+<div class="filter-panel col-xs-offset-4 col-xs-8">
+	<div class="row filter-panel-header-wrapper">
+		<div class="col-md-6">
+			<div class="input-group search-box">
+
+              <input ng-model="q" class="form-control" placeholder="Zoek een specifieke organisatie ..">
+			  <span class="input-group-btn">
+			    <button class="btn btn-default" type="button">
+			      <span class="glyphicon glyphicon-search"></span>
+			    </button>
+			  </span>
+			</div>
+		</div>
+		<div class="col-md-6 align-right">
+			<button class="btn btn-default btn-openaid" ng-click="">Save</button>
+			<button class="btn btn-default btn-openaid btn-cancel" ng-click="">Cancel</button>
+		</div>	
+	</div>
+	<div class="row" ng-show="vm.implementingOrganisations.length == 0">
+		<div class="svg-loader">
+			<img src="{{templateBaseUrl}}/images/spinning-circles.svg" width="70" alt="">
+		</div>
+	</div>
+	<div class="row" ng-show="vm.implementingOrganisations.length != 0">
+		<table class="table">
+			<thead>
+				<tr>
+					<td class="th-first">Selecteer één of meerdere organisaties</td>
+					<td>Activiteiten<span class="glyphicon glyphicon-resize-vertical"></span></td>
+				</tr>
+			</thead>
+			<tbody>
+
+			    <tr dir-paginate="item in vm.implementingOrganisations | filter:q | itemsPerPage: 10"  pagination-id="implementingOrganisations">
+			    	<td>
+			    		<div class="checkbox">
+						  <label>
+						    <input type="checkbox" value="{{item.code}}">{{ item.name.narratives[0].text }}
+						  </label>
+						</div>
+			    	</td>
+			    	<td>
+			    		{{ item.aggregations.count }}
+			    	</td>
+			    </tr>
+
+			</tbody>
+		</table>
+
+		<dir-pagination-controls pagination-id="implementingOrganisations"></dir-pagination-controls>
+	</div>
+
+</div>

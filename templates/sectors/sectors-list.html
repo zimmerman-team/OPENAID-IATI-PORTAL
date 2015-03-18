@@ -1,0 +1,29 @@
+<div class="col-md-12">
+	<div class="row filter-panel-header-wrapper">
+		<div class="col-md-6">
+			<div class="input-group search-box">
+
+              <input ng-model="q" class="form-control" placeholder="Zoek een specifieke sector ..">
+			  <span class="input-group-btn">
+			    <button class="btn btn-default" type="button">
+			      <span class="glyphicon glyphicon-search"></span>
+			    </button>
+			  </span>
+			</div>
+		</div>
+	</div>
+	<div class="row" ng-show="vm.sectors.length == 0">
+		<div class="svg-loader">
+			<img src="{{templateBaseUrl}}/images/spinning-circles.svg" width="70" alt="">
+		</div>
+	</div>
+	<div class="row" ng-show="vm.sectors.length != 0">
+		
+		 <a ui-sref="sector({ sector_id: item.code })" dir-paginate="item in vm.sectors | filter:q | itemsPerPage: 10"  pagination-id="sectors">
+	    	{{ item.name }} <br>
+	     </a>
+
+		<dir-pagination-controls pagination-id="sectors"></dir-pagination-controls>
+	</div>
+
+</div>

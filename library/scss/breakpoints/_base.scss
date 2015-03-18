@@ -1,0 +1,477 @@
+/******************************************************************
+Site Name:
+Author:
+
+Stylesheet: Base Mobile Stylesheet
+
+Be light and don't over style since everything here will be
+loaded by mobile devices. You want to keep it as minimal as
+possible. This is called at the top of the main stylsheet
+and will be used across all viewports.
+
+******************************************************************/
+
+
+/*********************
+GLOBAL
+*********************/
+body{
+  background-color: #F3F3F5;
+}
+
+.white-background{
+  background-color: #fff;
+}
+
+.btn-openaid{
+  background-color: #444;
+  padding: 5px 28px;
+  color: #fff;
+  border: 0;
+  font-size: 12px;
+  border-radius: 2px;
+}
+
+.btn-cancel{
+  margin-left: 5px;
+  background-color: #CBCCDA;
+}
+
+.align-right{
+  text-align: right;
+}
+
+hr{
+  border-top: 1px solid #ddd;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.svg-loader{
+  text-align: center;
+  margin: 70px 0 60px;
+}
+
+
+filter-bar{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+}
+
+.filters-closed filter-bar{
+  width: 40px;
+}
+
+/*********************
+NAVBAR
+*********************/
+.navbar{
+  background-color: #333;
+  border-radius: 0 !important;
+  border: 0 !important;
+  -webkit-box-shadow: 0px 1px 2px 0px rgba(68, 68, 68, 1);
+  -moz-box-shadow:    0px 1px 2px 0px rgba(68, 68, 68, 1);
+  box-shadow:         0px 1px 2px 0px rgba(68, 68, 68, 1);
+}
+
+.navbar .active .btn.btn-default{
+  background-color: #FF7F00;
+  color: #fff;
+}
+  
+.navbar .btn.btn-default, .navbar .btn-group .btn{
+  padding-top: 2px;
+  padding-bottom: 2px;
+  margin-top: 12px;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  background-color: #525261;
+  color: #fff;
+  border: 0;
+}
+
+.navbar .active .btn.btn-default:hover, .navbar .btn.btn-default:hover, .navbar .btn-group .btn:hover,
+.navbar .active .btn.btn-default:active, .navbar .btn.btn-default:active, .navbar .btn-group .btn:active,
+.navbar .active .btn.btn-default:focus, .navbar .btn.btn-default:focus, .navbar .btn-group .btn:focus{
+  background-color: #797990;
+  color: #fff;
+}
+
+.navbar-brand img{
+  width: auto;
+  height: 20px;
+}
+
+.navbar-brand{
+  margin-right: 20px;
+  padding-top: 17px;
+}
+
+.nav > li > a{
+  padding: 10px 10px;
+}
+
+.navbar .btn-group.navbar-right .btn{
+  margin-right: 15px;
+}
+
+.glyphicon-user{
+  margin-right: 5px;
+}
+
+/*********************
+SEARCH BAR
+*********************/
+
+.search-box input[type='text']{
+  padding-left: 24px;
+}
+
+.search-box .btn{
+  padding: 7px 9px 0px;
+  line-height: 24px;
+}
+
+.glyphicon-search{
+  font-size: 18px;
+  color: #BDBDBD;
+}
+
+
+/*********************
+FILTER BAR
+*********************/
+
+#filter-wrapper{
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  border-right: 2px solid #F3F3F5;
+}
+
+#filter-button{
+  position: relative;
+  background-color: #555;
+  border-radius: 0;
+  border: 0;
+  height: 40px;
+  width: 40px;
+  text-align: center;
+  padding: 13px 9px 0px;
+  cursor: pointer;
+}
+
+.filter-header.filter-header-toggle, .filter-header.filter-header-toggle:hover{
+  height: 40px;
+  background-color: #444;
+  border-bottom: 0;
+  cursor: default;
+}
+
+.filter-header.filter-header-toggle .filter-header-text{
+  color: #79796A;
+  padding-left: 6px;
+}
+
+.filter-button-icon{
+  display: block;
+  width: 100%;
+  height: 3px;
+  border-radius: 1px;
+  background-color: #fff;
+}
+
+.filter-button-icon+.filter-button-icon{
+  margin-top: 2px;
+}
+
+#filter-headers{
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index:9901;
+  -webkit-box-shadow: 2px 2px 7px 0px rgba(25, 25, 25, 0.33);
+  -moz-box-shadow:    2px 2px 7px 0px rgba(25, 25, 25, 0.33);
+  box-shadow:         2px 2px 7px 0px rgba(25, 25, 25, 0.33);
+}
+
+#filter-headers.col-xs-4{
+  padding-left: 0;
+  padding-right: 0;
+}
+
+#filter-headers.filters-hidden{
+  width: 40px;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+
+.filter-reset-button{
+  background-color: #525261;
+  color: #fff;
+  padding: 4px 18px;
+  border-radius: 2px;
+  font-size: 12px;
+  float: right;
+  margin-top: 8px;
+  margin-right: 14px;
+}
+
+.filter-reset-button:hover, .filter-reset-button:focus{
+  color: #FF9933;
+  text-decoration: none;
+}
+
+.filter-header{
+  position: relative;
+  height: 38px;
+  width: 100%;
+  overflow: hidden;
+  border-bottom: 1px solid #DBDBEA;
+  background-color: #fff;
+
+  .filter-header-text{
+    color: #FF9933;
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  .filter-header-amount, .glyphicon-chevron-right{
+    float: right;
+  }
+
+  .glyphicon-chevron-right{
+    top: 8px;
+    right: 10px;
+    font-size: 20px;
+    color: #444;
+  }
+
+  .filter-header-amount{
+    margin-top: 11px;
+    margin-right: 13px;
+    border-radius: 3px;
+    background-color: #444;
+    color: #fff;
+    font-size: 10px;
+    padding: 1px 4px;
+    font-weight: bold;
+  }
+
+  .filter-link{
+    height: 38px;
+    width: 40px;
+    padding-top: 6px;
+    padding-left: 7px;
+    padding-right: 7px;
+  }
+
+
+  .filter-icon{
+    display: block;
+    background-image: url('../../images/glyph-filters.png');
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .filter-recipient_countries{ background-position: 0 0; }
+  .filter-recipient_regions{ background-position: 0 -40px; }
+  .filter-budget{ background-position: 0 -80px; }
+  .filter-sectors{ background-position: 0 -121px; }
+  .filter-start_end_date{ background-position: 0 -163px; }
+  .filter-participating_organisations{ background-position: 0 -204px; }
+  .filter-policy_markers{ background-position: 0 -244px; }
+  .filter-activity_status{ background-position: 0 -285px; }
+  .filter-document_link{ background-position: 0 -326px; }
+
+}
+
+.filter-header > a, .filter-header > span{
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.filter-header:hover, .filter-header.filter-active{
+  cursor: pointer;
+  background-color: #FF9933;
+
+  .filter-header-text{
+    color: #fff;
+  }
+}
+
+
+/*********************
+Filter panel
+*********************/
+
+.filter-panel{
+  position: absolute;
+  left: 0;
+  top: 40px;
+  background-color: #fff;
+  width: 64%;
+  -webkit-box-shadow: 2px 2px 7px 0px rgba(25, 25, 25, 0.33);
+  -moz-box-shadow:    2px 2px 7px 0px rgba(25, 25, 25, 0.33);
+  box-shadow:         2px 2px 7px 0px rgba(25, 25, 25, 0.33);
+
+  .search-box input, .search-box button{
+    height: 26px;
+  }
+
+  .search-box, .btn-openaid{
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  .search-box .btn{
+    padding: 4px 9px 0px;
+    line-height: 20px;
+  }
+
+  .glyphicon-search{
+    font-size: 16px;
+  }
+
+  .pagination{
+    margin: 10px 15px 10px;
+  }
+
+  .filter-panel-header-wrapper{
+    border-bottom: 1px solid #ddd;
+  }
+
+  .filter-panel-header{
+    margin-top: 16px;
+    margin-left: 10px;
+    font-size: 16px;
+  }
+
+  .table{
+    color: #444;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 5px;
+
+    tbody{
+      border-bottom: 1px solid #ddd;
+    }
+
+    .th-first{
+      padding-left: 15px;
+      width: 60%;
+    }
+
+
+    .checkbox{
+      margin: 0 0 0 10px;
+    }
+
+    label{
+      color: #FF9933;
+      font-weight: bold;
+    }
+  }
+}
+
+/*********************
+TOOL BAR
+*********************/
+#tool-bar{
+  background-color: #444;
+  height: 40px;
+
+}
+
+/*********************
+TABS
+*********************/
+.tabs-wrapper {
+
+  .tab-headers{
+    margin-top: 20px;
+    padding-left: 80px;
+    padding-right: 30px;
+  }
+
+  .tab-header{
+    display: inline-block;
+    background-color: #EEE;
+    text-align: center;
+    border-right: 1px solid #ddd;
+    width: 19%;
+    color: #444;
+    font-weight: bold;
+    font-size: 14px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  .tab-header:last-child{
+    border-right: 0;
+  }
+
+  .tab-header:hover, .tab-header.active{
+    background-color: #444;
+    color: #fff;
+    text-decoration: none;
+  }
+
+  .col-xs-4{
+    padding-left: 80px;
+  }
+
+}
+
+/*********************
+Tab bubble chart vis 
+*********************/
+
+.bubble-chart-wrapper{
+  margin-top: 40px;
+}
+
+/*********************
+MAIN AREA
+*********************/
+
+#main-content{
+  min-height: 600px;
+}
+
+#main-visualisation-wrapper{
+  margin-top: 10px;
+  margin-bottom: 20px;
+  min-height: 720px;
+  position: relative;
+}
+
+/*********************
+FOOTER
+*********************/
+
+footer{
+  background-color: #333;
+  min-height: 450px;
+  color: #fff;
+  padding-top: 110px;
+}
+
+footer img{
+  margin-top: 10px;
+}
+
+footer .row{
+  text-align: center;
+  margin-bottom: 10px;
+}
+

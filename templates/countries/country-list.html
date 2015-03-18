@@ -1,0 +1,29 @@
+<div class="col-md-12">
+	<div class="row filter-panel-header-wrapper">
+		<div class="col-md-6">
+			<div class="input-group search-box">
+
+              <input ng-model="q" class="form-control" placeholder="Zoek een specifiek land ..">
+			  <span class="input-group-btn">
+			    <button class="btn btn-default" type="button">
+			      <span class="glyphicon glyphicon-search"></span>
+			    </button>
+			  </span>
+			</div>
+		</div>
+	</div>
+	<div class="row" ng-show="vm.recipientCountries.length == 0">
+		<div class="svg-loader">
+			<img src="{{templateBaseUrl}}/images/spinning-circles.svg" width="70" alt="">
+		</div>
+	</div>
+	<div class="row" ng-show="vm.recipientCountries.length != 0">
+		
+		 <a ui-sref="land({ country_id: item.code })" dir-paginate="item in vm.recipientCountries | filter:q | itemsPerPage: 10"  pagination-id="recipientCountries">
+	    	{{ item.name }} <br>
+	     </a>
+
+		<dir-pagination-controls pagination-id="recipientCountries"></dir-pagination-controls>
+	</div>
+
+</div>

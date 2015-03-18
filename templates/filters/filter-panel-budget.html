@@ -1,0 +1,28 @@
+<div class="filter-panel col-xs-offset-4 col-xs-8">
+	<div class="row filter-panel-header-wrapper">
+		<div class="col-md-6">
+			<h5 class="filter-panel-header">
+				Selecteer budget
+			</h5>
+		</div>
+		<div class="col-md-6 align-right">
+			<button class="btn btn-default btn-openaid" ng-click="saveFilters()">Save</button>
+			<button class="btn btn-default btn-openaid btn-cancel" ng-click="cancelFilters()">Cancel</button>
+		</div>	
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<div range-slider min="0" max="50000000" model-min="demo1.min" model-max="demo1.max" show-values="true" filter="currency:'€':0"></div>
+		</div>
+	</div>
+	<div class="row">
+		<hr>
+		<br>&nbsp;
+		<br>&nbsp;
+		<br>&nbsp;
+		<br>&nbsp;
+		<br>&nbsp;
+		<br>&nbsp;
+		<br>&nbsp;
+	</div>
+</div>

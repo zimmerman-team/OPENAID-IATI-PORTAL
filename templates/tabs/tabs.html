@@ -1,0 +1,19 @@
+<div class="tabs-wrapper">
+	<div class="row">
+		<div class="col-xs-12 tab-headers">
+			<a class="tab-header" href="javascript:void(0)" ng-class="{ 'active' : vm.isSelected(tab.id) }" ng-click="vm.setTab(tab.id)" ng-repeat="tab in vm.tabs">{{tab.header}}</a>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-xs-4">
+			<div class="tab-item"  ng-show="vm.isSelected(tab.id)" ng-repeat="tab in vm.tabs">
+				<h3>{{tab.title}}</h3>
+				<p>{{tab.text}}</p>
+			</div>
+		</div>
+		<div class="col-xs-8 bubble-chart-wrapper">
+			<bubble-chart></bubble-chart>
+		</div>
+	</div>
+</div>

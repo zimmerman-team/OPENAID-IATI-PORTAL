@@ -1,0 +1,29 @@
+<div class="col-md-12">
+	<div class="row filter-panel-header-wrapper">
+		<div class="col-md-6">
+			<div class="input-group search-box">
+              <input ng-model="q" class="form-control" placeholder="Zoek een specifieke organisatie ..">
+			  <span class="input-group-btn">
+			    <button class="btn btn-default" type="button">
+			      <span class="glyphicon glyphicon-search"></span>
+			    </button>
+			  </span>
+			</div>
+		</div>
+	</div>
+	<div class="row" ng-show="vm.implementingOrganisations.length == 0">
+		<div class="svg-loader">
+			<img src="{{templateBaseUrl}}/images/spinning-circles.svg" width="70" alt="">
+		</div>
+	</div>
+	<div class="row" ng-show="vm.implementingOrganisations.length != 0">
+		<div class="col-md-8">
+			 <a href="javascript:void(0)" dir-paginate="item in vm.implementingOrganisations | filter:q | itemsPerPage: 10"  pagination-id="implementingOrganisations">
+		    	{{ item.name.narratives[0].text }} <br>
+		     </a>
+
+			<dir-pagination-controls pagination-id="implementingOrganisations"></dir-pagination-controls>
+		</div>
+	</div>
+
+</div>

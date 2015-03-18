@@ -1,0 +1,30 @@
+<div class="navbar navbar-default" ng-controller="NavbarController as vm">
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="{{ homeUrl }}">
+        <img src="{{templateBaseUrl}}/images/openaidnl-logo.png" />
+      </a>
+    </div>
+    
+    <ul class="nav navbar-nav">
+      <li class="active"><a class="btn btn-default" ui-sref="home">IATI activiteiten kaart</a></li>
+      <li><a class="btn btn-default" ui-sref="landen">Landen</a></li>
+      <li><a class="btn btn-default" ui-sref="organisaties">Ontvangende organisaties</a></li>
+      <li><a class="btn btn-default" ui-sref="sectoren">Sectoren</a></li>
+      <li><a class="btn btn-default" ui-sref="over">Over deze portal</a></li>
+      <li><a class="btn btn-default" ui-sref="tools">Tools</a></li>
+      <li><a class="btn btn-default" ui-sref="iati-publiceren">IATI publiceren</a></li>
+    </ul>
+    
+    <div class="btn-group navbar-right">
+      <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+        <span class="glyphicon glyphicon-user"></span>
+        Aanmelden
+      </a>
+      <ul class="dropdown-menu">
+        <li><a href="#">mijn visualisaties</a></li>
+        <li><a href="#">etcetera</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
