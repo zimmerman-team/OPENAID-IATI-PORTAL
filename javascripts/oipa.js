@@ -4,7 +4,7 @@
     angular
         .module('oipa', [
             'checklist-model',
-            'ui-rangeSlider',
+            'ui.bootstrap-slider',
             'angularUtils.directives.dirPagination',
             'oipa.constants',
             'oipa.config',
@@ -24,7 +24,8 @@
             'oipa.implementingOrganisations',
             'oipa.bubbleChart',
             'oipa.tabs',
-            'oipa.index'
+            'oipa.explore',
+            
         ]);
 
     angular

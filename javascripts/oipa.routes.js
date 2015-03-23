@@ -25,6 +25,13 @@
             templateUrl:  templateBaseUrl + '/templates/layout/index.html'
         })
         .state({
+            name:         'activiteitenkaart',
+            url:          '/activiteitenkaart/',
+            controller:   'ExploreController',
+            controllerAs: 'vm',
+            templateUrl:  templateBaseUrl + '/templates/layout/activiteitenkaart.html'
+        })
+        .state({
             name:        'land',
             url:         '/landen/:country_id/',
             controller:  'CountryController',
@@ -40,7 +47,7 @@
         })
         .state({
             name:        'organisatie',
-            url:         '/organisaties/:organisation_id',
+            url:         '/organisaties/:organisation_id/',
             controller:  'ImplementingOrganisationsController',
             controllerAs: 'vm',
             templateUrl: templateBaseUrl + '/templates/implementingOrganisations/implementingOrganisation.html'
@@ -54,7 +61,7 @@
         })
         .state({
             name:        'sector',
-            url:         '/sectoren/:sector_id',
+            url:         '/sectoren/:sector_id/',
             controller:  'SectorsController',
             controllerAs: 'vm',
             templateUrl: templateBaseUrl + '/templates/sectors/sector.html'

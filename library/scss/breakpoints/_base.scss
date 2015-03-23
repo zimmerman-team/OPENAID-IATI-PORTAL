@@ -52,7 +52,6 @@ hr{
   margin: 70px 0 60px;
 }
 
-
 filter-bar{
   position: absolute;
   width: 100%;
@@ -64,6 +63,14 @@ filter-bar{
 
 .filters-closed filter-bar{
   width: 40px;
+}
+
+.main-placeholder{
+  margin: 20px 0 40px; 
+  padding: 100px 40px; 
+  border: 1px dotted #444;
+  text-align: center;
+  font-size: 22px;
 }
 
 /*********************
@@ -437,7 +444,11 @@ Tab bubble chart vis
 *********************/
 
 .bubble-chart-wrapper{
-  margin-top: 40px;
+  padding-top: 40px;
+}
+
+.bubble-chart-wrapper .time-slider-wrapper{
+  margin-top: 30px;
 }
 
 /*********************
@@ -453,6 +464,36 @@ MAIN AREA
   margin-bottom: 20px;
   min-height: 720px;
   position: relative;
+}
+
+
+/*********************
+SLIDER TOOLTIP 
+*********************/
+
+.slider #tooltip.tooltip.in{
+  opacity: 1;
+}
+
+.slider #tooltip{
+  background-color: transparent;
+  color: #333;
+  margin-top: 2px;
+  font-size: 14px;
+
+
+  .tooltip-inner{
+    color: #333;
+    background-color: transparent;
+    border-radius: 0;
+
+  }
+
+
+  .tooltip-arrow{
+    display: none;
+  }
+
 }
 
 /*********************
@@ -474,4 +515,3 @@ footer .row{
   text-align: center;
   margin-bottom: 10px;
 }
-

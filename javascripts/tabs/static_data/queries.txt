@@ -1,0 +1,11 @@
+select c.code, c.name, sum(t.value), YEAR(t.transaction_date)
+from iati_activity as a
+join iati_activityrecipientcountry as arc on a.id = arc.activity_id
+join geodata_country as c on arc.country_id = c.code
+join iati_transaction as t on a.id = t.activity_id
+where
+t.transaction_type_id = "D"
+group by
+c.code, YEAR(t.transaction_date)
+
+

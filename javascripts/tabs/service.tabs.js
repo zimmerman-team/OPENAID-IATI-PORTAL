@@ -42,33 +42,38 @@
 	        	var data = [
 			        {
 			            "id": 1, 
-			            "header": "Uitgaven per land", 
-			            "title": "Bekijk hoeveel activiteiten er per land plaatsvinden",
-			            "text": "Nullam quis risus eget urna mollis ornare vel eu leo. Curabitur blandit tempus porttitor. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus."
+			            "header": "Gendergelijkheid", 
+			            "title": "Gelijkheid voor vrouwen in de wereld",
+			            "text": "In veel ontwikkelingslanden is er een ongelijke positie tussen mannen en vrouwen. Nederland ziet dat als een rem op groei, ontwikkeling en stabiliteit. De Rijksoverheid komt daarom op voor de versterking van de rechten en de positie van vrouwen in ontwikkelingslanden.",
+			            "data_url": "http://localhost/openaidnl/wp-content/themes/openaidNL/javascripts/tabs/static_data/1.json"
 			        },
 			        {
 			            "id": 2, 
-			            "header": "Uitgaven per sector", 
-			            "title": "Etiam porta sem malesuada magna mollis euismod.",
-			            "text": "Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Donec id elit non mi porta gravida at eget metus. Nullam quis risus eget urna mollis ornare vel eu leo."
+			            "header": "Handel", 
+			            "title": "Handel en ontwikkelingssamenwerking",
+			            "text": "Steeds meer lage-inkomenslanden en middeninkomenslanden zijn naast ontvangers van hulp ook handelspartners. De Rijksoverheid stimuleert daarom investeringen en handel in deze landen.",
+			            "data_url": "http://localhost/openaidnl/wp-content/themes/openaidNL/javascripts/tabs/static_data/2.json"
 			        },
 			        {
 			            "id": 3, 
-			            "header": "Uitgaven per organisatie", 
-			            "title": "Donec id elit non mi porta gravida at eget metus.",
-			            "text": "Vestibulum id ligula porta felis euismod semper. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Praesent commodo cursus magna, vel scelerisque nisl consectetur et."
+			            "header": "Partnerlanden", 
+			            "title": "Hulprelaties, overgangsrelaties en handelsrelaties",
+			            "text": "Nederland heeft op het terrein van buitenlandse handel en ontwikkelingssamenwerking met bepaalde landen een bijzondere relatie. Op het gebied van ontwikkelingssamenwerking heten deze landen 'partnerlanden'. Op handelsgebied zijn dit 'focuslanden'.",
+			            "data_url": "http://localhost/openaidnl/wp-content/themes/openaidNL/javascripts/tabs/static_data/3.json"
 			        },
 			        {
 			            "id": 4, 
-			            "header": "Activiteiten per land", 
-			            "title": "Duis mollis, est non commodo luctus, nisi erat porttitor ligula.",
-			            "text": "Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod."
+			            "header": "sectoren", 
+			            "title": "veiligheid en rechtsorde, water, voedselzekerheid",
+			            "text": "De Nederlandse overheid wil duurzame economische groei in ontwikkelingslanden bevorderen. Daarnaast wil Nederland werken aan stabiliteit en veiligheid in de wereld en de waarborg van mensenrechten.",
+			            "data_url": "http://localhost/openaidnl/wp-content/themes/openaidNL/javascripts/tabs/static_data/4.json"
 			        },
 			        {
 			            "id": 5,
 			            "header": "Uitvoerende organisaties", 
-			            "title": "Morbi leo risus, porta ac consectetur ac, vestibulum at eros.",
-			            "text": "Etiam porta sem malesuada magna mollis euismod. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec ullamcorper nulla non metus auctor fringilla."
+			            "title": "financiering ontwikkelingshulp",
+			            "text": "Nederland biedt op verschillende manieren ontwikkelingshulp. Bijvoorbeeld via programma’s van de Wereldbank en Europese Unie (EU). Of door het bedrijfsleven in ontwikkelingslanden te stimuleren.",
+			            "data_url": "http://localhost/openaidnl/wp-content/themes/openaidNL/javascripts/tabs/static_data/5.json"
 			        },
 			    ];
 

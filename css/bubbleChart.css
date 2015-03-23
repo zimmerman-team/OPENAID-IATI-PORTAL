@@ -1,3 +1,7 @@
+#vis{
+   height: 400px;
+}
+
 .scatter-plot-header{
    fill: #008CCB;
    font-size: 21px;
@@ -9,7 +13,8 @@
   font-weight: 600;
 }
 
-.tooltip {
+
+.bubble_tooltip {
    position: absolute;
    top: 100px;
    left: 100px;
@@ -23,11 +28,11 @@
    z-index: 10;
 }
 
-.tooltip .title {
+.bubble_tooltip .title {
    font-size: 13px;
 }
 
-.tooltip .name {
+.bubble_tooltip .name {
   font-weight:bold;
 }
 

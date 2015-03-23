@@ -9,17 +9,22 @@
     .module('oipa.tabs')
     .controller('TabsController', TabsController);
 
-  TabsController.$inject = ['Tabs'];
+  TabsController.$inject = ['$scope', 'Tabs', 'BubbleChart'];
 
   /**
   * @namespace CountriesController
   */
-  function TabsController(Tabs) {
+  function TabsController($scope, Tabs, BubbleChart) {
     var vm = this;
     vm.tabs = null;
     vm.currentTab = null;
+    vm.slider = {
+      value: 2014,
+      min: 2000,
+      max: 2015
+    }
 
-    activate();
+    
 
     /**
     * @name activate
@@ -29,8 +34,13 @@
     function activate() {
       vm.tabs = Tabs.all();
       if(vm.tabs.length > 0){
-        vm.currentTab = vm.tabs[0].id;
-      } 
+        vm.setTab(vm.tabs[0].id);
+      }
+
+      $scope.$watch("vm.slider.value", function (newValue) {
+          BubbleChart.update(newValue);
+      }, true);
+
     }
 
     /**
@@ -49,19 +59,39 @@
     */
     vm.setTab = function(id){
       vm.currentTab = id;
+      vm.updateVisualisation(id);
     }
-
 
     /**
     * @name updateVisualisation
     * @desc update the bubble chart service to get the data that should be used. then update the visualisation
     * @memberOf oipa.tabs.TabsController
     */
-    function updateVisualisation(){
-      
-
+    vm.updateVisualisation = function(id){
+      for(var i = 0;i < vm.tabs.length;i++){
+        if(vm.tabs[i].id == id){
+          BubbleChart.loadData(2014, vm.tabs[i].data_url);
+          break;
+        }
+      }
     }
 
+    // vm.prefix = 'Current value: ';
+    // vm.suffix = '%';
+    // vm.formaterFn = function(value) {
+    //   return vm.prefix + value + $scope.suffix;
+    // };
 
+    // vm.delegateEvent = null;
+    // vm.slideDelegate = function ( value, event ) {
+    //   if( angular.isObject(event) ) {
+    //     $log.log('Slide delegate value on ' + event.type + ': ' + value);
+    //   }
+    //   else {
+    //     $log.log('Slide delegate value: ' + event);
+    //   }
+    //   vm.delegateEvent = event;
+    // };
+    activate();
   }
 })();

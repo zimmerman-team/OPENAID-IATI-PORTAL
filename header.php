@@ -41,7 +41,8 @@
 		<script>
 			var home_url = '<?php echo home_url(); ?>';
 			var template_url = '<?php echo get_template_directory_uri(); ?>';
-			var oipa_url = 'http://localhost:8000/api';
+			// var oipa_url = 'http://localhost:8000/api';
+			var oipa_url = 'http://www.zubbozone.nl/api';
 		</script>
 	</head>
 

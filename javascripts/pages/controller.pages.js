@@ -26,11 +26,19 @@
     * @memberOf oipa.pages.PagesController
     */
     function activate() {
-      var test = wpAPIResource.get( {
-          param1: 'posts',
-          param2: 3
-      } ).then(succesFn, errorFn);
-      console.log(test);
+      // var test = wpAPIResource.get( {
+      //     param1: 'posts',
+      //     param2: 3
+      // } ).then(succesFn, errorFn);
+      // console.log(test);
+
+      function succesFn(){
+
+      }
+
+      function errorFn(){
+        
+      }
     }
 
   }

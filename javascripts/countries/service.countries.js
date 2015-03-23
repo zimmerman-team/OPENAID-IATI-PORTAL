@@ -36,8 +36,7 @@
          * @memberOf oipa.countries.services.Countries
          */
         function all() {
-            return $http.get(oipaUrl + '/countries?format=json&page_size=999&fields=code,name&fields[aggregations]=count');
-
+            return $http.get(oipaUrl + '/countries?format=json&page_size=999&fields=code,name&fields[aggregations]=count', { cache: true });
         }
 
 
@@ -49,7 +48,7 @@
 	     * @memberOf oipa.filters.services.Filters
 	     */
 	     function getCountry(code) {
-	     	return $http.get('/api/countries/' + code + '?format=json');
+	     	return $http.get(oipaUrl + '/countries/' + code + '?format=json&fields=code,name&fields[aggregations]=count,disbursement,commitment', { cache: true });
 	     }
 	}
 })();

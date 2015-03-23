@@ -12,7 +12,33 @@
 	</div>
 	<div class="row">
 		<div class="col-md-12">
-			<div range-slider min="0" max="50000000" model-min="demo1.min" model-max="demo1.max" show-values="true" filter="currency:'€':0"></div>
+
+			<slider slider-id="time-slider"
+		        ng-model="vm.slider.value"
+		        value="[100000, 300000]"
+		        min="0"
+		        max="3000000"
+		        step="1"
+		        range="true"
+		        precision="2"
+		        reversed="false"
+		        orientation="horizontal"
+		        handle="round"
+		        enabled="true"
+		        ng-disabled="false"
+		        naturalarrowkeys="false"
+		        selection="before"
+		        tooltip="always">
+			</slider>
+		</div>	
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<span>{{vm.slider.min}}</span><span style="float:right;">{{vm.slider.max}}</span>
+	
+
+
+
 		</div>
 	</div>
 	<div class="row">

@@ -10,10 +10,34 @@
 			<div class="tab-item"  ng-show="vm.isSelected(tab.id)" ng-repeat="tab in vm.tabs">
 				<h3>{{tab.title}}</h3>
 				<p>{{tab.text}}</p>
+				<p style="padding: 100px 40px; border: 1px dotted #444;text-align: center;">Legenda wrapper</p>
 			</div>
 		</div>
 		<div class="col-xs-8 bubble-chart-wrapper">
 			<bubble-chart></bubble-chart>
+			<div class="row time-slider-wrapper">
+				<div class="col-xs-offset-3 col-xs-8">
+					<slider slider-id="time-slider"
+				        ng-model="vm.slider.value"
+				        value="vm.slider.value"
+				        min="vm.slider.min"
+				        max="vm.slider.max"
+				        step="1"
+				        range="0"
+				        precision="2"
+				        reversed="false"
+				        orientation="horizontal"
+				        handle="round"
+				        enabled="true"
+				        ng-disabled="false"
+				        naturalarrowkeys="false"
+				        selection="before"
+				        tooltip="always"
+						>
+					</slider>
+					<span>{{vm.slider.min}}</span><span style="float:right;">{{vm.slider.max}}</span>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>

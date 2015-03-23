@@ -9,14 +9,15 @@
     .module('oipa.countries')
     .controller('CountryController', CountryController);
 
-  CountryController.$inject = ['Countries', 'templateBaseUrl', 'country_id'];
+  CountryController.$inject = ['Countries', 'templateBaseUrl', '$stateParams'];
 
   /**
   * @namespace CountriesController
   */
-  function CountryController(Countries, templateBaseUrl, country_id) {
+  function CountryController(Countries, templateBaseUrl, $stateParams) {
     var vm = this;
     vm.country = null;
+    vm.country_id = $stateParams.country_id;
     
     activate();
 
@@ -27,14 +28,14 @@
     */
     function activate() {
       // for each active country, get the results
-      Countries.getCountry(country_id).then(successFn, errorFn);
+      Countries.getCountry(vm.country_id).then(successFn, errorFn);
 
       /**
       * @name collectionsSuccessFn
       * @desc Update collections array on view
       */
       function successFn(data, status, headers, config) {
-        vm.country = data.data.results;
+        vm.country = data.data;
       }
 
 
