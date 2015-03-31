@@ -25,9 +25,6 @@
       controller: 'CountriesController',
       controllerAs: 'vm',
       restrict: 'E',
-      scope: {
-        collection: '='
-      },
       templateUrl: templateBaseUrl + '/templates/countries/country-list.html'
     };
 

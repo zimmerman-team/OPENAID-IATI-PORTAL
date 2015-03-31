@@ -25,9 +25,7 @@
       controller: 'TabsController',
       controllerAs: 'vm',
       restrict: 'E',
-      scope: {
-        collection: '='
-      },
+      scope: {},
       templateUrl: templateBaseUrl + '/templates/tabs/tabs.html'
     };
 

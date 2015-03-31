@@ -16,8 +16,11 @@
 	* @returns {Factory}
 	*/
 	function Countries($http, oipaUrl) {
+		var m = this;
+		m.selectedCountries = [];
 
 		var Countries = {
+			selectedCountries: m.selectedCountries,
 			all: all,
 			getCountry: getCountry
 		};
@@ -36,7 +39,7 @@
          * @memberOf oipa.countries.services.Countries
          */
         function all() {
-            return $http.get(oipaUrl + '/countries?format=json&page_size=999&fields=code,name&fields[aggregations]=count', { cache: true });
+            return $http.get(oipaUrl + '/countries?format=json&page_size=999&fields=code,name,location&fields[aggregations]=count', { cache: true });
         }
 
 

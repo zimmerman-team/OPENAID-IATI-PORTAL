@@ -20,7 +20,8 @@
     vm.templateBaseUrl = templateBaseUrl;
     
     vm.implementingOrganisations = [];
-
+    vm.selectedImplementingOrganisations = ImplementingOrganisations.selectedImplementingOrganisations;
+    
     activate();
 
     /**

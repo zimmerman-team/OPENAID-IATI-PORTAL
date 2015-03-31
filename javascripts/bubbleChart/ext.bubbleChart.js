@@ -1,5 +1,3 @@
-
-
 ZzBubbleChartLegenda = (function(){
 
   function ZzBubbleChartLegenda(data) {
@@ -41,21 +39,21 @@ ZzBubbleChart = (function() {
       var xOffset = 20;
       var yOffset = 10;
       
-       var ttw = $(ttid).width();
-       var tth = $(ttid).height();
-       var wscrY = $(window).scrollTop();
-       var wscrX = $(window).scrollLeft();
-       var curX = (document.all) ? event.clientX + wscrX : event.pageX;
-       var curY = (document.all) ? event.clientY + wscrY : event.pageY;
-       var ttleft = ((curX - wscrX + xOffset*2 + ttw) > $(window).width()) ? curX - ttw - xOffset*2 : curX + xOffset;
-       if (ttleft < wscrX + xOffset){
+      var ttw = $(ttid).width();
+      var tth = $(ttid).height();
+      var wscrY = $(window).scrollTop();
+      var wscrX = $(window).scrollLeft();
+      var curX = (document.all) ? event.clientX + wscrX : event.pageX;
+      var curY = (document.all) ? event.clientY + wscrY : event.pageY;
+      var ttleft = ((curX - wscrX + xOffset*2 + ttw) > $(window).width()) ? curX - ttw - xOffset*2 : curX + xOffset;
+      if (ttleft < wscrX + xOffset){
         ttleft = wscrX + xOffset;
-       } 
-       var tttop = ((curY - wscrY + yOffset*2 + tth) > $(window).height()) ? curY - tth - yOffset*2 : curY + yOffset;
-       if (tttop < wscrY + yOffset){
+      } 
+      var tttop = ((curY - wscrY + yOffset*2 + tth) > $(window).height()) ? curY - tth - yOffset*2 : curY + yOffset;
+      if (tttop < wscrY + yOffset){
         tttop = curY + yOffset;
-       } 
-       $(ttid).css('top', tttop + 'px').css('left', ttleft + 'px');
+      } 
+      $(ttid).css('top', tttop + 'px').css('left', ttleft + 'px');
     }
     
     return {
@@ -65,19 +63,18 @@ ZzBubbleChart = (function() {
     }
   }
 
-
-
-
-  function ZzBubbleChart() {
-    this.init();
+  function ZzBubbleChart(id, width, height, range) {
+    this.init(id, width, height, range);
   }
 
-
   // init visualisation
+  ZzBubbleChart.prototype.init = function(id, width, height, range) {
+    this.vis = null;
+    this.vis_id = id;
 
-  ZzBubbleChart.prototype.init = function() {
-    this.width = 800;
-    this.height = 400;
+    this.width = (typeof width == 'undefined') ? 450 : width;
+    this.height = (typeof height == 'undefined') ? 400 : height;
+    this.range = (typeof range == 'undefined') ? [0, 50] : range;
     this.paddingleft = 0;
     this.tooltip = CustomTooltip("scatter_tooltip", 240);
     this.center = {
@@ -86,13 +83,13 @@ ZzBubbleChart = (function() {
     };
     this.layout_gravity = 0.02;
     this.damper = 0.06;
-    this.vis = null;
     this.force = null;
     this.nodes = [];
-    this.year = 2000;
+    this.year = 2015;
     this.fill_color = d3.scale.ordinal().domain([100000, 200000, 300000, 500000, 1000000, 2000000]).range(["#FFDFBF", "#FFC688", "#FF7F00", "#DDD", "#999", "#444"]);
     this.vis = null;
     this.circles = null;
+
   };
 
   ZzBubbleChart.prototype.start = function() {
@@ -104,13 +101,24 @@ ZzBubbleChart = (function() {
   };
 
   ZzBubbleChart.prototype.update = function(year, data) {
+    var vis_id = this.vis_id;
+    var that = this;
     if (this.vis == null){
-      this.vis = d3.select("#vis").append("svg").attr("width", this.width).attr("height", this.height).attr("padding-left", this.paddingleft).attr("id", "svg_vis");
+      this.vis = d3.select("#" + vis_id).append("svg").attr("width", this.width).attr("height", this.height).attr("padding-left", this.paddingleft).attr("id", "inner-"+vis_id);
+      
+      if(this.vis[0][0] == null){
+        setTimeout(function(){ 
+          that.vis = d3.select("#" + vis_id).append("svg").attr("width", that.width).attr("height", that.height).attr("padding-left", that.paddingleft).attr("id", "inner-"+vis_id);
+          that.nodes = data;
+          that.update_nodes();
+          that.update_year(year, 1000);
+        }, 500);
+      }
+
     }
     this.nodes = data;
     this.update_nodes();
     this.update_year(year, 1000);
-
   }
 
   ZzBubbleChart.prototype.update_legenda = function(){
@@ -121,12 +129,14 @@ ZzBubbleChart = (function() {
     if (this.vis == null){
       return false;
     }
+
+    var that = this;
     
     max_amount = d3.max(this.nodes, function(d) {
       return parseInt(d.aggregations[year]);
     });
 
-    this.radius_scale = d3.scale.pow().exponent(0.5).domain([0, max_amount]).range([0, 50]);
+    this.radius_scale = d3.scale.pow().exponent(0.5).domain([0, max_amount]).range(that.range);
 
     this.nodes.forEach((function(_this) {
       return function(d) {
@@ -146,19 +156,18 @@ ZzBubbleChart = (function() {
     this.nodes.forEach((function(_this) {
       return function(d) {
         d.id = d.code;
-        d.x = Math.random() * 400;
-        d.y = Math.random() * 250;
+        d.x = 360 + (Math.random() * 100);
+        d.y = 150 + (Math.random() * 100);
       };  
     })(this));
   }
 
-
   ZzBubbleChart.prototype.update_circles = function(duration){
-    this.circles = this.vis.selectAll("circle").data(this.nodes, function(d) {
-      return d.id;
-    });
 
     var  that = this;
+    this.circles = this.vis.selectAll("circle").data(that.nodes, function(d) {
+      return d.id;
+    });
 
     this.circles
       .enter()
@@ -194,8 +203,6 @@ ZzBubbleChart = (function() {
 
   }
 
-
-
   ZzBubbleChart.prototype.display_group_all = function() {
 
     this.force.gravity(this.layout_gravity).charge(this.charge).friction(0.92).on("tick", (function(_this) {
@@ -224,14 +231,23 @@ ZzBubbleChart = (function() {
     })(this);
   };
 
-
-
   ZzBubbleChart.prototype.show_details = function(data, i, element) {
+
+    function comma_formatted(amount) {
+      sep = ",";
+
+      if (amount){
+        return amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, sep);
+      } else {
+        return "-";
+      }
+    }
+
     var content;
     d3.select(element).attr("fill", "#333");
     content = "<div class='scatter-popup-wrapper'>";
     content += "<div class='scatter-popup-title'> " + data.name + "</div>";
-    content += "<div class='scatter-popup-budget-header'>Budget<br>US$</div><div class='scatter-popup-budget-value'> $" + data.value + "</div>";
+    content += "<div class='scatter-popup-budget-header'>Budget<br></div><div class='scatter-popup-budget-value'> €" + comma_formatted(data.value) + "</div>";
     content += "</div>";
     return this.tooltip.showTooltip(content, d3.event);
   };

@@ -1,0 +1,33 @@
+<div id="main-content" class="container">
+  <div class="row">
+    <div class="col-md-12">
+
+      <div id="main-visualisation-wrapper" class="white-background">
+
+        <tool-bar></tool-bar>
+
+        <h1>{{vm.country.name}}</h1>
+        
+        <table class="table">
+        	<tbody>
+        		<tr>
+        			<td>Total projects</td>
+        			<td>{{vm.country.aggregations.count}}</td>
+        		</tr>
+        		<tr>
+        			<td>Totale uitgaven</td>
+        			<td>{{vm.country.aggregations.disbursement | currency :'€':0 }}</td>
+        		</tr>
+        		<tr>
+        			<td>Totale verplichting</td>
+        			<td>{{vm.country.aggregations.commitment | currency :'€':0}}</td>
+        		</tr>
+        	</tbody>
+        </table>
+
+      </div>
+    
+    </div>
+  </div>
+</div>
+

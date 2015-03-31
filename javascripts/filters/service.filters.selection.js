@@ -9,34 +9,33 @@
 		.module('oipa.filters')
 		.factory('FilterSelection', FilterSelection);
 
-	FilterSelection.$inject = ['$http'];
+	FilterSelection.$inject = ['$http', 'reportingOrganisationId'];
 
 	/**
 	* @namespace Filters
 	* @returns {Factory}
 	*/
-	function FilterSelection($http) {
+	function FilterSelection($http, reportingOrganisationId) {
 		var m = this;
-		m.filterSelection = [];
+		
+		m.selectionString = '';
 
 		var FilterSelection = {
-			get: get 
+			selectionString: m.selectionString,
+			selectionToString: selectionToString
 		};
 
 		return FilterSelection;
 
 		////////////////////
 
-		function add(item){
-			m.push(item);
-		}
 
-		function delete(item){
-			
-		}
-
-	    function get() {
-	   		return m.filterSelection;
+	    /**
+	     * @name selectionToString
+	     * @desc Take the array of filter types + selected items and make a string out of it
+	     */
+	    function selectionToString(filters){
+	    	
 	    }
 	}
 })();

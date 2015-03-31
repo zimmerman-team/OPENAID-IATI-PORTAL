@@ -1,4 +1,4 @@
-#vis{
+.zz-bubble-chart-vis{
    height: 400px;
 }
 
@@ -7,7 +7,7 @@
    font-size: 21px;
 }
 
-#vis .years {
+.zz-bubble-chart-vis .years {
   font-size: 13px;
   fill: #00709F;
   font-weight: 600;
@@ -19,7 +19,7 @@
    top: 100px;
    left: 100px;
    border: 0;
-   background: #0070A2;
+   background: #444;
    opacity: 1;
    color: #fff;
    padding: 0;
@@ -52,7 +52,7 @@
 .scatter-popup-budget-header{
    font-size: 11px;
    color: #00415E;
-   background: #00A3D9;
+   background: #666;
    padding: 2px 8px;
    display: inline-block;
    vertical-align: middle;
@@ -63,7 +63,7 @@
 .scatter-popup-budget-value{
    display: inline-block;
    font-size: 21px;
-   background: #00A3D9;
+   background: #666;
    padding: 2px 8px;
    vertical-align: middle;
    height: 36px;

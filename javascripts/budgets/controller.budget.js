@@ -14,13 +14,10 @@
   /**
   * @namespace BudgetController
   */
-  function BudgetController($scope, Budget) {
+  function BudgetController(Budget) {
     var vm = this;
 
-    $scope.demo1 = {
-      min: 0,
-      max: 10000000
-    };
+    
 
     activate();
 

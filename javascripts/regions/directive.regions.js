@@ -6,7 +6,7 @@
   'use strict';
 
   angular
-    .module('oipa.regions.directives')
+    .module('oipa.regions')
     .directive('regionPage', regionPage);
 
   regionPage.$inject = ['templateBaseUrl'];

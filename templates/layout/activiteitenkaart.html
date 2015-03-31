@@ -1,18 +1,32 @@
-<div id="main-content" class="container" ng-controller="IndexController as vm">
-  <div class="row">
-    <div class="col-md-12">
-      
-      <search-box></search-box>
+<div id="main-content" class="container">
+    <div class="row">
+        <div class="col-md-12">
+        	<search-box></search-box>
 
-        <div id="main-visualisation-wrapper" class="white-background" ng-class="{ 'filters-closed' : vm.hasOpenFilters() }">
+            <div id="main-visualisation-wrapper" class="white-background " ng-class="{ 'filters-closed' : hasOpenFilters() }">
 
-	      <filter-bar></filter-bar>
+            	<filter-bar></filter-bar>
 
-	      <tool-bar></tool-bar>
-              
+            	<tool-bar></tool-bar>
+                  
+            	<div class="row">
+            		<div class="col-md-offset-1 col-md-5">
 
-      </div>    
+                        <activities-explore-block></activities-explore-block>
+            			<sector-explore-block></sector-explore-block>
+            			<gender-explore-block></gender-explore-block>
+            			
+            		</div>
+            		<div class="col-md-5">
+
+                        <countries-explore-block></countries-explore-block>
+                        <implementing-organisations-type-explore-block></implementing-organisations-type-explore-block>
+                        <implementing-organisations-explore-block></implementing-organisations-explore-block>
+
+            		</div>
+            	</div>
+          	</div>    
+        </div>
     </div>
-  </div>
 </div>
 

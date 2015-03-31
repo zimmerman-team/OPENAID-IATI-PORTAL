@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('oipa.implementingOrganisations', []);
+        .module('oipa.implementingOrganisations', ['oipa.constants']);
 
 })();
 

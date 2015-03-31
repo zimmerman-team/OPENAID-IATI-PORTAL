@@ -9,12 +9,12 @@
     .module('oipa.tabs')
     .controller('TabsController', TabsController);
 
-  TabsController.$inject = ['$scope', 'Tabs', 'BubbleChart'];
+  TabsController.$inject = ['$scope', 'Tabs', 'timeSlider'];
 
   /**
   * @namespace CountriesController
   */
-  function TabsController($scope, Tabs, BubbleChart) {
+  function TabsController($scope, Tabs, timeSlider) {
     var vm = this;
     vm.tabs = null;
     vm.currentTab = null;
@@ -24,7 +24,21 @@
       max: 2015
     }
 
-    
+    vm.sbcOptions = {
+      endpoint: '',
+      groupBy: '',
+      aggregationKey: '',
+      dataUrl: 'http://localhost/openaidnl/wp-content/themes/openaidNL/javascripts/tabs/static_data/1.json'
+    }
+
+    vm.bcOptions = {
+      endpoint: '',
+      groupBy: '',
+      aggregationKey: '',
+      dataUrl: 'http://localhost/openaidnl/wp-content/themes/openaidNL/javascripts/tabs/static_data/3.json'
+    }
+
+    vm.dataUrl = 'http://localhost/openaidnl/wp-content/themes/openaidNL/javascripts/tabs/static_data/3.json';
 
     /**
     * @name activate
@@ -38,9 +52,11 @@
       }
 
       $scope.$watch("vm.slider.value", function (newValue) {
-          BubbleChart.update(newValue);
+          timeSlider.year = newValue;
       }, true);
 
+      vm.sbcOptions.dataUrl = vm.tabs[0].data_url;
+      vm.bcOptions.dataUrl = vm.tabs[2].data_url;
     }
 
     /**
@@ -70,28 +86,23 @@
     vm.updateVisualisation = function(id){
       for(var i = 0;i < vm.tabs.length;i++){
         if(vm.tabs[i].id == id){
-          BubbleChart.loadData(2014, vm.tabs[i].data_url);
+          if(vm.tabs[i].chart_type = 'BubbleChart'){
+            // TO DO: update vm.bcOptions
+
+            // for now change the fake data url
+            vm.bcOptions.dataUrl = vm.tabs[i].data_url;
+          } else if(vm.tabs[i].chart_type = 'StackedBarChart'){
+            // TO DO: update vm.sbcOptions
+
+            // for now change the fake data url
+            vm.sbcOptions.dataUrl = vm.tabs[i].data_url;
+          }
+
           break;
         }
       }
     }
 
-    // vm.prefix = 'Current value: ';
-    // vm.suffix = '%';
-    // vm.formaterFn = function(value) {
-    //   return vm.prefix + value + $scope.suffix;
-    // };
-
-    // vm.delegateEvent = null;
-    // vm.slideDelegate = function ( value, event ) {
-    //   if( angular.isObject(event) ) {
-    //     $log.log('Slide delegate value on ' + event.type + ': ' + value);
-    //   }
-    //   else {
-    //     $log.log('Slide delegate value: ' + event);
-    //   }
-    //   vm.delegateEvent = event;
-    // };
     activate();
   }
 })();

@@ -6,20 +6,22 @@
   'use strict';
 
   angular
-    .module('oipa.sectors.controllers')
+    .module('oipa.sectors')
     .controller('SectorsController', SectorsController);
 
-  SectorsController.$inject = ['$scope', 'Sectors', 'templateBaseUrl'];
+  SectorsController.$inject = ['Sectors', 'templateBaseUrl'];
 
   /**
   * @namespace SectorsController
   */
-  function SectorsController($scope, Sectors, templateBaseUrl) {
+  function SectorsController(Sectors, templateBaseUrl) {
     var vm = this;
 
-    $scope.templateBaseUrl = templateBaseUrl;
-    
+    vm.templateBaseUrl = templateBaseUrl;
+
     vm.sectors = [];
+    vm.selectedSectors = Sectors.selectedSectors;
+    
 
     activate();
 

@@ -1,6 +1,5 @@
 <div class="col-md-12">
-	<div class="row filter-panel-header-wrapper">
-		<div class="col-md-6">
+	<div class="filter-panel-header-wrapper">
 			<div class="input-group search-box">
 
               <input ng-model="q" class="form-control" placeholder="Zoek een specifiek land ..">
@@ -12,18 +11,20 @@
 			</div>
 		</div>
 	</div>
-	<div class="row" ng-show="vm.recipientCountries.length == 0">
-		<div class="svg-loader">
-			<img src="{{templateBaseUrl}}/images/spinning-circles.svg" width="70" alt="">
-		</div>
-	</div>
-	<div class="row" ng-show="vm.recipientCountries.length != 0">
-		
-		 <a ui-sref="land({ country_id: item.code })" dir-paginate="item in vm.recipientCountries | filter:q | itemsPerPage: 10"  pagination-id="recipientCountries">
-	    	{{ item.name }} <br>
-	     </a>
+</div>
 
-		<dir-pagination-controls pagination-id="recipientCountries"></dir-pagination-controls>
+<div class="col-md-12" ng-show="vm.recipientCountries.length == 0">
+	<div class="svg-loader">
+		<img src="{{vm.templateBaseUrl}}/images/spinning-circles.svg" width="70" alt="">
 	</div>
+</div>
 
+<div class="col-md-12 country-list" ng-show="vm.recipientCountries.length != 0">	
+	<a ui-sref="land({ country_id: item.code })" dir-paginate="item in vm.recipientCountries | filter:q | orderBy: 'name' | itemsPerPage: 10"  pagination-id="recipientCountries">
+    	{{ item.name }}
+    </a>
+</div>	
+
+<div class="col-md-12" ng-show="vm.recipientCountries.length != 0">	
+	<dir-pagination-controls pagination-id="recipientCountries"></dir-pagination-controls>
 </div>

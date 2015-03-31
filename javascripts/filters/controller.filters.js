@@ -14,7 +14,7 @@
   /**
   * @namespace FiltersController
   */
-  function FiltersController(Filters) {
+  function FiltersController(Filters, Countries) {
     var vm = this;
 
     vm.selected_filters = [];
@@ -26,9 +26,7 @@
       { slug: 'sectors', name: 'Sector', amount: 0},
       { slug: 'start_end_date', name: 'Start & eind datum activiteit', amount: 0},
       { slug: 'implementing_organisations', name: 'Ontvangende organisatie', amount: 0},
-      { slug: 'policy_markers', name: 'Beleidskenmerken', amount: 0},
       { slug: 'activity_status', name: 'Status activiteit', amount: 0},
-      { slug: 'document_link', name: 'Aanwezigheid documenten', amount: 0},
     ];
 
     activate();
@@ -42,7 +40,6 @@
 
     }
 
-    
     vm.isOpenedHeader = function(slug){
       return Filters.isOpenedHeader(slug);
     }
@@ -53,18 +50,19 @@
 
     vm.toggleOpenFilters = function(){
       if(Filters.isOpenedHeader(null)){
-        vm.setOpenedHeader('recipient_countries');
+        vm.setOpenedHeader('recipient_countries');  
       } else {
         vm.setOpenedHeader(null);
       }
     }
-
 
     vm.resetFilters = function(){
       
     }
 
     vm.saveFilters = function(){
+      vm.active_filters[0].amount = Countries.selectedCountries.length;
+    
       // logic to save the filters
       Filters.setOpenedHeader(null);
     }
@@ -73,9 +71,6 @@
       vm.resetFilters();
       Filters.setOpenedHeader(null);
     }
-
-
-
 
   }
 })();

@@ -1,7 +1,7 @@
 
 /**
 * Posts
-* @namespace ncs.collections.services
+* @namespace oipa.implementingOrganisations
 */
 (function () {
 	'use strict';
@@ -17,9 +17,12 @@
 	* @returns {Factory}
 	*/
 	function ImplementingOrganisations($http, oipaUrl) {
+		this.selectedImplementingOrganisations = [];
 
 		var ImplementingOrganisations = {
-			all: all 
+			selectedImplementingOrganisations: this.selectedImplementingOrganisations,
+			all: all,
+			get: get 
 		};
 
 		return ImplementingOrganisations;
@@ -28,23 +31,23 @@
 
 		/**
          * @name all
-         * @desc Try to get all countries
+         * @desc Try to get all implementing organisations
          * @returns {Promise}
-         * @memberOf oipa.countries.services.Countries
+         * @memberOf oipa.implementingOrganisations
          */
         function all() {
-            return $http.get(oipaUrl + '/organisations?format=json&page_size=999&fields=code,name&fields[aggregations]=count');
+            return $http.get(oipaUrl + '/organisations?format=json&page_size=999&fields=code,name&fields[aggregations]=count', { cache: true });
         }
 
 	    /**
 	     * @name get
-	     * @desc Get the Collections of a given user
-	     * @param {string} filter_type The type to get filter options for
+	     * @desc Get a single organisation
+	     * @param {string} id the id of the organisation
 	     * @returns {Promise}
-	     * @memberOf oipa.filters.services.Filters
+	     * @memberOf oipa.implementingOrganisations
 	     */
 	     function get(id) {
-	     	return $http.get('/api/countries/' + id + '?format=json');
+	     	return $http.get('/api/organisations/' + id + '?format=json', { cache: true });
 	     }
 	}
 })();

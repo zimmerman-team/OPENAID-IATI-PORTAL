@@ -6,6 +6,8 @@
             'checklist-model',
             'ui.bootstrap-slider',
             'angularUtils.directives.dirPagination',
+            'chart.js',
+            'leaflet-directive',
             'oipa.constants',
             'oipa.config',
             'oipa.routes',
@@ -25,17 +27,19 @@
             'oipa.bubbleChart',
             'oipa.tabs',
             'oipa.explore',
-            
+            'oipa.activities',
+            'oipa.policyMarkers',
+            'oipa.stackedBarChart',
         ]);
 
     angular
         .module('oipa.constants', []);
 
     angular
-        .module('oipa.config', ['oipa.constants', 'angularUtils.directives.dirPagination']);
+        .module('oipa.config', ['angularUtils.directives.dirPagination']);
 
     angular
-        .module('oipa.routes', ['oipa.constants', 'ui.router']);
+        .module('oipa.routes', ['ui.router']);
 
     angular
         .module('oipa')

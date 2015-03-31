@@ -1,58 +1,63 @@
 /**
-* Posts
-* @namespace ncs.collections.services
+* BubbleChart
+* @namespace oipa.bubbleChart
 */
 (function () {
-	'use strict';
+    'use strict';
 
-	angular
-		.module('oipa.bubbleChart')
-		.factory('BubbleChart', BubbleChart);
+    angular
+        .module('oipa.bubbleChart')
+        .factory('BubbleChart', BubbleChart);
 
-	BubbleChart.$inject = ['$http', 'oipaUrl'];
+    BubbleChart.$inject = ['$http', 'oipaUrl'];
 
-	/**
-	* @namespace Filters
-	* @returns {Factory}
-	*/
-	function BubbleChart($http, oipaUrl) {
-		var m = this;
-		m.chart = new ZzBubbleChart();
-		m.chart_year = null;
+    /**
+    * @namespace BubbleChart
+    * @returns {Factory}
+    */
+    function BubbleChart($http, oipaUrl) {
 
-		var BubbleChart = {
-			loadData: loadData,
-			update: update
-		};
+        // the bubble chart needs a unique identifier, this is done by a simple count in the service
+        this.bubbleChartCount = 0;
 
-		return BubbleChart;
+        var BubbleChart = {
+            bubbleChartCount: this.bubbleChartCount,
+            get: get,
+            aggregation: aggregation
+        };
+
+        return BubbleChart;
 
 
+        ////////////////////
 
-		////////////////////
 
-		function update(year){
-			m.chart_year = year;
-			m.chart.update_year(year, 200);
-		}
-
-		/**
-         * @name all
-         * @desc Try to get all countries
+        /**
+         * @name get
+         * @desc Get the data of the aggregation
+         * @param {string} url The URL of which the data should be returned
          * @returns {Promise}
-         * @memberOf oipa.countries.services.Countries
+         * @memberOf oipa.bubbleChart.BubbleChart
          */
-        function loadData(year, url) {
-            return $http.get(url, { cache: true })
-            .then(succesFn, errorFn);
-
-            function succesFn(data, status, headers, config){
-		        m.chart.update(m.chart_year, data.data.results);
-			}
-
-            function errorFn(data, status, headers, config){
-            	m.chart.update(m.chart_year, []);
-			}
+        function get(url) {
+           return $http.get(url, { cache: true });
         }
-	}
+
+        /**
+         * @name aggregation
+         * @desc Get the aggregations
+         * @param {string} group_by Group by the 
+         * @returns {url}
+         * @memberOf oipa.bubbleChart.BubbleChart
+         */
+        function aggregation(endpoint, group_by, group_field, aggregation_key){
+            if (group_field !== ''){
+                group_field = '&group_field=' + group_field;
+            }
+            return oipaUrl + '/v3/activity-aggregate-any/?format=json&reporting_organisation__in=NL-1&group_by='+group_by+group_field+'&aggregation_key='+aggregation_key;
+        }
+
+    }
 })();
+
+

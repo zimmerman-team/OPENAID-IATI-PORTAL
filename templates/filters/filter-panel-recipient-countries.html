@@ -18,7 +18,7 @@
 	</div>
 	<div class="row" ng-show="vm.recipientCountries.length == 0">
 		<div class="svg-loader">
-			<img src="{{templateBaseUrl}}/images/spinning-circles.svg" width="70" alt="">
+			<img src="{{vm.templateBaseUrl}}/images/spinning-circles.svg" width="70" alt="">
 		</div>
 	</div>
 	<div class="row" ng-show="vm.recipientCountries.length != 0">
@@ -31,11 +31,11 @@
 			</thead>
 			<tbody>
 
-			    <tr dir-paginate="item in vm.recipientCountries | filter:q | itemsPerPage: 10"  pagination-id="recipientCountries">
+			    <tr dir-paginate="item in vm.recipientCountries | filter:q | orderBy: 'name' | itemsPerPage: 10"  pagination-id="recipientCountries">
 			    	<td>
 			    		<div class="checkbox">
 						  <label>
-						    <input type="checkbox" checklist-model="vm.selectedCountries" checklist-value="item.code">{{ item.name }}
+						    <input type="checkbox" checklist-model="vm.selectedCountries" checklist-value="item">{{ item.name }}
 						  </label>
 						</div>
 			    	</td>
@@ -48,9 +48,6 @@
 		</table>
 
 		<dir-pagination-controls pagination-id="recipientCountries"></dir-pagination-controls>
-
-		<span ng-repeat="sub in vm.selectedCountries">{{sub}}</span>
-
 	</div>
 
 </div>

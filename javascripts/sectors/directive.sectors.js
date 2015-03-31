@@ -6,7 +6,7 @@
   'use strict';
 
   angular
-    .module('oipa.sectors.directives')
+    .module('oipa.sectors')
     .directive('sectorPage', sectorPage);
 
   sectorPage.$inject = ['templateBaseUrl'];
@@ -25,9 +25,6 @@
       controller: 'SectorsController',
       controllerAs: 'vm',
       restrict: 'E',
-      scope: {
-        collection: '='
-      },
       templateUrl: templateBaseUrl + '/templates/sectors/sector-info.html'
     };
 

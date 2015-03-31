@@ -25,9 +25,6 @@
       controller: 'SectorsController',
       controllerAs: 'vm',
       restrict: 'E',
-      scope: {
-        collection: '='
-      },
       templateUrl: templateBaseUrl + '/templates/sectors/sectors-list.html'
     };
 

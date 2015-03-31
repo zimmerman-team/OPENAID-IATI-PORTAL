@@ -6,7 +6,7 @@
 	'use strict';
 
 	angular
-		.module('oipa.sectors.services')
+		.module('oipa.sectors')
 		.factory('Sectors', Sectors);
 
 	Sectors.$inject = ['$http', 'oipaUrl'];
@@ -16,9 +16,11 @@
 	* @returns {Factory}
 	*/
 	function Sectors($http, oipaUrl) {
-
+		this.selectedSectors = [];
 		var Sectors = {
-			all: all 
+			selectedSectors: this.selectedSectors,
+			all: all,
+			get: get
 		};
 
 		return Sectors;
@@ -31,8 +33,11 @@
          * @returns {Promise}
          * @memberOf oipa.sectors.services.Sectors
          */
-        function all() {
-            return $http.get(oipaUrl + '/sectors?format=json&page_size=999&fields=code,name&fields[aggregations]=count');
+        function all(filters) {
+        	if (!filters){
+        		filters = '';
+        	}
+            return $http.get(oipaUrl + '/sectors?format=json&page_size=999&fields=code,name&fields[aggregations]=count' + filters, { cache: true });
         }
 
 	    /**
@@ -43,7 +48,7 @@
 	     * @memberOf oipa.sectors.services.Sectors
 	     */
 	     function get(id) {
-	     	return $http.get('/api/sectors/' + id + '?format=json');
+	     	return $http.get('/api/sectors/' + id + '?format=json', { cache: true });
 	     }
 	}
 })();

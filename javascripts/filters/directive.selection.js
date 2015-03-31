@@ -7,14 +7,14 @@
 
   angular
     .module('oipa.filters')
-    .directive('filterSelectionDirective', filterSelectionDirective);
+    .directive('filterSelectionBox', filterSelectionBox);
 
-  filterSelectionDirective.$inject = ['templateBaseUrl'];
+  filterSelectionBox.$inject = ['templateBaseUrl'];
 
   /**
   * @namespace filterPanelSectors
   */
-  function filterSelectionDirective(templateBaseUrl) {
+  function filterSelectionBox(templateBaseUrl) {
 
     /**
     * @name directive
@@ -22,13 +22,13 @@
     * @memberOf oipa.filters.directives.filterPanelSectors
     */
     var directive = {
-      controller: 'SectorsController',
+      controller: 'FiltersSelectionController',
       controllerAs: 'vm',
       restrict: 'E',
       scope: {
         collection: '='
       },
-      templateUrl: templateBaseUrl + '/templates/filters/filter-panel-sectors.html'
+      templateUrl: templateBaseUrl + '/templates/filters/filter-selection-box.html'
     };
 
     return directive;

@@ -16,11 +16,9 @@
   */
   function CountriesController($scope, Countries, templateBaseUrl) {
     var vm = this;
-
-    $scope.templateBaseUrl = templateBaseUrl;
-    
+    vm.templateBaseUrl = templateBaseUrl;
     vm.recipientCountries = [];
-    vm.selectedCountries = [];
+    vm.selectedCountries = Countries.selectedCountries;
     activate();
 
     /**
@@ -40,12 +38,15 @@
         vm.recipientCountries = data.data.results;
       }
 
-
       function countriesErrorFn(data, status, headers, config) {
         console.log("getting countries failed");
       }
     }
 
+    function showOnMap() {
+      
+      
+    }
 
   }
 })();

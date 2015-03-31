@@ -6,7 +6,7 @@
 	'use strict';
 
 	angular
-		.module('oipa.regions.services')
+		.module('oipa.regions')
 		.factory('Regions', Regions);
 
 	Regions.$inject = ['$http', 'oipaUrl'];
@@ -16,17 +16,19 @@
 	* @returns {Factory}
 	*/
 	function Regions($http, oipaUrl) {
-
+		var m = this;
+		m.selectedRegions = [];
+		
 		var Regions = {
-			all: all 
+			selectedRegions: m.selectedRegions,
+			all: all,
+			get: get
 		};
 
 		return Regions;
 
 
-
 		////////////////////
-
 
 		/**
          * @name all
@@ -35,7 +37,7 @@
          * @memberOf oipa.countries.services.Countries
          */
         function all() {
-            return $http.get(oipaUrl + '/regions?format=json&page_size=999&fields=code,name&fields[aggregations]=count');
+            return $http.get(oipaUrl + '/regions?format=json&page_size=999&fields=code,name&fields[aggregations]=count', { cache: true });
 
         }
 
@@ -48,7 +50,7 @@
 	     * @memberOf oipa.filters.services.Filters
 	     */
 	     function get(id) {
-	     	return $http.get('/api/regions/' + id + '?format=json');
+	     	return $http.get('/api/regions/' + id + '?format=json', { cache: true });
 	     }
 	}
 })();

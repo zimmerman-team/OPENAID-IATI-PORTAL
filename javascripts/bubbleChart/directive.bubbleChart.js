@@ -1,5 +1,5 @@
 /**
-* Collection
+* bubbleChart
 * @namespace oipa.bubbleChart
 */
 (function () {
@@ -12,21 +12,32 @@
   bubbleChart.$inject = ['templateBaseUrl'];
 
   /**
-  * @namespace Collection
+  * @namespace bubbleChart
   */
   function bubbleChart(templateBaseUrl) {
 
     /**
     * @name directive
     * @desc The directive to be returned
-    * @memberOf oipa.countries.countriesListDirective
+    * @memberOf oipa.bubbleChart
     */
     var directive = {
       controller: 'BubbleChartController',
       controllerAs: 'vm',
       restrict: 'E',
       scope: {
-        collection: '='
+        endpoint: '@',
+        groupBy: '@',
+        groupField: '@',
+        aggregationKey: '@',
+        timeSlider: '@',
+        sourceUrl: '@',
+        reformatData: '@',
+        boxWidth: '@',
+        boxHeight: '@',
+        minRange: '@',
+        maxRange: '@',
+        watchSourceUrl: '@'
       },
       templateUrl: templateBaseUrl + '/templates/bubbleChart/bubble-chart.html'
     };

@@ -52,18 +52,6 @@ hr{
   margin: 70px 0 60px;
 }
 
-filter-bar{
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  z-index: 9999;
-}
-
-.filters-closed filter-bar{
-  width: 40px;
-}
 
 .main-placeholder{
   margin: 20px 0 40px; 
@@ -71,6 +59,18 @@ filter-bar{
   border: 1px dotted #444;
   text-align: center;
   font-size: 22px;
+}
+
+#main-grouped-page-wrapper{
+  margin-bottom: 40px;
+}
+
+.no-padding-left{
+  padding-left: 0;
+}
+
+.no-padding-right{
+  padding-right: 0;
 }
 
 /*********************
@@ -85,11 +85,18 @@ NAVBAR
   box-shadow:         0px 1px 2px 0px rgba(68, 68, 68, 1);
 }
 
-.navbar .active .btn.btn-default{
+.navbar .btn.btn-default:hover, .navbar .btn-group .btn:hover{
+  background-color: #797990;
+  color: #fff;
+}
+
+.navbar .active .btn.btn-default,
+.navbar .active .btn.btn-default:focus, .navbar .btn.btn-default:focus, .navbar .btn-group .btn:focus,
+.navbar .active .btn.btn-default:hover{
   background-color: #FF7F00;
   color: #fff;
 }
-  
+
 .navbar .btn.btn-default, .navbar .btn-group .btn{
   padding-top: 2px;
   padding-bottom: 2px;
@@ -99,13 +106,6 @@ NAVBAR
   background-color: #525261;
   color: #fff;
   border: 0;
-}
-
-.navbar .active .btn.btn-default:hover, .navbar .btn.btn-default:hover, .navbar .btn-group .btn:hover,
-.navbar .active .btn.btn-default:active, .navbar .btn.btn-default:active, .navbar .btn-group .btn:active,
-.navbar .active .btn.btn-default:focus, .navbar .btn.btn-default:focus, .navbar .btn-group .btn:focus{
-  background-color: #797990;
-  color: #fff;
 }
 
 .navbar-brand img{
@@ -152,6 +152,34 @@ SEARCH BAR
 /*********************
 FILTER BAR
 *********************/
+
+
+filter-bar{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+}
+
+.filters-closed filter-bar{
+  width: 40px;
+}
+
+.filter-selected{
+  background-color: #fff;
+  padding: 0px 0px 10px 40px;
+  overflow: hidden;
+}
+
+.filter-selected-button{
+  margin-top: 10px;
+  margin-right: 10px;
+  background-color: #CBCCDA;
+  border: 0;
+  border-radius: 0;
+}
 
 #filter-wrapper{
   position: absolute;
@@ -317,6 +345,51 @@ FILTER BAR
 }
 
 
+
+/*********************
+Activiteitenkaart
+*********************/
+.explore-block-header{
+  width: 100%;
+  background-color: #444;
+  color: #fff;
+  font-size: 16px;
+  text-align: center;
+  margin-top: 30px;
+  padding: 6px 0;
+}
+
+.explore-block-content{
+  padding-top: 20px;
+  min-height: 140px;
+}
+
+/*********************
+Countries
+*********************/
+
+#main-grouped-page-wrapper{
+
+  .filter-panel-header-wrapper{
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  .country-list{
+    padding-left: 0;
+    padding-right: 0;
+    border-top: 1px solid #ccc;
+  }
+
+  .country-list a{
+    display: block;
+    padding: 6px 0px 6px 20px;
+    border-bottom: 1px solid #ccc;
+    font-size: 16px;
+  }
+}
+
+
 /*********************
 Filter panel
 *********************/
@@ -435,6 +508,17 @@ TABS
 
   .col-xs-4{
     padding-left: 80px;
+  }
+
+  .chart-container{
+    padding-top: 80px;
+    padding-bottom: 50px;
+  }
+
+  .tab-item{
+    -webkit-transition-duration: 5s; /* Safari */
+    transition-duration: 5s;
+
   }
 
 }

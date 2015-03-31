@@ -2,7 +2,7 @@
 	<div class="row">
 		<div class="col-xs-12 tab-headers">
 			<a class="tab-header" href="javascript:void(0)" ng-class="{ 'active' : vm.isSelected(tab.id) }" ng-click="vm.setTab(tab.id)" ng-repeat="tab in vm.tabs">{{tab.header}}</a>
-		</div>
+		</div>	
 	</div>
 
 	<div class="row">
@@ -14,7 +14,38 @@
 			</div>
 		</div>
 		<div class="col-xs-8 bubble-chart-wrapper">
-			<bubble-chart></bubble-chart>
+			
+			<div class="row bar-chart-wrapper">
+				<div class="col-md-offset-3 col-md-8">
+					<stacked-bar-chart 
+						endpoint="vm.sbcOptions.endpoint" 
+					    group-by="vm.sbcOptions.groupBy" 
+					    aggregation-key="vm.sbcOptions.aggregationKey" 
+					    time-slider="true"
+					    data-url="vm.sbcOptions.dataUrl"
+					    ng-show="vm.isSelected(1) || vm.isSelected(2)">
+					</stacked-bar-chart>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-3 col-md-8">
+					<bubble-chart 
+						endpoint="{{vm.bcOptions.endpoint}}" 
+					    group-by="{{vm.bcOptions.groupBy}}" 
+					    aggregation-key="{{vm.bcOptions.aggregationKey}}" 
+					    time-slider="true"
+					    source-url="{{vm.bcOptions.dataUrl}}"
+						reformat-data="false"
+						box-width="450" 
+						box-height="400"
+						min-range="0"
+						max-range="50"
+						watch-source-url="true"
+						ng-show="vm.isSelected(3) || vm.isSelected(4) || vm.isSelected(5)">
+					</bubble-chart>
+				</div>
+			</div>
+
 			<div class="row time-slider-wrapper">
 				<div class="col-xs-offset-3 col-xs-8">
 					<slider slider-id="time-slider"

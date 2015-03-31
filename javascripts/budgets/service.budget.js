@@ -16,7 +16,11 @@
 	* @returns {Factory}
 	*/
 	function Budget($http) {
-
+		var m = this;
+		m.budget = {
+	      min: 0,
+	      max: 50000000
+	    };
 		
 
 		var Budget = {
@@ -37,8 +41,7 @@
          * @memberOf oipa.countries.services.Countries
          */
         function all() {
-        	// set min max and return
-            return null;
+        	return m.budget;
         }
 	}
 })();

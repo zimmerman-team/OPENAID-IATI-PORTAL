@@ -68,12 +68,16 @@ function bones_scripts_and_styles() {
 
 		wp_register_style( 'bubbleChart-css', get_stylesheet_directory_uri() . '/css/bubbleChart.css', array(), '' );
 		wp_register_style( 'bootstrap-css', get_stylesheet_directory_uri() . '/bower_components/bootstrap/dist/css/bootstrap.css', array(), '' );
+		wp_register_style( 'leaflet-css', get_stylesheet_directory_uri() . '/bower_components/leafletjs/dist/leaflet.css', array(), '' );
 		wp_register_style( 'angular-slider', get_stylesheet_directory_uri() . '/bower_components/bootstrap-slider/dist/css/bootstrap-slider.css', array(), '' );
+		wp_register_style( 'angular-chart-js', get_stylesheet_directory_uri() . '/bower_components/angular-chart.js/angular-chart.css', array(), '' );
 		wp_register_style( 'bones-stylesheet', get_stylesheet_directory_uri() . '/library/css/style.css', array(), '', 'all' );
 		wp_register_style( 'bones-ie-only', get_stylesheet_directory_uri() . '/library/css/ie.css', array(), '' );
 
 		wp_enqueue_style( 'bubbleChart-css' );
+		wp_enqueue_style( 'leaflet-css' );
 		wp_enqueue_style( 'angular-slider' );
+		wp_enqueue_style( 'angular-chart-js' );
 		wp_enqueue_style( 'bootstrap-css' );
 		wp_enqueue_style( 'bones-stylesheet' );
 		wp_enqueue_style( 'bones-ie-only' );
@@ -83,7 +87,10 @@ function bones_scripts_and_styles() {
 		wp_register_script( 'jquery', get_stylesheet_directory_uri() . '/bower_components/jquery/dist/jquery.min.js', array(), '', true );
 
 		wp_register_script( 'bootstrap', get_stylesheet_directory_uri() . '/bower_components/bootstrap/dist/js/bootstrap.min.js', array('jquery'), '', true );
+		wp_register_script( 'leaflet.js', get_stylesheet_directory_uri() . '/bower_components/leafletjs/dist/leaflet.js', array('jquery'), '', true );
 		wp_register_script( 'd3js', get_stylesheet_directory_uri() . '/library/js/d3.min.js', array(), '', true );
+		wp_register_script( 'chart.js', get_stylesheet_directory_uri() . '/bower_components/Chart.js/Chart.min.js', array(), '', true );
+		wp_register_script( 'Chart.StackedBar.js', get_stylesheet_directory_uri() . '/bower_components/Chart.StackedBar.js/src/Chart.StackedBar.js', array(), '', true );
 		wp_register_script( 'underscore', get_stylesheet_directory_uri() . '/bower_components/underscore/underscore-min.js', array(), '', true );
 		wp_register_script( 'angular', get_stylesheet_directory_uri() . '/bower_components/angular/angular.js', array('jquery'), '', true );
 		wp_register_script( 'angular-route', get_stylesheet_directory_uri() . '/bower_components/angular-route/angular-route.min.js', array('angular'), '', true );
@@ -91,6 +98,8 @@ function bones_scripts_and_styles() {
 		wp_register_script( 'angular-animate', get_stylesheet_directory_uri() . '/bower_components/angular-animate/angular-animate.min.js', array('angular'), '', true );
 		wp_register_script( 'angular-ui-router', get_stylesheet_directory_uri() . '/javascripts/angularUtils/ui-router.min.js', array('angular'), '', true );
 		wp_register_script( 'angular-resource', get_stylesheet_directory_uri() . '/bower_components/angular-resource/angular-resource.min.js', array('angular'), '', true);
+		wp_register_script( 'angular-chart-js', get_stylesheet_directory_uri() . '/bower_components/angular-chart.js/angular-chart.js', array('angular'), '', true);
+		wp_register_script( 'angular-leaflet-directive', get_stylesheet_directory_uri() . '/bower_components/angular-leaflet-directive/dist/angular-leaflet-directive.js', array('angular'), '', true);
 		
 		wp_register_script( 'bootstrap-slider', get_stylesheet_directory_uri() . '/bower_components/bootstrap-slider/dist/bootstrap-slider.min.js', array('jquery'), '' );
 		wp_register_script( 'angular-slider', get_stylesheet_directory_uri() . '/bower_components/angular-bootstrap-slider/slider.js', array('angular', 'bootstrap-slider', 'jquery'), '' );
@@ -104,17 +113,18 @@ function bones_scripts_and_styles() {
 		wp_register_script( 'oipa.constants', get_stylesheet_directory_uri() . '/javascripts/oipa.constants.js', array('oipa'), '', true );
 		wp_register_script( 'oipa.config', get_stylesheet_directory_uri() . '/javascripts/oipa.config.js', array('oipa'), '', true );
 		wp_register_script( 'oipa.routes', get_stylesheet_directory_uri() . '/javascripts/oipa.routes.js', array('oipa'), '', true );
+		wp_register_script( 'oipa.filters', get_stylesheet_directory_uri() . '/javascripts/oipa.filters.js', array('oipa'), '', true );
 
-		wp_register_script( 'module.layout', get_stylesheet_directory_uri() . '/javascripts/layout/layout.module.js', array('oipa'), '', true );
-		wp_register_script( 'controller.layout.index', get_stylesheet_directory_uri() . '/javascripts/layout/controllers/index.controller.js', array('oipa'), '', true );
-		wp_register_script( 'controller.layout.navbar', get_stylesheet_directory_uri() . '/javascripts/layout/controllers/navbar.controller.js', array('oipa'), '', true );
+		wp_register_script( 'module.layout', get_stylesheet_directory_uri() . '/javascripts/layout/module.layout.js', array('oipa'), '', true );
+		wp_register_script( 'controller.layout.index', get_stylesheet_directory_uri() . '/javascripts/layout/controller.index.js', array('oipa'), '', true );
+		wp_register_script( 'controller.layout.navbar', get_stylesheet_directory_uri() . '/javascripts/layout/controller.navbar.js', array('oipa'), '', true );
 		
-		wp_register_script( 'module.navbar', get_stylesheet_directory_uri() . '/javascripts/navbar/navbar.module.js', array('oipa'), '', true );
-		wp_register_script( 'controller.navbar', get_stylesheet_directory_uri() . '/javascripts/navbar/controllers/navbar.controller.js', array('oipa'), '', true );
-		wp_register_script( 'directive.navbar', get_stylesheet_directory_uri() . '/javascripts/navbar/directives/navbar.directive.js', array('oipa'), '', true );
+		wp_register_script( 'module.navbar', get_stylesheet_directory_uri() . '/javascripts/navbar/module.navbar.js', array('oipa'), '', true );
+		wp_register_script( 'controller.navbar', get_stylesheet_directory_uri() . '/javascripts/navbar/controller.navbar.js', array('oipa'), '', true );
+		wp_register_script( 'directive.navbar', get_stylesheet_directory_uri() . '/javascripts/navbar/directive.navbar.js', array('oipa'), '', true );
 
-		wp_register_script( 'module.search', get_stylesheet_directory_uri() . '/javascripts/search/search.module.js', array('oipa'), '', true );
-		wp_register_script( 'directive.search.searchbox', get_stylesheet_directory_uri() . '/javascripts/search/directives/searchbox.directive.js', array('oipa'), '', true );
+		wp_register_script( 'module.search', get_stylesheet_directory_uri() . '/javascripts/search/module.search.js', array('oipa'), '', true );
+		wp_register_script( 'directive.search.searchbox', get_stylesheet_directory_uri() . '/javascripts/search/directive.searchbox.js', array('oipa'), '', true );
 
 		wp_register_script( 'module.toolbar', get_stylesheet_directory_uri() . '/javascripts/toolbar/module.toolbar.js', array('oipa'), '', true );
 		wp_register_script( 'directive.toolbar', get_stylesheet_directory_uri() . '/javascripts/toolbar/directive.toolbar.js', array('oipa'), '', true );
@@ -125,11 +135,29 @@ function bones_scripts_and_styles() {
 		wp_register_script( 'module.pagination', get_stylesheet_directory_uri() . '/javascripts/angularUtils/directives/pagination/dirPagination.js', array('angular'), '', true );
 
 		wp_register_script( 'module.countries', get_stylesheet_directory_uri() . '/javascripts/countries/module.countries.js', array('oipa'), '', true );
-		wp_register_script( 'controller.countries', get_stylesheet_directory_uri() . '/javascripts/countries/controller.countries.js', array('oipa'), '', true );
+		wp_register_script( 'controller.countries', get_stylesheet_directory_uri() . '/javascripts/countries/controller.countries.explore.js', array('oipa'), '', true );
+		wp_register_script( 'controller.countries.explore', get_stylesheet_directory_uri() . '/javascripts/countries/controller.countries.js', array('oipa'), '', true );
+		wp_register_script( 'controller.countries.map', get_stylesheet_directory_uri() . '/javascripts/countries/controller.countries.map.js', array('oipa'), '', true );
 		wp_register_script( 'controller.country', get_stylesheet_directory_uri() . '/javascripts/countries/controller.country.js', array('oipa'), '', true );
 		wp_register_script( 'directive.countries', get_stylesheet_directory_uri() . '/javascripts/countries/directive.countries.js', array('oipa'), '', true );
 		wp_register_script( 'directive.countries.list', get_stylesheet_directory_uri() . '/javascripts/countries/directive.countries.list.js', array('oipa'), '', true );
+		wp_register_script( 'directive.countries.explore', get_stylesheet_directory_uri() . '/javascripts/countries/directive.countries.explore.js', array('oipa'), '', true );
+		wp_register_script( 'directive.countries.map', get_stylesheet_directory_uri() . '/javascripts/countries/directive.countries.map.js', array('oipa'), '', true );
 		wp_register_script( 'service.countries', get_stylesheet_directory_uri() . '/javascripts/countries/service.countries.js', array('oipa'), '', true );
+		
+
+		wp_register_script( 'module.policyMarkers', get_stylesheet_directory_uri() . '/javascripts/policyMarkers/module.policyMarkers.js', array('oipa'), '', true );
+		wp_register_script( 'controller.gender.explore', get_stylesheet_directory_uri() . '/javascripts/policyMarkers/controller.gender.explore.js', array('oipa'), '', true );
+		wp_register_script( 'directive.gender.explore', get_stylesheet_directory_uri() . '/javascripts/policyMarkers/directive.gender.explore.js', array('oipa'), '', true );
+		wp_register_script( 'service.policyMarkers', get_stylesheet_directory_uri() . '/javascripts/policyMarkers/service.policyMarkers.js', array('oipa'), '', true );
+
+
+		wp_register_script( 'module.activities', get_stylesheet_directory_uri() . '/javascripts/activities/module.activities.js', array('oipa'), '', true );
+		wp_register_script( 'controller.activities', get_stylesheet_directory_uri() . '/javascripts/activities/controller.activities.js', array('oipa'), '', true );
+		wp_register_script( 'controller.activity', get_stylesheet_directory_uri() . '/javascripts/activities/controller.activity.js', array('oipa'), '', true );
+		wp_register_script( 'controller.activity.explore', get_stylesheet_directory_uri() . '/javascripts/activities/controller.activities.explore.js', array('oipa'), '', true );
+		wp_register_script( 'directive.activities.explore', get_stylesheet_directory_uri() . '/javascripts/activities/directive.activities.explore.js', array('oipa'), '', true );
+		wp_register_script( 'service.activities', get_stylesheet_directory_uri() . '/javascripts/activities/service.activities.js', array('oipa'), '', true );
 		
 
 		wp_register_script( 'module.budget', get_stylesheet_directory_uri() . '/javascripts/budgets/module.budget.js', array('oipa'), '', true );
@@ -143,7 +171,9 @@ function bones_scripts_and_styles() {
 
 		wp_register_script( 'module.sectors', get_stylesheet_directory_uri() . '/javascripts/sectors/module.sectors.js', array('oipa'), '', true );
 		wp_register_script( 'controller.sectors', get_stylesheet_directory_uri() . '/javascripts/sectors/controller.sectors.js', array('oipa'), '', true );
+		wp_register_script( 'controller.sectors.explore', get_stylesheet_directory_uri() . '/javascripts/sectors/controller.sectors.explore.js', array('oipa'), '', true );
 		wp_register_script( 'directive.sectors', get_stylesheet_directory_uri() . '/javascripts/sectors/directive.sectors.js', array('oipa'), '', true );
+		wp_register_script( 'directive.sectors.explore', get_stylesheet_directory_uri() . '/javascripts/sectors/directive.sectors.explore.js', array('oipa'), '', true );
 		wp_register_script( 'directive.sectors.list', get_stylesheet_directory_uri() . '/javascripts/sectors/directive.sectors.list.js', array('oipa'), '', true );
 		wp_register_script( 'service.sectors', get_stylesheet_directory_uri() . '/javascripts/sectors/service.sectors.js', array('oipa'), '', true );
 
@@ -159,15 +189,18 @@ function bones_scripts_and_styles() {
 		wp_register_script( 'module.bubbleChart', get_stylesheet_directory_uri() . '/javascripts/bubbleChart/module.bubbleChart.js', array('oipa'), '', true );
 		wp_register_script( 'controller.bubbleChart', get_stylesheet_directory_uri() . '/javascripts/bubbleChart/controller.bubbleChart.js', array('oipa'), '', true );
 		wp_register_script( 'directive.bubbleChart', get_stylesheet_directory_uri() . '/javascripts/bubbleChart/directive.bubbleChart.js', array('oipa'), '', true );
-		wp_register_script( 'service.bubbleChart', get_stylesheet_directory_uri() . '/javascripts/bubbleChart/service.bubbleChart.js', array('oipa'), '', true );
 		wp_register_script( 'ext.bubbleChart', get_stylesheet_directory_uri() . '/javascripts/bubbleChart/ext.bubbleChart.js', array('oipa'), '', true );
-		wp_register_script( 'ext.bubbleChart.customtooltip', get_stylesheet_directory_uri() . '/javascripts/bubbleChart/ext.CustomTooltip.js', array('oipa'), '', true );
-
+		wp_register_script( 'service.bubbleChart', get_stylesheet_directory_uri() . '/javascripts/bubbleChart/service.bubbleChart.js', array('oipa'), '', true );
+		
 		wp_register_script( 'module.implementingOrganisations', get_stylesheet_directory_uri() . '/javascripts/implementingOrganisations/module.implementingOrganisations.js', array('oipa'), '', true );
 		wp_register_script( 'controller.implementingOrganisations', get_stylesheet_directory_uri() . '/javascripts/implementingOrganisations/controller.implementingOrganisations.js', array('oipa'), '', true );
 		wp_register_script( 'directive.implementingOrganisations', get_stylesheet_directory_uri() . '/javascripts/implementingOrganisations/directive.implementingOrganisations.js', array('oipa'), '', true );
 		wp_register_script( 'service.implementingOrganisations', get_stylesheet_directory_uri() . '/javascripts/implementingOrganisations/service.implementingOrganisations.js', array('oipa'), '', true );
-
+		wp_register_script( 'controller.implementingOrganisations.explore', get_stylesheet_directory_uri() . '/javascripts/implementingOrganisations/controller.implementingOrganisations.explore.js', array('oipa'), '', true );
+		wp_register_script( 'directive.implementingOrganisations.explore', get_stylesheet_directory_uri() . '/javascripts/implementingOrganisations/directive.implementingOrganisations.explore.js', array('oipa'), '', true );
+		wp_register_script( 'controller.implementingOrganisations.type.explore', get_stylesheet_directory_uri() . '/javascripts/implementingOrganisations/controller.implementingOrganisations.type.explore.js', array('oipa'), '', true );
+		wp_register_script( 'directive.implementingOrganisations.type.explore', get_stylesheet_directory_uri() . '/javascripts/implementingOrganisations/directive.implementingOrganisations.type.explore.js', array('oipa'), '', true );
+		
 		wp_register_script( 'module.explore', get_stylesheet_directory_uri() . '/javascripts/explore/module.explore.js', array('oipa'), '', true );
 		wp_register_script( 'controller.explore', get_stylesheet_directory_uri() . '/javascripts/explore/controller.explore.js', array('oipa'), '', true );
 
@@ -176,8 +209,11 @@ function bones_scripts_and_styles() {
 
 		wp_register_script( 'module.filters', get_stylesheet_directory_uri() . '/javascripts/filters/module.filters.js', array('oipa'), '', true );
 		wp_register_script( 'controller.filters', get_stylesheet_directory_uri() . '/javascripts/filters/controller.filters.js', array('oipa'), '', true );
+		wp_register_script( 'controller.filters.selection', get_stylesheet_directory_uri() . '/javascripts/filters/controller.filters.selection.js', array('oipa'), '', true );
 		wp_register_script( 'service.filters', get_stylesheet_directory_uri() . '/javascripts/filters/service.filters.js', array('oipa'), '', true );
+		wp_register_script( 'service.filters.selection', get_stylesheet_directory_uri() . '/javascripts/filters/service.filters.selection.js', array('oipa'), '', true );
 		wp_register_script( 'directive.filters.filter.bar', get_stylesheet_directory_uri() . '/javascripts/filters/directive.filter.bar.js', array('oipa'), '', true );
+		wp_register_script( 'directive.filters.filter.selection.box', get_stylesheet_directory_uri() . '/javascripts/filters/directive.selection.js', array('oipa'), '', true );
 		wp_register_script( 'directive.filters.recipientcountries.panel', get_stylesheet_directory_uri() . '/javascripts/filters/directive.panel.recipientcountries.js', array('oipa'), '', true );
 		wp_register_script( 'directive.filters.recipientregions.panel', get_stylesheet_directory_uri() . '/javascripts/filters/directive.panel.recipientregions.js', array('oipa'), '', true );
 		wp_register_script( 'directive.filters.sectors.panel', get_stylesheet_directory_uri() . '/javascripts/filters/directive.panel.sectors.js', array('oipa'), '', true );
@@ -185,9 +221,18 @@ function bones_scripts_and_styles() {
 		wp_register_script( 'directive.filters.activity.status.panel', get_stylesheet_directory_uri() . '/javascripts/filters/directive.panel.activitystatus.js', array('oipa'), '', true );
 		wp_register_script( 'directive.filters.implementing.organisations.panel', get_stylesheet_directory_uri() . '/javascripts/filters/directive.panel.implementingOrganisations.js', array('oipa'), '', true );
 
+		wp_register_script( 'module.stackedBarChart', get_stylesheet_directory_uri() . '/javascripts/stackedBarChart/module.stackedBarChart.js', array('oipa'), '', true );
+		wp_register_script( 'controller.stackedBarChart', get_stylesheet_directory_uri() . '/javascripts/stackedBarChart/controller.stackedBarChart.js', array('oipa'), '', true );
+		wp_register_script( 'directive.stackedBarChart', get_stylesheet_directory_uri() . '/javascripts/stackedBarChart/directive.stackedBarChart.js', array('oipa'), '', true );
+	
+		wp_register_script( 'service.timeSlider', get_stylesheet_directory_uri() . '/javascripts/timeSlider/service.timeSlider.js', array('oipa'), '', true );
+	
 		wp_enqueue_script( 'bones-modernizr' );
 		wp_enqueue_script( 'jquery' );
+		wp_enqueue_script( 'chart.js' );
+		wp_enqueue_script( 'Chart.StackedBar.js' );
 		wp_enqueue_script( 'bootstrap' );
+		wp_enqueue_script( 'leaflet.js' );
 		wp_enqueue_script( 'bootstrap-slider' );
 		wp_enqueue_script( 'angular-slider' );
 
@@ -200,12 +245,16 @@ function bones_scripts_and_styles() {
 		wp_enqueue_script( 'checklist-module' );
 		wp_enqueue_script( 'angular-ui-router' );
 		wp_enqueue_script( 'angular-resource' );
+		wp_enqueue_script( 'angular-chart-js' );
+		wp_enqueue_script( 'angular-leaflet-directive' );
 		
-
 		wp_enqueue_script( 'oipa' );
 		wp_enqueue_script( 'oipa.constants' );
 		wp_enqueue_script( 'oipa.config' );
 		wp_enqueue_script( 'oipa.routes' );
+		wp_enqueue_script( 'oipa.filters' );
+
+		wp_enqueue_script( 'service.timeSlider' );
 		
 		wp_enqueue_script( 'module.layout' );
 		wp_enqueue_script( 'controller.layout.index' );
@@ -227,10 +276,30 @@ function bones_scripts_and_styles() {
 
 		wp_enqueue_script( 'module.countries' );
 		wp_enqueue_script( 'controller.countries' );
+		wp_enqueue_script( 'controller.countries.explore' );
+		wp_enqueue_script( 'controller.countries.map' );
 		wp_enqueue_script( 'controller.country' );
 		wp_enqueue_script( 'directive.countries' );
+		wp_enqueue_script( 'directive.countries.explore' );
+		wp_enqueue_script( 'directive.countries.map' );
 		wp_enqueue_script( 'service.countries' );
 		wp_enqueue_script( 'directive.countries.list' );
+
+		wp_enqueue_script( 'module.policyMarkers' );
+		wp_enqueue_script( 'controller.gender.explore' );
+		wp_enqueue_script( 'directive.gender.explore' );
+		wp_enqueue_script( 'service.policyMarkers' );
+
+		wp_enqueue_script( 'module.stackedBarChart' );
+		wp_enqueue_script( 'controller.stackedBarChart' );
+		wp_enqueue_script( 'directive.stackedBarChart' );
+
+		wp_enqueue_script( 'module.activities' );
+		wp_enqueue_script( 'controller.activities' );
+		wp_enqueue_script( 'controller.activity' );
+		wp_enqueue_script( 'controller.activity.explore' );
+		wp_enqueue_script( 'directive.activities.explore' );
+		wp_enqueue_script( 'service.activities' );
 
 		wp_enqueue_script( 'module.budget' );
 		wp_enqueue_script( 'controller.budget' );
@@ -250,12 +319,16 @@ function bones_scripts_and_styles() {
 		wp_enqueue_script( 'directive.bubbleChart' );
 		wp_enqueue_script( 'service.bubbleChart' );
 		wp_enqueue_script( 'ext.bubbleChart' );
-		wp_enqueue_script( 'ext.bubbleChart.customtooltip' );
+		wp_enqueue_script( 'service.bubbleChart' );
 
 		wp_enqueue_script( 'module.implementingOrganisations' );
 		wp_enqueue_script( 'controller.implementingOrganisations' );
 		wp_enqueue_script( 'directive.implementingOrganisations' );
 		wp_enqueue_script( 'service.implementingOrganisations' );
+		wp_enqueue_script( 'controller.implementingOrganisations.explore' );
+		wp_enqueue_script( 'directive.implementingOrganisations.explore' );
+		wp_enqueue_script( 'controller.implementingOrganisations.type.explore' );
+		wp_enqueue_script( 'directive.implementingOrganisations.type.explore' );
 
 		wp_enqueue_script( 'module.pages' );
 		wp_enqueue_script( 'controller.pages' );
@@ -270,20 +343,26 @@ function bones_scripts_and_styles() {
 
 		wp_enqueue_script( 'module.sectors' );
 		wp_enqueue_script( 'controller.sectors' );
+		wp_enqueue_script( 'controller.sectors.explore' );
 		wp_enqueue_script( 'directive.sectors' );
 		wp_enqueue_script( 'directive.sectors.list' );
+		wp_enqueue_script( 'directive.sectors.explore' );
 		wp_enqueue_script( 'service.sectors' );
 
 		wp_enqueue_script( 'module.filters' );
 		wp_enqueue_script( 'controller.filters' );
+		wp_enqueue_script( 'controller.filters.selection' );
 		wp_enqueue_script( 'service.filters' );
+		wp_enqueue_script( 'service.filters.selection' );
 		wp_enqueue_script( 'directive.filters.filter.bar' );
+		wp_enqueue_script( 'directive.filters.filter.selection.box' );
 		wp_enqueue_script( 'directive.filters.recipientcountries.panel' );
 		wp_enqueue_script( 'directive.filters.recipientregions.panel' );
 		wp_enqueue_script( 'directive.filters.sectors.panel' );
 		wp_enqueue_script( 'directive.filters.budget.panel' );
 		wp_enqueue_script( 'directive.filters.activity.status.panel' );
 		wp_enqueue_script( 'directive.filters.implementing.organisations.panel' );
+
 	}
 }
 

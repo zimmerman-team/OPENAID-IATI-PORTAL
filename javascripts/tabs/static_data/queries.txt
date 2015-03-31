@@ -1,4 +1,20 @@
-select c.code, c.name, sum(t.value), YEAR(t.transaction_date)
+Gendergelijkheid
+
+
+
+
+
+
+Handel
+
+
+
+
+
+
+Landen
+
+select c.code, c.name, sum(t.value) as value, YEAR(t.transaction_date) as year
 from iati_activity as a
 join iati_activityrecipientcountry as arc on a.id = arc.activity_id
 join geodata_country as c on arc.country_id = c.code
@@ -9,3 +25,61 @@ group by
 c.code, YEAR(t.transaction_date)
 
 
+Sectors
+
+select s.code, s.name, sum(t.value) as value, YEAR(t.transaction_date) as year
+from iati_activity as a
+join iati_activitysector as ias on a.id = ias.activity_id
+join iati_sector as s on ias.sector_id = s.code
+join iati_transaction as t on a.id = t.activity_id
+where
+t.transaction_type_id = "D"
+group by
+s.code, YEAR(t.transaction_date)
+
+
+Uitvoerende organisaties
+
+
+
+
+
+
+
+
+
+
+
+serialize script:
+
+
+var blob = [];
+
+var data = {
+    results: [
+        
+    ]
+};
+
+var temp_results = {};
+
+for (var i = 0;i < blob.length;i++){
+    
+    if (typeof temp_results[blob[i].code] === 'undefined'){
+	    temp_results[blob[i].code] = {
+			code: blob[i].code,
+			name: blob[i].name,
+			aggregations: {}
+		};	
+    } 
+    
+    temp_results[blob[i].code].aggregations[blob[i].year] = blob[i].value;
+    
+}
+
+for(var code in temp_results) {
+   data.results.push(temp_results[code]);
+}
+
+
+JSON.stringify(data);

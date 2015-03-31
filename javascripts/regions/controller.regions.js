@@ -1,43 +1,40 @@
 /**
 * RegionsController
-* @namespace oipa.regions.controllers
+* @namespace oipa.regions
 */
 (function () {
   'use strict';
 
   angular
-    .module('oipa.regions.controllers')
+    .module('oipa.regions')
     .controller('RegionsController', RegionsController);
 
-  RegionsController.$inject = ['$scope', 'Regions'];
+  RegionsController.$inject = ['$scope', 'Regions', 'templateBaseUrl'];
 
   /**
   * @namespace RegionsController
   */
-  function RegionsController($scope, Regions) {
+  function RegionsController($scope, Regions, templateBaseUrl) {
     var vm = this;
 
+    vm.templateBaseUrl = templateBaseUrl;
     vm.recipientRegions = [];
+    vm.selectedRegions = Regions.selectedRegions;
 
     activate();
 
     /**
     * @name activate
     * @desc Actions to be performed when this controller is instantiated
-    * @memberOf oipa.regions.controllers.RegionsController
+    * @memberOf oipa.regions.RegionsController
     */
     function activate() {
       // for each active filter, get the results
       Regions.all().then(regionsSuccessFn, regionsErrorFn);
 
-      /**
-      * @name regionsSuccessFn
-      * @desc Update collections array on view
-      */
       function regionsSuccessFn(data, status, headers, config) {
         vm.recipientRegions = data.data.results;
       }
-
 
       function regionsErrorFn(data, status, headers, config) {
         console.log("getting regions failed");

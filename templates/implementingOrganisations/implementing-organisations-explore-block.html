@@ -1,0 +1,25 @@
+<div class="explore-block-header">Organisaties</div>
+<div class="explore-block-content">
+    <table class="table">
+        <thead>
+            <tr>
+                <td>
+                    <b>Ontvangende organisatie top 5</b>
+                </td>
+                <td>
+                    <b>Ontvangen binnen de geselecteerde filters</b>
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in vm.implementingOrganisations | limitTo: 5">
+                <td>
+                    {{ item.name.narratives[0].text | lowercase }}
+                </td>
+                <td>
+                    100000
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

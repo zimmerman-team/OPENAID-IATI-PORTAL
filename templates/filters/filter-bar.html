@@ -18,14 +18,7 @@
       <span class="filter-header-amount">{{filter.amount}}</span>
   	</div>
 
-  	<div class="filter-header">
-  		<a href="javascript:void(0)" class="filter-link"></a>
-  		<span class="filter-header-text">Selected filters</span>
-  		<span class="filter-header-amount">{{vm.selected_filters.length}}</span>
-  	</div>
-    <div class="filter-selected">
-      <span ng-repeat="selected_filter in vm.selected_filters"></span>
-    </div>
+    <filter-selection-box></filter-selection-box>
   	
   </div>
   <filter-panel-recipient-countries ng-show="vm.isOpenedHeader('recipient_countries')"></filter-panel-recipient-countries>

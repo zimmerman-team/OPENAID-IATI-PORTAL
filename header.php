@@ -43,6 +43,7 @@
 			var template_url = '<?php echo get_template_directory_uri(); ?>';
 			// var oipa_url = 'http://localhost:8000/api';
 			var oipa_url = 'http://www.zubbozone.nl/api';
+			var reporting_organisation_id = 'NL-1';
 		</script>
 	</head>
 

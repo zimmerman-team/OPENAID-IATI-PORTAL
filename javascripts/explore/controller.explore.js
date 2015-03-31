@@ -5,14 +5,20 @@
 		.module('oipa.explore')
 		.controller('ExploreController', ExploreController);
 
-	ExploreController.$inject = ['Filters'];
+	ExploreController.$inject = ['$scope', 'Filters'];
 
-	function ExploreController(Filters){
+	function ExploreController($scope, Filters){
 		var vm = this;
-		vm.hasOpenFilters = function(){
+
+		activate();
+
+	    function activate() {
+	      
+	    }
+
+		$scope.hasOpenFilters = function(){
 			return Filters.isOpenedHeader(null);
 		}
 	}
-
 
 })();
