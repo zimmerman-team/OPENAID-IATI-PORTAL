@@ -15,12 +15,12 @@
   * @namespace bubbleChart
   */
   function BubbleChartController($http, $scope, BubbleChart, timeSlider) {
+
     var vm = this;
     vm.chart = null;
     vm.chart_id = null;
     vm.initialized = false;
-
-
+    
     vm.endpoint = $scope.endpoint;
     vm.groupBy = $scope.groupBy;
     vm.groupField = $scope.groupField;
@@ -39,6 +39,10 @@
     vm.minRange = $scope.minRange;
     vm.maxRange = $scope.maxRange;
     vm.range = [vm.minRange, vm.maxRange];
+    vm.colorMapUrl = $scope.countryTypes;
+    
+    
+    vm.colorData = null;
 
     /**
     * @name activate
@@ -68,11 +72,11 @@
           vm.currentYear = newValue;
           vm.changeYear(newValue);
         }, true);
-
         if(vm.watchSourceUrl){
           $scope.$watch("sourceUrl", function (newValue) {
             vm.sourceUrl = $scope.sourceUrl;
             vm.loadData(vm.currentYear, vm.sourceUrl);
+            vm.setColorFunction();
           }, true);
         }
 
@@ -135,11 +139,51 @@
       return formattedData;
     }
 
+    //load the color data
+    $scope.colorData = null
+    vm.loadColorData = function(url){
+      console.log('url = '+url);
+       
+      $http.get(url).
+      success(function(data, status, headers, config) {
+        $scope.colorData  = data;
+        var keys = {};
+      }).
+      error(function(data, status, headers, config) {
+        console.log('data not found')
+      });
+    }
+
+    vm.mapColorToCountry = function(){
+      
+      return function(code){
+        var colors =  {'Hulprelatie': "#FFDFBF",'Overgangsrelatie': "#FF7F00", 'EXIT relatie': "#DDD", 'Handelsrelatie': "#999"};
+        if($scope.colorData[code] != null){
+          return colors[$scope.colorData[code]];
+
+        }
+        else{
+          return '#444';
+        }
+      }
+
+    }
     vm.changeColors = function(values, range){
       vm.chart.fill_color = d3.scale.ordinal().domain(values).range(range);
     }
+    //console.log('colormap = '+vm.colorMapUrl);
+    
 
+    vm.loadColorData( vm.colorMapUrl);
     activate();
-
+    console.log($scope);
+    vm.setColorFunction = function(){
+      if(vm.sourceUrl.indexOf('3.json') != -1){
+        vm.chart.fill_color = vm.mapColorToCountry( );
+      }
+      else{
+        vm.chart.fill_color = d3.scale.ordinal().domain([100000, 200000, 300000, 500000, 1000000, 2000000]).range(["#FFDFBF", "#FFC688", "#FF7F00", "#DDD", "#000", "#000"]);
+      }
+    }
   }
 })();

@@ -32,6 +32,7 @@
         aggregationKey: '@',
         timeSlider: '@',
         sourceUrl: '@',
+        countryTypes: '@',
         reformatData: '@',
         boxWidth: '@',
         boxHeight: '@',

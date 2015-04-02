@@ -35,6 +35,7 @@
       endpoint: '',
       groupBy: '',
       aggregationKey: '',
+      colorMapUrl: '',
       dataUrl: 'http://localhost/openaidnl/wp-content/themes/openaidNL/javascripts/tabs/static_data/3.json'
     }
 
@@ -91,11 +92,13 @@
 
             // for now change the fake data url
             vm.bcOptions.dataUrl = vm.tabs[i].data_url;
+            vm.bcOptions.colorMapUrl = vm.tabs[2].color_map_url;
           } else if(vm.tabs[i].chart_type = 'StackedBarChart'){
             // TO DO: update vm.sbcOptions
 
             // for now change the fake data url
             vm.sbcOptions.dataUrl = vm.tabs[i].data_url;
+
           }
 
           break;

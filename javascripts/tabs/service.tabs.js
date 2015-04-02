@@ -62,6 +62,7 @@
 			            "title": "Hulprelaties, overgangsrelaties en handelsrelaties",
 			            "text": "Nederland heeft op het terrein van buitenlandse handel en ontwikkelingssamenwerking met bepaalde landen een bijzondere relatie. Op het gebied van ontwikkelingssamenwerking heten deze landen 'partnerlanden'. Op handelsgebied zijn dit 'focuslanden'.",
 			            "data_url": templateBaseUrl + "/javascripts/tabs/static_data/3.json",
+			            "color_map_url": templateBaseUrl + "/javascripts/countries/mapping.partnerlanden.js",
 			            "chart_type": "BubbleChart"
 			        },
 			        {
@@ -70,6 +71,7 @@
 			            "title": "veiligheid en rechtsorde, water, voedselzekerheid",
 			            "text": "De Nederlandse overheid wil duurzame economische groei in ontwikkelingslanden bevorderen. Daarnaast wil Nederland werken aan stabiliteit en veiligheid in de wereld en de waarborg van mensenrechten.",
 			            "data_url": templateBaseUrl + "/javascripts/tabs/static_data/4.json",
+			            "color_map_url": templateBaseUrl + "/javascripts/countries/mapping.partnerlanden.js",
 			            "chart_type": "BubbleChart"
 			        },
 			        {
@@ -78,6 +80,7 @@
 			            "title": "financiering ontwikkelingshulp",
 			            "text": "Nederland biedt op verschillende manieren ontwikkelingshulp. Bijvoorbeeld via programma’s van de Wereldbank en Europese Unie (EU). Of door het bedrijfsleven in ontwikkelingslanden te stimuleren.",
 			            "data_url": templateBaseUrl + "/javascripts/tabs/static_data/5.json",
+			            "color_map_url": templateBaseUrl + "/javascripts/countries/mapping.partnerlanden.js",
 			            "chart_type": "BubbleChart"
 			        },
 			    ];

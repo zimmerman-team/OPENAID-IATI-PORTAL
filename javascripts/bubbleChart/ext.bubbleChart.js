@@ -82,7 +82,7 @@ ZzBubbleChart = (function() {
       y: this.height / 2
     };
     this.layout_gravity = 0.02;
-    this.damper = 0.06;
+    this.damper = 0.1;
     this.force = null;
     this.nodes = [];
     this.year = 2015;
@@ -99,8 +99,12 @@ ZzBubbleChart = (function() {
   ZzBubbleChart.prototype.charge = function(d) {
     return -Math.pow(d.radius, 2) / 8;
   };
+  
 
+
+  
   ZzBubbleChart.prototype.update = function(year, data) {
+ 
     var vis_id = this.vis_id;
     var that = this;
     if (this.vis == null){
@@ -124,8 +128,8 @@ ZzBubbleChart = (function() {
   ZzBubbleChart.prototype.update_legenda = function(){
 
   }
-
   ZzBubbleChart.prototype.update_year = function(year, duration){
+   
     if (this.vis == null){
       return false;
     }
@@ -142,7 +146,7 @@ ZzBubbleChart = (function() {
       return function(d) {
         d.value = (typeof d.aggregations[year] === 'undefined') ? 1e-6 : parseInt(d.aggregations[year]);
         d.radius = _this.radius_scale(d.value);
-        d.color_field = d.value;
+        d.color_field = d.code; //d.value;
       };
     })(this));
 
@@ -163,7 +167,9 @@ ZzBubbleChart = (function() {
   }
 
   ZzBubbleChart.prototype.update_circles = function(duration){
-
+    if(this.force != null){  
+      this.force.stop();
+    }
     var  that = this;
     this.circles = this.vis.selectAll("circle").data(that.nodes, function(d) {
       return d.id;
@@ -197,16 +203,19 @@ ZzBubbleChart = (function() {
       .attr("r", 1e-6)
       .remove();
 
-    return this.circles.transition().duration(duration * 2).attr("r", function(d) {
+    return this.circles.interrupt().transition().duration(duration * 2).attr("r", function(d) {
       return d.radius;
     });
 
   }
-
+  loaded = false;
   ZzBubbleChart.prototype.display_group_all = function() {
-
+   
+    //this.force.resume();
+    //d3.event.stopPropagation();
     this.force.gravity(this.layout_gravity).charge(this.charge).friction(0.92).on("tick", (function(_this) {
       return function(e) {
+       
 
         return _this.circles.each(_this.move_towards_center(e.alpha))
         .attr("cx", function(d) {
@@ -217,12 +226,10 @@ ZzBubbleChart = (function() {
         });
       };
     })(this));
-    this.force.start();
-
-    return true;  
+    this.force.start()
   };
-
   ZzBubbleChart.prototype.move_towards_center = function(alpha) {
+   
     return (function(_this) {
       return function(d) {
         d.x = d.x + (_this.center.x - d.x) * (_this.damper + 0.02) * alpha;
