@@ -241,6 +241,7 @@ function bones_scripts_and_styles() {
 		wp_enqueue_script( 'angular' );
 		wp_enqueue_script( 'angular-route' );
 		wp_enqueue_script( 'angular-cookies' );
+		wp_enqueue_script( 'angular-animate' );
 		wp_enqueue_script( 'bones-js' );
 		wp_enqueue_script( 'checklist-module' );
 		wp_enqueue_script( 'angular-ui-router' );
