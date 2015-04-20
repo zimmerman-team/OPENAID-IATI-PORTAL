@@ -3,6 +3,7 @@
 
     angular
         .module('oipa', [
+            'ngAnimate',
             'checklist-model',
             'ui.bootstrap-slider',
             'angularUtils.directives.dirPagination',
