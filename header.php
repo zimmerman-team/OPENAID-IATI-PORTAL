@@ -35,14 +35,20 @@
 		<?php // wordpress head functions ?>
 		<?php wp_head(); ?>
 		<?php // end of wordpress head ?>
-
+		<style>
+	.ng-hide:not(.ng-hide-animate){
+		display: block !important;
+		position: absolute;
+		top: -9999px;
+	}
+	</style>
 		<?php // drop Google Analytics Here ?>
 		<?php // end analytics ?>
 		<script>
 			var home_url = '<?php echo home_url(); ?>';
 			var template_url = '<?php echo get_template_directory_uri(); ?>';
-			// var oipa_url = 'http://localhost:8000/api';
-			var oipa_url = 'http://www.zubbozone.nl/api';
+			var oipa_url = 'http://localhost:8000/api';
+			
 			var reporting_organisation_id = 'NL-1';
 		</script>
 	</head>

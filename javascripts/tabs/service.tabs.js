@@ -45,7 +45,7 @@
 			            "header": "Gendergelijkheid", 
 			            "title": "Gelijkheid voor vrouwen in de wereld",
 			            "text": "In veel ontwikkelingslanden is er een ongelijke positie tussen mannen en vrouwen. Nederland ziet dat als een rem op groei, ontwikkeling en stabiliteit. De Rijksoverheid komt daarom op voor de versterking van de rechten en de positie van vrouwen in ontwikkelingslanden.",
-			            "data_url": templateBaseUrl + "/javascripts/tabs/static_data/1.json",
+			            "data_url": oipaUrl + "/v3/policy-marker-sector-list-vis/?format=json",
 			            "chart_type": "StackedBarChart"
 			        },
 			        {
@@ -53,7 +53,7 @@
 			            "header": "Handel", 
 			            "title": "Handel en ontwikkelingssamenwerking",
 			            "text": "Steeds meer lage-inkomenslanden en middeninkomenslanden zijn naast ontvangers van hulp ook handelspartners. De Rijksoverheid stimuleert daarom investeringen en handel in deze landen.",
-			            "data_url": templateBaseUrl + "/javascripts/tabs/static_data/2.json",
+			            "data_url":  oipaUrl + "/v3/policy-marker-sector-list-vis/?format=json&policy_marker=Trade+Development",
 			            "chart_type": "StackedBarChart"
 			        },
 			        {
@@ -61,7 +61,7 @@
 			            "header": "Partnerlanden", 
 			            "title": "Hulprelaties, overgangsrelaties en handelsrelaties",
 			            "text": "Nederland heeft op het terrein van buitenlandse handel en ontwikkelingssamenwerking met bepaalde landen een bijzondere relatie. Op het gebied van ontwikkelingssamenwerking heten deze landen 'partnerlanden'. Op handelsgebied zijn dit 'focuslanden'.",
-			            "data_url": templateBaseUrl + "/javascripts/tabs/static_data/3.json",
+			            "data_url": oipaUrl + "/v3/activity-aggregate-any/?group_by=recipient-country,transaction_date_year&aggregation_key=disbursement&reporting_organisation__in=NL-1",
 			            "color_map_url": templateBaseUrl + "/javascripts/countries/mapping.partnerlanden.js",
 			            "chart_type": "BubbleChart"
 			        },
@@ -70,7 +70,7 @@
 			            "header": "sectoren", 
 			            "title": "veiligheid en rechtsorde, water, voedselzekerheid",
 			            "text": "De Nederlandse overheid wil duurzame economische groei in ontwikkelingslanden bevorderen. Daarnaast wil Nederland werken aan stabiliteit en veiligheid in de wereld en de waarborg van mensenrechten.",
-			            "data_url": templateBaseUrl + "/javascripts/tabs/static_data/4.json",
+			            "data_url": oipaUrl + "/v3/activity-aggregate-any/?group_by=recipient-country,transaction_date_year&aggregation_key=disbursement&reporting_organisation__in=NL-1",
 			            "color_map_url": templateBaseUrl + "/javascripts/countries/mapping.partnerlanden.js",
 			            "chart_type": "BubbleChart"
 			        },
@@ -79,7 +79,7 @@
 			            "header": "Uitvoerende organisaties", 
 			            "title": "financiering ontwikkelingshulp",
 			            "text": "Nederland biedt op verschillende manieren ontwikkelingshulp. Bijvoorbeeld via programma’s van de Wereldbank en Europese Unie (EU). Of door het bedrijfsleven in ontwikkelingslanden te stimuleren.",
-			            "data_url": templateBaseUrl + "/javascripts/tabs/static_data/5.json",
+			            "data_url": oipaUrl + "/v3/activity-aggregate-any/?group_by=recipient-country,transaction_date_year&aggregation_key=disbursement&reporting_organisation__in=NL-1",
 			            "color_map_url": templateBaseUrl + "/javascripts/countries/mapping.partnerlanden.js",
 			            "chart_type": "BubbleChart"
 			        },

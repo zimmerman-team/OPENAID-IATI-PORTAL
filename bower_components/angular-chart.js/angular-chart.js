@@ -11,7 +11,8 @@
     '#46BFBD', // green
     '#FDB45C', // yellow
     '#949FB1', // grey
-    '#4D5360'  // dark grey
+    '#4D5360',  // dark grey
+
   ];
 
   angular.module('chart.js', [])
@@ -138,9 +139,11 @@
 
   function getColours (scope) {
     var colours = angular.copy(scope.colours) || angular.copy(Chart.defaults.global.colours);
+    //console.log(colours);
     while (colours.length < scope.data.length) {
       colours.push(scope.getColour());
     }
+
     return colours.map(convertColour);
   }
 
@@ -197,6 +200,7 @@
   }
 
   function getData (labels, data, colours) {
+    //console.log(colours);
     return labels.map(function (label, i) {
       return {
         label: label,

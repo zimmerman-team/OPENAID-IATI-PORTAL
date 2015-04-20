@@ -86,22 +86,28 @@
     */
     vm.updateVisualisation = function(id){
       for(var i = 0;i < vm.tabs.length;i++){
+        console.log(vm.tabs);
         if(vm.tabs[i].id == id){
-          if(vm.tabs[i].chart_type = 'BubbleChart'){
+          if(vm.tabs[i].chart_type == 'BubbleChart'){
             // TO DO: update vm.bcOptions
 
             // for now change the fake data url
+            console.log('setting url for bc');
             vm.bcOptions.dataUrl = vm.tabs[i].data_url;
+            console.log('setting colormap for bc');
+            console.log(vm.tabs[2].color_map_url);
             vm.bcOptions.colorMapUrl = vm.tabs[2].color_map_url;
-          } else if(vm.tabs[i].chart_type = 'StackedBarChart'){
+          } else if(vm.tabs[i].chart_type == 'StackedBarChart'){
             // TO DO: update vm.sbcOptions
 
             // for now change the fake data url
+            vm.bcOptions.colorMapUrl = vm.tabs[2].color_map_url;
+            console.log('setting url for sbc');
             vm.sbcOptions.dataUrl = vm.tabs[i].data_url;
 
           }
-
           break;
+
         }
       }
     }

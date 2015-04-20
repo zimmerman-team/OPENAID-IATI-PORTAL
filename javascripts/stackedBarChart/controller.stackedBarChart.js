@@ -9,116 +9,34 @@
     .module('oipa.stackedBarChart')
     .controller('StackedBarChartController', StackedBarChartController);
 
-  StackedBarChartController.$inject = ['$scope', 'timeSlider'];
+  StackedBarChartController.$inject = ['$scope', 'timeSlider','$http'];
 
   /**
   * @namespace ActivitiesController
   */
-  function StackedBarChartController($scope, timeSlider) {
+  function StackedBarChartController($scope, timeSlider,$http) {
     var vm = this;
     vm.endpoint = $scope.endpoint;
     vm.groupBy = $scope.groupBy;
     vm.aggregationKey = $scope.aggregationKey;
     vm.useTimeSlider = $scope.timeSlider;
-    
+    vm.http = $http;
+    vm.jsonData = '';
+    vm.dataUrl = $scope.sourceUrl;
+    vm.series = ['not targeted','significant objective','principal objective'];
 
     vm.visData = {
-      labels: ["Sector 1", "Sector 2", "Sector 3", "Sector 4", "Sector 5", "Sector 6", "Sector 7"],
-      datasets: [
-        [65, 59, 80, 81, 56, 55, 40],
-        [28, 48, 40, 19, 86, 27, 90]
-      ]
+      labels: [],
+      datasets: [],
+
     };
 
-    vm.cachedData = {
-      '2000': [
-        [65, 59, 80, 81, 56, 55, 40],
-        [28, 48, 40, 19, 86, 27, 90]
-      ],
-      '2001': [
-        [65, 59, 80, 81, 56, 55, 40],
-        [28, 48, 40, 19, 86, 27, 90]
-      ],
-      '2002': [
-        [6, 2, 7, 6, 5, 22, 33],
-        [55, 21, 27, 50, 60, 17, 100]
-      ],
-      '2003': [
-        [35, 44, 55, 65, 33, 55, 22],
-        [18, 42, 34, 44, 77, 45, 88]
-      ],
-      '2004': [
-        [65, 59, 80, 81, 56, 55, 40],
-        [28, 48, 40, 19, 86, 27, 90]
-      ],
-      '2005': [
-        [44, 33, 22, 33, 44, 55, 66],
-        [14, 16, 15, 71, 14, 51, 61]
-      ],
-      '2006': [
-        [65, 59, 80, 81, 56, 55, 40],
-        [28, 48, 40, 19, 86, 27, 90]
-      ],
-      '2007': [
-        [6, 2, 7, 6, 5, 22, 33],
-        [55, 21, 27, 50, 60, 17, 100]
-      ],
-      '2008': [
-        [35, 44, 55, 65, 33, 55, 22],
-        [18, 42, 34, 44, 77, 45, 88]
-      ],
-      '2009': [
-        [65, 59, 80, 81, 56, 55, 40],
-        [28, 48, 40, 19, 86, 27, 90]
-      ],
-      '2010': [
-        [44, 33, 22, 33, 44, 55, 66],
-        [14, 16, 15, 71, 14, 51, 61]
-      ],
-      '2011': [
-        [65, 59, 80, 81, 56, 55, 40],
-        [28, 48, 40, 19, 86, 27, 90]
-      ],
-      '2012': [
-        [6, 2, 7, 6, 5, 22, 33],
-        [55, 21, 27, 50, 60, 17, 100]
-      ],
-      '2013': [
-        [35, 44, 55, 65, 33, 55, 22],
-        [18, 42, 34, 44, 77, 45, 88]
-      ],
-      '2014': [
-        [65, 59, 80, 81, 56, 55, 40],
-        [28, 48, 40, 19, 86, 27, 90]
-      ],
-      '2015': [
-        [44, 33, 22, 33, 44, 55, 66],
-        [14, 16, 15, 71, 14, 51, 61]
-      ],
-    }
-
+    vm.cachedData = {};
     vm.onClick = function (points, evt) {
       console.log(points, evt);
     };
 
-    activate();
 
-    /**
-    * @name activate
-    * @desc Actions to be performed when this controller is instantiated
-    * @memberOf oipa.activityStatus.ActivitySTatusController
-    */
-    function activate() {
-      if(vm.useTimeSlider){
-
-        $scope.service = timeSlider;
-
-        // // watch the timeSlider
-        $scope.$watch("service.year", function (newValue) {
-          vm.changeYear(newValue);
-        }, true);
-      }
-    }
 
     vm.setOptions = function(group_by, aggregation_key){
         vm.group_by = group_by;
@@ -126,11 +44,20 @@
     }
     
     vm.changeYear = function(year){
-      
+     //vm.loadData(year);
+      console.log('in change year '+year);      
       if (typeof vm.cachedData[year] !== 'undefined'){
         vm.visData.datasets = vm.cachedData[year];
       }
+      else {
+          //get the data fot this year
+        vm.loadData(year);
+        vm.cachedData[year] = vm.visData.datasets;
+        console.log(vm.visData);
 
+
+      }
+      vm.loadData(year);
       //stackedBarChart.aggregate('policy_marker', 'significance,year', '', 'iati-identifier').then(succesFn, errorFn); // 1 = policy marker type 1 = Gender Equality
 
       // function succesFn(data, status, headers, config){
@@ -139,13 +66,209 @@
       //   //vm.visData.data[0] = data.data;
       // }
 
-      // function errorFn(data, status, headers, config){
+      // function errorFn(data, status, headers, config){prima
       //   console.warn('error getting data for activities.explore.block');
       // }
     }
+    //vm.changeYear(2014);
 
     vm.reformatData = function(data){
+      //first sum to top categrories
+      var name_labels = {
+        '11':'onderwijs',
+        '12':'gezondheid',
+        '13':'bevolkings beleid',
+        '14':'water en sanitatie',
+        '15':'15 = ?',
+        '16':'andere sociale infrastructuur en diensten',
+        '21':'transport en opslag',
+        '22':'communicatie',
+        '23':'energy generatie en aanlevering',
+        '24':'economische sectoren',
+        '25':'25 ? BUSINESS AND OTHER SERVICES',
+        '31':'AGRICULTURE',
+        '32':'INDUSTRY',
+        '33':'TRADE POLICY AND REGULATIONS AND TRADE-RELATED ADJUSTMENT',
+        '41':'General environmental protection',
+        '43':'Other multisector',
+        '51':'General budget support',
+        '52':'Developmental food aid/Food security assistance',
+        '53':'Other commodity assistance',
+        '60':'ACTION RELATING TO DEBT',
+        '72':'Emergency Response',
+        '73':'Reconstruction relief and rehabilitation',
+        '74':'Disaster prevention and preparedness',
+        '91':'ADMINISTRATIVE COSTS OF DONORS',
+        '92':'SUPPORT TO NON- GOVERNMENTAL ORGANISATIONS (NGOs)',
+        '93':'REFUGEES IN DONOR COUNTRIES',
+        '99':'UNALLOCATED/ UNSPECIFIED'
+      }
+      var summed_data = {};
+      for(var i = 0; i < data.length; i++) {
+          var label_translated =  name_labels[(data[i]['category_code']+'').substring(0,2)]; 
+          if(summed_data[label_translated] == undefined){
+            summed_data[label_translated] = {'name':label_translated,"significance":{"not targeted":0.0,"significant objective":0.0,"principal objective":0.0}}
+          }
+          if(data[i]['significance']["not targeted"] !== undefined){
+            summed_data[label_translated]['significance']["not targeted"] += data[i]['significance']["not targeted"];
+          }
+          
+          if(data[i]['significance']["significant objective"] !== undefined){
+            summed_data[label_translated]['significance']["significant objective"] += data[i]['significance']["significant objective"];
+          }
+          
+          if(data[i]['significance']["principal objective"] !== undefined){
+            summed_data[label_translated]['significance']["principal objective"] += data[i]['significance']["principal objective"];
+          }
+          
+      }
+      //reformat dat
+      data = [];
+      for (var key in summed_data){
+        data.push(summed_data[key]);
+      }
+      var formattedData = {};
+      var labels = [];
+      /**var datasets = [
+                {
+                  label:'not targeted',
+                  data:[],
+                  fillColor: "rgba(220,220,0,0.5)",
+                  strokeColor: "rgba(220,220,0,0.8)",
+                  highlightFill: "rgba(220,220,0,0.75)",
+                  highlightStroke: "rgba(220,220,0,1)"
+                },
+
+                {
+                  label:'significant objective',
+                  data:[],
+                  fillColor: "rgba(220,0,220,0.5)",
+                  strokeColor: "rgba(220,0,220,0.8)",
+                  highlightFill: "rgba(220,0,220,0.75)",
+                  highlightStroke: "rgba(220,0,220,1)"
+                },
+
+                {
+                  label:'principal objective',
+                  data:[],
+                  fillColor: "rgba(0,220,220,0.5)",
+                  strokeColor: "rgba(0,220,220,0.8)",
+                  highlightFill: "rgba(0,220,220,0.75)",
+                  highlightStroke: "rgba(0,220,220,1)"
+                }];
+      for(var i = 0; i < data.length; i++) {
+          labels.push(data[i]['name'].substring(0,8)+'..');
+          if(data[i]['significance']["not targeted"] !== undefined){
+            datasets[0]['data'].push(data[i]['significance']["not targeted"])
+          }
+          else{
+            datasets[0]['data'].push(0.0)
+          }
+          if(data[i]['significance']["significant objective"] !== undefined){
+            datasets[1]['data'].push(data[i]['significance']["significant objective"])
+          }
+          else{
+            datasets[1]['data'].push(0.0)
+          }
+          if(data[i]['significance']["principal objective"] !== undefined){
+            datasets[2]['data'].push(data[i]['significance']["principal objective"]) 
+          }
+          else{
+            datasets[2]['data'].push(0.0)
+          }
+      }
+      **/
+      var datasets = [
+                [],
+                [],
+                []
+                ];
+      for(var i = 0; i < data.length; i++) {
+          labels.push((data[i]['name']).substring(0,3)+'..');
+          //labels.push((data[i]['name']));
+          if(data[i]['significance']["not targeted"] !== undefined){
+            datasets[0].push(data[i]['significance']["not targeted"])
+          }
+          else{
+            datasets[0].push(0.0)
+          }
+          if(data[i]['significance']["significant objective"] !== undefined){
+            datasets[1].push(data[i]['significance']["significant objective"])
+          }
+          else{
+            datasets[1].push(0.0)
+          }
+          if(data[i]['significance']["principal objective"] !== undefined){
+            datasets[2].push(data[i]['significance']["principal objective"]) 
+          }
+          else{
+            datasets[2].push(0.0)
+          }
+      }
+      console.log(datasets);
+      formattedData['labels'] = labels;
+      formattedData['datasets'] = datasets;
+      return formattedData;
       
+
+      
+    }
+
+    vm.loadData = function(year){
+      var url = vm.dataUrl+'&year='+year;
+      vm.year = year;//set the year so that iT'S AVAILABLE WHEN SWITCHING  policy markers 
+      //var url = 'http://localhost:8000/api'+'/v3/policy-marker-sector-list-vis/?format=json'+'&year='+year;
+      var data = vm.get(url);
+      
+    }
+    /**
+     * @name get
+     * @desc Get the data of the aggregation
+     * @param {string} url The URL of which the data should be returned
+     * @returns {Promise}
+     * @memberOf oipa.bubbleChart.BubbleChart
+     */
+   vm.get = function(url) {
+      console.log(url);
+      vm.http.get(url, { cache: true }).success(function(data, status, headers, config) {
+        //console.log('data is');
+        //console.log(data);
+        vm.jsonData =  data;
+        var formattedData =  vm.reformatData(vm.jsonData);
+        vm.visData = formattedData;
+        //console.log(vm.visData);
+
+      }).error(function(data, status, headers, config){
+        console.log('data not found!');
+
+
+      });
+    }
+    activate();
+
+    /**
+    * @name activate
+    * @desc Actions to be performed when this controller is instantiated
+    * @memberOf oipa.activityStatus.ActivitySTatusController
+    */
+    function activate() {
+      //vm.changeYear('2014');
+      if(vm.useTimeSlider){
+
+        $scope.service = timeSlider;
+        // // watch the timeSlider
+        $scope.$watch("service.year", function (newValue) {
+          vm.changeYear(newValue);
+        }, true);
+        
+        $scope.$watch("sourceUrl", function (newValue) {
+         vm.dataUrl =  $scope.sourceUrl;
+
+          vm.loadData(vm.year);
+        }, true);
+        
+
+      }
     }
 
   }

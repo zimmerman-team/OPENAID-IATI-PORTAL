@@ -53,7 +53,7 @@
       vm.chart_id = "bubble-chart-" + BubbleChart.bubbleChartCount;
       BubbleChart.bubbleChartCount++;
       vm.chart = new ZzBubbleChart(vm.chart_id, vm.boxWidth, vm.boxHeight, vm.range);
-      
+      vm.needReformat = 'true';
       if(typeof vm.groupField == 'undefined'){
         vm.groupField = '';
       }
@@ -103,10 +103,13 @@
     }
 
     vm.loadData = function(year, url) {
+      console.log('in load data');
       return BubbleChart.get(url)
         .then(succesFn, errorFn);
 
       function succesFn(data, status, headers, config){
+        console.log('in ducces fn');
+        console.log(vm.needReformat);
         var formattedData = null;
         if(vm.needReformat == 'true'){
           formattedData = vm.reformatData(data);
@@ -126,7 +129,14 @@
     vm.reformatData = function(data){
       // data is in v3 style, reformat to new API (TEMP)
       // TO DO: dont make use of v3 API
-
+      // TO DO: still av3 api , hard to do in new api for now
+      console.log('data loaded');
+      console.log(data);
+      var dataFromOipa = {'results':[]};
+      var countries = {};
+      for(var i = 0; i < data.length;i++){
+        country_iso_arr =  
+      }
       var formattedData = [];
       // no year is used, put everything under year 0
       data = data.data;

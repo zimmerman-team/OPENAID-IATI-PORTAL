@@ -4,7 +4,6 @@
 			<a class="tab-header" href="javascript:void(0)" ng-class="{ 'active' : vm.isSelected(tab.id) }" ng-click="vm.setTab(tab.id)" ng-repeat="tab in vm.tabs">{{tab.header}}</a>
 		</div>	
 	</div>
-
 	<div class="row">
 		<div class="col-xs-4">
 			<div class="tab-item"  ng-show="vm.isSelected(tab.id)" ng-repeat="tab in vm.tabs">
@@ -18,11 +17,12 @@
 			<div class="row bar-chart-wrapper">
 				<div class="col-md-offset-3 col-md-8">
 					<stacked-bar-chart 
-						endpoint="vm.sbcOptions.endpoint" 
-					    group-by="vm.sbcOptions.groupBy" 
-					    aggregation-key="vm.sbcOptions.aggregationKey" 
+						endpoint="{{vm.sbcOptions.endpoint}}" 
+					    group-by="{{vm.sbcOptions.groupBy}}" 
+					    aggregation-key="{{vm.sbcOptions.aggregationKey}}" 
 					    time-slider="true"
-					    data-url="vm.sbcOptions.dataUrl"
+					    source-url="{{vm.sbcOptions.dataUrl}}"
+					    watch-source-url="true"
 					    ng-show="vm.isSelected(1) || vm.isSelected(2)">
 					</stacked-bar-chart>
 				</div>

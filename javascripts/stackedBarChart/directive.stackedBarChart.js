@@ -9,7 +9,7 @@
     .module('oipa.stackedBarChart')
     .directive('stackedBarChart', stackedBarChart);
 
-  stackedBarChart.$inject = ['templateBaseUrl'];
+  stackedBarChart.$inject = ['templateBaseUrl','$http'];
 
   /**
   * @namespace stackedBarChart
@@ -26,11 +26,11 @@
       controllerAs: 'vm',
       restrict: 'E',
       scope: {
-        endpoint: '=',
-        groupBy: '=',
-        aggregationKey: '=',
+        endpoint: '@',
+        groupBy: '@',
+        aggregationKey: '@',
         timeSlider: '=',
-        dataUrl: '='
+        sourceUrl: '@'
       },
       templateUrl: templateBaseUrl + '/templates/stackedBarChart/stacked-bar-chart.html'
     };
