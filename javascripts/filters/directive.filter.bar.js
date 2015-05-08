@@ -25,9 +25,6 @@
       controller: 'FiltersController',
       controllerAs: 'vm',
       restrict: 'E',
-      scope: {
-        collection: '='
-      },
       templateUrl: templateBaseUrl + '/templates/filters/filter-bar.html'
     };
 

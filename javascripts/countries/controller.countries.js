@@ -9,12 +9,12 @@
     .module('oipa.countries')
     .controller('CountriesController', CountriesController);
 
-  CountriesController.$inject = ['$scope', 'Countries', 'templateBaseUrl'];
+  CountriesController.$inject = ['Countries', 'Filters', 'FilterSelection', 'templateBaseUrl'];
 
   /**
   * @namespace CountriesController
   */
-  function CountriesController($scope, Countries, templateBaseUrl) {
+  function CountriesController(Countries, Filters, FilterSelection, templateBaseUrl) {
     var vm = this;
     vm.templateBaseUrl = templateBaseUrl;
     vm.recipientCountries = [];
@@ -28,25 +28,27 @@
     */
     function activate() {
       // for each active country, get the results
-      Countries.all().then(countriesSuccessFn, countriesErrorFn);
+      Countries.all().then(successFn, errorFn);
 
       /**
       * @name collectionsSuccessFn
       * @desc Update collections array on view
       */
-      function countriesSuccessFn(data, status, headers, config) {
-        vm.recipientCountries = data.data.results;
+      function successFn(data, status, headers, config) {
+        vm.recipientCountries = data.data;
       }
 
-      function countriesErrorFn(data, status, headers, config) {
+      function errorFn(data, status, headers, config) {
         console.log("getting countries failed");
       }
     }
 
-    function showOnMap() {
-      
-      
+    vm.save = function(){
+      // logic to save the filters
+      FilterSelection.toSave = true;
+      Filters.setOpenedHeader(null);
     }
+
 
   }
 })();

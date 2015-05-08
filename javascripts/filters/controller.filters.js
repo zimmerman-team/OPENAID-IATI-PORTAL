@@ -9,24 +9,20 @@
     .module('oipa.filters')
     .controller('FiltersController', FiltersController);
 
-  FiltersController.$inject = ['Filters'];
+  FiltersController.$inject = ['$scope', 'Filters'];
 
   /**
   * @namespace FiltersController
   */
-  function FiltersController(Filters, Countries) {
-    var vm = this;
-
-    vm.selected_filters = [];
-
-    vm.active_filters = [
-      { slug: 'recipient_countries', name: 'Land', amount: 0},
-      { slug: 'recipient_regions', name: 'Regio', amount: 0},
-      { slug: 'budget', name: 'Budget', amount: 0},
-      { slug: 'sectors', name: 'Sector', amount: 0},
-      { slug: 'start_end_date', name: 'Start & eind datum activiteit', amount: 0},
-      { slug: 'implementing_organisations', name: 'Ontvangende organisatie', amount: 0},
-      { slug: 'activity_status', name: 'Status activiteit', amount: 0},
+  function FiltersController($scope, Filters) {
+    $scope.activeFilters = [
+      { slug: 'recipient_countries', name: 'Land'},
+      { slug: 'recipient_regions', name: 'Regio'},
+      { slug: 'budget', name: 'Budget'},
+      { slug: 'sectors', name: 'Sector'},
+      // { slug: 'start_end_date', name: 'Start & eind datum activiteit', amount: 0},
+      { slug: 'implementing_organisations', name: 'Ontvangende organisatie'},
+      { slug: 'activity_status', name: 'Status activiteit'},
     ];
 
     activate();
@@ -37,38 +33,36 @@
     * @memberOf oipa.filters.FiltersController
     */
     function activate() {
-
     }
 
-    vm.isOpenedHeader = function(slug){
+    $scope.isOpenedHeader = function(slug){
       return Filters.isOpenedHeader(slug);
     }
 
-    vm.setOpenedHeader = function(slug){
+    $scope.setOpenedHeader = function(slug){
       Filters.setOpenedHeader(slug);
     }
 
-    vm.toggleOpenFilters = function(){
+    $scope.toggleOpenFilters = function(){
       if(Filters.isOpenedHeader(null)){
-        vm.setOpenedHeader('recipient_countries');  
+        $scope.setOpenedHeader('recipient_countries');  
       } else {
-        vm.setOpenedHeader(null);
+        $scope.setOpenedHeader(null);
       }
     }
 
-    vm.resetFilters = function(){
+    $scope.resetFilters = function(){
       
     }
 
-    vm.saveFilters = function(){
-      vm.active_filters[0].amount = Countries.selectedCountries.length;
-    
+    $scope.saveFilters = function(){
       // logic to save the filters
+      // FilterSelection.toSave = true;
       Filters.setOpenedHeader(null);
     }
 
-    vm.cancelFilters = function(){
-      vm.resetFilters();
+    $scope.cancelFilters = function(){
+      // vm.resetFilters();
       Filters.setOpenedHeader(null);
     }
 

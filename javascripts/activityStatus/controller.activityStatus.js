@@ -16,20 +16,31 @@
   */
   function ActivityStatusController(ActivityStatus, templateBaseUrl) {
     var vm = this;
-
     vm.templateBaseUrl = templateBaseUrl;
-    vm.activityStatuses = null;
+    vm.activityStatuses = [];
+    vm.selectedActivityStatuses = ActivityStatus.selectedActivityStatuses;
     activate();
 
     /**
     * @name activate
     * @desc Actions to be performed when this controller is instantiated
-    * @memberOf oipa.activityStatus.ActivitySTatusController
+    * @memberOf oipa.countries.controllers.CountriesController
     */
     function activate() {
-      var data = ActivityStatus.all();
-      vm.activityStatuses = data.results;
-    }
+      // for each active country, get the results
+      ActivityStatus.all().then(successFn, errorFn);
 
+      /**
+      * @name collectionsSuccessFn
+      * @desc Update collections array on view
+      */
+      function successFn(data, status, headers, config) {
+        vm.activityStatuses = data.data;
+      }
+
+      function errorFn(data, status, headers, config) {
+        console.log("getting activity statuses failed");
+      }
+    }
   }
 })();

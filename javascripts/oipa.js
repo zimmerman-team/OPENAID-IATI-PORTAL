@@ -17,6 +17,7 @@
             'oipa.footer',
             'oipa.search',
             'oipa.toolbar',
+            'oipa.aggregations',
             'oipa.countries',
             'oipa.regions',
             'oipa.sectors',

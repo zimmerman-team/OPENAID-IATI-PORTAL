@@ -9,13 +9,13 @@
 		.module('oipa.sectors')
 		.factory('Sectors', Sectors);
 
-	Sectors.$inject = ['$http', 'oipaUrl'];
+	Sectors.$inject = ['$http', 'oipaUrl', 'reportingOrganisationId'];
 
 	/**
 	* @namespace Sectors
 	* @returns {Factory}
 	*/
-	function Sectors($http, oipaUrl) {
+	function Sectors($http, oipaUrl, reportingOrganisationId) {
 		this.selectedSectors = [];
 		var Sectors = {
 			selectedSectors: this.selectedSectors,
@@ -33,11 +33,13 @@
          * @returns {Promise}
          * @memberOf oipa.sectors.services.Sectors
          */
-        function all(filters) {
-        	if (!filters){
-        		filters = '';
-        	}
-            return $http.get(oipaUrl + '/sectors?format=json&page_size=999&fields=code,name&fields[aggregations]=count' + filters, { cache: true });
+        function all() {
+
+            var url = oipaUrl + '/activity-aggregate-any/?format=json&group_by=sector&aggregation_key=iati-identifier';
+            if(reportingOrganisationId){
+                url += '&reporting_organisation__in=' + reportingOrganisationId;
+            }
+            return $http.get(url, { cache: true });
         }
 
 	    /**

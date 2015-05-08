@@ -9,18 +9,16 @@
     .module('oipa.regions')
     .controller('RegionsController', RegionsController);
 
-  RegionsController.$inject = ['$scope', 'Regions', 'templateBaseUrl'];
+  RegionsController.$inject = ['Regions', 'templateBaseUrl'];
 
   /**
   * @namespace RegionsController
   */
-  function RegionsController($scope, Regions, templateBaseUrl) {
+  function RegionsController(Regions, templateBaseUrl) {
     var vm = this;
-
     vm.templateBaseUrl = templateBaseUrl;
     vm.recipientRegions = [];
     vm.selectedRegions = Regions.selectedRegions;
-
     activate();
 
     /**
@@ -33,7 +31,7 @@
       Regions.all().then(regionsSuccessFn, regionsErrorFn);
 
       function regionsSuccessFn(data, status, headers, config) {
-        vm.recipientRegions = data.data.results;
+        vm.recipientRegions = data.data;
       }
 
       function regionsErrorFn(data, status, headers, config) {

@@ -35,12 +35,13 @@
 			    	<td>
 			    		<div class="checkbox">
 						  <label>
-						    <input type="checkbox" checklist-model="vm.selectedRegions" checklist-value="item">{{ item.name }}
+						    <input type="checkbox" checklist-model="vm.selectedRegions" checklist-value="item">
+						    {{ item.name }}
 						  </label>
 						</div>
 			    	</td>
 			    	<td>
-			    		{{ item.aggregations.count }}
+			    		{{ item.activity_count }}
 			    	</td>
 			    </tr>
 

@@ -34,9 +34,12 @@
 			    	<td>
 			    		<div class="checkbox">
 						  <label>
-						    <input type="checkbox" value="{{item.code}}">{{ item.name }}
+						    <input type="checkbox" checklist-model="vm.selectedActivityStatuses" checklist-value="item">{{ item.name }}
 						  </label>
 						</div>
+			    	</td>
+			    	<td>
+			    		{{ item.activity_count }}
 			    	</td>
 			    </tr>
 

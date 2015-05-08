@@ -9,13 +9,13 @@
 		.module('oipa.regions')
 		.factory('Regions', Regions);
 
-	Regions.$inject = ['$http', 'oipaUrl'];
+	Regions.$inject = ['$http', 'oipaUrl', 'reportingOrganisationId'];
 
 	/**
 	* @namespace Filters
 	* @returns {Factory}
 	*/
-	function Regions($http, oipaUrl) {
+	function Regions($http, oipaUrl, reportingOrganisationId) {
 		var m = this;
 		m.selectedRegions = [];
 		
@@ -37,10 +37,13 @@
          * @memberOf oipa.countries.services.Countries
          */
         function all() {
-            return $http.get(oipaUrl + '/regions?format=json&page_size=999&fields=code,name&fields[aggregations]=count', { cache: true });
 
+        	var url = oipaUrl + '/activity-aggregate-any/?format=json&group_by=recipient-region&aggregation_key=iati-identifier';
+	        if(reportingOrganisationId){
+	            url += '&reporting_organisation__in=' + reportingOrganisationId;
+	        }
+            return $http.get(url, { cache: true });
         }
-
 
 	    /**
 	     * @name get
@@ -50,7 +53,7 @@
 	     * @memberOf oipa.filters.services.Filters
 	     */
 	     function get(id) {
-	     	return $http.get('/api/regions/' + id + '?format=json', { cache: true });
+	     	return $http.get('/regions/' + id + '?format=json', { cache: true });
 	     }
 	}
 })();

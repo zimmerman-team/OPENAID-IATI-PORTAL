@@ -25,6 +25,7 @@
       controller: 'SectorsExploreController',
       controllerAs: 'vm',
       restrict: 'E',
+      scope: {},
       templateUrl: templateBaseUrl + '/templates/sectors/sector-explore-block.html'
     };
 

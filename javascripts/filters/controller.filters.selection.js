@@ -9,26 +9,24 @@
     .module('oipa.filters')
     .controller('FiltersSelectionController', FiltersSelectionController);
 
-  FiltersSelectionController.$inject = ['FilterSelection', 'Countries', 'Regions', 'Budget', 'Sectors', 'ImplementingOrganisations'];
+  FiltersSelectionController.$inject = ['$scope', 'FilterSelection', 'Countries', 'Regions', 'Budget', 'Sectors', 'ImplementingOrganisations'];
 
   /**
   * @namespace FiltersController
   */
-
-  // function FiltersSelectionController(FilterSelection, Countries, Regions, Budget, Sectors, ActivityDate, ImplementingOrganisations, PolicyMarkers, ActivityStatus, Documents) {
-  function FiltersSelectionController(FilterSelection, Countries, Regions, Budget, Sectors, ImplementingOrganisations) {
+  function FiltersSelectionController($scope, FilterSelection, Countries, Regions, Budget, Sectors, ImplementingOrganisations) {
     var vm = this;
     vm.selectedCountries = Countries.selectedCountries;
     vm.selectedRegions = Regions.selectedRegions;
-    // vm.selectedBudget = Budget.budget;
     vm.selectedSectors = Sectors.selectedSectors;
-    // vm.selectedActivityDate = ActivityDate.selectedActivityDates;
     vm.selectedImplementingOrganisations = ImplementingOrganisations.selectedImplementingOrganisations;
+    vm.filterSelection = FilterSelection;
+
+    // vm.selectedActivityDate = ActivityDate.selectedActivityDates;
+    // vm.selectedBudget = Budget.budget;
     // vm.selectedPolicyMarkers = PolicyMarkers.selectedPolicyMarkers;
     // vm.selectedActivityStatus = ActivityStatus.selectedActivityStatus;
     // vm.selectedDocuments = DocumentLink.selectedDocumentLinks;
-
-    vm.total_count = vm.selectedCountries.length;
 
     /**
     * @name activate
@@ -36,7 +34,43 @@
     * @memberOf oipa.filters.controllers.FiltersController
     */
     function activate() {
-      
+
+      $scope.$watch("vm.filterSelection.toSave", function (toSave) {
+
+        if(toSave){
+          // update
+          vm.updateSelectionString();
+          FilterSelection.toSave = false;
+        }
+      }, true);
+
+    }
+
+    vm.updateSelectionString = function(){
+    
+      var selectList = [
+        vm.selectArrayToString('countries', vm.selectedCountries),
+        vm.selectArrayToString('regions', vm.selectedRegions),
+        vm.selectArrayToString('sectors', vm.selectedSectors),
+        vm.selectArrayToString('implementingOrganisations', vm.selectedImplementingOrganisations),
+      ];
+
+      FilterSelection.selectionString = selectList.join('');
+    }
+
+    vm.selectArrayToString = function(header, arr){
+
+      var headerName = '';
+      var list = [];
+
+      if(arr.length > 0){
+        headerName = '&' + header + '__in=';
+        for(var i = 0; i < arr.length; i++){
+            list.push(arr[i].id);
+        }
+      }
+
+      return headerName + list.join(',');
     }
 
     vm.removeFilter = function(selectedArr, item_id) {
@@ -48,6 +82,6 @@
       }
     }
 
+    activate();
   }
-
 })();

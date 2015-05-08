@@ -121,7 +121,7 @@ ZzBubbleChart = (function() {
 
     }
     this.nodes = data;
-    this.update_nodes();
+    // this.update_nodes();
     this.update_year(year, 1000);
   }
 

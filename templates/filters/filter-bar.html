@@ -1,30 +1,101 @@
 <div id="filter-wrapper">
-  <div id="filter-headers" class="col-xs-4 filter-collapsed" ng-class="{ 'filters-hidden' : vm.isOpenedHeader(null) }">
+  <div 
+  id="filter-headers" 
+  class="col-xs-4 filter-collapsed" 
+  ng-class="{ 'filters-hidden' : isOpenedHeader(null) }">
   	
     <div class="filter-header filter-header-toggle">
-      <a id="filter-button" ng-click="vm.toggleOpenFilters()">
+      <a id="filter-button" ng-click="toggleOpenFilters()">
         <span class="filter-button-icon"></span>
         <span class="filter-button-icon"></span>
         <span class="filter-button-icon"></span>
       </a>
       <span class="filter-header-text">Selecteer filter</span>
-      <a class="filter-reset-button" href="javascript:void(0)" ng-click="vm.saveFilters()">Reset filters</a>
+      <a class="filter-reset-button" href="javascript:void(0)" ng-click="saveFilters()">Reset filters</a>
     </div>
 
-    <div class="filter-header" ng-class="{ 'filter-active' : vm.isOpenedHeader(filter.slug) }" ng-repeat="filter in vm.active_filters" ng-click="vm.setOpenedHeader(filter.slug);">
-  		<a href="javascript:void(0)" class="filter-link"><span class="filter-icon filter-{{filter.slug}}"></span></a>
-  		<span class="filter-header-text">{{filter.name}}</span>
+    <div 
+    class="filter-header" 
+    ng-class="{ 'filter-active' : isOpenedHeader('recipient_countries') }" 
+    ng-click="setOpenedHeader('recipient_countries');">
+  		<a href="javascript:void(0)" class="filter-link">
+        <span class="filter-icon filter-recipient_countries"></span>
+      </a>
+  		<span class="filter-header-text">Land</span>
   		<span class="glyphicon glyphicon-chevron-right"></span>
-      <span class="filter-header-amount">{{filter.amount}}</span>
+      <span class="filter-header-amount">{{vm.selectedCountries.length}}</span>
   	</div>
+
+    <div 
+    class="filter-header" 
+    ng-class="{ 'filter-active' : isOpenedHeader('recipient_regions') }" 
+    ng-click="setOpenedHeader('recipient_regions');">
+      <a href="javascript:void(0)" class="filter-link">
+        <span class="filter-icon filter-recipient_regions"></span>
+      </a>
+      <span class="filter-header-text">Regio</span>
+      <span class="glyphicon glyphicon-chevron-right"></span>
+      <span class="filter-header-amount">{{vm.selectedRegions.length}}</span>
+    </div>
+
+    <div 
+    class="filter-header" 
+    ng-class="{ 'filter-active' : isOpenedHeader('budget') }" 
+    ng-click="setOpenedHeader('budget');">
+      <a href="javascript:void(0)" class="filter-link">
+        <span class="filter-icon filter-budget"></span>
+      </a>
+      <span class="filter-header-text">Budget</span>
+      <span class="glyphicon glyphicon-chevron-right"></span>
+      <span class="filter-header-amount">{{vm.selectedBudgets.length}}</span>
+    </div>
+
+    <div 
+    class="filter-header" 
+    ng-class="{ 'filter-active' : isOpenedHeader('sectors') }" 
+    ng-click="setOpenedHeader('sectors');">
+      <a href="javascript:void(0)" class="filter-link">
+        <span class="filter-icon filter-sectors"></span>
+      </a>
+      <span class="filter-header-text">Sector</span>
+      <span class="glyphicon glyphicon-chevron-right"></span>
+      <span class="filter-header-amount">{{vm.selectedSectors.length}}</span>
+    </div>
+
+    <div 
+    class="filter-header" 
+    ng-class="{ 'filter-active' : isOpenedHeader('implementing_organisations') }" 
+    ng-click="setOpenedHeader('implementing_organisations');">
+      <a href="javascript:void(0)" class="filter-link">
+        <span class="filter-icon filter-implementing_organisations"></span>
+      </a>
+      <span class="filter-header-text">Ontvangende organisatie</span>
+      <span class="glyphicon glyphicon-chevron-right"></span>
+      <span class="filter-header-amount">{{vm.selectedImplementingOrganisations.length}}</span>
+    </div>
+
+    <div 
+    class="filter-header" 
+    ng-class="{ 'filter-active' : isOpenedHeader('activity_status') }" 
+    ng-click="setOpenedHeader('activity_status');">
+      <a href="javascript:void(0)" class="filter-link">
+        <span class="filter-icon filter-activity_status"></span>
+      </a>
+      <span class="filter-header-text">Status activiteit</span>
+      <span class="glyphicon glyphicon-chevron-right"></span>
+      <span class="filter-header-amount">{{vm.selectedActivityStatuses.length}}</span>
+    </div>
+
+
 
     <filter-selection-box></filter-selection-box>
   	
   </div>
-  <filter-panel-recipient-countries ng-show="vm.isOpenedHeader('recipient_countries')"></filter-panel-recipient-countries>
-  <filter-panel-recipient-regions ng-show="vm.isOpenedHeader('recipient_regions')"></filter-panel-recipient-regions>
-  <filter-panel-budget ng-show="vm.isOpenedHeader('budget')"></filter-panel-budget>
-  <filter-panel-sectors ng-show="vm.isOpenedHeader('sectors')"></filter-panel-sectors>
-  <filter-panel-activity-status ng-show="vm.isOpenedHeader('activity_status')"></filter-panel-activity-status>
-  <filter-panel-implementing-organisations ng-show="vm.isOpenedHeader('implementing_organisations')"></filter-panel-implementing-organisations>
+  <filter-panel-recipient-countries ng-show="isOpenedHeader('recipient_countries')"></filter-panel-recipient-countries>
+  <filter-panel-recipient-regions ng-show="isOpenedHeader('recipient_regions')"></filter-panel-recipient-regions>
+  <filter-panel-budget ng-show="isOpenedHeader('budget')"></filter-panel-budget>
+  <filter-panel-sectors ng-show="isOpenedHeader('sectors')"></filter-panel-sectors>
+  <filter-panel-activity-status ng-show="isOpenedHeader('activity_status')"></filter-panel-activity-status>
+  <filter-panel-implementing-organisations ng-show="isOpenedHeader('implementing_organisations')"></filter-panel-implementing-organisations>
 </div>
+

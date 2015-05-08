@@ -16,13 +16,9 @@
   */
   function SectorsController(Sectors, templateBaseUrl) {
     var vm = this;
-
     vm.templateBaseUrl = templateBaseUrl;
-
     vm.sectors = [];
     vm.selectedSectors = Sectors.selectedSectors;
-    
-
     activate();
 
     /**
@@ -39,7 +35,7 @@
       * @desc Update sectors array on view
       */
       function successFn(data, status, headers, config) {
-        vm.sectors = data.data.results;
+        vm.sectors = data.data;
       }
 
 

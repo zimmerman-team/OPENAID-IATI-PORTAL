@@ -9,7 +9,7 @@
 
 	function ExploreController($scope, Filters){
 		var vm = this;
-
+		vm.test = "srg";
 		activate();
 
 	    function activate() {

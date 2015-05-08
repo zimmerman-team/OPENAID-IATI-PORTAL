@@ -20,6 +20,8 @@
     vm.chart = null;
     vm.chart_id = null;
     vm.initialized = false;
+
+    vm.useData = $scope.useData;
     
     vm.endpoint = $scope.endpoint;
     vm.groupBy = $scope.groupBy;
@@ -41,7 +43,6 @@
     vm.range = [vm.minRange, vm.maxRange];
     vm.colorMapUrl = $scope.countryTypes;
     
-    
     vm.colorData = null;
 
     /**
@@ -50,36 +51,55 @@
     * @memberOf oipa.bubbleChart.BubbleChartController
     */
     function activate() {
+
       vm.chart_id = "bubble-chart-" + BubbleChart.bubbleChartCount;
       BubbleChart.bubbleChartCount++;
       vm.chart = new ZzBubbleChart(vm.chart_id, vm.boxWidth, vm.boxHeight, vm.range);
-      vm.needReformat = 'true';
-      if(typeof vm.groupField == 'undefined'){
-        vm.groupField = '';
-      }
-
-      if(typeof vm.sourceUrl == 'undefined'){
-        vm.sourceUrl = vm.createUrl();
-      }
-
-      vm.loadData(vm.currentYear, vm.sourceUrl);
-      vm.initialized = true;
-      if(vm.useTimeSlider == 'true'){
-        $scope.service = timeSlider;
-
-        // watch the timeSlider
-        $scope.$watch("service.year", function (newValue) {
-          vm.currentYear = newValue;
-          vm.changeYear(newValue);
+      
+      if (vm.useData > 0){
+        // listen to data update
+        $scope.$watch("useData", function (newValue) {
+          vm.update($scope.formattedData);
         }, true);
-        if(vm.watchSourceUrl){
-          $scope.$watch("sourceUrl", function (newValue) {
-            vm.sourceUrl = $scope.sourceUrl;
-            vm.loadData(vm.currentYear, vm.sourceUrl);
-            vm.setColorFunction();
-          }, true);
+
+      } else {
+
+        vm.needReformat = 'true';
+
+        if(typeof vm.groupField == 'undefined'){
+          vm.groupField = '';
         }
 
+        if(typeof vm.sourceUrl == 'undefined'){
+          vm.sourceUrl = vm.createUrl();
+        }
+
+        vm.loadData(vm.currentYear, vm.sourceUrl);
+        vm.initialized = true;
+        if(vm.useTimeSlider == 'true'){
+          $scope.service = timeSlider;
+
+          // watch the timeSlider
+          $scope.$watch("service.year", function (newValue) {
+            vm.currentYear = newValue;
+            vm.changeYear(newValue);
+          }, true);
+          if(vm.watchSourceUrl){
+            $scope.$watch("sourceUrl", function (newValue) {
+              vm.sourceUrl = $scope.sourceUrl;
+              vm.loadData(vm.currentYear, vm.sourceUrl);
+              vm.setColorFunction();
+            }, true);
+          }
+
+        }
+
+      }
+    }
+
+    vm.update = function(formattedData){
+      if(formattedData.length > 0){
+        vm.chart.update(vm.currentYear, formattedData);
       }
     }
 
@@ -103,13 +123,10 @@
     }
 
     vm.loadData = function(year, url) {
-      console.log('in load data');
       return BubbleChart.get(url)
         .then(succesFn, errorFn);
 
       function succesFn(data, status, headers, config){
-        console.log('in ducces fn');
-        console.log(vm.needReformat);
         var formattedData = null;
         if(vm.needReformat == 'true'){
           formattedData = vm.reformatData(data);
@@ -130,12 +147,10 @@
       // data is in v3 style, reformat to new API (TEMP)
       // TO DO: dont make use of v3 API
       // TO DO: still av3 api , hard to do in new api for now
-      console.log('data loaded');
-      console.log(data);
       var dataFromOipa = {'results':[]};
       var countries = {};
       for(var i = 0; i < data.length;i++){
-        country_iso_arr =  
+        // country_iso_arr =  
       }
       var formattedData = [];
       // no year is used, put everything under year 0
@@ -149,19 +164,20 @@
       return formattedData;
     }
 
-    //load the color data
+    // load the color data
     $scope.colorData = null
     vm.loadColorData = function(url){
-      console.log('url = '+url);
-       
-      $http.get(url).
-      success(function(data, status, headers, config) {
-        $scope.colorData  = data;
-        var keys = {};
-      }).
-      error(function(data, status, headers, config) {
-        console.log('data not found')
-      });
+      
+      if(url !== undefined){
+        $http.get(url).
+        success(function(data, status, headers, config) {
+          $scope.colorData  = data;
+          var keys = {};
+        }).
+        error(function(data, status, headers, config) {
+          // console.log('data not found')
+        });
+      }
     }
 
     vm.mapColorToCountry = function(){
@@ -186,7 +202,6 @@
 
     vm.loadColorData( vm.colorMapUrl);
     activate();
-    console.log($scope);
     vm.setColorFunction = function(){
       if(vm.sourceUrl.indexOf('3.json') != -1){
         vm.chart.fill_color = vm.mapColorToCountry( );

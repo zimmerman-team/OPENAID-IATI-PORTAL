@@ -9,13 +9,13 @@
         .module('oipa.activities')
         .factory('Activities', Activities);
 
-    Activities.$inject = ['$http', 'oipaUrl'];
+    Activities.$inject = ['$http', 'oipaUrl', 'reportingOrganisationId'];
 
     /**
     * @namespace Activities
     * @returns {Factory}
     */
-    function Activities($http, oipaUrl) {
+    function Activities($http, oipaUrl, reportingOrganisationId) {
         var m = this;
 
         var Activities = {
@@ -26,19 +26,20 @@
 
         return Activities;
 
-
-
         ////////////////////
-
 
         /**
          * @name all
          * @desc Try to get all countries
          * @returns {Promise}
          * @memberOf oipa.countries.services.Countries
-         */
+         */ 
         function all() {
-            return $http.get(oipaUrl + '/activities?format=json&page_size=999&fields=iati-identifier,name', { cache: true });
+            var url = oipaUrl + '/activities?format=json&page_size=10&fields=iati-identifier,name'
+            if(reportingOrganisationId){
+                url += '&reporting_organisation__in=' + reportingOrganisationId
+            }
+            return $http.get(url, { cache: true });
         }
 
         /**
@@ -50,14 +51,6 @@
          */
         function get(code) {
             return $http.get(oipaUrl + '/activities/' + code + '?format=json&fields=iati-identifier,name&fields[aggregations]=count,disbursement,commitment', { cache: true });
-        }
-
-
-        function aggregation(group_by, group_field, aggregation_key){
-            if (group_field !== ''){
-                group_field = '&group_field=' + group_field;
-            }
-            return $http.get(oipaUrl + '/v3/activity-aggregate-any/?format=json&reporting_organisation=NL-1&group_by='+group_by+group_field+'&aggregation_key='+aggregation_key);
         }
     }
 })();

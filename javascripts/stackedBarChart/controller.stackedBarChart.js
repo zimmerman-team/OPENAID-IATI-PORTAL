@@ -217,7 +217,7 @@
     vm.loadData = function(year){
       var url = vm.dataUrl+'&year='+year;
       vm.year = year;//set the year so that iT'S AVAILABLE WHEN SWITCHING  policy markers 
-      //var url = 'http://localhost:8000/api'+'/v3/policy-marker-sector-list-vis/?format=json'+'&year='+year;
+      //var url = 'http://localhost:8000/api'+'/policy-marker-sector-list-vis/?format=json'+'&year='+year;
       var data = vm.get(url);
       
     }

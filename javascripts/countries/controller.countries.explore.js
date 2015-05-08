@@ -9,27 +9,16 @@
     .module('oipa.countries')
     .controller('CountriesExploreController', CountriesExploreController);
 
-  CountriesExploreController.$inject = ['$scope', 'Countries', 'FilterSelection'];
+  CountriesExploreController.$inject = ['$scope', 'Aggregations', 'FilterSelection'];
 
   /**
   * @namespace CountriesExploreController
   */
-  function CountriesExploreController($scope, Countries, FilterSelection) {
+  function CountriesExploreController($scope, Aggregations, FilterSelection) {
     var vm = this;
-    vm.visualisation_data = null;
-    vm.selectionString = FilterSelection.selectionString;
-
-    vm.visData = {
-      series: ['Activities per year'],
-      labels: [],
-      data: [
-        []
-      ]
-    };
-
-    vm.onClick = function (points, evt) {
-      console.log(points, evt);
-    };
+    $scope.filterSelection = FilterSelection;
+    vm.visData = [];
+    vm.useData = 1;
 
     activate();
 
@@ -39,21 +28,17 @@
     * @memberOf oipa.activityStatus.ActivitySTatusController
     */
     function activate() {
-      
-      $scope.$watch("vm.selectionString", function (newValue) {
-          vm.update();
+      $scope.$watch("filterSelection.selectionString", function (selectionString) {
+          vm.update(selectionString);
       }, true);
     }
     
-    vm.update = function(data){
-      
-      console.log('oipa.countries.explore.update called');
-      // Countries.aggregation('year', 'start_planned', 'iati-identifier').then(succesFn, errorFn);
+    vm.update = function(selectionString){
+
+      Aggregations.aggregation('recipient-country', 'disbursement', selectionString).then(succesFn, errorFn);
 
       function succesFn(data, status, headers, config){
-        data = vm.reformatData(data.data);
-        vm.visData.labels = data.labels;
-        vm.visData.data[0] = data.data;
+        vm.reformatData(data.data);
       }
 
       function errorFn(data, status, headers, config){
@@ -63,19 +48,30 @@
 
     vm.reformatData = function(data){
       var formattedData = [];
-      var labels = [];
 
-      for(var i = 0; i < data.length;i++){
-        if(data[i].group_field != null && data[i].group_field > 1999 && data[i].group_field < 2016){
-          labels.push(data[i].group_field);
-          formattedData.push(data[i].aggregation_field);
-        }
+      var visDataMap = {};
+      for(var i = 0;i < vm.visData.length;i++){
+        visDataMap[vm.visData[i].id] = i;
+        vm.visData[i].aggregations[0] = 0;
       }
 
-      return { labels: labels, data: formattedData }
+      // no year is used, put everything under year 0
+      for(var i = 0; i < data.length;i++){
+        if(data[i].country_id != null){
+          if(visDataMap[data[i].country_id] != undefined){
+            vm.visData[visDataMap[data[i].country_id]].aggregations[0] = data[i].total_disbursements;
+          } else{
+            vm.visData.push({
+              id:data[i].country_id, 
+              code:data[i].country_id, 
+              name: data[i].name, 
+              aggregations: {'0': data[i].total_disbursements }
+            });
+          }
+        }
+      }
+      vm.useData++;
     }
-
-    
 
   }
 })();

@@ -16,12 +16,9 @@
   */
   function ImplementingOrganisationsController(ImplementingOrganisations, templateBaseUrl) {
     var vm = this;
-
     vm.templateBaseUrl = templateBaseUrl;
-    
     vm.implementingOrganisations = [];
     vm.selectedImplementingOrganisations = ImplementingOrganisations.selectedImplementingOrganisations;
-    
     activate();
 
     /**
@@ -30,7 +27,7 @@
     * @memberOf oipa.countries.ImplementingOrganisationsController
     */
     function activate() {
-      // for each active country, get the results
+      // for each active country, get the results;
       ImplementingOrganisations.all().then(successFn, errorFn);
 
       /**
@@ -38,7 +35,7 @@
       * @desc Update collections array on view
       */
       function successFn(data, status, headers, config) {
-        vm.implementingOrganisations = data.data.results;
+        vm.implementingOrganisations = data.data;
       }
 
 
