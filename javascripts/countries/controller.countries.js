@@ -49,6 +49,5 @@
       Filters.setOpenedHeader(null);
     }
 
-
   }
 })();

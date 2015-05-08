@@ -7,26 +7,41 @@
 
   angular
     .module('oipa.activities')
-    .controller('ActivitiesController', ActivitiesController);
+    .controller('ActivityController', ActivityController);
 
-  ActivitiesController.$inject = ['Activities'];
+  ActivityController.$inject = ['Activities', '$stateParams'];
 
   /**
   * @namespace ActivitiesController
   */
-  function ActivitiesController(Activities) {
+  function ActivityController(Activities, $stateParams) {
     var vm = this;
-
-    vm.activities = null;
+    vm.activity = null;
+    vm.activity_id = $stateParams.activity_id;
+    
     activate();
 
     /**
     * @name activate
     * @desc Actions to be performed when this controller is instantiated
-    * @memberOf oipa.activityStatus.ActivitySTatusController
+    * @memberOf oipa.countries.controllers.CountryController
     */
     function activate() {
-      
+      // for each active country, get the results
+      Activities.get(vm.activity_id).then(successFn, errorFn);
+
+      /**
+      * @name collectionsSuccessFn
+      * @desc Update collections array on view
+      */
+      function successFn(data, status, headers, config) {
+        vm.activity = JSON.stringify(data.data, undefined, 2);
+      }
+
+
+      function errorFn(data, status, headers, config) {
+        console.log("getting country failed");
+      }
     }
 
   }

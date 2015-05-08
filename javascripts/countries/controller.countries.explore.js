@@ -25,7 +25,7 @@
     /**
     * @name activate
     * @desc Actions to be performed when this controller is instantiated
-    * @memberOf oipa.activityStatus.ActivitySTatusController
+    * @memberOf oipa.activityStatus.ActivityStatusController
     */
     function activate() {
       $scope.$watch("filterSelection.selectionString", function (selectionString) {

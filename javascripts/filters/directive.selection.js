@@ -25,9 +25,7 @@
       controller: 'FiltersSelectionController',
       controllerAs: 'vm',
       restrict: 'E',
-      scope: {
-        collection: '='
-      },
+      scope: {},
       templateUrl: templateBaseUrl + '/templates/filters/filter-selection-box.html'
     };
 

@@ -1,0 +1,26 @@
+<div class="explore-block-header">Activiteiten</div>
+<div class="explore-block-content">
+    <div class="row" ng-show="vm.activities.length == 0">
+        <div class="svg-loader">
+            <img src="{{templateBaseUrl}}/images/spinning-circles.svg" width="70" alt="">
+        </div>
+    </div>
+    <div class="row" ng-show="vm.activities.length != 0">
+        
+        <div 
+        class="col-md-12" 
+        dir-paginate="item in vm.activities | itemsPerPage: 10"  
+        pagination-id="activityList"
+        total-items="vm.totalActivities" 
+        current-page="vm.pagination.current">
+            
+            <a ui-sref="activiteit({ activity_id: item.id })">
+                {{ item.titles[0].title }}
+            </a>   
+        </div>
+        <dir-pagination-controls 
+        pagination-id="activityList" 
+        on-page-change="pageChanged(newPageNumber)">
+        </dir-pagination-controls>
+    </div>
+</div>

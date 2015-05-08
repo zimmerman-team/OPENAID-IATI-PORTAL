@@ -21,7 +21,7 @@
         var Activities = {
             all: all,
             get: get,
-            aggregation: aggregation
+            list: list
         };
 
         return Activities;
@@ -42,6 +42,28 @@
             return $http.get(url, { cache: true });
         }
 
+        function list(filters, limit, order_by, offset){
+            var url = oipaUrl + '/activities?format=json'
+
+            if(reportingOrganisationId){
+                url += '&reporting_organisation__in=' + reportingOrganisationId
+            }
+            if(filters !== undefined){
+                url += filters;
+            }
+            if(order_by !== undefined){
+                url += '&order_by=' + order_by;
+            }
+            if(offset !== undefined){
+                url += '&offset=' + offset;
+            }
+            if(limit !== undefined){
+                url += '&limit=' + limit;
+            }
+
+            return $http.get(url, { cache: true });
+        }
+
         /**
          * @name get
          * @desc Get the Collections of a given user
@@ -50,7 +72,7 @@
          * @memberOf oipa.filters.services.Filters
          */
         function get(code) {
-            return $http.get(oipaUrl + '/activities/' + code + '?format=json&fields=iati-identifier,name&fields[aggregations]=count,disbursement,commitment', { cache: true });
+            return $http.get(oipaUrl + '/activities/' + code + '/?format=json', { cache: true });
         }
     }
 })();

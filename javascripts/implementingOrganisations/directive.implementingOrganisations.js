@@ -25,6 +25,7 @@
       controller: 'ImplementingOrganisationsController',
       controllerAs: 'vm',
       restrict: 'E',
+      scope: {},
       templateUrl: templateBaseUrl + '/templates/implementingOrganisations/organisation-list.html'
     };
 

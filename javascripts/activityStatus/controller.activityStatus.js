@@ -9,12 +9,12 @@
     .module('oipa.activityStatus')
     .controller('ActivityStatusController', ActivityStatusController);
 
-  ActivityStatusController.$inject = ['ActivityStatus', 'templateBaseUrl'];
+  ActivityStatusController.$inject = ['ActivityStatus', 'templateBaseUrl', 'FilterSelection', 'Filters'];
 
   /**
   * @namespace ActivityStatusController
   */
-  function ActivityStatusController(ActivityStatus, templateBaseUrl) {
+  function ActivityStatusController(ActivityStatus, templateBaseUrl, FilterSelection, Filters) {
     var vm = this;
     vm.templateBaseUrl = templateBaseUrl;
     vm.activityStatuses = [];
@@ -42,5 +42,11 @@
         console.log("getting activity statuses failed");
       }
     }
+
+    vm.save = function(){
+      FilterSelection.toSave = true;
+      Filters.setOpenedHeader(null);
+    }
+
   }
 })();

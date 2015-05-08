@@ -9,24 +9,19 @@
     .module('oipa.filters')
     .controller('FiltersSelectionController', FiltersSelectionController);
 
-  FiltersSelectionController.$inject = ['$scope', 'FilterSelection', 'Countries', 'Regions', 'Budget', 'Sectors', 'ImplementingOrganisations'];
+  FiltersSelectionController.$inject = ['$scope', 'FilterSelection', 'Countries', 'Regions', 'Budget', 'Sectors', 'ImplementingOrganisations', 'ActivityStatus'];
 
   /**
   * @namespace FiltersController
   */
-  function FiltersSelectionController($scope, FilterSelection, Countries, Regions, Budget, Sectors, ImplementingOrganisations) {
+  function FiltersSelectionController($scope, FilterSelection, Countries, Regions, Budget, Sectors, ImplementingOrganisations, ActivityStatus) {
     var vm = this;
     vm.selectedCountries = Countries.selectedCountries;
     vm.selectedRegions = Regions.selectedRegions;
     vm.selectedSectors = Sectors.selectedSectors;
     vm.selectedImplementingOrganisations = ImplementingOrganisations.selectedImplementingOrganisations;
+    vm.selectedActivityStatuses = ActivityStatus.selectedActivityStatuses;
     vm.filterSelection = FilterSelection;
-
-    // vm.selectedActivityDate = ActivityDate.selectedActivityDates;
-    // vm.selectedBudget = Budget.budget;
-    // vm.selectedPolicyMarkers = PolicyMarkers.selectedPolicyMarkers;
-    // vm.selectedActivityStatus = ActivityStatus.selectedActivityStatus;
-    // vm.selectedDocuments = DocumentLink.selectedDocumentLinks;
 
     /**
     * @name activate
@@ -47,18 +42,18 @@
     }
 
     vm.updateSelectionString = function(){
-    
       var selectList = [
-        vm.selectArrayToString('countries', vm.selectedCountries),
-        vm.selectArrayToString('regions', vm.selectedRegions),
-        vm.selectArrayToString('sectors', vm.selectedSectors),
-        vm.selectArrayToString('implementingOrganisations', vm.selectedImplementingOrganisations),
+        vm.selectArrayToString('countries', 'country_id', vm.selectedCountries),
+        vm.selectArrayToString('regions', 'region_id', vm.selectedRegions),
+        vm.selectArrayToString('sectors', 'sector_id', vm.selectedSectors),
+        vm.selectArrayToString('implementingOrganisations', 'organisation_id', vm.selectedImplementingOrganisations),
+        vm.selectArrayToString('activity_status', 'code', vm.selectedActivityStatuses),
       ];
-
       FilterSelection.selectionString = selectList.join('');
+      
     }
 
-    vm.selectArrayToString = function(header, arr){
+    vm.selectArrayToString = function(header, id_slug, arr){
 
       var headerName = '';
       var list = [];
@@ -66,7 +61,8 @@
       if(arr.length > 0){
         headerName = '&' + header + '__in=';
         for(var i = 0; i < arr.length; i++){
-            list.push(arr[i].id);
+            list.push(arr[i][id_slug]);
+            console.log(arr[i]);
         }
       }
 

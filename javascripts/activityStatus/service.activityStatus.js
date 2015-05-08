@@ -17,9 +17,11 @@
 	*/
 	function ActivityStatus($http, oipaUrl, reportingOrganisationId) {
 
-		var activityStatuses = null;
+        var m = this;
+        m.selectedActivityStatuses = [];
 
 		var ActivityStatus = {
+            selectedActivityStatuses: m.selectedActivityStatuses,
 			all: all 
 		};
 

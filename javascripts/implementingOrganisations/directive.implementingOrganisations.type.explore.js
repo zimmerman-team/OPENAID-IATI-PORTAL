@@ -25,6 +25,7 @@
       controller: 'ImplementingOrganisationsTypeExploreController',
       controllerAs: 'vm',
       restrict: 'E',
+      scope: {},
       templateUrl: templateBaseUrl + '/templates/implementingOrganisations/implementing-organisations-type-explore-block.html'
     };
 
