@@ -24,6 +24,38 @@
         		</tr>
         	</tbody>
         </table>
+        <table class="table">
+            <thead>
+                <tr>
+                    <td>project omschrijving</td>
+                    <td>sector</td>
+                    <td>start datum</td>
+                    <td>eind datum</td>
+                    <td>laatste update</td>
+                </tr>
+
+            </thead>
+            <tbody>
+                <tr ui-sref="land({ country_id: item.code })" dir-paginate="item in vm.countryActivities | itemsPerPage: 10"  pagination-id="countryActivities">
+                    <td>{{item.titles[0].title}}</td>
+               
+                    <td>{{item.sectors[0].name}}</td>
+               
+                    <td>{{item.start_actual}}</td>
+                    <td>{{item.end_actual}}</td>
+                    <td>{{item.last_updated_datetime}}</td>
+
+
+
+
+                </tr>
+            </tbody>
+        </table>
+        <div class="col-md-12" ng-show="vm.countryActivities.length != 0"> 
+            <dir-pagination-controls pagination-id="countryActivities"></dir-pagination-controls>
+        </div>
+
+
 
       </div>
     

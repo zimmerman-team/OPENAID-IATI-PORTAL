@@ -38,7 +38,8 @@
         boxHeight: '@',
         minRange: '@',
         maxRange: '@',
-        watchSourceUrl: '@'
+        watchSourceUrl: '@',
+        detailUrl: '@'
       },
       templateUrl: templateBaseUrl + '/templates/bubbleChart/bubble-chart.html'
     };

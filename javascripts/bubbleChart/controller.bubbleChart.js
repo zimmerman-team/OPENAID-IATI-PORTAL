@@ -27,6 +27,8 @@
     vm.aggregationKey = $scope.aggregationKey;
     vm.useTimeSlider = $scope.timeSlider;
     vm.watchSourceUrl = $scope.watchSourceUrl;
+    vm.detailUrl = $scope.detailUrl;
+    
 
     //vm.sourceUrl TEMP
     vm.sourceUrl = $scope.sourceUrl;
@@ -75,6 +77,8 @@
         if(vm.watchSourceUrl){
           $scope.$watch("sourceUrl", function (newValue) {
             vm.sourceUrl = $scope.sourceUrl;
+            vm.detailUrl = $scope.detailUrl;
+            //console.log(vm.detailUrl);
             vm.loadData(vm.currentYear, vm.sourceUrl);
             vm.setColorFunction();
           }, true);
@@ -104,6 +108,7 @@
 
     vm.loadData = function(year, url) {
       console.log('in load data');
+      console.log(vm.detailUrl);
       return BubbleChart.get(url)
         .then(succesFn, errorFn);
 
@@ -130,22 +135,37 @@
       // data is in v3 style, reformat to new API (TEMP)
       // TO DO: dont make use of v3 API
       // TO DO: still av3 api , hard to do in new api for now
+      data = data.data;
       console.log('data loaded');
-      console.log(data);
+      
       var dataFromOipa = {'results':[]};
       var countries = {};
       for(var i = 0; i < data.length;i++){
-        country_iso_arr =  
+        var country  = data[i]['group_field1'];
+        var iso =  data[i]['group_field'];
+        var year =  data[i]['group_field2'];
+        var aggregation = data[i]['aggregation_field'];
+        if(countries[iso] == undefined){
+          countries[iso] = {'code':iso,'name':country,'detail_url':vm.detailUrl,'aggregations':{year:aggregation}};
+
+        }
+        else{
+          countries[iso]['aggregations'][year] = aggregation;
+        }
+
       }
       var formattedData = [];
       // no year is used, put everything under year 0
-      data = data.data;
+      /**
       for(var i = 0; i < data.length;i++){
         if(data[i].group_field != null){
           formattedData.push({code:data[i].group_field, name: data[i].group_field, aggregations: {'0': data[i].aggregation_field}});
         }
       }
-
+      **/
+      for (var code in countries){
+        formattedData.push({'code':code, 'name': countries[code]['name'],'detail_url':vm.detailUrl, 'aggregations':  countries[code]['aggregations']});
+      }
       return formattedData;
     }
 

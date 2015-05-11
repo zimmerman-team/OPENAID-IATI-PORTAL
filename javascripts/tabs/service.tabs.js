@@ -61,27 +61,30 @@
 			            "header": "Partnerlanden", 
 			            "title": "Hulprelaties, overgangsrelaties en handelsrelaties",
 			            "text": "Nederland heeft op het terrein van buitenlandse handel en ontwikkelingssamenwerking met bepaalde landen een bijzondere relatie. Op het gebied van ontwikkelingssamenwerking heten deze landen 'partnerlanden'. Op handelsgebied zijn dit 'focuslanden'.",
-			            "data_url": oipaUrl + "/v3/activity-aggregate-any/?group_by=recipient-country,transaction_date_year&aggregation_key=disbursement&reporting_organisation__in=NL-1",
+			            "data_url": oipaUrl + "/v3/activity-aggregate-any/?group_by=recipient-country,recipient-country-name,transaction_date_year&aggregation_key=disbursement&reporting_organisation__in=NL-1",
 			            "color_map_url": templateBaseUrl + "/javascripts/countries/mapping.partnerlanden.js",
-			            "chart_type": "BubbleChart"
+			            "chart_type": "BubbleChart",
+			            "detail_url":"landen"
 			        },
 			        {
 			            "id": 4, 
 			            "header": "sectoren", 
 			            "title": "veiligheid en rechtsorde, water, voedselzekerheid",
 			            "text": "De Nederlandse overheid wil duurzame economische groei in ontwikkelingslanden bevorderen. Daarnaast wil Nederland werken aan stabiliteit en veiligheid in de wereld en de waarborg van mensenrechten.",
-			            "data_url": oipaUrl + "/v3/activity-aggregate-any/?group_by=recipient-country,transaction_date_year&aggregation_key=disbursement&reporting_organisation__in=NL-1",
+			            "data_url": oipaUrl + "/v3/activity-aggregate-any/?group_by=sector,sector-name,transaction_date_year&aggregation_key=disbursement&reporting_organisation__in=NL-1&format=json",
 			            "color_map_url": templateBaseUrl + "/javascripts/countries/mapping.partnerlanden.js",
-			            "chart_type": "BubbleChart"
+			            "chart_type": "BubbleChart",
+			            "detail_url":"sectoren"
 			        },
 			        {
 			            "id": 5,
 			            "header": "Uitvoerende organisaties", 
 			            "title": "financiering ontwikkelingshulp",
 			            "text": "Nederland biedt op verschillende manieren ontwikkelingshulp. Bijvoorbeeld via programma’s van de Wereldbank en Europese Unie (EU). Of door het bedrijfsleven in ontwikkelingslanden te stimuleren.",
-			            "data_url": oipaUrl + "/v3/activity-aggregate-any/?group_by=recipient-country,transaction_date_year&aggregation_key=disbursement&reporting_organisation__in=NL-1",
+			            "data_url": oipaUrl + "/v3/activity-aggregate-any/?group_by=recipient-country,recipient-country-name,transaction_date_year&aggregation_key=disbursement&reporting_organisation__in=NL-1",
 			            "color_map_url": templateBaseUrl + "/javascripts/countries/mapping.partnerlanden.js",
-			            "chart_type": "BubbleChart"
+			            "chart_type": "BubbleChart",
+			            "detail_url":"sectoren"
 			        },
 			    ];
 

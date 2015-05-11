@@ -15,7 +15,7 @@
 
 	//Declare root variable - window in the browser, global on the server
 	var root = this,
-		previous = root.Chart;
+	previous = root.Chart;
 
 	//Occupy the global variable of Chart, and create a simple base class
 	var Chart = function(context){
@@ -34,7 +34,9 @@
 			else
 			{
 				return document.defaultView.getComputedStyle(element).getPropertyValue(dimension);
-			}
+			}Everything you need to know to build great looking charts using Chart.js
+
+
 		}
 
 		var width = this.width = computeDimension(context.canvas,'Width');

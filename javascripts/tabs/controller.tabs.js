@@ -58,6 +58,7 @@
 
       vm.sbcOptions.dataUrl = vm.tabs[0].data_url;
       vm.bcOptions.dataUrl = vm.tabs[2].data_url;
+      vm.bcOptions.detailUrl = vm.tabs[2].detail_url;
     }
 
     /**
@@ -94,6 +95,7 @@
             // for now change the fake data url
             console.log('setting url for bc');
             vm.bcOptions.dataUrl = vm.tabs[i].data_url;
+            vm.bcOptions.detailUrl = vm.tabs[i].detail_url;
             console.log('setting colormap for bc');
             console.log(vm.tabs[2].color_map_url);
             vm.bcOptions.colorMapUrl = vm.tabs[2].color_map_url;

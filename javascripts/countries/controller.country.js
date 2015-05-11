@@ -18,6 +18,7 @@
     var vm = this;
     vm.country = null;
     vm.country_id = $stateParams.country_id;
+    vm.countryActivities = null
     
     activate();
 
@@ -41,6 +42,17 @@
 
       function errorFn(data, status, headers, config) {
         console.log("getting country failed");
+      }
+      Countries.getActivities(vm.country_id).then(succesGetActivitiesFN,errorGetActivitiesFN);
+
+      function succesGetActivitiesFN(data, status, headers, config) {
+        console.log(data.data.objects);
+        vm.countryActivities = data.data.objects;
+      }
+
+
+      function errorGetActivitiesFN(data, status, headers, config) {
+        console.log("getting activities failed");
       }
     }
 

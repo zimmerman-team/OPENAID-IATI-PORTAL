@@ -22,7 +22,8 @@
 		var Countries = {
 			selectedCountries: m.selectedCountries,
 			all: all,
-			getCountry: getCountry
+			getCountry: getCountry,
+			getActivities: getActivities
 		};
 
 		return Countries;
@@ -50,8 +51,12 @@
 	     * @returns {Promise}
 	     * @memberOf oipa.filters.services.Filters
 	     */
-	     function getCountry(code) {
+	    function getCountry(code) {
 	     	return $http.get(oipaUrl + '/countries/' + code + '?format=json&fields=code,name&fields[aggregations]=count,disbursement,commitment', { cache: true });
-	     }
+	    }
+
+	    function getActivities(code){
+	    	return $http.get(oipaUrl + '/v3/activities/?format=json&reporting_organisation__in=NL-1&countries='+code, { cache: true });
+	    }
 	}
 })();

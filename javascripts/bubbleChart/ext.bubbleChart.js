@@ -269,7 +269,9 @@ ZzBubbleChart = (function() {
   };
 
   ZzBubbleChart.prototype.go_to_detail_link = function(data, i, element) {
-    return window.location.href = home_url + "/project/" + data.project_id + "/";
+    console.log(data);
+    console.log(home_url + "/"+data.detail_url+"/" + data.code + "/");
+    return window.location.href = home_url + "/"+data.detail_url+"/" + data.code + "/";
   };
 
   return ZzBubbleChart;
