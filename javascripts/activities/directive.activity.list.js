@@ -7,14 +7,14 @@
 
   angular
     .module('oipa.activities')
-    .directive('activitiesExploreBlock', activitiesExploreBlock);
+    .directive('activityList', activityList);
 
-  activitiesExploreBlock.$inject = ['templateBaseUrl'];
+  activityList.$inject = ['templateBaseUrl'];
 
   /**
   * @namespace Collection
   */
-  function activitiesExploreBlock(templateBaseUrl) {
+  function activityList(templateBaseUrl) {
 
     /**
     * @name directive
@@ -22,11 +22,11 @@
     * @memberOf oipa.countries.countryPage
     */
     var directive = {
-      controller: 'ActivitiesExploreController',
+      controller: 'ActivityListController',
       controllerAs: 'vm',
       restrict: 'E',
       scope: {},
-      templateUrl: templateBaseUrl + '/templates/activities/activities-explore-block.html'
+      templateUrl: templateBaseUrl + '/templates/activities/activities-list.html'
     };
 
     return directive;

@@ -19,23 +19,18 @@
 		var m = this;
 		
 		m.selectionString = '';
-
+		m.toSave = false;
+		
 		var FilterSelection = {
-			selectionString: m.selectionString,
-			selectionToString: selectionToString
+			toSave: m.toSave,
+			selectionString: m.selectionString
 		};
 
 		return FilterSelection;
 
 		////////////////////
 
-
-	    /**
-	     * @name selectionToString
-	     * @desc Take the array of filter types + selected items and make a string out of it
-	     */
-	    function selectionToString(filters){
-	    	
-	    }
+		
+		
 	}
 })();

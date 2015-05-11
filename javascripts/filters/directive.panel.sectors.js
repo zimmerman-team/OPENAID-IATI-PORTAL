@@ -25,9 +25,7 @@
       controller: 'SectorsController',
       controllerAs: 'vm',
       restrict: 'E',
-      scope: {
-        collection: '='
-      },
+      scope: {},
       templateUrl: templateBaseUrl + '/templates/filters/filter-panel-sectors.html'
     };
 

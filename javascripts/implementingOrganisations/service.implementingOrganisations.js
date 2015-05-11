@@ -10,13 +10,13 @@
 		.module('oipa.implementingOrganisations')
 		.factory('ImplementingOrganisations', ImplementingOrganisations);
 
-	ImplementingOrganisations.$inject = ['$http', 'oipaUrl'];
+	ImplementingOrganisations.$inject = ['$http', 'oipaUrl', 'reportingOrganisationId'];
 
 	/**
 	* @namespace Filters
 	* @returns {Factory}
 	*/
-	function ImplementingOrganisations($http, oipaUrl) {
+	function ImplementingOrganisations($http, oipaUrl, reportingOrganisationId) {
 		this.selectedImplementingOrganisations = [];
 
 		var ImplementingOrganisations = {
@@ -36,7 +36,11 @@
          * @memberOf oipa.implementingOrganisations
          */
         function all() {
-            return $http.get(oipaUrl + '/organisations?format=json&page_size=999&fields=code,name&fields[aggregations]=count', { cache: true });
+            var url = oipaUrl + '/activity-aggregate-any/?format=json&group_by=participating-org&aggregation_key=iati-identifier';
+            if(reportingOrganisationId){
+                url += '&reporting_organisation__in=' + reportingOrganisationId;
+            }
+            return $http.get(url, { cache: true });    
         }
 
 	    /**

@@ -25,6 +25,7 @@
       controller: 'CountriesExploreController',
       controllerAs: 'vm',
       restrict: 'E',
+      scope: {},
       templateUrl: templateBaseUrl + '/templates/countries/countries-explore-block.html'
     };
 

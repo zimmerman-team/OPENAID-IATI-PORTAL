@@ -73,6 +73,34 @@ hr{
   padding-right: 0;
 }
 
+
+[ui-view].ng-enter{
+  transition: 0.75s;
+  opacity: 0;
+}
+
+[ui-view].ng-enter-active{
+  opacity: 1;
+}
+
+[ui-view].ng-leave{
+  transition: 0.75s;
+  opacity: 0;
+}
+
+[ui-view].ng-leave-active{
+  opacity: 1;
+}
+
+/*.view.ng-enter{
+  animation:view_enter 1s;
+}
+@keyframes view_enter {
+  0% { left: 100%; }
+  30% { left: 80%; }
+  100% { left: 0; }
+}*/
+
 /*********************
 NAVBAR
 *********************/

@@ -12,8 +12,7 @@
 			</div>
 		</div>
 		<div class="col-md-6 align-right">
-			<button class="btn btn-default btn-openaid" ng-click="">Save</button>
-			<button class="btn btn-default btn-openaid btn-cancel" ng-click="">Cancel</button>
+			<button class="btn btn-default btn-openaid" ng-click="vm.save()">Save</button>
 		</div>
 	</div>
 	<div class="row" ng-show="vm.sectors.length == 0">
@@ -35,12 +34,13 @@
 			    	<td>
 			    		<div class="checkbox">
 						  <label>
-						    <input type="checkbox" checklist-model="vm.selectedSectors" checklist-value="item">{{ item.name }}
+						    <input type="checkbox" checklist-model="vm.selectedSectors" checklist-value="item">
+						    {{ item.name }}
 						  </label>
 						</div>
 			    	</td>
 			    	<td>
-			    		{{ item.aggregations.count }}
+			    		{{ item.activity_count }}
 			    	</td>
 			    </tr>
 

@@ -54,7 +54,7 @@
             if (group_field !== ''){
                 group_field = '&group_field=' + group_field;
             }
-            return oipaUrl + '/v3/activity-aggregate-any/?format=json&reporting_organisation__in=NL-1&group_by='+group_by+group_field+'&aggregation_key='+aggregation_key;
+            return oipaUrl + '/activity-aggregate-any/?format=json&reporting_organisation__in=NL-1&group_by='+group_by+group_field+'&aggregation_key='+aggregation_key;
         }
 
     }

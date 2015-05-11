@@ -12,12 +12,12 @@
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="item in vm.implementingOrganisations | limitTo: 5">
+            <tr ng-repeat="item in vm.visData | limitTo: 5">
                 <td>
-                    {{ item.name.narratives[0].text | lowercase }}
+                    {{ item.name }}
                 </td>
                 <td>
-                    100000
+                    {{ item.total_disbursements | currency:"€":0 }}
                 </td>
             </tr>
         </tbody>

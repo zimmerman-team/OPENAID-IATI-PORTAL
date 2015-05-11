@@ -9,18 +9,16 @@
     .module('oipa.regions')
     .controller('RegionsController', RegionsController);
 
-  RegionsController.$inject = ['$scope', 'Regions', 'templateBaseUrl'];
+  RegionsController.$inject = ['Regions', 'templateBaseUrl', 'Filters', 'FilterSelection'];
 
   /**
   * @namespace RegionsController
   */
-  function RegionsController($scope, Regions, templateBaseUrl) {
+  function RegionsController(Regions, templateBaseUrl, Filters, FilterSelection) {
     var vm = this;
-
     vm.templateBaseUrl = templateBaseUrl;
     vm.recipientRegions = [];
     vm.selectedRegions = Regions.selectedRegions;
-
     activate();
 
     /**
@@ -33,12 +31,18 @@
       Regions.all().then(regionsSuccessFn, regionsErrorFn);
 
       function regionsSuccessFn(data, status, headers, config) {
-        vm.recipientRegions = data.data.results;
+        vm.recipientRegions = data.data;
       }
 
       function regionsErrorFn(data, status, headers, config) {
         console.log("getting regions failed");
       }
+    }
+
+    vm.save = function(){
+      // logic to save the filters
+      FilterSelection.toSave = true;
+      Filters.setOpenedHeader(null);
     }
 
 

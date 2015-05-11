@@ -9,44 +9,72 @@
     .module('oipa.sectors')
     .controller('SectorsExploreController', SectorsExploreController);
 
-  SectorsExploreController.$inject = ['$scope', 'Sectors', 'FilterSelection'];
+  SectorsExploreController.$inject = ['$scope', 'Aggregations', 'FilterSelection'];
 
   /**
   * @namespace SectorsController
   */
-  function SectorsExploreController($scope, Sectors, FilterSelection) {
+  function SectorsExploreController($scope, Aggregations, FilterSelection) {
     var vm = this;
-
-    vm.sectors = [];
-    vm.selectionString = FilterSelection.selectionString;
+    $scope.filterSelection = FilterSelection;
+    vm.visData = [];
+    vm.useData = 1;
 
     activate();
-    
+
+    /**
+    * @name activate
+    * @desc Actions to be performed when this controller is instantiated
+    * @memberOf oipa.activityStatus.ActivitySTatusController
+    */
     function activate() {
-      // for each active sector, get the results
-      
-      Sectors.all(vm.selectionString).then(successFn, errorFn);
-
-      function successFn(data, status, headers, config) {
-        vm.sectors = data.data.results;
-      }
-
-      function errorFn(data, status, headers, config) {
-        console.log("getting sectors failed");
-      }
-
-      $scope.$watch("vm.selectionString", function (newValue) {
-          console.warn('selection updates, we should update the visualisation (controller.sectors.explore.js)');
+      $scope.$watch("filterSelection.selectionString", function (selectionString) {
+        vm.update(selectionString);
       }, true);
     }
+    
+    vm.update = function(selectionString){
 
-    vm.initVisualisation = function(){
+      Aggregations.aggregation('sector', 'disbursement', selectionString).then(succesFn, errorFn);
 
+      function succesFn(data, status, headers, config){
+        vm.reformatData(data.data);
+      }
+
+      function errorFn(data, status, headers, config){
+        console.warn('error getting data for countries.explore.block');
+      }
     }
 
-    vm.updateVisualisation = function(){
+    vm.reformatData = function(data){
+      var formattedData = [];
 
+      var visDataMap = {};
+      for(var i = 0;i < vm.visData.length;i++){
+        visDataMap[vm.visData[i].id] = i;
+        vm.visData[i].aggregations[0] = 0;
+      }
+
+      // no year is used, put everything under year 0
+      for(var i = 0; i < data.length;i++){
+        if(data[i].sector_id != null){
+
+          if(visDataMap[data[i].sector_id] != undefined){
+            vm.visData[visDataMap[data[i].sector_id]].aggregations[0] = data[i].total_disbursements;
+          } else{
+            vm.visData.push({
+              id:data[i].sector_id, 
+              code:data[i].sector_id, 
+              name: data[i].name, 
+              aggregations: {'0': data[i].total_disbursements }
+            });
+          }
+        }
+      }
+      vm.useData++;
     }
+
+    
 
 
   }

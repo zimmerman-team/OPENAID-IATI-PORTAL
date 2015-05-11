@@ -3,6 +3,7 @@
 
     angular
         .module('oipa', [
+            'ngAnimate',
             'checklist-model',
             'ui.bootstrap-slider',
             'angularUtils.directives.dirPagination',
@@ -16,6 +17,7 @@
             'oipa.footer',
             'oipa.search',
             'oipa.toolbar',
+            'oipa.aggregations',
             'oipa.countries',
             'oipa.regions',
             'oipa.sectors',

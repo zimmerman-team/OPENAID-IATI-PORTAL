@@ -1,6 +1,6 @@
 /**
 * Posts
-* @namespace ncs.collections.services
+* @namespace oipa.filters
 */
 (function () {
 	'use strict';
@@ -17,7 +17,6 @@
 	*/
 	function Filters() {
 
-		// placed in factory because we need to access it from main scope
 		var m = this;
 		m.openedHeader = null;
 

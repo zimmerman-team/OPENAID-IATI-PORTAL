@@ -9,17 +9,19 @@
 		.module('oipa.activityStatus')
 		.factory('ActivityStatus', ActivityStatus);
 
-	ActivityStatus.$inject = ['$http', 'oipaUrl'];
+	ActivityStatus.$inject = ['$http', 'oipaUrl', 'reportingOrganisationId'];
 
 	/**
 	* @namespace ActivityStatus
 	* @returns {Factory}
 	*/
-	function ActivityStatus($http, oipaUrl) {
+	function ActivityStatus($http, oipaUrl, reportingOrganisationId) {
 
-		var activityStatuses = null;
+        var m = this;
+        m.selectedActivityStatuses = [];
 
 		var ActivityStatus = {
+            selectedActivityStatuses: m.selectedActivityStatuses,
 			all: all 
 		};
 
@@ -34,40 +36,11 @@
          * @memberOf oipa.activityStatus.activityStatus
          */
         function all() {
-        	if (this.activityStatuses == null){
-	        	var data = {
-				    "count": 6, 
-				    "results": [
-				        {
-				            "code": "1", 
-				            "name": "Pipeline/identification",
-				        },
-				        {
-				            "code": "2", 
-				            "name": "Implementation",
-				        },
-				        {
-				            "code": "3", 
-				            "name": "Completion",
-				        },
-				        {
-				            "code": "4", 
-				            "name": "Post-completion",
-				        },
-				        {
-				            "code": "5", 
-				            "name": "Cancelled",
-				        },
-				        {
-				            "code": "6", 
-				            "name": "Suspended",
-				        }
-				    ]
-				};
-
-				this.activityStatuses = data;
-			}
-			return this.activityStatuses;
+        	var url = oipaUrl + '/activity-aggregate-any/?format=json&group_by=activity-status&aggregation_key=iati-identifier';
+            if(reportingOrganisationId){
+                url += '&reporting_organisation__in=' + reportingOrganisationId;
+            }
+            return $http.get(url, { cache: true });
         }
 
 	}

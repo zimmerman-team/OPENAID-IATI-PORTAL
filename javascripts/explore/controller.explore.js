@@ -9,7 +9,6 @@
 
 	function ExploreController($scope, Filters){
 		var vm = this;
-
 		activate();
 
 	    function activate() {

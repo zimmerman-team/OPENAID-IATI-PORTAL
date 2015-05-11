@@ -26,6 +26,8 @@
       controllerAs: 'vm',
       restrict: 'E',
       scope: {
+        useData: '=',
+        formattedData: '=',
         endpoint: '@',
         groupBy: '@',
         groupField: '@',

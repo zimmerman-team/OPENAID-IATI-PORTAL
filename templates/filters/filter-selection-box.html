@@ -1,33 +1,30 @@
 <div class="filter-header">
 	<a href="javascript:void(0)" class="filter-link"></a>
 	<span class="filter-header-text">Selected filters</span>
-	<span class="filter-header-amount">{{(vm.selectedCountries.length + vm.selectedRegions.length + vm.selectedSectors.length + vm.selectedImplementingOrganisations.length)}}
+	<span class="filter-header-amount">{{(selectedCountries.length + selectedRegions.length + selectedSectors.length + selectedImplementingOrganisations.length)}}
 	</span>
 	<span class="filter-header glyphicon-chevron-right">
 		
 	</span>
 </div>
 <div class="filter-selected">
-	<a class="btn filter-selected-button" ng-repeat="item in vm.selectedCountries" ng-click="vm.removeFilter(vm.selectedCountries, item.code)">
+	<a class="btn filter-selected-button" ng-repeat="item in selectedCountries" ng-click="removeFilter(selectedCountries, item.code)">
 		<span class="glyphicon glyphicon-remove"></span>
 		{{item.name | cut:true:40:' ...' }}
 	</a>
 
-	<a class="btn filter-selected-button" ng-repeat="item in vm.selectedRegions" ng-click="vm.removeFilter(vm.selectedRegions, item.code)">
+	<a class="btn filter-selected-button" ng-repeat="item in selectedRegions" ng-click="removeFilter(selectedRegions, item.code)">
 		<span class="glyphicon glyphicon-remove"></span>
 		{{item.name | cut:true:40:' ...' }}
 	</a>
 
-	<a class="btn filter-selected-button" ng-repeat="item in vm.selectedSectors" ng-click="vm.removeFilter(vm.selectedSectors, item.code)">
+	<a class="btn filter-selected-button" ng-repeat="item in selectedSectors" ng-click="removeFilter(selectedSectors, item.code)">
 		<span class="glyphicon glyphicon-remove"></span>
 		{{item.name | cut:true:40:' ...' }}
 	</a>
 
-	<a class="btn filter-selected-button" ng-repeat="item in vm.selectedImplementingOrganisations" ng-click="vm.removeFilter(vm.selectedImplementingOrganisations, item.code)">
+	<a class="btn filter-selected-button" ng-repeat="item in selectedImplementingOrganisations" ng-click="removeFilter(selectedImplementingOrganisations, item.code)">
 		<span class="glyphicon glyphicon-remove"></span>
-		{{item.name.narratives[0].text | cut:true:30:' ...' }}
+		{{item.name | cut:true:30:' ...' }}
 	</a>
-
 </div>
-
-

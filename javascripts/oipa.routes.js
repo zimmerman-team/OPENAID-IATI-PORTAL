@@ -32,6 +32,13 @@
             templateUrl:  templateBaseUrl + '/templates/layout/activiteitenkaart.html'
         })
         .state({
+            name:        'activiteit',
+            url:         '/activiteit/:activity_id/',
+            controller:  'ActivityController',
+            controllerAs: 'vm',
+            templateUrl: templateBaseUrl + '/templates/activities/activity.html'
+        })
+        .state({
             name:        'land',
             url:         '/landen/:country_id/',
             controller:  'CountryController',

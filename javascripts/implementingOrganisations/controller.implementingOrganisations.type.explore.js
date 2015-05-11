@@ -47,7 +47,7 @@
     
     vm.update = function(data){
       
-      console.log('oipa.countries.explore.update called');
+      console.log('oipa.impplementingOrganisations.type.explore.update called');
       // implementingOrganisations.aggregation('year', 'start_planned', 'iati-identifier').then(succesFn, errorFn);
 
       function succesFn(data, status, headers, config){

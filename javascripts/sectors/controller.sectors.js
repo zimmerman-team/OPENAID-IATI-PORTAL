@@ -9,20 +9,16 @@
     .module('oipa.sectors')
     .controller('SectorsController', SectorsController);
 
-  SectorsController.$inject = ['Sectors', 'templateBaseUrl'];
+  SectorsController.$inject = ['Sectors', 'templateBaseUrl', 'Filters', 'FilterSelection'];
 
   /**
   * @namespace SectorsController
   */
-  function SectorsController(Sectors, templateBaseUrl) {
+  function SectorsController(Sectors, templateBaseUrl, Filters, FilterSelection) {
     var vm = this;
-
     vm.templateBaseUrl = templateBaseUrl;
-
     vm.sectors = [];
     vm.selectedSectors = Sectors.selectedSectors;
-    
-
     activate();
 
     /**
@@ -39,13 +35,19 @@
       * @desc Update sectors array on view
       */
       function successFn(data, status, headers, config) {
-        vm.sectors = data.data.results;
+        vm.sectors = data.data;
       }
-
 
       function errorFn(data, status, headers, config) {
         console.log("getting sectors failed");
       }
     }
+
+    vm.save = function(){
+      // logic to save the filters
+      FilterSelection.toSave = true;
+      Filters.setOpenedHeader(null);
+    }
+
   }
 })();

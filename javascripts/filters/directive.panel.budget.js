@@ -25,9 +25,7 @@
       controller: 'BudgetController',
       controllerAs: 'vm',
       restrict: 'E',
-      scope: {
-        collection: '='
-      },
+      scope: {},
       templateUrl: templateBaseUrl + '/templates/filters/filter-panel-budget.html'
     };
 

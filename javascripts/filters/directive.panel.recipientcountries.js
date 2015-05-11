@@ -1,5 +1,5 @@
 /**
-* Collection
+* filterPanelRecipientCountries
 * @namespace oipa.filters
 */
 (function () {
@@ -12,7 +12,7 @@
   filterPanelRecipientCountries.$inject = ['templateBaseUrl'];
 
   /**
-  * @namespace Collection
+  * @namespace Oipa.filters
   */
   function filterPanelRecipientCountries(templateBaseUrl) {
 
@@ -25,9 +25,7 @@
       controller: 'CountriesController',
       controllerAs: 'vm',
       restrict: 'E',
-      scope: {
-        collection: '='
-      },
+      scope: {},
       templateUrl: templateBaseUrl + '/templates/filters/filter-panel-recipient-countries.html'
     };
 

@@ -25,6 +25,7 @@
       controller: 'CountriesController',
       controllerAs: 'vm',
       restrict: 'E',
+      scope: {},
       templateUrl: templateBaseUrl + '/templates/countries/country-info.html'
     };
 
