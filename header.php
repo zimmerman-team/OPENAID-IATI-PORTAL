@@ -47,8 +47,8 @@
 		<script>
 			var home_url = '<?php echo home_url(); ?>';
 			var template_url = '<?php echo get_template_directory_uri(); ?>';
-			// var oipa_url = 'http://localhost:8000/api/v3';
-			var oipa_url = 'http://149.210.176.175/api/v3';
+			var oipa_url = 'http://localhost:8000/api/v3';
+			// var oipa_url = 'http://149.210.176.175/api/v3';
 			var reporting_organisation_id = 'NL-1';
 		</script>
 	</head>

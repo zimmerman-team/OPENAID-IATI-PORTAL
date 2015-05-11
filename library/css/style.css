@@ -691,9 +691,22 @@ SLIDER TOOLTIP
 }
 
 /*********************
-FOOTER
+ACTIVITY LIST
 *********************/
 /* line 615, ../scss/breakpoints/_base.scss */
+.activity-list-header {
+  font-size: 16px;
+  font-weight: bold;
+  color: #676759;
+}
+
+/*.activity-list-item .col-md-2, .activity-list-item .col-md-3{
+  border-bottom: 1px solid #ACAC9D;
+}*/
+/*********************
+FOOTER
+*********************/
+/* line 629, ../scss/breakpoints/_base.scss */
 footer {
   background-color: #333;
   min-height: 450px;
@@ -701,12 +714,12 @@ footer {
   padding-top: 110px;
 }
 
-/* line 622, ../scss/breakpoints/_base.scss */
+/* line 636, ../scss/breakpoints/_base.scss */
 footer img {
   margin-top: 10px;
 }
 
-/* line 626, ../scss/breakpoints/_base.scss */
+/* line 640, ../scss/breakpoints/_base.scss */
 footer .row {
   text-align: center;
   margin-bottom: 10px;
