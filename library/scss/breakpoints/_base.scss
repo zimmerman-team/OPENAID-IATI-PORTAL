@@ -20,6 +20,7 @@ body{
   background-image: url('../../images/bg.jpg');
   background-size: cover;
   color: $textstd;
+  font-family: $titillium;
 }
 
 .white-background{
@@ -27,7 +28,7 @@ body{
 }
 
 .btn-openaid{
-  background-color: #444;
+  background-color: $blauw;
   padding: 5px 28px;
   color: #fff;
   border: 0;
@@ -95,18 +96,53 @@ hr{
   opacity: 1;
 }
 
-.hp-block, .white-block{
+.hp-block{
+  background-color: rgba($blauw, 0.1);
   padding: 14px 24px;
-  margin-bottom: 15px;
-}
+  margin: 15px 0;
+  .title {
+    h2 {
+      display: inline;
+    }
+    padding-bottom: 15px;
+  }
+  &.blauw {
+    background-color:$blauw;
+    background-color: rgba($blauw, 0.35);
+  }
+  &.groen {
+    background-color:$groen;
+    background-color: rgba($groen, 0.35);
+  }
+  &.roze {
+    background-color:$roze;
+    background-color: rgba($roze, 0.35);
+  }
 
-.white-block{
-  background-color: rgba(255,255,255, 0.4);
+  h3, h2, h1{
+    margin-top: 0;
+    margin-bottom: 0;
+  }
 
+  hr{
+    margin-top: 0;
+  }
+
+  .number{
+    font-size: 4rem;
+    font-weight: bold;
+  }
+
+  .number.large{
+    font-size: 5rem;
+    border-bottom: 2px solid $textstd;
+    line-height: 5rem;
+    display: inline-block;
+    margin-bottom: 15px;
+  }
   h2{
     margin-top: 10px;
     margin-left: 4px;
-    display: inline-block;
   }
 
   .glyphicon{
@@ -143,32 +179,11 @@ hr{
   }
 }
 
-.hp-block{
-  background-color: rgba(255,255,255, 0.4);
-
-  h3, h2, h1{
-    margin-top: 0;
-    margin-bottom: 0;
-  }
-
-  hr{
-    margin-top: 0;
-  }
-
-  .number{
-    font-size: 4rem;
-    font-weight: bold;
-  }
-
-  .number.large{
-    font-size: 5rem;
-  }
-}
-
 .btn-default{
   padding: 3px 10px 5px;
-  background-color: #4d4d4d;
+  background-color: rgba($blauw,.4);
   border: 0;
+  color:#fff;
 }
 
 /*.view.ng-enter{
@@ -550,7 +565,6 @@ Filter panel
     margin-bottom: 5px;
 
     tbody{
-      border-bottom: 1px solid #ddd;
     }
 
     .th-first{
@@ -701,22 +715,50 @@ ACTIVITY LIST
   border-bottom: 1px solid #ACAC9D;
 }*/
 
+
+///Table oipa charts
+oipa-table-chart {
+  .table {
+    tbody {
+      border:0;
+      tr {
+        td {
+          &.colour {
+            padding-right:0;
+            div {
+              background: $blauw;
+              margin-top:3px;
+              height:12px;
+              width: 12px;
+              border-radius: 6px;
+            }
+          }
+          border:0;
+          span {
+            border-bottom: 1px solid $textstd;
+          }
+        }
+        &:nth-child(odd) {
+          background:rgba($grijs,.15);
+        }
+      }
+    }
+  }
+}
+
 /*********************
 FOOTER
 *********************/
 
 footer{
   background-color: #333;
-  min-height: 450px;
   color: #fff;
-  padding-top: 110px;
-}
-
-footer img{
-  margin-top: 10px;
-}
-
-footer .row{
-  text-align: center;
-  margin-bottom: 10px;
+  padding-top:1.5rem;
+  padding-bottom: 4rem;
+  .row{
+    text-align: center;
+  }
+  h1 {
+    margin-bottom: 0.3rem;
+  }
 }

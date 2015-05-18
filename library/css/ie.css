@@ -85,6 +85,11 @@ I've edited it a bit, but it's a nice starting point.
 some nice typographical defaults
 more here: http://www.newnet-soft.com/blog/csstypography
 */
+/* line 81, ../scss/partials/_typography.scss */
+h1 {
+  font-weight: 700;
+}
+
 /******************************************************************
 Site Name:
 Author:
