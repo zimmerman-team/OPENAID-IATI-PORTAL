@@ -17,9 +17,9 @@ GLOBAL
 *********************/
 body{
   /*background-color: #404040;*/
-  font-family: 'Titillium Web', sans-serif;
   background-image: url('../../images/bg.jpg');
   background-size: cover;
+  color: $textstd;
 }
 
 .white-background{
@@ -96,14 +96,12 @@ hr{
 }
 
 .hp-block, .white-block{
-  color: #fff;
   padding: 14px 24px;
   margin-bottom: 15px;
 }
 
 .white-block{
   background-color: rgba(255,255,255, 0.4);
-  color: #404040; 
 
   h2{
     margin-top: 10px;
@@ -147,8 +145,6 @@ hr{
 
 .hp-block{
   background-color: rgba(255,255,255, 0.4);
-  font-size: 18px;
-  color: #404040;
 
   h3, h2, h1{
     margin-top: 0;
@@ -160,21 +156,19 @@ hr{
   }
 
   .number{
-    font-size: 48px;
+    font-size: 4rem;
     font-weight: bold;
   }
 
   .number.large{
-    font-size: 56px;
+    font-size: 5rem;
   }
 }
 
 .btn-default{
-  font-size: 16px;
   padding: 3px 10px 5px;
   background-color: #4d4d4d;
   border: 0;
-  color: #fff;
 }
 
 /*.view.ng-enter{
