@@ -1,8 +1,34 @@
 <div id="tool-bar">
-    <a ng-click="vm.resetFilters()" class="glyphicon glyphicon-refresh"></a>
-    <a ng-click="vm.showSelection()" class="glyphicon glyphicon-align-justify"></a>
-    <a ng-click="vm.showDownload()" class="glyphicon glyphicon-download-alt"></a>
-    <a ng-click="vm.share('twitter')" class="glyphicon glyphicon-question-sign glyphicon-twitter<todo>"></a>
-    <a ng-click="vm.share('linkedin')" class="glyphicon glyphicon-question-sign glyphicon-linkedin<todo>"></a>
-    <a ng-click="vm.share('facebook')" class="glyphicon glyphicon-question-sign glyphicon-facebook<todo>"></a>
+	<div class="row">
+		<div class="col-md-5">
+			<span class="fa-stack fa-lg">
+		      <i class="fa fa-circle fa-stack-2x"></i>
+		      <a ng-click="vm.resetFilters()" class="fa fa-refresh fa-stack-1x fa-inverse"></a>
+		    </span>
+		</div>
+		<div class="col-md-2 center">
+			<span class="fa-stack fa-lg">
+				<i class="fa fa-circle fa-stack-2x"></i>
+		    	<a ng-click="vm.showSelection()" class="fa fa-align-justify fa-stack-1x fa-inverse"></a>
+		    </span>
+		</div>
+		<div class="col-md-5 text-right">
+			<span class="fa-stack fa-lg">
+				<i class="fa fa-circle fa-stack-2x"></i>
+		    	<a ng-click="vm.showDownload()" class="fa fa-download fa-stack-1x fa-inverse"></a>
+		    </span>
+		    <span class="fa-stack fa-lg">
+		    	<i class="fa fa-circle fa-stack-2x"></i>
+		    	<a ng-click="vm.share('twitter')" class="fa fa-twitter fa-stack-1x fa-inverse"></a>
+		    </span>
+		    <span class="fa-stack fa-lg">
+		    	<i class="fa fa-circle fa-stack-2x"></i>
+		    	<a ng-click="vm.share('linkedin')" class="fa fa-linkedin fa-stack-1x fa-inverse"></a>
+		    </span>
+		    <span class="fa-stack fa-lg">
+		    	<i class="fa fa-circle fa-stack-2x"></i>
+		   		<a ng-click="vm.share('facebook')" class="fa fa-facebook fa-stack-1x fa-inverse"></a>
+		   	</span>
+		</div>
+	</div>
 </div>

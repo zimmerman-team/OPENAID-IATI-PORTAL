@@ -3,46 +3,89 @@
         <div class="col-md-12">
         	<search-box></search-box>
 
-            <div class="row">
-                <div class="col-md-6">
-                    <div style="display: inline-block; float: left;">
-                        filters 
-                        <i class="glyphicon glyphicon-map-marker"></i>
-                        <i class="glyphicon glyphicon-map-marker glyphicon-tristan-custom<replace>"></i>
-                        <i class="glyphicon glyphicon-map-marker glyphicon-tristan-custom<replace>"></i>
-                        <i class="glyphicon glyphicon-map-marker glyphicon-tristan-custom<replace>"></i>
-                        <i class="glyphicon glyphicon-map-marker glyphicon-tristan-custom<replace>"></i>
-                        <i class="glyphicon glyphicon-map-marker glyphicon-tristan-custom<replace>"></i>
-                    </div>
+            <div class="row actions">
+                <div class="col-md-6 filters">
+                    filters 
+                    <span class="fa-stack fa-lg">
+                      <i class="fa fa-circle fa-stack-2x"></i>
+                      <i class="fa fa-map-marker fa-stack-1x fa-inverse"></i>
+                    </span>
+                    <span class="fa-stack fa-lg">
+                      <i class="fa fa-circle fa-stack-2x"></i>
+                      <i class="fa fa-globe fa-stack-1x fa-inverse"></i>
+                    </span>
+                    <span class="fa-stack fa-lg">
+                      <i class="fa fa-circle fa-stack-2x"></i>
+                      <i class="fa fa-pie-chart fa-stack-1x fa-inverse"></i>
+                    </span>
+                    <span class="fa-stack fa-lg">
+                      <i class="fa fa-circle fa-stack-2x"></i>
+                      <i class="fa fa-suitcase fa-stack-1x fa-inverse"></i>
+                    </span>
+                    <span class="fa-stack fa-lg">
+                      <i class="fa fa-circle fa-stack-2x"></i>
+                      <i class="fa fa-money fa-stack-1x fa-inverse"></i>
+                    </span>
+                    <span class="fa-stack fa-lg">
+                      <i class="fa fa-circle fa-stack-2x"></i>
+                      <i class="fa fa-fire fa-stack-1x fa-inverse"></i>
+                    </span>
                 </div>
-                <div class="col-md-6">
-                    <div style="display: inline-block; float: right;">
-                        dashboards 
-                        <i class="glyphicon glyphicon-map-marker glyphicon-tristan-custom<replace>"></i>
-                        <i class="glyphicon glyphicon-map-marker glyphicon-tristan-custom<replace>"></i>
-                        <i class="glyphicon glyphicon-map-marker glyphicon-tristan-custom<replace>"></i>
-                    </div>
+                <div class="col-md-6 dash">
+                    dashboards 
+                    <span class="fa-stack fa-lg">
+                      <i class="fa fa-circle fa-stack-2x"></i>
+                      <i class="fa fa-line-chart fa-stack-1x fa-inverse"></i>
+                    </span>
+                    <span class="fa-stack fa-lg">
+                      <i class="fa fa-circle fa-stack-2x"></i>
+                      <i class="fa fa-fire fa-stack-1x fa-inverse"></i>
+                    </span>
+                    <span class="fa-stack fa-lg">
+                      <i class="fa fa-circle fa-stack-2x"></i>
+                      <i class="fa fa-list-ul fa-stack-1x fa-inverse"></i>
+                    </span>
                 </div>
             </div>
+
+            <hr>
 
         	<tool-bar></tool-bar>
             
             <filter-bar></filter-bar>
 
         	<div class="row" ng-show="vm.dashboard == 'charts'">
+
         		<div class="col-md-6">
+                    <div class="hp-block explore">
+                        <activities-explore-block></activities-explore-block>
+                    </div>
+                </div>
 
-                    <activities-explore-block></activities-explore-block>
-        			<sector-explore-block></sector-explore-block>
-        			
-        		</div>
+                <div class="col-md-6">
+                    <div class="hp-block explore">
+                        <sector-explore-block></sector-explore-block>		
+                    </div>
+                </div>
+
         		<div class="col-md-6">
+                    <div class="hp-block explore">
+                        <countries-explore-block></countries-explore-block>
+                    </div>
+                </div>
+                
+                <div class="col-md-6">
+                    <div class="hp-block explore">
+                        <implementing-organisations-type-explore-block></implementing-organisations-type-explore-block>
+                    </div>
+                </div>
 
-                    <countries-explore-block></countries-explore-block>
-                    <implementing-organisations-type-explore-block></implementing-organisations-type-explore-block>
-                    <implementing-organisations-explore-block></implementing-organisations-explore-block>
+                <div class="col-md-6">
+                    <div class="hp-block explore">
+                        <implementing-organisations-explore-block></implementing-organisations-explore-block>
+                    </div>
+                </div>
 
-        		</div>
         	</div>
 
             <div class="row" ng-show="vm.dashboard == 'geomap'">
