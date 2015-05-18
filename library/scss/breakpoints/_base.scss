@@ -211,14 +211,14 @@ NAVBAR
 }
 
 .navbar .btn.btn-default:hover, .navbar .btn-group .btn:hover {
-  background-color: #797990;
+  background-color: #999;
   color: #fff;
 }
 
 .navbar .active .btn.btn-default,
 .navbar .active .btn.btn-default:focus, .navbar .btn.btn-default:focus, .navbar .btn-group .btn:focus,
 .navbar .active .btn.btn-default:hover{
-  background-color: #FF7F00;
+  background-color: #999;
   color: #fff;
 }
 
@@ -298,6 +298,8 @@ FILTER BAR
 *********************/
 
 .actions {
+  color:#fff;
+  font-size: 1.2em;
   span {
     cursor: pointer;
   }
@@ -605,7 +607,7 @@ Activiteitenkaart
 }
 
 .explore-block-content{
-  padding-top: 20px;
+  padding: 14px 24px;
   min-height: 140px;
 }
 
