@@ -22,35 +22,51 @@
             url:          '/',
             controller:   'IndexController',
             controllerAs: 'vm',
-            templateUrl:  templateBaseUrl + '/templates/layout/index.html'
+            templateUrl:  templateBaseUrl + '/templates/layout/index.html',
+            ncyBreadcrumb: {
+                label: 'Home'
+            }
         })
         .state({
             name:         'iati-explorer',
             url:          '/iati-explorer/',
             controller:   'ExploreController',
             controllerAs: 'vm',
-            templateUrl:  templateBaseUrl + '/templates/layout/iati-explorer.html'
+            templateUrl:  templateBaseUrl + '/templates/layout/iati-explorer.html',
+            ncyBreadcrumb: {
+                label: 'IATI Explorer'
+            }
         })
         .state({
             name:        'activiteit',
-            url:         '/activiteit/:activity_id/',
+            url:         '/iati-explorer/:activity_id/',
             controller:  'ActivityController',
             controllerAs: 'vm',
-            templateUrl: templateBaseUrl + '/templates/activities/activity.html'
+            templateUrl: templateBaseUrl + '/templates/activities/activity.html',
+            ncyBreadcrumb: {
+                label: 'IATI Activiteit detail pagina'
+            }
         })
         .state({
             name:        'land',
             url:         '/landen/:country_id/',
             controller:  'CountryController',
             controllerAs: 'vm',
-            templateUrl: templateBaseUrl + '/templates/countries/country.html'
+            templateUrl: templateBaseUrl + '/templates/countries/country.html',
+            ncyBreadcrumb: {
+                parent: 'landen',
+                label: '{{vm.country.name}}'
+            }
         })
         .state({
             name:        'landen',
             url:         '/landen/',
             controller:  'CountriesController',
             controllerAs: 'vm',
-            templateUrl: templateBaseUrl + '/templates/countries/countries.html'
+            templateUrl: templateBaseUrl + '/templates/countries/countries.html',
+            ncyBreadcrumb: {
+                label: 'Landen'
+            }
         })
         .state({
             name:        'organisatie',
@@ -85,13 +101,16 @@
             url:         '/over/',
             controller:  'PagesController',
             controllerAs: 'vm',
-            templateUrl: templateBaseUrl + '/templates/pages/pages.html'
+            templateUrl: templateBaseUrl + '/templates/pages/pages.html',
+            ncyBreadcrumb: {
+                label: '{{vm.title}}'
+            }
         })
         .state({
             name:        'iati-publiceren',
             url:         '/iati-publiceren/',
             controller:  'PagesController',
-            controllerAs: 'vm',
+            controllerAs: 'vm.post.title',
             templateUrl: templateBaseUrl + '/templates/pages/pages.html'
         });
 

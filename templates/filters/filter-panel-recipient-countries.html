@@ -34,7 +34,7 @@
 			    	<td>
 			    		<div class="checkbox">
 						  <label>
-						    <input type="checkbox" checklist-model="vm.selectedCountries" checklist-value="item">{{ item.name }}
+						    <input type="checkbox" checklist-model="vm.selectedCountries" checklist-value="item" class="js-switch" ui-switch>{{ item.name }}
 						  </label>
 						</div>
 			    	</td>
@@ -48,5 +48,4 @@
 
 		<dir-pagination-controls pagination-id="recipientCountries"></dir-pagination-controls>
 	</div>
-
 </div>

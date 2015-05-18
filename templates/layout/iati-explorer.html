@@ -1,6 +1,9 @@
 <div id="main-content" class="container">
     <div class="row">
         <div class="col-md-12">
+
+            <div ncy-breadcrumb></div>
+
         	<search-box></search-box>
 
             <div class="row">
@@ -33,14 +36,142 @@
         		<div class="col-md-6">
 
                     <activities-explore-block></activities-explore-block>
-        			<sector-explore-block></sector-explore-block>
-        			
+        			<!-- <sector-explore-block></sector-explore-block> -->
+
+                    <div class="explore-block-header">Uitgaven per landenprofiel</div>
+                    <div class="explore-block-content">
+                        <oipa-line-chart 
+                            aggregation-filters='' 
+                            group-by='transaction_date_year' 
+                            group-by-id='transaction_date_year' 
+                            aggregation-key='disbursement' 
+                            aggregation-key-id='total_disbursements' 
+                            chart-x-axis='' 
+                            chart-y-axis='Totaal budget'
+                            chart-type='historicalBarChart'
+                            axis-label-distance='10'></oipa-line-chart>
+                    </div>
+
+                    <div class="explore-block-header">Uitgaven per kanaal</div>
+                    <div class="explore-block-content">
+                        <oipa-line-chart 
+                            aggregation-filters='' 
+                            group-by='transaction_date_year' 
+                            group-by-id='transaction_date_year' 
+                            aggregation-key='disbursement' 
+                            aggregation-key-id='total_disbursements' 
+                            chart-x-axis='' 
+                            chart-y-axis='Totaal budget'
+                            chart-type='historicalBarChart'
+                            axis-label-distance='10'></oipa-line-chart>
+                    </div>
+
+                    <div class="explore-block-header">Gendergelijkheid per sector</div>
+                    <div class="explore-block-content">
+                        <oipa-line-chart 
+                            aggregation-filters='' 
+                            group-by='transaction_date_year' 
+                            group-by-id='transaction_date_year' 
+                            aggregation-key='disbursement' 
+                            aggregation-key-id='total_disbursements' 
+                            chart-x-axis='' 
+                            chart-y-axis='Totaal budget'
+                            chart-type='historicalBarChart'
+                            axis-label-distance='10'></oipa-line-chart>
+                    </div>
+
+                    <div class="explore-block-header">PDGG uitgaven per sector</div>
+                    <div class="explore-block-content">
+                        <oipa-line-chart 
+                            aggregation-filters='' 
+                            group-by='transaction_date_year' 
+                            group-by-id='transaction_date_year' 
+                            aggregation-key='disbursement' 
+                            aggregation-key-id='total_disbursements' 
+                            chart-x-axis='' 
+                            chart-y-axis='Totaal budget'
+                            chart-type='historicalBarChart'
+                            axis-label-distance='10'></oipa-line-chart>
+                    </div>
+                    
         		</div>
         		<div class="col-md-6">
 
-                    <countries-explore-block></countries-explore-block>
+                    <div class="explore-block-header">Totaal budget</div>
+                    <div class="explore-block-count">€ 29.289.024.646</div>
+                    <div class="explore-block-content">
+                        <oipa-line-chart 
+                            aggregation-filters='' 
+                            group-by='transaction_date_year' 
+                            group-by-id='transaction_date_year' 
+                            aggregation-key='disbursement' 
+                            aggregation-key-id='total_disbursements' 
+                            chart-x-axis='' 
+                            chart-y-axis='Totaal budget'
+                            chart-type='historicalBarChart'
+                            axis-label-distance='10'></oipa-line-chart>
+                    </div>
+
+                    <div class="explore-block-header">Aangegane verplichtingen per landenprofiel</div>
+                    <div class="explore-block-content">
+                        <oipa-line-chart 
+                            aggregation-filters='' 
+                            group-by='transaction_date_year' 
+                            group-by-id='transaction_date_year' 
+                            aggregation-key='disbursement' 
+                            aggregation-key-id='total_disbursements' 
+                            chart-x-axis='' 
+                            chart-y-axis='Totaal budget'
+                            chart-type='historicalBarChart'
+                            axis-label-distance='10'></oipa-line-chart>
+                    </div>
+
+                    <div class="explore-block-header">Uitgaven per kanaal per regio</div>
+                    <div class="explore-block-content">
+                        <oipa-line-chart 
+                            aggregation-filters='' 
+                            group-by='transaction_date_year' 
+                            group-by-id='transaction_date_year' 
+                            aggregation-key='disbursement' 
+                            aggregation-key-id='total_disbursements' 
+                            chart-x-axis='' 
+                            chart-y-axis='Totaal budget'
+                            chart-type='historicalBarChart'
+                            axis-label-distance='10'></oipa-line-chart>
+                    </div>
+
+                    <div class="explore-block-header">Gender uitgaven per kanaal</div>
+                    <div class="explore-block-content">
+                        <oipa-line-chart 
+                            aggregation-filters='' 
+                            group-by='transaction_date_year' 
+                            group-by-id='transaction_date_year' 
+                            aggregation-key='disbursement' 
+                            aggregation-key-id='total_disbursements' 
+                            chart-x-axis='' 
+                            chart-y-axis='Totaal budget'
+                            chart-type='historicalBarChart'
+                            axis-label-distance='10'></oipa-line-chart>
+                    </div>
+
+                    <div class="explore-block-header">PDGG uitgaven per kanaal</div>
+                    <div class="explore-block-content">
+                        <oipa-line-chart 
+                            aggregation-filters='' 
+                            group-by='transaction_date_year' 
+                            group-by-id='transaction_date_year' 
+                            aggregation-key='disbursement' 
+                            aggregation-key-id='total_disbursements' 
+                            chart-x-axis='' 
+                            chart-y-axis='Totaal budget'
+                            chart-type='historicalBarChart'
+                            axis-label-distance='10'></oipa-line-chart>
+                    </div>
+
+
+                    <!-- <countries-explore-block></countries-explore-block>
                     <implementing-organisations-type-explore-block></implementing-organisations-type-explore-block>
-                    <implementing-organisations-explore-block></implementing-organisations-explore-block>
+                    <implementing-organisations-explore-block></implementing-organisations-explore-block> -->
 
         		</div>
         	</div>

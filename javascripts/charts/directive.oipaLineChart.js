@@ -18,6 +18,7 @@
         groupBy: '@',
         groupById: '@',
         aggregationKey: '@',
+        aggregationKeyId: '@',
         chartXAxis: '@',
         chartYAxis: '@',
         chartType: '@',

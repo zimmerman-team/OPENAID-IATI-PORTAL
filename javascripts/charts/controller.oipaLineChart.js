@@ -20,6 +20,7 @@
     vm.groupBy = $scope.groupBy;
     vm.groupById = $scope.groupById;
     vm.aggregationKey = $scope.aggregationKey;
+    vm.aggregationKeyId = $scope.aggregationKeyId;
     vm.aggregationFilters = $scope.aggregationFilters;
     vm.xAxis = $scope.chartXAxis;
     vm.yAxis = $scope.chartYAxis;
@@ -168,7 +169,7 @@
       }];
 
       for (var i = 0; i < data.length;i++){
-        formattedData[0].values.push([data[i]['start_planned_year'],data[i]['activity_count']]);
+        formattedData[0].values.push([data[i][vm.groupById],data[i][vm.aggregationKeyId]]);
       }
 
       return formattedData;
