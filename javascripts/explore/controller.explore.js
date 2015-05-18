@@ -9,7 +9,10 @@
 
 	function ExploreController($scope, Filters){
 		var vm = this;
+		vm.dashboard = 'charts'; // options: charts, geomap, list
+
 		activate();
+
 
 	    function activate() {
 	      

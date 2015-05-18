@@ -3,6 +3,4 @@
 
 <div ui-view></div>
 
-<footer-area></footer-area>
-
 <?php get_footer(); ?>
