@@ -13,3 +13,96 @@ come into play. Have fun!
 ******************************************************************/
 
 
+.pagination {
+	li {
+		a {
+			transition:all 0.2s;
+			&:hover {
+				background-color: darken($blauw,10%);
+				color:#fff;
+			}
+		}
+	    &.active {
+			a {
+				&:hover {
+					background-color: darken($icon-grn,10%);
+					}
+				}
+			}
+	    &:first-of-type, &:last-of-type {
+			a {
+				&:hover {
+					background-color: #fff;
+					color: darken($blauw,10%);
+				}
+			}
+		}
+	}
+}
+
+filter-bar{
+	.btn {
+		transition:all 0.2s;
+		&:hover {
+			background: darken($gifgroen,10%);
+		}
+	}
+}
+
+.actions {
+	.filters {
+		span {
+			transition:all 0.2s;
+			&:hover {
+				.fa-circle {
+					color:rgba($icon-grn,1);
+				}
+			}
+		}
+	}
+	.dash {
+	    span {
+		    transition:all 0.2s;
+		      &:nth-of-type(1) {
+		      	&:hover {
+			        .fa-circle {
+			          color:rgba($icon-grn,1);
+			        }
+			    }
+		    }
+			&:nth-of-type(2) {
+				&:hover {
+				    .fa-circle {
+				      color:rgba($roze,1);
+				    }
+				}
+			}
+			&:nth-of-type(3) {
+				&:hover {
+				    .fa-circle {
+						color:rgba($blauw,1);
+				    }
+				}
+			}
+		}
+	}
+}
+
+#tool-bar{
+	span {
+		transition:all 0.2s;
+		&:hover {
+			.fa-circle {
+		    	color: rgba($icon-grn, 1);
+			}
+		}
+	}	
+}
+
+.btn-default {
+	transition:all 0.2s;
+	&:hover {
+		color:#fff;
+		background: rgba($blauw,1);
+	}
+}

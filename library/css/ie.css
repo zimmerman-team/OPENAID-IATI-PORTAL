@@ -167,6 +167,78 @@ and other resources. You'll also notice the grid starts to
 come into play. Have fun!
 
 ******************************************************************/
+/* line 18, ../scss/breakpoints/_768up.scss */
+.pagination li a {
+  transition: all 0.2s;
+}
+/* line 20, ../scss/breakpoints/_768up.scss */
+.pagination li a:hover {
+  background-color: #1a8dbe;
+  color: #fff;
+}
+/* line 27, ../scss/breakpoints/_768up.scss */
+.pagination li.active a:hover {
+  background-color: #00766e;
+}
+/* line 34, ../scss/breakpoints/_768up.scss */
+.pagination li:first-of-type a:hover, .pagination li:last-of-type a:hover {
+  background-color: #fff;
+  color: #1a8dbe;
+}
+
+/* line 44, ../scss/breakpoints/_768up.scss */
+filter-bar .btn {
+  transition: all 0.2s;
+}
+/* line 46, ../scss/breakpoints/_768up.scss */
+filter-bar .btn:hover {
+  background: #71a230;
+}
+
+/* line 54, ../scss/breakpoints/_768up.scss */
+.actions .filters span {
+  transition: all 0.2s;
+}
+/* line 57, ../scss/breakpoints/_768up.scss */
+.actions .filters span:hover .fa-circle {
+  color: #00a99d;
+}
+/* line 64, ../scss/breakpoints/_768up.scss */
+.actions .dash span {
+  transition: all 0.2s;
+}
+/* line 68, ../scss/breakpoints/_768up.scss */
+.actions .dash span:nth-of-type(1):hover .fa-circle {
+  color: #00a99d;
+}
+/* line 75, ../scss/breakpoints/_768up.scss */
+.actions .dash span:nth-of-type(2):hover .fa-circle {
+  color: #ad7979;
+}
+/* line 82, ../scss/breakpoints/_768up.scss */
+.actions .dash span:nth-of-type(3):hover .fa-circle {
+  color: #29abe2;
+}
+
+/* line 92, ../scss/breakpoints/_768up.scss */
+#tool-bar span {
+  transition: all 0.2s;
+}
+/* line 95, ../scss/breakpoints/_768up.scss */
+#tool-bar span:hover .fa-circle {
+  color: #00a99d;
+}
+
+/* line 102, ../scss/breakpoints/_768up.scss */
+.btn-default {
+  transition: all 0.2s;
+}
+/* line 104, ../scss/breakpoints/_768up.scss */
+.btn-default:hover {
+  color: #fff;
+  background: #29abe2;
+}
+
 /******************************************************************
 Site Name:
 Author:

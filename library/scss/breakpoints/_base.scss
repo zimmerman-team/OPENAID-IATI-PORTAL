@@ -149,7 +149,7 @@ hr{
   }
 
   .glyphicon{
-    color: #ccc;
+    color: rgba(55,55,55,.5);
     font-size: 18px;
     position: relative;
   }
@@ -171,10 +171,10 @@ hr{
     -moz-box-shadow:    3px 3px 6px 0px rgba(0, 0, 0, 0.35);
     box-shadow:         3px 3px 6px 0px rgba(0, 0, 0, 0.35);
     min-width: 400px;
+    max-width: 600px;
     border-radius: 8px;
     padding: 12px 16px 20px;
-    font-size: 14px;
-
+    z-index: 99;
     h3{
       margin-top: 0;
       margin-bottom: 6px;
@@ -210,7 +210,7 @@ NAVBAR
   box-shadow:         0px 1px 2px 0px rgba(68, 68, 68, 1);
 }
 
-.navbar .btn.btn-default:hover, .navbar .btn-group .btn:hover, .btn-default:hover{
+.navbar .btn.btn-default:hover, .navbar .btn-group .btn:hover {
   background-color: #797990;
   color: #fff;
 }
@@ -253,6 +253,21 @@ NAVBAR
 
 .glyphicon-user{
   margin-right: 5px;
+}
+
+//Breadcrumbs
+
+.breadcrumb {
+  margin:0 0 10px;
+  background: rgba(255,255,255,0.3);
+  li {
+    &:before {
+      color:#fff !important;
+    }
+    a,span {
+      color:#fff !important;
+    }
+  }
 }
 
 /*********************
@@ -328,9 +343,17 @@ filter-bar{
   background-color: #fff;
   max-width: 1140px;
   padding:20px;
+  .btn {
+    background: $gifgroen;
+    float: left;
+  }
   .table {
     .checkbox {
       margin: 0;
+      margin-left:-15px;
+      .switchery {
+        margin-right: 10px;
+      }
     }
     thead {
       font-size: 1.4em;
@@ -344,6 +367,10 @@ filter-bar{
 }
 
 .pagination {
+  margin: 0;
+  ul {
+    margin: 0;
+  }
   li {
     a {
       border: 0;
@@ -354,7 +381,7 @@ filter-bar{
     }
     &.active {
       a {
-        background-color: $groen;
+        background-color: $icon-grn;
       }
     }
     &:first-of-type, &:last-of-type {
@@ -362,6 +389,17 @@ filter-bar{
         background: none;
         font-weight: bold;
         color:$blauw;
+        font-family: 'FontAwesome';
+      }
+    }
+    &:first-of-type {
+      a:before {
+        content: "\f053";
+      }
+    }
+    &:last-of-type {
+      a:before {
+        content: "\f054";
       }
     }
   }
@@ -835,7 +873,7 @@ ACTIVITY LIST
           }
           border:0;
           span {
-            border-bottom: 1px solid $textstd;
+            text-decoration: underline;
           }
         }
         &:nth-child(odd) {
