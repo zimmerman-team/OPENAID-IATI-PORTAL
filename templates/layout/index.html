@@ -1,0 +1,157 @@
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+
+            <div class="hp-block">
+                <h2>Aantal IATI activiteiten NL</h2>
+                <span class="number large">5497</span>
+                <hr>
+                <p>
+                    Official Development Aid activities of the Netherlands Ministry of 
+                    Foreign Affairs, starting from 2011-01-01.
+                </p>
+                <a class="btn btn-default" ui-sref="activiteitenkaart">Ga naar de IATI explorer</a>
+            </div>
+
+            <div class="hp-block">
+                <h3>Totale uitgave ontwikkelingshulp sinds 2003</h3>
+                <span class="number">€ 29.289.024.646</span>
+            </div>
+
+        </div>
+        <div class="col-md-6">
+            <div class="hp-block">
+                <h1>Wat is IATI?</h1>
+                <p>Aenean lacinia bibendum nulla sed consectetur. Nullam id dolor 
+                    id nibh ultricies vehicula ut id elit. Vivamus sagittis lacus vel 
+                    augue laoreet rutrum faucibus dolor auctor.</p>
+                <a class="btn btn-default" ui-sref="over">Meer informatie</a>
+                <br>&nbsp;<br>
+                <h3>IATI publiceren, raporteren en visualiseren</h3>
+                <p>Aenean lacinia bibendum nulla sed consectetur. Nullam id dolor 
+                    id nibh ultricies vehicula ut id elit. Vivamus sagittis lacus vel 
+                    augue laoreet rutrum faucibus dolor auctor.</p>
+                <a class="btn btn-default" ui-sref="iati-publiceren">Meer informatie</a>   
+
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="white-block">
+                <div class="row">
+                    <div class="col-md-5">
+                        <a class="glyphicon glyphicon-info-sign" ng-mouseover="hoverIn('landen')" ng-mouseleave="hoverOut('landen')">    
+                        </a>
+                        <div 
+                        class="glyphicon-popup" 
+                        ng-show="vm.customFields['landen'].hoverShow" 
+                        ng-bind-html="vm.customFields['landen']['text']">
+                        </div>
+                        <h2>Top 5 landen</h2>
+                        <oipa-table-chart 
+                        aggregation-filters='&order_by=-total_disbursements&limit=5' 
+                        group-by='recipient-country' 
+                        group-by-id='country_id' 
+                        aggregation-key='disbursement' 
+                        aggregation-extra-select='iati-identifier'
+                        aggregation-extra-select-in='countries__in'
+                        ></oipa-table-chart>
+                    </div>
+                    <div class="col-md-7">
+                        <oipa-line-chart 
+                            aggregation-filters='&countries__in=ID,BD,AF,MZ,ET' 
+                            group-by='recipient-country,transaction_date_year' 
+                            group-by-id='country_id' 
+                            aggregation-key='disbursement' 
+                            chart-x-axis='Tijd' 
+                            chart-y-axis='Totale uitgaven'
+                            chart-type='lineChart'
+                            axis-label-distance='28'></oipa-line-chart>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="white-block">
+                <div class="row">
+                    <div class="col-md-5">
+                        <a class="glyphicon glyphicon-info-sign" ng-mouseover="hoverIn('sectoren')" ng-mouseleave="hoverOut('sectoren')">    
+                        </a>
+                        <div 
+                        class="glyphicon-popup" 
+                        ng-show="vm.customFields['sectoren'].hoverShow" 
+                        ng-bind-html="vm.customFields['sectoren']['text']">
+                        </div>
+                        <h2>Top 5 sectoren</h2>
+                        <oipa-table-chart 
+                        aggregation-filters='&order_by=-total_disbursements&limit=5' 
+                        group-by='sector' 
+                        group-by-id='sector_id' 
+                        aggregation-key='disbursement' 
+                        aggregation-extra-select='iati-identifier'
+                        aggregation-extra-select-in='sectors__in'
+                        ></oipa-table-chart>
+                    </div>
+                    <div class="col-md-7">
+                        <oipa-line-chart 
+                            aggregation-filters='&sectors__in=99810,43010,15150,11220,72010' 
+                            group-by='sector,transaction_date_year' 
+                            group-by-id='sector_id' 
+                            aggregation-key='disbursement' 
+                            chart-x-axis='Tijd' 
+                            chart-y-axis='Totale uitgaven'
+                            chart-type='stackedAreaChart'
+                            axis-label-distance='50'></oipa-line-chart>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="white-block">
+                <div class="row">
+                    <div class="col-md-5">
+                        <a class="glyphicon glyphicon-info-sign" ng-mouseover="hoverIn('organisaties')" ng-mouseleave="hoverOut('organisaties')">    
+                        </a>
+                        <div 
+                        class="glyphicon-popup" 
+                        ng-show="vm.customFields['organisaties'].hoverShow" 
+                        ng-bind-html="vm.customFields['organisaties']['text']">
+                        </div>
+                        <h2>Top 5 organisaties</h2>
+                        <oipa-table-chart 
+                        aggregation-filters='&order_by=-total_disbursements&limit=5' 
+                        group-by='transaction-receiver-org' 
+                        group-by-id='receiver_organisation_id' 
+                        aggregation-key='disbursement' 
+                        aggregation-extra-select='iati-identifier' 
+                        aggregation-extra-select-in='participating_organisation__in'
+                        ></oipa-table-chart>
+                    </div>
+                    <div class="col-md-7">
+                        <oipa-line-chart 
+                            aggregation-filters='&order_by=-total_disbursements&limit=5' 
+                            group-by='transaction-receiver-org' 
+                            group-by-id='receiver_organisation_id' 
+                            aggregation-key='disbursement' 
+                            chart-x-axis='' 
+                            chart-y-axis='Totale uitgaven'
+                            chart-type='multiBarHorizontalChart'
+                            axis-label-distance='50'></oipa-line-chart>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
