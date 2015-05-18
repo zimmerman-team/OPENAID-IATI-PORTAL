@@ -22,6 +22,7 @@
     vm.aggregationKey = $scope.aggregationKey;
     vm.aggregationFilters = $scope.aggregationFilters;
     vm.aggregationExtraSelect = $scope.aggregationExtraSelect;
+    vm.aggregationExtraSelectIn = $scope.aggregationExtraSelectIn;
     vm.chartData = [];
     vm.unformattedData = []; 
 
@@ -36,21 +37,26 @@
         if(vm.aggregationExtraSelect == 'iati-identifier'){
           vm.unformattedData = data.data;
 
-          var countries__in = [];
+          var filter__in = [];
           for(var i = 0;i < vm.unformattedData.length;i++){
-            countries__in.push(vm.unformattedData[i]['country_id']);
+            filter__in.push(vm.unformattedData[i][vm.groupById]);
           }
-          countries__in = countries__in.join();
+          filter__in = filter__in.join();
 
-          Aggregations.aggregation(vm.groupBy, 'iati-identifier', '&countries__in=' + countries__in).then(succesFn, errorFn);
+          if(vm.groupBy = 'transaction-receiver-org'){
+            vm.groupBy = 'participating-org';
+          }
+
+          Aggregations.aggregation(vm.groupBy, 'iati-identifier', '&'+vm.aggregationExtraSelectIn+'=' + filter__in).then(succesFn, errorFn);
           vm.aggregationExtraSelect = 'iati-identifier-add';
+          
         } else if(vm.aggregationExtraSelect == 'iati-identifier-add'){
           var countMap = {};
           for(var i = 0;i < data.data.length;i++){
-            countMap[data.data[i]['country_id']] = data.data[i]['activity_count'];
+            countMap[data.data[i][vm.groupById]] = data.data[i]['activity_count'];
           }
           for(var i = 0;i < vm.unformattedData.length;i++){
-            vm.unformattedData[i]['activity_count'] = countMap[vm.unformattedData[i]['country_id']];
+            vm.unformattedData[i]['activity_count'] = countMap[vm.unformattedData[i][vm.groupById]];
           }
 
           vm.chartData = vm.reformatData(vm.unformattedData);
@@ -63,8 +69,6 @@
           }
         }
 
-
-        
       }
 
       function errorFn(data, status, headers, config){
@@ -73,8 +77,7 @@
     }
 
     vm.reformatData = function(data){
-      var formattedData = data;
-      return formattedData;
+      return data;
     }
 
     activate();

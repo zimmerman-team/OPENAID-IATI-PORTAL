@@ -22,7 +22,7 @@
             url:          '/',
             controller:   'IndexController',
             controllerAs: 'vm',
-            templateUrl:  templateBaseUrl + '/templates/layout/index2.html'
+            templateUrl:  templateBaseUrl + '/templates/layout/index.html'
         })
         .state({
             name:         'activiteitenkaart',
