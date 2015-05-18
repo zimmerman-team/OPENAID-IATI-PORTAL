@@ -1,34 +1,33 @@
-<div class="filter-panel col-xs-12">
-	<div class="row filter-panel-header-wrapper">
-		<div class="col-md-6">
-			<div class="input-group search-box">
+<div class="row">
+	<div class="filter-panel col-xs-12">
+		<div class="row filter-panel-header-wrapper">
+			<div class="col-md-7">
+				<div class="input-group search-box">
 
-              <input ng-model="q" class="form-control" placeholder="Zoek een specifiek land ..">
-			  <span class="input-group-btn">
-			    <button class="btn btn-default" type="button">
-			      <span class="glyphicon glyphicon-search"></span>
-			    </button>
-			  </span>
+	              <input ng-model="q" class="form-control" placeholder="Zoek een specifiek land ..">
+				  <span class="input-group-btn">
+				    <button class="btn btn-default" type="button">
+				      <span class="glyphicon glyphicon-search"></span>
+				    </button>
+				  </span>
+				</div>
+			</div>	
+		</div>
+		<div class="row" ng-show="vm.recipientCountries.length == 0">
+			<div class="svg-loader">
+				<img src="{{vm.templateBaseUrl}}/images/spinning-circles.svg" width="70" alt="">
 			</div>
 		</div>
-		<div class="col-md-6 align-right">
-			<button class="btn btn-default btn-openaid" ng-click="vm.save()">Save</button>
-		</div>	
-	</div>
-	<div class="row" ng-show="vm.recipientCountries.length == 0">
-		<div class="svg-loader">
-			<img src="{{vm.templateBaseUrl}}/images/spinning-circles.svg" width="70" alt="">
-		</div>
-	</div>
-	<div class="row" ng-show="vm.recipientCountries.length != 0">
-		<table class="table">
-			<thead>
-				<tr>
-					<td class="th-first">Selecteer één of meerdere landen</td>
-					<td>Activiteiten<span class="glyphicon glyphicon-resize-vertical"></span></td>
-				</tr>
-			</thead>
-			<tbody>
+		<div class="row" ng-show="vm.recipientCountries.length != 0">
+			<div class="col-xs-12">
+				<table class="table">
+					<thead>
+						<tr>
+							<td class="th-first">Selecteer één of meerdere landen</td>
+							<td>Activiteiten<span class="glyphicon glyphicon-resize-vertical"></span></td>
+						</tr>
+					</thead>
+					<tbody>
 
 			    <tr dir-paginate="item in vm.recipientCountries | filter:q | orderBy: 'name' | itemsPerPage: 10"  pagination-id="recipientCountries">
 			    	<td>
@@ -43,9 +42,17 @@
 			    	</td>
 			    </tr>
 
-			</tbody>
-		</table>
 
-		<dir-pagination-controls pagination-id="recipientCountries"></dir-pagination-controls>
+					</tbody>
+				</table>
+			</div>
+			<div class="col-md-3">
+				<button class="btn btn-default btn-openaid" ng-click="vm.save()">Save</button>
+			</div>
+			<div class="col-md-12 text-center">
+				<dir-pagination-controls pagination-id="recipientCountries"></dir-pagination-controls>
+			</div>
+		</div>
+
 	</div>
 </div>

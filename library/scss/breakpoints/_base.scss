@@ -46,7 +46,7 @@ body{
 }
 
 hr{
-  border-top: 1px solid #ddd;
+  border-top: 1px solid #fff;
   margin-top: 10px;
   margin-bottom: 10px;
 }
@@ -100,6 +100,9 @@ hr{
   background-color: rgba($blauw, 0.1);
   padding: 14px 24px;
   margin: 15px 0;
+  &.explore {
+    padding:0;
+  }
   .title {
     h2 {
       display: inline;
@@ -256,215 +259,294 @@ NAVBAR
 SEARCH BAR
 *********************/
 
-.search-box input[type='text']{
-  padding-left: 24px;
-}
+.search-box {
+  margin-bottom:5px;
+  .btn{
+    padding: 7px 9px 0px;
+    line-height: 24px;
+    background: #fff;
+    border:1px solid #ccc;
+    border-left: 0;
+  }
+  .glyphicon-search{
+    font-size: 1.3em;
+    color: #ccc;
+  }
+  input {
+    border-right: 0;
+  }
 
-.search-box .btn{
-  padding: 7px 9px 0px;
-  line-height: 24px;
 }
-
-.glyphicon-search{
-  font-size: 18px;
-  color: #BDBDBD;
-}
-
 
 /*********************
 FILTER BAR
 *********************/
 
+.actions {
+  span {
+    cursor: pointer;
+  }
+  .filters {
+    .fa-circle {
+      color:rgba($icon-grn,.5);
+      &:hover {
+
+      }
+    } 
+  }
+  .dash {
+    span {
+      &:nth-of-type(1) {
+        .fa-circle {
+          color:rgba($icon-grn,.5);
+        }
+      }
+      &:nth-of-type(2) {
+        .fa-circle {
+          color:rgba($roze,.5);
+        }
+      }
+      &:nth-of-type(3) {
+        .fa-circle {
+          color:rgba($blauw,.5);
+        }
+      }
+    }
+  }
+  .reset {
+    text-align: right;
+    .fa-circle {
+      color:#999;
+    }
+  }
+}
 
 filter-bar{
   position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
+  height: auto;
   z-index: 9999;
-}
-
-.filters-closed filter-bar{
-  width: 40px;
-}
-
-.filter-selected{
   background-color: #fff;
-  padding: 0px 0px 10px 40px;
-  overflow: hidden;
-}
-
-.filter-selected-button{
-  margin-top: 10px;
-  margin-right: 10px;
-  background-color: #CBCCDA;
-  border: 0;
-  border-radius: 0;
-}
-
-#filter-wrapper{
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  border-right: 2px solid #F3F3F5;
-}
-
-#filter-button{
-  position: relative;
-  background-color: #555;
-  border-radius: 0;
-  border: 0;
-  height: 40px;
-  width: 40px;
-  text-align: center;
-  padding: 13px 9px 0px;
-  cursor: pointer;
-}
-
-.filter-header.filter-header-toggle, .filter-header.filter-header-toggle:hover{
-  height: 40px;
-  background-color: #444;
-  border-bottom: 0;
-  cursor: default;
-}
-
-.filter-header.filter-header-toggle .filter-header-text{
-  color: #79796A;
-  padding-left: 6px;
-}
-
-.filter-button-icon{
-  display: block;
-  width: 100%;
-  height: 3px;
-  border-radius: 1px;
-  background-color: #fff;
-}
-
-.filter-button-icon+.filter-button-icon{
-  margin-top: 2px;
-}
-
-#filter-headers{
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index:9901;
-  -webkit-box-shadow: 2px 2px 7px 0px rgba(25, 25, 25, 0.33);
-  -moz-box-shadow:    2px 2px 7px 0px rgba(25, 25, 25, 0.33);
-  box-shadow:         2px 2px 7px 0px rgba(25, 25, 25, 0.33);
-}
-
-#filter-headers.col-xs-4{
-  padding-left: 0;
-  padding-right: 0;
-}
-
-#filter-headers.filters-hidden{
-  width: 40px;
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none;
-}
-
-.filter-reset-button{
-  background-color: #525261;
-  color: #fff;
-  padding: 4px 18px;
-  border-radius: 2px;
-  font-size: 12px;
-  float: right;
-  margin-top: 8px;
-  margin-right: 14px;
-}
-
-.filter-reset-button:hover, .filter-reset-button:focus{
-  color: #FF9933;
-  text-decoration: none;
-}
-
-.filter-header{
-  position: relative;
-  height: 38px;
-  width: 100%;
-  overflow: hidden;
-  border-bottom: 1px solid #DBDBEA;
-  background-color: #fff;
-
-  .filter-header-text{
-    color: #FF9933;
-    font-size: 16px;
-    font-weight: bold;
-  }
-
-  .filter-header-amount, .glyphicon-chevron-right{
-    float: right;
-  }
-
-  .glyphicon-chevron-right{
-    top: 8px;
-    right: 10px;
-    font-size: 20px;
-    color: #444;
-  }
-
-  .filter-header-amount{
-    margin-top: 11px;
-    margin-right: 13px;
-    border-radius: 3px;
-    background-color: #444;
-    color: #fff;
-    font-size: 10px;
-    padding: 1px 4px;
-    font-weight: bold;
-  }
-
-  .filter-link{
-    height: 38px;
-    width: 40px;
-    padding-top: 6px;
-    padding-left: 7px;
-    padding-right: 7px;
-  }
-
-
-  .filter-icon{
-    display: block;
-    background-image: url('../../images/glyph-filters.png');
-    background-repeat: no-repeat;
-    background-position: 0 0;
-    width: 100%;
-    height: 100%;
-  }
-
-  .filter-recipient_countries{ background-position: 0 0; }
-  .filter-recipient_regions{ background-position: 0 -40px; }
-  .filter-budget{ background-position: 0 -80px; }
-  .filter-sectors{ background-position: 0 -121px; }
-  .filter-start_end_date{ background-position: 0 -163px; }
-  .filter-participating_organisations{ background-position: 0 -204px; }
-  .filter-policy_markers{ background-position: 0 -244px; }
-  .filter-activity_status{ background-position: 0 -285px; }
-  .filter-document_link{ background-position: 0 -326px; }
-
-}
-
-.filter-header > a, .filter-header > span{
-  display: inline-block;
-  vertical-align: middle;
-}
-
-.filter-header:hover, .filter-header.filter-active{
-  cursor: pointer;
-  background-color: #FF9933;
-
-  .filter-header-text{
-    color: #fff;
+  max-width: 1140px;
+  padding:20px;
+  .table {
+    .checkbox {
+      margin: 0;
+    }
+    thead {
+      font-size: 1.4em;
+    }
+    tr {
+      td {
+        line-height: 1em;
+      }
+    }
   }
 }
+
+.pagination {
+  li {
+    a {
+      border: 0;
+      border-radius: 3px;
+      color:#fff;
+      background-color: $blauw;
+      margin-left:2px;
+    }
+    &.active {
+      a {
+        background-color: $groen;
+      }
+    }
+    &:first-of-type, &:last-of-type {
+      a {
+        background: none;
+        font-weight: bold;
+        color:$blauw;
+      }
+    }
+  }
+}
+
+// .filters-closed filter-bar{
+//   width: 40px;
+// }
+
+// .filter-selected{
+//   background-color: #fff;
+//   padding: 0px 0px 10px 40px;
+//   overflow: hidden;
+// }
+
+// .filter-selected-button{
+//   margin-top: 10px;
+//   margin-right: 10px;
+//   background-color: #CBCCDA;
+//   border: 0;
+//   border-radius: 0;
+// }
+
+// #filter-wrapper{
+//   position: absolute;
+//   left: 0;
+//   top: 0;
+//   width: 100%;
+//   height: 100%;
+//   border-right: 2px solid #F3F3F5;
+// }
+
+// #filter-button{
+//   position: relative;
+//   background-color: #555;
+//   border-radius: 0;
+//   border: 0;
+//   height: 40px;
+//   width: 40px;
+//   text-align: center;
+//   padding: 13px 9px 0px;
+//   cursor: pointer;
+// }
+
+// .filter-header.filter-header-toggle, .filter-header.filter-header-toggle:hover{
+//   height: 40px;
+//   background-color: #444;
+//   border-bottom: 0;
+//   cursor: default;
+// }
+
+// .filter-header.filter-header-toggle .filter-header-text{
+//   color: #79796A;
+//   padding-left: 6px;
+// }
+
+// .filter-button-icon{
+//   display: block;
+//   width: 100%;
+//   height: 3px;
+//   border-radius: 1px;
+//   background-color: #fff;
+// }
+
+// .filter-button-icon+.filter-button-icon{
+//   margin-top: 2px;
+// }
+
+// #filter-headers{
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+//   z-index:9901;
+//   -webkit-box-shadow: 2px 2px 7px 0px rgba(25, 25, 25, 0.33);
+//   -moz-box-shadow:    2px 2px 7px 0px rgba(25, 25, 25, 0.33);
+//   box-shadow:         2px 2px 7px 0px rgba(25, 25, 25, 0.33);
+// }
+
+// #filter-headers.col-xs-4{
+//   padding-left: 0;
+//   padding-right: 0;
+// }
+
+// #filter-headers.filters-hidden{
+//   width: 40px;
+//   -webkit-box-shadow: none;
+//   -moz-box-shadow: none;
+//   box-shadow: none;
+// }
+
+// .filter-reset-button{
+//   background-color: #525261;
+//   color: #fff;
+//   padding: 4px 18px;
+//   border-radius: 2px;
+//   font-size: 12px;
+//   float: right;
+//   margin-top: 8px;
+//   margin-right: 14px;
+// }
+
+// .filter-reset-button:hover, .filter-reset-button:focus{
+//   color: #FF9933;
+//   text-decoration: none;
+// }
+
+// .filter-header{
+//   position: relative;
+//   height: 38px;
+//   width: 100%;
+//   overflow: hidden;
+//   border-bottom: 1px solid #DBDBEA;
+//   background-color: #fff;
+
+//   .filter-header-text{
+//     color: #FF9933;
+//     font-size: 16px;
+//     font-weight: bold;
+//   }
+
+//   .filter-header-amount, .glyphicon-chevron-right{
+//     float: right;
+//   }
+
+//   .glyphicon-chevron-right{
+//     top: 8px;
+//     right: 10px;
+//     font-size: 20px;
+//     color: #444;
+//   }
+
+//   .filter-header-amount{
+//     margin-top: 11px;
+//     margin-right: 13px;
+//     border-radius: 3px;
+//     background-color: #444;
+//     color: #fff;
+//     font-size: 10px;
+//     padding: 1px 4px;
+//     font-weight: bold;
+//   }
+
+//   .filter-link{
+//     height: 38px;
+//     width: 40px;
+//     padding-top: 6px;
+//     padding-left: 7px;
+//     padding-right: 7px;
+//   }
+
+
+//   .filter-icon{
+//     display: block;
+//     background-image: url('../../images/glyph-filters.png');
+//     background-repeat: no-repeat;
+//     background-position: 0 0;
+//     width: 100%;
+//     height: 100%;
+//   }
+
+//   .filter-recipient_countries{ background-position: 0 0; }
+//   .filter-recipient_regions{ background-position: 0 -40px; }
+//   .filter-budget{ background-position: 0 -80px; }
+//   .filter-sectors{ background-position: 0 -121px; }
+//   .filter-start_end_date{ background-position: 0 -163px; }
+//   .filter-participating_organisations{ background-position: 0 -204px; }
+//   .filter-policy_markers{ background-position: 0 -244px; }
+//   .filter-activity_status{ background-position: 0 -285px; }
+//   .filter-document_link{ background-position: 0 -326px; }
+
+// }
+
+// .filter-header > a, .filter-header > span{
+//   display: inline-block;
+//   vertical-align: middle;
+// }
+
+// .filter-header:hover, .filter-header.filter-active{
+//   cursor: pointer;
+//   background-color: #FF9933;
+
+//   .filter-header-text{
+//     color: #fff;
+//   }
+// }
 
 
 
@@ -472,13 +554,16 @@ filter-bar{
 Activiteitenkaart
 *********************/
 .explore-block-header{
-  width: 100%;
-  background-color: #444;
-  color: #fff;
-  font-size: 16px;
-  text-align: center;
-  margin-top: 30px;
-  padding: 6px 0;
+  background-color: rgba($blauw,.5);
+  padding: 6px 10px;
+  font-size: 1.2em;
+  color:$textstd;
+  .explore-block-count {
+    font-weight: 700;
+    font-size: 2em;
+    display: block;
+    line-height: 1em;
+  }
 }
 
 .explore-block-content{
@@ -516,81 +601,96 @@ Countries
 Filter panel
 *********************/
 
-.filter-panel{
-  position: absolute;
-  left: 0;
-  top: 40px;
-  background-color: #fff;
-  width: 64%;
-  -webkit-box-shadow: 2px 2px 7px 0px rgba(25, 25, 25, 0.33);
-  -moz-box-shadow:    2px 2px 7px 0px rgba(25, 25, 25, 0.33);
-  box-shadow:         2px 2px 7px 0px rgba(25, 25, 25, 0.33);
+// .filter-panel{
+//   position: absolute;
+//   left: 0;
+//   top: 40px;
+//   background-color: #fff;
+//   width: 64%;
+//   -webkit-box-shadow: 2px 2px 7px 0px rgba(25, 25, 25, 0.33);
+//   -moz-box-shadow:    2px 2px 7px 0px rgba(25, 25, 25, 0.33);
+//   box-shadow:         2px 2px 7px 0px rgba(25, 25, 25, 0.33);
 
-  .search-box input, .search-box button{
-    height: 26px;
-  }
+//   .search-box input, .search-box button{
+//     height: 26px;
+//   }
 
-  .search-box, .btn-openaid{
-    margin-top: 10px;
-    margin-bottom: 10px;
-  }
+//   .search-box, .btn-openaid{
+//     margin-top: 10px;
+//     margin-bottom: 10px;
+//   }
 
-  .search-box .btn{
-    padding: 4px 9px 0px;
-    line-height: 20px;
-  }
+//   .search-box .btn{
+//     padding: 4px 9px 0px;
+//     line-height: 20px;
+//   }
 
-  .glyphicon-search{
-    font-size: 16px;
-  }
+//   .glyphicon-search{
+//     font-size: 16px;
+//   }
 
-  .pagination{
-    margin: 10px 15px 10px;
-  }
+//   .pagination{
+//     margin: 10px 15px 10px;
+//   }
 
-  .filter-panel-header-wrapper{
-    border-bottom: 1px solid #ddd;
-  }
+//   .filter-panel-header-wrapper{
+//     border-bottom: 1px solid #ddd;
+//   }
 
-  .filter-panel-header{
-    margin-top: 16px;
-    margin-left: 10px;
-    font-size: 16px;
-  }
+//   .filter-panel-header{
+//     margin-top: 16px;
+//     margin-left: 10px;
+//     font-size: 16px;
+//   }
 
-  .table{
-    color: #444;
-    font-size: 16px;
-    font-weight: bold;
-    margin-bottom: 5px;
+//   .table{
+//     color: #444;
+//     font-size: 16px;
+//     font-weight: bold;
+//     margin-bottom: 5px;
 
-    tbody{
-    }
+//     tbody{
+//     }
 
-    .th-first{
-      padding-left: 15px;
-      width: 60%;
-    }
+//     .th-first{
+//       padding-left: 15px;
+//       width: 60%;
+//     }
 
 
-    .checkbox{
-      margin: 0 0 0 10px;
-    }
+//     .checkbox{
+//       margin: 0 0 0 10px;
+//     }
 
-    label{
-      color: #FF9933;
-      font-weight: bold;
-    }
-  }
-}
+//     label{
+//       color: #FF9933;
+//       font-weight: bold;
+//     }
+//   }
+// }
 
 /*********************
 TOOL BAR
 *********************/
 #tool-bar{
-  background-color: #444;
-  height: 40px;
-
+  background-color: rgba($icon-grn, .5);
+  padding:6px 10px;
+  a {
+    cursor: pointer;
+    &:hover {
+      color:#fff;
+      text-decoration: none;
+    }
+  }
+  .fa-circle {
+    color: rgba($icon-grn, .5);
+  }
+  .right {
+    text-align: right;
+  }
+  .center {
+    text-align: center;
+  }
 }
 
 /*********************
@@ -717,7 +817,7 @@ ACTIVITY LIST
 
 
 ///Table oipa charts
-oipa-table-chart {
+//oipa-table-chart {
   .table {
     tbody {
       border:0;
@@ -744,7 +844,7 @@ oipa-table-chart {
       }
     }
   }
-}
+//}
 
 /*********************
 FOOTER
