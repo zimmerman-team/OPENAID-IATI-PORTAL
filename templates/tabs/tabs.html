@@ -20,8 +20,8 @@
 						endpoint="{{vm.sbcOptions.endpoint}}" 
 					    group-by="{{vm.sbcOptions.groupBy}}" 
 					    aggregation-key="{{vm.sbcOptions.aggregationKey}}" 
+					    aggregation-filters="&policy_marker__in=1"
 					    time-slider="true"
-					    source-url="{{vm.sbcOptions.dataUrl}}"
 					    watch-source-url="true"
 					    ng-show="vm.isSelected(1) || vm.isSelected(2)">
 					</stacked-bar-chart>
@@ -35,7 +35,6 @@
 					    aggregation-key="{{vm.bcOptions.aggregationKey}}" 
 					    detail-url="{{vm.bcOptions.detailUrl}}"
 					    time-slider="true"
-					    source-url="{{vm.bcOptions.dataUrl}}"
 					    country-types="{{vm.bcOptions.colorMapUrl}}"
 						reformat-data="false"
 						box-width="450" 

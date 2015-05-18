@@ -22,7 +22,7 @@
             url:          '/',
             controller:   'IndexController',
             controllerAs: 'vm',
-            templateUrl:  templateBaseUrl + '/templates/layout/index.html'
+            templateUrl:  templateBaseUrl + '/templates/layout/index2.html'
         })
         .state({
             name:         'activiteitenkaart',
@@ -83,13 +83,6 @@
         .state({
             name:        'over',
             url:         '/over/',
-            controller:  'PagesController',
-            controllerAs: 'vm',
-            templateUrl: templateBaseUrl + '/templates/pages/pages.html'
-        })
-        .state({
-            name:        'tools',
-            url:         '/tools/',
             controller:  'PagesController',
             controllerAs: 'vm',
             templateUrl: templateBaseUrl + '/templates/pages/pages.html'

@@ -66,14 +66,20 @@ function bones_scripts_and_styles() {
 
   if (!is_admin()) {	
 
+
+  		wp_register_style( 'titilium', 'http://fonts.googleapis.com/css?family=Titillium+Web:400,700', array(), '' );
 		wp_register_style( 'bubbleChart-css', get_stylesheet_directory_uri() . '/css/bubbleChart.css', array(), '' );
 		wp_register_style( 'bootstrap-css', get_stylesheet_directory_uri() . '/bower_components/bootstrap/dist/css/bootstrap.css', array(), '' );
 		wp_register_style( 'leaflet-css', get_stylesheet_directory_uri() . '/bower_components/leafletjs/dist/leaflet.css', array(), '' );
 		wp_register_style( 'angular-slider', get_stylesheet_directory_uri() . '/bower_components/bootstrap-slider/dist/css/bootstrap-slider.css', array(), '' );
 		wp_register_style( 'angular-chart-js', get_stylesheet_directory_uri() . '/bower_components/angular-chart.js/angular-chart.css', array(), '' );
+		wp_register_style( 'nvd3.css', get_stylesheet_directory_uri() . '/bower_components/nvd3/build/nv.d3.min.css', array(), '' );
 		wp_register_style( 'bones-stylesheet', get_stylesheet_directory_uri() . '/library/css/style.css', array(), '', 'all' );
 		wp_register_style( 'bones-ie-only', get_stylesheet_directory_uri() . '/library/css/ie.css', array(), '' );
 
+
+		wp_enqueue_style( 'titilium' );
+		wp_enqueue_style( 'nvd3.css' );
 		wp_enqueue_style( 'bubbleChart-css' );
 		wp_enqueue_style( 'leaflet-css' );
 		wp_enqueue_style( 'angular-slider' );
@@ -88,7 +94,9 @@ function bones_scripts_and_styles() {
 
 		wp_register_script( 'bootstrap', get_stylesheet_directory_uri() . '/bower_components/bootstrap/dist/js/bootstrap.min.js', array('jquery'), '', true );
 		wp_register_script( 'leaflet.js', get_stylesheet_directory_uri() . '/bower_components/leafletjs/dist/leaflet.js', array('jquery'), '', true );
-		wp_register_script( 'd3js', get_stylesheet_directory_uri() . '/library/js/d3.min.js', array(), '', true );
+		wp_register_script( 'd3.js', get_stylesheet_directory_uri() . '/library/js/d3.min.js', array(), '', true );
+		wp_register_script( 'nvd3.js', get_stylesheet_directory_uri() . '/bower_components/nvd3/build/nv.d3.min.js', array(), '', true );
+
 		wp_register_script( 'chart.js', get_stylesheet_directory_uri() . '/bower_components/Chart.js/Chart.min.js', array(), '', true );
 		wp_register_script( 'Chart.StackedBar.js', get_stylesheet_directory_uri() . '/bower_components/Chart.StackedBar.js/src/Chart.StackedBar.js', array(), '', true );
 		wp_register_script( 'underscore', get_stylesheet_directory_uri() . '/bower_components/underscore/underscore-min.js', array(), '', true );
@@ -98,7 +106,10 @@ function bones_scripts_and_styles() {
 		wp_register_script( 'angular-animate', get_stylesheet_directory_uri() . '/bower_components/angular-animate/angular-animate.min.js', array('angular'), '', true );
 		wp_register_script( 'angular-ui-router', get_stylesheet_directory_uri() . '/javascripts/angularUtils/ui-router.min.js', array('angular'), '', true );
 		wp_register_script( 'angular-resource', get_stylesheet_directory_uri() . '/bower_components/angular-resource/angular-resource.min.js', array('angular'), '', true);
+		
 		wp_register_script( 'angular-chart-js', get_stylesheet_directory_uri() . '/bower_components/angular-chart.js/angular-chart.js', array('angular'), '', true);
+		wp_register_script( 'angular-nvd3', get_stylesheet_directory_uri() . '/bower_components/angular-nvd3/dist/angular-nvd3.min.js', array('angular'), '', true);
+
 		wp_register_script( 'angular-leaflet-directive', get_stylesheet_directory_uri() . '/bower_components/angular-leaflet-directive/dist/angular-leaflet-directive.js', array('angular'), '', true);
 		
 		wp_register_script( 'bootstrap-slider', get_stylesheet_directory_uri() . '/bower_components/bootstrap-slider/dist/bootstrap-slider.min.js', array('jquery'), '' );
@@ -225,7 +236,14 @@ function bones_scripts_and_styles() {
 		wp_register_script( 'module.stackedBarChart', get_stylesheet_directory_uri() . '/javascripts/stackedBarChart/module.stackedBarChart.js', array('oipa'), '', true );
 		wp_register_script( 'controller.stackedBarChart', get_stylesheet_directory_uri() . '/javascripts/stackedBarChart/controller.stackedBarChart.js', array('oipa'), '', true );
 		wp_register_script( 'directive.stackedBarChart', get_stylesheet_directory_uri() . '/javascripts/stackedBarChart/directive.stackedBarChart.js', array('oipa'), '', true );
-	
+		
+		wp_register_script( 'module.oipaLineChart', get_stylesheet_directory_uri() . '/javascripts/charts/module.oipaLineChart.js', array(), '', true );
+		wp_register_script( 'directive.oipaLineChart', get_stylesheet_directory_uri() . '/javascripts/charts/directive.oipaLineChart.js', array(), '', true );
+		wp_register_script( 'controller.oipaLineChart', get_stylesheet_directory_uri() . '/javascripts/charts/controller.oipaLineChart.js', array(), '', true );
+		wp_register_script( 'directive.oipaTableChart', get_stylesheet_directory_uri() . '/javascripts/charts/directive.oipaTableChart.js', array(), '', true );
+		wp_register_script( 'controller.oipaTableChart', get_stylesheet_directory_uri() . '/javascripts/charts/controller.oipaTableChart.js', array(), '', true );
+
+
 		wp_register_script( 'service.timeSlider', get_stylesheet_directory_uri() . '/javascripts/timeSlider/service.timeSlider.js', array('oipa'), '', true );
 	
 		wp_enqueue_script( 'bones-modernizr' );
@@ -238,7 +256,9 @@ function bones_scripts_and_styles() {
 		wp_enqueue_script( 'angular-slider' );
 
 		wp_enqueue_script( 'underscore' );
-		wp_enqueue_script( 'd3js' );
+		wp_enqueue_script( 'd3.js' );
+		wp_enqueue_script( 'nvd3.js' );
+
 		wp_enqueue_script( 'angular' );
 		wp_enqueue_script( 'angular-route' );
 		wp_enqueue_script( 'angular-cookies' );
@@ -247,7 +267,10 @@ function bones_scripts_and_styles() {
 		wp_enqueue_script( 'checklist-module' );
 		wp_enqueue_script( 'angular-ui-router' );
 		wp_enqueue_script( 'angular-resource' );
+
 		wp_enqueue_script( 'angular-chart-js' );
+		wp_enqueue_script( 'angular-nvd3' );
+
 		wp_enqueue_script( 'angular-leaflet-directive' );
 		
 		wp_enqueue_script( 'oipa' );
@@ -368,6 +391,11 @@ function bones_scripts_and_styles() {
 		wp_enqueue_script( 'directive.filters.activity.status.panel' );
 		wp_enqueue_script( 'directive.filters.implementing.organisations.panel' );
 
+		wp_enqueue_script( 'module.oipaLineChart' );
+		wp_enqueue_script( 'directive.oipaLineChart' );
+		wp_enqueue_script( 'controller.oipaLineChart' );
+		wp_enqueue_script( 'directive.oipaTableChart' );
+		wp_enqueue_script( 'controller.oipaTableChart' );
 	}
 }
 

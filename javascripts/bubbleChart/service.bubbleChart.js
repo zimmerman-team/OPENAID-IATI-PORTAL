@@ -50,11 +50,8 @@
          * @returns {url}
          * @memberOf oipa.bubbleChart.BubbleChart
          */
-        function aggregation(endpoint, group_by, group_field, aggregation_key){
-            if (group_field !== ''){
-                group_field = '&group_field=' + group_field;
-            }
-            return oipaUrl + '/activity-aggregate-any/?format=json&reporting_organisation__in=NL-1&group_by='+group_by+group_field+'&aggregation_key='+aggregation_key;
+        function aggregation(group_by, aggregation_key, filters){
+            return oipaUrl + '/activity-aggregate-any/?format=json&reporting_organisation__in=NL-1&group_by='+group_by+group_field+'&aggregation_key='+aggregation_key+filters;
         }
 
     }

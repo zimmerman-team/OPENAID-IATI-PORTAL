@@ -25,21 +25,15 @@
     }
 
     vm.sbcOptions = {
-      endpoint: '',
-      groupBy: '',
-      aggregationKey: '',
-      dataUrl: 'http://localhost/openaidnl/wp-content/themes/openaidNL/javascripts/tabs/static_data/1.json'
+      groupBy: 'policy-marker-significance,sector,transaction_date_year',
+      aggregationKey: 'disbursement'
     }
 
     vm.bcOptions = {
-      endpoint: '',
       groupBy: '',
       aggregationKey: '',
-      colorMapUrl: '',
-      dataUrl: 'http://localhost/openaidnl/wp-content/themes/openaidNL/javascripts/tabs/static_data/3.json'
+      colorMapUrl: ''
     }
-
-    vm.dataUrl = 'http://localhost/openaidnl/wp-content/themes/openaidNL/javascripts/tabs/static_data/3.json';
 
     /**
     * @name activate
@@ -55,10 +49,6 @@
       $scope.$watch("vm.slider.value", function (newValue) {
           timeSlider.year = newValue;
       }, true);
-
-      vm.sbcOptions.dataUrl = vm.tabs[0].data_url;
-      vm.bcOptions.dataUrl = vm.tabs[2].data_url;
-      vm.bcOptions.detailUrl = vm.tabs[2].detail_url;
     }
 
     /**
@@ -87,25 +77,15 @@
     */
     vm.updateVisualisation = function(id){
       for(var i = 0;i < vm.tabs.length;i++){
-        console.log(vm.tabs);
         if(vm.tabs[i].id == id){
           if(vm.tabs[i].chart_type == 'BubbleChart'){
-            // TO DO: update vm.bcOptions
 
-            // for now change the fake data url
-            console.log('setting url for bc');
-            vm.bcOptions.dataUrl = vm.tabs[i].data_url;
             vm.bcOptions.detailUrl = vm.tabs[i].detail_url;
-            console.log('setting colormap for bc');
-            console.log(vm.tabs[2].color_map_url);
-            vm.bcOptions.colorMapUrl = vm.tabs[2].color_map_url;
-          } else if(vm.tabs[i].chart_type == 'StackedBarChart'){
-            // TO DO: update vm.sbcOptions
+            vm.bcOptions.colorMapUrl = vm.tabs[i].color_map_url;
 
-            // for now change the fake data url
+          } else if(vm.tabs[i].chart_type == 'StackedBarChart'){
+            
             vm.bcOptions.colorMapUrl = vm.tabs[2].color_map_url;
-            console.log('setting url for sbc');
-            vm.sbcOptions.dataUrl = vm.tabs[i].data_url;
 
           }
           break;

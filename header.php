@@ -31,25 +31,27 @@
 
 		<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>">
 
-		<base href="<?php echo home_url() . '/'; ?>" />
+		<style>
+			.ng-hide:not(.ng-hide-animate){
+				/*display: block !important;
+				position: absolute;
+				top: -9999px;*/
+			}
+		</style>
+
+		
 		<?php // wordpress head functions ?>
 		<?php wp_head(); ?>
 		<?php // end of wordpress head ?>
-		<style>
-	.ng-hide:not(.ng-hide-animate){
-		display: block !important;
-		position: absolute;
-		top: -9999px;
-	}
-	</style>
-		<?php // drop Google Analytics Here ?>
-		<?php // end analytics ?>
+		<base href="<?php echo home_url() . '/'; ?>" />
 		<script>
 			var home_url = '<?php echo home_url(); ?>';
 			var template_url = '<?php echo get_template_directory_uri(); ?>';
-			var oipa_url = 'http://localhost:8000/api/v3';
-			// var oipa_url = 'http://149.210.176.175/api/v3';
+			// var oipa_url = 'http://localhost:8000/api/v3';
+			var oipa_url = 'http://149.210.176.175/api/v3';
 			var reporting_organisation_id = 'NL-1';
+			<?php $customFields = get_post_custom(); ?>
+			var customFields = <?php echo json_encode($customFields); ?>;
 		</script>
 	</head>
 

@@ -25,10 +25,7 @@
 
 		return Tabs;
 
-
-
 		////////////////////
-
 
 		/**
          * @name all
@@ -45,7 +42,7 @@
 			            "header": "Gendergelijkheid", 
 			            "title": "Gelijkheid voor vrouwen in de wereld",
 			            "text": "In veel ontwikkelingslanden is er een ongelijke positie tussen mannen en vrouwen. Nederland ziet dat als een rem op groei, ontwikkeling en stabiliteit. De Rijksoverheid komt daarom op voor de versterking van de rechten en de positie van vrouwen in ontwikkelingslanden.",
-			            "data_url": oipaUrl + "/policy-marker-sector-list-vis/?format=json",
+			            "data_url": oipaUrl + "/activity-aggregate-any/?format=json&group_by=policy-marker-significance&aggregation_key=iati-identifier&reporting_organisation__in=NL-1",
 			            "chart_type": "StackedBarChart"
 			        },
 			        {
@@ -53,7 +50,7 @@
 			            "header": "Handel", 
 			            "title": "Handel en ontwikkelingssamenwerking",
 			            "text": "Steeds meer lage-inkomenslanden en middeninkomenslanden zijn naast ontvangers van hulp ook handelspartners. De Rijksoverheid stimuleert daarom investeringen en handel in deze landen.",
-			            "data_url":  oipaUrl + "/policy-marker-sector-list-vis/?format=json&policy_marker=Trade+Development",
+			            "data_url":  oipaUrl + "/activity-aggregate-any/?format=json&group_by=policy-marker-significance&aggregation_key=iati-identifier&reporting_organisation__in=NL-1",
 			            "chart_type": "StackedBarChart"
 			        },
 			        {
@@ -61,11 +58,7 @@
 			            "header": "Partnerlanden", 
 			            "title": "Hulprelaties, overgangsrelaties en handelsrelaties",
 			            "text": "Nederland heeft op het terrein van buitenlandse handel en ontwikkelingssamenwerking met bepaalde landen een bijzondere relatie. Op het gebied van ontwikkelingssamenwerking heten deze landen 'partnerlanden'. Op handelsgebied zijn dit 'focuslanden'.",
-<<<<<<< HEAD
-			            "data_url": oipaUrl + "/v3/activity-aggregate-any/?group_by=recipient-country,recipient-country-name,transaction_date_year&aggregation_key=disbursement&reporting_organisation__in=NL-1",
-=======
 			            "data_url": oipaUrl + "/activity-aggregate-any/?group_by=recipient-country,transaction_date_year&aggregation_key=disbursement&reporting_organisation__in=NL-1",
->>>>>>> 9193658b5ca824f13c154d181b6bcd25200fc13c
 			            "color_map_url": templateBaseUrl + "/javascripts/countries/mapping.partnerlanden.js",
 			            "chart_type": "BubbleChart",
 			            "detail_url":"landen"
@@ -75,11 +68,7 @@
 			            "header": "sectoren", 
 			            "title": "veiligheid en rechtsorde, water, voedselzekerheid",
 			            "text": "De Nederlandse overheid wil duurzame economische groei in ontwikkelingslanden bevorderen. Daarnaast wil Nederland werken aan stabiliteit en veiligheid in de wereld en de waarborg van mensenrechten.",
-<<<<<<< HEAD
-			            "data_url": oipaUrl + "/v3/activity-aggregate-any/?group_by=sector,sector-name,transaction_date_year&aggregation_key=disbursement&reporting_organisation__in=NL-1&format=json",
-=======
-			            "data_url": oipaUrl + "/activity-aggregate-any/?group_by=recipient-country,transaction_date_year&aggregation_key=disbursement&reporting_organisation__in=NL-1",
->>>>>>> 9193658b5ca824f13c154d181b6bcd25200fc13c
+			            "data_url": oipaUrl + "/activity-aggregate-any/?group_by=sector,transaction_date_year&aggregation_key=disbursement&reporting_organisation__in=NL-1",
 			            "color_map_url": templateBaseUrl + "/javascripts/countries/mapping.partnerlanden.js",
 			            "chart_type": "BubbleChart",
 			            "detail_url":"sectoren"
@@ -89,11 +78,7 @@
 			            "header": "Uitvoerende organisaties", 
 			            "title": "financiering ontwikkelingshulp",
 			            "text": "Nederland biedt op verschillende manieren ontwikkelingshulp. Bijvoorbeeld via programma’s van de Wereldbank en Europese Unie (EU). Of door het bedrijfsleven in ontwikkelingslanden te stimuleren.",
-<<<<<<< HEAD
-			            "data_url": oipaUrl + "/v3/activity-aggregate-any/?group_by=recipient-country,recipient-country-name,transaction_date_year&aggregation_key=disbursement&reporting_organisation__in=NL-1",
-=======
 			            "data_url": oipaUrl + "/activity-aggregate-any/?group_by=recipient-country,transaction_date_year&aggregation_key=disbursement&reporting_organisation__in=NL-1",
->>>>>>> 9193658b5ca824f13c154d181b6bcd25200fc13c
 			            "color_map_url": templateBaseUrl + "/javascripts/countries/mapping.partnerlanden.js",
 			            "chart_type": "BubbleChart",
 			            "detail_url":"sectoren"

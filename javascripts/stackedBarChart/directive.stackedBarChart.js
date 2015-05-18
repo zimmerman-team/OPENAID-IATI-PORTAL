@@ -26,11 +26,10 @@
       controllerAs: 'vm',
       restrict: 'E',
       scope: {
-        endpoint: '@',
+        aggregationFilters: '@',
         groupBy: '@',
         aggregationKey: '@',
         timeSlider: '=',
-        sourceUrl: '@'
       },
       templateUrl: templateBaseUrl + '/templates/stackedBarChart/stacked-bar-chart.html'
     };

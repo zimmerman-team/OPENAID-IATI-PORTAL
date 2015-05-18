@@ -9,13 +9,14 @@
     .module('oipa.layout')
     .controller('IndexController', IndexController);
 
-  IndexController.$inject = ['Filters'];
+  IndexController.$inject = ['$scope', '$sce'];
 
   /**
   * @namespace IndexController
   */
-  function IndexController(Filters) {
+  function IndexController($scope, $sce) {
     var vm = this;
+    vm.customFields = customFields;
     activate();
 
     /**
@@ -24,7 +25,19 @@
     * @memberOf oipa.layout.IndexController
     */
     function activate() {
-
+      for (var cf in vm.customFields){
+          vm.customFields[cf].hoverShow = false;
+          vm.customFields[cf].text = $sce.trustAsHtml(vm.customFields[cf][0]);
+      }
     }
+
+    $scope.hoverIn = function(id){
+      vm.customFields[id].hoverShow = true;
+    };
+
+    $scope.hoverOut = function(id){
+        vm.customFields[id].hoverShow = false;
+    };
+
   }
 })();

@@ -38,7 +38,7 @@
             if(limit !== undefined){
                 url += '&limit=' + limit;
             }
-
+            
             return $http.get(url, { cache: true });
         }
     }

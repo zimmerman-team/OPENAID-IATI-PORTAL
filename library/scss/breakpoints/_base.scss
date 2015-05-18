@@ -16,7 +16,10 @@ and will be used across all viewports.
 GLOBAL
 *********************/
 body{
-  background-color: #F3F3F5;
+  /*background-color: #404040;*/
+  font-family: 'Titillium Web', sans-serif;
+  background-image: url('../../images/bg.jpg');
+  background-size: cover;
 }
 
 .white-background{
@@ -92,6 +95,88 @@ hr{
   opacity: 1;
 }
 
+.hp-block, .white-block{
+  color: #fff;
+  padding: 14px 24px;
+  margin-bottom: 15px;
+}
+
+.white-block{
+  background-color: rgba(255,255,255, 0.4);
+  color: #404040; 
+
+  h2{
+    margin-top: 10px;
+    margin-left: 4px;
+    display: inline-block;
+  }
+
+  .glyphicon{
+    color: #ccc;
+    font-size: 18px;
+    position: relative;
+  }
+
+  .glyphicon:hover{
+    text-decoration: none;
+    color: #aaa;
+    cursor: pointer;
+  }
+
+  .glyphicon-popup{
+    position: absolute;
+    left: 34px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #fff;
+    background-color: rgba(64,64,64,0.95);
+    -webkit-box-shadow: 3px 3px 6px 0px rgba(0, 0, 0, 0.35);
+    -moz-box-shadow:    3px 3px 6px 0px rgba(0, 0, 0, 0.35);
+    box-shadow:         3px 3px 6px 0px rgba(0, 0, 0, 0.35);
+    min-width: 400px;
+    border-radius: 8px;
+    padding: 12px 16px 20px;
+    font-size: 14px;
+
+    h3{
+      margin-top: 0;
+      margin-bottom: 6px;
+    }
+  }
+}
+
+.hp-block{
+  background-color: rgba(255,255,255, 0.4);
+  font-size: 18px;
+  color: #404040;
+
+  h3, h2, h1{
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  hr{
+    margin-top: 0;
+  }
+
+  .number{
+    font-size: 48px;
+    font-weight: bold;
+  }
+
+  .number.large{
+    font-size: 56px;
+  }
+}
+
+.btn-default{
+  font-size: 16px;
+  padding: 3px 10px 5px;
+  background-color: #4d4d4d;
+  border: 0;
+  color: #fff;
+}
+
 /*.view.ng-enter{
   animation:view_enter 1s;
 }
@@ -113,7 +198,7 @@ NAVBAR
   box-shadow:         0px 1px 2px 0px rgba(68, 68, 68, 1);
 }
 
-.navbar .btn.btn-default:hover, .navbar .btn-group .btn:hover{
+.navbar .btn.btn-default:hover, .navbar .btn-group .btn:hover, .btn-default:hover{
   background-color: #797990;
   color: #fff;
 }
@@ -131,7 +216,7 @@ NAVBAR
   margin-top: 12px;
   margin-bottom: 10px;
   margin-right: 10px;
-  background-color: #525261;
+  background-color: #4d4d4d;
   color: #fff;
   border: 0;
 }

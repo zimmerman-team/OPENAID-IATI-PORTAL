@@ -8,11 +8,13 @@
             'ui.bootstrap-slider',
             'angularUtils.directives.dirPagination',
             'chart.js',
+            'nvd3',
             'leaflet-directive',
             'oipa.constants',
             'oipa.config',
             'oipa.routes',
             'oipa.layout',
+            'oipa.charts',
             'oipa.navbar',
             'oipa.footer',
             'oipa.search',
@@ -32,6 +34,7 @@
             'oipa.activities',
             'oipa.policyMarkers',
             'oipa.stackedBarChart',
+
         ]);
 
     angular
