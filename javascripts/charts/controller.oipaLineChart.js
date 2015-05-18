@@ -159,6 +159,21 @@
     }
 
 
+    vm.historicalBarChartReformatData = function(data){
+
+      var formattedData = [{
+          "key" : "Amount of activities",
+          "bar": true,
+          "values" : []
+      }];
+
+      for (var i = 0; i < data.length;i++){
+        formattedData[0].values.push([data[i]['start_planned_year'],data[i]['activity_count']]);
+      }
+
+      return formattedData;
+    }
+
 
   }
 })();

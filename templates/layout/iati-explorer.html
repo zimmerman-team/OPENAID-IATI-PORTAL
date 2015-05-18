@@ -1,0 +1,63 @@
+<div id="main-content" class="container">
+    <div class="row">
+        <div class="col-md-12">
+        	<search-box></search-box>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div style="display: inline-block; float: left;">
+                        filters 
+                        <i class="glyphicon glyphicon-map-marker"></i>
+                        <i class="glyphicon glyphicon-map-marker glyphicon-tristan-custom<replace>"></i>
+                        <i class="glyphicon glyphicon-map-marker glyphicon-tristan-custom<replace>"></i>
+                        <i class="glyphicon glyphicon-map-marker glyphicon-tristan-custom<replace>"></i>
+                        <i class="glyphicon glyphicon-map-marker glyphicon-tristan-custom<replace>"></i>
+                        <i class="glyphicon glyphicon-map-marker glyphicon-tristan-custom<replace>"></i>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div style="display: inline-block; float: right;">
+                        dashboards 
+                        <i class="glyphicon glyphicon-map-marker glyphicon-tristan-custom<replace>"></i>
+                        <i class="glyphicon glyphicon-map-marker glyphicon-tristan-custom<replace>"></i>
+                        <i class="glyphicon glyphicon-map-marker glyphicon-tristan-custom<replace>"></i>
+                    </div>
+                </div>
+            </div>
+
+        	<tool-bar></tool-bar>
+            
+            <filter-bar></filter-bar>
+
+        	<div class="row" ng-show="vm.dashboard == 'charts'">
+        		<div class="col-md-6">
+
+                    <activities-explore-block></activities-explore-block>
+        			<sector-explore-block></sector-explore-block>
+        			
+        		</div>
+        		<div class="col-md-6">
+
+                    <countries-explore-block></countries-explore-block>
+                    <implementing-organisations-type-explore-block></implementing-organisations-type-explore-block>
+                    <implementing-organisations-explore-block></implementing-organisations-explore-block>
+
+        		</div>
+        	</div>
+
+            <div class="row" ng-show="vm.dashboard == 'geomap'">
+                <div class="col-md-12">
+                    <geomap></geomap>
+                </div>
+            </div>
+
+            <div class="row" ng-show="vm.dashboard == 'list'">
+                <div class="col-md-12">
+                    <activity-list></activity-list>
+                </div>
+            </div>
+  
+        </div>
+    </div>
+    
+</div>

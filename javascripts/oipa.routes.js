@@ -25,11 +25,11 @@
             templateUrl:  templateBaseUrl + '/templates/layout/index.html'
         })
         .state({
-            name:         'activiteitenkaart',
-            url:          '/activiteitenkaart/',
+            name:         'iati-explorer',
+            url:          '/iati-explorer/',
             controller:   'ExploreController',
             controllerAs: 'vm',
-            templateUrl:  templateBaseUrl + '/templates/layout/activiteitenkaart.html'
+            templateUrl:  templateBaseUrl + '/templates/layout/iati-explorer.html'
         })
         .state({
             name:        'activiteit',

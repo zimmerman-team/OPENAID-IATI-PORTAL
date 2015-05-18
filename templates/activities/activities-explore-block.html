@@ -1,11 +1,13 @@
-<div class="explore-block-header">Activities</div>
+<div class="explore-block-header">Totaal aantal activiteiten</div>
+<div class="explore-block-count">5497</div>
 <div class="explore-block-content">
-    <canvas 
-    id="line" 
-    class="chart chart-line" 
-    data="vm.visData.data" 
-    labels="vm.visData.labels" 
-    legend="true" 
-    series="vm.visData.series" 
-    click="vm.onClick"></canvas>
+    <oipa-line-chart 
+        aggregation-filters='' 
+        group-by='start_planned' 
+        group-by-id='start_planned_year' 
+        aggregation-key='iati-identifier' 
+        chart-x-axis='' 
+        chart-y-axis='Aantal activiteiten'
+        chart-type='historicalBarChart'
+        axis-label-distance='50'></oipa-line-chart>
 </div>
