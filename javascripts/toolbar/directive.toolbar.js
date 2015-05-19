@@ -1,12 +1,12 @@
 /**
 * Collection
-* @namespace oipa.toolbar.directives
+* @namespace oipa.toolbar
 */
 (function () {
   'use strict';
 
   angular
-    .module('oipa.toolbar.directives')
+    .module('oipa.toolbar')
     .directive('toolBar', toolBar);
 
   toolBar.$inject = ['templateBaseUrl'];
@@ -22,9 +22,6 @@
     */
     var directive = {
       restrict: 'E',
-      scope: {
-        collection: '='
-      },
       templateUrl: templateBaseUrl + '/templates/toolbar/tool-bar.html'
     };
 

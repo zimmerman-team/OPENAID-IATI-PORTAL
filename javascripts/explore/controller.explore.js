@@ -35,29 +35,25 @@
 	    }
 
 	    vm.toggleOpenPanel = function(slug){
-	      if(vm.isOpenedHeader(slug)){
-	        vm.setOpenedHeader('');  
-	      } else {
-	        vm.setOpenedHeader(slug);
-	      }
+			if(vm.isOpenedHeader(slug)){
+				vm.setOpenedHeader('');  
+			} else {
+				vm.setOpenedHeader(slug);
+			}
 	    }
 
 
 
 	    $scope.resetFilters = function(){
-	      
+	    	console.log('resetFilters');
 	    }
 
-	    $scope.saveFilters = function(){
+		vm.saveFilters = function(){
+			console.log('saveFilters');
 	      // logic to save the filters
 	      // FilterSelection.toSave = true;
-	      Filters.setOpenedHeader(null);
-	    }
-
-	    $scope.cancelFilters = function(){
-	      // vm.resetFilters();
-	      Filters.setOpenedHeader(null);
-	    }
+	      vm.openedPanel = '';
+	  	}
 	}
 
 })();
