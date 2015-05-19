@@ -22,7 +22,8 @@
         chartXAxis: '@',
         chartYAxis: '@',
         chartType: '@',
-        axisLabelDistance: '@'
+        axisLabelDistance: '@',
+        mapping: '@'
       },
       templateUrl: templateBaseUrl + '/templates/charts/oipa-line-chart.html'
     };

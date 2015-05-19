@@ -9,7 +9,7 @@
 
 	function ExploreController($scope, Filters, FilterSelection){
 		var vm = this;
-		vm.dashboard = 'charts'; // options: charts, geomap, list
+		vm.dashboard = 'geomap'; // options: charts, geomap, list
 		vm.openedPanel = ''; // panels: 
 		vm.showSelection = false;
 		vm.filterSelection = FilterSelection;
@@ -20,7 +20,7 @@
 	    function activate() {
 	    	$scope.$watch('vm.filterSelection.selectionString', function (selectionString) {
 		    	vm.selectionString = selectionString;
-		    	// vm.selectionString = '&countries__in=KE';
+		    	vm.openedPanel = '';
 		    }, true);
 	    }
 
@@ -62,7 +62,6 @@
 	    }
 
 		vm.saveFilters = function(){
-			console.log('saveFilters');
 	    	FilterSelection.toSave = true;
 	    	vm.openedPanel = '';
 	  	}

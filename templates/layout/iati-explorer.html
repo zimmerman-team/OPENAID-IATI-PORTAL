@@ -62,7 +62,6 @@
             <filter-panel-activity-status ng-show="vm.isOpenedHeader('activity_status')"></filter-panel-activity-status>
             <filter-panel-implementing-organisations ng-show="vm.isOpenedHeader('implementing_organisations')"></filter-panel-implementing-organisations>
 
-
         	<div class="row" ng-show="vm.dashboard == 'charts'">
 
         		<div class="col-md-6">
@@ -79,13 +78,11 @@
                                 chart-y-axis='Totaal budget'
                                 chart-type='historicalBarChart'
                                 axis-label-distance='10'></oipa-line-chart>
-
-                                ss; {{vm.selectionString}}
                         </div>
                     </div>
                 </div>
 
-                <div class="col-md-6">
+                <!-- <div class="col-md-6">
                     <div class="hp-block explore">
                         <div class="explore-block-header">Totaal budget op basis van de zoekresulaten</div>
                         <div class="explore-block-content">
@@ -98,82 +95,47 @@
                                 chart-x-axis='' 
                                 chart-y-axis='Totaal budget'
                                 chart-type='historicalBarChart'
-                                axis-label-distance='10'></oipa-line-chart>
+                                axis-label-distance='40'></oipa-line-chart>
                         </div>
                     </div>
-                </div>
+                </div> -->
 
-        		<div class="col-md-6">
+        		<!-- <div class="col-md-6">
                     <div class="hp-block explore">
                         <div class="explore-block-header">Uitgaven  per landenprofiel</div>
                         <div class="explore-block-content">
                             <oipa-line-chart 
-                                aggregation-filters='' 
-                                group-by='transaction_date_year' 
-                                group-by-id='transaction_date_year' 
+                                aggregation-filters='vm.selectionString + "&limit=5"' 
+                                group-by='recipient-country' 
+                                group-by-id='country_id' 
                                 aggregation-key='disbursement' 
                                 aggregation-key-id='total_disbursements' 
-                                chart-x-axis='' 
-                                chart-y-axis='Totaal budget'
-                                chart-type='historicalBarChart'
-                                axis-label-distance='10'></oipa-line-chart>
+                                chart-x-axis='Landprofiel' 
+                                chart-y-axis='Uitgaven'
+                                chart-type='stackedAreaChart'
+                                axis-label-distance='40'></oipa-line-chart>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 
                 <div class="col-md-6">
                     <div class="hp-block explore">
                         <div class="explore-block-header">Aangegane verplichting per landenprofiel</div>
                         <div class="explore-block-content">
                             <oipa-line-chart 
-                                aggregation-filters='' 
-                                group-by='transaction_date_year' 
-                                group-by-id='transaction_date_year' 
-                                aggregation-key='disbursement' 
-                                aggregation-key-id='total_disbursements' 
-                                chart-x-axis='' 
-                                chart-y-axis='Totaal budget'
-                                chart-type='historicalBarChart'
-                                axis-label-distance='10'></oipa-line-chart>
+                                aggregation-filters='vm.selectionString' 
+                                group-by='recipient-country' 
+                                group-by-id='country_id' 
+                                aggregation-key='commitment' 
+                                aggregation-key-id='total_commitments' 
+                                chart-x-axis='Landprofiel' 
+                                chart-y-axis='Verplichtingen'
+                                chart-type='discreteBarChart'
+                                mapping='partnerlanden' 
+                                axis-label-distance='40'></oipa-line-chart>
                         </div>
                     </div>
                 </div>
-
-                <div class="col-md-6">
-                    <div class="hp-block explore">
-                        <div class="explore-block-header">Uitgaven per kanaal</div>
-                        <div class="explore-block-content">
-                            <oipa-line-chart 
-                                aggregation-filters='' 
-                                group-by='transaction_date_year' 
-                                group-by-id='transaction_date_year' 
-                                aggregation-key='disbursement' 
-                                aggregation-key-id='total_disbursements' 
-                                chart-x-axis='' 
-                                chart-y-axis='Totaal budget'
-                                chart-type='historicalBarChart'
-                                axis-label-distance='10'></oipa-line-chart>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-6">
-                    <div class="hp-block explore">
-                        <div class="explore-block-header">Uitgaven per kanaal per region</div>
-                        <div class="explore-block-content">
-                            <oipa-line-chart 
-                                aggregation-filters='' 
-                                group-by='transaction_date_year' 
-                                group-by-id='transaction_date_year' 
-                                aggregation-key='disbursement' 
-                                aggregation-key-id='total_disbursements' 
-                                chart-x-axis='' 
-                                chart-y-axis='Totaal budget'
-                                chart-type='historicalBarChart'
-                                axis-label-distance='10'></oipa-line-chart>
-                        </div>
-                    </div>
-                </div> -->
 
         	</div>
 

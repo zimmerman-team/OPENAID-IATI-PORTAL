@@ -26,6 +26,7 @@
     vm.yAxis = $scope.chartYAxis;
     vm.chartType = $scope.chartType;
     vm.axisLabelDistance = $scope.axisLabelDistance;
+    vm.mapping = $scope.mapping;
 
     vm.chartData = [];
     vm.chartOptions = {
@@ -67,6 +68,11 @@
       Aggregations.aggregation(vm.groupBy, vm.aggregationKey, vm.aggregationFilters).then(succesFn, errorFn);
 
       function succesFn(data, status, headers, config){
+        
+        if(vm.mapping != undefined){
+          data.data = vm[vm.mapping + 'ReMap'](data.data);
+        }
+   
         vm.chartData = vm.reformatData(data.data);
       }
 
@@ -176,6 +182,74 @@
 
       return formattedData;
     }
+
+    vm.discreteBarChartReformatData = function(data){
+      vm.chartOptions.chart.xAxis.tickFormat = null;
+
+      var formattedData = [{
+          "key" : "key",
+          "values" : []
+      }];
+
+      for (var i = 0; i < data.length;i++){
+        formattedData[0].values.push([data[i]['name'],data[i][vm.aggregationKeyId]]);
+      }
+
+      return formattedData;
+    }
+
+
+
+
+
+
+    vm.partnerlandenReMap = function(data){
+      // we've got the partnerlanden mapping, remap country grouped data to them
+      console.log(data);
+
+      console.log(partnerlanden);
+
+      var partnerData = {};
+
+      for (var i = 0; i < data.length;i++){
+        console.log(partnerlanden[data[i]['country_id']] );
+        if(partnerlanden[data[i]['country_id']] != undefined){
+          var partnerstatus = partnerlanden[data[i]['country_id']];
+        } else {
+          var partnerstatus = 'Overige';
+        }
+
+        if(partnerData[partnerstatus] == undefined){
+          partnerData[partnerstatus] = 0;
+        }
+        console.log(vm.aggregationKeyId);
+        partnerData[partnerstatus] += data[i][vm.aggregationKeyId];
+
+      }
+
+      data = [];
+      var aggkey = vm.aggregationKeyId;
+
+      for (var key in partnerData){
+        var item = {
+          'country_id': key,
+          'name': key
+        }
+        item[vm.aggregationKeyId] = partnerData[key];
+        data.push(item);
+      }
+
+      return data;
+    }
+
+
+
+
+
+
+
+
+
 
 
   }

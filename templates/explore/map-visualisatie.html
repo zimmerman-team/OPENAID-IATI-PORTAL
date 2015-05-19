@@ -2,8 +2,8 @@
   <div class="legend">
     <h3>Partnerlanden</h3>
     <div class="check" dir-paginate="item in vm.countryRelation | itemsPerPage: 10">
-      <input id="{{item}}" checklist-model="vm.selectedCountryRelation" checklist-value="item" type="checkbox">
-      <label for="{{item}}">{{item}}</label>
+      <input id="{{item.id}}" checklist-model="vm.selectedCountryRelation" checklist-value="item" type="checkbox">
+      <label for="{{item.id}}">{{item.name}}</label>
     </div>
   </div>
 

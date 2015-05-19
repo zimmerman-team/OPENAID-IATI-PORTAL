@@ -17,7 +17,12 @@
   function ExploreGeoMapController($scope, leafletData, Aggregations, templateBaseUrl) {
     var vm = this;
     vm.templateBaseUrl = templateBaseUrl;
-    vm.countryRelation = ['Hulp relatie', 'Overgangsrelatie', 'Exit relatie', 'Handelsrelatie', 'Overige'];
+    vm.countryRelation = [
+      {'id':1, 'name': 'Hulp relatie'}, 
+      {'id':2, 'name': 'Overgangsrelatie'}, 
+      {'id':3, 'name': 'Exit relatie'}, 
+      {'id':4, 'name': 'Handelsrelatie'}, 
+      {'id':5, 'name': 'Overige'}];
     vm.selectedCountryRelation = [];
     vm.markerData = [];
     vm.defaults = {
