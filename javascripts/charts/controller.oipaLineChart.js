@@ -19,6 +19,7 @@
     var vm = this;
     vm.groupBy = $scope.groupBy;
     vm.groupById = $scope.groupById;
+    vm.groupByName = $scope.groupByName;
     vm.aggregationKey = $scope.aggregationKey;
     vm.aggregationKeyId = $scope.aggregationKeyId;
     vm.aggregationFilters = $scope.aggregationFilters;
@@ -171,7 +172,7 @@
     vm.historicalBarChartReformatData = function(data){
 
       var formattedData = [{
-          "key" : "Amount of activities",
+          "key" : "Aantal activiteiten",
           "bar": true,
           "values" : []
       }];
@@ -192,7 +193,7 @@
       }];
 
       for (var i = 0; i < data.length;i++){
-        formattedData[0].values.push([data[i]['name'],data[i][vm.aggregationKeyId]]);
+        formattedData[0].values.push([data[i][vm.groupByName],data[i][vm.aggregationKeyId]]);
       }
 
       return formattedData;
@@ -205,14 +206,9 @@
 
     vm.partnerlandenReMap = function(data){
       // we've got the partnerlanden mapping, remap country grouped data to them
-      console.log(data);
-
-      console.log(partnerlanden);
-
       var partnerData = {};
 
       for (var i = 0; i < data.length;i++){
-        console.log(partnerlanden[data[i]['country_id']] );
         if(partnerlanden[data[i]['country_id']] != undefined){
           var partnerstatus = partnerlanden[data[i]['country_id']];
         } else {
@@ -222,13 +218,11 @@
         if(partnerData[partnerstatus] == undefined){
           partnerData[partnerstatus] = 0;
         }
-        console.log(vm.aggregationKeyId);
         partnerData[partnerstatus] += data[i][vm.aggregationKeyId];
 
       }
 
       data = [];
-      var aggkey = vm.aggregationKeyId;
 
       for (var key in partnerData){
         var item = {

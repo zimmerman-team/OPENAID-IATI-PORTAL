@@ -17,6 +17,7 @@
         aggregationFilters: '=',
         groupBy: '@',
         groupById: '@',
+        groupByName: '@',
         aggregationKey: '@',
         aggregationKeyId: '@',
         chartXAxis: '@',

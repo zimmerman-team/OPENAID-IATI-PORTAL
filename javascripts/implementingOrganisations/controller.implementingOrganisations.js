@@ -9,12 +9,12 @@
     .module('oipa.implementingOrganisations')
     .controller('ImplementingOrganisationsController', ImplementingOrganisationsController);
 
-  ImplementingOrganisationsController.$inject = ['ImplementingOrganisations', 'templateBaseUrl'];
+  ImplementingOrganisationsController.$inject = ['ImplementingOrganisations', 'templateBaseUrl', 'FilterSelection'];
 
   /**
   * @namespace ImplementingOrganisationsController
   */
-  function ImplementingOrganisationsController(ImplementingOrganisations, templateBaseUrl) {
+  function ImplementingOrganisationsController(ImplementingOrganisations, templateBaseUrl, FilterSelection) {
     var vm = this;
     vm.templateBaseUrl = templateBaseUrl;
     vm.implementingOrganisations = [];
@@ -42,6 +42,10 @@
       function errorFn(data, status, headers, config) {
         console.log("getting implementing organisations failed");
       }
+    }
+
+    vm.save = function(){
+      FilterSelection.toSave = true;
     }
 
 

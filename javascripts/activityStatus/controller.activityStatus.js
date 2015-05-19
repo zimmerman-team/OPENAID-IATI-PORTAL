@@ -45,7 +45,6 @@
 
     vm.save = function(){
       FilterSelection.toSave = true;
-      Filters.setOpenedHeader(null);
     }
 
   }

@@ -16,7 +16,7 @@
   */
   function ActivityListController($scope, Activities, FilterSelection) {
     var vm = this;
-    $scope.filterSelection = FilterSelection;
+    vm.filterSelection = FilterSelection;
     vm.activities = [];
     vm.order_by = 'start_actual';
     vm.page_size = 5;
@@ -30,7 +30,7 @@
 
     $scope.pageChanged = function(newPage) {
         vm.offset = (newPage * vm.page_size) - vm.page_size;
-        vm.update($scope.filterSelection.selectionString);
+        vm.update(vm.filterSelection.selectionString);
     };
 
     /**
@@ -39,7 +39,8 @@
     * @memberOf oipa.activityStatus.ActivityStatusController
     */
     function activate() {
-      $scope.$watch("filterSelection.selectionString", function (selectionString) {
+      $scope.$watch("vm.filterSelection.selectionString", function (selectionString) {
+        console.log('updating activity list');
           vm.update(selectionString);
       }, true);
     }

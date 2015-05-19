@@ -9,15 +9,13 @@
     .module('oipa.budget')
     .controller('BudgetController', BudgetController);
 
-  BudgetController.$inject = ['$scope', 'Budget'];
+  BudgetController.$inject = ['$scope', 'Budget', 'FilterSelection'];
 
   /**
   * @namespace BudgetController
   */
-  function BudgetController(Budget) {
+  function BudgetController($scope, Budget, FilterSelection) {
     var vm = this;
-
-    
 
     activate();
 
@@ -28,6 +26,10 @@
     */
     function activate() {
   
+    }
+
+    vm.save = function(){
+      FilterSelection.toSave = true;
     }
 
 
