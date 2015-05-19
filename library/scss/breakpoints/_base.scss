@@ -98,7 +98,7 @@ hr{
 
 .hp-block{
   background-color: rgba($blauw, 0.1);
-  padding: 14px 24px;
+  padding: 14px;
   margin: 15px 0;
   &.explore {
     padding:0;
@@ -306,7 +306,12 @@ FILTER BAR
   .filters {
     .fa-circle {
       color:rgba($icon-grn,.5);
-    } 
+    }
+    .active {
+      .fa-circle {
+        color:rgba($icon-grn,1);
+      }
+    }
   }
   .dash {
     span {
@@ -314,15 +319,24 @@ FILTER BAR
         .fa-circle {
           color:rgba($icon-grn,.5);
         }
+        &.active {
+          color:rgba($icon-grn,1);
+        }
       }
       &:nth-of-type(2) {
         .fa-circle {
           color:rgba($roze,.5);
         }
+        &.active {
+          color:rgba($roze,1);
+        }
       }
       &:nth-of-type(3) {
         .fa-circle {
           color:rgba($blauw,.5);
+        }
+        &.active {
+          color:rgba($blauw,1);
         }
       }
     }
@@ -371,6 +385,33 @@ h4 {
         line-height: 1em;
       }
     }
+  }
+}
+
+.filter-box {
+  padding:14px;
+  .btn {
+    color:#fff;
+    border-radius: 4px;
+    margin-right: 4px;
+    &.selectedCountries {
+      background: #00a315;
+    }
+    &.selectedRegions {
+      background: #0083cb;
+    }
+    &.selectedSectors {
+      background: #93278f;
+    }
+    &.selectedImplementingOrganisations {
+      background: #d14a95;
+    }
+    &.selectedActivityStatuses {
+      background: #fb943b;
+    }
+    // &.roze {
+    //   background: #ff7fd5;
+    // }
   }
 }
 
@@ -726,6 +767,11 @@ TOOL BAR
   .fa-circle {
     color: rgba($icon-grn, .5);
   }
+  .active {
+    .fa-circle {
+      color: rgba($icon-grn, 1);
+    }
+  }
   .right {
     text-align: right;
   }
@@ -869,19 +915,37 @@ ACTIVITY LIST
 *********************/
 
 .sort {
-  font-size: 1em;
+  margin-top:15px;
+  font-size: 1.2em;
+  background: rgba($icon-grn,.5);
+  color:#fff;
+  padding:14px;
+  overflow: hidden;
 }
 
 .activity-list-item {
+  position: relative;
   h1 {
     margin-bottom: 10px;
   }
   p {
     margin-bottom: 5px;
   }
+  a {
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 100%;
+    top:0;
+    left:0;
+  }
   .expand {
     font-size: 1.5em;
     float:right;
+    color:#fff;
+    .fa-circle {
+      color:rgba(0,0,0,.2);
+    }
   }
 }
 
