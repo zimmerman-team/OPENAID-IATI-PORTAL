@@ -1395,6 +1395,58 @@ footer h1 {
   content: "@";
 }
 
+/* line 924, ../scss/breakpoints/_base.scss */
+.map-holder {
+  background-color: rgba(41, 171, 226, 0.1);
+  position: relative;
+  padding: 14px 24px;
+  margin-top: 15px;
+}
+/* line 929, ../scss/breakpoints/_base.scss */
+.map-holder h3 {
+  margin-top: 0;
+}
+
+/* line 934, ../scss/breakpoints/_base.scss */
+.legend {
+  position: absolute;
+  left: 28px;
+  top: 14px;
+  z-index: 999;
+}
+
+/* line 941, ../scss/breakpoints/_base.scss */
+.map {
+  text-align: center;
+}
+
+/* line 945, ../scss/breakpoints/_base.scss */
+.info {
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.9);
+  width: 250px;
+  height: 250px;
+  border-radius: 125px;
+  text-align: center;
+  left: 50%;
+  top: 20px;
+  margin-left: 180px;
+  z-index: 999999;
+}
+
+/* line 958, ../scss/breakpoints/_base.scss */
+.geomap-mask {
+  -webkit-clip-path: circle(300px at center);
+  -moz-clip-path: circle(300px at center);
+  -ms-clip-path: circle(300px at center);
+  clip-path: circle(300px at center);
+  height: 600px;
+  width: 600px;
+  display: inline-block;
+  overflow: hidden;
+  background-color: rgba(41, 171, 226, 0.85);
+}
+
 /*********************
 LARGER MOBILE DEVICES
 This is for devices like the Galaxy Note or something that's

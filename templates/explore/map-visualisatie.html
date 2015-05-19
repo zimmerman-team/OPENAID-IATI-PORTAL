@@ -1,64 +1,37 @@
-<div class="col-md-12">
-  <div style="position: absolute;top: 0;left: 0; margin-left: 15px; width: 250px;height: auto; z-index: 999999;">
+<div class="map-holder">
+  <div class="legend">
+    <h3>Partnerlanden</h3>
+    <div class="" dir-paginate="item in vm.countryRelation | itemsPerPage: 10">
+      <input id="" checklist-model="vm.selectedCountryRelation" checklist-value="item" type="checkbox" class="js-switch" ui-switch>
+      <label for="">{{item}}</label>
+    </div>
+  </div>
 
-      <div class="legend">
-          Partnerlanden
-          <div class="checkbox" dir-paginate="item in vm.countryRelation | itemsPerPage: 10">
-              <label>
-                  <input checklist-model="vm.selectedCountryRelation" checklist-value="item" type="checkbox" class="js-switch" ui-switch> {{item}}
-              </label>
-          </div>
-      </div>
+  <div class="map">
+    <h3>
+      IATI activiteiten kaart Nederland
+    </h3>
+
+    <div class="info">
+
+      <img src="">
+
+      <h4>Afghanistan</h4>
+
+      <b>Activiteiten:</b> 341<br>
+
+    </div>
+
+    <div class="geomap-mask">  
+      <leaflet defaults="vm.defaults" center="vm.center" markers="vm.markers" height="600px" width="100%"></leaflet>
+    </div>
+
+    <h4>
+      Klik op een land voor meer informatie
+    </h4>
+
   </div>
 </div>
-<div class="col-md-12" style="text-align: center;padding: 10px 0 20px;background-color: rgba(41,171,226,0.15);">
-    <h3>
-        IATI activiteiten kaart Nederland
-    </h3>
-</div>
-
-<div class="col-md-12" style="text-align: center;background-color: rgba(41,171,226,0.15);">
-  
-  <div style="
-  position: absolute; 
-  background-color: rgba(255,255,255,0.9); 
-  display: inline-block; 
-  width: 250px;
-  height: 250px; 
-  border-radius: 250px;
-  text-align: center;
-  left: 50%;
-  top: -20px;
-  margin-left: 180px;
-  z-index: 999999">
-
-              Afghanistan<br>
-
-              <b>Activiteiten:</b> 341<br>
-
-          </div>
-
-    <div class="geomap-mask"  
-    style="-webkit-clip-path: circle(300px at center);
-          -moz-clip-path: circle(300px at center);
-          -ms-clip-path: circle(300px at center);
-          clip-path: circle(300px at center);
-          height:600px;
-          width: 600px;
-          display: inline-block;
-          overflow: hidden;
-          background-color: rgba(41,171,226,0.85);">  
-
-
-          <leaflet defaults="vm.defaults" center="vm.center" markers="vm.markers" height="600px" width="100%"></leaflet>
-    </div>
-</div>
-<div class="col-md-12" style="text-align: center;padding: 10px 0 20px;background-color: rgba(41,171,226,0.15);">
-    <h3>
-        Klik op een land voor meer informatie
-    </h3>
-</div>
-
 
 <div class="row">
         <div class="col-md-12">
