@@ -3014,8 +3014,8 @@ body {
 /* line 48, ../scss/breakpoints/_base.scss */
 hr {
   border-top: 1px solid #fff;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
 
 /* line 54, ../scss/breakpoints/_base.scss */
@@ -3110,7 +3110,7 @@ hr {
 }
 /* line 130, ../scss/breakpoints/_base.scss */
 .hp-block hr {
-  margin-top: 0;
+  border-top: 1px solid #333333;
 }
 /* line 134, ../scss/breakpoints/_base.scss */
 .hp-block .number {

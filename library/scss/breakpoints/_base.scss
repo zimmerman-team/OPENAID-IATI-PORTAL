@@ -47,8 +47,8 @@ body{
 
 hr{
   border-top: 1px solid #fff;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
 
 .svg-loader{
@@ -128,7 +128,7 @@ hr{
   }
 
   hr{
-    margin-top: 0;
+    border-top: 1px solid $textstd;
   }
 
   .number{
