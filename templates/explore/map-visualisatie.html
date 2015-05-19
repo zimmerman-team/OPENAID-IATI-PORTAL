@@ -1,8 +1,8 @@
 <div class="map-holder">
   <div class="legend">
     <h3>Partnerlanden</h3>
-    <div class="" dir-paginate="item in vm.countryRelation | itemsPerPage: 10">
-      <input id="" checklist-model="vm.selectedCountryRelation" checklist-value="item" type="checkbox" class="js-switch" ui-switch>
+    <div class="check" dir-paginate="item in vm.countryRelation | itemsPerPage: 10">
+      <input id="" checklist-model="vm.selectedCountryRelation" checklist-value="item" type="checkbox">
       <label for="">{{item}}</label>
     </div>
   </div>

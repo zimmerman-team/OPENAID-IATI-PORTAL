@@ -936,10 +936,44 @@ footer{
   left:28px;
   top:14px;
   z-index: 999;
+  label {
+    font-weight: normal;
+  }
+  /*** custom checkboxes ***/
+  input[type=checkbox] { 
+    display:none;
+    & + label:before {
+      font-family: FontAwesome;
+      display: inline-block;
+      content: "\f041";
+      color:#fff;
+      font-size:24px;
+      margin-right: 10px;
+      background-color: $blauw;
+      opacity: 0.5;
+      width: 34px;
+      height: 34px;
+      line-height: 34px;
+      border-radius: 17px;
+      text-indent: 10px;
+    }
+    &:checked + label:before {
+      & + label:before {
+        opacity: 1;
+      }
+    }
+  }
+  .check {
+    margin-bottom: 5px;
+  }
 }
 
 .map {
   text-align: center;
+  .leaflet-div-icon {
+    background: none;
+    border:0;
+  }
 }
 
 .info {

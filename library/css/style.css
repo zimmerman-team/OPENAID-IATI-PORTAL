@@ -1413,14 +1413,52 @@ footer h1 {
   left: 28px;
   top: 14px;
   z-index: 999;
+  /*** custom checkboxes ***/
+}
+/* line 939, ../scss/breakpoints/_base.scss */
+.legend label {
+  font-weight: normal;
+}
+/* line 943, ../scss/breakpoints/_base.scss */
+.legend input[type=checkbox] {
+  display: none;
+}
+/* line 945, ../scss/breakpoints/_base.scss */
+.legend input[type=checkbox] + label:before {
+  font-family: FontAwesome;
+  display: inline-block;
+  content: "\f041";
+  color: #fff;
+  font-size: 24px;
+  margin-right: 10px;
+  background-color: #29abe2;
+  opacity: 0.5;
+  width: 34px;
+  height: 34px;
+  line-height: 34px;
+  border-radius: 17px;
+  text-indent: 10px;
+}
+/* line 961, ../scss/breakpoints/_base.scss */
+.legend input[type=checkbox]:checked + label:before + label:before {
+  opacity: 1;
+}
+/* line 966, ../scss/breakpoints/_base.scss */
+.legend .check {
+  margin-bottom: 5px;
 }
 
-/* line 941, ../scss/breakpoints/_base.scss */
+/* line 971, ../scss/breakpoints/_base.scss */
 .map {
   text-align: center;
 }
+/* line 973, ../scss/breakpoints/_base.scss */
+.map .leaflet-div-icon {
+  background: none;
+  border: 0;
+}
 
-/* line 945, ../scss/breakpoints/_base.scss */
+/* line 979, ../scss/breakpoints/_base.scss */
 .info {
   position: absolute;
   background-color: rgba(255, 255, 255, 0.9);
@@ -1434,7 +1472,7 @@ footer h1 {
   z-index: 999999;
 }
 
-/* line 958, ../scss/breakpoints/_base.scss */
+/* line 992, ../scss/breakpoints/_base.scss */
 .geomap-mask {
   -webkit-clip-path: circle(300px at center);
   -moz-clip-path: circle(300px at center);
