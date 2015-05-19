@@ -9,7 +9,7 @@
 
 	function ExploreController($scope, Filters, FilterSelection){
 		var vm = this;
-		vm.dashboard = 'geomap'; // options: charts, geomap, list
+		vm.dashboard = 'charts'; // options: charts, geomap, list
 		vm.openedPanel = ''; // panels: 
 		vm.showSelection = false;
 		vm.filterSelection = FilterSelection;

@@ -155,16 +155,21 @@
     vm.multiBarHorizontalChartReformatData = function(data){
 
       vm.chartOptions.chart.xAxis.tickFormat = null;
-      vm.chartOptions.chart.height = 500;
+      vm.chartOptions.chart.height = 300;
       var formattedData = [];
 
-      for (var i = 0; i < data.length;i++){
+      
         var mappedData = {
-          key: data[i]['name'],
-          values: [[data[i]['name'],data[i]['total_disbursements']]],
+          key: 'name',
+          values: [],
         }
+
+        for (var i = 0; i < data.length;i++){
+          mappedData.values.push([data[i]['name'],data[i]['total_disbursements']]);
+        }
+
         formattedData.push(mappedData);
-      }
+      
 
       return formattedData;
     }
