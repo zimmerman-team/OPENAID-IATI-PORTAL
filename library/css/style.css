@@ -3892,6 +3892,14 @@ footer h1 {
   background-color: rgba(41, 171, 226, 0.85);
 }
 
+/* line 1124, ../scss/breakpoints/_base.scss */
+.eq {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
 /*********************
 LARGER MOBILE DEVICES
 This is for devices like the Galaxy Note or something that's

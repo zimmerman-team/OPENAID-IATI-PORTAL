@@ -1120,3 +1120,10 @@ footer{
   overflow: hidden;
   background-color: rgba(41,171,226,0.85);
 }
+
+.eq {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
