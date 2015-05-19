@@ -10,6 +10,7 @@
 	function ExploreController($scope, Filters){
 		var vm = this;
 		vm.dashboard = 'geomap'; // options: charts, geomap, list
+		vm.openedPanel = ''; // panels: 
 
 		activate();
 
@@ -21,16 +22,24 @@
 	    	vm.dashboard = id;
 	    }
 
-		$scope.hasOpenFilters = function(){
-			return Filters.isOpenedHeader(null);
+		vm.hasOpenFilters = function(){
+			return vm.openedPanel.length;
 		}
 
-		$scope.isOpenedHeader = function(slug){
-	    	return Filters.isOpenedHeader(slug);
+		vm.isOpenedHeader = function(slug){
+	    	return vm.openedPanel == slug;
 	    }
 
-	    $scope.setOpenedHeader = function(slug){
-	    	Filters.setOpenedHeader(slug);
+	    vm.setOpenedHeader = function(slug){
+	    	vm.openedPanel = slug;
+	    }
+
+	    vm.toggleOpenPanel = function(slug){
+	      if(vm.isOpenedHeader(slug)){
+	        vm.setOpenedHeader('');  
+	      } else {
+	        vm.setOpenedHeader(slug);
+	      }
 	    }
 
 
