@@ -4,31 +4,29 @@
             <img src="{{templateBaseUrl}}/images/spinning-circles.svg" width="70" alt="">
         </div>
     </div>
-    <div class="col-md-12" >
-        <hr>
-    </div>
-    <div class="sort">
-        <div class="col-xs-6">
-            resultaten X - X van X
+    <div class="col-md-12">
+        <div class="sort">
+            <div class="row">
+                <div class="col-xs-6">
+                    resultaten X - X van X
+                </div>
+                <div class="col-xs-2">
+                    sorteer op:
+                </div>
+                <div class="col-xs-1">
+                    budget
+                </div>
+                <div class="col-xs-1">
+                    startdatum
+                </div>
+                <div class="col-xs-1">
+                    regio
+                </div>
+                <div class="col-xs-1">
+                    land
+                </div> 
+            </div>
         </div>
-        <div class="col-xs-2">
-            sorteer op:
-        </div>
-        <div class="col-xs-1">
-            budget
-        </div>
-        <div class="col-xs-1">
-            startdatum
-        </div>
-        <div class="col-xs-1">
-            regio
-        </div>
-        <div class="col-xs-1">
-            land
-        </div> 
-    </div>
-    <div class="col-md-12" >
-        <hr>
     </div>
     <div class="activity-list-item" 
         ng-show="vm.activities.length != 0"
@@ -38,10 +36,16 @@
         current-page="vm.pagination.current">
             <div class="col-md-12">
                 <div class="hp-block">
-                    <div class="expand"><a ui-sref="activiteit({ activity_id: item.id })"><i class="fa fa-expand"></i></a></div>
-                    <h1><a ui-sref="activiteit({ activity_id: item.id })">{{ item.titles[0].title }}</a></h1>
+                    <a ui-sref="activiteit({ activity_id: item.id })"></a>
+                    <div class="expand">
+                        <span class="fa-stack fa-lg">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-share fa-stack-1x fa-share"></i>
+                        </span>
+                    </div>
+                    <h1>{{ item.titles[0].title }}</h1>
                     <p><b>Land:</b> </p>
-                    <p><b>Sector:</b> <a ui-sref="sector({ sector_id: sector.code })" ng-repeat="sector in item.sectors">{{ sector.name }}</a></p>
+                    <p><b>Sector:</b></p>
                     <p><b>Budget:</b> </p>
                     <p><b>Startdatum:</b> {{ item.start_actual }}</p>
                 </div>

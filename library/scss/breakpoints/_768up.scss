@@ -32,7 +32,7 @@ come into play. Have fun!
 	    &:first-of-type, &:last-of-type {
 			a {
 				&:hover {
-					background-color: #fff;
+					background-color: transparent;
 					color: darken($blauw,10%);
 				}
 			}
@@ -40,8 +40,8 @@ come into play. Have fun!
 	}
 }
 
-filter-bar{
-	.btn {
+.filter-panel {
+	.btn-save {
 		transition:all 0.2s;
 		&:hover {
 			background: darken($gifgroen,10%);
@@ -52,7 +52,9 @@ filter-bar{
 .actions {
 	.filters {
 		span {
-			transition:all 0.2s;
+			.fa-circle {
+				transition:all 0.2s;
+			}
 			&:hover {
 				.fa-circle {
 					color:rgba($icon-grn,1);
@@ -62,7 +64,9 @@ filter-bar{
 	}
 	.dash {
 	    span {
-		    transition:all 0.2s;
+		    .fa-circle {
+		    	transition:all 0.2s;
+		    }
 		      &:nth-of-type(1) {
 		      	&:hover {
 			        .fa-circle {
@@ -88,9 +92,47 @@ filter-bar{
 	}
 }
 
+.filter-box {
+  .btn {
+  	transition:all 0.2s;
+  	&.selectedCountries {
+  		&:hover {
+      		background: darken(#00a315,10%);
+      	}
+    }
+    &.selectedRegions {
+    	&:hover {
+      		background: darken(#0083cb,10%);
+      	}
+    }
+    &.selectedSectors {
+    	&:hover {
+      		background: darken(#93278f,10%);
+      	}
+    }
+    &.selectedImplementingOrganisations {
+    	&:hover {
+      		background: darken(#d14a95,10%);
+      	}
+    }
+    &.selectedActivityStatuses {
+    	&:hover {
+      		background: darken(#fb943b,10%);
+      	}
+    }
+  	&:hover {
+  		.fa {
+  			transform: scale(1.3);
+  		}
+  	}
+  }
+}
+
 #tool-bar{
 	span {
-		transition:all 0.2s;
+		.fa-circle {
+			transition:all 0.2s;
+		}
 		&:hover {
 			.fa-circle {
 		    	color: rgba($icon-grn, 1);
@@ -104,5 +146,16 @@ filter-bar{
 	&:hover {
 		color:#fff;
 		background: rgba($blauw,1);
+	}
+}
+
+.activity-list-item {
+	.hp-block {
+		transition:all 0.2s;
+	}
+	&:hover {
+		.hp-block {
+			background-color: rgba($blauw,.4)
+		}
 	}
 }
