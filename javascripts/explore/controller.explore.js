@@ -5,12 +5,13 @@
 		.module('oipa.explore')
 		.controller('ExploreController', ExploreController);
 
-	ExploreController.$inject = ['$scope', 'Filters'];
+	ExploreController.$inject = ['$scope', 'Filters', 'FilterSelection'];
 
-	function ExploreController($scope, Filters){
+	function ExploreController($scope, Filters, FilterSelection){
 		var vm = this;
 		vm.dashboard = 'geomap'; // options: charts, geomap, list
 		vm.openedPanel = ''; // panels: 
+		vm.showSelection = false;
 
 		activate();
 
@@ -20,6 +21,8 @@
 
 	    vm.setDashboard = function(id){
 	    	vm.dashboard = id;
+	    	vm.openedPanel = '';
+	    	vm.showSelection = false;
 	    }
 
 		vm.hasOpenFilters = function(){
@@ -32,27 +35,39 @@
 
 	    vm.setOpenedHeader = function(slug){
 	    	vm.openedPanel = slug;
+	    	vm.showSelection = false;
 	    }
 
 	    vm.toggleOpenPanel = function(slug){
 			if(vm.isOpenedHeader(slug)){
-				vm.setOpenedHeader('');  
+				vm.openedPanel = '';
+				vm.saveFilters();
 			} else {
 				vm.setOpenedHeader(slug);
 			}
 	    }
 
+	    vm.toggleSelection = function(){
+	    	vm.showSelection = !vm.showSelection;
+	    	vm.openedPanel = '';
+	    }
 
-
-	    $scope.resetFilters = function(){
-	    	console.log('resetFilters');
+	    vm.resetFilters = function(){
+	    	FilterSelection.toReset = true;
 	    }
 
 		vm.saveFilters = function(){
 			console.log('saveFilters');
-	      // logic to save the filters
-	      // FilterSelection.toSave = true;
-	      vm.openedPanel = '';
+	    	FilterSelection.toSave = true;
+	    	vm.openedPanel = '';
+	  	}
+
+	  	vm.showDownload = function(){
+	  		console.log("TO DO; show download options");
+	  	}
+
+	  	vm.share = function(medium){
+	  		console.log("TO DO; open "+medium+" share url in new window");
 	  	}
 	}
 

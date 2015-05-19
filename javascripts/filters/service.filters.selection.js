@@ -20,9 +20,11 @@
 		
 		m.selectionString = '';
 		m.toSave = false;
+		m.toReset = false;
 		
 		var FilterSelection = {
 			toSave: m.toSave,
+			toReset: m.toReset,
 			selectionString: m.selectionString
 		};
 

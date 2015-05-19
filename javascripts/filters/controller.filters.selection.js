@@ -39,6 +39,15 @@
         }
       }, true);
 
+      $scope.$watch("vm.filterSelection.toReset", function (toReset) {
+
+        if(toReset){
+          // update
+          vm.resetSelection();
+          FilterSelection.toReset = false;
+        }
+      }, true);
+
     }
 
     vm.updateSelectionString = function(){
@@ -76,6 +85,14 @@
           break;
         }
       }
+    }
+
+    vm.resetSelection = function(){
+      vm.selectedCountries = [];
+      vm.selectedRegions = [];
+      vm.selectedSectors = [];
+      vm.selectedImplementingOrganisations = [];
+      vm.selectedActivityStatuses = [];
     }
 
     activate();
