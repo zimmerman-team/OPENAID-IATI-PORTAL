@@ -159,3 +159,13 @@ come into play. Have fun!
 		}
 	}
 }
+
+.legend {
+	.check:hover {
+		input[type=checkbox] { 
+		    & + label:before {
+		    	opacity: 1;
+		    }
+		}
+	}
+}

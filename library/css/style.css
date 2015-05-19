@@ -3671,21 +3671,26 @@ ACTIVITY LIST
   color: #fff;
   padding: 14px;
   overflow: hidden;
+  white-space: nowrap;
+}
+/* line 925, ../scss/breakpoints/_base.scss */
+.sort .sort-item {
+  margin-right: 15px;
 }
 
-/* line 926, ../scss/breakpoints/_base.scss */
+/* line 930, ../scss/breakpoints/_base.scss */
 .activity-list-item {
   position: relative;
 }
-/* line 928, ../scss/breakpoints/_base.scss */
+/* line 932, ../scss/breakpoints/_base.scss */
 .activity-list-item h1 {
   margin-bottom: 10px;
 }
-/* line 931, ../scss/breakpoints/_base.scss */
+/* line 935, ../scss/breakpoints/_base.scss */
 .activity-list-item p {
   margin-bottom: 5px;
 }
-/* line 934, ../scss/breakpoints/_base.scss */
+/* line 938, ../scss/breakpoints/_base.scss */
 .activity-list-item a {
   position: absolute;
   display: block;
@@ -3694,35 +3699,35 @@ ACTIVITY LIST
   top: 0;
   left: 0;
 }
-/* line 942, ../scss/breakpoints/_base.scss */
+/* line 946, ../scss/breakpoints/_base.scss */
 .activity-list-item .expand {
   font-size: 1.5em;
   float: right;
   color: #fff;
 }
-/* line 946, ../scss/breakpoints/_base.scss */
+/* line 950, ../scss/breakpoints/_base.scss */
 .activity-list-item .expand .fa-circle {
   color: rgba(0, 0, 0, 0.2);
 }
 
-/* line 952, ../scss/breakpoints/_base.scss */
+/* line 956, ../scss/breakpoints/_base.scss */
 .pag {
   padding-bottom: 1em;
 }
 
-/* line 960, ../scss/breakpoints/_base.scss */
+/* line 964, ../scss/breakpoints/_base.scss */
 .table tbody {
   border: 0;
 }
-/* line 963, ../scss/breakpoints/_base.scss */
+/* line 967, ../scss/breakpoints/_base.scss */
 .table tbody tr td {
   border: 0;
 }
-/* line 964, ../scss/breakpoints/_base.scss */
+/* line 968, ../scss/breakpoints/_base.scss */
 .table tbody tr td.colour {
   padding-right: 0;
 }
-/* line 966, ../scss/breakpoints/_base.scss */
+/* line 970, ../scss/breakpoints/_base.scss */
 .table tbody tr td.colour div {
   background: #29abe2;
   margin-top: 3px;
@@ -3730,11 +3735,11 @@ ACTIVITY LIST
   width: 12px;
   border-radius: 6px;
 }
-/* line 975, ../scss/breakpoints/_base.scss */
+/* line 979, ../scss/breakpoints/_base.scss */
 .table tbody tr td span {
   text-decoration: underline;
 }
-/* line 979, ../scss/breakpoints/_base.scss */
+/* line 983, ../scss/breakpoints/_base.scss */
 .table tbody tr:nth-child(odd) {
   background: rgba(102, 102, 102, 0.15);
 }
@@ -3742,23 +3747,23 @@ ACTIVITY LIST
 /*********************
 FOOTER
 *********************/
-/* line 991, ../scss/breakpoints/_base.scss */
+/* line 995, ../scss/breakpoints/_base.scss */
 footer {
   background-color: #333;
   color: #fff;
   padding-top: 1.5rem;
   padding-bottom: 4rem;
 }
-/* line 996, ../scss/breakpoints/_base.scss */
+/* line 1000, ../scss/breakpoints/_base.scss */
 footer .row {
   text-align: center;
 }
-/* line 999, ../scss/breakpoints/_base.scss */
+/* line 1003, ../scss/breakpoints/_base.scss */
 footer h1 {
   margin-bottom: 0.3rem;
 }
 
-/* line 1006, ../scss/breakpoints/_base.scss */
+/* line 1010, ../scss/breakpoints/_base.scss */
 .ic {
   display: inline-block;
   font-family: 'iconscustom';
@@ -3770,45 +3775,47 @@ footer h1 {
   -moz-osx-font-smoothing: grayscale;
   transform: translate(0, 0);
 }
-/* line 1016, ../scss/breakpoints/_base.scss */
+/* line 1020, ../scss/breakpoints/_base.scss */
 .ic.ic-globe:before {
   content: "A";
 }
-/* line 1019, ../scss/breakpoints/_base.scss */
+/* line 1023, ../scss/breakpoints/_base.scss */
 .ic.ic-map:before {
   content: "@";
 }
 
-/* line 1025, ../scss/breakpoints/_base.scss */
+/* line 1029, ../scss/breakpoints/_base.scss */
 .map-holder {
   background-color: rgba(41, 171, 226, 0.1);
   position: relative;
   padding: 14px 24px;
   margin-top: 15px;
 }
-/* line 1030, ../scss/breakpoints/_base.scss */
+/* line 1034, ../scss/breakpoints/_base.scss */
 .map-holder h3 {
   margin-top: 0;
 }
 
-/* line 1035, ../scss/breakpoints/_base.scss */
+/* line 1039, ../scss/breakpoints/_base.scss */
 .legend {
   position: absolute;
-  left: 28px;
+  left: 14px;
   top: 14px;
   z-index: 999;
   /*** custom checkboxes ***/
 }
-/* line 1040, ../scss/breakpoints/_base.scss */
+/* line 1044, ../scss/breakpoints/_base.scss */
 .legend label {
   font-weight: normal;
+  cursor: pointer;
 }
-/* line 1044, ../scss/breakpoints/_base.scss */
+/* line 1049, ../scss/breakpoints/_base.scss */
 .legend input[type=checkbox] {
   display: none;
 }
-/* line 1046, ../scss/breakpoints/_base.scss */
+/* line 1051, ../scss/breakpoints/_base.scss */
 .legend input[type=checkbox] + label:before {
+  transition: all .2s;
   font-family: FontAwesome;
   display: inline-block;
   content: "\f041";
@@ -3823,26 +3830,26 @@ footer h1 {
   border-radius: 17px;
   text-indent: 10px;
 }
-/* line 1062, ../scss/breakpoints/_base.scss */
-.legend input[type=checkbox]:checked + label:before + label:before {
+/* line 1068, ../scss/breakpoints/_base.scss */
+.legend input[type=checkbox]:checked + label:before {
   opacity: 1;
 }
-/* line 1067, ../scss/breakpoints/_base.scss */
+/* line 1073, ../scss/breakpoints/_base.scss */
 .legend .check {
   margin-bottom: 5px;
 }
 
-/* line 1072, ../scss/breakpoints/_base.scss */
+/* line 1078, ../scss/breakpoints/_base.scss */
 .map {
   text-align: center;
 }
-/* line 1074, ../scss/breakpoints/_base.scss */
+/* line 1080, ../scss/breakpoints/_base.scss */
 .map .leaflet-div-icon {
   background: none;
   border: 0;
 }
 
-/* line 1080, ../scss/breakpoints/_base.scss */
+/* line 1086, ../scss/breakpoints/_base.scss */
 .info {
   position: absolute;
   background-color: rgba(255, 255, 255, 0.9);
@@ -3855,22 +3862,22 @@ footer h1 {
   margin-left: 180px;
   z-index: 9999;
 }
-/* line 1091, ../scss/breakpoints/_base.scss */
+/* line 1097, ../scss/breakpoints/_base.scss */
 .info p {
   margin-bottom: 0;
 }
-/* line 1094, ../scss/breakpoints/_base.scss */
+/* line 1100, ../scss/breakpoints/_base.scss */
 .info .flag-icon {
   font-size: 2.5em;
   margin-top: .5em;
   border-radius: 4px;
 }
-/* line 1099, ../scss/breakpoints/_base.scss */
+/* line 1105, ../scss/breakpoints/_base.scss */
 .info .btn {
   margin-top: 10px;
 }
 
-/* line 1104, ../scss/breakpoints/_base.scss */
+/* line 1110, ../scss/breakpoints/_base.scss */
 .geomap-mask {
   -webkit-clip-path: circle(300px at center);
   -moz-clip-path: circle(300px at center);
@@ -4041,6 +4048,11 @@ you can add resource intensive styles.
   /* line 157, ../scss/breakpoints/_768up.scss */
   .activity-list-item:hover .hp-block {
     background-color: rgba(41, 171, 226, 0.4);
+  }
+
+  /* line 166, ../scss/breakpoints/_768up.scss */
+  .legend .check:hover input[type=checkbox] + label:before {
+    opacity: 1;
   }
 }
 /*********************

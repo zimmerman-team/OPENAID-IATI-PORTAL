@@ -274,6 +274,11 @@ come into play. Have fun!
   background-color: rgba(41, 171, 226, 0.4);
 }
 
+/* line 166, ../scss/breakpoints/_768up.scss */
+.legend .check:hover input[type=checkbox] + label:before {
+  opacity: 1;
+}
+
 /******************************************************************
 Site Name:
 Author:

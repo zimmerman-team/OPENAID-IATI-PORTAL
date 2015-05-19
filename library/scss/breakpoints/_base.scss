@@ -921,6 +921,10 @@ ACTIVITY LIST
   color:#fff;
   padding:14px;
   overflow: hidden;
+  white-space: nowrap;
+  .sort-item {
+    margin-right: 15px;
+  }
 }
 
 .activity-list-item {
@@ -1034,16 +1038,18 @@ footer{
 
 .legend {
   position: absolute;
-  left:28px;
+  left:14px;
   top:14px;
   z-index: 999;
   label {
     font-weight: normal;
+    cursor: pointer;
   }
   /*** custom checkboxes ***/
   input[type=checkbox] { 
     display:none;
     & + label:before {
+      transition:all .2s;
       font-family: FontAwesome;
       display: inline-block;
       content: "\f041";
@@ -1058,7 +1064,7 @@ footer{
       border-radius: 17px;
       text-indent: 10px;
     }
-    &:checked + label:before {
+    &:checked {
       & + label:before {
         opacity: 1;
       }
