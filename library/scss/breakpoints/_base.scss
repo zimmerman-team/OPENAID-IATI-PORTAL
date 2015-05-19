@@ -99,7 +99,7 @@ hr{
 .hp-block{
   background-color: rgba($blauw, 0.1);
   padding: 14px;
-  margin: 15px 0;
+  margin: 0 0 15px 0;
   &.explore {
     padding:0;
   }
@@ -365,6 +365,7 @@ h4 {
   max-width: 1140px;
   padding:20px;
   left:14px;
+  margin-top:-15px;
   .btn-save {
     background: $gifgroen;
     float: left;
@@ -757,6 +758,7 @@ TOOL BAR
 #tool-bar{
   background-color: rgba($icon-grn, .5);
   padding:6px 10px;
+  margin-bottom: 15px;
   a {
     cursor: pointer;
     &:hover {
@@ -915,13 +917,13 @@ ACTIVITY LIST
 *********************/
 
 .sort {
-  margin-top:15px;
   font-size: 1.2em;
   background: rgba($icon-grn,.5);
   color:#fff;
   padding:14px;
   overflow: hidden;
   white-space: nowrap;
+  margin-bottom:15px;
   .sort-item {
     margin-right: 15px;
   }
@@ -1030,7 +1032,7 @@ footer{
   background-color: rgba($blauw,0.1);
   position: relative;
   padding:14px 24px;
-  margin-top:15px;
+  margin-bottom:15px;
   h3 {
     margin-top: 0;
   }

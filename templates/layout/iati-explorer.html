@@ -52,15 +52,30 @@
             </div>
 
             <hr>
-
-        	<tool-bar></tool-bar>
             
+            <tool-bar></tool-bar>
+
             <filter-panel-recipient-countries ng-show="vm.isOpenedHeader('recipient_countries')"></filter-panel-recipient-countries>
             <filter-panel-recipient-regions ng-show="vm.isOpenedHeader('recipient_regions')"></filter-panel-recipient-regions>
             <filter-panel-budget ng-show="vm.isOpenedHeader('budget')"></filter-panel-budget>
             <filter-panel-sectors ng-show="vm.isOpenedHeader('sectors')"></filter-panel-sectors>
             <filter-panel-activity-status ng-show="vm.isOpenedHeader('activity_status')"></filter-panel-activity-status>
             <filter-panel-implementing-organisations ng-show="vm.isOpenedHeader('implementing_organisations')"></filter-panel-implementing-organisations>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="hp-block groen">
+                        <h3>Totaal aantal activiteiten sinds 2003</h3>
+                        <span class="number">5497</span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="hp-block roze">
+                        <h3>Totale budget</h3>
+                        <span class="number">€ 29.289.024.646</span>
+                    </div>
+                </div>
+            </div>
 
         	<div class="row" ng-show="vm.dashboard == 'charts'">
 
