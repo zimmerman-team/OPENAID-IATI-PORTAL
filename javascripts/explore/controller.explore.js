@@ -9,13 +9,17 @@
 
 	function ExploreController($scope, Filters){
 		var vm = this;
-		vm.dashboard = 'charts'; // options: charts, geomap, list
+		vm.dashboard = 'geomap'; // options: charts, geomap, list
 
 		activate();
 
 
 	    function activate() {
-	      
+	    	
+	    }
+
+	    vm.setDashboard = function(id){
+	    	vm.dashboard = id;
 	    }
 
 		$scope.hasOpenFilters = function(){

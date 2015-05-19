@@ -10,7 +10,7 @@
   function exploreGeoMap(templateBaseUrl) {
 
     var directive = {
-      controller: 'OipaLineChartController',
+      controller: 'ExploreGeoMapController',
       controllerAs: 'vm',
       restrict: 'E',
       scope: {
@@ -24,7 +24,7 @@
         chartType: '@',
         axisLabelDistance: '@'
       },
-      templateUrl: templateBaseUrl + '/templates/charts/oipa-line-chart.html'
+      templateUrl: templateBaseUrl + '/templates/explore/map-visualisatie.html'
     };
 
     return directive;

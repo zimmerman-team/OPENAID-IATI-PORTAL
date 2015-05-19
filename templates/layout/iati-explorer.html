@@ -36,15 +36,15 @@
                 </div>
                 <div class="col-md-6 dash text-right">
                     dashboards 
-                    <span class="fa-stack fa-lg">
+                    <span class="fa-stack fa-lg" ng-click="vm.setDashboard('charts')">
                       <i class="fa fa-circle fa-stack-2x"></i>
                       <i class="fa fa-line-chart fa-stack-1x fa-inverse"></i>
                     </span>
-                    <span class="fa-stack fa-lg">
+                    <span class="fa-stack fa-lg" ng-click="vm.setDashboard('geomap')">
                       <i class="fa fa-circle fa-stack-2x"></i>
                       <i class="fa fa-fire fa-stack-1x fa-inverse"></i>
                     </span>
-                    <span class="fa-stack fa-lg">
+                    <span class="fa-stack fa-lg" ng-click="vm.setDashboard('list')">
                       <i class="fa fa-circle fa-stack-2x"></i>
                       <i class="fa fa-list-ul fa-stack-1x fa-inverse"></i>
                     </span>
@@ -55,31 +55,31 @@
 
         	<tool-bar></tool-bar>
             
-            <filter-bar></filter-bar>
+            <filter-bar ng-show="vm.dashboard == 'charts'"></filter-bar>
 
         	<div class="row" ng-show="vm.dashboard == 'charts'">
 
         		<div class="col-md-6">
                     <div class="hp-block explore">
-                        <activities-explore-block></activities-explore-block>
+                        <!-- <activities-explore-block></activities-explore-block> -->
                     </div>
                 </div>
 
                 <div class="col-md-6">
                     <div class="hp-block explore">
-                        <sector-explore-block></sector-explore-block>		
+                        <!-- <sector-explore-block></sector-explore-block>		 -->
                     </div>
                 </div>
 
         		<div class="col-md-6">
                     <div class="hp-block explore">
-                        <countries-explore-block></countries-explore-block>
+                        <!-- <countries-explore-block></countries-explore-block> -->
                     </div>
                 </div>
                 
                 <div class="col-md-6">
                     <div class="hp-block explore">
-                        <implementing-organisations-type-explore-block></implementing-organisations-type-explore-block>
+                        <!-- <implementing-organisations-type-explore-block></implementing-organisations-type-explore-block> -->
                     </div>
                 </div>
 
@@ -88,18 +88,18 @@
 
 
                         <div class="explore-block-header">PDGG uitgaven per sector</div>
-                    <div class="explore-block-content">
-                        <oipa-line-chart 
-                            aggregation-filters='' 
-                            group-by='transaction_date_year' 
-                            group-by-id='transaction_date_year' 
-                            aggregation-key='disbursement' 
-                            aggregation-key-id='total_disbursements' 
-                            chart-x-axis='' 
-                            chart-y-axis='Totaal budget'
-                            chart-type='historicalBarChart'
-                            axis-label-distance='10'></oipa-line-chart>
-                    </div>
+                        <!-- <div class="explore-block-content">
+                            <oipa-line-chart 
+                                aggregation-filters='' 
+                                group-by='transaction_date_year' 
+                                group-by-id='transaction_date_year' 
+                                aggregation-key='disbursement' 
+                                aggregation-key-id='total_disbursements' 
+                                chart-x-axis='' 
+                                chart-y-axis='Totaal budget'
+                                chart-type='historicalBarChart'
+                                axis-label-distance='10'></oipa-line-chart>
+                        </div> -->
 
 
                         <!-- <implementing-organisations-explore-block></implementing-organisations-explore-block> -->
@@ -109,9 +109,7 @@
         	</div>
 
             <div class="row" ng-show="vm.dashboard == 'geomap'">
-                <div class="col-md-12">
-                    <geomap></geomap>
-                </div>
+                <explore-geo-map></explore-geo-map>
             </div>
 
             <div class="row" ng-show="vm.dashboard == 'list'">
