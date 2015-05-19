@@ -1,76 +1,54 @@
-<div class="explore-block-header">Activiteiten</div>
-<div class="explore-block-content">
-    <div class="row" ng-show="vm.activities.length == 0">
+<div class="explore-block-content row">
+    <div class="col-md-12" ng-show="vm.activities.length == 0">
         <div class="svg-loader">
             <img src="{{templateBaseUrl}}/images/spinning-circles.svg" width="70" alt="">
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-12">
-            <table class="table">
-                <thead class="activity-list-header">
-                    <tr>
-                        <td class="col-md-3">
-                            Project omschrijving
-                        </td>
-
-                        <td class="col-md-3">
-                            Sector
-                        </td>
-
-                        <td class="col-md-2">
-                            Actuele start datum
-                        </td>
-
-                        <td class="col-md-2">
-                            Actuele eind datum
-                        </td>
-
-                        <td class="col-md-2">
-                            Laatste update
-                        </td>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="activity-list-item" 
-                    ng-show="vm.activities.length != 0"
-                    dir-paginate="item in vm.activities | itemsPerPage: 10"  
-                    pagination-id="activityList"
-                    total-items="vm.totalActivities" 
-                    current-page="vm.pagination.current">
-
-                        <td>
-                            <a ui-sref="activiteit({ activity_id: item.id })">
-                                {{ item.titles[0].title }}
-                            </a><br>
-                            {{ item.descriptions[0].description | cut:true:40:' ...' }}  
-                        </td>
-
-                        <td>
-                            <a ui-sref="sector({ sector_id: sector.code })" ng-repeat="sector in item.sectors">
-                                {{ sector.name }}
-                            </a>   
-                        </td>
-
-                        <td>
-                            {{ item.start_actual }}
-                        </td>
-
-                        <td>
-                            {{ item.end_actual }} 
-                        </td>
-
-                        <td>
-                            {{ item.last_updated_datetime | date:'yyyy-MM-dd' }}
-                        </td>
-
-                    </tr>
-                </tbody>
-            </table>
+    <div class="col-md-12" >
+        <hr>
+    </div>
+    <div class="sort">
+        <div class="col-xs-6">
+            resultaten X - X van X
         </div>
+        <div class="col-xs-2">
+            sorteer op:
+        </div>
+        <div class="col-xs-1">
+            budget
+        </div>
+        <div class="col-xs-1">
+            startdatum
+        </div>
+        <div class="col-xs-1">
+            regio
+        </div>
+        <div class="col-xs-1">
+            land
+        </div> 
+    </div>
+    <div class="col-md-12" >
+        <hr>
+    </div>
+    <div class="activity-list-item" 
+        ng-show="vm.activities.length != 0"
+        dir-paginate="item in vm.activities | itemsPerPage: 10"  
+        pagination-id="activityList"
+        total-items="vm.totalActivities" 
+        current-page="vm.pagination.current">
+            <div class="col-md-12">
+                <div class="hp-block">
+                    <div class="expand"><a ui-sref="activiteit({ activity_id: item.id })"><i class="fa fa-expand"></i></a></div>
+                    <h1><a ui-sref="activiteit({ activity_id: item.id })">{{ item.titles[0].title }}</a></h1>
+                    <p><b>Land:</b> </p>
+                    <p><b>Sector:</b> <a ui-sref="sector({ sector_id: sector.code })" ng-repeat="sector in item.sectors">{{ sector.name }}</a></p>
+                    <p><b>Budget:</b> </p>
+                    <p><b>Startdatum:</b> {{ item.start_actual }}</p>
+                </div>
+            </div>
     </div>
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-12 text-center pag">
             <dir-pagination-controls 
             pagination-id="activityList" 
             on-page-change="pageChanged(newPageNumber)">

@@ -29,25 +29,25 @@
 					</thead>
 					<tbody>
 
-			    <tr dir-paginate="item in vm.recipientCountries | filter:q | orderBy: 'name' | itemsPerPage: 10"  pagination-id="recipientCountries">
-			    	<td>
-			    		<div class="checkbox">
-						  <label>
-						    <input type="checkbox" checklist-model="vm.selectedCountries" checklist-value="item" class="js-switch" ui-switch="{color: '#f1f1f1', secondaryColor: '#dfdfdf', jackColor: '#00a99d', jackSecondaryColor: '#333333', size: 'small'}">{{ item.name }}
-						  </label>
-						</div>
-			    	</td>
-			    	<td>
-			    		{{ item.activity_count }}
-			    	</td>
-			    </tr>
+					    <tr dir-paginate="item in vm.recipientCountries | filter:q | orderBy: 'name' | itemsPerPage: 10"  pagination-id="recipientCountries">
+					    	<td>
+					    		<div class="checkbox">
+								  <label>
+								    <input type="checkbox" checklist-model="vm.selectedCountries" checklist-value="item" class="js-switch" ui-switch="{color: '#f1f1f1', secondaryColor: '#dfdfdf', jackColor: '#00a99d', jackSecondaryColor: '#333333', size: 'small'}">{{ item.name }}
+								  </label>
+								</div>
+					    	</td>
+					    	<td>
+					    		{{ item.activity_count }}
+					    	</td>
+					    </tr>
 
 
 					</tbody>
 				</table>
 			</div>
 			<div class="col-md-12 text-center">
-				<button class="btn btn-default btn-openaid" ng-click="vm.save()">Save</button>
+				<button class="btn btn-default btn-save btn-openaid" ng-click="vm.save()">Save</button>
 				<dir-pagination-controls pagination-id="recipientCountries"></dir-pagination-controls>
 			</div>
 		</div>

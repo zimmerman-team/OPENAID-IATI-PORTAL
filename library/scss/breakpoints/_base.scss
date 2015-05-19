@@ -335,14 +335,23 @@ FILTER BAR
   }
 }
 
-filter-bar{
+h4 {
+  &.filter-panel-header {
+    margin-top: 0;
+    font-size: 1.4em;
+  }
+}
+
+.filter-panel {
+  zoom:1;
   position: absolute;
   height: auto;
-  z-index: 9999;
+  z-index: 99999;
   background-color: #fff;
   max-width: 1140px;
   padding:20px;
-  .btn {
+  left:14px;
+  .btn-save {
     background: $gifgroen;
     float: left;
   }
@@ -603,11 +612,6 @@ Activiteitenkaart
   }
 }
 
-.explore-block-content{
-  padding: 14px 24px;
-  min-height: 140px;
-}
-
 /*********************
 Countries
 *********************/
@@ -813,27 +817,49 @@ MAIN AREA
 SLIDER TOOLTIP 
 *********************/
 
-.slider #tooltip.tooltip.in{
-  opacity: 1;
-}
-
-.slider #tooltip{
-  background-color: transparent;
-  color: #333;
-  margin-top: 2px;
-  font-size: 14px;
-
-
-  .tooltip-inner{
-    color: #333;
-    background-color: transparent;
-    border-radius: 0;
-
+.slide {
+  padding:34px 14px;
+  background: #f1f1f1;
+  margin-bottom: 14px;
+  .slider-selection {
+    background: $gifgroen;
   }
-
-
-  .tooltip-arrow{
+  .slider-track {
+    background: #fff;
+    border:1px solid #ccc;
+    border-radius: 5px;
+    .slider-handle {
+      background: $icon-grn;
+      border:1px solid #fff;
+      width: 35px;
+      height: 35px;
+      margin-left: -17px;
+      margin-top: -12px;
+      outline: none;
+    }
+  }
+  #tooltip {
     display: none;
+  }
+  .tooltip {
+    font-weight: 700;
+    opacity: 1;
+    font-size: 1.2em;
+    .tooltip-inner {
+      background: $icon-grn;
+    }
+    &.top {
+      top:-42px !important;
+      .tooltip-arrow {
+        border-top-color: $icon-grn;
+      }
+    }
+    &.bottom {
+      top:26px !important;
+      .tooltip-arrow {
+        border-bottom-color: $icon-grn;
+      }
+    }
   }
 
 }
@@ -842,15 +868,26 @@ SLIDER TOOLTIP
 ACTIVITY LIST
 *********************/
 
-.activity-list-header{
-  font-size: 16px;
-  font-weight: bold;
-  color: #676759;
+.sort {
+  font-size: 1em;
 }
 
-/*.activity-list-item .col-md-2, .activity-list-item .col-md-3{
-  border-bottom: 1px solid #ACAC9D;
-}*/
+.activity-list-item {
+  h1 {
+    margin-bottom: 10px;
+  }
+  p {
+    margin-bottom: 5px;
+  }
+  .expand {
+    font-size: 1.5em;
+    float:right;
+  }
+}
+
+.pag {
+  padding-bottom: 1em;
+}
 
 
 ///Table oipa charts
@@ -986,7 +1023,18 @@ footer{
   left: 50%;
   top: 20px;
   margin-left: 180px;
-  z-index: 999999;
+  z-index: 9999;
+  p {
+    margin-bottom: 0;
+  }
+  .flag-icon {
+    font-size: 2.5em;
+    margin-top:.5em;
+    border-radius: 4px;
+  }
+  .btn {
+    margin-top:10px;
+  }
 }
 
 .geomap-mask {

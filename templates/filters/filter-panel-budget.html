@@ -1,17 +1,9 @@
-<div class="filter-panel col-xs-offset-4 col-xs-8">
-	<div class="row filter-panel-header-wrapper">
-		<div class="col-md-6">
-			<h5 class="filter-panel-header">
-				Selecteer budget
-			</h5>
-		</div>
-		<div class="col-md-6 align-right">
-			<button class="btn btn-default btn-openaid" ng-click="vm.save()">Save</button>
-		</div>	
-	</div>
-	<div class="row">
-		<div class="col-md-12">
-
+<div class="row">
+	<div class="filter-panel col-xs-12">
+		<h4 class="filter-panel-header">
+			Selecteer budget
+		</h4>
+		<div class="slide">	
 			<slider slider-id="time-slider"
 		        ng-model="vm.slider.value"
 		        value="[100000, 300000]"
@@ -29,25 +21,8 @@
 		        selection="before"
 		        tooltip="always">
 			</slider>
-		</div>	
-	</div>
-	<div class="row">
-		<div class="col-md-12">
-			<span>{{vm.slider.min}}</span><span style="float:right;">{{vm.slider.max}}</span>
-	
-
-
-
+			<span>{{vm.slider.min}}</span><span>{{vm.slider.max}}</span>
 		</div>
-	</div>
-	<div class="row">
-		<hr>
-		<br>&nbsp;
-		<br>&nbsp;
-		<br>&nbsp;
-		<br>&nbsp;
-		<br>&nbsp;
-		<br>&nbsp;
-		<br>&nbsp;
-	</div>
+		<button class="btn btn-default btn-openaid btn-save" ng-click="vm.save()">Save</button>
+</div>
 </div>
