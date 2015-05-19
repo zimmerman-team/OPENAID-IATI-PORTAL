@@ -43,9 +43,6 @@
       html: '<div class="fa fa-map-marker fa-stack-1x fa-inverse marker-circle" style="background-color: rgba(207,32,38,0.4); border-radius: 20px;font-size:14px;width: 20px; height: 20px;"></div>',
     };
 
-    
-
-
     activate();
 
     /**
