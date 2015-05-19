@@ -14,7 +14,7 @@
       controllerAs: 'vm',
       restrict: 'E',
       scope: {
-        aggregationFilters: '@',
+        aggregationFilters: '=',
         groupBy: '@',
         groupById: '@',
         aggregationKey: '@',

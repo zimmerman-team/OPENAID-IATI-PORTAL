@@ -71,7 +71,6 @@
         headerName = '&' + header + '__in=';
         for(var i = 0; i < arr.length; i++){
             list.push(arr[i][id_slug]);
-            console.log(arr[i]);
         }
       }
 

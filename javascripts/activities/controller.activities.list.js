@@ -19,7 +19,7 @@
     $scope.filterSelection = FilterSelection;
     vm.activities = [];
     vm.order_by = 'start_actual';
-    vm.page_size = 10;
+    vm.page_size = 5;
     vm.offset = 0;
     vm.totalActivities = 0;
     vm.pagination = {

@@ -55,7 +55,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <oipa-table-chart 
-                        aggregation-filters='&order_by=-total_disbursements&limit=5' 
+                        aggregation-filters='&amp;order_by=-total_disbursements&amp;limit=5' 
                         group-by='recipient-country' 
                         group-by-id='country_id' 
                         aggregation-key='disbursement' 
@@ -65,7 +65,7 @@
                     </div>
                     <div class="col-md-6">
                         <oipa-line-chart 
-                            aggregation-filters='&countries__in=ID,BD,AF,MZ,ET' 
+                            aggregation-filters='"&countries__in=ID,BD,AF,MZ,ET"' 
                             group-by='recipient-country,transaction_date_year' 
                             group-by-id='country_id' 
                             aggregation-key='disbursement' 
@@ -78,7 +78,6 @@
             </div>
         </div>
     </div>
-
     <div class="row">
         <div class="col-md-12">
             <div class="hp-block">
@@ -107,7 +106,7 @@
                     </div>
                     <div class="col-md-6">
                         <oipa-line-chart 
-                            aggregation-filters='&sectors__in=99810,43010,15150,11220,72010' 
+                            aggregation-filters='"&sectors__in=99810,43010,15150,11220,72010"' 
                             group-by='sector,transaction_date_year' 
                             group-by-id='sector_id' 
                             aggregation-key='disbursement' 
@@ -149,7 +148,7 @@
                     </div>
                     <div class="col-md-6">
                         <oipa-line-chart 
-                            aggregation-filters='&order_by=-total_disbursements&limit=5' 
+                            aggregation-filters='"&order_by=-total_disbursements&limit=5"' 
                             group-by='transaction-receiver-org' 
                             group-by-id='receiver_organisation_id' 
                             aggregation-key='disbursement' 

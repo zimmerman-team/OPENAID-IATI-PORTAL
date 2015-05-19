@@ -9,14 +9,19 @@
 
 	function ExploreController($scope, Filters, FilterSelection){
 		var vm = this;
-		vm.dashboard = 'geomap'; // options: charts, geomap, list
+		vm.dashboard = 'charts'; // options: charts, geomap, list
 		vm.openedPanel = ''; // panels: 
 		vm.showSelection = false;
+		vm.filterSelection = FilterSelection;
+		vm.selectionString = '';
 
 		activate();
 
 	    function activate() {
-	    	
+	    	$scope.$watch('vm.filterSelection.selectionString', function (selectionString) {
+		    	vm.selectionString = selectionString;
+		    	// vm.selectionString = '&countries__in=KE';
+		    }, true);
 	    }
 
 	    vm.setDashboard = function(id){

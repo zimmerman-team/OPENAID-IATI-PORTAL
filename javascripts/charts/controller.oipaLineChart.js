@@ -76,10 +76,13 @@
     }
 
     function activate() {
-      vm.loadData();
+      
+      $scope.$watch('aggregationFilters', function (aggregationFilters) {
+        vm.aggregationFilters = aggregationFilters;
+        vm.loadData();
+      }, true);
     }
     activate();
-
 
     vm.reformatData = function(data){
       var formattedData = vm[vm.chartType + 'ReformatData'](data);
@@ -158,7 +161,6 @@
 
       return formattedData;
     }
-
 
     vm.historicalBarChartReformatData = function(data){
 
