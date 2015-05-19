@@ -451,6 +451,31 @@ h4 {
   }
 }
 
+//chart dingen
+.nvtooltip {
+  border-radius: 8px;
+  box-shadow: 3px 3px 6px 0px rgba(0, 0, 0, 0.35);
+  padding:5px 10px;
+  color: #fff;
+  background-color: rgba(64, 64, 64, 0.95);
+  h3 {
+    font-size: 1em;
+    background: none;
+    font-weight: 700;
+    border:0;
+    text-align: left;
+    padding: 0;
+    max-width: 250px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  p {
+    text-align: left;
+    padding:0;
+  }
+}
+
 // .filters-closed filter-bar{
 //   width: 40px;
 // }
