@@ -306,9 +306,6 @@ FILTER BAR
   .filters {
     .fa-circle {
       color:rgba($icon-grn,.5);
-      &:hover {
-
-      }
     } 
   }
   .dash {
@@ -900,5 +897,25 @@ footer{
   }
   h1 {
     margin-bottom: 0.3rem;
+  }
+}
+
+
+//custom icons shiz
+.ic {
+  display: inline-block;
+  font-family: 'iconscustom';
+  font-style: normal;
+  font-weight: normal;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transform: translate(0, 0);
+  &.ic-globe:before {
+    content: "A";
+  }
+  &.ic-map:before {
+    content: "@";
   }
 }

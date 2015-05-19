@@ -65,17 +65,14 @@ FONT FACE
   http://www.fontsquirrel.com/
   Be sure to remove the comment brackets.
 */
-/*  @font-face {
-      font-family: 'Font Name';
-      src: url('library/fonts/font-name.eot');
-      src: url('library/fonts/font-name.eot?#iefix') format('embedded-opentype'),
-             url('library/fonts/font-name.woff') format('woff'),
-             url('library/fonts/font-name.ttf') format('truetype'),
-             url('library/fonts/font-name.svg#font-name') format('svg');
-      font-weight: normal;
-      font-style: normal;
-  }
-*/
+@font-face {
+  font-family: 'iconscustom';
+  src: url("../fonts/icons-custom-webfont.eot");
+  src: url("../fonts/icons-custom-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/icons-custom-webfont.woff2") format("woff2"), url("../fonts/icons-custom-webfont.woff") format("woff"), url("../fonts/icons-custom-webfont.ttf") format("truetype"), url("../fonts/icons-custom-webfont.svg#iconscustom") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
 /*
 The following is based of Typebase:
 https://github.com/devinhunt/typebase.css
@@ -85,7 +82,7 @@ I've edited it a bit, but it's a nice starting point.
 some nice typographical defaults
 more here: http://www.newnet-soft.com/blog/csstypography
 */
-/* line 81, ../scss/partials/_typography.scss */
+/* line 83, ../scss/partials/_typography.scss */
 h1 {
   font-weight: 700;
 }
