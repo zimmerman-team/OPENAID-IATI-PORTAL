@@ -7,11 +7,11 @@
     <div class="col-md-12">
         <div class="sort">
             <div class="row">
-                <div class="col-xs-6">
+                <div class="col-sm-4">
                     resultaten X - X van X
                 </div>
-                <div class="col-xs-6 text-right">
-                    <span class="sort-item">sorteer op:</span>
+                <div class="col-sm-8 text-right-not-xs">
+                    <span class="sort-item hidden-xs">sorteer op:</span>
                     <span class="sort-item">budget<span class="glyphicon glyphicon-resize-vertical"></span></span>
                     <span class="sort-item">startdatum<span class="glyphicon glyphicon-resize-vertical"></span></span>
                     <span class="sort-item">regio<span class="glyphicon glyphicon-resize-vertical"></span></span>
@@ -43,12 +43,10 @@
                 </div>
             </div>
     </div>
-    <div class="row">
-        <div class="col-md-12 text-center pag">
-            <dir-pagination-controls 
-            pagination-id="activityList" 
-            on-page-change="pageChanged(newPageNumber)">
-            </dir-pagination-controls>
-        </div>
+    <div class="col-md-12 text-center pag">
+        <dir-pagination-controls 
+        pagination-id="activityList" 
+        on-page-change="pageChanged(newPageNumber)">
+        </dir-pagination-controls>
     </div>
 </div>
