@@ -55,7 +55,7 @@
         vm.selectArrayToString('countries', 'country_id', vm.selectedCountries),
         vm.selectArrayToString('regions', 'region_id', vm.selectedRegions),
         vm.selectArrayToString('sectors', 'sector_id', vm.selectedSectors),
-        vm.selectArrayToString('implementingOrganisations', 'organisation_id', vm.selectedImplementingOrganisations),
+        vm.selectArrayToString('participating_organisations__organisation__code', 'organisation_id', vm.selectedImplementingOrganisations),
         vm.selectArrayToString('activity_status', 'code', vm.selectedActivityStatuses),
       ];
       FilterSelection.selectionString = selectList.join('');
@@ -87,11 +87,11 @@
     }
 
     vm.resetSelection = function(){
-      vm.selectedCountries = [];
-      vm.selectedRegions = [];
-      vm.selectedSectors = [];
-      vm.selectedImplementingOrganisations = [];
-      vm.selectedActivityStatuses = [];
+      Countries.selectedCountries = [];
+      Regions.selectedRegions = [];
+      Sectors.selectedSectors = [];
+      ImplementingOrganisations.selectedImplementingOrganisations = [];
+      ActivityStatus.selectedActivityStatuses = [];
     }
 
     activate();

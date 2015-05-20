@@ -30,10 +30,6 @@
       // for each active country, get the results;
       ImplementingOrganisations.all().then(successFn, errorFn);
 
-      /**
-      * @name collectionsSuccessFn
-      * @desc Update collections array on view
-      */
       function successFn(data, status, headers, config) {
         vm.implementingOrganisations = data.data;
       }

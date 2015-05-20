@@ -44,7 +44,24 @@
           vm.update(selectionString);
       }, true);
     }
-    
+
+    vm.toggleOrder = function(name){
+      if (vm.order_by.indexOf(0) === '-'){
+        vm.order_by = name;
+      } else {
+        vm.order_by = '-' + name;
+      }
+      vm.update(vm.filterSelection.selectionString);
+    }
+
+    vm.maxShown = function(){
+      if(vm.offset + vm.page_size > vm.totalActivities){
+        return vm.totalActivities;
+      } else{
+        return (vm.offset + vm.page_size);
+      }
+    }
+
     vm.update = function(selectionString){
 
       Activities.list(selectionString, vm.page_size, vm.order_by, vm.offset).then(succesFn, errorFn);

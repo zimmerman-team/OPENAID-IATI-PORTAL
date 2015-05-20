@@ -62,20 +62,7 @@
             <filter-panel-activity-status ng-show="vm.isOpenedHeader('activity_status')"></filter-panel-activity-status>
             <filter-panel-implementing-organisations ng-show="vm.isOpenedHeader('implementing_organisations')"></filter-panel-implementing-organisations>
 
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="hp-block groen">
-                        <h3>Totaal aantal activiteiten</h3>
-                        <span class="number">5497</span>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="hp-block roze">
-                        <h3>Totale budget</h3>
-                        <span class="number">€ 29.289.024.646</span>
-                    </div>
-                </div>
-            </div>
+            <oipa-total-figures-chart aggregation-filters='vm.selectionString'></oipa-total-figures-chart>
 
         	<div class="row" ng-show="vm.dashboard == 'charts'">
 
@@ -87,11 +74,12 @@
                                 aggregation-filters='vm.selectionString' 
                                 group-by='start_actual' 
                                 group-by-id='start_actual_year' 
+                                group-by-name='start_actual_year' 
                                 aggregation-key='iati-identifier' 
                                 aggregation-key-id='activity_count' 
-                                chart-x-axis='Jaar (startdatum)' 
+                                chart-x-axis='Jaar (startdatum activiteit)' 
                                 chart-y-axis='Aantal activiteiten'
-                                chart-type='historicalBarChart'
+                                chart-type='discreteBarChart'
                                 axis-label-distance='10'></oipa-line-chart>
                         </div>
                     </div>
@@ -108,7 +96,7 @@
                                 group-by-name='transaction_date_year' 
                                 aggregation-key='disbursement' 
                                 aggregation-key-id='total_disbursements' 
-                                chart-x-axis='' 
+                                chart-x-axis='Jaar (transactiedatum)' 
                                 chart-y-axis='Totaal budget'
                                 chart-type='discreteBarChart'
                                 axis-label-distance='40'></oipa-line-chart>

@@ -43,7 +43,7 @@
         }
 
         function list(filters, limit, order_by, offset){
-            var url = oipaUrl + '/activities?format=json'
+            var url = oipaUrl + '/activity-list/?format=json'
 
             if(reportingOrganisationId){
                 url += '&reporting_organisation__in=' + reportingOrganisationId
@@ -72,7 +72,7 @@
          * @memberOf oipa.filters.services.Filters
          */
         function get(code) {
-            return $http.get(oipaUrl + '/activities/' + code + '/?format=json', { cache: true });
+            return $http.get(oipaUrl + '/activity-list/' + code + '/?format=json', { cache: true });
         }
     }
 })();

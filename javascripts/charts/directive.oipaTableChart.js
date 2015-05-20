@@ -18,7 +18,8 @@
         groupBy: '@',
         groupById: '@',
         aggregationKey: '@',
-        aggregationExtraSelect: '@'
+        aggregationExtraSelect: '@',
+        aggregationExtraSelectIn: '@'
       },
       templateUrl: templateBaseUrl + '/templates/charts/oipa-table-chart.html'
     };

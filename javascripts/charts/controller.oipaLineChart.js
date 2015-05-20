@@ -160,7 +160,7 @@
 
       
         var mappedData = {
-          key: 'name',
+          key: '',
           values: [],
         }
 

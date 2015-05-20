@@ -243,6 +243,8 @@ function bones_scripts_and_styles() {
 		wp_register_script( 'controller.oipaLineChart', get_stylesheet_directory_uri() . '/javascripts/charts/controller.oipaLineChart.js', array(), '', true );
 		wp_register_script( 'directive.oipaTableChart', get_stylesheet_directory_uri() . '/javascripts/charts/directive.oipaTableChart.js', array(), '', true );
 		wp_register_script( 'controller.oipaTableChart', get_stylesheet_directory_uri() . '/javascripts/charts/controller.oipaTableChart.js', array(), '', true );
+		wp_register_script( 'directive.oipaTotalFiguresChart', get_stylesheet_directory_uri() . '/javascripts/charts/directive.oipaTotalFiguresChart.js', array(), '', true );
+		wp_register_script( 'controller.oipaTotalFiguresChart', get_stylesheet_directory_uri() . '/javascripts/charts/controller.oipaTotalFiguresChart.js', array(), '', true );
 
 
 		wp_register_script( 'service.timeSlider', get_stylesheet_directory_uri() . '/javascripts/timeSlider/service.timeSlider.js', array('oipa'), '', true );
@@ -401,6 +403,9 @@ function bones_scripts_and_styles() {
 		wp_enqueue_script( 'controller.oipaLineChart' );
 		wp_enqueue_script( 'directive.oipaTableChart' );
 		wp_enqueue_script( 'controller.oipaTableChart' );
+		wp_enqueue_script( 'directive.oipaTotalFiguresChart' );
+		wp_enqueue_script( 'controller.oipaTotalFiguresChart' );
+
 	}
 }
 

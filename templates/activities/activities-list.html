@@ -8,21 +8,19 @@
         <div class="sort">
             <div class="row">
                 <div class="col-xs-6">
-                    resultaten X - X van X
+                    resultaten {{vm.offset + 1}} - {{vm.maxShown()}} van {{vm.totalActivities}}
                 </div>
                 <div class="col-xs-6 text-right">
                     <span class="sort-item">sorteer op:</span>
-                    <span class="sort-item">budget<span class="glyphicon glyphicon-resize-vertical"></span></span>
-                    <span class="sort-item">startdatum<span class="glyphicon glyphicon-resize-vertical"></span></span>
-                    <span class="sort-item">regio<span class="glyphicon glyphicon-resize-vertical"></span></span>
-                    <span class="sort-item">land<span class="glyphicon glyphicon-resize-vertical"></span></span>
-                </div> 
+                    <span class="sort-item" ng-click="vm.toggleOrder('total_budget')">budget<span class="glyphicon glyphicon-resize-vertical"></span></span>
+                    <span class="sort-item" ng-click="vm.toggleOrder('start_actual')">startdatum<span class="glyphicon glyphicon-resize-vertical"></span></span>
+                </div>
             </div>
         </div>
     </div>
     <div class="activity-list-item" 
         ng-show="vm.activities.length != 0"
-        dir-paginate="item in vm.activities | itemsPerPage: 10"  
+        dir-paginate="item in vm.activities | itemsPerPage: 5"  
         pagination-id="activityList"
         total-items="vm.totalActivities" 
         current-page="vm.pagination.current">
@@ -36,9 +34,9 @@
                         </span>
                     </div>
                     <h1>{{ item.titles[0].title }}</h1>
-                    <p><b>Land:</b> </p>
-                    <p><b>Sector:</b></p>
-                    <p><b>Budget:</b> </p>
+                    <p><b>Land:</b> <a ng-repeat="country in item.countries" ui-sref="sector({ country_id: country.code })">{{ country.name }}</a></p>
+                    <p><b>Sector:</b> <a ng-repeat="sector in item.sectors" ui-sref="sector({ sector_id: sector.code })">{{ sector.name }}</a></p>
+                    <p><b>Budget:</b> {{item.total_budget  | currency :'€':0}}</p>
                     <p><b>Startdatum:</b> {{ item.start_actual }}</p>
                 </div>
             </div>
