@@ -40,13 +40,12 @@
     */
     function activate() {
       $scope.$watch("vm.filterSelection.selectionString", function (selectionString) {
-        console.log('updating activity list');
           vm.update(selectionString);
       }, true);
     }
 
     vm.toggleOrder = function(name){
-      if (vm.order_by.indexOf(0) === '-'){
+      if (vm.order_by.charAt(0) === '-'){
         vm.order_by = name;
       } else {
         vm.order_by = '-' + name;

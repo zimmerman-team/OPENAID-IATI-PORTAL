@@ -84,14 +84,22 @@
           break;
         }
       }
+      FilterSelection.toSave = true;
+    }
+
+    vm.removeAll = function(selectedArr){
+      selectedArr.splice(0, selectedArr.length); 
     }
 
     vm.resetSelection = function(){
-      Countries.selectedCountries = [];
-      Regions.selectedRegions = [];
-      Sectors.selectedSectors = [];
-      ImplementingOrganisations.selectedImplementingOrganisations = [];
-      ActivityStatus.selectedActivityStatuses = [];
+
+      vm.removeAll(vm.selectedCountries);
+      vm.removeAll(vm.selectedRegions);
+      vm.removeAll(vm.selectedSectors);
+      vm.removeAll(vm.selectedImplementingOrganisations);
+      vm.removeAll(vm.selectedActivityStatuses);
+
+      FilterSelection.toSave = true;
     }
 
     activate();

@@ -9,15 +9,16 @@
     .module('oipa.countries')
     .controller('CountriesController', CountriesController);
 
-  CountriesController.$inject = ['Countries', 'Filters', 'FilterSelection', 'templateBaseUrl'];
+  CountriesController.$inject = ['$scope', 'Countries', 'Filters', 'FilterSelection', 'templateBaseUrl'];
 
   /**
   * @namespace CountriesController
   */
-  function CountriesController(Countries, Filters, FilterSelection, templateBaseUrl) {
+  function CountriesController($scope, Countries, Filters, FilterSelection, templateBaseUrl) {
     var vm = this;
     vm.templateBaseUrl = templateBaseUrl;
     vm.recipientCountries = [];
+    vm.countries = Countries;
     vm.selectedCountries = Countries.selectedCountries;
     activate();
 
@@ -27,6 +28,8 @@
     * @memberOf oipa.countries.controllers.CountriesController
     */
     function activate() {
+
+
       // for each active country, get the results
       Countries.all().then(successFn, errorFn);
 
@@ -44,7 +47,6 @@
     }
 
     vm.save = function(){
-      // logic to save the filters
       FilterSelection.toSave = true;
     }
 
