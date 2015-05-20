@@ -3958,7 +3958,7 @@ footer h1 {
 .map-holder {
   background-color: rgba(41, 171, 226, 0.1);
   position: relative;
-  padding: 14px 24px;
+  padding: 14px;
   margin-bottom: 15px;
 }
 /* line 1073, ../scss/breakpoints/_base.scss */
@@ -3966,98 +3966,86 @@ footer h1 {
   margin-top: 0;
 }
 
-/* line 1078, ../scss/breakpoints/_base.scss */
+/* line 1081, ../scss/breakpoints/_base.scss */
+.info {
+  text-align: left;
+  float: right;
+  width: 48%;
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 10px;
+  margin-bottom: 15px;
+}
+/* line 1088, ../scss/breakpoints/_base.scss */
+.info p {
+  margin-bottom: 0;
+}
+/* line 1091, ../scss/breakpoints/_base.scss */
+.info .flag-icon {
+  font-size: 2.5em;
+  border-radius: 4px;
+}
+/* line 1095, ../scss/breakpoints/_base.scss */
+.info .btn {
+  margin-top: 10px;
+}
+
+/* line 1100, ../scss/breakpoints/_base.scss */
 .legend {
-  position: absolute;
-  left: 14px;
-  top: 14px;
-  z-index: 999;
+  text-align: left;
+  margin-bottom: 15px;
+  width: 48%;
+  float: left;
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 10px;
   /*** custom checkboxes ***/
 }
-/* line 1083, ../scss/breakpoints/_base.scss */
+/* line 1107, ../scss/breakpoints/_base.scss */
 .legend label {
   font-weight: normal;
   cursor: pointer;
 }
-/* line 1088, ../scss/breakpoints/_base.scss */
+/* line 1111, ../scss/breakpoints/_base.scss */
+.legend h3 {
+  font-size: 1.2em;
+}
+/* line 1115, ../scss/breakpoints/_base.scss */
 .legend input[type=checkbox] {
   display: none;
 }
-/* line 1090, ../scss/breakpoints/_base.scss */
+/* line 1117, ../scss/breakpoints/_base.scss */
 .legend input[type=checkbox] + label:before {
   transition: all .2s;
   font-family: FontAwesome;
   display: inline-block;
   content: "\f041";
   color: #fff;
-  font-size: 24px;
-  margin-right: 10px;
+  font-size: 12px;
+  margin-right: 5px;
   background-color: #29abe2;
   opacity: 0.5;
-  width: 34px;
-  height: 34px;
-  line-height: 34px;
-  border-radius: 17px;
-  text-indent: 10px;
+  width: 23px;
+  height: 23px;
+  line-height: 23px;
+  border-radius: 12px;
+  text-indent: 8px;
 }
-/* line 1107, ../scss/breakpoints/_base.scss */
+/* line 1134, ../scss/breakpoints/_base.scss */
 .legend input[type=checkbox]:checked + label:before {
   opacity: 1;
 }
-/* line 1112, ../scss/breakpoints/_base.scss */
+/* line 1139, ../scss/breakpoints/_base.scss */
 .legend .check {
   margin-bottom: 5px;
 }
 
-/* line 1117, ../scss/breakpoints/_base.scss */
+/* line 1144, ../scss/breakpoints/_base.scss */
 .map {
   text-align: center;
 }
-/* line 1119, ../scss/breakpoints/_base.scss */
+/* line 1146, ../scss/breakpoints/_base.scss */
 .map .leaflet-div-icon {
   background: none;
   border: 0;
-}
-
-/* line 1125, ../scss/breakpoints/_base.scss */
-.info {
-  position: absolute;
-  background-color: rgba(255, 255, 255, 0.9);
-  width: 250px;
-  height: 250px;
-  border-radius: 125px;
-  text-align: center;
-  left: 50%;
-  top: 20px;
-  margin-left: 180px;
-  z-index: 9999;
-}
-/* line 1136, ../scss/breakpoints/_base.scss */
-.info p {
-  margin-bottom: 0;
-}
-/* line 1139, ../scss/breakpoints/_base.scss */
-.info .flag-icon {
-  font-size: 2.5em;
-  margin-top: .5em;
-  border-radius: 4px;
-}
-/* line 1144, ../scss/breakpoints/_base.scss */
-.info .btn {
-  margin-top: 10px;
-}
-
-/* line 1149, ../scss/breakpoints/_base.scss */
-.geomap-mask {
-  -webkit-clip-path: circle(300px at center);
-  -moz-clip-path: circle(300px at center);
-  -ms-clip-path: circle(300px at center);
-  clip-path: circle(300px at center);
-  height: 600px;
-  width: 600px;
-  display: inline-block;
-  overflow: hidden;
-  background-color: rgba(41, 171, 226, 0.85);
 }
 
 /*********************
@@ -4241,6 +4229,57 @@ you can add resource intensive styles.
   .makeblock {
     display: inline;
     margin-top: 0;
+  }
+
+  /* line 186, ../scss/breakpoints/_768up.scss */
+  .legend {
+    position: absolute;
+    left: 14px;
+    top: 14px;
+    z-index: 999;
+    background: none;
+  }
+  /* line 193, ../scss/breakpoints/_768up.scss */
+  .legend input[type=checkbox] + label:before {
+    transition: all .2s;
+    font-size: 24px;
+    margin-right: 10px;
+    width: 34px;
+    height: 34px;
+    line-height: 34px;
+    border-radius: 17px;
+    text-indent: 10px;
+  }
+
+  /* line 206, ../scss/breakpoints/_768up.scss */
+  .info {
+    padding: 0;
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    border-radius: 125px;
+    text-align: center;
+    left: 50%;
+    top: 20px;
+    margin-left: 180px;
+    z-index: 9999;
+  }
+  /* line 217, ../scss/breakpoints/_768up.scss */
+  .info .flag-icon {
+    margin-top: .5em;
+  }
+
+  /* line 222, ../scss/breakpoints/_768up.scss */
+  .geomap-mask {
+    -webkit-clip-path: circle(300px at center);
+    -moz-clip-path: circle(300px at center);
+    -ms-clip-path: circle(300px at center);
+    clip-path: circle(300px at center);
+    height: 600px;
+    width: 600px;
+    display: inline-block;
+    overflow: hidden;
+    background-color: rgba(41, 171, 226, 0.85);
   }
 }
 /*********************

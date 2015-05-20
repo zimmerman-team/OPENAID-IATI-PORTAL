@@ -1068,21 +1068,48 @@ footer{
 .map-holder {
   background-color: rgba($blauw,0.1);
   position: relative;
-  padding:14px 24px;
+  padding:14px;
   margin-bottom:15px;
   h3 {
     margin-top: 0;
   }
 }
 
+.geomap-mask {
+}
+
+.info {
+  text-align: left;
+  float: right;
+  width: 48%;
+  background-color: rgba(255,255,255,0.9); 
+  padding:10px;
+  margin-bottom: 15px;
+  p {
+    margin-bottom: 0;
+  }
+  .flag-icon {
+    font-size: 2.5em;
+    border-radius: 4px;
+  }
+  .btn {
+    margin-top:10px;
+  }
+}
+
 .legend {
-  position: absolute;
-  left:14px;
-  top:14px;
-  z-index: 999;
+  text-align: left;
+  margin-bottom: 15px;
+  width: 48%;
+  float: left;
+  background-color: rgba(255,255,255,0.9); 
+  padding:10px;
   label {
     font-weight: normal;
     cursor: pointer;
+  }
+  h3 {
+    font-size: 1.2em;
   }
   /*** custom checkboxes ***/
   input[type=checkbox] { 
@@ -1093,15 +1120,15 @@ footer{
       display: inline-block;
       content: "\f041";
       color:#fff;
-      font-size:24px;
-      margin-right: 10px;
+      font-size:12px;
+      margin-right: 5px;
       background-color: $blauw;
       opacity: 0.5;
-      width: 34px;
-      height: 34px;
-      line-height: 34px;
-      border-radius: 17px;
-      text-indent: 10px;
+      width: 23px;
+      height: 23px;
+      line-height: 23px;
+      border-radius: 12px;
+      text-indent: 8px;
     }
     &:checked {
       & + label:before {
@@ -1120,40 +1147,4 @@ footer{
     background: none;
     border:0;
   }
-}
-
-.info {
-  position: absolute; 
-  background-color: rgba(255,255,255,0.9); 
-  width: 250px;
-  height: 250px; 
-  border-radius: 125px;
-  text-align: center;
-  left: 50%;
-  top: 20px;
-  margin-left: 180px;
-  z-index: 9999;
-  p {
-    margin-bottom: 0;
-  }
-  .flag-icon {
-    font-size: 2.5em;
-    margin-top:.5em;
-    border-radius: 4px;
-  }
-  .btn {
-    margin-top:10px;
-  }
-}
-
-.geomap-mask {
-  -webkit-clip-path: circle(300px at center);
-  -moz-clip-path: circle(300px at center);
-  -ms-clip-path: circle(300px at center);
-  clip-path: circle(300px at center);
-  height:600px;
-  width: 600px;
-  display: inline-block;
-  overflow: hidden;
-  background-color: rgba(41,171,226,0.85);
 }
