@@ -34,8 +34,8 @@
                         </span>
                     </div>
                     <h1>{{ item.titles[0].title }}</h1>
-                    <p><b>Land:</b> <a ng-repeat="country in item.countries" ui-sref="sector({ country_id: country.code })">{{ country.name }}</a></p>
-                    <p><b>Sector:</b> <a ng-repeat="sector in item.sectors" ui-sref="sector({ sector_id: sector.code })">{{ sector.name }}</a></p>
+                    <p><b>Land:</b> <span ng-repeat="country in item.countries">{{ country.name }}</span></p>
+                    <p><b>Sector:</b> <span ng-repeat="sector in item.sectors" >{{ sector.name }}</span></p>
                     <p><b>Budget:</b> {{item.total_budget  | currency :'€':0}}</p>
                     <p><b>Startdatum:</b> {{ item.start_actual }}</p>
                 </div>
