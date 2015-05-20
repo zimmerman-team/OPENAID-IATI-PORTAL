@@ -35,7 +35,7 @@
       * @desc Update collections array on view
       */
       function successFn(data, status, headers, config) {
-        vm.activity = JSON.stringify(data.data, undefined, 2);
+        vm.activity = data.data;
       }
 
 

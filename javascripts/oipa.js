@@ -8,7 +8,6 @@
             'ui.bootstrap-slider',
             'ncy-angular-breadcrumb',
             'angularUtils.directives.dirPagination',
-            'NgSwitchery',
             'nvd3',
             'leaflet-directive',
             'oipa.constants',

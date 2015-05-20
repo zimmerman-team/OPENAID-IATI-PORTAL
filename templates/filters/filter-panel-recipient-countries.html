@@ -31,10 +31,11 @@
 				    <tr dir-paginate="item in vm.recipientCountries | filter:q | orderBy: 'name' | itemsPerPage: 10"  pagination-id="recipientCountries">
 				    	<td>
 				    		<div class="checkbox">
-							  <label>
-							    <input type="checkbox" checklist-model="vm.selectedCountries" checklist-value="item" >{{ item.name }}
-							  </label>
-							</div>
+					    		<label class="switch">
+					    			<input type="checkbox" checklist-model="vm.selectedCountries" checklist-value="item"><i></i>
+					    			<span>{{ item.name }}</span>
+					    		</label>
+					    	</div>
 				    	</td>
 				    	<td>
 				    		{{ item.activity_count }}

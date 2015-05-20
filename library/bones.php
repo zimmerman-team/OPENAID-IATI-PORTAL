@@ -72,7 +72,6 @@ function bones_scripts_and_styles() {
 		wp_register_style( 'bootstrap-css', get_stylesheet_directory_uri() . '/bower_components/bootstrap/dist/css/bootstrap.css', array(), '' );
 		wp_register_style( 'leaflet-css', get_stylesheet_directory_uri() . '/bower_components/leafletjs/dist/leaflet.css', array(), '' );
 		wp_register_style( 'angular-slider', get_stylesheet_directory_uri() . '/bower_components/bootstrap-slider/dist/css/bootstrap-slider.css', array(), '' );
-		wp_register_style( 'switchery.css', get_stylesheet_directory_uri() . '/bower_components/switchery/dist/switchery.min.css', array(), '' );
 		wp_register_style( 'nvd3.css', get_stylesheet_directory_uri() . '/bower_components/nvd3/build/nv.d3.min.css', array(), '' );
 		wp_register_style( 'bones-stylesheet', get_stylesheet_directory_uri() . '/library/css/style.css', array(), '', 'all' );
 		wp_register_style( 'bones-ie-only', get_stylesheet_directory_uri() . '/library/css/ie.css', array(), '' );
@@ -83,7 +82,6 @@ function bones_scripts_and_styles() {
 		wp_enqueue_style( 'bubbleChart-css' );
 		wp_enqueue_style( 'leaflet-css' );
 		wp_enqueue_style( 'angular-slider' );
-		wp_enqueue_style( 'switchery.css' );
 		wp_enqueue_style( 'bootstrap-css' );
 		wp_enqueue_style( 'bones-stylesheet' );
 		wp_enqueue_style( 'bones-ie-only' );
@@ -117,9 +115,7 @@ function bones_scripts_and_styles() {
 		
 		wp_register_script( 'bones-modernizr', get_stylesheet_directory_uri() . '/library/js/libs/modernizr.custom.min.js', array('angular'), '2.5.3', true );
 		wp_register_script( 'checklist-module', get_stylesheet_directory_uri() . '/javascripts/angularUtils/checklist-model.js', array('angular'), '', true );
-		wp_register_script( 'switchery', get_stylesheet_directory_uri() . '/bower_components/switchery/dist/switchery.min.js', array('angular'), '', true );
-		wp_register_script( 'NgSwitchery', get_stylesheet_directory_uri() . '/bower_components/NgSwitchery/src/ng-switchery.js', array('angular', 'switchery'), '', true );
-
+		
 		wp_register_script( 'oipa', get_stylesheet_directory_uri() . '/javascripts/oipa.js', array('angular'), '', true );
 		wp_register_script( 'oipa.constants', get_stylesheet_directory_uri() . '/javascripts/oipa.constants.js', array('oipa'), '', true );
 		wp_register_script( 'oipa.config', get_stylesheet_directory_uri() . '/javascripts/oipa.config.js', array('oipa'), '', true );
@@ -276,9 +272,6 @@ function bones_scripts_and_styles() {
 
 		wp_enqueue_script( 'angular-leaflet-directive' );
 
-		wp_enqueue_script( 'switchery' );
-		wp_enqueue_script( 'NgSwitchery' );
-		
 		wp_enqueue_script( 'oipa' );
 		wp_enqueue_script( 'oipa.constants' );
 		wp_enqueue_script( 'oipa.config' );

@@ -1,16 +1,21 @@
 <div id="main-content" class="container">
+
     <div class="row">
-        <div class="col-md-12">
-
-            Nog niets aan gedaan, beschikbare informatie: <br>
-            &nbsp;<br>
-            <pre>
-            {{vm.activity}}
-            </pre>  
-
+        <div class="col-md-6">
+            <div class="hp-block groen">
+                <h3>Status activiteit</h3>
+                <span class="number">{{vm.activity.activity_status.name}}</span>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="hp-block roze">
+                <h3>Totaal budget</h3>
+                <span class="number">{{vm.activity.total_budget | currency :'€':0}}</span>
+            </div>
         </div>
     </div>
-    
+
+
 </div>
 
 

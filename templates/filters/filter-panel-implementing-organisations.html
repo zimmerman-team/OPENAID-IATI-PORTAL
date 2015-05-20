@@ -31,10 +31,11 @@
 				    <tr dir-paginate="item in vm.implementingOrganisations | filter:q | itemsPerPage: 10"  pagination-id="implementingOrganisations">
 				    	<td>
 				    		<div class="checkbox">
-							  <label>
-							    <input type="checkbox" checklist-model="vm.selectedImplementingOrganisations" checklist-value="item" class="js-switch" ui-switch="{color: '#f1f1f1', secondaryColor: '#dfdfdf', jackColor: '#00a99d', jackSecondaryColor: '#333333', size: 'small'}">{{ item.name }}
-							  </label>
-							</div>
+					    		<label class="switch">
+					    			<input type="checkbox" checklist-model="vm.selectedImplementingOrganisations" checklist-value="item"><i></i>
+					    			<span>{{ item.name }}</span>
+					    		</label>
+					    	</div>
 				    	</td>
 				    	<td>
 				    		{{ item.activity_count }}
