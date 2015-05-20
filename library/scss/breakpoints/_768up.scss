@@ -230,3 +230,7 @@ come into play. Have fun!
   overflow: hidden;
   background-color: rgba(41,171,226,0.85);
 }
+
+.navbar .btn.btn-default, .navbar .btn-group .btn {
+	margin-right: 10px;
+}

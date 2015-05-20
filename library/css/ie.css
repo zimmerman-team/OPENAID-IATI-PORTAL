@@ -151,11 +151,6 @@ You can't use @extend within media queries
 anymore, so just be aware that if you drop
 them in here, they won't work.
 */
-/* line 25, ../scss/breakpoints/_481up.scss */
-.navbar .btn.btn-default, .navbar .btn-group .btn {
-  margin-right: 10px;
-}
-
 /******************************************************************
 Site Name:
 Author:
@@ -347,6 +342,11 @@ come into play. Have fun!
   display: inline-block;
   overflow: hidden;
   background-color: rgba(41, 171, 226, 0.85);
+}
+
+/* line 234, ../scss/breakpoints/_768up.scss */
+.navbar .btn.btn-default, .navbar .btn-group .btn {
+  margin-right: 10px;
 }
 
 /******************************************************************
