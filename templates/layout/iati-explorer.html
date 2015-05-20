@@ -7,8 +7,8 @@
         	<search-box></search-box>
 
             <div class="row actions">
-                <div class="col-md-6 filters">
-                    filters 
+                <div class="col-md-6 col-sm-7 filters">
+                    <span class="makeblock">filters</span> 
                     <span class="fa-stack fa-lg" ng-click="vm.toggleOpenPanel('recipient_countries')" ng-class="{'active': vm.isOpenedHeader('recipient_countries')}">
                       <i class="fa fa-circle fa-stack-2x"></i>
                       <i class="fa fa-map-marker fa-stack-1x fa-inverse"></i>
@@ -34,8 +34,8 @@
                       <i class="fa fa-fire fa-stack-1x fa-inverse"></i>
                     </span>
                 </div>
-                <div class="col-md-6 dash text-right">
-                    dashboards 
+                <div class="col-md-6 col-sm-5 dash text-right-not-xs">
+                    <span class="makeblock">dashboards</span> 
                     <span class="fa-stack fa-lg" ng-click="vm.setDashboard('charts')">
                       <i class="fa fa-circle fa-stack-2x"></i>
                       <i class="fa fa-line-chart fa-stack-1x fa-inverse"></i>
@@ -55,12 +55,18 @@
             
             <tool-bar></tool-bar>
 
-            <filter-panel-recipient-countries ng-show="vm.isOpenedHeader('recipient_countries')"></filter-panel-recipient-countries>
-            <filter-panel-recipient-regions ng-show="vm.isOpenedHeader('recipient_regions')"></filter-panel-recipient-regions>
-            <filter-panel-budget ng-show="vm.isOpenedHeader('budget')"></filter-panel-budget>
-            <filter-panel-sectors ng-show="vm.isOpenedHeader('sectors')"></filter-panel-sectors>
-            <filter-panel-activity-status ng-show="vm.isOpenedHeader('activity_status')"></filter-panel-activity-status>
-            <filter-panel-implementing-organisations ng-show="vm.isOpenedHeader('implementing_organisations')"></filter-panel-implementing-organisations>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="rel">
+                        <filter-panel-recipient-countries ng-show="vm.isOpenedHeader('recipient_countries')"></filter-panel-recipient-countries>
+                        <filter-panel-recipient-regions ng-show="vm.isOpenedHeader('recipient_regions')"></filter-panel-recipient-regions>
+                        <filter-panel-budget ng-show="vm.isOpenedHeader('budget')"></filter-panel-budget>
+                        <filter-panel-sectors ng-show="vm.isOpenedHeader('sectors')"></filter-panel-sectors>
+                        <filter-panel-activity-status ng-show="vm.isOpenedHeader('activity_status')"></filter-panel-activity-status>
+                        <filter-panel-implementing-organisations ng-show="vm.isOpenedHeader('implementing_organisations')"></filter-panel-implementing-organisations>
+                    </div>
+                </div>
+            </div>
 
             <oipa-total-figures-chart aggregation-filters='vm.selectionString'></oipa-total-figures-chart>
 

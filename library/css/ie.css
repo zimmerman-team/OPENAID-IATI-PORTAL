@@ -151,6 +151,11 @@ You can't use @extend within media queries
 anymore, so just be aware that if you drop
 them in here, they won't work.
 */
+/* line 25, ../scss/breakpoints/_481up.scss */
+.navbar .btn.btn-default, .navbar .btn-group .btn {
+  margin-right: 10px;
+}
+
 /******************************************************************
 Site Name:
 Author:
@@ -205,15 +210,15 @@ come into play. Have fun!
   transition: all 0.2s;
 }
 /* line 72, ../scss/breakpoints/_768up.scss */
-.actions .dash span:nth-of-type(1):hover .fa-circle {
+.actions .dash span:nth-of-type(2):hover .fa-circle {
   color: #00a99d;
 }
 /* line 79, ../scss/breakpoints/_768up.scss */
-.actions .dash span:nth-of-type(2):hover .fa-circle {
+.actions .dash span:nth-of-type(3):hover .fa-circle {
   color: #ad7979;
 }
 /* line 86, ../scss/breakpoints/_768up.scss */
-.actions .dash span:nth-of-type(3):hover .fa-circle {
+.actions .dash span:nth-of-type(4):hover .fa-circle {
   color: #29abe2;
 }
 
@@ -277,6 +282,71 @@ come into play. Have fun!
 /* line 166, ../scss/breakpoints/_768up.scss */
 .legend .check:hover input[type=checkbox] + label:before {
   opacity: 1;
+}
+
+/* line 173, ../scss/breakpoints/_768up.scss */
+.eq {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+/* line 180, ../scss/breakpoints/_768up.scss */
+.makeblock {
+  display: inline;
+  margin-top: 0;
+}
+
+/* line 186, ../scss/breakpoints/_768up.scss */
+.legend {
+  position: absolute;
+  left: 14px;
+  top: 14px;
+  z-index: 999;
+  background: none;
+}
+/* line 193, ../scss/breakpoints/_768up.scss */
+.legend input[type=checkbox] + label:before {
+  transition: all .2s;
+  font-size: 24px;
+  margin-right: 10px;
+  width: 34px;
+  height: 34px;
+  line-height: 34px;
+  border-radius: 17px;
+  text-indent: 10px;
+}
+
+/* line 206, ../scss/breakpoints/_768up.scss */
+.info {
+  padding: 0;
+  position: absolute;
+  width: 250px;
+  height: 250px;
+  border-radius: 125px;
+  text-align: center;
+  left: 50%;
+  top: 20px;
+  margin-left: 180px;
+  z-index: 9999;
+}
+/* line 217, ../scss/breakpoints/_768up.scss */
+.info .flag-icon {
+  margin-top: .5em;
+}
+
+/* line 222, ../scss/breakpoints/_768up.scss */
+.geomap-mask {
+  -webkit-clip-path: circle(300px at center);
+  -moz-clip-path: circle(300px at center);
+  -ms-clip-path: circle(300px at center);
+  clip-path: circle(300px at center);
+  height: 600px;
+  width: 600px;
+  display: inline-block;
+  overflow: hidden;
+  background-color: rgba(41, 171, 226, 0.85);
 }
 
 /******************************************************************

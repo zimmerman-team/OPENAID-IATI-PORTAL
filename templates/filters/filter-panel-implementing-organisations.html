@@ -1,54 +1,52 @@
-<div class="row">
-	<div class="filter-panel col-xs-12">
-		<div class="row filter-panel-header-wrapper">
-			<div class="col-md-6">
-				<div class="input-group search-box">
+<div class="filter-panel">
+	<div class="row filter-panel-header-wrapper">
+		<div class="col-md-6">
+			<div class="input-group search-box">
 
-	              <input ng-model="q" class="form-control" placeholder="Zoek een specifieke organisatie ..">
-				  <span class="input-group-btn">
-				    <button class="btn btn-default" type="button">
-				      <span class="glyphicon glyphicon-search"></span>
-				    </button>
-				  </span>
-				</div>
-			</div>	
+              <input ng-model="q" class="form-control" placeholder="Zoek een specifieke organisatie ..">
+			  <span class="input-group-btn">
+			    <button class="btn btn-default" type="button">
+			      <span class="glyphicon glyphicon-search"></span>
+			    </button>
+			  </span>
+			</div>
+		</div>	
+	</div>
+	<div class="row" ng-show="vm.implementingOrganisations.length == 0">
+		<div class="svg-loader">
+			<img src="{{templateBaseUrl}}/images/spinning-circles.svg" width="70" alt="">
 		</div>
-		<div class="row" ng-show="vm.implementingOrganisations.length == 0">
-			<div class="svg-loader">
-				<img src="{{templateBaseUrl}}/images/spinning-circles.svg" width="70" alt="">
-			</div>
+	</div>
+	<div class="row" ng-show="vm.implementingOrganisations.length != 0">
+		<div class="col-xs-12">
+			<table class="table">
+				<thead>
+					<tr>
+						<td class="th-first">Selecteer één of meerdere organisaties</td>
+						<td>Activiteiten<span class="glyphicon glyphicon-resize-vertical"></span></td>
+					</tr>
+				</thead>
+				<tbody>
+
+				    <tr dir-paginate="item in vm.implementingOrganisations | filter:q | itemsPerPage: 10"  pagination-id="implementingOrganisations">
+				    	<td>
+				    		<div class="checkbox">
+							  <label>
+							    <input type="checkbox" checklist-model="vm.selectedImplementingOrganisations" checklist-value="item" class="js-switch" ui-switch="{color: '#f1f1f1', secondaryColor: '#dfdfdf', jackColor: '#00a99d', jackSecondaryColor: '#333333', size: 'small'}">{{ item.name }}
+							  </label>
+							</div>
+				    	</td>
+				    	<td>
+				    		{{ item.activity_count }}
+				    	</td>
+				    </tr>
+
+				</tbody>
+			</table>
 		</div>
-		<div class="row" ng-show="vm.implementingOrganisations.length != 0">
-			<div class="col-xs-12">
-				<table class="table">
-					<thead>
-						<tr>
-							<td class="th-first">Selecteer één of meerdere organisaties</td>
-							<td>Activiteiten<span class="glyphicon glyphicon-resize-vertical"></span></td>
-						</tr>
-					</thead>
-					<tbody>
-
-					    <tr dir-paginate="item in vm.implementingOrganisations | filter:q | itemsPerPage: 10"  pagination-id="implementingOrganisations">
-					    	<td>
-					    		<div class="checkbox">
-								  <label>
-								    <input type="checkbox" checklist-model="vm.selectedImplementingOrganisations" checklist-value="item" class="js-switch" ui-switch="{color: '#f1f1f1', secondaryColor: '#dfdfdf', jackColor: '#00a99d', jackSecondaryColor: '#333333', size: 'small'}">{{ item.name }}
-								  </label>
-								</div>
-					    	</td>
-					    	<td>
-					    		{{ item.activity_count }}
-					    	</td>
-					    </tr>
-
-					</tbody>
-				</table>
-			</div>
-			<div class="col-md-12 text-center">
-				<button class="btn btn-default btn-openaid btn-save" ng-click="vm.save()">Save</button>
-				<dir-pagination-controls pagination-id="implementingOrganisations"></dir-pagination-controls>
-			</div>
+		<div class="col-md-12 text-center">
+			<button class="btn btn-default btn-openaid btn-save" ng-click="vm.save()">Save</button>
+			<dir-pagination-controls pagination-id="implementingOrganisations"></dir-pagination-controls>
 		</div>
 	</div>
 </div>
