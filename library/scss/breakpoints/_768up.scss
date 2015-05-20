@@ -67,21 +67,21 @@ come into play. Have fun!
 		    .fa-circle {
 		    	transition:all 0.2s;
 		    }
-		      &:nth-of-type(1) {
+		      &:nth-of-type(2) {
 		      	&:hover {
 			        .fa-circle {
 			          color:rgba($icon-grn,1);
 			        }
 			    }
 		    }
-			&:nth-of-type(2) {
+			&:nth-of-type(3) {
 				&:hover {
 				    .fa-circle {
 				      color:rgba($roze,1);
 				    }
 				}
 			}
-			&:nth-of-type(3) {
+			&:nth-of-type(4) {
 				&:hover {
 				    .fa-circle {
 						color:rgba($blauw,1);
@@ -168,4 +168,16 @@ come into play. Have fun!
 		    }
 		}
 	}
+}
+
+.eq {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.makeblock {
+  display: inline;
+  margin-top:0;
 }

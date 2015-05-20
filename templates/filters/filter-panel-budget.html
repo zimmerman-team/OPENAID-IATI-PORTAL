@@ -1,28 +1,25 @@
-<div class="row">
-	<div class="filter-panel col-xs-12">
-		<h4 class="filter-panel-header">
-			Selecteer budget
-		</h4>
-		<div class="slide">	
-			<slider slider-id="time-slider"
-		        ng-model="vm.slider.value"
-		        value="[100000, 300000]"
-		        min="0"
-		        max="3000000"
-		        step="1"
-		        range="true"
-		        precision="2"
-		        reversed="false"
-		        orientation="horizontal"
-		        handle="round"
-		        enabled="true"
-		        ng-disabled="false"
-		        naturalarrowkeys="false"
-		        selection="before"
-		        tooltip="always">
-			</slider>
-			<span>{{vm.slider.min}}</span><span>{{vm.slider.max}}</span>
-		</div>
-		<button class="btn btn-default btn-openaid btn-save" ng-click="vm.save()">Save</button>
-</div>
-</div>
+<div class="filter-panel">
+	<h4 class="filter-panel-header">
+		Selecteer budget
+	</h4>
+	<div class="slide">	
+		<slider slider-id="time-slider"
+	        ng-model="vm.slider.value"
+	        value="[100000, 300000]"
+	        min="0"
+	        max="3000000"
+	        step="1"
+	        range="true"
+	        precision="2"
+	        reversed="false"
+	        orientation="horizontal"
+	        handle="round"
+	        enabled="true"
+	        ng-disabled="false"
+	        naturalarrowkeys="false"
+	        selection="before"
+	        tooltip="always">
+		</slider>
+		<span>{{vm.slider.min}}</span><span>{{vm.slider.max}}</span>
+	</div>
+	<button class="btn btn-default btn-openaid btn-save" ng-click="vm.save()">Save</button>

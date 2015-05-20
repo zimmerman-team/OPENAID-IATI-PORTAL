@@ -151,6 +151,11 @@ You can't use @extend within media queries
 anymore, so just be aware that if you drop
 them in here, they won't work.
 */
+/* line 25, ../scss/breakpoints/_481up.scss */
+.navbar .btn.btn-default, .navbar .btn-group .btn {
+  margin-right: 10px;
+}
+
 /******************************************************************
 Site Name:
 Author:
@@ -205,15 +210,15 @@ come into play. Have fun!
   transition: all 0.2s;
 }
 /* line 72, ../scss/breakpoints/_768up.scss */
-.actions .dash span:nth-of-type(1):hover .fa-circle {
+.actions .dash span:nth-of-type(2):hover .fa-circle {
   color: #00a99d;
 }
 /* line 79, ../scss/breakpoints/_768up.scss */
-.actions .dash span:nth-of-type(2):hover .fa-circle {
+.actions .dash span:nth-of-type(3):hover .fa-circle {
   color: #ad7979;
 }
 /* line 86, ../scss/breakpoints/_768up.scss */
-.actions .dash span:nth-of-type(3):hover .fa-circle {
+.actions .dash span:nth-of-type(4):hover .fa-circle {
   color: #29abe2;
 }
 
@@ -277,6 +282,20 @@ come into play. Have fun!
 /* line 166, ../scss/breakpoints/_768up.scss */
 .legend .check:hover input[type=checkbox] + label:before {
   opacity: 1;
+}
+
+/* line 173, ../scss/breakpoints/_768up.scss */
+.eq {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+/* line 180, ../scss/breakpoints/_768up.scss */
+.makeblock {
+  display: inline;
+  margin-top: 0;
 }
 
 /******************************************************************

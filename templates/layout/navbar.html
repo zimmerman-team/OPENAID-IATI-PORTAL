@@ -1,18 +1,24 @@
-<div class="navbar navbar-default" ng-controller="NavbarController as vm">
-  <div class="container">
+
+<nav class="navbar navbar-default" ng-controller="NavbarController as vm">
+  <div class="container-fluid">
     <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+        <i class="fa fa-bars fa-2x"></i>
+      </button>
       <a class="navbar-brand" href="{{ homeUrl }}">
         <img src="{{templateBaseUrl}}/images/openaidnl-logo.png" />
       </a>
     </div>
-    <ul class="nav navbar-nav">
-      <li ui-sref-active="active"><a class="btn btn-default" ui-sref="home">Home</a></li>
-      <li ui-sref-active="active"><a class="btn btn-default" ui-sref="iati-explorer">IATI explorer</a></li>
-      <!-- <li ui-sref-active="active"><a class="btn btn-default" ui-sref="landen">Landen</a></li>
-      <li ui-sref-active="active"><a class="btn btn-default" ui-sref="organisaties">Ontvangende organisaties</a></li>
-      <li ui-sref-active="active"><a class="btn btn-default" ui-sref="sectoren">Sectoren</a></li>
-      <li ui-sref-active="active"><a class="btn btn-default" ui-sref="iati-publiceren">IATI publiceren</a></li>
-      <li ui-sref-active="active"><a class="btn btn-default" ui-sref="over">Over deze portal</a></li> -->
-    </ul>
+    <div class="collapse navbar-collapse" id="navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li ui-sref-active="active"><a class="btn btn-default" ui-sref="home">Home</a></li>
+        <li ui-sref-active="active"><a class="btn btn-default" ui-sref="iati-explorer">IATI explorer</a></li>
+        <!-- <li ui-sref-active="active"><a class="btn btn-default" ui-sref="landen">Landen</a></li>
+        <li ui-sref-active="active"><a class="btn btn-default" ui-sref="organisaties">Ontvangende organisaties</a></li>
+        <li ui-sref-active="active"><a class="btn btn-default" ui-sref="sectoren">Sectoren</a></li>
+        <li ui-sref-active="active"><a class="btn btn-default" ui-sref="iati-publiceren">IATI publiceren</a></li>
+        <li ui-sref-active="active"><a class="btn btn-default" ui-sref="over">Over deze portal</a></li> -->
+      </ul>
+    </div>
   </div>
-</div>
+</nav>

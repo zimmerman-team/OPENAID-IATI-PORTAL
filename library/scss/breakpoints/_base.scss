@@ -100,6 +100,7 @@ hr{
   background-color: rgba($blauw, 0.1);
   padding: 14px;
   margin: 0 0 15px 0;
+  overflow: hidden;
   &.explore {
     padding:0;
   }
@@ -204,6 +205,16 @@ NAVBAR
   -webkit-box-shadow: 0px 1px 2px 0px rgba(68, 68, 68, 1);
   -moz-box-shadow:    0px 1px 2px 0px rgba(68, 68, 68, 1);
   box-shadow:         0px 1px 2px 0px rgba(68, 68, 68, 1);
+  button.navbar-toggle {
+    color:#fff;
+    padding:2px 6px;
+    &:focus, &:hover {
+      background: darken(#333, 20%);
+    }
+  }
+  .navbar-collapse {
+    border-color: #333;
+  }
 }
 
 .navbar .btn.btn-default:hover, .navbar .btn-group .btn:hover {
@@ -223,7 +234,6 @@ NAVBAR
   padding-bottom: 2px;
   margin-top: 12px;
   margin-bottom: 10px;
-  margin-right: 10px;
   background-color: #4d4d4d;
   color: #fff;
   border: 0;
@@ -243,12 +253,12 @@ NAVBAR
   padding: 10px 10px;
 }
 
-.navbar .btn-group.navbar-right .btn{
-  margin-right: 15px;
-}
-
 .glyphicon-user{
   margin-right: 5px;
+}
+
+.navbar-nav {
+  margin:0;
 }
 
 //Breadcrumbs
@@ -292,6 +302,10 @@ SEARCH BAR
 /*********************
 FILTER BAR
 *********************/
+.makeblock {
+  display: block;
+  margin-top:5px;
+}
 
 .actions {
   color:#fff;
@@ -311,7 +325,7 @@ FILTER BAR
   }
   .dash {
     span {
-      &:nth-of-type(1) {
+      &:nth-of-type(2) {
         .fa-circle {
           color:rgba($icon-grn,.5);
         }
@@ -319,7 +333,7 @@ FILTER BAR
           color:rgba($icon-grn,1);
         }
       }
-      &:nth-of-type(2) {
+      &:nth-of-type(3) {
         .fa-circle {
           color:rgba($roze,.5);
         }
@@ -327,7 +341,7 @@ FILTER BAR
           color:rgba($roze,1);
         }
       }
-      &:nth-of-type(3) {
+      &:nth-of-type(4) {
         .fa-circle {
           color:rgba($blauw,.5);
         }
@@ -352,16 +366,18 @@ h4 {
   }
 }
 
+.rel {
+  position: relative;
+}
+
 .filter-panel {
-  zoom:1;
-  position: absolute;
-  height: auto;
   z-index: 99999;
   background-color: #fff;
-  max-width: 1140px;
-  padding:20px;
-  left:14px;
+  position: absolute;
+  width: 100%;
+  padding:14px;
   margin-top:-15px;
+  left:0;
   .btn-save {
     background: $gifgroen;
     float: left;
@@ -1140,11 +1156,4 @@ footer{
   display: inline-block;
   overflow: hidden;
   background-color: rgba(41,171,226,0.85);
-}
-
-.eq {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
 }
