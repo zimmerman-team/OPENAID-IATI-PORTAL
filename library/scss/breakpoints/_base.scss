@@ -865,6 +865,31 @@ TOOL BAR
 }
 
 /*********************
+ACTIVITY DETAIL
+*********************/
+
+.project-circle {
+  text-align: center;
+  float: right;
+  background-color: rgba(255,255,255,0.9); 
+  padding:10px;
+  border-radius: 125px;
+  width: 250px;
+  height: 250px;
+  p {
+    margin-bottom: 0;
+  }
+  .flag-icon {
+    font-size: 2.5em;
+    border-radius: 4px;
+  }
+  .btn {
+    margin-top:10px;
+  }
+}
+
+
+/*********************
 TABS
 *********************/
 .tabs-wrapper {
@@ -1008,6 +1033,7 @@ ACTIVITY LIST
   margin-bottom:15px;
   .sort-item {
     margin-right: 15px;
+    cursor:pointer;
   }
 }
 
@@ -1028,6 +1054,17 @@ ACTIVITY LIST
     left:0;
     z-index: 9;
   }
+  .expand {
+    font-size: 1.5em;
+    float:right;
+    color:#fff;
+    .fa-circle {
+      color:rgba(0,0,0,.2);
+    }
+  }
+}
+
+.hp-block{
   .expand {
     font-size: 1.5em;
     float:right;

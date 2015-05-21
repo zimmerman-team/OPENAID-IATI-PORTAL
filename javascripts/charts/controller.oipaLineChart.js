@@ -53,7 +53,7 @@
                 return d3.format("")(d);
             },
             showMaxMin: false,
-            // staggerLabels: true
+            staggerLabels: true
         },
         yAxis: {
             axisLabel: vm.yAxis,

@@ -15,7 +15,122 @@
         </div>
     </div>
 
+    <div class="row">
+        <div class="col-md-12">
+            <div class="hp-block">
+                <div class="row">
+                    <div class="col-md-7">
+                        <h1>{{vm.activity.titles[0].title}}</h1>
+                        <hr>
+                        <p>
+                            {{vm.activity.descriptions[0].description}}
+                        </p>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="project-circle" ng-repeat="country in vm.activity.countries">
 
+                            <span class="flag-icon flag-icon-af"></span>
+                            <h4>{{country.name}}</h4>
+                            <p><b>Type relatie:</b> {{vm.landPartnerType}}</p>
+                            <p><b>Start datum:</b> {{vm.activity.start_actual}}</p>
+                            <p><b>Eind datum:</b> {{vm.activity.end_actual}}</p>
+                            <a ui-sref="land({ country_id: country.code })" class="btn btn-default">Naar landen pagina</a>
+
+                        </div>
+                    </div>  
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="hp-block">
+                <h3>Financieel overzicht</h3>
+
+                <nvd3 options="vm.transactionChartOptions" data="vm.transactionData" class="with-3d-shadow with-transitions"></nvd3>
+    
+
+
+
+                <table class="table">
+                    <tbody>
+                        <tr ng-repeat="(key, value) in vm.activity.transactions">
+                            <td>
+                                {{key}}
+                            </td>
+                            <td>
+                                {{value}}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="hp-block">
+                <h3>Documenten</h3>
+                <div ng-show="vm.activity.documents.length == 0">
+                    No documents available.
+                </div>
+
+                <table class="table">
+                    <tbody>
+                        <tr ng-repeat="document in vm.activity.documents">
+                            
+
+                            <td>
+                                <a href="{{document.url}}">
+                                    <i class="glyphicon glyphicon-download-alt"></i>
+                                    {{document.title}}
+                                </a>
+                            </td>
+                            
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-12">
+            <div style="text-align: center;margin-bottom: 40px;cursor: pointer;" ng-click="vm.showDetails = true">
+                <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <a ng-click="vm.toggleSelection()" class="fa fa-align-justify fa-stack-1x fa-inverse"></a>
+                </span>
+
+                <h3>toon alle IATI informatie van deze activiteit</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" ng-show="vm.showDetails == true">
+        <div class="col-md-12">
+            <div class="hp-block">
+                <table class="table">
+                    <tbody>
+                        <tr ng-repeat="(key, value) in vm.activity">
+                            <td>
+                                {{key}}
+                            </td>
+                            <td>
+                                {{value}}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>
 
 

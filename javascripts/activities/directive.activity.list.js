@@ -25,7 +25,9 @@
       controller: 'ActivityListController',
       controllerAs: 'vm',
       restrict: 'E',
-      scope: {},
+      scope: {
+        customFilters: '@',
+      },
       templateUrl: templateBaseUrl + '/templates/activities/activities-list.html'
     };
 

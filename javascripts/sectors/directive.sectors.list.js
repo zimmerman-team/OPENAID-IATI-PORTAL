@@ -7,14 +7,14 @@
 
   angular
     .module('oipa.sectors')
-    .directive('sectorsList', sectorsList);
+    .directive('sectorList', sectorList);
 
-  sectorsList.$inject = ['templateBaseUrl'];
+  sectorList.$inject = ['templateBaseUrl'];
 
   /**
   * @namespace Sectors
   */
-  function sectorsList(templateBaseUrl) {
+  function sectorList(templateBaseUrl) {
 
     /**
     * @name directive
@@ -22,9 +22,10 @@
     * @memberOf oipa.sectors.sectorsList
     */
     var directive = {
-      controller: 'SectorsController',
+      controller: 'SectorListController',
       controllerAs: 'vm',
       restrict: 'E',
+      scope: {},
       templateUrl: templateBaseUrl + '/templates/sectors/sectors-list.html'
     };
 
