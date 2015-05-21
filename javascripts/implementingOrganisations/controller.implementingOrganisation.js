@@ -89,16 +89,13 @@
 
       // for each active country, get the results
       ImplementingOrganisations.get(vm.organisation_id).then(successFn, errorFn);
-      ImplementingOrganisations.selectedImplementingOrganisations = [{"organisation_id":vm.organisation_id}];
-      FilterSelection.toSave = true;
 
       function successFn(data, status, headers, config) {
         vm.organisation = data.data;
+        ImplementingOrganisations.selectedImplementingOrganisations.push({'organisation_id':vm.organisation.code,'name':vm.organisation.name});
+        FilterSelection.toSave = true;
       }
 
-      function errorFn(data, status, headers, config) {
-        console.log("getting country failed");
-      }
     }
 
     function errorFn(data, status, headers, config) {
@@ -106,7 +103,6 @@
     }
 
     vm.update = function(selectionString){
-      console.log(selectionString);
       if (selectionString.indexOf("participating_organisations__organisation__code__in") < 0){ return false;}
 
       Aggregations.aggregation('transaction-receiver-org', 'iati-identifier', selectionString).then(function(data, status, headers, config){

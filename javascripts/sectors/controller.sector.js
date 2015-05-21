@@ -89,15 +89,11 @@
 
       // for each active country, get the results
       Sectors.get(vm.sector_id).then(successFn, errorFn);
-      Sectors.selectedSectors = [{"sector_id":vm.sector_id}];
-      FilterSelection.toSave = true;
 
       function successFn(data, status, headers, config) {
         vm.sector = data.data;
-      }
-
-      function errorFn(data, status, headers, config) {
-        console.log("getting country failed");
+        Sectors.selectedSectors.push({"sector_id":vm.sector.code,"name":vm.sector.name});
+        FilterSelection.toSave = true;
       }
     }
 
