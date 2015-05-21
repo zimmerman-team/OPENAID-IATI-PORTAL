@@ -25,7 +25,9 @@
       controller: 'SectorListController',
       controllerAs: 'vm',
       restrict: 'E',
-      scope: {},
+      scope: {
+        hasToContain: '@'
+      },
       templateUrl: templateBaseUrl + '/templates/sectors/sectors-list.html'
     };
 

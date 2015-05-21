@@ -22,6 +22,7 @@
     vm.page_size = 5;
     vm.offset = 0;
     vm.totalActivities = 0;
+    vm.hasToContain = $scope.hasToContain;
     vm.pagination = {
         current: 1
     };
@@ -61,6 +62,11 @@
     }
 
     vm.update = function(selectionString){
+      if(vm.hasToContain !== undefined){
+        if(selectionString.indexOf(vm.hasToContain) < 0){
+          return false;
+        }
+      }
 
       Activities.list(selectionString, vm.page_size, vm.order_by, vm.offset).then(succesFn, errorFn);
 

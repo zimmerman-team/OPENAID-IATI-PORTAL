@@ -7,25 +7,19 @@
 
   angular
     .module('oipa.countries')
-    .directive('countriesListDirective', countriesListDirective);
+    .directive('countryList', countryList);
 
-  countriesListDirective.$inject = ['templateBaseUrl'];
+  countryList.$inject = ['templateBaseUrl'];
+  
+  function countryList(templateBaseUrl) {
 
-  /**
-  * @namespace Collection
-  */
-  function countriesListDirective(templateBaseUrl) {
-
-    /**
-    * @name directive
-    * @desc The directive to be returned
-    * @memberOf oipa.countries.countriesListDirective
-    */
     var directive = {
-      controller: 'CountriesController',
+      controller: 'CountriesListController',
       controllerAs: 'vm',
       restrict: 'E',
-      scope: {},
+      scope: {
+        hasToContain: '@',
+      },
       templateUrl: templateBaseUrl + '/templates/countries/country-list.html'
     };
 

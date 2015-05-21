@@ -50,24 +50,35 @@
                 <h3>Financieel overzicht</h3>
 
                 <nvd3 options="vm.transactionChartOptions" data="vm.transactionData" class="with-3d-shadow with-transitions"></nvd3>
-    
-
-
 
                 <table class="table">
+                    <thead>
+                        <td>Transactie type</td>
+                        <td>Verstrekkende organisatie</td>
+                        <td>Ontvangende organisatie</td>
+                        <td>Bedrag</td>
+                        <td>Datum</td>
+                    </thead>
                     <tbody>
-                        <tr ng-repeat="(key, value) in vm.activity.transactions">
+                        <tr ng-repeat="transaction in vm.activity.transactions">
                             <td>
-                                {{key}}
+                                {{transaction.transaction_type}}
                             </td>
                             <td>
-                                {{value}}
+                                {{transaction.provider_organisation_name}}
+                            </td>
+                            <td>
+                                {{transaction.receiver_organisation_name}}
+                            </td>
+                            <td>
+                                {{transaction.value | currency :'€':0}}
+                            </td>
+                            <td>
+                                {{transaction.transaction_date}}
                             </td>
                         </tr>
                     </tbody>
                 </table>
-
-
             </div>
         </div>
     </div>
@@ -84,7 +95,6 @@
                     <tbody>
                         <tr ng-repeat="document in vm.activity.documents">
                             
-
                             <td>
                                 <a href="{{document.url}}">
                                     <i class="glyphicon glyphicon-download-alt"></i>

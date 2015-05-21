@@ -6,27 +6,27 @@
   'use strict';
 
   angular
-    .module('oipa.countries')
-    .controller('CountryController', CountryController);
+    .module('oipa.implementingOrganisations')
+    .controller('ImplementingOrganisationController', ImplementingOrganisationController);
 
-  CountryController.$inject = ['$scope', 'Countries', 'templateBaseUrl', '$stateParams', 'FilterSelection', 'Aggregations'];
+  ImplementingOrganisationController.$inject = ['$scope', 'ImplementingOrganisations', 'templateBaseUrl', '$stateParams', 'FilterSelection', 'Aggregations'];
 
   /**
   * @namespace CountriesController
   */
-  function CountryController($scope, Countries, templateBaseUrl, $stateParams, FilterSelection, Aggregations) {
+  function ImplementingOrganisationController($scope, ImplementingOrganisations, templateBaseUrl, $stateParams, FilterSelection, Aggregations) {
     var vm = this;
-    vm.country = null;
-    vm.country_id = $stateParams.country_id;
+    vm.organisation = null;
+    vm.organisation_id = $stateParams.organisation_id;
     vm.openedPanel = '';
     vm.showSelection = false;
     vm.partnerType = '';
     vm.activityCount = '';
     vm.sectorCount = '';
-    vm.organisationCount = '';
+    vm.countryCount = '';
     vm.donorCount = '';
     vm.totalBudget = '';
-    vm.dashboard = 'charts'; // options: charts, list, sectors, organisaties
+    vm.dashboard = 'charts'; // options: charts, list, sectors, landen
     vm.filterSelection = FilterSelection;
 
 
@@ -72,7 +72,6 @@
 
     vm.share = function(medium){
       console.log("TO DO; open "+medium+" share url in new window");
-      FilterSelection.toSave = true;
     }
 
 
@@ -89,19 +88,16 @@
       }, true);
 
       // for each active country, get the results
-      Countries.getCountry(vm.country_id).then(successFn, errorFn);
-      
-
-      if(partnerlanden[vm.country_id] !== undefined){
-        vm.partnerType = partnerlanden[vm.country_id]; 
-      } else {
-        vm.partnerType = 'Overige';
-      }
+      ImplementingOrganisations.get(vm.organisation_id).then(successFn, errorFn);
+      ImplementingOrganisations.selectedImplementingOrganisations = [{"organisation_id":vm.organisation_id}];
+      FilterSelection.toSave = true;
 
       function successFn(data, status, headers, config) {
-        vm.country = data.data;
-        Countries.selectedCountries.push({'country_id':vm.country.code,'name':vm.country.name});
-        FilterSelection.toSave = true;
+        vm.organisation = data.data;
+      }
+
+      function errorFn(data, status, headers, config) {
+        console.log("getting country failed");
       }
     }
 
@@ -110,18 +106,19 @@
     }
 
     vm.update = function(selectionString){
-      if (selectionString.indexOf("countries__in") < 0){ return false;}
+      console.log(selectionString);
+      if (selectionString.indexOf("participating_organisations__organisation__code__in") < 0){ return false;}
 
-      Aggregations.aggregation('recipient-country', 'iati-identifier', selectionString).then(function(data, status, headers, config){
+      Aggregations.aggregation('transaction-receiver-org', 'iati-identifier', selectionString).then(function(data, status, headers, config){
         vm.activityCount = data.data[0]['activity_count'];
       }, errorFn);
 
-      Aggregations.aggregation('recipient-country', 'disbursement', selectionString).then(function(data, status, headers, config){
+      Aggregations.aggregation('transaction-receiver-org', 'disbursement', selectionString).then(function(data, status, headers, config){
         vm.totalBudget = data.data[0]['total_disbursements'];
       }, errorFn);
 
-      Aggregations.aggregation('transaction-receiver-org', 'iati-identifier', selectionString).then(function(data, status, headers, config){
-        vm.organisationCount = data.data.length;
+      Aggregations.aggregation('recipient-country', 'iati-identifier', selectionString).then(function(data, status, headers, config){
+        vm.countryCount = data.data.length;
       }, errorFn);
 
       Aggregations.aggregation('reporting-org', 'iati-identifier', selectionString).then(function(data, status, headers, config){

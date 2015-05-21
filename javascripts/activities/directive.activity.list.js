@@ -27,6 +27,7 @@
       restrict: 'E',
       scope: {
         customFilters: '@',
+        hasToContain: '@'
       },
       templateUrl: templateBaseUrl + '/templates/activities/activities-list.html'
     };

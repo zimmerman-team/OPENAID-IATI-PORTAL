@@ -25,7 +25,9 @@
       controller: 'ImplementingOrganisationsListController',
       controllerAs: 'vm',
       restrict: 'E',
-      scope: {},
+      scope: {
+        hasToContain: '@',
+      },
       templateUrl: templateBaseUrl + '/templates/implementingOrganisations/implementing-organisations-list.html'
     };
 

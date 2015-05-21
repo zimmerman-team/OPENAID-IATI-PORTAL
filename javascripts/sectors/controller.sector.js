@@ -6,23 +6,23 @@
   'use strict';
 
   angular
-    .module('oipa.countries')
-    .controller('CountryController', CountryController);
+    .module('oipa.sectors')
+    .controller('SectorController', SectorController);
 
-  CountryController.$inject = ['$scope', 'Countries', 'templateBaseUrl', '$stateParams', 'FilterSelection', 'Aggregations'];
+  SectorController.$inject = ['$scope', 'Sectors', 'templateBaseUrl', '$stateParams', 'FilterSelection', 'Aggregations'];
 
   /**
   * @namespace CountriesController
   */
-  function CountryController($scope, Countries, templateBaseUrl, $stateParams, FilterSelection, Aggregations) {
+  function SectorController($scope, Sectors, templateBaseUrl, $stateParams, FilterSelection, Aggregations) {
     var vm = this;
-    vm.country = null;
-    vm.country_id = $stateParams.country_id;
+    vm.sector = null;
+    vm.sector_id = $stateParams.sector_id;
     vm.openedPanel = '';
     vm.showSelection = false;
     vm.partnerType = '';
     vm.activityCount = '';
-    vm.sectorCount = '';
+    vm.countryCount = '';
     vm.organisationCount = '';
     vm.donorCount = '';
     vm.totalBudget = '';
@@ -72,7 +72,6 @@
 
     vm.share = function(medium){
       console.log("TO DO; open "+medium+" share url in new window");
-      FilterSelection.toSave = true;
     }
 
 
@@ -89,19 +88,16 @@
       }, true);
 
       // for each active country, get the results
-      Countries.getCountry(vm.country_id).then(successFn, errorFn);
-      
-
-      if(partnerlanden[vm.country_id] !== undefined){
-        vm.partnerType = partnerlanden[vm.country_id]; 
-      } else {
-        vm.partnerType = 'Overige';
-      }
+      Sectors.get(vm.sector_id).then(successFn, errorFn);
+      Sectors.selectedSectors = [{"sector_id":vm.sector_id}];
+      FilterSelection.toSave = true;
 
       function successFn(data, status, headers, config) {
-        vm.country = data.data;
-        Countries.selectedCountries.push({'country_id':vm.country.code,'name':vm.country.name});
-        FilterSelection.toSave = true;
+        vm.sector = data.data;
+      }
+
+      function errorFn(data, status, headers, config) {
+        console.log("getting country failed");
       }
     }
 
@@ -110,13 +106,14 @@
     }
 
     vm.update = function(selectionString){
-      if (selectionString.indexOf("countries__in") < 0){ return false;}
 
-      Aggregations.aggregation('recipient-country', 'iati-identifier', selectionString).then(function(data, status, headers, config){
+      if (selectionString.indexOf("sectors__in") < 0){ return false;}
+
+      Aggregations.aggregation('sector', 'iati-identifier', selectionString).then(function(data, status, headers, config){
         vm.activityCount = data.data[0]['activity_count'];
       }, errorFn);
 
-      Aggregations.aggregation('recipient-country', 'disbursement', selectionString).then(function(data, status, headers, config){
+      Aggregations.aggregation('sector', 'disbursement', selectionString).then(function(data, status, headers, config){
         vm.totalBudget = data.data[0]['total_disbursements'];
       }, errorFn);
 
@@ -128,8 +125,8 @@
         vm.donorCount = data.data.length;
       }, errorFn);
 
-      Aggregations.aggregation('sector', 'iati-identifier', selectionString).then(function(data, status, headers, config){
-        vm.sectorCount = data.data.length;
+      Aggregations.aggregation('recipient-country', 'iati-identifier', selectionString).then(function(data, status, headers, config){
+        vm.countryCount = data.data.length;
       }, errorFn);
     }
 

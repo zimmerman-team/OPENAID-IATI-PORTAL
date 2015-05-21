@@ -80,7 +80,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="hp-block">
-                <span class="flag-icon flag-icon-af"></span><h1>{{vm.country.name}}</h1>  
+                <h1>{{vm.organisation.name}}</h1>  
             </div>
         </div>
     </div>
@@ -110,24 +110,18 @@
     <div class="row">
         <div class="col-md-6">
             <div class="hp-block blauw">
-                <h3>Type relatie</h3>
-                <span class="number">{{vm.partnerType}}</span>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="hp-block blauw">
                 <h3>Donoren</h3>
                 <span class="number">{{vm.donorCount}}</span>
             </div>
         </div>
     </div>
-
+    
     <div class="row">
         <div class="col-md-6">
             <div class="hp-block blauw">
-                <h3>Aantal organisaties</h3>
-                <span class="number">{{vm.organisationCount}}</span>
-                <div class="expand" ng-click="vm.dashboard = 'organisaties'">
+                <h3>Aantal landen</h3>
+                <span class="number">{{vm.countryCount}}</span>
+                <div class="expand" ng-click="vm.dashboard = 'landen'">
                     <span class="fa-stack fa-lg">
                         <i class="fa fa-circle fa-stack-2x"></i>
                         <i class="fa fa-share fa-stack-1x fa-share"></i>
@@ -234,11 +228,11 @@
 
     </div>
     <div class="row explore-block-content" ng-show="vm.dashboard == 'sectors'">
-        <sector-list has-to-contain='countries__in'></sector-list>
+        <sector-list has-to-contain='participating_organisations__organisation__code__in'></sector-list>
 
     </div>
-    <div class="row explore-block-content" ng-show="vm.dashboard == 'organisaties'">
-        <implementing-organisations-list has-to-contain='countries__in'></implementing-organisations-list>
+    <div class="row explore-block-content" ng-show="vm.dashboard == 'landen'">
+        <country-list has-to-contain='participating_organisations__organisation__code__in'></country-list>
     </div>
 
 </div>

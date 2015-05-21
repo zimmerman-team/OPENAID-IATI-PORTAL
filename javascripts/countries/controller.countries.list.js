@@ -6,26 +6,27 @@
   'use strict';
 
   angular
-    .module('oipa.sectors')
-    .controller('SectorListController', SectorListController);
+    .module('oipa.countries')
+    .controller('CountriesListController', CountriesListController);
 
-  SectorListController.$inject = ['$scope', 'Aggregations', 'FilterSelection'];
+  CountriesListController.$inject = ['$scope', 'Aggregations', 'FilterSelection'];
 
   /**
   * @namespace CountriesExploreController
   */
-  function SectorListController($scope, Aggregations, FilterSelection) {
+  function CountriesListController($scope, Aggregations, FilterSelection) {
     var vm = this;
     vm.filterSelection = FilterSelection;
-    vm.sectors = [];
+    vm.countries = [];
     vm.order_by = 'total_disbursements';
     vm.page_size = 5;
     vm.offset = 0;
     vm.totalActivities = 0;
+    vm.hasToContain = $scope.hasToContain;
     vm.pagination = {
         current: 1
     };
-    vm.hasToContain = $scope.hasToContain;
+    vm.loading = 0;
 
     $scope.pageChanged = function(newPage) {
         vm.offset = (newPage * vm.page_size) - vm.page_size;
@@ -42,7 +43,7 @@
           vm.update(selectionString);
       }, true);
     }
-
+    
     vm.maxShown = function(){
       if(vm.offset + vm.page_size > vm.totalActivities){
         return vm.totalActivities;
@@ -52,18 +53,17 @@
     }
 
     vm.update = function(selectionString){
-
       if(vm.hasToContain !== undefined){
         if(selectionString.indexOf(vm.hasToContain) < 0){
           return false;
         }
       }
-
-      Aggregations.aggregation('sector', 'disbursement', selectionString + '&order_by=-total_disbursements').then(succesFn, errorFn);
+      Aggregations.aggregation('recipient-country', 'disbursement', selectionString + '&order_by=-total_disbursements').then(succesFn, errorFn);
 
       function succesFn(data, status, headers, config){
-        vm.sectors = data.data;
-        vm.totalActivities = vm.sectors.length;
+
+        vm.countries = data.data;
+        vm.totalActivities = vm.countries.length;
       }
 
       function errorFn(data, status, headers, config){

@@ -50,7 +50,7 @@
 	     * @memberOf oipa.sectors.services.Sectors
 	     */
 	     function get(id) {
-	     	return $http.get('/api/sectors/' + id + '?format=json', { cache: true });
+	     	return $http.get(oipaUrl + '/sectors/' + id + '/?format=json', { cache: true });
 	     }
 	}
 })();

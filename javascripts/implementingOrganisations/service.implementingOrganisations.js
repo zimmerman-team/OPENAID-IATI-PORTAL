@@ -51,7 +51,7 @@
 	     * @memberOf oipa.implementingOrganisations
 	     */
 	     function get(id) {
-	     	return $http.get('/api/organisations/' + id + '?format=json', { cache: true });
+	     	return $http.get(oipaUrl + '/organisations/' + id + '/?format=json', { cache: true });
 	     }
 	}
 })();

@@ -22,9 +22,11 @@
     vm.page_size = 5;
     vm.offset = 0;
     vm.totalActivities = 0;
+    vm.hasToContain = $scope.hasToContain;
     vm.pagination = {
         current: 1
     };
+    vm.loading = 0;
 
     $scope.pageChanged = function(newPage) {
         vm.offset = (newPage * vm.page_size) - vm.page_size;
@@ -51,10 +53,15 @@
     }
 
     vm.update = function(selectionString){
-
+      if(vm.hasToContain !== undefined){
+        if(selectionString.indexOf(vm.hasToContain) < 0){
+          return false;
+        }
+      }
       Aggregations.aggregation('transaction-receiver-org', 'disbursement', selectionString + '&order_by=-total_disbursements').then(succesFn, errorFn);
 
       function succesFn(data, status, headers, config){
+
         vm.organisations = data.data;
         vm.totalActivities = vm.organisations.length;
       }
