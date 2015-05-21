@@ -16,6 +16,8 @@
   */
   function BudgetController($scope, Budget, FilterSelection) {
     var vm = this;
+    vm.on = false;
+    vm.budgetValue = [];
 
     activate();
 
@@ -25,7 +27,14 @@
     * @memberOf oipa.budget.controllers.BudgetController
     */
     function activate() {
-  
+
+      $scope.$watch("vm.budgetValue", function (budgetValue) {
+        Budget.budget.value = budgetValue;
+      }, true);
+
+      $scope.$watch("vm.on", function (budgetOn) {
+        Budget.budget.on = budgetOn;
+      }, true);
     }
 
     vm.save = function(){

@@ -18,12 +18,13 @@
 	function Budget($http) {
 		var m = this;
 		m.budget = {
-	      min: 0,
-	      max: 50000000
+          on: false,
+	      value: []
 	    };
 		
 
 		var Budget = {
+            budget: m.budget,
 			all: all 
 		};
 

@@ -369,6 +369,58 @@ h4 {
   position: relative;
 }
 
+filter-panel-budget{
+
+  .slide{
+    -webkit-filter: grayscale(100%); 
+    filter: grayscale(100%);
+  }
+
+  .slide.active{
+    -webkit-filter: none; 
+    filter: none;
+  }
+
+  .checkbox, h4{
+    display: inline-block;
+  }
+
+  .switch input {
+    display: none;
+  }
+  .switch i {
+    background-color: #fff;
+    display: inline-block;
+    cursor: pointer;
+    padding-right: 14px;
+    transition: all ease 0.2s;
+    -webkit-transition: all ease 0.2s;
+    border-radius: 20px;
+    box-shadow: inset 0 0 1px rgba(0,0,0,.5);
+    margin-right: 10px;
+  }
+  .switch i:before {
+      display: block;
+      content: '';
+      width: 20px;
+      height: 20px;
+      border-radius: 20px;
+      background: rgb(51, 51, 51);
+      box-shadow: 0 1px 2px rgba(0,0,0,.5);
+  }
+  .switch :checked +i:before {
+      background: $icon-grn;
+  }
+  .switch :checked + i {
+      padding-right: 0;
+      padding-left: 14px;
+      background: #eee;
+      box-shadow: inset 0 0 1px #dedede, inset 0 0 40px #eee;
+      -webkit-box-shadow: inset 0 0 1px #dedede, inset 0 0 40px #eee;
+  }
+
+}
+
 .filter-panel {
   z-index: 99999;
   background-color: #fff;
@@ -760,79 +812,6 @@ Countries
     font-size: 16px;
   }
 }
-
-
-/*********************
-Filter panel
-*********************/
-
-// .filter-panel{
-//   position: absolute;
-//   left: 0;
-//   top: 40px;
-//   background-color: #fff;
-//   width: 64%;
-//   -webkit-box-shadow: 2px 2px 7px 0px rgba(25, 25, 25, 0.33);
-//   -moz-box-shadow:    2px 2px 7px 0px rgba(25, 25, 25, 0.33);
-//   box-shadow:         2px 2px 7px 0px rgba(25, 25, 25, 0.33);
-
-//   .search-box input, .search-box button{
-//     height: 26px;
-//   }
-
-//   .search-box, .btn-openaid{
-//     margin-top: 10px;
-//     margin-bottom: 10px;
-//   }
-
-//   .search-box .btn{
-//     padding: 4px 9px 0px;
-//     line-height: 20px;
-//   }
-
-//   .glyphicon-search{
-//     font-size: 16px;
-//   }
-
-//   .pagination{
-//     margin: 10px 15px 10px;
-//   }
-
-//   .filter-panel-header-wrapper{
-//     border-bottom: 1px solid #ddd;
-//   }
-
-//   .filter-panel-header{
-//     margin-top: 16px;
-//     margin-left: 10px;
-//     font-size: 16px;
-//   }
-
-//   .table{
-//     color: #444;
-//     font-size: 16px;
-//     font-weight: bold;
-//     margin-bottom: 5px;
-
-//     tbody{
-//     }
-
-//     .th-first{
-//       padding-left: 15px;
-//       width: 60%;
-//     }
-
-
-//     .checkbox{
-//       margin: 0 0 0 10px;
-//     }
-
-//     label{
-//       color: #FF9933;
-//       font-weight: bold;
-//     }
-//   }
-// }
 
 /*********************
 TOOL BAR

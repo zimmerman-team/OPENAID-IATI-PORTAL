@@ -21,6 +21,7 @@
     vm.selectedSectors = Sectors.selectedSectors;
     vm.selectedImplementingOrganisations = ImplementingOrganisations.selectedImplementingOrganisations;
     vm.selectedActivityStatuses = ActivityStatus.selectedActivityStatuses;
+    vm.selectedBudget = Budget.budget;
     vm.filterSelection = FilterSelection;
 
     /**
@@ -51,6 +52,7 @@
     }
 
     vm.updateSelectionString = function(){
+      
       var selectList = [
         vm.selectArrayToString('countries', 'country_id', vm.selectedCountries),
         vm.selectArrayToString('regions', 'region_id', vm.selectedRegions),
@@ -58,6 +60,11 @@
         vm.selectArrayToString('participating_organisations__organisation__code', 'organisation_id', vm.selectedImplementingOrganisations),
         vm.selectArrayToString('activity_status', 'code', vm.selectedActivityStatuses),
       ];
+
+      if(vm.selectedBudget.on){
+        selectList.push('&total_budget__gt='+vm.selectedBudget.value[0]+'&total_budget__lt='+vm.selectedBudget.value[1]);
+      }
+
       FilterSelection.selectionString = selectList.join('');
       
     }
