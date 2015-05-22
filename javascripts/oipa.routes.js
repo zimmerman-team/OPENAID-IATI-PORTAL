@@ -52,7 +52,7 @@
             url:          '/iati-explorer/list/',
             controller:   'ExploreController',
             controllerAs: 'vm',
-            templateUrl:  templateBaseUrl + '/templates/layout/iati-explorer.html',
+            templateUrl:  templateBaseUrl + '/templates/layout/iati-explorer-list.html',
             ncyBreadcrumb: {
                 label: 'IATI Explorer'
             }

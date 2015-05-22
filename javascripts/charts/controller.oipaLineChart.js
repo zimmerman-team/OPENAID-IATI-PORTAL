@@ -28,6 +28,7 @@
     vm.chartType = $scope.chartType;
     vm.axisLabelDistance = $scope.axisLabelDistance;
     vm.mapping = $scope.mapping;
+    vm.colorRange = $scope.colorRange;
 
     vm.chartData = [];
     vm.chartOptions = {
@@ -42,7 +43,7 @@
         },
         x: function(d){ return d[0]; },
         y: function(d){ return d[1]; },
-        color: d3.scale.category10(),
+        color: d3.scale.category10().range(),
         transitionDuration: 300,
         useInteractiveGuideline: true,
         clipVoronoi: false,
@@ -95,8 +96,6 @@
       var formattedData = vm[vm.chartType + 'ReformatData'](data);
       return formattedData;
     }
-
-
 
     vm.lineChartReformatData = function(data){
       var mappedData = {};
@@ -158,21 +157,23 @@
 
       vm.chartOptions.chart.xAxis.tickFormat = null;
       vm.chartOptions.chart.height = 300;
+      vm.chartOptions.chart.x = function(d){return d.label;};
+      vm.chartOptions.chart.y = function(d){return d.value;};
       var formattedData = [];
 
-      
-        var mappedData = {
-          key: '',
-          values: [],
-        }
+      var mappedData = {
+        'key': '',
+        'color': '#1f77b4',
+        'values': [],
+      }
 
-        for (var i = 0; i < data.length;i++){
-          mappedData.values.push([data[i]['name'],data[i]['total_disbursements']]);
-        }
+      for (var i = 0; i < data.length;i++){
+        mappedData.values.push({
+          "label": data[i]['name'],
+          "value": data[i]['total_disbursements']});
+      }
 
-        formattedData.push(mappedData);
-      
-
+      formattedData.push(mappedData);      
       return formattedData;
     }
 
@@ -192,8 +193,15 @@
     }
 
     vm.discreteBarChartReformatData = function(data){
-      vm.chartOptions.chart.color = d3.scale.category10();
+      
       vm.chartOptions.chart.xAxis.tickFormat = null;
+      vm.chartOptions.chart.color = d3.scale.category10();
+      vm.chartOptions.chart.x = function(d){return d.label;};
+      vm.chartOptions.chart.y = function(d){return d.value;};
+
+      if(vm.colorRange){
+        vm.chartOptions.chart.color = d3.scale.category10().range();
+      }
 
       var formattedData = [{
           "key" : "key",
@@ -201,7 +209,10 @@
       }];
 
       for (var i = 0; i < data.length;i++){
-        formattedData[0].values.push([data[i][vm.groupByName],data[i][vm.aggregationKeyId]]);
+        formattedData[0].values.push({
+          'label' : data[i][vm.groupByName], 
+          'value' : data[i][vm.aggregationKeyId]
+        });
       }
 
       return formattedData;

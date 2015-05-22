@@ -83,18 +83,18 @@
                 </div>
                 <div class="col-md-6 col-sm-5 dash text-right-not-xs">
                     <span class="makeblock">dashboards</span> 
-                    <span class="fa-stack fa-lg" ng-click="vm.setDashboard('charts')">
+                    <a class="fa-stack fa-lg" ui-sref="iati-explorer">
                       <i class="fa fa-circle fa-stack-2x"></i>
                       <i class="fa fa-line-chart fa-stack-1x fa-inverse"></i>
-                    </span>
-                    <span class="fa-stack fa-lg" ng-click="vm.setDashboard('geomap')">
+                    </a>
+                    <a class="fa-stack fa-lg" ui-sref="iati-explorer-map">
                       <i class="fa fa-circle fa-stack-2x"></i>
                       <i class="ic ic-map fa-stack-1x fa-inverse"></i>
-                    </span>
-                    <span class="fa-stack fa-lg" ng-click="vm.setDashboard('list')">
+                    </a>
+                    <a class="fa-stack fa-lg" ui-sref="iati-explorer-list">
                       <i class="fa fa-circle fa-stack-2x"></i>
                       <i class="fa fa-list-ul fa-stack-1x fa-inverse"></i>
-                    </span>
+                    </a>
                 </div>
             </div>
             
@@ -170,7 +170,8 @@
                                 chart-y-axis='Uitgaven'
                                 chart-type='discreteBarChart'
                                 mapping='partnerlanden'
-                                axis-label-distance='40'></oipa-line-chart>
+                                axis-label-distance='40'
+                                color-range='true'></oipa-line-chart>
                         </div>
                     </div>
                 </div>
@@ -190,7 +191,8 @@
                                 chart-y-axis='Verplichtingen'
                                 chart-type='discreteBarChart'
                                 mapping='partnerlanden' 
-                                axis-label-distance='40'></oipa-line-chart>
+                                axis-label-distance='40' 
+                                color-range='true'></oipa-line-chart>
                         </div>
                     </div>
                 </div>
