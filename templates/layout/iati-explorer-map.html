@@ -4,7 +4,7 @@
 
             <div ncy-breadcrumb></div>
 
-        	<search-box></search-box>
+            <search-box></search-box>
 
             <div class="row actions">
                 <div class="col-md-6 col-sm-7 filters">
@@ -88,97 +88,9 @@
 
             <oipa-total-figures-chart aggregation-filters='vm.selectionString'></oipa-total-figures-chart>
 
-        	<div class="row" ng-show="vm.dashboard == 'charts'">
-
-        		<div class="col-md-6">
-                    <div class="hp-block explore">
-                        <div class="explore-block-header">Totaal aantal activiteiten</div>
-                        <div class="explore-block-content">
-                            <oipa-line-chart 
-                                aggregation-filters='vm.selectionString' 
-                                group-by='start_actual' 
-                                group-by-id='start_actual_year' 
-                                group-by-name='start_actual_year' 
-                                aggregation-key='iati-identifier' 
-                                aggregation-key-id='activity_count' 
-                                chart-x-axis='' 
-                                chart-y-axis='Aantal activiteiten'
-                                chart-type='discreteBarChart'
-                                axis-label-distance='10'></oipa-line-chart>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-6">
-                    <div class="hp-block explore">
-                        <div class="explore-block-header">Totaal budget op basis van de zoekresulaten</div>
-                        <div class="explore-block-content">
-                            <oipa-line-chart 
-                                aggregation-filters='vm.selectionString' 
-                                group-by='transaction_date_year' 
-                                group-by-id='transaction_date_year' 
-                                group-by-name='transaction_date_year' 
-                                aggregation-key='disbursement' 
-                                aggregation-key-id='total_disbursements' 
-                                chart-x-axis='' 
-                                chart-y-axis='Totaal budget'
-                                chart-type='discreteBarChart'
-                                axis-label-distance='40'></oipa-line-chart>
-                        </div>
-                    </div>
-                </div>
-
-        		<div class="col-md-6">
-                    <div class="hp-block explore">
-                        <div class="explore-block-header">Uitgaven  per landenprofiel</div>
-                        <div class="explore-block-content">
-                            <oipa-line-chart 
-                                aggregation-filters='vm.selectionString' 
-                                group-by='recipient-country' 
-                                group-by-id='country_id' 
-                                group-by-name='name' 
-                                aggregation-key='disbursement' 
-                                aggregation-key-id='total_disbursements' 
-                                chart-x-axis='' 
-                                chart-y-axis='Uitgaven'
-                                chart-type='discreteBarChart'
-                                mapping='partnerlanden'
-                                axis-label-distance='40'></oipa-line-chart>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="col-md-6">
-                    <div class="hp-block explore">
-                        <div class="explore-block-header">Aangegane verplichting per landenprofiel</div>
-                        <div class="explore-block-content">
-                            <oipa-line-chart 
-                                aggregation-filters='vm.selectionString' 
-                                group-by='recipient-country' 
-                                group-by-id='country_id' 
-                                group-by-name='name' 
-                                aggregation-key='commitment' 
-                                aggregation-key-id='total_commitments' 
-                                chart-x-axis='' 
-                                chart-y-axis='Verplichtingen'
-                                chart-type='discreteBarChart'
-                                mapping='partnerlanden' 
-                                axis-label-distance='40'></oipa-line-chart>
-                        </div>
-                    </div>
-                </div>
-
-        	</div>
-
-            <div class="row" ng-show="vm.dashboard == 'geomap'">
+            <div class="row">
                 <div class="col-md-12">
                     <explore-geo-map></explore-geo-map>
-                </div>
-            </div>
-
-            <div class="row" ng-show="vm.dashboard == 'list'">
-                <div class="col-md-12">
-                    <activity-list></activity-list>
                 </div>
             </div>
   

@@ -42,7 +42,7 @@
         },
         x: function(d){ return d[0]; },
         y: function(d){ return d[1]; },
-        color: d3.scale.category10().range(),
+        color: d3.scale.category10(),
         transitionDuration: 300,
         useInteractiveGuideline: true,
         clipVoronoi: false,
@@ -95,6 +95,8 @@
       var formattedData = vm[vm.chartType + 'ReformatData'](data);
       return formattedData;
     }
+
+
 
     vm.lineChartReformatData = function(data){
       var mappedData = {};
@@ -190,6 +192,7 @@
     }
 
     vm.discreteBarChartReformatData = function(data){
+      vm.chartOptions.chart.color = d3.scale.category10();
       vm.chartOptions.chart.xAxis.tickFormat = null;
 
       var formattedData = [{
@@ -203,10 +206,6 @@
 
       return formattedData;
     }
-
-
-
-
 
 
     vm.partnerlandenReMap = function(data){
@@ -240,16 +239,5 @@
 
       return data;
     }
-
-
-
-
-
-
-
-
-
-
-
   }
 })();

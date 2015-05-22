@@ -42,7 +42,7 @@
             url:          '/iati-explorer/map/',
             controller:   'ExploreController',
             controllerAs: 'vm',
-            templateUrl:  templateBaseUrl + '/templates/layout/iati-explorer.html',
+            templateUrl:  templateBaseUrl + '/templates/layout/iati-explorer-map.html',
             ncyBreadcrumb: {
                 label: 'IATI Explorer'
             }
