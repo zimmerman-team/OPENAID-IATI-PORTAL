@@ -5,15 +5,23 @@
 		.module('oipa.explore')
 		.controller('ExploreController', ExploreController);
 
-	ExploreController.$inject = ['$scope', 'Filters', 'FilterSelection'];
+	ExploreController.$inject = ['$sce', '$scope', 'Filters', 'FilterSelection'];
 
-	function ExploreController($scope, Filters, FilterSelection){
+	function ExploreController($sce, $scope, Filters, FilterSelection){
 		var vm = this;
 		vm.dashboard = 'charts'; // options: charts, geomap, list
 		vm.openedPanel = ''; // panels: 
 		vm.showSelection = false;
 		vm.filterSelection = FilterSelection;
 		vm.selectionString = '';
+
+		vm.buttonTexts = {
+			'recipient_countries': {'text': 'Lorem Ipsum', hoverShow: false},
+			'recipient_regions': {'text': 'Lorem Ipsum', hoverShow: false},
+
+		};
+		vm.currentHoverText = '';
+
 
 		activate();
 
@@ -23,6 +31,15 @@
 		    	vm.openedPanel = '';
 		    }, true);
 	    }
+
+	   	vm.hoverIn = function(id){
+	      vm.buttonTexts[id].hoverShow = true;
+	      vm.currentHoverText =  $sce.trustAsHtml(vm.buttonTexts[id].text);
+	    };
+
+	    vm.hoverOut = function(id){
+	        vm.buttonTexts[id].hoverShow = false;
+	    };
 
 	    vm.setDashboard = function(id){
 	    	vm.dashboard = id;
