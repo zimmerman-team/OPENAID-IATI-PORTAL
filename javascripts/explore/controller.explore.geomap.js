@@ -20,12 +20,15 @@
     vm.countryRelation = [
       {'id':1, 'name': 'Hulp relatie'}, 
       {'id':2, 'name': 'Overgangsrelatie'}, 
-      {'id':3, 'name': 'Exit relatie'}, 
+      {'id':3, 'name': 'EXIT relatie'}, 
       {'id':4, 'name': 'Handelsrelatie'}, 
       {'id':5, 'name': 'Overige'}];
-    vm.selectedCountryRelation = [];
-
-
+    vm.selectedCountryRelation = [
+      {'id':1, 'name': 'Hulp relatie'}, 
+      {'id':2, 'name': 'Overgangsrelatie'}, 
+      {'id':3, 'name': 'EXIT relatie'}, 
+      {'id':4, 'name': 'Handelsrelatie'}, 
+      {'id':5, 'name': 'Overige'}];
 
     vm.markerData = [];
     vm.defaults = {
@@ -51,14 +54,20 @@
       html: '<div class="fa fa-map-marker fa-stack-1x fa-inverse marker-circle" style="background-color: rgba(207,32,38,0.4); border-radius: 20px;font-size:14px;width: 20px; height: 20px;"></div>',
     };
 
-    activate();
-
     /**
     * @name activate
     * @desc Actions to be performed when this controller is instantiated
     * @memberOf oipa.countries.controllers.CountriesController
     */
     function activate() {
+
+      $scope.$watch("vm.selectedCountryRelation", function (selectionString) {
+          if(vm.markerData.length > 0){
+            vm.updateMarkers();
+          }
+      }, true);
+
+
       // for each active country, get the results
       Aggregations.aggregation('recipient-country-geo', 'iati-identifier', '').then(successFn, errorFn);
 
@@ -74,30 +83,43 @@
     }
 
     vm.updateMarkers = function() {
+      
+      var selectedCountryRelationMap = {};
+      for(var i = 0;i < vm.selectedCountryRelation.length;i++){
+        selectedCountryRelationMap[vm.selectedCountryRelation[i]['name'].replace(/\s/g, '')] = true;
+      }
+      vm.markers = [];
+
       for (var i = 0; i < vm.markerData.length;i++){
         if(typeof vm.markers[vm.markerData[i].country_id] == 'undefined' && vm.markerData[i].location != null){
+          
+          var partnerType = 'Overige';
+          if(partnerlanden[vm.markerData[i].country_id] !== undefined){
+            partnerType = partnerlanden[vm.markerData[i].country_id].replace(/\s/g, ''); 
+          } 
 
-          if(vm.markers[vm.markerData[i].country_id] !== undefined){
-            continue;
-          }
-          // create new
-          var location = vm.markerData[i].location.substr(6, (vm.markerData[i].location.length - 7));
-          location = location.split(' ');
-          vm.markers[vm.markerData[i].country_id] = {
-            lat: parseInt(location[1]),
-            lng: parseInt(location[0]),
-            message: '<span class="flag-icon flag-icon-af"></span>'+
-            '<h4>'+vm.markerData[i].name+'</h4>'+
-            '<p><b>Activiteiten:</b> 341</p>'+
-            '<p><b>Sectoren:</b> 21</p>'+
-            '<p><b>Totaal budget:</b> 0,00</p>'+
-            '<p><b>Type relatie:</b> Hulp relatie</p>'+
-            '<button class="btn btn-default">Ga naar overzicht land</button>',
-            icon: vm.openaidMarker,
+          
+          if (selectedCountryRelationMap[partnerType] !== undefined){
+            console.log('1');
+            var location = vm.markerData[i].location.substr(6, (vm.markerData[i].location.length - 7));
+            location = location.split(' ');
+            vm.markers[vm.markerData[i].country_id] = {
+              lat: parseInt(location[1]),
+              lng: parseInt(location[0]),
+              message: '<span class="flag-icon flag-icon-'+vm.markerData[i].country_id+'"></span>'+
+              '<h4>'+vm.markerData[i].name+'</h4>'+
+              '<p><b>Activiteiten:</b> '+vm.markerData[i]['activity_count']+'</p>'+
+              '<p><b>Totaal budget:</b> 0.00</p>'+
+              '<p><b>Type relatie:</b> '+partnerType+'</p>'+
+              '<button class="btn btn-default">Ga naar overzicht land</button>',
+              icon: vm.openaidMarker,
+            }
           }
         }
       }
     }
+
+    activate();
 
   }
 })();
