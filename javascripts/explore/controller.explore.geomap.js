@@ -23,8 +23,10 @@
       {'id':3, 'name': 'Exit relatie'}, 
       {'id':4, 'name': 'Handelsrelatie'}, 
       {'id':5, 'name': 'Overige'}];
-
     vm.selectedCountryRelation = [];
+
+
+
     vm.markerData = [];
     vm.defaults = {
       tileLayer: 'https://{s}.tiles.mapbox.com/v3/zimmerman2014.hmpkg505/{z}/{x}/{y}.png',
@@ -73,7 +75,11 @@
 
     vm.updateMarkers = function() {
       for (var i = 0; i < vm.markerData.length;i++){
-        if(typeof vm.markers[vm.markerData[i].country_id] == 'undefined' && vm.markerData[i].location != null ){
+        if(typeof vm.markers[vm.markerData[i].country_id] == 'undefined' && vm.markerData[i].location != null){
+
+          if(vm.markers[vm.markerData[i].country_id] !== undefined){
+            continue;
+          }
           // create new
           var location = vm.markerData[i].location.substr(6, (vm.markerData[i].location.length - 7));
           location = location.split(' ');

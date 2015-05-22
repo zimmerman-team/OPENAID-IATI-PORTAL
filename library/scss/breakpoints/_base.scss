@@ -11,6 +11,22 @@ and will be used across all viewports.
 
 ******************************************************************/
 
+/****
+TEMP
+****/
+.nv-multiBarHorizontalChart{
+
+  .nv-bar {
+    fill: rgb(31,119,180) !important;
+    stroke: rgb(31,119,180) !important;
+  }
+  
+  .nv-legend-symbol{
+      display: none;
+  }
+}
+
+
 
 /*********************
 GLOBAL
