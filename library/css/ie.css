@@ -201,19 +201,19 @@ come into play. Have fun!
   color: #00a99d;
 }
 /* line 67, ../scss/breakpoints/_768up.scss */
-.actions .dash span .fa-circle {
+.actions .dash a .fa-circle, .actions .dash span .fa-circle {
   transition: all 0.2s;
 }
 /* line 72, ../scss/breakpoints/_768up.scss */
-.actions .dash span:nth-of-type(2):hover .fa-circle {
+.actions .dash a:nth-of-type(2):hover .fa-circle, .actions .dash span:nth-of-type(2):hover .fa-circle {
   color: #00a99d;
 }
 /* line 79, ../scss/breakpoints/_768up.scss */
-.actions .dash span:nth-of-type(3):hover .fa-circle {
+.actions .dash a:nth-of-type(3):hover .fa-circle, .actions .dash span:nth-of-type(3):hover .fa-circle {
   color: #ad7979;
 }
 /* line 86, ../scss/breakpoints/_768up.scss */
-.actions .dash span:nth-of-type(4):hover .fa-circle {
+.actions .dash a:nth-of-type(4):hover .fa-circle, .actions .dash span:nth-of-type(4):hover .fa-circle {
   color: #29abe2;
 }
 

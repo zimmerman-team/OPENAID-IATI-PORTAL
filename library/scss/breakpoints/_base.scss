@@ -357,6 +357,12 @@ SEARCH BAR
   }
 }
 
+.activity {
+  .search-box {
+    margin-bottom: 15px;
+  }
+}
+
 .filter-panel-header-wrapper {
   .search-box {
     width: 100%;
@@ -389,7 +395,7 @@ FILTER BAR
     }
   }
   .dash {
-    span {
+    a, span {
       &:nth-of-type(2) {
         .fa-circle {
           color:rgba($icon-grn,.5);
@@ -931,6 +937,7 @@ ACTIVITY DETAIL
   .flag-icon {
     font-size: 2.5em;
     border-radius: 4px;
+    margin-top:15px;
   }
   .btn {
     margin-top:10px;
@@ -1150,32 +1157,40 @@ ACTIVITY LIST
 
 ///Table oipa charts
 //oipa-table-chart {
-  .table {
-    tbody {
-      border:0;
-      tr {
-        td {
-          &.colour {
-            padding-right:0;
-            div {
-              background: $blauw;
-              margin-top:3px;
-              height:12px;
-              width: 12px;
-              border-radius: 6px;
-            }
+.table {
+  tbody {
+    border:0;
+    tr {
+      td {
+        &.colour {
+          padding-right:0;
+          div {
+            background: $blauw;
+            margin-top:3px;
+            height:12px;
+            width: 12px;
+            border-radius: 6px;
           }
-          border:0;
-          // span {
-          //   text-decoration: underline;
-          // }
         }
-        &:nth-child(odd) {
-          background:rgba($grijs,.15);
-        }
+        border:0;
+        // span {
+        //   text-decoration: underline;
+        // }
+      }
+      &:nth-child(odd) {
+        background:rgba($grijs,.15);
       }
     }
   }
+}
+
+.finance {
+  thead {
+    border-top:1px solid $grijs;
+    border-bottom: 1px solid $grijs;
+    //background: rgba(255,255,255,.6);
+  }
+}
 //}
 
 /*********************
