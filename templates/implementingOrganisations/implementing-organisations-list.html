@@ -18,8 +18,15 @@
     pagination-id="organisationList">
         <div class="col-md-12">
             <div class="hp-block">
+                <div class="expand">
+                    <span class="fa-stack fa-lg">
+                        <i class="fa fa-circle fa-stack-2x"></i>
+                        <i class="fa fa-share fa-stack-1x fa-share"></i>
+                    </span>
+                </div>
                 <a ui-sref="organisatie({ organisation_id: item.receiver_organisation_id })"></a>
                 <h1>{{ item.name }}</h1>
+                <p><b>Activiteiten:</b> XXX</p>
                 <p><b>Budget:</b> {{item.total_disbursements  | currency :'€':0}}</p>
             </div>
         </div>

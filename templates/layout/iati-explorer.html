@@ -9,10 +9,12 @@
             <div class="row actions">
                 <div class="col-md-6 col-sm-7 filters">
                     <span class="makeblock">filters</span> 
+
                     <span class="fa-stack fa-lg" ng-click="vm.toggleOpenPanel('recipient_countries')" ng-class="{'active': vm.isOpenedHeader('recipient_countries')}">
                       <i class="fa fa-circle fa-stack-2x"></i>
                       <i class="fa fa-map-marker fa-stack-1x fa-inverse"></i>
                     </span>
+
                     <span class="fa-stack fa-lg" ng-click="vm.toggleOpenPanel('recipient_regions')" ng-class="{'active': vm.isOpenedHeader('recipient_regions')}">
                       <i class="fa fa-circle fa-stack-2x"></i>
                       <i class="ic ic-globe fa-stack-1x fa-inverse"></i>
@@ -50,8 +52,6 @@
                     </span>
                 </div>
             </div>
-
-            <hr>
             
             <tool-bar></tool-bar>
 

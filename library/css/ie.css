@@ -274,12 +274,20 @@ come into play. Have fun!
   background-color: rgba(41, 171, 226, 0.4);
 }
 
-/* line 166, ../scss/breakpoints/_768up.scss */
-.legend .check:hover input[type=checkbox] + label:before {
-  opacity: 1;
+/* line 163, ../scss/breakpoints/_768up.scss */
+.hp-block.clickable {
+  transition: all 0.2s;
+}
+/* line 165, ../scss/breakpoints/_768up.scss */
+.hp-block.clickable:hover {
+  background-color: rgba(41, 171, 226, 0.6);
+}
+/* line 169, ../scss/breakpoints/_768up.scss */
+.hp-block.clickable.groen:hover {
+  background-color: rgba(0, 146, 69, 0.6);
 }
 
-/* line 173, ../scss/breakpoints/_768up.scss */
+/* line 175, ../scss/breakpoints/_768up.scss */
 .eq {
   display: -webkit-box;
   display: -webkit-flex;
@@ -287,21 +295,28 @@ come into play. Have fun!
   display: flex;
 }
 
-/* line 180, ../scss/breakpoints/_768up.scss */
+/* line 182, ../scss/breakpoints/_768up.scss */
 .makeblock {
   display: inline;
   margin-top: 0;
 }
 
-/* line 186, ../scss/breakpoints/_768up.scss */
+/* line 188, ../scss/breakpoints/_768up.scss */
 .legend {
-  position: absolute;
-  left: 14px;
-  top: 14px;
+  float: none;
+  width: 100%;
+  text-align: center;
   z-index: 999;
-  background: none;
 }
-/* line 193, ../scss/breakpoints/_768up.scss */
+/* line 196, ../scss/breakpoints/_768up.scss */
+.legend label {
+  margin-bottom: 0;
+}
+/* line 199, ../scss/breakpoints/_768up.scss */
+.legend .check {
+  margin-right: 20px;
+}
+/* line 203, ../scss/breakpoints/_768up.scss */
 .legend input[type=checkbox] + label:before {
   transition: all .2s;
   font-size: 24px;
@@ -312,8 +327,12 @@ come into play. Have fun!
   border-radius: 17px;
   text-indent: 10px;
 }
+/* line 216, ../scss/breakpoints/_768up.scss */
+.legend .check:hover input[type=checkbox] + label:before {
+  opacity: 1;
+}
 
-/* line 206, ../scss/breakpoints/_768up.scss */
+/* line 223, ../scss/breakpoints/_768up.scss */
 .info {
   padding: 0;
   position: absolute;
@@ -326,25 +345,12 @@ come into play. Have fun!
   margin-left: 180px;
   z-index: 9999;
 }
-/* line 217, ../scss/breakpoints/_768up.scss */
+/* line 234, ../scss/breakpoints/_768up.scss */
 .info .flag-icon {
   margin-top: .5em;
 }
 
-/* line 222, ../scss/breakpoints/_768up.scss */
-.geomap-mask {
-  -webkit-clip-path: url(#clipping);
-  -moz-clip-path: url(#clipping);
-  -ms-clip-path: url(#clipping);
-  clip-path: url(#clipping);
-  height: 600px;
-  width: 600px;
-  display: inline-block;
-  overflow: hidden;
-  background-color: rgba(41, 171, 226, 0.85);
-}
-
-/* line 234, ../scss/breakpoints/_768up.scss */
+/* line 251, ../scss/breakpoints/_768up.scss */
 .navbar .btn.btn-default, .navbar .btn-group .btn {
   margin-right: 10px;
 }

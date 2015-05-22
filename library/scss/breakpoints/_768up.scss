@@ -160,12 +160,14 @@ come into play. Have fun!
 	}
 }
 
-.legend {
-	.check:hover {
-		input[type=checkbox] { 
-		    & + label:before {
-		    	opacity: 1;
-		    }
+.hp-block.clickable {
+	transition:all 0.2s;
+	&:hover {
+		background-color: rgba($blauw,.6)
+	}
+	&.groen {
+		&:hover {
+			background-color: rgba($groen,.6)
 		}
 	}
 }
@@ -184,11 +186,19 @@ come into play. Have fun!
 
 //map viz
 .legend {
-  position: absolute;
-  left:14px;
-  top:14px;
+	float: none;
+	width: 100%;
+	text-align: center;
+  //position: absolute;
+  //left:14px;
+  //top:14px;
   z-index: 999;
-  background: none;
+  label {
+  	margin-bottom: 0;
+  }
+  .check {
+  	margin-right: 20px;
+  }
   input[type=checkbox] { 
     & + label:before {
       transition:all .2s;
@@ -201,6 +211,13 @@ come into play. Have fun!
       text-indent: 10px;
     }
   }
+  .check:hover {
+		input[type=checkbox] { 
+		    & + label:before {
+		    	opacity: 1;
+		    }
+		}
+	}
 }
 
 .info {
@@ -219,17 +236,17 @@ come into play. Have fun!
   }
 }
 
-.geomap-mask {
-  -webkit-clip-path: url(#clipping);
-  -moz-clip-path: url(#clipping);
-  -ms-clip-path: url(#clipping);
-  clip-path: url(#clipping);
-  height:600px;
-  width: 600px;
-  display: inline-block;
-  overflow: hidden;
-  background-color: rgba(41,171,226,0.85);
-}
+// .geomap-mask {
+//   -webkit-clip-path: url(#clipping);
+//   -moz-clip-path: url(#clipping);
+//   -ms-clip-path: url(#clipping);
+//   clip-path: url(#clipping);
+//   height:600px;
+//   width: 600px;
+//   display: inline-block;
+//   overflow: hidden;
+//   background-color: rgba(41,171,226,0.85);
+// }
 
 .navbar .btn.btn-default, .navbar .btn-group .btn {
 	margin-right: 10px;

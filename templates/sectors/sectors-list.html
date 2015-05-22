@@ -1,8 +1,3 @@
-<div class="col-md-12" ng-show="vm.activities.length == 0">
-    <div class="svg-loader">
-        <img src="{{templateBaseUrl}}/images/spinning-circles.svg" width="70" alt="">
-    </div>
-</div>
 <div class="col-md-12">
     <div class="sort">
         <div class="row">
@@ -18,8 +13,15 @@
     pagination-id="sectorList">
         <div class="col-md-12">
             <div class="hp-block">
+                <div class="expand" ng-click="vm.dashboard = 'landen'">
+                    <span class="fa-stack fa-lg">
+                        <i class="fa fa-circle fa-stack-2x"></i>
+                        <i class="fa fa-share fa-stack-1x fa-share"></i>
+                    </span>
+                </div>
                 <a ui-sref="sector({ sector_id: item.sector_id })"></a>
                 <h1>{{ item.name }}</h1>
+                <p><b>Activiteiten:</b> XXX</p>
                 <p><b>Budget:</b> {{item.total_disbursements  | currency :'€':0}}</p>
             </div>
         </div>
