@@ -19,6 +19,12 @@
         <div class="col-md-12">
             <div class="hp-block">
                 <a ui-sref="land({ country_id: item.country_id })"></a>
+                <div class="expand">
+                    <span class="fa-stack fa-lg">
+                        <i class="fa fa-circle fa-stack-2x"></i>
+                        <i class="fa fa-share fa-stack-1x fa-share"></i>
+                    </span>
+                </div>
                 <h1>{{ item.name }}</h1>
                 <p><b>Budget:</b> {{item.total_disbursements  | currency :'€':0}}</p>
             </div>
