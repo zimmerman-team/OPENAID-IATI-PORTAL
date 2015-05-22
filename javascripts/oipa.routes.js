@@ -83,7 +83,7 @@
             url:         '/landen/',
             controller:  'CountriesController',
             controllerAs: 'vm',
-            templateUrl: templateBaseUrl + '/templates/countries/countries.html',
+            templateUrl: templateBaseUrl + '/templates/countries/iati-explorer-map.html',
             ncyBreadcrumb: {
                 label: 'Landen'
             }
