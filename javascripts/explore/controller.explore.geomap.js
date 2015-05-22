@@ -80,7 +80,13 @@
           vm.markers[vm.markerData[i].country_id] = {
             lat: parseInt(location[1]),
             lng: parseInt(location[0]),
-            message: '<span class="test123">'+vm.markerData[i].name+'</span>',
+            message: '<span class="flag-icon flag-icon-af"></span>'+
+            '<h4>'+vm.markerData[i].name+'</h4>'+
+            '<p><b>Activiteiten:</b> 341</p>'+
+            '<p><b>Sectoren:</b> 21</p>'+
+            '<p><b>Totaal budget:</b> 0,00</p>'+
+            '<p><b>Type relatie:</b> Hulp relatie</p>'+
+            '<button class="btn btn-default">Ga naar overzicht land</button>',
             icon: vm.openaidMarker,
           }
         }

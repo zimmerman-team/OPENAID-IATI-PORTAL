@@ -1330,6 +1330,38 @@ footer{
     background: none;
     border:0;
   }
+  .leaflet-popup-content-wrapper {
+    width: 280px;
+    height: 280px;
+    border-radius: 140px;
+    text-align: center;
+    padding:20px;
+    background-color: rgba(255,255,255,0.9); 
+  }
+  a.leaflet-popup-close-button {
+    display: block;
+    background: #fff;
+    height:30px;
+    width:30px;
+    border-radius: 15px;
+    font-size: 24px;
+    color:$grijs;
+    line-height: 20px;
+    text-indent:5px;
+    font-weight: 700;
+    box-shadow: 0 3px 14px rgba(0,0,0,0.4);
+  }
+  p {
+    margin:0 0 2px;
+    font-size: 1em;
+  }
+  .flag-icon {
+    font-size: 2.5em;
+    border-radius: 4px;
+  }
+  .btn {
+    margin-top:10px;
+  }
 }
 
 // svg.clip {
