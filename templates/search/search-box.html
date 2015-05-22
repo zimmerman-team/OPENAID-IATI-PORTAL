@@ -1,8 +1,10 @@
 <div class="input-group search-box">
-  <input type="text" class="form-control" placeholder="Zoek op activiteit, land, organisatie of sector niveau ...">
-  <span class="input-group-btn">
-    <button class="btn btn-search" type="button">
-      <span class="glyphicon glyphicon-search"></span>
-    </button>
-  </span>
+    <form ng-submit="vm.save()">
+        <input ng-model="vm.searchString" type="text" class="form-control" placeholder="Zoek op activiteit, land, organisatie of sector niveau ...">
+        <span class="input-group-btn">
+            <button class="btn btn-search" type="button" n>
+                <span class="glyphicon glyphicon-search"></span>
+            </button>
+        </span>
+    </form>
 </div>

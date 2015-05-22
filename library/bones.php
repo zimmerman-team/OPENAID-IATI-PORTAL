@@ -131,7 +131,9 @@ function bones_scripts_and_styles() {
 		wp_register_script( 'directive.navbar', get_stylesheet_directory_uri() . '/javascripts/navbar/directive.navbar.js', array('oipa'), '', true );
 
 		wp_register_script( 'module.search', get_stylesheet_directory_uri() . '/javascripts/search/module.search.js', array('oipa'), '', true );
-		wp_register_script( 'directive.search.searchbox', get_stylesheet_directory_uri() . '/javascripts/search/directive.searchbox.js', array('oipa'), '', true );
+		wp_register_script( 'directive.search', get_stylesheet_directory_uri() . '/javascripts/search/directive.searchbox.js', array('oipa'), '', true );
+		wp_register_script( 'controller.search', get_stylesheet_directory_uri() . '/javascripts/search/controller.search.js', array('oipa'), '', true );
+		wp_register_script( 'service.search', get_stylesheet_directory_uri() . '/javascripts/search/service.search.js', array('oipa'), '', true );
 
 		wp_register_script( 'module.toolbar', get_stylesheet_directory_uri() . '/javascripts/toolbar/module.toolbar.js', array('oipa'), '', true );
 		wp_register_script( 'directive.toolbar', get_stylesheet_directory_uri() . '/javascripts/toolbar/directive.toolbar.js', array('oipa'), '', true );
@@ -297,7 +299,9 @@ function bones_scripts_and_styles() {
 		wp_enqueue_script( 'directive.navbar' );
 
 		wp_enqueue_script( 'module.search' );
-		wp_enqueue_script( 'directive.search.searchbox' );
+		wp_enqueue_script( 'directive.search' );
+		wp_enqueue_script( 'controller.search' );
+		wp_enqueue_script( 'service.search' );
 
 		wp_enqueue_script( 'module.toolbar' );
 		wp_enqueue_script( 'directive.toolbar' );

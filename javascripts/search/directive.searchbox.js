@@ -21,10 +21,10 @@
     * @memberOf ncs.collections.directives.Collection
     */
     var directive = {
+      controller: 'SearchController',
+      controllerAs: 'vm',
       restrict: 'E',
-      scope: {
-        collection: '='
-      },
+      scope: {},
       templateUrl: templateBaseUrl + '/templates/search/search-box.html'
     };
 

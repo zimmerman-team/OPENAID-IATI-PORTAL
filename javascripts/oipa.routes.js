@@ -38,6 +38,26 @@
             }
         })
         .state({
+            name:         'iati-explorer-map',
+            url:          '/iati-explorer/map/',
+            controller:   'ExploreController',
+            controllerAs: 'vm',
+            templateUrl:  templateBaseUrl + '/templates/layout/iati-explorer.html',
+            ncyBreadcrumb: {
+                label: 'IATI Explorer'
+            }
+        })
+        .state({
+            name:         'iati-explorer-list',
+            url:          '/iati-explorer/list/',
+            controller:   'ExploreController',
+            controllerAs: 'vm',
+            templateUrl:  templateBaseUrl + '/templates/layout/iati-explorer.html',
+            ncyBreadcrumb: {
+                label: 'IATI Explorer'
+            }
+        })
+        .state({
             name:        'activiteit',
             url:         '/iati-explorer/:activity_id/',
             controller:  'ActivityController',
