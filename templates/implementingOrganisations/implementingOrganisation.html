@@ -88,15 +88,15 @@
 
     <div class="row">
         <div class="col-md-6">
-            <div class="hp-block groen">
-                <h3>Totaal aantal activiteiten</h3>
-                <span class="number">{{vm.activityCount}}</span>
-                <div class="expand" ng-click="vm.dashboard = 'list'">
+            <div class="hp-block groen clickable" ng-click="vm.dashboard = 'list'">
+                <div class="expand">
                     <span class="fa-stack fa-lg">
                         <i class="fa fa-circle fa-stack-2x"></i>
                         <i class="fa fa-share fa-stack-1x fa-share"></i>
                     </span>
                 </div>
+                <h3>Totaal aantal activiteiten</h3>
+                <span class="number">{{vm.activityCount}}</span>
             </div>
         </div>
         <div class="col-md-6">
@@ -118,27 +118,27 @@
     
     <div class="row">
         <div class="col-md-6">
-            <div class="hp-block blauw">
-                <h3>Aantal landen</h3>
-                <span class="number">{{vm.countryCount}}</span>
-                <div class="expand" ng-click="vm.dashboard = 'landen'">
+            <div class="hp-block blauw clickable" ng-click="vm.dashboard = 'landen'">
+                <div class="expand">
                     <span class="fa-stack fa-lg">
                         <i class="fa fa-circle fa-stack-2x"></i>
                         <i class="fa fa-share fa-stack-1x fa-share"></i>
                     </span>
                 </div>
+                <h3>Aantal landen</h3>
+                <span class="number">{{vm.countryCount}}</span>
             </div>
         </div>
         <div class="col-md-6">
-            <div class="hp-block blauw">
-                <h3>Aantal sectoren</h3>
-                <span class="number">{{vm.sectorCount}}</span>
-                <div class="expand" ng-click="vm.dashboard = 'sectors'">
+            <div class="hp-block blauw clickable" ng-click="vm.dashboard = 'sectors'">
+                <div class="expand">
                     <span class="fa-stack fa-lg">
                         <i class="fa fa-circle fa-stack-2x"></i>
                         <i class="fa fa-share fa-stack-1x fa-share"></i>
                     </span>
                 </div>
+                <h3>Aantal sectoren</h3>
+                <span class="number">{{vm.sectorCount}}</span>
             </div>
         </div>
     </div>

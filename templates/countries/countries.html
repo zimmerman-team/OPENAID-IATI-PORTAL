@@ -1,5 +1,172 @@
 <div id="main-content" class="container">
   <div class="row explore-block-content">
-    <country-list></country-list>
+
+  	<div class="col-md-12">
+
+    <div ncy-breadcrumb></div>
+
+    <search-box></search-box>
+
+    <div class="row actions">
+        <div class="col-md-6 col-sm-7 filters">
+            <span class="makeblock">filters</span> 
+            <span class="fa-stack fa-lg" ng-click="vm.toggleOpenPanel('recipient_countries')" ng-class="{'active': vm.isOpenedHeader('recipient_countries')}">
+              <i class="fa fa-circle fa-stack-2x"></i>
+              <i class="fa fa-map-marker fa-stack-1x fa-inverse"></i>
+            </span>
+            <span class="fa-stack fa-lg" ng-click="vm.toggleOpenPanel('recipient_regions')" ng-class="{'active': vm.isOpenedHeader('recipient_regions')}">
+              <i class="fa fa-circle fa-stack-2x"></i>
+              <i class="ic ic-globe fa-stack-1x fa-inverse"></i>
+            </span>
+            <span class="fa-stack fa-lg" ng-click="vm.toggleOpenPanel('budget')" ng-class="{'active': vm.isOpenedHeader('budget')}">
+              <i class="fa fa-circle fa-stack-2x"></i>
+              <i class="fa fa-pie-chart fa-stack-1x fa-inverse"></i>
+            </span>
+            <span class="fa-stack fa-lg" ng-click="vm.toggleOpenPanel('sectors')" ng-class="{'active': vm.isOpenedHeader('sectors')}">
+              <i class="fa fa-circle fa-stack-2x"></i>
+              <i class="fa fa-suitcase fa-stack-1x fa-inverse"></i>
+            </span>
+            <span class="fa-stack fa-lg" ng-click="vm.toggleOpenPanel('activity_status')" ng-class="{'active': vm.isOpenedHeader('activity_status')}">
+              <i class="fa fa-circle fa-stack-2x"></i>
+              <i class="fa fa-money fa-stack-1x fa-inverse"></i>
+            </span>
+            <span class="fa-stack fa-lg" ng-click="vm.toggleOpenPanel('implementing_organisations')" ng-class="{'active': vm.isOpenedHeader('implementing_organisations')}">
+              <i class="fa fa-circle fa-stack-2x"></i>
+              <i class="fa fa-fire fa-stack-1x fa-inverse"></i>
+            </span>
+        </div>
+        <div class="col-md-6 col-sm-5 dash text-right-not-xs">
+            <span class="makeblock">dashboards</span> 
+            <span class="fa-stack fa-lg" ng-click="vm.setDashboard('charts')">
+              <i class="fa fa-circle fa-stack-2x"></i>
+              <i class="fa fa-line-chart fa-stack-1x fa-inverse"></i>
+            </span>
+        </div>
+    </div>
+    
+    <tool-bar></tool-bar>
+
+</div>
+
+
+<div class="col-md-12" ng-show="vm.activities.length == 0">
+    <div class="svg-loader">
+        <img src="{{templateBaseUrl}}/images/spinning-circles.svg" width="70" alt="">
+    </div>
+</div>
+
+
+<div class="col-md-6">
+    <div class="hp-block groen">
+        <h3>Totaal aantal organisaties</h3>
+        <span class="number">{{vm.activityCount}}</span>
+    </div>
+</div>
+<div class="col-md-6">
+    <div class="hp-block roze">
+        <h3>Totaal budget</h3>
+        <span class="number">{{vm.totalBudget | currency :'€':0}}</span>
+    </div>
+</div>
+
+<div class="col-md-12">
+
+<div class="map-holder">
+
+  <div class="map">
+    <!-- <h3 class="text-left-xs">
+      IATI activiteiten kaart Nederland
+    </h3> -->
+
+    <div class="legend">
+      <!-- <h3>Partnerlanden</h3> -->
+
+      <div class="check" dir-paginate="item in vm.countryRelation | itemsPerPage: 10">
+        <label class="switch" for="id{{item.id}}">
+          <input id="id{{item.id}}" checklist-model="vm.selectedCountryRelation" checklist-value="item" type="checkbox">
+          <i class="faker"></i>
+          <span class="labels">
+            <span class="fa-stack fa-lg">
+              <span class="fa fa-circle fa-stack-2x kleur"></span>
+              <span class="fa fa-map-marker fa-stack-1x fa-inverse"></span>
+            </span>
+            <span>{{item.name}}</span>
+          </span>
+        </label>
+      </div>
+    </div>
+
+    <!-- <div class="info">
+
+      <span class="flag-icon flag-icon-af"></span>
+
+      <h4>Afghanistan</h4>
+
+      <p><b>Activiteiten:</b> 341</p>
+      <p><b>Sectoren:</b> 21</p>
+      <p><b>Totaal budget:</b> 0,00</p>
+      <p><b>Type relatie:</b> Hulp relatie</p>
+      <button class="btn btn-default">Ga naar landen overzicht</button>
+
+    </div> -->
+
+    <div class="geomap-mask">  
+      <leaflet defaults="vm.defaults" center="vm.center" markers="vm.markers" height="600px" width="100%"></leaflet>
+    </div>
+
+    <!-- <svg height="0" width="0" class="clip">
+      <defs>
+        <clipPath id="clipping">
+          <circle stroke="#000000" stroke-miterlimit="10" cx="300" cy="300" r="300" />
+        </clipPath>
+      </defs>
+    </svg> -->
+
+    <h4 class="hidden-xs">
+      Klik op een land voor meer informatie
+    </h4>
+
+  </div>
+
+</div>
+
+</div>
+
+  <div class="col-md-12">
+    <div class="hp-block spec clearfix">
+            <div class="col-md-6">
+                <a class="glyphicon glyphicon-info-sign" ng-mouseover="hoverIn('landen')" ng-mouseleave="hoverOut('landen')">
+                </a>
+                <div 
+                class="glyphicon-popup" 
+                ng-show="vm.customFields['landen'].hoverShow" 
+                ng-bind-html="vm.customFields['landen']['text']">
+                </div>
+                <h2 class="title">Top 5 landen</h2>
+                <oipa-table-chart 
+                aggregation-filters='&order_by=-total_disbursements&limit=5' 
+                group-by='recipient-country' 
+                group-by-id='country_id' 
+                aggregation-key='disbursement' 
+                aggregation-extra-select='iati-identifier'
+                aggregation-extra-select-in='countries__in'
+                ></oipa-table-chart>
+              </div>
+            <div class="col-md-6">
+                <oipa-line-chart 
+                    aggregation-filters='"&countries__in=ID,BD,AF,MZ,ET"' 
+                    group-by='recipient-country,transaction_date_year' 
+                    group-by-id='country_id' 
+                    aggregation-key='disbursement' 
+                    chart-x-axis='Tijd' 
+                    chart-y-axis='Totale uitgaven'
+                    chart-type='lineChart'
+                    axis-label-distance='28'></oipa-line-chart>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <!-- <country-list></country-list> -->
   </div>
 </div>

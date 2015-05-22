@@ -39,82 +39,73 @@
 
     <div class="row">
         <div class="col-md-12">
-            <div class="hp-block">
-                <div class="row title">
-                    <div class="col-md-12">
-                        <a class="glyphicon glyphicon-info-sign" ng-mouseover="hoverIn('landen')" ng-mouseleave="hoverOut('landen')">
-                        </a>
-                        <div 
-                        class="glyphicon-popup" 
-                        ng-show="vm.customFields['landen'].hoverShow" 
-                        ng-bind-html="vm.customFields['landen']['text']">
-                        </div>
-                        <h2 class="with-glyph">Top 5 landen</h2>
+            <div class="hp-block spec clearfix">
+                <div class="col-md-6">
+                    <a class="glyphicon glyphicon-info-sign" ng-mouseover="hoverIn('landen')" ng-mouseleave="hoverOut('landen')">
+                    </a>
+                    <div 
+                    class="glyphicon-popup" 
+                    ng-show="vm.customFields['landen'].hoverShow" 
+                    ng-bind-html="vm.customFields['landen']['text']">
                     </div>
+                    <h2 class="title">Top 5 landen</h2>
+
+                    <oipa-table-chart 
+                    aggregation-filters='&amp;order_by=-total_disbursements&amp;limit=5' 
+                    group-by='recipient-country' 
+                    group-by-id='country_id' 
+                    aggregation-key='disbursement' 
+                    aggregation-extra-select='iati-identifier'
+                    aggregation-extra-select-in='countries__in'
+                    ></oipa-table-chart>
+
                 </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <oipa-table-chart 
-                        aggregation-filters='&amp;order_by=-total_disbursements&amp;limit=5' 
-                        group-by='recipient-country' 
+                   
+                <div class="col-md-6">
+                    <oipa-line-chart 
+                        aggregation-filters='"&countries__in=ID,BD,AF,MZ,ET"' 
+                        group-by='recipient-country,transaction_date_year' 
                         group-by-id='country_id' 
                         aggregation-key='disbursement' 
-                        aggregation-extra-select='iati-identifier'
-                        aggregation-extra-select-in='countries__in'
-                        ></oipa-table-chart>
-                    </div>
-                    <div class="col-md-6">
-                        <oipa-line-chart 
-                            aggregation-filters='"&countries__in=ID,BD,AF,MZ,ET"' 
-                            group-by='recipient-country,transaction_date_year' 
-                            group-by-id='country_id' 
-                            aggregation-key='disbursement' 
-                            chart-x-axis='Tijd' 
-                            chart-y-axis='Totale uitgaven'
-                            chart-type='lineChart'
-                            axis-label-distance='28'></oipa-line-chart>
-                    </div>
+                        chart-x-axis='Tijd' 
+                        chart-y-axis='Totale uitgaven'
+                        chart-type='lineChart'
+                        axis-label-distance='28'></oipa-line-chart>
                 </div>
             </div>
         </div>
     </div>
     <div class="row">
         <div class="col-md-12">
-            <div class="hp-block">
-                <div class="row title">
-                    <div class="col-md-12">
-                        <a class="glyphicon glyphicon-info-sign" ng-mouseover="hoverIn('sectoren')" ng-mouseleave="hoverOut('sectoren')">    
-                        </a>
-                        <div 
-                        class="glyphicon-popup" 
-                        ng-show="vm.customFields['sectoren'].hoverShow" 
-                        ng-bind-html="vm.customFields['sectoren']['text']">
-                        </div>
-                        <h2>Top 5 sectoren</h2>
+            <div class="hp-block spec clearfix">
+                <div class="col-md-6">
+                    <a class="glyphicon glyphicon-info-sign" ng-mouseover="hoverIn('sectoren')" ng-mouseleave="hoverOut('sectoren')">    
+                    </a>
+                    <div 
+                    class="glyphicon-popup" 
+                    ng-show="vm.customFields['sectoren'].hoverShow" 
+                    ng-bind-html="vm.customFields['sectoren']['text']">
                     </div>
+                    <h2 class="title">Top 5 sectoren</h2>
+                    <oipa-table-chart 
+                    aggregation-filters='&order_by=-total_disbursements&limit=5' 
+                    group-by='sector' 
+                    group-by-id='sector_id' 
+                    aggregation-key='disbursement' 
+                    aggregation-extra-select='iati-identifier'
+                    aggregation-extra-select-in='sectors__in'
+                    ></oipa-table-chart>
                 </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <oipa-table-chart 
-                        aggregation-filters='&order_by=-total_disbursements&limit=5' 
-                        group-by='sector' 
+                <div class="col-md-6">
+                    <oipa-line-chart 
+                        aggregation-filters='"&sectors__in=99810,43010,15150,11220,72010"' 
+                        group-by='sector,transaction_date_year' 
                         group-by-id='sector_id' 
                         aggregation-key='disbursement' 
-                        aggregation-extra-select='iati-identifier'
-                        aggregation-extra-select-in='sectors__in'
-                        ></oipa-table-chart>
-                    </div>
-                    <div class="col-md-6">
-                        <oipa-line-chart 
-                            aggregation-filters='"&sectors__in=99810,43010,15150,11220,72010"' 
-                            group-by='sector,transaction_date_year' 
-                            group-by-id='sector_id' 
-                            aggregation-key='disbursement' 
-                            chart-x-axis='Tijd' 
-                            chart-y-axis='Totale uitgaven'
-                            chart-type='stackedAreaChart'
-                            axis-label-distance='50'></oipa-line-chart>
-                    </div>
+                        chart-x-axis='Tijd' 
+                        chart-y-axis='Totale uitgaven'
+                        chart-type='stackedAreaChart'
+                        axis-label-distance='50'></oipa-line-chart>
                 </div>
             </div>
         </div>
@@ -122,41 +113,35 @@
 
     <div class="row">
         <div class="col-md-12">
-            <div class="hp-block">
-                <div class="row title">
-                    <div class="col-md-12">
-                        <a class="glyphicon glyphicon-info-sign" ng-mouseover="hoverIn('organisaties')" ng-mouseleave="hoverOut('organisaties')">    
-                        </a>
-                        <div 
-                        class="glyphicon-popup" 
-                        ng-show="vm.customFields['organisaties'].hoverShow" 
-                        ng-bind-html="vm.customFields['organisaties']['text']">
-                        </div>
-                        <h2>Top 5 organisaties</h2>
+            <div class="hp-block spec clearfix">
+                <div class="col-md-6">
+                    <a class="glyphicon glyphicon-info-sign" ng-mouseover="hoverIn('organisaties')" ng-mouseleave="hoverOut('organisaties')">    
+                    </a>
+                    <div 
+                    class="glyphicon-popup" 
+                    ng-show="vm.customFields['organisaties'].hoverShow" 
+                    ng-bind-html="vm.customFields['organisaties']['text']">
                     </div>
+                    <h2 class="title">Top 5 organisaties</h2>
+                    <oipa-table-chart 
+                    aggregation-filters='&order_by=-total_disbursements&limit=5' 
+                    group-by='transaction-receiver-org' 
+                    group-by-id='receiver_organisation_id' 
+                    aggregation-key='disbursement' 
+                    aggregation-extra-select='iati-identifier' 
+                    aggregation-extra-select-in='participating_organisation__in'
+                    ></oipa-table-chart>
                 </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <oipa-table-chart 
-                        aggregation-filters='&order_by=-total_disbursements&limit=5' 
+                <div class="col-md-6">
+                    <oipa-line-chart 
+                        aggregation-filters='"&order_by=-total_disbursements&limit=5"' 
                         group-by='transaction-receiver-org' 
                         group-by-id='receiver_organisation_id' 
                         aggregation-key='disbursement' 
-                        aggregation-extra-select='iati-identifier' 
-                        aggregation-extra-select-in='participating_organisation__in'
-                        ></oipa-table-chart>
-                    </div>
-                    <div class="col-md-6">
-                        <oipa-line-chart 
-                            aggregation-filters='"&order_by=-total_disbursements&limit=5"' 
-                            group-by='transaction-receiver-org' 
-                            group-by-id='receiver_organisation_id' 
-                            aggregation-key='disbursement' 
-                            chart-x-axis='' 
-                            chart-y-axis='Totale uitgaven'
-                            chart-type='multiBarHorizontalChart'
-                            axis-label-distance='50'></oipa-line-chart>
-                    </div>
+                        chart-x-axis='' 
+                        chart-y-axis='Totale uitgaven'
+                        chart-type='multiBarHorizontalChart'
+                        axis-label-distance='50'></oipa-line-chart>
                 </div>
             </div>
         </div>

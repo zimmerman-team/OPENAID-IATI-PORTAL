@@ -196,9 +196,6 @@ come into play. Have fun!
   label {
   	margin-bottom: 0;
   }
-  .check {
-  	margin-right: 20px;
-  }
   input[type=checkbox] { 
     & + label:before {
       transition:all .2s;

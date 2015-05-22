@@ -1,13 +1,11 @@
-<div class="filter-panel">
+<div class="filter-panel budget">
 	<div class="checkbox">
 		<label class="switch">
 			<input type="checkbox" ng-model="vm.on"><i></i>
-			<span>{{ item.name }}</span>
+			<span>Selecteer budget</span>
 		</label>
 	</div>
-	<h4 class="filter-panel-header">
-    	Selecteer budget
-	</h4>
+
 	<div class="slide" ng-class="{ 'active' : vm.on }">	
 		<slider slider-id="time-slider"
 	        ng-model="vm.budgetValue"

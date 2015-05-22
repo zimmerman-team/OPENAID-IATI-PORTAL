@@ -495,14 +495,15 @@ filter-panel-budget{
       // }
 
     }
-    thead {
-      font-size: 1.4em;
-    }
-    tr {
-      td {
-        line-height: 1em;
-      }
-    }
+  }
+}
+
+thead {
+  font-size: 1.4em;
+}
+tr {
+  td {
+    line-height: 1em;
   }
 }
 
@@ -1207,8 +1208,8 @@ footer{
 .legend {
   text-align: left;
   margin-bottom: 15px;
-  width: 48%;
-  float: left;
+  //width: 48%;
+  //float: left;
   background-color: rgba(255,255,255,0.3); 
   padding:10px;
   .check {
@@ -1224,6 +1225,9 @@ footer{
   }
   h3 {
     font-size: 1.2em;
+  }
+  .check {
+    margin-right: 20px;
   }
   /*** custom checkboxes ***/
   // input[type=checkbox] { 

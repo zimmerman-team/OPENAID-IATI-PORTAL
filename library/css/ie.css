@@ -312,11 +312,7 @@ come into play. Have fun!
 .legend label {
   margin-bottom: 0;
 }
-/* line 199, ../scss/breakpoints/_768up.scss */
-.legend .check {
-  margin-right: 20px;
-}
-/* line 203, ../scss/breakpoints/_768up.scss */
+/* line 200, ../scss/breakpoints/_768up.scss */
 .legend input[type=checkbox] + label:before {
   transition: all .2s;
   font-size: 24px;
@@ -327,12 +323,12 @@ come into play. Have fun!
   border-radius: 17px;
   text-indent: 10px;
 }
-/* line 216, ../scss/breakpoints/_768up.scss */
+/* line 213, ../scss/breakpoints/_768up.scss */
 .legend .check:hover input[type=checkbox] + label:before {
   opacity: 1;
 }
 
-/* line 223, ../scss/breakpoints/_768up.scss */
+/* line 220, ../scss/breakpoints/_768up.scss */
 .info {
   padding: 0;
   position: absolute;
@@ -345,12 +341,12 @@ come into play. Have fun!
   margin-left: 180px;
   z-index: 9999;
 }
-/* line 234, ../scss/breakpoints/_768up.scss */
+/* line 231, ../scss/breakpoints/_768up.scss */
 .info .flag-icon {
   margin-top: .5em;
 }
 
-/* line 251, ../scss/breakpoints/_768up.scss */
+/* line 248, ../scss/breakpoints/_768up.scss */
 .navbar .btn.btn-default, .navbar .btn-group .btn {
   margin-right: 10px;
 }

@@ -1,5 +1,108 @@
 <div id="main-content" class="container">
   <div class="row explore-block-content">
+
+  		<div class="col-md-12">
+
+    <div ncy-breadcrumb></div>
+
+    <search-box></search-box>
+
+    <div class="row actions">
+        <div class="col-md-6 col-sm-7 filters">
+            <span class="makeblock">filters</span> 
+            <span class="fa-stack fa-lg" ng-click="vm.toggleOpenPanel('recipient_countries')" ng-class="{'active': vm.isOpenedHeader('recipient_countries')}">
+              <i class="fa fa-circle fa-stack-2x"></i>
+              <i class="fa fa-map-marker fa-stack-1x fa-inverse"></i>
+            </span>
+            <span class="fa-stack fa-lg" ng-click="vm.toggleOpenPanel('recipient_regions')" ng-class="{'active': vm.isOpenedHeader('recipient_regions')}">
+              <i class="fa fa-circle fa-stack-2x"></i>
+              <i class="ic ic-globe fa-stack-1x fa-inverse"></i>
+            </span>
+            <span class="fa-stack fa-lg" ng-click="vm.toggleOpenPanel('budget')" ng-class="{'active': vm.isOpenedHeader('budget')}">
+              <i class="fa fa-circle fa-stack-2x"></i>
+              <i class="fa fa-pie-chart fa-stack-1x fa-inverse"></i>
+            </span>
+            <span class="fa-stack fa-lg" ng-click="vm.toggleOpenPanel('sectors')" ng-class="{'active': vm.isOpenedHeader('sectors')}">
+              <i class="fa fa-circle fa-stack-2x"></i>
+              <i class="fa fa-suitcase fa-stack-1x fa-inverse"></i>
+            </span>
+            <span class="fa-stack fa-lg" ng-click="vm.toggleOpenPanel('activity_status')" ng-class="{'active': vm.isOpenedHeader('activity_status')}">
+              <i class="fa fa-circle fa-stack-2x"></i>
+              <i class="fa fa-money fa-stack-1x fa-inverse"></i>
+            </span>
+            <span class="fa-stack fa-lg" ng-click="vm.toggleOpenPanel('implementing_organisations')" ng-class="{'active': vm.isOpenedHeader('implementing_organisations')}">
+              <i class="fa fa-circle fa-stack-2x"></i>
+              <i class="fa fa-fire fa-stack-1x fa-inverse"></i>
+            </span>
+        </div>
+        <div class="col-md-6 col-sm-5 dash text-right-not-xs">
+            <span class="makeblock">dashboards</span> 
+            <span class="fa-stack fa-lg" ng-click="vm.setDashboard('charts')">
+              <i class="fa fa-circle fa-stack-2x"></i>
+              <i class="fa fa-line-chart fa-stack-1x fa-inverse"></i>
+            </span>
+        </div>
+    </div>
+    
+    <tool-bar></tool-bar>
+
+</div>
+
+
+<div class="col-md-12" ng-show="vm.activities.length == 0">
+    <div class="svg-loader">
+        <img src="{{templateBaseUrl}}/images/spinning-circles.svg" width="70" alt="">
+    </div>
+</div>
+
+
+<div class="col-md-6">
+    <div class="hp-block groen">
+        <h3>Totaal aantal organisaties</h3>
+        <span class="number">{{vm.activityCount}}</span>
+    </div>
+</div>
+<div class="col-md-6">
+    <div class="hp-block roze">
+        <h3>Totaal budget</h3>
+        <span class="number">{{vm.totalBudget | currency :'€':0}}</span>
+    </div>
+</div>
+
+<div class="col-md-12">
+    <div class="hp-block clearfix">
+            <div class="col-md-6">
+                <a class="glyphicon glyphicon-info-sign" ng-mouseover="hoverIn('organisaties')" ng-mouseleave="hoverOut('organisaties')">    
+                </a>
+                <div 
+                class="glyphicon-popup" 
+                ng-show="vm.customFields['organisaties'].hoverShow" 
+                ng-bind-html="vm.customFields['organisaties']['text']">
+                </div>
+                <h2 class="title">Top 5 uitgave organisaties</h2>
+                <oipa-table-chart 
+                aggregation-filters='&order_by=-total_disbursements&limit=5' 
+                group-by='transaction-receiver-org' 
+                group-by-id='receiver_organisation_id' 
+                aggregation-key='disbursement' 
+                aggregation-extra-select='iati-identifier' 
+                aggregation-extra-select-in='participating_organisation__in'
+                ></oipa-table-chart>
+            </div>
+            <div class="col-md-6">
+                <oipa-line-chart 
+                    aggregation-filters='"&order_by=-total_disbursements&limit=5"' 
+                    group-by='transaction-receiver-org' 
+                    group-by-id='receiver_organisation_id' 
+                    aggregation-key='disbursement' 
+                    chart-x-axis='' 
+                    chart-y-axis='Totale uitgaven'
+                    chart-type='multiBarHorizontalChart'
+                    axis-label-distance='50'></oipa-line-chart>
+            </div>
+        </div>
+    </div>
+
         <implementing-organisations-list></implementing-organisations-list>
       </div>
 </div>
