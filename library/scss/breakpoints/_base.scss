@@ -402,24 +402,6 @@ h4 {
   position: relative;
 }
 
-filter-panel-budget{
-
-  .slide{
-    -webkit-filter: grayscale(100%); 
-    filter: grayscale(100%);
-  }
-
-  .slide.active{
-    -webkit-filter: none; 
-    filter: none;
-  }
-
-  .checkbox, h4{
-    display: inline-block;
-  }
-
-}
-
 .filter-panel {
   z-index: 99999;
   background-color: #fff;
@@ -1013,14 +995,42 @@ SLIDER TOOLTIP
   background: #f1f1f1;
   margin-bottom: 14px;
   .slider-selection {
-    background: $gifgroen;
+    background: lighten($grijs,40%);
+  }
+  &.active {
+    .slider-selection {
+      background: $gifgroen;
+    }
+    .slider-handle {
+      background: $icon-grn;
+    }
+    .tooltip {
+      .tooltip-inner {
+        background: $icon-grn;
+      }
+      &.top {
+        .tooltip-arrow {
+          border-top-color: $icon-grn;
+        }
+      }
+      &.bottom {
+        .tooltip-arrow {
+          border-bottom-color: $icon-grn;
+        }
+      }
+    }
+    .slider-track {
+      .slider-handle {
+        background: $grijs;
+      }
+    }
   }
   .slider-track {
     background: #fff;
     border:1px solid #ccc;
     border-radius: 5px;
     .slider-handle {
-      background: $icon-grn;
+      background: lighten($grijs,40%);
       border:1px solid #fff;
       width: 35px;
       height: 35px;
@@ -1037,18 +1047,18 @@ SLIDER TOOLTIP
     opacity: 1;
     font-size: 1.2em;
     .tooltip-inner {
-      background: $icon-grn;
+      background: lighten($grijs,40%);
     }
     &.top {
       top:-42px !important;
       .tooltip-arrow {
-        border-top-color: $icon-grn;
+        border-top-color: lighten($grijs,40%);
       }
     }
     &.bottom {
       top:26px !important;
       .tooltip-arrow {
-        border-bottom-color: $icon-grn;
+        border-bottom-color: lighten($grijs,40%);
       }
     }
   }
