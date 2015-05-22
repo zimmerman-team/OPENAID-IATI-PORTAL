@@ -4182,6 +4182,12 @@ footer h1 {
   border: 0;
 }
 
+/* line 1152, ../scss/breakpoints/_base.scss */
+svg.clip {
+  height: 0;
+  width: 0;
+}
+
 /*********************
 LARGER MOBILE DEVICES
 This is for devices like the Galaxy Note or something that's
@@ -4401,10 +4407,10 @@ you can add resource intensive styles.
 
   /* line 222, ../scss/breakpoints/_768up.scss */
   .geomap-mask {
-    -webkit-clip-path: circle(300px at center);
-    -moz-clip-path: circle(300px at center);
-    -ms-clip-path: circle(300px at center);
-    clip-path: circle(300px at center);
+    -webkit-clip-path: url(#clipping);
+    -moz-clip-path: url(#clipping);
+    -ms-clip-path: url(#clipping);
+    clip-path: url(#clipping);
     height: 600px;
     width: 600px;
     display: inline-block;
