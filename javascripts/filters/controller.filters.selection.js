@@ -23,7 +23,6 @@
     vm.selectedActivityStatuses = ActivityStatus.selectedActivityStatuses;
     vm.selectedBudget = Budget.budget;
     vm.filterSelection = FilterSelection;
-    vm.searchString = Search.searchString;
 
     /**
     * @name activate
@@ -64,6 +63,10 @@
 
       if(vm.selectedBudget.on){
         selectList.push('&total_budget__gt='+vm.selectedBudget.value[0]+'&total_budget__lt='+vm.selectedBudget.value[1]);
+      }
+
+      if(Search.searchString != ''){
+        selectList.push('&query='+Search.searchString);
       }
 
       FilterSelection.selectionString = selectList.join('');

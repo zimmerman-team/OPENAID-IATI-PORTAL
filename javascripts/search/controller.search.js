@@ -17,7 +17,7 @@
   function SearchController($scope, Search, FilterSelection, templateBaseUrl) {
     var vm = this;
     vm.templateBaseUrl = templateBaseUrl;
-    vm.searchString = Search.searchString;
+    vm.searchString = '';
     activate();
 
     /**
@@ -26,11 +26,12 @@
     * @memberOf oipa.countries.controllers.CountriesController
     */
     function activate() {
-
+      $scope.$watch("vm.searchString", function (searchString) {
+        Search.searchString = searchString;
+      }, true);
     }
 
     vm.save = function(){
-      console.log('save called');
       FilterSelection.toSave = true;
     }
 
