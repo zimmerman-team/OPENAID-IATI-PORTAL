@@ -81,7 +81,7 @@
         .state({
             name:        'landen',
             url:         '/landen/',
-            controller:  'CountriesController',
+            controller:  'ExploreController',
             controllerAs: 'vm',
             templateUrl: templateBaseUrl + '/templates/layout/iati-explorer-map.html',
             ncyBreadcrumb: {
