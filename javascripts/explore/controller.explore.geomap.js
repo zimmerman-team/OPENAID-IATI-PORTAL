@@ -23,6 +23,7 @@
       {'id':3, 'name': 'Exit relatie'}, 
       {'id':4, 'name': 'Handelsrelatie'}, 
       {'id':5, 'name': 'Overige'}];
+
     vm.selectedCountryRelation = [];
     vm.markerData = [];
     vm.defaults = {
@@ -79,7 +80,7 @@
           vm.markers[vm.markerData[i].country_id] = {
             lat: parseInt(location[1]),
             lng: parseInt(location[0]),
-            message: vm.markerData[i].name,
+            message: '<span class="test123">'+vm.markerData[i].name+'</span>',
             icon: vm.openaidMarker,
           }
         }

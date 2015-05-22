@@ -29,6 +29,7 @@
     vm.axisLabelDistance = $scope.axisLabelDistance;
     vm.mapping = $scope.mapping;
     vm.colorRange = $scope.colorRange;
+    vm.leftMargin = $scope.leftMargin;
 
     vm.chartData = [];
     vm.chartOptions = {
@@ -36,10 +37,10 @@
         type: vm.chartType,
         height: 300,
         margin : {
-            top: 20,
+            top: 40,
             right: 20,
             bottom: 60,
-            left: 140
+            left: 100
         },
         x: function(d){ return d[0]; },
         y: function(d){ return d[1]; },
@@ -84,6 +85,10 @@
     }
 
     function activate() {
+
+      if(vm.leftMargin !== undefined){
+        vm.chartOptions.chart.margin.left = parseInt(vm.leftMargin);
+      }
       
       $scope.$watch('aggregationFilters', function (aggregationFilters) {
         vm.aggregationFilters = aggregationFilters;
