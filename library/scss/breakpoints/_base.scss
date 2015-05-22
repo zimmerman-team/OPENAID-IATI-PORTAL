@@ -163,27 +163,6 @@ hr{
     color: #aaa;
     cursor: pointer;
   }
-
-  .glyphicon-popup{
-    position: absolute;
-    left: 34px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #fff;
-    background-color: rgba(64,64,64,0.95);
-    -webkit-box-shadow: 3px 3px 6px 0px rgba(0, 0, 0, 0.35);
-    -moz-box-shadow:    3px 3px 6px 0px rgba(0, 0, 0, 0.35);
-    box-shadow:         3px 3px 6px 0px rgba(0, 0, 0, 0.35);
-    min-width: 400px;
-    max-width: 600px;
-    border-radius: 8px;
-    padding: 12px 16px 20px;
-    z-index: 99;
-    h3{
-      margin-top: 0;
-      margin-bottom: 6px;
-    }
-  }
   .expand {
     font-size: 1.5em;
     float:right;
@@ -225,6 +204,38 @@ hr{
   30% { left: 80%; }
   100% { left: 0; }
 }*/
+
+.glyphicon-popup{
+    position: absolute;
+    left: 34px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #fff;
+    background-color: rgba(64,64,64,0.95);
+    -webkit-box-shadow: 3px 3px 6px 0px rgba(0, 0, 0, 0.35);
+    -moz-box-shadow:    3px 3px 6px 0px rgba(0, 0, 0, 0.35);
+    box-shadow:         3px 3px 6px 0px rgba(0, 0, 0, 0.35);
+    min-width: 400px;
+    max-width: 600px;
+    border-radius: 8px;
+    padding: 12px 16px 20px;
+    z-index: 99;
+    h3{
+      margin-top: 0;
+      margin-bottom: 6px;
+    }
+  }
+
+.actions {
+  .glyphicon-popup {
+    white-space: nowrap;
+    top:0;
+    min-width: 0;
+    transform: translateY(-100%);
+    left:-50%;
+    padding:4px 10px;
+  }
+}
 
 /*********************
 NAVBAR
@@ -313,21 +324,42 @@ SEARCH BAR
 
 .search-box {
   margin-bottom:5px;
+  .search-wrap {
+    border:1px solid #ccc;
+    height: 34px;
+    width: 100%;
+    border-radius: 4px;
+    background: #fff;
+    position: relative;
+  }
+  input {
+    border:0;
+    background: none;
+    width: 100%;
+  }
+  .input-group-btn {
+    position: absolute;
+    right:0;
+    top:0;
+    width:34px;
+  }
   .btn{
     padding: 7px 9px 0px;
     line-height: 24px;
-    background: #fff;
-    border:1px solid #ccc;
-    border-left: 0;
+    border: 0;
+    width: auto;
+    background: none;
   }
   .glyphicon-search{
     font-size: 1.3em;
     color: #ccc;
   }
-  input {
-    border-right: 0;
-  }
+}
 
+.filter-panel-header-wrapper {
+  .search-box {
+    width: 100%;
+  }
 }
 
 /*********************
@@ -1133,9 +1165,9 @@ ACTIVITY LIST
             }
           }
           border:0;
-          span {
-            text-decoration: underline;
-          }
+          // span {
+          //   text-decoration: underline;
+          // }
         }
         &:nth-child(odd) {
           background:rgba($grijs,.15);

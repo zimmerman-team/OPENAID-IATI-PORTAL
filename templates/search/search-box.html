@@ -1,10 +1,12 @@
-<div class="input-group search-box">
-    <form ng-submit="vm.save()">
-        <input ng-model="vm.searchString" type="text" class="form-control" placeholder="Zoek op activiteit, land, organisatie of sector niveau ...">
-        <span class="input-group-btn">
-            <button class="btn btn-search" type="button" ng-click="vm.save()">
-                <span class="glyphicon glyphicon-search"></span>
-            </button>
-        </span>
+<div class="search-box row">
+    <form ng-submit="vm.save()" class="col-md-12">
+    	<div class="search-wrap">
+	        <input ng-model="vm.searchString" type="text" class="form-control" placeholder="Zoek op activiteit, land, organisatie of sector niveau ...">
+	        <span class="input-group-btn">
+	            <button class="btn btn-search" type="button" ng-click="vm.save()">
+	                <span class="glyphicon glyphicon-search"></span>
+	            </button>
+	        </span>
+	    </div>
     </form>
 </div>
