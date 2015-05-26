@@ -7,42 +7,7 @@
 
     <search-box></search-box>
 
-    <div class="row actions">
-        <div class="col-md-6 col-sm-7 filters">
-            <span class="makeblock">filters</span> 
-            <span class="fa-stack fa-lg" ng-click="vm.toggleOpenPanel('recipient_countries')" ng-class="{'active': vm.isOpenedHeader('recipient_countries')}">
-              <i class="fa fa-circle fa-stack-2x"></i>
-              <i class="fa fa-map-marker fa-stack-1x fa-inverse"></i>
-            </span>
-            <span class="fa-stack fa-lg" ng-click="vm.toggleOpenPanel('recipient_regions')" ng-class="{'active': vm.isOpenedHeader('recipient_regions')}">
-              <i class="fa fa-circle fa-stack-2x"></i>
-              <i class="ic ic-globe fa-stack-1x fa-inverse"></i>
-            </span>
-            <span class="fa-stack fa-lg" ng-click="vm.toggleOpenPanel('budget')" ng-class="{'active': vm.isOpenedHeader('budget')}">
-              <i class="fa fa-circle fa-stack-2x"></i>
-              <i class="fa fa-pie-chart fa-stack-1x fa-inverse"></i>
-            </span>
-            <span class="fa-stack fa-lg" ng-click="vm.toggleOpenPanel('sectors')" ng-class="{'active': vm.isOpenedHeader('sectors')}">
-              <i class="fa fa-circle fa-stack-2x"></i>
-              <i class="fa fa-suitcase fa-stack-1x fa-inverse"></i>
-            </span>
-            <span class="fa-stack fa-lg" ng-click="vm.toggleOpenPanel('activity_status')" ng-class="{'active': vm.isOpenedHeader('activity_status')}">
-              <i class="fa fa-circle fa-stack-2x"></i>
-              <i class="fa fa-money fa-stack-1x fa-inverse"></i>
-            </span>
-            <span class="fa-stack fa-lg" ng-click="vm.toggleOpenPanel('implementing_organisations')" ng-class="{'active': vm.isOpenedHeader('implementing_organisations')}">
-              <i class="fa fa-circle fa-stack-2x"></i>
-              <i class="fa fa-fire fa-stack-1x fa-inverse"></i>
-            </span>
-        </div>
-        <div class="col-md-6 col-sm-5 dash text-right-not-xs">
-            <span class="makeblock">dashboards</span> 
-            <span class="fa-stack fa-lg" ng-click="vm.setDashboard('charts')">
-              <i class="fa fa-circle fa-stack-2x"></i>
-              <i class="fa fa-line-chart fa-stack-1x fa-inverse"></i>
-            </span>
-        </div>
-    </div>
+    <filter-bar></filter-bar>
     
     <tool-bar></tool-bar>
 

@@ -1,0 +1,86 @@
+<div class="col-md-6">
+    <div class="hp-block explore">
+        <div class="explore-block-header">Totaal aantal activiteiten</div>
+        <div class="explore-block-content">
+            <oipa-line-chart 
+                aggregation-filters='vm.selectionString' 
+                group-by='start_actual' 
+                group-by-id='start_actual_year' 
+                group-by-name='start_actual_year' 
+                aggregation-key='iati-identifier' 
+                aggregation-key-id='activity_count' 
+                chart-x-axis='' 
+                chart-y-axis=''
+                chart-type='discreteBarChart'
+                axis-label-distance='0'
+                left-margin='40'></oipa-line-chart>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-6">
+    <div class="hp-block explore">
+        <div class="explore-block-header">Totaal budget (in miljoenen euro's)</div>
+        <div class="explore-block-content">
+            <oipa-line-chart 
+                aggregation-filters='vm.selectionString' 
+                group-by='transaction_date_year' 
+                group-by-id='transaction_date_year' 
+                group-by-name='transaction_date_year' 
+                aggregation-key='disbursement' 
+                aggregation-key-id='total_disbursements' 
+                chart-x-axis='' 
+                chart-y-axis=''
+                y-axis-euro-format='true'
+                chart-type='discreteBarChart'
+                axis-label-distance='20'
+                left-margin='60'></oipa-line-chart>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-6">
+    <div class="hp-block explore">
+        <div class="explore-block-header">Uitgaven per landenprofiel (in miljoenen euro's)</div>
+        <div class="explore-block-content">
+            <oipa-line-chart 
+                aggregation-filters='vm.selectionString' 
+                group-by='recipient-country' 
+                group-by-id='country_id' 
+                group-by-name='name' 
+                aggregation-key='disbursement' 
+                aggregation-key-id='total_disbursements' 
+                chart-x-axis='' 
+                chart-y-axis=''
+                y-axis-euro-format='true'
+                chart-type='discreteBarChart'
+                mapping='partnerlanden'
+                axis-label-distance='46'
+                color-range='true'
+                left-margin='56'></oipa-line-chart>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-6">
+    <div class="hp-block explore">
+        <div class="explore-block-header">Aangegane verplichting per landenprofiel (in miljoenen euro's)</div>
+        <div class="explore-block-content">
+            <oipa-line-chart 
+                aggregation-filters='vm.selectionString' 
+                group-by='recipient-country' 
+                group-by-id='country_id' 
+                group-by-name='name' 
+                aggregation-key='commitment' 
+                aggregation-key-id='total_commitments' 
+                chart-x-axis='' 
+                chart-y-axis=''
+                y-axis-euro-format='true'
+                chart-type='discreteBarChart'
+                mapping='partnerlanden' 
+                axis-label-distance='46' 
+                color-range='true'
+                left-margin='56'></oipa-line-chart>
+        </div>
+    </div>
+</div>

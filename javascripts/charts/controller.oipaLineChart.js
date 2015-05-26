@@ -30,6 +30,7 @@
     vm.mapping = $scope.mapping;
     vm.colorRange = $scope.colorRange;
     vm.leftMargin = $scope.leftMargin;
+    vm.yAxisEuroFormat = $scope.yAxisEuroFormat;
 
     vm.chartData = [];
     vm.chartOptions = {
@@ -62,6 +63,7 @@
             tickFormat: function(d){
                 return d3.format(",.0f")(d);
             },
+            showMaxMin: false,
             axisLabelDistance: vm.axisLabelDistance
         }
       }
@@ -88,6 +90,12 @@
 
       if(vm.leftMargin !== undefined){
         vm.chartOptions.chart.margin.left = parseInt(vm.leftMargin);
+      }
+
+      if(vm.yAxisEuroFormat !== undefined){
+        vm.chartOptions.chart.yAxis.tickFormat = function(d){
+          return '€ ' + d3.format(",.0f")(d/1000000);
+        }
       }
       
       $scope.$watch('aggregationFilters', function (aggregationFilters) {

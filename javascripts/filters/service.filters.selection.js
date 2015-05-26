@@ -21,11 +21,13 @@
 		m.selectionString = '';
 		m.toSave = false;
 		m.toReset = false;
+		m.openPanel = '';
 		
 		var FilterSelection = {
 			toSave: m.toSave,
 			toReset: m.toReset,
-			selectionString: m.selectionString
+			selectionString: m.selectionString,
+			openPanel: m.openPanel
 		};
 
 		return FilterSelection;

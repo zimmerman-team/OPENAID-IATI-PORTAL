@@ -26,6 +26,22 @@ TEMP
   }
 }
 
+.glyphicon-info-sign{
+  display: none !important;
+}
+
+oipa-table-chart .table tbody tr td.colour {
+  display: none;
+}
+
+.tool-text{
+  color: #fff;
+}
+
+.geselecteerde-filters{
+  margin-left:124px;
+}
+
 
 /*********************
 GLOBAL
@@ -1257,6 +1273,34 @@ footer{
 }
 
 .geomap-mask {
+}
+
+
+.marker-circle{ 
+  border-radius: 22px;
+  font-size:14px;
+  width: 22px; 
+  height: 22px;
+}
+
+.marker-circle-Overgangsrelatie{
+  background-color: rgba(207,32,38,0.4);
+}
+
+.marker-circle-EXITrelatie{
+  background-color: rgba(75,103,47,0.4);
+}
+
+.marker-circle-Hulprelatie{
+  background-color: rgba(63,169,245,0.4);
+}
+
+.marker-circle-Handelsrelatie{
+  background-color: rgba(244,160,29,0.4);
+}
+
+.marker-circle-Overige{
+  background-color: rgba(146,127,186,0.4);
 }
 
 .info {

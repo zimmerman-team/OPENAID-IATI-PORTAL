@@ -9,12 +9,12 @@
     .module('oipa.explore')
     .controller('ExploreGeoMapController', ExploreGeoMapController);
 
-  ExploreGeoMapController.$inject = ['$scope', 'leafletData', 'Aggregations', 'templateBaseUrl'];
+  ExploreGeoMapController.$inject = ['$scope', 'leafletData', 'Aggregations', 'templateBaseUrl', 'homeUrl', 'FilterSelection'];
 
   /**
   * @namespace ExploreGeoMapController
   */
-  function ExploreGeoMapController($scope, leafletData, Aggregations, templateBaseUrl) {
+  function ExploreGeoMapController($scope, leafletData, Aggregations, templateBaseUrl, homeUrl, FilterSelection) {
     var vm = this;
     vm.templateBaseUrl = templateBaseUrl;
     vm.countryRelation = [
@@ -45,14 +45,18 @@
         zoom: 3
     };
     vm.markers = {};
-    vm.openaidMarker = {
-      type: 'div',
-      iconSize:     [28, 35],
-      iconAnchor:   [14, 18],
-      markerColor: 'blue',
-      iconColor: 'white',
-      html: '<div class="fa fa-map-marker fa-stack-1x fa-inverse marker-circle" style="background-color: rgba(207,32,38,0.4); border-radius: 20px;font-size:14px;width: 20px; height: 20px;"></div>',
+    vm.markerIcons = {
+      Hulprelatie: { html: '<div class="fa fa-map-marker fa-stack-1x fa-inverse marker-circle marker-circle-Hulprelatie"></div>',type: 'div',iconSize: [28, 35],iconAnchor: [14, 18],markerColor: 'blue',iconColor: 'white',},
+      Overgangsrelatie: { html: '<div class="fa fa-map-marker fa-stack-1x fa-inverse marker-circle marker-circle-Overgangsrelatie"></div>',type: 'div',iconSize: [28, 35],iconAnchor: [14, 18],markerColor: 'blue',iconColor: 'white',},
+      EXITrelatie: { html: '<div class="fa fa-map-marker fa-stack-1x fa-inverse marker-circle marker-circle-EXITrelatie"></div>',type: 'div',iconSize: [28, 35],iconAnchor: [14, 18],markerColor: 'blue',iconColor: 'white',},
+      Handelsrelatie: { html: '<div class="fa fa-map-marker fa-stack-1x fa-inverse marker-circle marker-circle-Handelsrelatie"></div>',type: 'div',iconSize: [28, 35],iconAnchor: [14, 18],markerColor: 'blue',iconColor: 'white',},
+      Overige: { html: '<div class="fa fa-map-marker fa-stack-1x fa-inverse marker-circle marker-circle-Overige"></div>',type: 'div',iconSize: [28, 35],iconAnchor: [14, 18],markerColor: 'blue',iconColor: 'white',},
     };
+
+
+    vm.filterSelection = FilterSelection;
+    vm.selectionString = '';
+
 
     /**
     * @name activate
@@ -67,19 +71,24 @@
           }
       }, true);
 
+      $scope.$watch('vm.filterSelection.selectionString', function (selectionString) {
+          vm.selectionString = selectionString;
+          Aggregations.aggregation('recipient-country-geo', 'iati-identifier', vm.selectionString).then(successFn, errorFn);
+
+          function successFn(data, status, headers, config) {
+
+            vm.markerData = data.data;
+            vm.updateMarkers();
+          }
+
+          function errorFn(data, status, headers, config) {
+            console.log("getting countries failed");
+          }
+        }, true);
+
 
       // for each active country, get the results
-      Aggregations.aggregation('recipient-country-geo', 'iati-identifier', '').then(successFn, errorFn);
-
-      function successFn(data, status, headers, config) {
-
-        vm.markerData = data.data;
-        vm.updateMarkers();
-      }
-
-      function errorFn(data, status, headers, config) {
-        console.log("getting countries failed");
-      }
+      
     }
 
     vm.updateMarkers = function() {
@@ -88,31 +97,38 @@
       for(var i = 0;i < vm.selectedCountryRelation.length;i++){
         selectedCountryRelationMap[vm.selectedCountryRelation[i]['name'].replace(/\s/g, '')] = true;
       }
-      vm.markers = [];
+
+      for(var key in vm.markers){
+        vm.markers[key].opacity = 0;
+      }
 
       for (var i = 0; i < vm.markerData.length;i++){
-        if(typeof vm.markers[vm.markerData[i].country_id] == 'undefined' && vm.markerData[i].location != null){
-          
-          var partnerType = 'Overige';
-          if(partnerlanden[vm.markerData[i].country_id] !== undefined){
-            partnerType = partnerlanden[vm.markerData[i].country_id].replace(/\s/g, ''); 
-          } 
+         
+        var partnerType = 'Overige';
+        if(partnerlanden[vm.markerData[i].country_id] !== undefined){
+          partnerType = partnerlanden[vm.markerData[i].country_id].replace(/\s/g, ''); 
+        }
+        
+        if (selectedCountryRelationMap[partnerType] !== undefined){
 
-          
-          if (selectedCountryRelationMap[partnerType] !== undefined){
-            console.log('1');
-            var location = vm.markerData[i].location.substr(6, (vm.markerData[i].location.length - 7));
-            location = location.split(' ');
-            vm.markers[vm.markerData[i].country_id] = {
-              lat: parseInt(location[1]),
-              lng: parseInt(location[0]),
-              message: '<span class="flag-icon flag-icon-'+vm.markerData[i].country_id+'"></span>'+
-              '<h4>'+vm.markerData[i].name+'</h4>'+
-              '<p><b>Activiteiten:</b> '+vm.markerData[i]['activity_count']+'</p>'+
-              '<p><b>Totaal budget:</b> 0.00</p>'+
-              '<p><b>Type relatie:</b> '+partnerType+'</p>'+
-              '<button class="btn btn-default">Ga naar overzicht land</button>',
-              icon: vm.openaidMarker,
+          if(vm.markers[vm.markerData[i].country_id] !== undefined){
+            vm.markers[vm.markerData[i].country_id].opacity = 1;
+          } else {
+
+            if(vm.markerData[i].location != null){
+              var location = vm.markerData[i].location.substr(6, (vm.markerData[i].location.length - 7));
+              location = location.split(' ');
+              vm.markers[vm.markerData[i].country_id] = {
+                lat: parseInt(location[1]),
+                lng: parseInt(location[0]),
+                message: '<span class="flag-icon flag-icon-'+vm.markerData[i].country_id+'"></span>'+
+                '<h4>'+vm.markerData[i].name+'</h4>'+
+                '<p><b>Activiteiten:</b> '+vm.markerData[i]['activity_count']+'</p>'+
+                '<p><b>Totaal budget:</b> XXX</p>'+
+                '<p><b>Type relatie:</b> '+partnerType+'</p>'+
+                '<a class="btn btn-default" href="'+homeUrl+'/landen/'+vm.markerData[i].country_id+'/">Ga naar overzicht land</a>',
+                icon: vm.markerIcons[partnerType],
+              }
             }
           }
         }

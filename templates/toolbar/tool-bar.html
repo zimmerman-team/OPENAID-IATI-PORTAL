@@ -1,22 +1,24 @@
 <div id="tool-bar" style="position: relative">
 	<div class="row">
-		<div class="col-xs-2 col-sm-5">
+		<div class="col-xs-12 col-sm-4">
 			<span class="fa-stack fa-lg">
 		      <i class="fa fa-circle fa-stack-2x"></i>
 		      <a ng-click="vm.resetFilters()" class="fa fa-refresh fa-stack-1x fa-inverse"></a>
 		    </span>
+		    <span class="tool-text">reset filters</span>
 		</div>
-		<div class="col-xs-2 center">
-			<span class="fa-stack fa-lg">
+		<div class="col-xs-12 col-sm-4 center">
+			<span class="fa-stack fa-lg geselecteerde-filters">
 				<i class="fa fa-circle fa-stack-2x"></i>
 		    	<a ng-click="vm.toggleSelection()" class="fa fa-align-justify fa-stack-1x fa-inverse"></a>
 		    </span>
+		    <span class="tool-text">geselecteerde filters</span>
 		</div>
-		<div class="col-xs-8 col-sm-5 text-right">
-			<span class="fa-stack fa-lg">
+		<div class="col-xs-12 col-sm-4 text-right">
+			<!-- <span class="fa-stack fa-lg">
 				<i class="fa fa-circle fa-stack-2x"></i>
 		    	<a ng-click="vm.showDownload()" class="fa fa-download fa-stack-1x fa-inverse"></a>
-		    </span>
+		    </span> -->
 		    <span class="fa-stack fa-lg">
 		    	<i class="fa fa-circle fa-stack-2x"></i>
 		    	<a ng-click="vm.share('twitter')" class="fa fa-twitter fa-stack-1x fa-inverse"></a>
@@ -32,6 +34,9 @@
 		</div>
 	</div>
 	<div >
-		<filter-selection-box ng-show="vm.showSelection" style="position: absolute; background-color: white; top: 49px;left: 0; width: 100%;z-index: 99999;"></filter-selection-box>
+		<filter-selection-box 
+			ng-show="vm.showSelection" 
+			style="position: absolute; background-color: white; top: 49px;left: 0; width: 100%;z-index: 99999;">
+		</filter-selection-box>
 	</div>
 </div>

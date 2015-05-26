@@ -7,61 +7,9 @@
 
             <search-box></search-box>
             
-            <div class="row actions">
-                <div class="col-md-6 col-sm-7 filters">
-                    <span class="makeblock">filters</span> 
-                    <span class="fa-stack fa-lg" ng-click="vm.toggleOpenPanel('budget')" ng-class="{'active': vm.isOpenedHeader('budget')}">
-                      <i class="fa fa-circle fa-stack-2x"></i>
-                      <i class="fa fa-pie-chart fa-stack-1x fa-inverse"></i>
-                    </span>
-                    <span class="fa-stack fa-lg" ng-click="vm.toggleOpenPanel('sectors')" ng-class="{'active': vm.isOpenedHeader('sectors')}">
-                      <i class="fa fa-circle fa-stack-2x"></i>
-                      <i class="fa fa-suitcase fa-stack-1x fa-inverse"></i>
-                    </span>
-                    <span class="fa-stack fa-lg" ng-click="vm.toggleOpenPanel('activity_status')" ng-class="{'active': vm.isOpenedHeader('activity_status')}">
-                      <i class="fa fa-circle fa-stack-2x"></i>
-                      <i class="fa fa-money fa-stack-1x fa-inverse"></i>
-                    </span>
-                    <span class="fa-stack fa-lg" ng-click="vm.toggleOpenPanel('implementing_organisations')" ng-class="{'active': vm.isOpenedHeader('implementing_organisations')}">
-                      <i class="fa fa-circle fa-stack-2x"></i>
-                      <i class="fa fa-fire fa-stack-1x fa-inverse"></i>
-                    </span>
-                </div>
-                <div class="col-md-6 col-sm-5 dash text-right-not-xs">
-                    <span class="makeblock">dashboards</span> 
-                    <span class="fa-stack fa-lg" ng-click="vm.dashboard = 'charts'">
-                      <i class="fa fa-circle fa-stack-2x"></i>
-                      <i class="fa fa-line-chart fa-stack-1x fa-inverse"></i>
-                    </span>
-                </div>
-            </div>
+            <filter-bar exclude-filter="recipient_countries,recipient_regions" exclude-dashboard="map,list"></filter-bar>
 
             <tool-bar></tool-bar>
-
-            <!-- <div id="tool-bar" style="position: relative">
-                <div class="row">
-                    
-                    <div class="col-xs-12 col-sm-12 text-right">
-                        <span class="fa-stack fa-lg">
-                            <i class="fa fa-circle fa-stack-2x"></i>
-                            <a ng-click="vm.showDownload()" class="fa fa-download fa-stack-1x fa-inverse"></a>
-                        </span>
-                        <span class="fa-stack fa-lg">
-                            <i class="fa fa-circle fa-stack-2x"></i>
-                            <a ng-click="vm.share('twitter')" class="fa fa-twitter fa-stack-1x fa-inverse"></a>
-                        </span>
-                        <span class="fa-stack fa-lg">
-                            <i class="fa fa-circle fa-stack-2x"></i>
-                            <a ng-click="vm.share('linkedin')" class="fa fa-linkedin fa-stack-1x fa-inverse"></a>
-                        </span>
-                        <span class="fa-stack fa-lg">
-                            <i class="fa fa-circle fa-stack-2x"></i>
-                            <a ng-click="vm.share('facebook')" class="fa fa-facebook fa-stack-1x fa-inverse"></a>
-                        </span>
-                    </div>
-                </div>
-            </div> -->
-
 
             <div class="row">
                 <div class="col-xs-12">
@@ -76,7 +24,6 @@
         </div>
     </div>
 
-
     <div class="row">
         <div class="col-md-12">
             <div class="hp-block">
@@ -84,7 +31,6 @@
             </div>
         </div>
     </div>
-
 
     <div class="row">
         <div class="col-md-6">
@@ -151,87 +97,7 @@
 
     <activity-list ng-show="vm.dashboard == 'list'"></activity-list>
     <div class="row" ng-show="vm.dashboard == 'charts'">
-
-
-        <div class="col-md-6">
-            <div class="hp-block explore">
-                <div class="explore-block-header">Totaal aantal activiteiten</div>
-                <div class="explore-block-content">
-                    <oipa-line-chart 
-                        aggregation-filters='vm.selectionString' 
-                        group-by='start_actual' 
-                        group-by-id='start_actual_year' 
-                        group-by-name='start_actual_year' 
-                        aggregation-key='iati-identifier' 
-                        aggregation-key-id='activity_count' 
-                        chart-x-axis='Jaar (startdatum activiteit)' 
-                        chart-y-axis='Aantal activiteiten'
-                        chart-type='discreteBarChart'
-                        axis-label-distance='10'></oipa-line-chart>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-6">
-            <div class="hp-block explore">
-                <div class="explore-block-header">Totaal budget op basis van de zoekresulaten</div>
-                <div class="explore-block-content">
-                    <oipa-line-chart 
-                        aggregation-filters='vm.selectionString' 
-                        group-by='transaction_date_year' 
-                        group-by-id='transaction_date_year' 
-                        group-by-name='transaction_date_year' 
-                        aggregation-key='disbursement' 
-                        aggregation-key-id='total_disbursements' 
-                        chart-x-axis='Jaar (transactiedatum)' 
-                        chart-y-axis='Totaal budget'
-                        chart-type='discreteBarChart'
-                        axis-label-distance='40'></oipa-line-chart>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="col-md-6">
-            <div class="hp-block explore">
-                <div class="explore-block-header">Uitgaven  per landenprofiel</div>
-                <div class="explore-block-content">
-                    <oipa-line-chart 
-                        aggregation-filters='vm.selectionString' 
-                        group-by='recipient-country' 
-                        group-by-id='country_id' 
-                        group-by-name='name' 
-                        aggregation-key='disbursement' 
-                        aggregation-key-id='total_disbursements' 
-                        chart-x-axis='Landprofiel' 
-                        chart-y-axis='Uitgaven'
-                        chart-type='discreteBarChart'
-                        mapping='partnerlanden'
-                        axis-label-distance='40'></oipa-line-chart>
-                </div>
-            </div>
-        </div>
-        
-        <div class="col-md-6">
-            <div class="hp-block explore">
-                <div class="explore-block-header">Aangegane verplichting per landenprofiel</div>
-                <div class="explore-block-content">
-                    <oipa-line-chart 
-                        aggregation-filters='vm.selectionString' 
-                        group-by='recipient-country' 
-                        group-by-id='country_id' 
-                        group-by-name='name' 
-                        aggregation-key='commitment' 
-                        aggregation-key-id='total_commitments' 
-                        chart-x-axis='Landprofiel' 
-                        chart-y-axis='Verplichtingen'
-                        chart-type='discreteBarChart'
-                        mapping='partnerlanden' 
-                        axis-label-distance='40'></oipa-line-chart>
-                </div>
-            </div>
-        </div>
-
+        <chart-wrapper></chart-wrapper>
     </div>
     <div class="row explore-block-content" ng-show="vm.dashboard == 'sectors'">
         <sector-list has-to-contain='countries__in'></sector-list>

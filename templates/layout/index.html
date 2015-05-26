@@ -61,12 +61,13 @@
                    
                 <div class="col-md-6">
                     <oipa-line-chart 
-                        aggregation-filters='"&countries__in=ID,BD,AF,MZ,ET"' 
+                        aggregation-filters='"&countries__in=ID,BD,AF,MZ,TZ"' 
                         group-by='recipient-country,transaction_date_year' 
                         group-by-id='country_id' 
                         aggregation-key='disbursement' 
                         chart-x-axis='Tijd' 
                         chart-y-axis='Totale uitgaven'
+                        y-axis-euro-format='true'
                         chart-type='lineChart'
                         axis-label-distance='28'></oipa-line-chart>
                 </div>
@@ -102,6 +103,7 @@
                         aggregation-key='disbursement' 
                         chart-x-axis='Tijd' 
                         chart-y-axis='Totale uitgaven'
+                        y-axis-euro-format='true'
                         chart-type='stackedAreaChart'
                         axis-label-distance='54'
                         left-margin='126'></oipa-line-chart>

@@ -25,7 +25,10 @@
       controller: 'FiltersController',
       controllerAs: 'vm',
       restrict: 'E',
-      scope: {},
+      scope: {
+        'excludeFilter': '@',
+        'excludeDashboard': '@'
+      },
       templateUrl: templateBaseUrl + '/templates/filters/filter-bar.html'
     };
 

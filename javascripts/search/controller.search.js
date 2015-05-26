@@ -9,12 +9,12 @@
     .module('oipa.search')
     .controller('SearchController', SearchController);
 
-  SearchController.$inject = ['$scope', 'Search', 'FilterSelection', 'templateBaseUrl'];
+  SearchController.$inject = ['$scope', 'Search', 'FilterSelection', 'templateBaseUrl', '$state'];
 
   /**
   * @namespace CountriesController
   */
-  function SearchController($scope, Search, FilterSelection, templateBaseUrl) {
+  function SearchController($scope, Search, FilterSelection, templateBaseUrl, $state) {
     var vm = this;
     vm.templateBaseUrl = templateBaseUrl;
     vm.searchString = '';
@@ -33,6 +33,7 @@
 
     vm.save = function(){
       FilterSelection.toSave = true;
+      $state.go('iati-explorer-list');
     }
 
   }
