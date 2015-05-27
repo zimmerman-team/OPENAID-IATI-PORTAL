@@ -43,6 +43,21 @@ oipa-table-chart .table tbody tr td.colour {
 }
 
 
+.about-page{
+
+  .intro{
+    margin-top: 16px;
+    font-weight: 600;
+  }
+  h4{
+    margin-top: 22px;
+    margin-bottom: 4px;
+    font-weight: bold;
+  }
+
+
+}
+
 /*********************
 GLOBAL
 *********************/
@@ -139,6 +154,16 @@ hr{
   background-color: rgba($blauw, 0.1);
   padding: 14px;
   margin: 0 0 15px 0;
+  font-size: 17px;
+
+  &.hp-block-top{
+    font-size: 17px;
+
+    h1{
+      margin-bottom: 10px;
+    }
+  }
+
   &.spec {
     padding: 14px 0;
   }
@@ -177,7 +202,7 @@ hr{
 
   .number.large{
     font-size: 5rem;
-    border-bottom: 2px solid $textstd;
+    /*border-bottom: 2px solid $textstd;*/
     line-height: 5rem;
     display: inline-block;
     margin-bottom: 15px;
@@ -315,12 +340,16 @@ NAVBAR
 
 .navbar-brand img{
   width: auto;
-  height: 20px;
+  height: 40px;
+}
+
+.nvd3 text{
+  font-family: $titillium;
 }
 
 .navbar-brand{
   margin-right: 20px;
-  padding-top: 17px;
+  padding-top: 5px;
 }
 
 .nav > li > a{
@@ -1232,7 +1261,7 @@ footer{
   background-color: #333;
   color: #fff;
   padding-top:1.5rem;
-  padding-bottom: 4rem;
+  padding-bottom: 4em;
 
   a{
     color: #fff;

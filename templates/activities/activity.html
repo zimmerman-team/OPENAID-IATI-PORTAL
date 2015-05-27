@@ -7,60 +7,6 @@
 
             <search-box></search-box>
             
-            <!-- <div class="row actions">
-                <div class="col-md-6 col-sm-7 filters">
-                    <span class="makeblock">filters</span> 
-                    <span class="fa-stack fa-lg" ng-click="vm.toggleOpenPanel('budget')" ng-class="{'active': vm.isOpenedHeader('budget')}">
-                      <i class="fa fa-circle fa-stack-2x"></i>
-                      <i class="fa fa-pie-chart fa-stack-1x fa-inverse"></i>
-                    </span>
-                    <span class="fa-stack fa-lg" ng-click="vm.toggleOpenPanel('sectors')" ng-class="{'active': vm.isOpenedHeader('sectors')}">
-                      <i class="fa fa-circle fa-stack-2x"></i>
-                      <i class="fa fa-suitcase fa-stack-1x fa-inverse"></i>
-                    </span>
-                    <span class="fa-stack fa-lg" ng-click="vm.toggleOpenPanel('activity_status')" ng-class="{'active': vm.isOpenedHeader('activity_status')}">
-                      <i class="fa fa-circle fa-stack-2x"></i>
-                      <i class="fa fa-money fa-stack-1x fa-inverse"></i>
-                    </span>
-                    <span class="fa-stack fa-lg" ng-click="vm.toggleOpenPanel('implementing_organisations')" ng-class="{'active': vm.isOpenedHeader('implementing_organisations')}">
-                      <i class="fa fa-circle fa-stack-2x"></i>
-                      <i class="fa fa-fire fa-stack-1x fa-inverse"></i>
-                    </span>
-                </div>
-                <div class="col-md-6 col-sm-5 dash text-right-not-xs">
-                    <span class="makeblock">dashboards</span> 
-                    <span class="fa-stack fa-lg" ng-click="vm.dashboard = 'charts'">
-                      <i class="fa fa-circle fa-stack-2x"></i>
-                      <i class="fa fa-line-chart fa-stack-1x fa-inverse"></i>
-                    </span>
-                </div>
-            </div>
-
-            <tool-bar></tool-bar> -->
-
-            <!-- <div id="tool-bar" style="position: relative">
-                <div class="row">
-                    
-                    <div class="col-xs-12 col-sm-12 text-right">
-                        <span class="fa-stack fa-lg">
-                            <i class="fa fa-circle fa-stack-2x"></i>
-                            <a ng-click="vm.showDownload()" class="fa fa-download fa-stack-1x fa-inverse"></a>
-                        </span>
-                        <span class="fa-stack fa-lg">
-                            <i class="fa fa-circle fa-stack-2x"></i>
-                            <a ng-click="vm.share('twitter')" class="fa fa-twitter fa-stack-1x fa-inverse"></a>
-                        </span>
-                        <span class="fa-stack fa-lg">
-                            <i class="fa fa-circle fa-stack-2x"></i>
-                            <a ng-click="vm.share('linkedin')" class="fa fa-linkedin fa-stack-1x fa-inverse"></a>
-                        </span>
-                        <span class="fa-stack fa-lg">
-                            <i class="fa fa-circle fa-stack-2x"></i>
-                            <a ng-click="vm.share('facebook')" class="fa fa-facebook fa-stack-1x fa-inverse"></a>
-                        </span>
-                    </div>
-                </div>
-            </div> -->
 
 
             <div class="row">
@@ -104,7 +50,7 @@
                     </div>
                     <div class="col-md-4">
                         <div class="project-circle" ng-repeat="country in vm.activity.countries">
-                            <span class="flag-icon flag-icon-af"></span>
+                            <span class="flag-icon flag-icon-{{country.code | lowercase }}"></span>
                             <h4>{{country.name}}</h4>
                             <p><b>Type relatie:</b> {{vm.landPartnerType}}</p>
                             <p><b>Start datum:</b> {{vm.activity.start_actual}}</p>
@@ -146,7 +92,7 @@
                                 {{transaction.receiver_organisation_name}}
                             </td>
                             <td>
-                                {{transaction.value | currency :'€':0}}
+                                {{transaction.value | openaidcurrency :'€':0:".":"."}}
                             </td>
                             <td>
                                 {{transaction.transaction_date}}
