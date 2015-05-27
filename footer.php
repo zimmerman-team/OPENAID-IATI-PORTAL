@@ -9,8 +9,9 @@
 		      Zimmerman &amp; Zimmerman
 		    </div>
 		  	<div class="row">
-		  		<h1>powered by:</h1>
-		  		Ministerie van Buitenlandse Zaken
+		  		<h1>Credits:</h1>
+		  		Designed & developed by: <a href="http://www.zimmermanzimmerman.nl">Zimmerman & Zimmerman</a><br>
+		  		Funded by: <a href="http://www.akvo.org">Akvo</a> as part of <a href="http://rsr.akvo.org/project/2210/">PPP Phase 2 2011-2014</a>
 		    </div>
 		    
 		    
