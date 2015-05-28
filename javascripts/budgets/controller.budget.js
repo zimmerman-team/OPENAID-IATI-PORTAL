@@ -18,6 +18,7 @@
     var vm = this;
     vm.on = false;
     vm.budgetValue = [];
+    vm.budget = Budget;
 
     activate();
 
@@ -34,6 +35,14 @@
 
       $scope.$watch("vm.on", function (budgetOn) {
         Budget.budget.on = budgetOn;
+      }, true);
+
+      $scope.$watch("vm.budget.toReset", function (toReset) {
+        
+        if(toReset == true){
+          vm.budgetValue = [100000,300000];
+          vm.on = false;
+        }
       }, true);
     }
 

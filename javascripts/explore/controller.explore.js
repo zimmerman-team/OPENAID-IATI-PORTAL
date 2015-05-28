@@ -5,9 +5,9 @@
 		.module('oipa.explore')
 		.controller('ExploreController', ExploreController);
 
-	ExploreController.$inject = ['$sce', '$scope', 'Filters', 'FilterSelection'];
+	ExploreController.$inject = ['$scope', 'FilterSelection'];
 
-	function ExploreController($sce, $scope, Filters, FilterSelection){
+	function ExploreController($scope, FilterSelection){
 		var vm = this;
 		vm.openedPanel = ''; // panels: 
 		vm.showSelection = false;
@@ -18,10 +18,14 @@
 		activate();
 
 	    function activate() {
+	    	
 	    	$scope.$watch('vm.filterSelection.selectionString', function (selectionString) {
 		        vm.selectionString = selectionString;
 		        FilterSelection.openedPanel = '';
 		    }, true);
+
+	    	setTimeout(function(){ FilterSelection.toReset = true; }, 100);
+		    
 	    }
 
 	    vm.toggleSelection = function(){

@@ -98,7 +98,7 @@
         .state({
             name:        'organisaties',
             url:         '/organisaties/',
-            controller:  'ImplementingOrganisationsController',
+            controller:  'ImplementingOrganisationsExploreController',
             controllerAs: 'vm',
             templateUrl: templateBaseUrl + '/templates/implementingOrganisations/implementingOrganisations.html'
         })
@@ -112,7 +112,7 @@
         .state({
             name:        'sectoren',
             url:         '/sectoren/',
-            controller:  'SectorsController',
+            controller:  'SectorsExploreController',
             controllerAs: 'vm',
             templateUrl: templateBaseUrl + '/templates/sectors/sectors.html'
         })

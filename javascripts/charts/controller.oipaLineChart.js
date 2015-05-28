@@ -26,12 +26,13 @@
     vm.xAxis = $scope.chartXAxis;
     vm.yAxis = $scope.chartYAxis;
     vm.chartType = $scope.chartType;
-    vm.axisLabelDistance = $scope.axisLabelDistance;
+    vm.axisLabelDistance = $scope.chartYAxisLabelDistance;
     vm.mapping = $scope.mapping;
     vm.colorRange = $scope.colorRange;
     vm.leftMargin = $scope.leftMargin;
-    vm.yAxisEuroFormat = $scope.yAxisEuroFormat;
-
+    vm.yAxisEuroFormat = $scope.chartYAxisEuroFormat;
+    vm.xAxisEuroFormat = $scope.chartXAxisEuroFormat;
+    vm.chartXAxisStaggerLabels = $scope.chartXAxisStaggerLabels;
     vm.chartData = [];
     vm.chartOptions = {
       chart: {
@@ -55,8 +56,7 @@
             tickFormat: function(d) {
                 return d3.format("")(d);
             },
-            showMaxMin: false,
-            staggerLabels: true
+            showMaxMin: false
         },
         yAxis: {
             axisLabel: vm.yAxis,
@@ -68,6 +68,7 @@
         }
       }
     };
+
 
     vm.loadData = function(){
       Aggregations.aggregation(vm.groupBy, vm.aggregationKey, vm.aggregationFilters).then(succesFn, errorFn);
@@ -88,12 +89,24 @@
 
     function activate() {
 
+      if(vm.chartXAxisStaggerLabels == 'true'){
+        vm.chartOptions.chart.xAxis.staggerLabels = true;
+      } else {
+        vm.chartOptions.chart.xAxis.staggerLabels = false;
+      }
+    
       if(vm.leftMargin !== undefined){
         vm.chartOptions.chart.margin.left = parseInt(vm.leftMargin);
       }
 
       if(vm.yAxisEuroFormat !== undefined){
         vm.chartOptions.chart.yAxis.tickFormat = function(d){
+          return d3.format(",.0f")(d/1000000) + 'M';
+        }
+      }
+
+      if(vm.xAxisEuroFormat !== undefined){
+        vm.chartOptions.chart.xAxis.tickFormat = function(d){
           return '€ ' + d3.format(",.0f")(d/1000000);
         }
       }
@@ -135,6 +148,8 @@
     vm.stackedAreaChartReformatData = function(data){
       var mappedData = {};
       var years = {};
+
+
 
       for (var i = 0; i < data.length;i++){
         years[data[i]['transaction_date_year']] = data[i]['transaction_date_year'];

@@ -29,50 +29,30 @@
     vm.dashboard = 'charts'; // options: charts, list, sectors, organisaties
     vm.filterSelection = FilterSelection;
 
-
-    vm.hasOpenFilters = function(){
-      return vm.openedPanel.length;
-    }
-
-    vm.isOpenedHeader = function(slug){
-      return vm.openedPanel == slug;
-    }
-
-    vm.setOpenedHeader = function(slug){
-      vm.openedPanel = slug;
-      vm.showSelection = false;
-    }
-
-    vm.toggleOpenPanel = function(slug){
-      if(vm.isOpenedHeader(slug)){
-        vm.openedPanel = '';
-        vm.saveFilters();
-      } else {
-        vm.setOpenedHeader(slug);
-      }
-    }
-
     vm.toggleSelection = function(){
-      vm.showSelection = !vm.showSelection;
-      vm.openedPanel = '';
+        vm.showSelection = !vm.showSelection;
+        FilterSelection.openedPanel = '';
     }
 
     vm.resetFilters = function(){
-      FilterSelection.toReset = true;
+        FilterSelection.toReset = true;
     }
 
     vm.saveFilters = function(){
-      FilterSelection.toSave = true;
-      vm.openedPanel = '';
+        FilterSelection.toSave = true;
+        FilterSelection.openedPanel = '';
+    }
+
+    vm.isOpenedHeader = function(slug){
+      return FilterSelection.openedPanel == slug;
     }
 
     vm.showDownload = function(){
-      console.log("TO DO; show download options");
+        console.log("TO DO; show download options");
     }
 
     vm.share = function(medium){
-      console.log("TO DO; open "+medium+" share url in new window");
-      FilterSelection.toSave = true;
+        console.log("TO DO; open "+medium+" share url in new window");
     }
 
 
@@ -85,7 +65,7 @@
 
       $scope.$watch('vm.filterSelection.selectionString', function (selectionString) {
         vm.update(selectionString);
-        vm.openedPanel = '';
+        FilterSelection.openedPanel = '';
       }, true);
 
       // for each active country, get the results
@@ -113,11 +93,11 @@
       if (selectionString.indexOf("countries__in") < 0){ return false;}
 
       Aggregations.aggregation('recipient-country', 'iati-identifier', selectionString).then(function(data, status, headers, config){
-        vm.activityCount = data.data[0]['activity_count'];
+        if(data.data.length == 0){vm.activityCount = 0 } else { vm.activityCount = data.data[0]['activity_count']};
       }, errorFn);
 
       Aggregations.aggregation('recipient-country', 'disbursement', selectionString).then(function(data, status, headers, config){
-        vm.totalBudget = data.data[0]['total_disbursements'];
+        if(data.data.length == 0){vm.totalBudget = 0 } else { vm.totalBudget = data.data[0]['total_disbursements']};
       }, errorFn);
 
       Aggregations.aggregation('transaction-receiver-org', 'iati-identifier', selectionString).then(function(data, status, headers, config){

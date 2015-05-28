@@ -3,14 +3,10 @@
         <div class="col-sm-6 eq">
             <div class="hp-block blauw hp-block-top">
                 <h1>openaidNL Beta versie 1.0</h1>
-                <p>Deze betaversie 1.0 van openaid.nl is nog volop in ontwikkeling. Op deze website kunnen een aantal onderdelen niet goed werken of nog niet browser compatible zijn. Het design & ontwikkel team achter openaid.nl zullen de komende tijd nog druk bezig zijn een volledige overstap te maken van het <a target="_blank" href="http://www.openaid.nl">oude openaid</a> naar de vernieuwde versie van openaid. <br>&nbsp;<br>
-                    De open-data op deze website wordt direct opgehaald uit de <a target="_blank" href="http://iatiregistry.org/">IATI registry</a>. De XML source file kunt u <a target="_blank" href="http://http://iatiregistry.org/dataset/minbuza_nl-activities">hier</a> terugvinden. Wilt u meer weten over de International Aid Transparency Initiative (IATI) kijk dan op <a target="_blank" href="http://www.aidtransparency.net/">aidtransparency.net</a></p>
-                <!-- <a class="btn btn-default" ui-sref="over">Meer informatie</a> -->
-                <!-- <h3>IATI publiceren, raporteren en visualiseren</h3> -->
-                <!-- <p>Aenean lacinia bibendum nulla sed consectetur. Nullam id dolor 
-                    id nibh ultricies vehicula ut id elit. Vivamus sagittis lacus vel 
-                    augue laoreet rutrum faucibus dolor auctor.</p> -->
-                <!-- <a class="btn btn-default" ui-sref="iati-publiceren">Meer informatie</a>    -->
+                <p>Betaversie 1.0 van <a target="_blank" href="http://www.openaid.nl">openaid.nl</a> is in ontwikkeling, een aantal onderdelen werken nog niet optimaal. Het openaid team zal de komende tijd druk bezig zijn een volledige overstap te maken van de oude versie naar de vernieuwde versie van openaid. <br>&nbsp;<br>
+
+De IATI data op deze website wordt direct opgehaald uit de <a target="_blank" href="http://iatiregistry.org/">IATI registry</a>. De IATI XML source file kunt u hier terugvinden. Wilt u meer weten over de International Aid Transparency Initiative (IATI) kijk dan op <a target="_blank" href="http://www.aidtransparency.net/">aidtransparency.net</a>
+
             </div>
         </div>
         <div class="col-sm-6">
@@ -55,16 +51,16 @@
                     ></oipa-table-chart>
 
                 </div>
-                   
                 <div class="col-md-6">
                     <oipa-line-chart 
                         aggregation-filters='"&countries__in=ID,BD,AF,MZ,TZ"' 
                         group-by='recipient-country,transaction_date_year' 
                         group-by-id='country_id' 
                         aggregation-key='disbursement' 
-                        chart-x-axis='Tijd' 
-                        chart-y-axis='Totale uitgaven'
-                        y-axis-euro-format='true'
+                        chart-x-axis='' 
+                        chart-y-axis='Totale uitgaven (in miljoenen euros)'
+                        chart-y-axis-euro-format='true' 
+                        chart-x-axis-stagger-labels='false' 
                         chart-type='lineChart'
                         axis-label-distance='28'></oipa-line-chart>
                 </div>
@@ -88,8 +84,9 @@
                     group-by='sector' 
                     group-by-id='sector_id' 
                     aggregation-key='disbursement' 
-                    aggregation-extra-select='iati-identifier'
-                    aggregation-extra-select-in='sectors__in'
+                    aggregation-extra-select='iati-identifier' 
+                    aggregation-extra-select-in='sectors__in' 
+                    chart-x-axis-stagger-labels='false'
                     ></oipa-table-chart>
                 </div>
                 <div class="col-md-6">
@@ -98,12 +95,14 @@
                         group-by='sector,transaction_date_year' 
                         group-by-id='sector_id' 
                         aggregation-key='disbursement' 
-                        chart-x-axis='Tijd' 
-                        chart-y-axis='Totale uitgaven'
-                        y-axis-euro-format='true'
-                        chart-type='stackedAreaChart'
-                        axis-label-distance='54'
-                        left-margin='126'></oipa-line-chart>
+                        chart-x-axis='' 
+                        chart-y-axis='Totale uitgaven (in euros)' 
+                        chart-y-axis-euro-format='true' 
+                        chart-y-axis-label-distance='54' 
+                        chart-type='stackedAreaChart' 
+                        left-margin='126' 
+                        chart-x-axis-stagger-labels='false' 
+                        ></oipa-line-chart>
                 </div>
             </div>
         </div>
@@ -137,9 +136,12 @@
                         group-by-id='receiver_organisation_id' 
                         aggregation-key='disbursement' 
                         chart-x-axis='' 
+                        chart-x-axis-stagger-labels='false' 
+                        chart-y-axis-euro-format='true' 
                         chart-y-axis='Totale uitgaven'
                         chart-type='multiBarHorizontalChart'
-                        axis-label-distance='50'></oipa-line-chart>
+                        axis-label-distance='50'
+                        chart-x-axis-stagger-labels='false'></oipa-line-chart>
                 </div>
             </div>
         </div>

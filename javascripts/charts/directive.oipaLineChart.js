@@ -23,11 +23,13 @@
         chartXAxis: '@',
         chartYAxis: '@',
         chartType: '@',
-        axisLabelDistance: '@',
+        chartYAxisLabelDistance: '@',
         mapping: '@',
         colorRange: '@',
         leftMargin: '@',
-        yAxisEuroFormat: '@'
+        chartYAxisEuroFormat: '@',
+        chartXAxisEuroFormat: '@',
+        chartXAxisStaggerLabels: '@',
       },
       templateUrl: templateBaseUrl + '/templates/charts/oipa-line-chart.html'
     };

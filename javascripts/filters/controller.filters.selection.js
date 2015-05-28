@@ -110,6 +110,10 @@
       vm.removeAll(vm.selectedImplementingOrganisations);
       vm.removeAll(vm.selectedActivityStatuses);
 
+      Search.searchString = '';
+      Budget.toReset = true;
+      Budget.budget.budgetValue = [100000,300000];
+      Budget.budget.on = false;
       FilterSelection.toSave = true;
     }
 

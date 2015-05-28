@@ -3,7 +3,7 @@
         <tr ng-repeat="item in vm.chartData">
         	<td class="colour"><div></div></td>
             <td><span>{{item.name}}</span></td>
-            <td>{{item.total_disbursements | currency:"€":0}}</td>
+            <td>{{item.total_disbursements | openaidcurrency :'€':0:".":"."}}</td>
             <td><span>{{item.activity_count}} activiteiten</span></td>
         </tr>
     </tbody>

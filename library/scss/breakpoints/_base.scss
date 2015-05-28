@@ -263,9 +263,8 @@ hr{
 
 .glyphicon-popup{
     position: absolute;
-    left: 34px;
+    left: 0;
     top: 50%;
-    transform: translateY(-50%);
     color: #fff;
     background-color: rgba(64,64,64,0.95);
     -webkit-box-shadow: 3px 3px 6px 0px rgba(0, 0, 0, 0.35);
@@ -285,9 +284,8 @@ hr{
 .actions {
   .glyphicon-popup {
     white-space: nowrap;
-    top:0;
+    top:-46px;
     min-width: 0;
-    transform: translateY(-100%);
     left:-50%;
     padding:0px 10px;
     font-size: 0.7em;

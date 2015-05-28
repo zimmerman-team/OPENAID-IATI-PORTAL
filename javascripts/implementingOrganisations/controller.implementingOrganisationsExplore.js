@@ -18,13 +18,10 @@
         activate();
 
         function activate() {
-
             $scope.$watch('vm.filterSelection.selectionString', function (selectionString) {
                 vm.selectionString = selectionString;
                 FilterSelection.openedPanel = '';
             }, true);
-
-            setTimeout(function(){ FilterSelection.toReset = true; }, 100);
         }
 
         vm.toggleSelection = function(){
@@ -42,6 +39,8 @@
         }
 
         vm.isOpenedHeader = function(slug){
+            console.log(slug);
+            console.log(FilterSelection.openedPanel);
           return FilterSelection.openedPanel == slug;
         }
 

@@ -9,10 +9,11 @@
                 group-by-name='start_actual_year' 
                 aggregation-key='iati-identifier' 
                 aggregation-key-id='activity_count' 
-                chart-x-axis='' 
+                chart-x-axis=''
+                chart-x-axis-stagger-labels='true'  
                 chart-y-axis=''
+                chart-y-axis-label-distance='0' 
                 chart-type='discreteBarChart'
-                axis-label-distance='0'
                 left-margin='40'></oipa-line-chart>
         </div>
     </div>
@@ -29,11 +30,12 @@
                 group-by-name='transaction_date_year' 
                 aggregation-key='disbursement' 
                 aggregation-key-id='total_disbursements' 
-                chart-x-axis='' 
+                chart-x-axis=''
+                chart-x-axis-stagger-labels='true'  
                 chart-y-axis=''
-                y-axis-euro-format='true'
+                chart-y-axis-euro-format='true' 
+                chart-y-axis-label-distance='20' 
                 chart-type='discreteBarChart'
-                axis-label-distance='20'
                 left-margin='60'></oipa-line-chart>
         </div>
     </div>
@@ -50,12 +52,13 @@
                 group-by-name='name' 
                 aggregation-key='disbursement' 
                 aggregation-key-id='total_disbursements' 
-                chart-x-axis='' 
+                chart-x-axis=''
+                chart-x-axis-stagger-labels='false'  
                 chart-y-axis=''
-                y-axis-euro-format='true'
+                chart-y-axis-euro-format='true' 
+                chart-y-axis-label-distance='46' 
                 chart-type='discreteBarChart'
                 mapping='partnerlanden'
-                axis-label-distance='46'
                 color-range='true'
                 left-margin='56'></oipa-line-chart>
         </div>
@@ -74,11 +77,12 @@
                 aggregation-key='commitment' 
                 aggregation-key-id='total_commitments' 
                 chart-x-axis='' 
+                chart-x-axis-stagger-labels='false' 
                 chart-y-axis=''
-                y-axis-euro-format='true'
+                chart-y-axis-euro-format='true' 
+                chart-y-axis-label-distance='46' 
                 chart-type='discreteBarChart'
                 mapping='partnerlanden' 
-                axis-label-distance='46' 
                 color-range='true'
                 left-margin='56'></oipa-line-chart>
         </div>
