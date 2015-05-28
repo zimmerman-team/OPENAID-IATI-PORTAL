@@ -1,6 +1,6 @@
 <?php get_header(); ?>
 <top-navbar></top-navbar>
 
-<div ui-view></div>
+<div id="openaid-main" ui-view></div>
 
 <?php get_footer(); ?>
