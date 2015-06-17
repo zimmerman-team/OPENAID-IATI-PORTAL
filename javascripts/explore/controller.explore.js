@@ -14,7 +14,7 @@
 		vm.filterSelection = FilterSelection;
 		vm.selectionString = '';
 		vm.currentHoverText = '';
-
+		
 		activate();
 
 	    function activate() {

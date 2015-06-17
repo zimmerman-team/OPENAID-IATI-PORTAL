@@ -57,6 +57,8 @@
     vm.filterSelection = FilterSelection;
     vm.selectionString = '';
 
+    vm.geoView = 'landen';
+
 
     /**
     * @name activate
@@ -72,23 +74,37 @@
       }, true);
 
       $scope.$watch('vm.filterSelection.selectionString', function (selectionString) {
-          vm.selectionString = selectionString;
-          Aggregations.aggregation('recipient-country-geo', 'iati-identifier', vm.selectionString).then(successFn, errorFn);
+        vm.selectionString = selectionString;
+        Aggregations.aggregation('recipient-country-geo', 'iati-identifier', vm.selectionString).then(successFn, errorFn);
 
-          function successFn(data, status, headers, config) {
+        function successFn(data, status, headers, config) {
 
-            vm.markerData = data.data;
-            vm.updateMarkers();
+          vm.markerData = data.data;
+          vm.updateMarkers();
+        }
+
+        function errorFn(data, status, headers, config) {
+          console.log("getting countries failed");
+        }
+      }, true);
+
+      $scope.$watch("vm.geoView", function (viewName) {
+          if(viewName == "regios"){
+          
           }
-
-          function errorFn(data, status, headers, config) {
-            console.log("getting countries failed");
-          }
-        }, true);
+      }, true);
 
 
       // for each active country, get the results
       
+    }
+
+    vm.setGeoView = function(viewName){
+      vm.geoView = viewName;
+    }
+
+    vm.selectedGeoView = function(viewName){
+      return vm.geoView == viewName ? true : false;
     }
 
     vm.updateMarkers = function() {

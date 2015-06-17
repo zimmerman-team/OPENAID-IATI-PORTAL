@@ -1,11 +1,19 @@
 <div class="row">
   <div class="col-xs-6">
-    <div class="tab active" id="landentab">
+    <div 
+      class="tab" 
+      id="landentab" 
+      ng-click="vm.setGeoView('landen')"
+      ng-class="{'active': vm.selectedGeoView('landen')}">
       Landen
     </div>
   </div>
   <div class="col-xs-6">
-    <div class="tab" id="regiotab">
+    <div 
+      class="tab" 
+      id="regiotab" 
+      ng-click="vm.setGeoView('regios')"
+      ng-class="{'active': vm.selectedGeoView('regios')}">
       Regio's
     </div>
   </div>
@@ -18,7 +26,7 @@
       IATI activiteiten kaart Nederland
     </h3> -->
 
-    <div class="legend">
+    <div class="legend" ng-show="vm.selectedGeoView('landen')">
       <!-- <h3>Partnerlanden</h3> -->
 
       <div class="check kleur-{{item.id}}" dir-paginate="item in vm.countryRelation | itemsPerPage: 10">
