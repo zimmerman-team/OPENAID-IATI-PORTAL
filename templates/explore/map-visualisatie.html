@@ -1,3 +1,16 @@
+<div class="row">
+  <div class="col-xs-6">
+    <div class="tab active" id="landentab">
+      Landen
+    </div>
+  </div>
+  <div class="col-xs-6">
+    <div class="tab" id="regiotab">
+      Regio's
+    </div>
+  </div>
+</div>
+
 <div class="map-holder">
 
   <div class="map">
@@ -8,7 +21,7 @@
     <div class="legend">
       <!-- <h3>Partnerlanden</h3> -->
 
-      <div class="check" dir-paginate="item in vm.countryRelation | itemsPerPage: 10">
+      <div class="check kleur-{{item.id}}" dir-paginate="item in vm.countryRelation | itemsPerPage: 10">
         <label class="switch" for="id{{item.id}}">
           <input id="id{{item.id}}" checklist-model="vm.selectedCountryRelation" checklist-value="item" type="checkbox">
           <i class="faker"></i>

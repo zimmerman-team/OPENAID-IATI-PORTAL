@@ -1300,7 +1300,7 @@ footer{
 
 //map page
 .map-holder {
-  background-color: rgba($blauw,0.1);
+  background-color: rgba($blauw,0.3);
   position: relative;
   padding:14px;
   margin-bottom:15px;
@@ -1320,24 +1320,54 @@ footer{
   height: 22px;
 }
 
+//kaart dingen
+
+.legend .kleur-2 .fa.kleur {
+  color:rgba(207,32,38,1);
+}
+.legend .kleur-3 .fa.kleur {
+  color:rgba(75,103,47,1);
+}
+.legend .kleur-4 .fa.kleur {
+  color:rgba(244,160,29,1);
+}
+.legend .kleur-5 .fa.kleur {
+  color:rgba(146,127,186,1);
+}
+
 .marker-circle-Overgangsrelatie{
-  background-color: rgba(207,32,38,0.4);
+  background-color: rgba(207,32,38,0.8);
 }
 
 .marker-circle-EXITrelatie{
-  background-color: rgba(75,103,47,0.4);
+  background-color: rgba(75,103,47,0.8);
 }
 
 .marker-circle-Hulprelatie{
-  background-color: rgba(63,169,245,0.4);
+  background-color: rgba(63,169,245,0.8);
 }
 
 .marker-circle-Handelsrelatie{
-  background-color: rgba(244,160,29,0.4);
+  background-color: rgba(244,160,29,0.8);
 }
 
 .marker-circle-Overige{
-  background-color: rgba(146,127,186,0.4);
+  background-color: rgba(146,127,186,0.8);
+}
+
+.tab {
+  font-size: 24px;
+  text-align: center;
+  padding:10px 15px;
+  background: rgba($blauw, 0.1);
+  cursor: pointer;
+  transition: all .2s;
+  &.active, &:hover {
+    background:rgba($blauw, 0.3);
+  }
+  &.active {
+    cursor: auto;
+  }
 }
 
 .info {
