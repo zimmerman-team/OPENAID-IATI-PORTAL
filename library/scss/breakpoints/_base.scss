@@ -952,6 +952,7 @@ TOOL BAR
   background-color: rgba($icon-grn, .5);
   padding:6px 10px;
   margin-bottom: 15px;
+  position:relative;
   a {
     cursor: pointer;
     &:hover {
