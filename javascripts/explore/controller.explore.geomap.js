@@ -134,10 +134,12 @@
             if(vm.markerData[i].location != null){
               var location = vm.markerData[i].location.substr(6, (vm.markerData[i].location.length - 7));
               location = location.split(' ');
+              var flag = vm.markerData[i].country_id;
+              var flag_lc = flag.toLowerCase();
               vm.markers[vm.markerData[i].country_id] = {
                 lat: parseInt(location[1]),
                 lng: parseInt(location[0]),
-                message: '<span class="flag-icon flag-icon-'+vm.markerData[i].country_id+'"></span>'+
+                message: '<span class="flag-icon flag-icon-'+flag_lc+'"></span>'+
                 '<h4>'+vm.markerData[i].name+'</h4>'+
                 '<p><b>Activiteiten:</b> '+vm.markerData[i]['activity_count']+'</p>'+
                 '<p><b>Totaal budget:</b> XXX</p>'+

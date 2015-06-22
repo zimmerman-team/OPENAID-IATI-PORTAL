@@ -1469,6 +1469,11 @@ footer{
     padding:20px;
     background-color: rgba(255,255,255,0.9); 
   }
+  .leaflet-container {
+    a.btn {
+      color: #fff;
+    }
+  }
   a.leaflet-popup-close-button {
     display: block;
     background: #fff;
