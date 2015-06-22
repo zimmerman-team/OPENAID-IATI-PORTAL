@@ -186,13 +186,6 @@ come into play. Have fun!
 
 //map viz
 .legend {
-	float: none;
-	width: 100%;
-	text-align: center;
-  //position: absolute;
-  //left:14px;
-  //top:14px;
-  z-index: 999;
   label {
   	margin-bottom: 0;
   }
@@ -233,18 +226,47 @@ come into play. Have fun!
   }
 }
 
-// .geomap-mask {
-//   -webkit-clip-path: url(#clipping);
-//   -moz-clip-path: url(#clipping);
-//   -ms-clip-path: url(#clipping);
-//   clip-path: url(#clipping);
-//   height:600px;
-//   width: 600px;
-//   display: inline-block;
-//   overflow: hidden;
-//   background-color: rgba(41,171,226,0.85);
-// }
+.geomap-mask {
+  // -webkit-clip-path: url(#clipping);
+  // -moz-clip-path: url(#clipping);
+  // -ms-clip-path: url(#clipping);
+  // clip-path: url(#clipping);
+  // height:600px;
+  // width: 600px;
+  // display: inline-block;
+  // overflow: hidden;
+  // background-color: rgba(41,171,226,0.85);
+
+  -moz-clip-path: circle(300px at center);
+  -webkit-clip-path: circle(300px at center);
+  -ms-clip-path: circle(300px at center);
+  clip-path: circle(300px at center);
+
+  border-radius: 300px;
+  -moz-border-radius: 300px;
+  -khtml-border-radius: 300px;
+  -webkit-border-radius: 300px;
+  overflow: hidden;
+
+  margin:0 auto;
+  width: 600px;
+
+  .leaflet-control-container {
+  	position:absolute;
+  	left:10px;
+  	top:264px;
+  }
+}
 
 .navbar .btn.btn-default, .navbar .btn-group .btn {
 	margin-right: 10px;
+}
+
+//navbar alignment, want menu wat breed
+.navbar-header {
+	margin:0 auto;
+}
+
+.navbar-collapse {
+	padding:0;
 }

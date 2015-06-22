@@ -34,15 +34,6 @@ oipa-table-chart .table tbody tr td.colour {
   display: none;
 }
 
-.tool-text{
-  color: #fff;
-}
-
-.geselecteerde-filters{
-  margin-left:124px;
-}
-
-
 .about-page{
 
   .intro{
@@ -315,6 +306,9 @@ NAVBAR
   }
   .navbar-collapse {
     border-color: #333;
+  }
+  .navbar-toggle {
+    border:0;
   }
 }
 
@@ -979,6 +973,15 @@ TOOL BAR
   .center {
     text-align: center;
   }
+  .tool-text{
+    color: #fff;
+    white-space: nowrap;
+  }
+  .right {
+    .tool-text {
+      display: none;
+    }
+  }
 }
 
 /*********************
@@ -1399,6 +1402,7 @@ footer{
   .check {
     position: relative;
     display: inline-block;
+    width: 200px;
   }
   label {
     font-weight: normal;
