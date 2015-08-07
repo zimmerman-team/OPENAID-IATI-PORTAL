@@ -27,7 +27,8 @@
       restrict: 'E',
       scope: {
         'excludeFilter': '@',
-        'excludeDashboard': '@'
+        'excludeDashboard': '@',
+        'currentPage': '@'
       },
       templateUrl: templateBaseUrl + '/templates/filters/filter-bar.html'
     };

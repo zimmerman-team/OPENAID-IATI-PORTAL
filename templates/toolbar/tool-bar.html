@@ -1,24 +1,36 @@
 <div id="tool-bar">
 	<div class="row">
-		<div class="col-xs-6">
-			<span class="fa-stack fa-lg">
-		      <i class="fa fa-circle fa-stack-2x"></i>
-		      <a ng-click="vm.resetFilters()" class="fa fa-refresh fa-stack-1x fa-inverse"></a>
-		    </span>
-		    <span class="tool-text">reset filters</span>
-		</div>
-		<div class="col-xs-6 right">
+		
+		<div class="col-xs-12 col-sm-8">
 			<span class="fa-stack fa-lg geselecteerde-filters">
 				<i class="fa fa-circle fa-stack-2x"></i>
 		    	<a ng-click="vm.toggleSelection()" class="fa fa-align-justify fa-stack-1x fa-inverse"></a>
 		    </span>
-		    <span class="tool-text">geselecteerde filters</span>
-		</div>
-		<!-- <div class="col-xs-12 col-sm-4 text-right">
+		    <span class="tool-text">Toon actieve filters</span>
 			<span class="fa-stack fa-lg">
-				<i class="fa fa-circle fa-stack-2x"></i>
-		    	<a ng-click="vm.showDownload()" class="fa fa-download fa-stack-1x fa-inverse"></a>
+		      <i class="fa fa-circle fa-stack-2x"></i>
+		      <a ng-click="vm.resetFilters()" class="fa fa-refresh fa-stack-1x fa-inverse"></a>
 		    </span>
+		    <span class="tool-text">Wis actieve filters</span>
+		</div>
+		
+		<div class="col-xs-12 col-sm-4 text-right">
+
+			<span 
+                class="fa-stack fa-lg" 
+                ng-click="vm.showDownload()" 
+                ng-mouseover="vm.hoverIn('download')" 
+                ng-mouseleave="vm.hoverOut('download')">
+	          <div 
+	            class="glyphicon-popup" 
+	            ng-show="vm.buttonTexts['download'].hoverShow" 
+	            ng-bind-html="vm.currentHoverText"></div>
+
+              <i class="fa fa-circle fa-stack-2x"></i>
+              <i class="fa fa-download fa-stack-1x fa-inverse"></i>
+            </span>
+
+
 		    <span class="fa-stack fa-lg">
 		    	<i class="fa fa-circle fa-stack-2x"></i>
 		    	<a ng-click="vm.share('twitter')" class="fa fa-twitter fa-stack-1x fa-inverse"></a>
@@ -31,7 +43,7 @@
 		    	<i class="fa fa-circle fa-stack-2x"></i>
 		   		<a ng-click="vm.share('facebook')" class="fa fa-facebook fa-stack-1x fa-inverse"></a>
 		   	</span>
-		</div> -->
+		</div>
 	</div>
 	<div >
 		<filter-selection-box 

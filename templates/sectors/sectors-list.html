@@ -1,34 +1,36 @@
-<div class="col-md-12">
-    <div class="sort">
-        <div class="row">
-            <div class="col-xs-4">
-                resultaten {{vm.offset + 1}} - {{vm.maxShown()}} van {{vm.totalActivities}}
+<div class="row">
+    <div class="col-md-12">
+        <div class="sort">
+            <div class="row">
+                <div class="col-xs-4">
+                    resultaten {{vm.offset + 1}} - {{vm.maxShown()}} van {{vm.totalActivities}}
+                </div>
             </div>
         </div>
     </div>
-</div>
-<div class="activity-list-item" 
-    ng-show="vm.activities.length != 0"
-    dir-paginate="item in vm.sectors | itemsPerPage: 5"  
-    pagination-id="sectorList">
-        <div class="col-md-12">
-            <div class="hp-block">
-                <div class="expand" ng-click="vm.dashboard = 'landen'">
-                    <span class="fa-stack fa-lg">
-                        <i class="fa fa-circle fa-stack-2x"></i>
-                        <i class="fa fa-share fa-stack-1x fa-share"></i>
-                    </span>
+    <div class="activity-list-item" 
+        ng-show="vm.activities.length != 0"
+        dir-paginate="item in vm.sectors | itemsPerPage: 5"  
+        pagination-id="sectorList">
+            <div class="col-md-12">
+                <div class="hp-block">
+                    <div class="expand" ng-click="vm.dashboard = 'landen'">
+                        <span class="fa-stack fa-lg">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-share fa-stack-1x fa-share"></i>
+                        </span>
+                    </div>
+                    <a ui-sref="sector({ sector_id: item.sector_id })"></a>
+                    <h1>{{ item.name }}</h1>
+                    <p><b>Activiteiten:</b> XXX</p>
+                    <p><b>Budget:</b> {{item.total_disbursements  | currency :'€':0}}</p>
                 </div>
-                <a ui-sref="sector({ sector_id: item.sector_id })"></a>
-                <h1>{{ item.name }}</h1>
-                <p><b>Activiteiten:</b> XXX</p>
-                <p><b>Budget:</b> {{item.total_disbursements  | currency :'€':0}}</p>
             </div>
-        </div>
-</div>
-<div class="col-md-12 text-center pag">
-    <dir-pagination-controls 
-    pagination-id="sectorList" 
-    on-page-change="pageChanged(newPageNumber)">
-    </dir-pagination-controls>
+    </div>
+    <div class="col-md-12 text-center pag">
+        <dir-pagination-controls 
+        pagination-id="sectorList" 
+        on-page-change="pageChanged(newPageNumber)">
+        </dir-pagination-controls>
+    </div>
 </div>

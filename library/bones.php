@@ -152,6 +152,7 @@ function bones_scripts_and_styles() {
 		wp_register_script( 'controller.countries.list', get_stylesheet_directory_uri() . '/javascripts/countries/controller.countries.list.js', array('oipa'), '', true );
 		wp_register_script( 'controller.countries.explore', get_stylesheet_directory_uri() . '/javascripts/countries/controller.countries.explore.js', array('oipa'), '', true );
 		wp_register_script( 'controller.countries.map', get_stylesheet_directory_uri() . '/javascripts/countries/controller.countries.map.js', array('oipa'), '', true );
+		wp_register_script( 'controller.countries.visualisation', get_stylesheet_directory_uri() . '/javascripts/countries/controller.countries.visualisation.js', array('oipa'), '', true );
 		wp_register_script( 'controller.country', get_stylesheet_directory_uri() . '/javascripts/countries/controller.country.js', array('oipa'), '', true );
 		wp_register_script( 'directive.countries', get_stylesheet_directory_uri() . '/javascripts/countries/directive.countries.js', array('oipa'), '', true );
 		wp_register_script( 'directive.countries.list', get_stylesheet_directory_uri() . '/javascripts/countries/directive.countries.list.js', array('oipa'), '', true );
@@ -159,6 +160,11 @@ function bones_scripts_and_styles() {
 		wp_register_script( 'directive.countries.map', get_stylesheet_directory_uri() . '/javascripts/countries/directive.countries.map.js', array('oipa'), '', true );
 		wp_register_script( 'service.countries', get_stylesheet_directory_uri() . '/javascripts/countries/service.countries.js', array('oipa'), '', true );
 		
+		wp_register_script( 'module.geovis', get_stylesheet_directory_uri() . '/javascripts/geovis/module.geovis.js', array('oipa'), '', true );
+		wp_register_script( 'directive.geovis', get_stylesheet_directory_uri() . '/javascripts/geovis/directive.geovis.js', array('oipa'), '', true );
+		wp_register_script( 'controller.geovis', get_stylesheet_directory_uri() . '/javascripts/geovis/controller.geovis.js', array('oipa'), '', true );
+		wp_register_script( 'ext.geovis', get_stylesheet_directory_uri() . '/javascripts/geovis/ext.geovis.js', array('oipa'), '', true );
+
 
 		wp_register_script( 'module.policyMarkers', get_stylesheet_directory_uri() . '/javascripts/policyMarkers/module.policyMarkers.js', array('oipa'), '', true );
 		wp_register_script( 'service.policyMarkers', get_stylesheet_directory_uri() . '/javascripts/policyMarkers/service.policyMarkers.js', array('oipa'), '', true );
@@ -184,6 +190,7 @@ function bones_scripts_and_styles() {
 		wp_register_script( 'module.sectors', get_stylesheet_directory_uri() . '/javascripts/sectors/module.sectors.js', array('oipa'), '', true );
 		wp_register_script( 'controller.sectors', get_stylesheet_directory_uri() . '/javascripts/sectors/controller.sectors.js', array('oipa'), '', true );
 		wp_register_script( 'controller.sector', get_stylesheet_directory_uri() . '/javascripts/sectors/controller.sector.js', array('oipa'), '', true );
+		wp_register_script( 'controller.sectors.visualisation', get_stylesheet_directory_uri() . '/javascripts/sectors/controller.sectors.visualisation.js', array('oipa'), '', true );
 		wp_register_script( 'controller.sectors.explore', get_stylesheet_directory_uri() . '/javascripts/sectors/controller.sectors.explore.js', array('oipa'), '', true );
 		wp_register_script( 'controller.sectors.list', get_stylesheet_directory_uri() . '/javascripts/sectors/controller.sectors.list.js', array('oipa'), '', true );
 		wp_register_script( 'directive.sectors', get_stylesheet_directory_uri() . '/javascripts/sectors/directive.sectors.js', array('oipa'), '', true );
@@ -206,15 +213,20 @@ function bones_scripts_and_styles() {
 		wp_register_script( 'ext.bubbleChart', get_stylesheet_directory_uri() . '/javascripts/bubbleChart/ext.bubbleChart.js', array('oipa'), '', true );
 		wp_register_script( 'service.bubbleChart', get_stylesheet_directory_uri() . '/javascripts/bubbleChart/service.bubbleChart.js', array('oipa'), '', true );
 		
+		wp_register_script( 'module.sunburst', get_stylesheet_directory_uri() . '/javascripts/sunburst/module.sunburst.js', array('oipa'), '', true );
+		wp_register_script( 'controller.sunburst', get_stylesheet_directory_uri() . '/javascripts/sunburst/controller.sunburst.js', array('oipa'), '', true );
+		wp_register_script( 'directive.sunburst', get_stylesheet_directory_uri() . '/javascripts/sunburst/directive.sunburst.js', array('oipa'), '', true );
+		wp_register_script( 'ext.sunburst', get_stylesheet_directory_uri() . '/javascripts/sunburst/ext.sunburst.js', array('oipa'), '', true );
+		wp_register_script( 'service.sunburst', get_stylesheet_directory_uri() . '/javascripts/sunburst/service.sunburst.js', array('oipa'), '', true );
+
 		wp_register_script( 'module.implementingOrganisations', get_stylesheet_directory_uri() . '/javascripts/implementingOrganisations/module.implementingOrganisations.js', array('oipa'), '', true );
 		wp_register_script( 'controller.implementingOrganisations', get_stylesheet_directory_uri() . '/javascripts/implementingOrganisations/controller.implementingOrganisations.js', array('oipa'), '', true );
 		wp_register_script( 'controller.implementingOrganisation', get_stylesheet_directory_uri() . '/javascripts/implementingOrganisations/controller.implementingOrganisation.js', array('oipa'), '', true );
 		wp_register_script( 'directive.implementingOrganisations', get_stylesheet_directory_uri() . '/javascripts/implementingOrganisations/directive.implementingOrganisations.js', array('oipa'), '', true );
 		wp_register_script( 'service.implementingOrganisations', get_stylesheet_directory_uri() . '/javascripts/implementingOrganisations/service.implementingOrganisations.js', array('oipa'), '', true );
+		wp_register_script( 'controller.implementingOrganisations.visualisation', get_stylesheet_directory_uri() . '/javascripts/implementingOrganisations/controller.implementingOrganisations.visualisation.js', array('oipa'), '', true );
 		wp_register_script( 'controller.implementingOrganisations.explore', get_stylesheet_directory_uri() . '/javascripts/implementingOrganisations/controller.implementingOrganisations.explore.js', array('oipa'), '', true );
 		wp_register_script( 'directive.implementingOrganisations.explore', get_stylesheet_directory_uri() . '/javascripts/implementingOrganisations/directive.implementingOrganisations.explore.js', array('oipa'), '', true );
-		wp_register_script( 'controller.implementingOrganisations.type.explore', get_stylesheet_directory_uri() . '/javascripts/implementingOrganisations/controller.implementingOrganisations.type.explore.js', array('oipa'), '', true );
-		wp_register_script( 'directive.implementingOrganisations.type.explore', get_stylesheet_directory_uri() . '/javascripts/implementingOrganisations/directive.implementingOrganisations.type.explore.js', array('oipa'), '', true );
 		wp_register_script( 'controller.implementingOrganisations.list', get_stylesheet_directory_uri() . '/javascripts/implementingOrganisations/controller.implementingOrganisations.list.js', array('oipa'), '', true );
 		wp_register_script( 'directive.implementingOrganisations.list', get_stylesheet_directory_uri() . '/javascripts/implementingOrganisations/directive.implementingOrganisations.list.js', array('oipa'), '', true );
 		
@@ -305,6 +317,11 @@ function bones_scripts_and_styles() {
 		wp_enqueue_script( 'controller.search' );
 		wp_enqueue_script( 'service.search' );
 
+		wp_enqueue_script( 'module.geovis' );
+		wp_enqueue_script( 'directive.geovis' );
+		wp_enqueue_script( 'controller.geovis' );
+		wp_enqueue_script( 'ext.geovis' );
+
 		wp_enqueue_script( 'module.toolbar' );
 		wp_enqueue_script( 'directive.toolbar' );
 
@@ -321,6 +338,7 @@ function bones_scripts_and_styles() {
 		wp_enqueue_script( 'controller.countries' );
 		wp_enqueue_script( 'controller.countries.explore' );
 		wp_enqueue_script( 'controller.countries.map' );
+		wp_enqueue_script( 'controller.countries.visualisation' );
 		wp_enqueue_script( 'controller.countries.list' );
 		wp_enqueue_script( 'controller.country' );
 		wp_enqueue_script( 'directive.countries' );
@@ -365,11 +383,19 @@ function bones_scripts_and_styles() {
 		wp_enqueue_script( 'ext.bubbleChart' );
 		wp_enqueue_script( 'service.bubbleChart' );
 
+		wp_enqueue_script( 'module.sunburst');
+		wp_enqueue_script( 'controller.sunburst');
+		wp_enqueue_script( 'directive.sunburst');
+		wp_enqueue_script( 'ext.sunburst');
+		wp_enqueue_script( 'service.sunburst');
+
+
 		wp_enqueue_script( 'module.implementingOrganisations' );
 		wp_enqueue_script( 'controller.implementingOrganisations' );
 		wp_enqueue_script( 'controller.implementingOrganisation' );
 		wp_enqueue_script( 'directive.implementingOrganisations' );
 		wp_enqueue_script( 'service.implementingOrganisations' );
+		wp_enqueue_script( 'controller.implementingOrganisations.visualisation' );
 		wp_enqueue_script( 'controller.implementingOrganisations.explore' );
 		wp_enqueue_script( 'directive.implementingOrganisations.explore' );
 		wp_enqueue_script( 'controller.implementingOrganisations.type.explore' );
@@ -393,6 +419,7 @@ function bones_scripts_and_styles() {
 		wp_enqueue_script( 'module.sectors' );
 		wp_enqueue_script( 'controller.sectors' );
 		wp_enqueue_script( 'controller.sector' );
+		wp_enqueue_script( 'controller.sectors.visualisation' );
 		wp_enqueue_script( 'controller.sectors.explore' );
 		wp_enqueue_script( 'controller.sectors.list' );
 		wp_enqueue_script( 'directive.sectors' );

@@ -1,0 +1,27 @@
+<div id="main-content" class="container">
+    
+    <filter-bar current-page="themas"></filter-bar>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div id="sector-sunburst" class="spec clearfix">
+                <div class="sector-vis-wrapper" style="width: 90%; margin: 0 auto;">
+                    <h1>Thematische uitgaven ontwikkelingshulp Buitenlandse zaken</h1>
+                    <hr>
+                    <p class="text-center">
+                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.
+                    </p>
+                    <hr>
+
+                    <div class="sector-vis-sunburst">
+                        <sunburst 
+                            ng-init="vm.activateSunburst()" 
+                            refresh-sunburst="vm.refreshSunburst" 
+                            formatted-data="vm.sunburstData"></sunburst>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

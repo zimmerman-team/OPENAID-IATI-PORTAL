@@ -49,7 +49,7 @@
         })
         .state({
             name:         'iati-explorer-list',
-            url:          '/iati-explorer/list/',
+            url:          '/iati-explorer/lijst/',
             controller:   'ExploreController',
             controllerAs: 'vm',
             templateUrl:  templateBaseUrl + '/templates/layout/iati-explorer-list.html',
@@ -68,56 +68,105 @@
             }
         })
         .state({
-            name:        'land',
+            name:        'countries-map',
+            url:         '/locaties/map/',
+            controller:  'ExploreController',
+            controllerAs: 'vm',
+            templateUrl: templateBaseUrl + '/templates/countries/countries-view-map.html',
+            ncyBreadcrumb: {
+                label: 'Landen'
+            }
+        })
+        .state({
+            name:        'countries-list',
+            url:         '/locaties/lijst/',
+            controller:  'CountriesController',
+            controllerAs: 'vm',
+            templateUrl: templateBaseUrl + '/templates/countries/countries-view-list.html',
+            ncyBreadcrumb: {
+                label: 'Landen'
+            }
+        })
+        .state({
+            name:        'country',
             url:         '/landen/:country_id/',
             controller:  'CountryController',
             controllerAs: 'vm',
-            templateUrl: templateBaseUrl + '/templates/countries/country.html',
+            templateUrl: templateBaseUrl + '/templates/countries/country-view-detail.html',
             ncyBreadcrumb: {
                 parent: 'landen',
                 label: '{{vm.country.name}}'
             }
         })
         .state({
-            name:        'landen',
-            url:         '/landen/',
-            controller:  'ExploreController',
+            name:        'countries',
+            url:         '/locaties/',
+            controller:  'CountriesVisualisationController',
             controllerAs: 'vm',
-            templateUrl: templateBaseUrl + '/templates/layout/iati-explorer-map.html',
+            templateUrl: templateBaseUrl + '/templates/countries/countries-view-visualisation.html',
             ncyBreadcrumb: {
                 label: 'Landen'
             }
         })
         .state({
-            name:        'organisatie',
+            name:        'organisations-list',
+            url:         '/organisaties/lijst/',
+            controller:  'ImplementingOrganisationsExploreController',
+            controllerAs: 'vm',
+            templateUrl: templateBaseUrl + '/templates/implementingOrganisations/implementing-organisations-view-list.html'
+        })
+        .state({
+            name:        'organisations-map',
+            url:         '/organisaties/map/',
+            controller:  'ExploreController',
+            controllerAs: 'vm',
+            templateUrl: templateBaseUrl + '/templates/implementingOrganisations/implementing-organisations-view-map.html'
+        })
+        .state({
+            name:        'organisations',
+            url:         '/organisaties/',
+            controller:  'ImplementingOrganisationsVisualisationController',
+            controllerAs: 'vm',
+            templateUrl: templateBaseUrl + '/templates/implementingOrganisations/implementing-organisations-view-visualisation.html'
+        })
+        .state({
+            name:        'organisation',
             url:         '/organisaties/:organisation_id/',
             controller:  'ImplementingOrganisationController',
             controllerAs: 'vm',
-            templateUrl: templateBaseUrl + '/templates/implementingOrganisations/implementingOrganisation.html'
+            templateUrl: templateBaseUrl + '/templates/implementingOrganisations/implementing-organisation.html'
         })
         .state({
-            name:        'organisaties',
-            url:         '/organisaties/',
-            controller:  'ImplementingOrganisationsExploreController',
+            name:        'themas-map',
+            url:         '/themas/map/',
+            controller:  'ExploreController',
             controllerAs: 'vm',
-            templateUrl: templateBaseUrl + '/templates/implementingOrganisations/implementingOrganisations.html'
+            templateUrl: templateBaseUrl + '/templates/sectors/sectors-view-map.html',
         })
         .state({
-            name:        'sector',
-            url:         '/sectoren/:sector_id/',
+            name:        'themas-list',
+            url:         '/themas/lijst/',
+            controller:  'SectorsExploreController',
+            controllerAs: 'vm',
+            templateUrl: templateBaseUrl + '/templates/sectors/sectors-view-list.html'
+        })
+        .state({
+            name:        'themas',
+            url:         '/themas/',
+            controller:  'SectorsVisualisationController',
+            controllerAs: 'vm',
+            templateUrl: templateBaseUrl + '/templates/sectors/sectors-view-visualisation.html'
+        })
+        .state({
+            name:        'thema',
+            url:         '/themas/:sector_id/',
             controller:  'SectorController',
             controllerAs: 'vm',
             templateUrl: templateBaseUrl + '/templates/sectors/sector.html'
         })
+        
         .state({
-            name:        'sectoren',
-            url:         '/sectoren/',
-            controller:  'SectorsExploreController',
-            controllerAs: 'vm',
-            templateUrl: templateBaseUrl + '/templates/sectors/sectors.html'
-        })
-        .state({
-            name:        'over',
+            name:        'about',
             url:         '/over/',
             controller:  'PagesController',
             controllerAs: 'vm',

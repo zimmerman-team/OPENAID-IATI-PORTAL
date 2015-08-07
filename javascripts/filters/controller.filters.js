@@ -9,17 +9,23 @@
     .module('oipa.filters')
     .controller('FiltersController', FiltersController);
 
-  FiltersController.$inject = ['$scope', 'Filters', 'FilterSelection', '$sce'];
+  FiltersController.$inject = ['$state', '$scope', 'Filters', 'FilterSelection', '$sce'];
 
   /**
   * @namespace FiltersController
   */
-  function FiltersController($scope, Filters, FilterSelection, $sce) {
+  function FiltersController($state, $scope, Filters, FilterSelection, $sce) {
     var vm = this;
     vm.showSelection = false;
     vm.filterSelection = FilterSelection;
     vm.excludeFilter = $scope.excludeFilter;
     vm.excludeDashboard = $scope.excludeDashboard;
+    vm.currentPage = $scope.currentPage;
+    vm.openedPanel = ''; 
+    vm.showSelection = false;
+    vm.filterSelection = FilterSelection;
+    vm.selectionString = '';
+    vm.currentHoverText = '';
 
     vm.buttonTexts = {
       'recipient_countries': {'text': 'Ontvangend land', hoverShow: false},
@@ -28,15 +34,25 @@
       'recipient_sectors': {'text': 'Sector', hoverShow: false},
       'recipient_activity_status': {'text': 'Activiteit status', hoverShow: false},
       'recipient_implementing_organisations': {'text': 'Ontvangende organisatie', hoverShow: false},
-      'charts': {'text': 'Toon in chart view', hoverShow: false},
-      'map': {'text': 'Toon in map view', hoverShow: false},
-      'list': {'text': 'Toon in list view', hoverShow: false},
+      'download': {'text': 'Download is nog niet geimplementeerd', hoverShow: false},
+      'share_twitter': {'text': 'Twitter share is nog niet geimplementeerd', hoverShow: false},
+      'share_linkedin': {'text': 'LinkedIn share is nog niet geimplementeerd', hoverShow: false},
+      'share_facebook': {'text': 'Facebook share is nog niet geimplementeerd', hoverShow: false},
     };
+
     vm.currentHoverText = '';
 
     activate();
 
     function activate() {
+    }
+
+    vm.goToPage = function(type){
+      if (type == ''){
+        $state.go(vm.currentPage);
+        return false;
+      }
+      $state.go(vm.currentPage + '-' + type);
     }
 
     vm.isIncludedFilter = function(id){
@@ -80,6 +96,32 @@
       } else {
         vm.setOpenedHeader(slug);
       }
+    }
+
+    vm.toggleSelection = function(){
+      vm.showSelection = !vm.showSelection;
+      FilterSelection.openedPanel = '';
+    }
+
+    vm.resetFilters = function(){
+      FilterSelection.toReset = true;
+    }
+
+    vm.saveFilters = function(){
+      FilterSelection.toSave = true;
+      FilterSelection.openedPanel = '';
+    }
+
+    vm.isOpenedHeader = function(slug){
+      return FilterSelection.openedPanel == slug;
+    }
+
+    vm.showDownload = function(){
+      console.log("TO DO; show download options");
+    }
+
+    vm.share = function(medium){
+      console.log("TO DO; open "+medium+" share url in new window");
     }
     
   }

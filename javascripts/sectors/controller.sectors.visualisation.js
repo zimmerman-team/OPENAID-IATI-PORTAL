@@ -1,20 +1,20 @@
 /**
-* SectorsController
-* @namespace oipa.sectors.controllers
+* SectorsVisualisationController
+* @namespace oipa.sectors
 */
 (function () {
   'use strict';
 
   angular
     .module('oipa.sectors')
-    .controller('SectorsExploreController', SectorsExploreController);
+    .controller('SectorsVisualisationController', SectorsVisualisationController);
 
-  SectorsExploreController.$inject = ['$scope', 'FilterSelection', 'Aggregations'];
+  SectorsVisualisationController.$inject = ['$scope', 'FilterSelection', 'Aggregations'];
 
   /**
-  * @namespace SectorsController
+  * @namespace SectorsVisualisationController
   */
-  function SectorsExploreController($scope, FilterSelection, Aggregations) {
+  function SectorsVisualisationController($scope, FilterSelection, Aggregations) {
     var vm = this;
     vm.filterSelection = FilterSelection;
     vm.selectionString = '';

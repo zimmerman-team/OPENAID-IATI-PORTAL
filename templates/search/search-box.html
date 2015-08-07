@@ -1,7 +1,11 @@
-<div class="search-box row">
-    <form ng-submit="vm.save()" class="col-md-12">
+<div class="search-box">
+    <form ng-submit="vm.save()">
     	<div class="search-wrap">
-	        <input ng-model="vm.searchString" type="text" class="form-control" placeholder="Zoek op activiteit, land, organisatie of sector niveau ...">
+	        <input 
+                ng-model="vm.searchString" 
+                type="text" 
+                class="form-control" 
+                placeholder="Zoek op activiteit...">
 	        <span class="input-group-btn">
 	            <button class="btn btn-search" type="button" ng-click="vm.save()">
 	                <span class="glyphicon glyphicon-search"></span>
