@@ -19,6 +19,7 @@ ZzLocationVis = (function() {
     this.nodes = [];
     this.tooltip = CustomTooltip("sunburst_tooltip", 120);
     this.mapping = d3.layout.hierarchy();
+    this.mappingData = null;
 
     this.group_centers = {
       "89": { x: 250, y: 0},
@@ -120,31 +121,52 @@ ZzLocationVis = (function() {
   }
 
   ZzLocationVis.prototype.clickRegion = function(d){
+   
     // check level, if 2 then collapse 3, if 1 then collapse 2
     console.log(d);
+
+    // close others, open this
     d.open = true;
-    geoLocationVis.updateLegend();
+    geoLocationVis.update();
 
   }
 
 
-  ZzLocationVis.prototype.updateLegend = function(data) {
- 
-    console.log(this.mapping(data));
+  ZzLocationVis.prototype.updateLegend = function() {
 
     var that = this;
     this.mapping.children(function(d) { return d.children; });
-    var all_regions = this.mapping(data).slice(1);
+    var all_regions = this.mapping(that.mappingData).slice(1);
 
-    this.mapping.children(function(d, depth) { return depth < 1 ? d.children : null; });
-    var mappingData = this.mapping(data).slice(1);
+    console.log(all_regions);
+
+
+    this.mapping.children(function(d, depth) { 
+
+      console.log(d);
+
+      if(d.depth < 2){
+        return d.children;
+      }
+      console.log(d.name);
+      if(d.open){
+        console.log('test');
+        return d.children;
+      }
+
+      return null;
+
+    });
+
+    var mappingData = this.mapping(that.mappingData).slice(1);
+
+    console.log(mappingData);
 
     var legendaItems = this.vis.selectAll('.legend')
       .data(mappingData);
 
     mappingData.forEach(function(d, i){
       that.group_centers[d.id]['y'] = 200 + (i * 150);
-      console.log(d);
     });
 
     that.setBubbleCenters(all_regions);
@@ -190,25 +212,24 @@ ZzLocationVis = (function() {
     });
 
 
-    
-
-
-
-
-
 
   }
 
   ZzLocationVis.prototype.update = function(data) {
 
-    this.updateLegend(data.mapping);
-    data = data.data;
-
     var that = this;
-    var maxvalue = d3.max(data, function(d) { return d.total_disbursements; });
+
+    if(data){
+      that.mappingData = data.mapping;
+      that.data = data.data;
+    }
+
+    this.updateLegend();
+
+    var maxvalue = d3.max(that.data, function(d) { return d.total_disbursements; });
     this.radius_scale = d3.scale.pow().exponent(0.5).domain([0, maxvalue]).range([2, 20]);
 
-    data.forEach(function(d) {
+    that.data.forEach(function(d) {
       d.id = d.country_id;
       d.group = d.region_id;
       d.fill = d.color;
@@ -218,9 +239,8 @@ ZzLocationVis = (function() {
       d.radius = that.radius_scale(d.total_disbursements);
     });
 
-    that.nodes = data;
-    this.force
-        .nodes(that.nodes);
+    that.nodes = that.data;
+    this.force.nodes(that.nodes);
 
 
     // create / update labels
