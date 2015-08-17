@@ -185,30 +185,30 @@ come into play. Have fun!
 }
 
 //map viz
-.legend {
-  label {
-  	margin-bottom: 0;
-  }
-  input[type=checkbox] { 
-    & + label:before {
-      transition:all .2s;
-      font-size:24px;
-      margin-right: 10px;
-      width: 34px;
-      height: 34px;
-      line-height: 34px;
-      border-radius: 17px;
-      text-indent: 10px;
-    }
-  }
-  .check:hover {
-		input[type=checkbox] { 
-		    & + label:before {
-		    	opacity: 1;
-		    }
-		}
-	}
-}
+// .legend {
+//   label {
+//   	margin-bottom: 0;
+//   }
+//   input[type=checkbox] { 
+//     & + label:before {
+//       transition:all .2s;
+//       font-size:24px;
+//       margin-right: 10px;
+//       width: 34px;
+//       height: 34px;
+//       line-height: 34px;
+//       border-radius: 17px;
+//       text-indent: 10px;
+//     }
+//   }
+//   .check:hover {
+// 		input[type=checkbox] { 
+// 		    & + label:before {
+// 		    	opacity: 1;
+// 		    }
+// 		}
+// 	}
+// }
 
 .info {
   padding: 0;
@@ -250,34 +250,7 @@ come into play. Have fun!
 
   // margin:0 auto;
   // width: 600px;
-  height:400px;
-  overflow: hidden;
-  position:relative;
-  .leaflet-control-container {
-  	position:absolute;
-  	top:80px;
-  }
-}
 
-.overlay {
-	position:absolute;
-	background:rgba(0,0,0,.6);
-	color:#fff;
-	z-index:99999;
-	left:15px;
-	right:15px;
-	padding:15px 10px;
-	text-align:center;
-	table {
-		margin:0 auto;
-		th {
-			padding:0 15px;
-		}
-		td {
-			padding:5px 15px 0 15px;
-			font-size:18px;
-		}
-	}
 }
 
 .navbar .btn.btn-default, .navbar .btn-group .btn {
@@ -291,4 +264,20 @@ come into play. Have fun!
 
 .navbar-collapse {
 	padding:0;
+}
+
+.overlay {
+  position:absolute;
+  left:15px;
+  right:15px;
+  text-align:center;
+  table {
+    margin:0 auto;
+    th {
+      
+    }
+    td {
+      
+    }
+  }
 }

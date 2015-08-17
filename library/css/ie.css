@@ -309,26 +309,6 @@ come into play. Have fun!
   margin-top: 0;
 }
 
-/* line 189, ../scss/breakpoints/_768up.scss */
-.legend label {
-  margin-bottom: 0;
-}
-/* line 193, ../scss/breakpoints/_768up.scss */
-.legend input[type=checkbox] + label:before {
-  transition: all .2s;
-  font-size: 24px;
-  margin-right: 10px;
-  width: 34px;
-  height: 34px;
-  line-height: 34px;
-  border-radius: 17px;
-  text-indent: 10px;
-}
-/* line 206, ../scss/breakpoints/_768up.scss */
-.legend .check:hover input[type=checkbox] + label:before {
-  opacity: 1;
-}
-
 /* line 213, ../scss/breakpoints/_768up.scss */
 .info {
   padding: 0;
@@ -347,56 +327,31 @@ come into play. Have fun!
   margin-top: .5em;
 }
 
-/* line 229, ../scss/breakpoints/_768up.scss */
-.geomap-mask {
-  height: 400px;
-  overflow: hidden;
-  position: relative;
-}
 /* line 256, ../scss/breakpoints/_768up.scss */
-.geomap-mask .leaflet-control-container {
-  position: absolute;
-  top: 80px;
-}
-
-/* line 262, ../scss/breakpoints/_768up.scss */
-.overlay {
-  position: absolute;
-  background: rgba(0, 0, 0, 0.6);
-  color: #fff;
-  z-index: 99999;
-  left: 15px;
-  right: 15px;
-  padding: 15px 10px;
-  text-align: center;
-}
-/* line 271, ../scss/breakpoints/_768up.scss */
-.overlay table {
-  margin: 0 auto;
-}
-/* line 273, ../scss/breakpoints/_768up.scss */
-.overlay table th {
-  padding: 0 15px;
-}
-/* line 276, ../scss/breakpoints/_768up.scss */
-.overlay table td {
-  padding: 5px 15px 0 15px;
-  font-size: 18px;
-}
-
-/* line 283, ../scss/breakpoints/_768up.scss */
 .navbar .btn.btn-default, .navbar .btn-group .btn {
   margin-right: 10px;
 }
 
-/* line 288, ../scss/breakpoints/_768up.scss */
+/* line 261, ../scss/breakpoints/_768up.scss */
 .navbar-header {
   margin: 0 auto;
 }
 
-/* line 292, ../scss/breakpoints/_768up.scss */
+/* line 265, ../scss/breakpoints/_768up.scss */
 .navbar-collapse {
   padding: 0;
+}
+
+/* line 269, ../scss/breakpoints/_768up.scss */
+.overlay {
+  position: absolute;
+  left: 15px;
+  right: 15px;
+  text-align: center;
+}
+/* line 274, ../scss/breakpoints/_768up.scss */
+.overlay table {
+  margin: 0 auto;
 }
 
 /******************************************************************
@@ -409,24 +364,6 @@ This is the desktop size. It's larger than an iPad so it will only
 be seen on the Desktop.
 
 ******************************************************************/
-/* line 12, ../scss/breakpoints/_1030up.scss */
-.legend {
-  float: none;
-  width: auto;
-  text-align: left;
-  position: absolute;
-  left: 15px;
-  top: 15px;
-  background: none;
-  padding: 0;
-}
-/* line 21, ../scss/breakpoints/_1030up.scss */
-.legend .check {
-  float: none;
-  display: block;
-  margin-bottom: 10px;
-}
-
 /*
 you can call the larger styles if you want, but there's really no need
 */

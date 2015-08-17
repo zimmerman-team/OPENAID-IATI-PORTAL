@@ -3277,7 +3277,7 @@ hr {
   color: #444;
 }
 /* line 172, ../scss/breakpoints/_base.scss */
-.hp-block.hp-home #minimize {
+.hp-block.hp-home #toggle-container {
   display: block;
   position: absolute;
   top: 15px;
@@ -3778,7 +3778,7 @@ tr td {
   transition: all ease 0.2s;
   -webkit-transition: all ease 0.2s;
   border-radius: 20px;
-  box-shadow: inset 0 0 1px rgba(0, 0, 0, 0.5);
+  box-shadow: inset 0 0 1px rgba(0, 0, 0, 0.8);
   margin-right: 10px;
 }
 /* line 727, ../scss/breakpoints/_base.scss */
@@ -3789,7 +3789,7 @@ tr td {
   height: 20px;
   border-radius: 20px;
   background: #333333;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
 }
 /* line 736, ../scss/breakpoints/_base.scss */
 .switch :checked + i:before {
@@ -3799,9 +3799,9 @@ tr td {
 .switch :checked + i {
   padding-right: 0;
   padding-left: 14px;
-  background: #eee;
-  box-shadow: inset 0 0 1px #dedede, inset 0 0 40px #eee;
-  -webkit-box-shadow: inset 0 0 1px #dedede, inset 0 0 40px #eee;
+  background: #fff;
+  box-shadow: inset 0 0 1px #666, inset 0 0 40px #fff;
+  -webkit-box-shadow: inset 0 0 1px #666, inset 0 0 40px #fff;
 }
 
 /* line 748, ../scss/breakpoints/_base.scss */
@@ -4527,55 +4527,77 @@ footer h1 {
 
 /* line 1644, ../scss/breakpoints/_base.scss */
 .legend {
-  text-align: left;
-  margin-bottom: 15px;
-  background-color: rgba(255, 255, 255, 0.3);
-  padding: 10px;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 20px;
   /*** custom checkboxes ***/
 }
-/* line 1651, ../scss/breakpoints/_base.scss */
+/* line 1648, ../scss/breakpoints/_base.scss */
 .legend .check {
   position: relative;
   display: inline-block;
-  width: 200px;
 }
-/* line 1656, ../scss/breakpoints/_base.scss */
+/* line 1652, ../scss/breakpoints/_base.scss */
 .legend label {
   font-weight: normal;
   cursor: pointer;
 }
-/* line 1660, ../scss/breakpoints/_base.scss */
+/* line 1656, ../scss/breakpoints/_base.scss */
 .legend .labels {
   margin-left: 38px;
 }
-/* line 1663, ../scss/breakpoints/_base.scss */
+/* line 1659, ../scss/breakpoints/_base.scss */
 .legend h3 {
   font-size: 1.2em;
 }
-/* line 1666, ../scss/breakpoints/_base.scss */
+/* line 1662, ../scss/breakpoints/_base.scss */
 .legend .check {
   margin-right: 20px;
 }
-/* line 1697, ../scss/breakpoints/_base.scss */
+/* line 1664, ../scss/breakpoints/_base.scss */
+.legend .check:last-of-type {
+  margin-right: 0;
+}
+/* line 1696, ../scss/breakpoints/_base.scss */
 .legend .faker {
   position: absolute;
   top: 4px;
 }
-/* line 1701, ../scss/breakpoints/_base.scss */
+/* line 1700, ../scss/breakpoints/_base.scss */
 .legend .fa.kleur {
   color: #29abe2;
 }
 
 /* line 1706, ../scss/breakpoints/_base.scss */
-.map {
-  text-align: center;
+.overlay {
+  background: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  z-index: 99999;
+  padding: 10px 10px;
 }
-/* line 1708, ../scss/breakpoints/_base.scss */
+/* line 1712, ../scss/breakpoints/_base.scss */
+.overlay table th {
+  padding: 0 15px;
+  font-size: 14px;
+}
+/* line 1716, ../scss/breakpoints/_base.scss */
+.overlay table td {
+  padding: 5px 15px 0 15px;
+  font-size: 14px;
+}
+
+/* line 1723, ../scss/breakpoints/_base.scss */
+.leaflet-control-container {
+  position: absolute;
+  bottom: 70px;
+}
+
+/* line 1729, ../scss/breakpoints/_base.scss */
 .map .leaflet-div-icon {
   background: none;
   border: 0;
 }
-/* line 1712, ../scss/breakpoints/_base.scss */
+/* line 1733, ../scss/breakpoints/_base.scss */
 .map .leaflet-popup-content-wrapper {
   width: 280px;
   height: 280px;
@@ -4584,11 +4606,11 @@ footer h1 {
   padding: 20px;
   background-color: rgba(255, 255, 255, 0.9);
 }
-/* line 1721, ../scss/breakpoints/_base.scss */
+/* line 1742, ../scss/breakpoints/_base.scss */
 .map .leaflet-container a.btn {
   color: #fff;
 }
-/* line 1725, ../scss/breakpoints/_base.scss */
+/* line 1746, ../scss/breakpoints/_base.scss */
 .map a.leaflet-popup-close-button {
   display: block;
   background: #fff;
@@ -4602,17 +4624,17 @@ footer h1 {
   font-weight: 700;
   box-shadow: 0 3px 14px rgba(0, 0, 0, 0.4);
 }
-/* line 1738, ../scss/breakpoints/_base.scss */
+/* line 1759, ../scss/breakpoints/_base.scss */
 .map p {
   margin: 0 0 2px;
   font-size: 1em;
 }
-/* line 1742, ../scss/breakpoints/_base.scss */
+/* line 1763, ../scss/breakpoints/_base.scss */
 .map .flag-icon {
   font-size: 2.5em;
   border-radius: 4px;
 }
-/* line 1746, ../scss/breakpoints/_base.scss */
+/* line 1767, ../scss/breakpoints/_base.scss */
 .map .btn {
   margin-top: 10px;
 }
@@ -4808,26 +4830,6 @@ you can add resource intensive styles.
     margin-top: 0;
   }
 
-  /* line 189, ../scss/breakpoints/_768up.scss */
-  .legend label {
-    margin-bottom: 0;
-  }
-  /* line 193, ../scss/breakpoints/_768up.scss */
-  .legend input[type=checkbox] + label:before {
-    transition: all .2s;
-    font-size: 24px;
-    margin-right: 10px;
-    width: 34px;
-    height: 34px;
-    line-height: 34px;
-    border-radius: 17px;
-    text-indent: 10px;
-  }
-  /* line 206, ../scss/breakpoints/_768up.scss */
-  .legend .check:hover input[type=checkbox] + label:before {
-    opacity: 1;
-  }
-
   /* line 213, ../scss/breakpoints/_768up.scss */
   .info {
     padding: 0;
@@ -4846,56 +4848,31 @@ you can add resource intensive styles.
     margin-top: .5em;
   }
 
-  /* line 229, ../scss/breakpoints/_768up.scss */
-  .geomap-mask {
-    height: 400px;
-    overflow: hidden;
-    position: relative;
-  }
   /* line 256, ../scss/breakpoints/_768up.scss */
-  .geomap-mask .leaflet-control-container {
-    position: absolute;
-    top: 80px;
-  }
-
-  /* line 262, ../scss/breakpoints/_768up.scss */
-  .overlay {
-    position: absolute;
-    background: rgba(0, 0, 0, 0.6);
-    color: #fff;
-    z-index: 99999;
-    left: 15px;
-    right: 15px;
-    padding: 15px 10px;
-    text-align: center;
-  }
-  /* line 271, ../scss/breakpoints/_768up.scss */
-  .overlay table {
-    margin: 0 auto;
-  }
-  /* line 273, ../scss/breakpoints/_768up.scss */
-  .overlay table th {
-    padding: 0 15px;
-  }
-  /* line 276, ../scss/breakpoints/_768up.scss */
-  .overlay table td {
-    padding: 5px 15px 0 15px;
-    font-size: 18px;
-  }
-
-  /* line 283, ../scss/breakpoints/_768up.scss */
   .navbar .btn.btn-default, .navbar .btn-group .btn {
     margin-right: 10px;
   }
 
-  /* line 288, ../scss/breakpoints/_768up.scss */
+  /* line 261, ../scss/breakpoints/_768up.scss */
   .navbar-header {
     margin: 0 auto;
   }
 
-  /* line 292, ../scss/breakpoints/_768up.scss */
+  /* line 265, ../scss/breakpoints/_768up.scss */
   .navbar-collapse {
     padding: 0;
+  }
+
+  /* line 269, ../scss/breakpoints/_768up.scss */
+  .overlay {
+    position: absolute;
+    left: 15px;
+    right: 15px;
+    text-align: center;
+  }
+  /* line 274, ../scss/breakpoints/_768up.scss */
+  .overlay table {
+    margin: 0 auto;
   }
 }
 /*********************
@@ -4915,23 +4892,6 @@ you can add resource intensive styles.
   be seen on the Desktop.
   
   ******************************************************************/
-  /* line 12, ../scss/breakpoints/_1030up.scss */
-  .legend {
-    float: none;
-    width: auto;
-    text-align: left;
-    position: absolute;
-    left: 15px;
-    top: 15px;
-    background: none;
-    padding: 0;
-  }
-  /* line 21, ../scss/breakpoints/_1030up.scss */
-  .legend .check {
-    float: none;
-    display: block;
-    margin-bottom: 10px;
-  }
 }
 /*********************
 LARGE VIEWING SIZE
