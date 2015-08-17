@@ -237,25 +237,47 @@ come into play. Have fun!
   // overflow: hidden;
   // background-color: rgba(41,171,226,0.85);
 
-  -moz-clip-path: circle(300px at center);
-  -webkit-clip-path: circle(300px at center);
-  -ms-clip-path: circle(300px at center);
-  clip-path: circle(300px at center);
+  // -moz-clip-path: circle(300px at center);
+  // -webkit-clip-path: circle(300px at center);
+  // -ms-clip-path: circle(300px at center);
+  // clip-path: circle(300px at center);
 
-  border-radius: 300px;
-  -moz-border-radius: 300px;
-  -khtml-border-radius: 300px;
-  -webkit-border-radius: 300px;
+  // border-radius: 300px;
+  // -moz-border-radius: 300px;
+  // -khtml-border-radius: 300px;
+  // -webkit-border-radius: 300px;
+  // overflow: hidden;
+
+  // margin:0 auto;
+  // width: 600px;
+  height:400px;
   overflow: hidden;
-
-  margin:0 auto;
-  width: 600px;
-
+  position:relative;
   .leaflet-control-container {
   	position:absolute;
-  	left:10px;
-  	top:264px;
+  	top:80px;
   }
+}
+
+.overlay {
+	position:absolute;
+	background:rgba(0,0,0,.6);
+	color:#fff;
+	z-index:99999;
+	left:15px;
+	right:15px;
+	padding:15px 10px;
+	text-align:center;
+	table {
+		margin:0 auto;
+		th {
+			padding:0 15px;
+		}
+		td {
+			padding:5px 15px 0 15px;
+			font-size:18px;
+		}
+	}
 }
 
 .navbar .btn.btn-default, .navbar .btn-group .btn {

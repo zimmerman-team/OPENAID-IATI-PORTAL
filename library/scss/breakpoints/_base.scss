@@ -163,6 +163,60 @@ hr{
     }
   }
 
+  &.hp-home {
+    text-align: center;
+    small {
+      display: block;
+      color: #444;
+    }
+    #minimize {
+      display: block;
+      position:absolute;
+      top:15px;
+      right: 30px;
+      color: rgba(#fff,.6);
+      font-size: 14px;
+      cursor:pointer;
+    }
+    .search-box {
+      float: none;
+      margin-bottom: 15px;
+      position:relative;
+      form {
+        height: 40px;
+      }
+      input {
+        height: 40px;
+        padding:0 6px;
+        line-height: 40px;
+        background:#fff;
+        display: inline-block;
+        border-radius:0;
+        width: 100%;
+        border-top-right-radius:20px;
+        border-bottom-right-radius:20px;
+      }
+      .btn-search {
+        background:$oranje;
+        color: #fff;
+        margin:0;
+        border-radius:20px;
+        width: 40px;
+        height: 40px;
+        border:0;
+        line-height: 47px;
+        padding:0;
+        display: inline-block;
+        position:absolute;
+        right: 0;
+        top:0;
+        .glyphicon-search {
+          color: #fff;
+        }
+      }
+    }
+  }
+
   &.spec {
     padding: 14px 0;
   }
@@ -298,16 +352,13 @@ NAVBAR
   background-color: #333;
   border-radius: 0 !important;
   border: 0 !important;
-  -webkit-box-shadow: 0px 1px 2px 0px rgba(68, 68, 68, 1);
-  -moz-box-shadow:    0px 1px 2px 0px rgba(68, 68, 68, 1);
-  box-shadow:         0px 1px 2px 0px rgba(68, 68, 68, 1);
   margin-bottom: 12px;
 
   button.navbar-toggle {
     color:#fff;
     padding:2px 6px;
     &:focus, &:hover {
-      background: darken(#333, 20%);
+      
     }
   }
   .navbar-collapse {
@@ -316,28 +367,46 @@ NAVBAR
   .navbar-toggle {
     border:0;
   }
-}
+  .nav.navbar-nav {
+    li {
+      height: 50px;
+      line-height: 50px;
+      margin:0 10px;
+      &.home {
+        line-height: 57px;
+      }
+    }
+    a {
+      background:none;
+      color: #fff;
+      text-transform: uppercase;
+      display: inline;
+      padding:0;
+      &:hover {
+        color: $oranje;
+      }
+    }
+    .active {
+      a {
+        background:none;
+        color: $oranje;
+        &:hover {
+          color: $oranje;
+        }
+      }
+    }
+    &.navbar-right {
+      .active {
+        a {
+          color:$oranje;
+        }
+      }
+      a {
+        color:#808080;
 
-.navbar .btn.btn-default:hover, .navbar .btn-group .btn:hover {
-  background-color: #999;
-  color: #fff;
-}
-
-.navbar .active .btn.btn-default,
-.navbar .active .btn.btn-default:focus, .navbar .btn.btn-default:focus, .navbar .btn-group .btn:focus,
-.navbar .active .btn.btn-default:hover{
-  background-color: #999;
-  color: #fff;
-}
-
-.navbar .btn.btn-default, .navbar .btn-group .btn{
-  padding-top: 2px;
-  padding-bottom: 2px;
-  margin-top: 12px;
-  margin-bottom: 10px;
-  background-color: #4d4d4d;
-  color: #fff;
-  border: 0;
+      }
+    }
+  }
 }
 
 .navbar-brand img{
@@ -397,21 +466,21 @@ SEARCH BAR
     background: #fff;
     position: relative;
   }
-  input {
-    line-height: 16px;
-    border:0;
-    background: none;
-    width: 100%;
-    height: 24px;
-    padding: 0 4px;
-    font-size: 14px;
-  }
-  .input-group-btn {
-    position: absolute;
-    right:0;
-    top:0;
-    width:34px;
-  }
+  // input {
+  //   line-height: 16px;
+  //   border:0;
+  //   background: none;
+  //   width: 100%;
+  //   height: 24px;
+  //   padding: 0 4px;
+  //   font-size: 14px;
+  // }
+  // .input-group-btn {
+  //   position: absolute;
+  //   right:0;
+  //   top:0;
+  //   width:34px;
+  // }
   .btn{
     padding: 2px 9px 0px;
     line-height: 18px;
@@ -1388,7 +1457,7 @@ ACTIVITY LIST
         // }
       }
       &:nth-child(odd) {
-        background:rgba($grijs,.15);
+        background:#fff;
       }
     }
   }
@@ -1460,6 +1529,41 @@ footer{
 .geomap-mask {
 }
 
+.no-padding {
+  padding:0;
+}
+.top5 {
+  select {
+    margin:15px 10px;
+    font-size: 18px;
+    padding:5px;
+  }
+  .nvd3-svg {
+    background-color:#fff;
+    padding-top:10px;
+  }
+  table {
+    th {
+      font-weight: 600;
+    }
+    tbody {
+      tr {
+         td {
+          padding-left:10px;
+          padding-right:10px;
+        }
+      }
+    }
+  }
+}
+
+.overlay {
+  table {
+    th {
+      font-weight: 600;
+    }
+  }
+}
 
 .marker-circle{ 
   border-radius: 22px;

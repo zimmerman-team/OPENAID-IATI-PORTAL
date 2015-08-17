@@ -72,7 +72,6 @@ FONT FACE
   font-weight: normal;
   font-style: normal;
 }
-
 /*
 The following is based of Typebase:
 https://github.com/devinhunt/typebase.css
@@ -84,7 +83,7 @@ more here: http://www.newnet-soft.com/blog/csstypography
 */
 /* line 83, ../scss/partials/_typography.scss */
 h1 {
-  font-weight: 700;
+  font-weight: 600;
   font-size: 42px;
   color: 444;
   line-height: 1.3em;
@@ -293,7 +292,7 @@ come into play. Have fun!
 }
 /* line 169, ../scss/breakpoints/_768up.scss */
 .hp-block.clickable.groen:hover {
-  background-color: rgba(0, 146, 69, 0.6);
+  background-color: rgba(0, 169, 157, 0.6);
 }
 
 /* line 175, ../scss/breakpoints/_768up.scss */
@@ -350,36 +349,52 @@ come into play. Have fun!
 
 /* line 229, ../scss/breakpoints/_768up.scss */
 .geomap-mask {
-  -moz-clip-path: circle(300px at center);
-  -webkit-clip-path: circle(300px at center);
-  -ms-clip-path: circle(300px at center);
-  clip-path: circle(300px at center);
-  border-radius: 300px;
-  -moz-border-radius: 300px;
-  -khtml-border-radius: 300px;
-  -webkit-border-radius: 300px;
+  height: 400px;
   overflow: hidden;
-  margin: 0 auto;
-  width: 600px;
+  position: relative;
 }
-/* line 254, ../scss/breakpoints/_768up.scss */
+/* line 256, ../scss/breakpoints/_768up.scss */
 .geomap-mask .leaflet-control-container {
   position: absolute;
-  left: 10px;
-  top: 264px;
+  top: 80px;
 }
 
-/* line 261, ../scss/breakpoints/_768up.scss */
+/* line 262, ../scss/breakpoints/_768up.scss */
+.overlay {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  z-index: 99999;
+  left: 15px;
+  right: 15px;
+  padding: 15px 10px;
+  text-align: center;
+}
+/* line 271, ../scss/breakpoints/_768up.scss */
+.overlay table {
+  margin: 0 auto;
+}
+/* line 273, ../scss/breakpoints/_768up.scss */
+.overlay table th {
+  padding: 0 15px;
+}
+/* line 276, ../scss/breakpoints/_768up.scss */
+.overlay table td {
+  padding: 5px 15px 0 15px;
+  font-size: 18px;
+}
+
+/* line 283, ../scss/breakpoints/_768up.scss */
 .navbar .btn.btn-default, .navbar .btn-group .btn {
   margin-right: 10px;
 }
 
-/* line 266, ../scss/breakpoints/_768up.scss */
+/* line 288, ../scss/breakpoints/_768up.scss */
 .navbar-header {
   margin: 0 auto;
 }
 
-/* line 270, ../scss/breakpoints/_768up.scss */
+/* line 292, ../scss/breakpoints/_768up.scss */
 .navbar-collapse {
   padding: 0;
 }

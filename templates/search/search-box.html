@@ -1,16 +1,14 @@
 <div class="search-box">
     <form ng-submit="vm.save()">
-    	<div class="search-wrap">
+	    <div class="form-group">
 	        <input 
-                ng-model="vm.searchString" 
-                type="text" 
-                class="form-control" 
-                placeholder="Zoek op activiteit...">
-	        <span class="input-group-btn">
-	            <button class="btn btn-search" type="button" ng-click="vm.save()">
-	                <span class="glyphicon glyphicon-search"></span>
-	            </button>
-	        </span>
-	    </div>
+	            ng-model="vm.searchString" 
+	            type="text" 
+	            class="form-control" 
+	            placeholder="Zoek op activiteit...">
+	        <button class="btn-search" type="button" ng-click="vm.save()">
+	            <span class="glyphicon glyphicon-search"></span>
+	        </button>
+        </div>
     </form>
 </div>

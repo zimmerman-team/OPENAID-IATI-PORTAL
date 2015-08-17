@@ -1,37 +1,75 @@
 <div class="container">
-    <div class="row eq">
-        <div class="col-sm-6 eq">
-            <div class="hp-block blauw hp-block-top">
-                <h1>openaidNL Beta versie 1.0</h1>
-                <p>Betaversie 1.0 van <a target="_blank" href="http://www.openaid.nl">openaid.nl</a> is in ontwikkeling, een aantal onderdelen werken nog niet optimaal. Het openaid team zal de komende tijd druk bezig zijn een volledige overstap te maken van de oude versie naar de vernieuwde versie van openaid. <br>&nbsp;<br>
 
-De IATI data op deze website wordt direct opgehaald uit de <a target="_blank" href="http://iatiregistry.org/">IATI registry</a>. De IATI XML source file kunt u <a target="_blank" href="http://http://iatiregistry.org/dataset/minbuza_nl-activities">hier</a> terugvinden. Wilt u meer weten over de International Aid Transparency Initiative (IATI) kijk dan op <a target="_blank" href="http://www.aidtransparency.net/">aidtransparency.net</a>
+    <div class="row">
+        <div class="col-sm-12 eq">
+            <div class="hp-block groen hp-block-top hp-home">
+                <a id="minimize">minimaliseer <i class="fa fa-caret-square-o-up"></i></a>
+                <h1 class="showhide">Inzicht in ontwikkelingshulp<small>open data van de Rijksoverheid </small></h1>
+                <div class="row">
+                    <div class="col-sm-12 col-md-8 col-lg-6 col-md-offset-2 col-lg-offset-3">
+                        <search-box></search-box>
+                    </div>
+                </div>
+                <div class="row showhide">
+                    <div class="col-sm-12 col-md-8 col-lg-6 col-md-offset-2 col-lg-offset-3">
+                        <p>Op deze portal kunt u alle ontwikkelingshulpprojecten die door de Rijksoverheid zijn gefinancierd en als open data zijn gerapporteerd aan de IATI registry terugvinden. <a>Meer weten?</a></p>
+                    </div>
+                </div>
 
             </div>
-        </div>
-        <div class="col-sm-6">
-
-            <div class="hp-block groen">
-                <h2>Aantal IATI activiteiten NL</h2>
-                <span class="number large">3498</span>
-                <p>
-                    Officiële IATI data set: Ministerie van Buitenlandse Zaken. Startdatum publicatie: 1 januari 2011
-                </p>
-                <a class="btn btn-default" ui-sref="iati-explorer">Ga naar de IATI explorer</a>
-            </div>
-
-            <div class="hp-block roze">
-                <h3>Totale uitgave ontwikkelingshulp</h3>
-                <span class="number">€ 24.604.177.536</span>
-            </div>
-
         </div>
     </div>
 
     <div class="row">
+        <div class="col-sm-12">
+            <div class="overlay">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Uitgave ontwikkelingshulp</th>
+                            <th>Projecten</th>
+                            <th>Landen</th>
+                            <th>Sectoren</th>
+                            <th>Organisaties</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>€ 24.604.177.536</td>
+                            <td>3498</td>
+                            <td>54</td>
+                            <td>62</td>
+                            <td>234</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="geomap-mask">  
+                <leaflet defaults="vm.defaults" center="vm.center" markers="vm.markers" height="400px" width="100%"></leaflet>
+            </div>
+            <div class="legend" ng-show="vm.selectedGeoView('landen')">
+                <div class="check kleur-{{item.id}}" dir-paginate="item in vm.countryRelation | itemsPerPage: 10">
+                    <label class="switch" for="id{{item.id}}">
+                        <input id="id{{item.id}}" checklist-model="vm.selectedCountryRelation" checklist-value="item" type="checkbox">
+                        <i class="faker"></i>
+                        <span class="labels">
+                            <span class="fa-stack">
+                                <span class="fa fa-circle fa-stack-2x kleur"></span>
+                                <span class="fa fa-map-marker fa-stack-1x fa-inverse"></span>
+                            </span>
+                            <span>{{item.name}}</span>
+                        </span>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
         <div class="col-md-12">
-            <div class="hp-block spec clearfix">
-                <div class="col-md-6">
+            <div class="hp-block no-padding groen clearfix top5">
+
                     <a class="glyphicon glyphicon-info-sign" ng-mouseover="hoverIn('landen')" ng-mouseleave="hoverOut('landen')">
                     </a>
                     <div 
@@ -39,7 +77,11 @@ De IATI data op deze website wordt direct opgehaald uit de <a target="_blank" hr
                     ng-show="vm.customFields['landen'].hoverShow" 
                     ng-bind-html="vm.customFields['landen']['text']">
                     </div>
-                    <h2 class="title">Top 5 landen</h2>
+
+                    <select>
+                        <option>Top 5 landen</option>
+                        <option>Top 5 organisaties</option>
+                    </select>
 
                     <oipa-table-chart 
                     aggregation-filters='&amp;order_by=-total_disbursements&amp;limit=5' 
@@ -50,8 +92,6 @@ De IATI data op deze website wordt direct opgehaald uit de <a target="_blank" hr
                     aggregation-extra-select-in='countries__in'
                     ></oipa-table-chart>
 
-                </div>
-                <div class="col-md-6">
                     <oipa-line-chart 
                         aggregation-filters='"&countries__in=ID,BD,AF,MZ,TZ"' 
                         group-by='recipient-country,transaction_date_year' 
@@ -63,11 +103,10 @@ De IATI data op deze website wordt direct opgehaald uit de <a target="_blank" hr
                         chart-x-axis-stagger-labels='false' 
                         chart-type='lineChart'
                         axis-label-distance='28'></oipa-line-chart>
-                </div>
             </div>
         </div>
     </div>
-    <div class="row">
+    <!-- <div class="row">
         <div class="col-md-12">
             <div class="hp-block spec clearfix">
                 <div class="col-md-6">
@@ -145,7 +184,7 @@ De IATI data op deze website wordt direct opgehaald uit de <a target="_blank" hr
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 </div>
 
 
