@@ -112,6 +112,8 @@
       }
       
       $scope.$watch('aggregationFilters', function (aggregationFilters) {
+        vm.groupBy = $scope.groupBy;
+        vm.groupById = $scope.groupById;
         vm.aggregationFilters = aggregationFilters;
         vm.loadData();
       }, true);

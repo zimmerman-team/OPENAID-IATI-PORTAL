@@ -15,8 +15,8 @@
       restrict: 'E',
       scope: {
         aggregationFilters: '=',
-        groupBy: '@',
-        groupById: '@',
+        groupBy: '=',
+        groupById: '=',
         groupByName: '@',
         aggregationKey: '@',
         aggregationKeyId: '@',

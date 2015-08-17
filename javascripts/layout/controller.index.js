@@ -27,6 +27,7 @@
 
       $scope.$watch('vm.top5', function(){
         vm.tableChartOptions = vm.top5Options[vm.top5];
+        vm.lineChartOptions = vm.top5ListOptions[vm.top5];
         vm.refreshTableChart = true;
       });
 
@@ -56,6 +57,7 @@
     vm.top5 = 'recipient-country';
     vm.tableChartOptions = null;
     vm.lineChartOptions = {};
+    vm.shownIds = '';
 
     vm.refreshTableChart = false;
     vm.top5Options = {
@@ -85,24 +87,20 @@
       }
     };
 
-    vmtop5ListOptions = {
+    vm.top5ListOptions = {
       'recipient-country': {
         groupBy: 'recipient-country,transaction_date_year',
         groupById: 'country_id'
       },
       'transaction-receiver-org': {
-        groupBy: 'transaction-receiver-org, transaction_date_year',
+        groupBy: 'transaction-receiver-org,transaction_date_year',
         groupById: 'receiver_organisation_id',
       },
       'sector': {
-        groupBy: 'sector, transaction_date_year',
+        groupBy: 'sector,transaction_date_year',
         groupById: 'sector_id',
       }
-    }
-
-
-
-
+    };
 
     vm.countryRelation = [
       {'id':1, 'name': 'Hulp relatie'}, 
@@ -110,6 +108,7 @@
       {'id':3, 'name': 'EXIT relatie'}, 
       {'id':4, 'name': 'Handelsrelatie'}, 
       {'id':5, 'name': 'Overige'}];
+
     vm.selectedCountryRelation = [
       {'id':1, 'name': 'Hulp relatie'}, 
       {'id':2, 'name': 'Overgangsrelatie'}, 

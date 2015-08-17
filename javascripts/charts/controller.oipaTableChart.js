@@ -86,10 +86,15 @@
 
         var _in = [];
         for(var i = 0;i < vm.chartData.length;i++){
-          _in.push(vm.chartData[i][vm.groupById]);
+          if(vm.chartData[i][vm.groupById] != undefined){
+            _in.push(vm.chartData[i][vm.groupById]);
+          } 
         }
 
-        $scope.shownIds = '&amp;' + vm.aggregationExtraSelectIn + '=' + _in.join();
+        if(_in.length > 1){
+          $scope.shownIds = '&' + vm.aggregationExtraSelectIn + '=' + _in.join();
+        }
+
       }
 
       function errorFn(data, status, headers, config){

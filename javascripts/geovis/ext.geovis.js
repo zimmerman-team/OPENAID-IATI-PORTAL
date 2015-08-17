@@ -138,21 +138,12 @@ ZzLocationVis = (function() {
     this.mapping.children(function(d) { return d.children; });
     var all_regions = this.mapping(that.mappingData).slice(1);
 
-    console.log(all_regions);
-
-
     this.mapping.children(function(d, depth) { 
 
-      console.log(d);
+      if(d.depth < 1 || d.open == true){
+        return d.children;
+      }
 
-      if(d.depth < 2){
-        return d.children;
-      }
-      console.log(d.name);
-      if(d.open){
-        console.log('test');
-        return d.children;
-      }
 
       return null;
 
