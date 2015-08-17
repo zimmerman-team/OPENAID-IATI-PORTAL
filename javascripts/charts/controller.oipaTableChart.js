@@ -38,9 +38,6 @@
 
     vm.loadData = function(){
 
-      console.log();
-      console.log(vm.groupBy);
-
       Aggregations.aggregation(vm.groupBy, vm.aggregationKey, vm.aggregationFilters).then(succesFn, errorFn);
 
       function succesFn(data, status, headers, config){
@@ -87,6 +84,12 @@
           }
         }
 
+        var _in = [];
+        for(var i = 0;i < vm.chartData.length;i++){
+          _in.push(vm.chartData[i][vm.groupById]);
+        }
+
+        $scope.shownIds = '&amp;' + vm.aggregationExtraSelectIn + '=' + _in.join();
       }
 
       function errorFn(data, status, headers, config){

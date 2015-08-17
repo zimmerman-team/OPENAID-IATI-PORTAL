@@ -94,15 +94,16 @@
                         group-by='vm.tableChartOptions.groupBy' 
                         group-by-id='vm.tableChartOptions.groupById' 
                         aggregation-key='vm.tableChartOptions.aggregationKey' 
-                        aggregation-extra-select='vm.tableChartOptions.aggregationExtraSelect'
-                        aggregation-extra-select-in='vm.tableChartOptions.aggregationExtraSelectIn'
-                        refresh-data='vm.refreshTableChart'
+                        aggregation-extra-select='vm.tableChartOptions.aggregationExtraSelect' 
+                        aggregation-extra-select-in='vm.tableChartOptions.aggregationExtraSelectIn' 
+                        refresh-data='vm.refreshTableChart' 
+                        shown-ids='vm.shownIds'
                     ></oipa-table-chart>
 
                     <oipa-line-chart 
-                        aggregation-filters='"&countries__in=ID,BD,AF,MZ,TZ"' 
-                        group-by='recipient-country,transaction_date_year' 
-                        group-by-id='country_id' 
+                        aggregation-filters='vm.lineChartOptions.shownIds' 
+                        group-by='vm.lineChartOptions.groupBy' 
+                        group-by-id='vm.lineChartOptions.groupById' 
                         aggregation-key='disbursement' 
                         chart-x-axis='' 
                         chart-y-axis='Totale uitgaven (in miljoenen euros)'

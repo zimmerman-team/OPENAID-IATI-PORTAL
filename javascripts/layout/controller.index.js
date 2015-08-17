@@ -55,6 +55,8 @@
 
     vm.top5 = 'recipient-country';
     vm.tableChartOptions = null;
+    vm.lineChartOptions = {};
+
     vm.refreshTableChart = false;
     vm.top5Options = {
       'recipient-country': {
@@ -76,14 +78,30 @@
       'sector': {
         aggregationFilters: '&amp;order_by=-total_disbursements&amp;limit=5',
         groupBy: 'sector',
-        groupById: 'sector',
+        groupById: 'sector_id',
         aggregationKey: 'disbursement',
         aggregationExtraSelect: 'iati-identifier',
         aggregationExtraSelectIn: 'sectors__in'
       }
     };
 
-    
+    vmtop5ListOptions = {
+      'recipient-country': {
+        groupBy: 'recipient-country,transaction_date_year',
+        groupById: 'country_id'
+      },
+      'transaction-receiver-org': {
+        groupBy: 'transaction-receiver-org, transaction_date_year',
+        groupById: 'receiver_organisation_id',
+      },
+      'sector': {
+        groupBy: 'sector, transaction_date_year',
+        groupById: 'sector_id',
+      }
+    }
+
+
+
 
 
     vm.countryRelation = [

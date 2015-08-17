@@ -20,7 +20,8 @@
         aggregationKey: '=',
         aggregationExtraSelect: '=',
         aggregationExtraSelectIn: '=',
-        refreshData: '='
+        refreshData: '=',
+        shownIds: '='
       },
       templateUrl: templateBaseUrl + '/templates/charts/oipa-table-chart.html'
     };
