@@ -1557,14 +1557,6 @@ footer{
   }
 }
 
-.overlay {
-  table {
-    th {
-      font-weight: 600;
-    }
-  }
-}
-
 .marker-circle{ 
   border-radius: 22px;
   font-size:14px;
@@ -1704,7 +1696,7 @@ footer{
 
 
 .overlay {
-  background:rgba(0,0,0,.7);
+  background:rgba(#333,.7);
   color:#fff;
   z-index:99999;
   padding:10px 10px;
@@ -1712,6 +1704,7 @@ footer{
     th {
       padding:0 15px;
       font-size:14px;
+      font-weight: 600;
     }
     td {
       padding:5px 15px 0 15px;
