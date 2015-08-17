@@ -14,12 +14,13 @@
       controllerAs: 'vm',
       restrict: 'E',
       scope: {
-        aggregationFilters: '@',
-        groupBy: '@',
-        groupById: '@',
-        aggregationKey: '@',
-        aggregationExtraSelect: '@',
-        aggregationExtraSelectIn: '@'
+        aggregationFilters: '=',
+        groupBy: '=',
+        groupById: '=',
+        aggregationKey: '=',
+        aggregationExtraSelect: '=',
+        aggregationExtraSelectIn: '=',
+        refreshData: '='
       },
       templateUrl: templateBaseUrl + '/templates/charts/oipa-table-chart.html'
     };

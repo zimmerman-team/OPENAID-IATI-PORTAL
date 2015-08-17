@@ -45,9 +45,14 @@
                 </table>
             </div>
             <div class="geomap-mask">  
-                <leaflet defaults="vm.defaults" center="vm.center" markers="vm.markers" height="400px" width="100%"></leaflet>
+                <leaflet 
+                    defaults="vm.defaults" 
+                    center="vm.center" 
+                    markers="vm.markers" 
+                    height="400px" 
+                    width="100%"></leaflet>
             </div>
-            <div class="legend" ng-show="vm.selectedGeoView('landen')">
+            <div class="legend">
                 <div class="check kleur-{{item.id}}" dir-paginate="item in vm.countryRelation | itemsPerPage: 10">
                     <label class="switch" for="id{{item.id}}">
                         <input id="id{{item.id}}" checklist-model="vm.selectedCountryRelation" checklist-value="item" type="checkbox">
@@ -78,18 +83,20 @@
                     ng-bind-html="vm.customFields['landen']['text']">
                     </div>
 
-                    <select>
-                        <option>Top 5 landen</option>
-                        <option>Top 5 organisaties</option>
+                    <select ng-model="vm.top5">
+                        <option value='recipient-country'>Top 5 landen</option>
+                        <option value='transaction-receiver-org'>Top 5 organisaties</option>
+                        <option value='sector'>Top 5 sectors</option>
                     </select>
 
                     <oipa-table-chart 
-                    aggregation-filters='&amp;order_by=-total_disbursements&amp;limit=5' 
-                    group-by='recipient-country' 
-                    group-by-id='country_id' 
-                    aggregation-key='disbursement' 
-                    aggregation-extra-select='iati-identifier'
-                    aggregation-extra-select-in='countries__in'
+                        aggregation-filters='vm.tableChartOptions.aggregationFilters' 
+                        group-by='vm.tableChartOptions.groupBy' 
+                        group-by-id='vm.tableChartOptions.groupById' 
+                        aggregation-key='vm.tableChartOptions.aggregationKey' 
+                        aggregation-extra-select='vm.tableChartOptions.aggregationExtraSelect'
+                        aggregation-extra-select-in='vm.tableChartOptions.aggregationExtraSelectIn'
+                        refresh-data='vm.refreshTableChart'
                     ></oipa-table-chart>
 
                     <oipa-line-chart 

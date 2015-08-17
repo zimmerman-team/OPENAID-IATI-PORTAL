@@ -11,29 +11,40 @@
 
   OipaTableChartController.$inject = ['$scope', 'Aggregations'];
 
-  /**
-  * @namespace ActivitiesController
-  */
   function OipaTableChartController($scope, Aggregations) {
 
     var vm = this;
-    vm.groupBy = $scope.groupBy;
-    vm.groupById = $scope.groupById;
-    vm.aggregationKey = $scope.aggregationKey;
-    vm.aggregationFilters = $scope.aggregationFilters;
-    vm.aggregationExtraSelect = $scope.aggregationExtraSelect;
-    vm.aggregationExtraSelectIn = $scope.aggregationExtraSelectIn;
+    
     vm.chartData = [];
     vm.unformattedData = []; 
 
     function activate() {
-      vm.loadData();
+      $scope.$watch('refreshData', function(refreshData){
+
+        if(refreshData == true){
+
+          vm.groupBy = $scope.groupBy;
+          vm.groupById = $scope.groupById;
+          vm.aggregationKey = $scope.aggregationKey;
+          vm.aggregationFilters = $scope.aggregationFilters;
+          vm.aggregationExtraSelect = $scope.aggregationExtraSelect;
+          vm.aggregationExtraSelectIn = $scope.aggregationExtraSelectIn;
+
+          vm.loadData();
+          $scope.refreshData = false;
+        }
+      });
     }
 
     vm.loadData = function(){
+
+      console.log();
+      console.log(vm.groupBy);
+
       Aggregations.aggregation(vm.groupBy, vm.aggregationKey, vm.aggregationFilters).then(succesFn, errorFn);
 
       function succesFn(data, status, headers, config){
+
         if(vm.aggregationExtraSelect == 'iati-identifier'){
           vm.unformattedData = data.data;
 
