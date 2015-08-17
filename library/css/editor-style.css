@@ -660,6 +660,10 @@ body#tinymce.wp-editor span.amp {
 /* line 83, ../scss/partials/_typography.scss */
 body#tinymce.wp-editor h1 {
   font-weight: 700;
+  font-size: 42px;
+  color: 444;
+  line-height: 1.3em;
+  margin: 0.4em 0;
 }
 /* line 45, ../scss/editor-style.scss */
 body#tinymce.wp-editor a, body#tinymce.wp-editor a:visited {

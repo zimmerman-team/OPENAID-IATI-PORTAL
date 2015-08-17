@@ -46,14 +46,6 @@
             return $http.get(url, { cache: true });
         }
 
-
-	    /**
-	     * @name get
-	     * @desc Get the Collections of a given user
-	     * @param {string} filter_type The type to get filter options for
-	     * @returns {Promise}
-	     * @memberOf oipa.filters.services.Filters
-	     */
 	    function getCountry(code) {
 	     	return $http.get(oipaUrl + '/countries/' + code + '?format=json&fields=code,name&fields[aggregations]=count,disbursement,commitment', { cache: true });
 	    }
