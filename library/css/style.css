@@ -4565,7 +4565,7 @@ footer h1 {
 
 /* line 1698, ../scss/breakpoints/_base.scss */
 .overlay {
-  background: rgba(51, 51, 51, 0.7);
+  background: rgba(51, 51, 51, 0.5);
   color: #fff;
   z-index: 99999;
   padding: 10px 10px;
@@ -4573,13 +4573,13 @@ footer h1 {
 /* line 1704, ../scss/breakpoints/_base.scss */
 .overlay table th {
   padding: 0 15px;
-  font-size: 14px;
+  font-size: 18px;
   font-weight: 600;
 }
 /* line 1709, ../scss/breakpoints/_base.scss */
 .overlay table td {
   padding: 5px 15px 0 15px;
-  font-size: 14px;
+  font-size: 18px;
 }
 
 /* line 1716, ../scss/breakpoints/_base.scss */

@@ -1696,19 +1696,19 @@ footer{
 
 
 .overlay {
-  background:rgba(#333,.7);
+  background:rgba(#333,.5);
   color:#fff;
   z-index:99999;
   padding:10px 10px;
   table {
     th {
       padding:0 15px;
-      font-size:14px;
+      font-size:18px;
       font-weight: 600;
     }
     td {
       padding:5px 15px 0 15px;
-      font-size:14px;
+      font-size:18px;
     }
   }
 }
