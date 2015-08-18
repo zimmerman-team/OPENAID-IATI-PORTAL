@@ -10,9 +10,15 @@ possible. This is called at the top of the main stylsheet
 and will be used across all viewports.
 
 ******************************************************************/
+body {
+  font-size:16px;
+}
 
 a {
   color:$oranje;
+  &:hover {
+    color:darken($oranje,10%);
+  }
 }
 
 /****
@@ -99,9 +105,9 @@ body{
 }
 
 hr{
-  border-top: 1px dotted #444;
-  margin-top: 15px;
-  margin-bottom: 15px;
+  border-top: 1px solid #fff;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .svg-loader{
@@ -600,6 +606,7 @@ FILTER BAR
     }
     .fa-circle {
       color:rgba(#738191,.5);
+      transition:all .3s;
     }
     .active {
       .fa-circle {
