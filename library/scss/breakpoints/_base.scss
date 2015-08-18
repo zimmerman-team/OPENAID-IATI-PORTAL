@@ -1076,6 +1076,16 @@ tr {
 //   }
 // }
 
+.checkboxes {
+  .checkbox {
+    float: left;
+    margin: 15px 15px 15px 0;
+  }
+  background:rgba(#fff,.3);
+  overflow:hidden;
+  margin-bottom: 10px;
+}
+
 
 
 /*********************
