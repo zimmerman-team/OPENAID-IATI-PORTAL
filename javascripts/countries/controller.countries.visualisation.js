@@ -40,8 +40,8 @@
     vm.reformatVisualisationData = function(data){
 
       var regionMapping = {
-        '89':  {'name': 'Europe', 'color': '#00BA96'},
-        '298': {'name': 'Africa', 'color': '#7B7031'},
+        '89':  {'name': 'Europe', 'color': '#F6A000'},
+        '298': {'name': 'Africa', 'color': '#5598B5'},
         '189': {'name': 'North of Sahara', 'color': '#5598B5', 'parent': '298'},
         '289': {'name': 'South of Sahara', 'color': '#A6E4F4', 'parent': '298'},
         '498': {'name': 'America', 'color': '#00BA96'},
@@ -64,7 +64,7 @@
         {
          "name": "Africa",
          "id": "298",
-         "color": "#7B7031",
+         "color": "#5598B5",
          "children": [
           {
            "name": "North of Sahara",
@@ -137,12 +137,17 @@
         {
          "name": "Europe",
          "id": "89",
-         "color": "#7B7031",
+         "color": "#F6A000",
         },
         {
          "name": "Oceania",
          "id": "889",
          "color": "#EDFFC5",
+        },
+        {
+         "name": "Developing countries, unspecified",
+         "id": "998",
+         "color": "#F6A000",
         }
        ],
       };

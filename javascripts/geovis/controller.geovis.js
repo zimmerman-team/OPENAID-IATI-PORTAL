@@ -32,7 +32,7 @@
 
     vm.update = function(formattedData){
       if(formattedData !== undefined){
-        vm.chart.update(formattedData);
+        vm.chart.updateData(formattedData);
       }
     }
 

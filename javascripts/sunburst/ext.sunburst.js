@@ -10,6 +10,7 @@ ZzSunburst = (function() {
   ZzSunburst.prototype.init = function(id) {
 
     var that = this;
+    this.zooming = false;
     this.vis = null;
     this.vis_id = id;
     this.tooltip = CustomTooltip("sunburst_tooltip", 120);
@@ -72,6 +73,9 @@ ZzSunburst = (function() {
   };
 
   ZzSunburst.prototype.mouseOverPath = function(d){
+    console.log(sunburst.zooming);
+    if (sunburst.zooming) return false;
+    console.log('hovering');
 
     sunburst.tooltip.showTooltip(d);
     sunburst.middleAmount.text(d.abbreviatedValue);
@@ -94,6 +98,8 @@ ZzSunburst = (function() {
   };
 
   ZzSunburst.prototype.mouseOutPath = function(d){
+     if (sunburst.zooming) return false;
+     
     var root = sunburst.getRoot(d);
     sunburst.tooltip.hideTooltip();
     sunburst.middleAmount.text(root.abbreviatedValue);
@@ -266,7 +272,7 @@ ZzSunburst = (function() {
     }
 
     function zoom(p){
-      
+      sunburst.zooming = true;
       return p.depth == 0 ? zoomOut(p) : zoomIn(p);
     }
 
@@ -518,7 +524,7 @@ ZzSunburst = (function() {
 
 function CustomTooltip(tooltipId, width){
   var tooltipId = tooltipId;
-  $("body").append("<div class='sunburst_tooltip' id='"+tooltipId+"'></div>");
+  $("body").append("<div class='zz_tooltip' id='"+tooltipId+"'></div>");
   
   if(width){
     $("#"+tooltipId).css("width", width);

@@ -18,26 +18,26 @@ ZzLocationVis = (function() {
     this.circles = null;
     this.nodes = [];
     this.tooltip = CustomTooltip("sunburst_tooltip", 120);
-    this.mapping = d3.layout.hierarchy();
+    this.mapping = d3.layout.tree();
     this.mappingData = null;
 
     this.group_centers = {
-      "89": { x: 250, y: 0},
-      "298": { x: 250, y: 0},
-      "189": { x: 250, y: 0},
-      "289": { x: 250, y: 0},
-      "498": { x: 250, y: 0},
-      "380": { x: 250, y: 0},
-      "389": { x: 250, y: 0},
-      "489": { x: 250, y: 0},
-      "798": { x: 250, y: 0},
-      "589": { x: 250, y: 0},
-      "619": { x: 250, y: 0},
-      "689": { x: 250, y: 0},
-      "679": { x: 250, y: 0},
-      "789": { x: 250, y: 0},
-      "889": { x: 250, y: 0},
-      "998": { x: 250, y: 0},
+      "89": { x: 350, y: 0},
+      "298": { x: 350, y: 0},
+      "189": { x: 350, y: 0},
+      "289": { x: 350, y: 0},
+      "498": { x: 350, y: 0},
+      "380": { x: 350, y: 0},
+      "389": { x: 350, y: 0},
+      "489": { x: 350, y: 0},
+      "798": { x: 350, y: 0},
+      "589": { x: 350, y: 0},
+      "619": { x: 350, y: 0},
+      "689": { x: 350, y: 0},
+      "679": { x: 350, y: 0},
+      "789": { x: 350, y: 0},
+      "889": { x: 350, y: 0},
+      "998": { x: 38950, y: 0},
     };
 
     // init vis
@@ -121,101 +121,197 @@ ZzLocationVis = (function() {
   }
 
   ZzLocationVis.prototype.clickRegion = function(d){
-   
-    // check level, if 2 then collapse 3, if 1 then collapse 2
-    console.log(d);
-
-    // close others, open this
-    d.open = true;
+    
+    if (d.children) {
+      d._children = d.children;
+      d.children = null;
+    } else {
+      d.children = d._children;
+      d._children = null;
+    }
+    geoLocationVis.updateLegend(d);
     geoLocationVis.update();
-
   }
 
 
-  ZzLocationVis.prototype.updateLegend = function() {
+  ZzLocationVis.prototype.updateLegend = function(d) {
 
     var that = this;
-    this.mapping.children(function(d) { return d.children; });
-    var all_regions = this.mapping(that.mappingData).slice(1);
 
-    this.mapping.children(function(d, depth) { 
-
-      if(d.depth < 1 || d.open == true){
-        return d.children;
+    function setHiddenChildrenPosition(d, i){
+      if(d._children){
+        for (var y = 0;y < d._children.length;y++){
+          that.group_centers[d._children[y].id]['y'] = 100 + (i * 150);
+          setHiddenChildrenPosition(d._children[y], i);
+        }
       }
-
-
-      return null;
-
-    });
-
-    var mappingData = this.mapping(that.mappingData).slice(1);
-
-    console.log(mappingData);
-
-    var legendaItems = this.vis.selectAll('.legend')
-      .data(mappingData);
-
-    mappingData.forEach(function(d, i){
-      that.group_centers[d.id]['y'] = 200 + (i * 150);
-    });
-
-    that.setBubbleCenters(all_regions);
-
-    d3.transition().duration(750).each(function() {
-
-      legendaItems.exit().transition()
-          .style('fill-opacity', 0)
-          .remove();
-
-      legendaItems.enter()
-        .append('circle')
-        .attr('cx', 45)
-        .attr('cy', function(d){ return that.group_centers[d.id]['y'] - 14; })
-        .attr('r', 8)
-        .attr('fill', function(d){return d.color; });
-
-      legendaItems.enter()
-        .append('text')
-        .attr('x', 58)
-        .attr('y', function(d){ return that.group_centers[d.id]['y'] - 8; })
-        .attr('font-size', '16px')
-        .attr('fill', '#444')
-        .attr('style', 'text-anchor: start;')
-        .text(function(d){ return d.name; })
-        .each(function(d){ d.textWidth = this.getBBox().width; })
-        .on('click', that.clickRegion);
-
-      legendaItems.enter()
-        .insert('rect', ':first-child')
-        .attr('width', function(d){ return d.textWidth + 42; })
-        .attr('height', 20)
-        .attr('x', 30)
-        .attr('y', function(d){ return that.group_centers[d.id]['y'] - 24; })
-        .attr('rx', 13)
-        .attr('ry', 13)
-        .attr('fill', '#fff');
-
-      legendaItems.transition()
-          .style('fill-opacity', 0.7)
-          .style('fill', '#fff');
-
-    });
-
-
-
-  }
-
-  ZzLocationVis.prototype.update = function(data) {
-
-    var that = this;
-
-    if(data){
-      that.mappingData = data.mapping;
-      that.data = data.data;
     }
 
-    this.updateLegend();
+    // Compute the new tree layout.
+    var nodes = that.mapping(that.mappingData).slice(1);
+
+    // Update the nodes…
+    var node = this.vis.selectAll("g.region")
+        .data(nodes, function(d) { return d.id; });
+
+    // Enter any new nodes at the parent's previous position.
+    var nodeEnter = node.enter().append("g")
+        .attr("class", "region")
+        .attr("transform", function(d, i) { return "translate(50," + (100 + (i * 150)) + ")"; })
+        .on("click", that.clickRegion);
+
+    nodeEnter.append("circle")
+        .attr("r", 1e-6)
+        .attr('fill', function(d){return d.color; });
+
+    nodeEnter.append("text")
+        .attr("x", 10)
+        .attr("dy", ".35em")
+        .attr("text-anchor", "start")
+        .text(function(d) { return d.name; })
+        .style("fill-opacity", 1e-6);
+
+    // Transition nodes to their new position.
+    var nodeUpdate = node.transition()
+      .duration(750)
+      .attr("transform", function(d, i) { return "translate(50," + (100 + (i * 150)) + ")"; })
+      .each(function(d,i){ 
+
+        that.group_centers[d.id]['y'] = 100 + (i * 150);
+
+        setHiddenChildrenPosition(d, i);
+      });
+
+    nodeUpdate.select("circle")
+        .attr("r", 4.5)
+        .attr('fill', function(d){return d.color; });
+
+    nodeUpdate.select("text")
+        .style("fill-opacity", 1);
+
+    // Transition exiting nodes to the parent's new position.
+    var nodeExit = node.exit().transition()
+        .duration(750)
+        .attr("opacity", 1e-6)
+        .remove();
+
+    nodeExit.select("circle")
+        .attr("r", 1e-6);
+
+    nodeExit.select("text")
+        .style("fill-opacity", 1e-6);
+
+
+    // legendaItems.enter()
+    //     .insert('rect', ':first-child')
+    //     .attr('width', function(d){ return d.textWidth + 42; })
+    //     .attr('height', 20)
+    //     .attr('x', 30)
+    //     .attr('y', function(d){ return that.group_centers[d.id]['y'] - 24; })
+    //     .attr('rx', 13)
+    //     .attr('ry', 13)
+    //     .attr('fill', '#fff');
+
+
+
+
+
+
+
+
+
+
+
+
+    // var that = this;
+    // this.mapping.sort(function comparator(a, b) {
+    //   return b.depth - a.depth;
+    // });
+
+    // var all_regions = this.mapping(that.mappingData).slice(1);
+
+
+
+    // console.log(all_regions);
+
+    // var getChildren = function(mappingData, node){
+    //   for(var i = 0; i < node.children.length;i++){
+    //     mappingData.push(node.children[i]);
+
+    //     if(node.children[i].open == true){
+    //       mappingData = getChildren(mappingData, node.children[i]);
+    //     }
+    //   }
+    //   return mappingData;
+    // } 
+
+    
+    // var mappingData = getChildren([], that.mappingData);
+
+    // var legendaItems = this.vis.selectAll('.legend')
+    //   .data(mappingData);
+
+    // mappingData.forEach(function(d, i){
+    //   console.log(i);
+    //   that.group_centers[d.id]['y'] = 200 + (i * 150);
+    // });
+
+    // that.setBubbleCenters(all_regions);
+
+    // d3.transition().duration(750).each(function() {
+
+    //   legendaItems.exit().transition()
+    //       .style('fill-opacity', 0)
+    //       .remove();
+
+    //   legendaItems.enter()
+    //     .append('circle')
+    //     .attr('cx', 45)
+    //     .attr('cy', function(d){ return that.group_centers[d.id]['y'] - 14; })
+    //     .attr('r', 8)
+    //     .attr('fill', function(d){return d.color; });
+
+    //   legendaItems.enter()
+    //     .append('text')
+    //     .attr('x', 58)
+    //     .attr('y', function(d){ return that.group_centers[d.id]['y'] - 8; })
+    //     .attr('font-size', '16px')
+    //     .attr('fill', '#444')
+    //     .attr('style', 'text-anchor: start;')
+    //     .text(function(d){ return d.name; })
+    //     .each(function(d){ d.textWidth = this.getBBox().width; })
+    //     .on('click', that.clickRegion);
+
+    //   legendaItems.enter()
+    //     .insert('rect', ':first-child')
+    //     .attr('width', function(d){ return d.textWidth + 42; })
+    //     .attr('height', 20)
+    //     .attr('x', 30)
+    //     .attr('y', function(d){ return that.group_centers[d.id]['y'] - 24; })
+    //     .attr('rx', 13)
+    //     .attr('ry', 13)
+    //     .attr('fill', '#fff');
+
+    //     console.log(legendaItems.enter());
+    //     console.log(legendaItems.transition());
+
+    //   legendaItems.transition()
+    //       .style('fill-opacity', 0.7)
+    //       .style('fill', '#fff');
+
+    // });
+  }
+
+  ZzLocationVis.prototype.updateData = function(data){
+
+    var that = this;
+
+    if(!data){
+      return false;
+    }
+
+    that.mappingData = data.mapping;
+    that.data = data.data;
 
     var maxvalue = d3.max(that.data, function(d) { return d.total_disbursements; });
     this.radius_scale = d3.scale.pow().exponent(0.5).domain([0, maxvalue]).range([2, 20]);
@@ -231,11 +327,7 @@ ZzLocationVis = (function() {
     });
 
     that.nodes = that.data;
-    this.force.nodes(that.nodes);
-
-
-    // create / update labels
-
+    that.force.nodes(that.nodes);
 
     // create / update bubbles, group them by region
     this.circles = that.vis.selectAll(".node")
@@ -252,6 +344,22 @@ ZzLocationVis = (function() {
       .on('click', that.mouseClick)
       .call(that.force.drag);
 
+    function collapse(d) {
+      if (d.children) {
+        d._children = d.children;
+        d._children.forEach(collapse);
+        d.children = null;
+      }
+    }
+
+    this.mappingData.children.forEach(collapse);
+    this.updateLegend(this.mappingData);
+    this.update(this.data); 
+  }
+
+  ZzLocationVis.prototype.update = function() {
+
+    var that = this;
 
     this.force
       .gravity(this.layout_gravity)
@@ -279,7 +387,7 @@ ZzLocationVis = (function() {
       return function(d) {
         var target;
         target = _this.group_centers[d.group];
-        // if(d.country_id == 'ID'){
+        // if(d.group == '380'){
           // console.log(d.x);
           // console.log(d.y);  
           // console.log(d.region_id);
@@ -291,23 +399,8 @@ ZzLocationVis = (function() {
     })(this);
   };
 
-  ZzLocationVis.prototype.zoomIn = function(d){
-    // check height that has to be added
-
-    // move all bubbles below to new position
-
-    // zoom in on the selected region
-
-  };
-
-  ZzLocationVis.prototype.zoomOut = function(d){
-    
-  };
-
   ZzLocationVis.prototype.mouseOver = function(e){
     // show country id of all countries within this region
-
-
     var circlesInRegion = geoLocationVis.vis.selectAll(".nodeText")
       .data(geoLocationVis.nodes)
     .enter().append("text")
@@ -321,9 +414,6 @@ ZzLocationVis = (function() {
       .attr('fill', '#444')
       .attr("pointer-events", "none")
       .text(function(d){ return d.country_id; });
-
-
-
   };
 
   ZzLocationVis.prototype.mouseOut = function(d){
@@ -332,7 +422,6 @@ ZzLocationVis = (function() {
   };
 
   ZzLocationVis.prototype.mouseClick = function(d){
-    console.log(d);
     // how details within the pop-up
     geoLocationVis.tooltip.showTooltip(d);
     d3.event.stopPropagation();
