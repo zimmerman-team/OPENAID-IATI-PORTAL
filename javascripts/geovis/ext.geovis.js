@@ -160,16 +160,32 @@ ZzLocationVis = (function() {
         .attr("transform", function(d, i) { return "translate(50," + (100 + (i * 150)) + ")"; })
         .on("click", that.clickRegion);
 
-    nodeEnter.append("circle")
-        .attr("r", 1e-6)
+      nodeEnter
+        .append('circle')
+        .attr('cx', function(d){ return 12 + ((d.depth - 1) * 15); })
+        .attr('cy', -5)
+        .attr('r', 4)
         .attr('fill', function(d){return d.color; });
 
-    nodeEnter.append("text")
-        .attr("x", 10)
-        .attr("dy", ".35em")
-        .attr("text-anchor", "start")
-        .text(function(d) { return d.name; })
-        .style("fill-opacity", 1e-6);
+      nodeEnter
+        .append('text')
+        .attr('x', function(d){ return 25 + ((d.depth - 1) * 15); })
+        .attr('y', 0)
+        .attr('font-size', '16px')
+        .attr('fill', '#444')
+        .attr('style', 'text-anchor: start;')
+        .text(function(d){ return d.name; })
+        .each(function(d){ d.textWidth = this.getBBox().width; });
+
+      nodeEnter
+        .insert('rect', ':first-child')
+        .attr('width', function(d){ return d.textWidth + 42; })
+        .attr('height', 20)
+        .attr('x', function(d){ return 0 + ((d.depth - 1) * 15); })
+        .attr('y', -15)
+        .attr('rx', 10)
+        .attr('ry', 10)
+        .attr('fill', '#fff');
 
     // Transition nodes to their new position.
     var nodeUpdate = node.transition()
@@ -183,7 +199,7 @@ ZzLocationVis = (function() {
       });
 
     nodeUpdate.select("circle")
-        .attr("r", 4.5)
+        .attr('r', 6)
         .attr('fill', function(d){return d.color; });
 
     nodeUpdate.select("text")
@@ -201,105 +217,6 @@ ZzLocationVis = (function() {
     nodeExit.select("text")
         .style("fill-opacity", 1e-6);
 
-
-    // legendaItems.enter()
-    //     .insert('rect', ':first-child')
-    //     .attr('width', function(d){ return d.textWidth + 42; })
-    //     .attr('height', 20)
-    //     .attr('x', 30)
-    //     .attr('y', function(d){ return that.group_centers[d.id]['y'] - 24; })
-    //     .attr('rx', 13)
-    //     .attr('ry', 13)
-    //     .attr('fill', '#fff');
-
-
-
-
-
-
-
-
-
-
-
-
-    // var that = this;
-    // this.mapping.sort(function comparator(a, b) {
-    //   return b.depth - a.depth;
-    // });
-
-    // var all_regions = this.mapping(that.mappingData).slice(1);
-
-
-
-    // console.log(all_regions);
-
-    // var getChildren = function(mappingData, node){
-    //   for(var i = 0; i < node.children.length;i++){
-    //     mappingData.push(node.children[i]);
-
-    //     if(node.children[i].open == true){
-    //       mappingData = getChildren(mappingData, node.children[i]);
-    //     }
-    //   }
-    //   return mappingData;
-    // } 
-
-    
-    // var mappingData = getChildren([], that.mappingData);
-
-    // var legendaItems = this.vis.selectAll('.legend')
-    //   .data(mappingData);
-
-    // mappingData.forEach(function(d, i){
-    //   console.log(i);
-    //   that.group_centers[d.id]['y'] = 200 + (i * 150);
-    // });
-
-    // that.setBubbleCenters(all_regions);
-
-    // d3.transition().duration(750).each(function() {
-
-    //   legendaItems.exit().transition()
-    //       .style('fill-opacity', 0)
-    //       .remove();
-
-    //   legendaItems.enter()
-    //     .append('circle')
-    //     .attr('cx', 45)
-    //     .attr('cy', function(d){ return that.group_centers[d.id]['y'] - 14; })
-    //     .attr('r', 8)
-    //     .attr('fill', function(d){return d.color; });
-
-    //   legendaItems.enter()
-    //     .append('text')
-    //     .attr('x', 58)
-    //     .attr('y', function(d){ return that.group_centers[d.id]['y'] - 8; })
-    //     .attr('font-size', '16px')
-    //     .attr('fill', '#444')
-    //     .attr('style', 'text-anchor: start;')
-    //     .text(function(d){ return d.name; })
-    //     .each(function(d){ d.textWidth = this.getBBox().width; })
-    //     .on('click', that.clickRegion);
-
-    //   legendaItems.enter()
-    //     .insert('rect', ':first-child')
-    //     .attr('width', function(d){ return d.textWidth + 42; })
-    //     .attr('height', 20)
-    //     .attr('x', 30)
-    //     .attr('y', function(d){ return that.group_centers[d.id]['y'] - 24; })
-    //     .attr('rx', 13)
-    //     .attr('ry', 13)
-    //     .attr('fill', '#fff');
-
-    //     console.log(legendaItems.enter());
-    //     console.log(legendaItems.transition());
-
-    //   legendaItems.transition()
-    //       .style('fill-opacity', 0.7)
-    //       .style('fill', '#fff');
-
-    // });
   }
 
   ZzLocationVis.prototype.updateData = function(data){
@@ -387,12 +304,6 @@ ZzLocationVis = (function() {
       return function(d) {
         var target;
         target = _this.group_centers[d.group];
-        // if(d.group == '380'){
-          // console.log(d.x);
-          // console.log(d.y);  
-          // console.log(d.region_id);
-          // console.log((target.y - d.y) * _this.damper * alpha);
-          // console.log(_this.group_centers[d.group])};
         d.x = d.x + (target.x - d.x) * _this.damper * alpha * 1.1;
         return d.y = d.y + (target.y - d.y) * _this.damper * alpha * 2;
       };
