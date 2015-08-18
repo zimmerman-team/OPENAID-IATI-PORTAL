@@ -161,7 +161,7 @@ hr{
 
 .hp-block{
   background-color: rgba($blauw, 0.1);
-  padding: 14px;
+  padding: 15px;
   margin: 0 0 15px 0;
   font-size: 17px;
 
@@ -192,13 +192,13 @@ hr{
       top:15px;
       right: 30px;
       color: rgba(#fff,.6);
-      font-size: 14px;
+      font-size: 15px;
       cursor:pointer;
     }
   }
 
   &.spec {
-    padding: 14px 0;
+    padding: 15px 0;
   }
   &.explore {
     padding:0;
@@ -300,6 +300,7 @@ hr{
         border-top-right-radius:20px;
         border-bottom-right-radius:20px;
         border:1px solid #ccc;
+        font-size:16px;
       }
       .btn-search {
         background:$oranje;
@@ -517,7 +518,7 @@ SEARCH BAR
   //   width: 100%;
   //   height: 24px;
   //   padding: 0 4px;
-  //   font-size: 14px;
+  //   font-size: 15px;
   // }
   // .input-group-btn {
   //   position: absolute;
@@ -681,8 +682,11 @@ h4 {
   background-color: #fff;
   position: absolute;
   width: 100%;
-  padding:14px;
+  padding:15px;
   left:0;
+  .search-box {
+    padding-left:8px;
+  }
   &.budget {
     .checkbox {
       margin-top:0;
@@ -699,6 +703,8 @@ h4 {
   .btn-save {
     background: $gifgroen;
     float: left;
+    font-size:16px;
+    padding: 6px 12px;
   }
   .table {
     .checkbox {
@@ -722,7 +728,7 @@ h4 {
       //   background-color: #fff;
       //   display: inline-block;
       //   cursor: pointer;
-      //   padding-right: 14px;
+      //   padding-right: 15px;
       //   transition: all ease 0.2s;
       //   -webkit-transition: all ease 0.2s;
       //   border-radius: 20px;
@@ -743,7 +749,7 @@ h4 {
       // }
       // .switch :checked + i {
       //     padding-right: 0;
-      //     padding-left: 14px;
+      //     padding-left: 15px;
       //     background: #eee;
       //     box-shadow: inset 0 0 1px #dedede, inset 0 0 40px #eee;
       //     -webkit-box-shadow: inset 0 0 1px #dedede, inset 0 0 40px #eee;
@@ -772,7 +778,7 @@ tr {
     background-color: #fff;
     display: inline-block;
     cursor: pointer;
-    padding-right: 14px;
+    padding-right: 15px;
     transition: all ease 0.2s;
     -webkit-transition: all ease 0.2s;
     border-radius: 20px;
@@ -793,7 +799,7 @@ tr {
   }
   :checked + i {
       padding-right: 0;
-      padding-left: 14px;
+      padding-left: 15px;
       background: #fff;
       box-shadow: inset 0 0 1px #666, inset 0 0 40px #fff;
       -webkit-box-shadow: inset 0 0 1px #666, inset 0 0 40px #fff;
@@ -801,7 +807,7 @@ tr {
 }
 
 .filter-box {
-  padding:14px;
+  padding:15px;
   .btn {
     color:#fff;
     border-radius: 4px;
@@ -988,7 +994,7 @@ tr {
 //   font-size: 12px;
 //   float: right;
 //   margin-top: 8px;
-//   margin-right: 14px;
+//   margin-right: 15px;
 // }
 
 // .filter-reset-button:hover, .filter-reset-button:focus{
@@ -1241,7 +1247,7 @@ TABS
     width: 19%;
     color: #444;
     font-weight: bold;
-    font-size: 14px;
+    font-size: 15px;
     padding-top: 10px;
     padding-bottom: 10px;
   }
@@ -1384,9 +1390,8 @@ SLIDER TOOLTIP
 *********************/
 
 .slide {
-  padding:34px 14px;
-  background: #f1f1f1;
-  margin-bottom: 14px;
+  padding:34px 0 0 0;
+  margin-bottom: 15px;
   .slider-selection {
     background: lighten($grijs,40%);
   }
@@ -1425,10 +1430,10 @@ SLIDER TOOLTIP
     .slider-handle {
       background: lighten($grijs,40%);
       border:1px solid #fff;
-      width: 35px;
-      height: 35px;
-      margin-left: -17px;
-      margin-top: -12px;
+      width: 25px;
+      height: 25px;
+      margin-left: -14px;
+      margin-top: -9px;
       outline: none;
     }
   }
@@ -1436,11 +1441,14 @@ SLIDER TOOLTIP
     display: none;
   }
   .tooltip {
-    font-weight: 700;
+    font-weight: 300;
     opacity: 1;
-    font-size: 1.2em;
+    font-size: 16px;
     .tooltip-inner {
       background: lighten($grijs,40%);
+      &:before {
+        content: '\20AC\2008' ;
+      }
     }
     &.top {
       top:-42px !important;
@@ -1466,7 +1474,7 @@ ACTIVITY LIST
   font-size: 1.2em;
   background: rgba($icon-grn,.5);
   color:#fff;
-  padding:14px;
+  padding:15px;
   overflow: hidden;
   white-space: nowrap;
   margin-bottom:15px;
@@ -1553,8 +1561,8 @@ FOOTER
 footer{
   background-color: #333;
   color: #fff;
-  padding-top:1.5rem;
-  padding-bottom: 4em;
+  padding-top:35px;
+  padding-bottom: 35px;
 
   a{
     color: #fff;
@@ -1565,7 +1573,10 @@ footer{
     text-align: center;
   }
   h1 {
-    margin-bottom: 0.3rem;
+    margin-bottom: 6px;
+  }
+  img {
+    max-width: 100%;
   }
 }
 
@@ -1593,7 +1604,7 @@ footer{
 .map-holder {
   background-color: rgba($blauw,0.3);
   position: relative;
-  padding:14px;
+  padding:15px;
   margin-bottom:15px;
   h3 {
     margin-top: 0;
@@ -1631,7 +1642,7 @@ footer{
 
 .marker-circle{ 
   border-radius: 22px;
-  font-size:14px;
+  font-size:15px;
   width: 22px; 
   height: 22px;
 }
@@ -1820,7 +1831,7 @@ footer{
     line-height: 20px;
     text-indent:5px;
     font-weight: 700;
-    box-shadow: 0 3px 14px rgba(0,0,0,0.4);
+    box-shadow: 0 3px 15px rgba(0,0,0,0.4);
   }
   p {
     margin:0 0 2px;
