@@ -1,10 +1,12 @@
-<div class="container">
+<div id="main-content" class="container">
+    <filter-bar current-page="activities"></filter-bar>
 
-    <p>placeholder voor search</p>
-
-    <p>placeholder voor filters</p>
-
-    <p>placeholder voor map</p>
+    <leaflet 
+        defaults="vm.defaults" 
+        center="vm.center" 
+        markers="vm.markers" 
+        height="400px" 
+        width="100%"></leaflet>
 
     <activity-list></activity-list>
  

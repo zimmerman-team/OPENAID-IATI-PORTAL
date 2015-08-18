@@ -17,7 +17,7 @@
         formattedData: '=',
         refreshSunburst: '='
       },
-      templateUrl: templateBaseUrl + '/templates/sunburst/sunburst.html'
+      templateUrl: templateBaseUrl + '/templates/_charts/sunburst/sunburst.html'
     };
 
     return directive;

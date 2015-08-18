@@ -181,6 +181,13 @@
             controller:  'PagesController',
             controllerAs: 'vm.post.title',
             templateUrl: templateBaseUrl + '/templates/pages/pages.html'
+        })
+        .state({
+            name:        'search',
+            url:         '/zoeken/',
+            controller:  'SearchPageController',
+            controllerAs: 'vm',
+            templateUrl: templateBaseUrl + '/templates/search/search-page.html'
         });
 
      

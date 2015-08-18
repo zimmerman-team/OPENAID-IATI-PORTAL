@@ -30,7 +30,7 @@
         'excludeDashboard': '@',
         'currentPage': '@'
       },
-      templateUrl: templateBaseUrl + '/templates/filters/filter-bar.html'
+      templateUrl: templateBaseUrl + '/templates/_partials/filterbar/filter-bar.html'
     };
 
     return directive;
