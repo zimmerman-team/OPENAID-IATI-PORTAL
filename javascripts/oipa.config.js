@@ -7,10 +7,6 @@
 
     config.$inject = ['$locationProvider', 'paginationTemplateProvider', 'templateBaseUrl', '$breadcrumbProvider'];
 
-    /**
-     * @name config
-     * @desc Enable HTML5 routing
-     */
     function config($locationProvider, paginationTemplateProvider, templateBaseUrl, $breadcrumbProvider) {
         $locationProvider.html5Mode(true);
         $locationProvider.hashPrefix('!');
@@ -20,6 +16,5 @@
           template: 'bootstrap3'
         });
     }
-
 
 })();
