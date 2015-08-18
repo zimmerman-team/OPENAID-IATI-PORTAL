@@ -285,6 +285,7 @@ hr{
       float: none;
       margin-bottom: 15px;
       position:relative;
+      padding:0 15px;
       form {
         height: 40px;
       }
@@ -312,7 +313,7 @@ hr{
         padding:0;
         display: inline-block;
         position:absolute;
-        right: 0;
+        right: 15px;
         top:0;
         .glyphicon-search {
           color: #fff;
@@ -586,6 +587,12 @@ FILTER BAR
 .makeblock {
   display: block;
   margin-top:5px;
+}
+
+.vis-select {
+  padding:0 15px;
+  text-align: left;
+  margin-top:15px;
 }
 
 .actions {
@@ -1590,10 +1597,8 @@ footer{
   padding:0;
 }
 .top5 {
-  select {
-    margin:15px 10px;
-    font-size: 18px;
-    padding:5px;
+  .selectbox {
+    margin: 5px 0 15px;
   }
   .nvd3-svg {
     background-color:#fff;

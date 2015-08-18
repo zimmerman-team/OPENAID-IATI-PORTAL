@@ -82,11 +82,19 @@
                     ng-bind-html="vm.customFields['landen']['text']">
                     </div>
 
-                    <select ng-model="vm.top5">
-                        <option value='recipient-country'>Top 5 landen</option>
-                        <option value='transaction-receiver-org'>Top 5 organisaties</option>
-                        <option value='sector'>Top 5 sectors</option>
-                    </select>
+                    <div class="col-md-4 selectbox">
+                        <label class="wrapper">
+                            <div class="button custom-select ff-hack">
+
+                                <select ng-model="vm.top5">
+                                    <option value='recipient-country'>Top 5 landen</option>
+                                    <option value='transaction-receiver-org'>Top 5 organisaties</option>
+                                    <option value='sector'>Top 5 sectors</option>
+                                </select>
+
+                            </div>
+                        </label>
+                    </div>
 
                     <oipa-table-chart 
                         aggregation-filters='vm.tableChartOptions.aggregationFilters' 
