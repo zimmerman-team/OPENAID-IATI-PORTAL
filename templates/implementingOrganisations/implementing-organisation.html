@@ -1,41 +1,65 @@
 <div id="main-content" class="container">
 
-    <filter-bar></filter-bar>
+    <detail-topbar></detail-topbar>
 
     <div class="row">
         <div class="col-md-12">
-            <div class="hp-block">
-                <h1>{{vm.organisation.name}}</h1>  
+            <div class="hp-block wit">
+                <h1>{{vm.organisation.name}}</h1>
+                <p>Description. Nullam id dolor id nibh ultricies vehicula ut id elit. Donec ullamcorper nulla non metus auctor fringilla. Maecenas faucibus mollis interdum. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
             </div>
         </div>
     </div>
 
+    <subnav-bar></subnav-bar>
+
     <div class="row">
-        <div class="col-md-6">
-            <div class="hp-block groen clickable" ng-click="vm.dashboard = 'list'">
-                <div class="expand">
-                    <span class="fa-stack fa-lg">
-                        <i class="fa fa-circle fa-stack-2x"></i>
-                        <i class="fa fa-share fa-stack-1x fa-share"></i>
-                    </span>
+
+        <!-- start linker kolom -->
+        <div class="col-md-4">
+
+            <!--start van een wit blokje -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="hp-block wit" ng-click="vm.dashboard = 'list'">
+                        <h4>Totaal aantal activiteiten</h4>
+                        <span class="number">{{vm.activityCount}}</span>
+                    </div>
                 </div>
-                <h3>Totaal aantal activiteiten</h3>
-                <span class="number">{{vm.activityCount}}</span>
             </div>
+            <!-- eind van een wit blokje -->
+
         </div>
-        <div class="col-md-6">
-            <div class="hp-block roze">
-                <h3>Totaal budget</h3>
-                <span class="number">{{vm.totalBudget | currency :'€':0}}</span>
+        <!-- eind linker kolom -->
+
+        <!-- start rechter kolom -->
+        <div class="col-md-8">
+
+            <!--start van een wit blokje -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="hp-block wit" ng-click="vm.dashboard = 'list'">
+                        <h4>Totaal aantal activiteiten</h4>
+                        <span class="number">{{vm.activityCount}}</span>
+                    </div>
+                </div>
             </div>
+            <!-- eind van een wit blokje -->
+
         </div>
+
+        <!-- eind recher kolom -->
     </div>
 
-    <div class="row">
+    <!-- <div class="row">
         <div class="col-md-6">
             <div class="hp-block blauw">
                 <h3>Donoren</h3>
                 <span class="number">{{vm.donorCount}}</span>
+            </div>
+            <div class="hp-block wit">
+                <h3>Totaal budget</h3>
+                <span class="number">{{vm.totalBudget | currency :'€':0}}</span>
             </div>
         </div>
     </div>
@@ -77,7 +101,7 @@
     </div>
     <div class="row explore-block-content" ng-show="vm.dashboard == 'landen'">
         <country-list has-to-contain='participating_organisations__organisation__code__in'></country-list>
-    </div>
+    </div> -->
 
 </div>
 

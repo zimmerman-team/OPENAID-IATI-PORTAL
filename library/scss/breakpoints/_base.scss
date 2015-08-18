@@ -11,6 +11,10 @@ and will be used across all viewports.
 
 ******************************************************************/
 
+a {
+  color:$oranje;
+}
+
 /****
 TEMP
 ****/
@@ -155,6 +159,13 @@ hr{
   margin: 0 0 15px 0;
   font-size: 17px;
 
+  &.wit {
+    background-color:#fff;
+    h4 {
+      font-weight: 600;
+    }
+  }
+
   &.hp-block-top{
     font-size: 17px;
 
@@ -178,43 +189,6 @@ hr{
       font-size: 14px;
       cursor:pointer;
     }
-    .search-box {
-      float: none;
-      margin-bottom: 15px;
-      position:relative;
-      form {
-        height: 40px;
-      }
-      input {
-        height: 40px;
-        padding:0 6px;
-        line-height: 40px;
-        background:#fff;
-        display: inline-block;
-        border-radius:0;
-        width: 100%;
-        border-top-right-radius:20px;
-        border-bottom-right-radius:20px;
-      }
-      .btn-search {
-        background:$oranje;
-        color: #fff;
-        margin:0;
-        border-radius:20px;
-        width: 40px;
-        height: 40px;
-        border:0;
-        line-height: 47px;
-        padding:0;
-        display: inline-block;
-        position:absolute;
-        right: 0;
-        top:0;
-        .glyphicon-search {
-          color: #fff;
-        }
-      }
-    }
   }
 
   &.spec {
@@ -233,13 +207,16 @@ hr{
   &.groen {
     background-color:$groen;
     background-color: rgba($groen, 0.35);
+    a {
+      color:#fff;
+    }
   }
   &.roze {
     background-color:$roze;
     background-color: rgba($roze, 0.35);
   }
 
-  h3, h2, h1{
+  h4, h3, h2, h1{
     margin-top: 0;
     margin-bottom: 0;
   }
@@ -298,6 +275,45 @@ hr{
   }
 }
 
+.search-box {
+      float: none;
+      margin-bottom: 15px;
+      position:relative;
+      form {
+        height: 40px;
+      }
+      input {
+        height: 40px;
+        padding:0 6px;
+        line-height: 40px;
+        background:#fff;
+        display: inline-block;
+        border-radius:0;
+        width: 100%;
+        border-top-right-radius:20px;
+        border-bottom-right-radius:20px;
+        border:1px solid #ccc;
+      }
+      .btn-search {
+        background:$oranje;
+        color: #fff;
+        margin:0;
+        border-radius:20px;
+        width: 40px;
+        height: 40px;
+        border:0;
+        line-height: 47px;
+        padding:0;
+        display: inline-block;
+        position:absolute;
+        right: 0;
+        top:0;
+        .glyphicon-search {
+          color: #fff;
+        }
+      }
+    }
+
 .btn-default{
   padding: 3px 10px 5px;
   background-color: rgba($blauw,.4);
@@ -353,6 +369,7 @@ NAVBAR
   border-radius: 0 !important;
   border: 0 !important;
   margin-bottom: 12px;
+  font-weight: 300;
 
   button.navbar-toggle {
     color:#fff;
@@ -435,6 +452,28 @@ NAVBAR
   margin:0;
 }
 
+.subnav {
+  background:#333;
+  text-transform: uppercase;
+  ul {
+    li {
+      list-style: none;
+      display: inline-block;
+      margin-right: 15px;
+      a {
+        color:#fff;
+      }
+      &.active, &:hover {
+        a {
+          color: $oranje;
+        }
+      }
+      &:last-of-type {
+        margin-right:0;
+      }
+    }
+  }
+}
 //Breadcrumbs
 
 .breadcrumb {
@@ -455,9 +494,7 @@ SEARCH BAR
 *********************/
 
 .search-box {
-  margin-top: 12px;
-  margin-bottom:5px;
-  float: right;
+  margin-top: 15px;
 
   .search-wrap {
     border: 0;
@@ -548,29 +585,33 @@ FILTER BAR
 .actions {
   color:#fff;
   font-size: 1.2em;
-  margin-top: 10px;
-
-  .fa-stack{
-    border-top-left-radius: 12px;
-    border-top-right-radius: 12px;
-    background-color: rgba(255,255,255,0.3);
-    padding-top: 7px;
-    height: 54px;
-    width: 68px;
-    margin-right: 15px;
-  }
 
 
   span {
     cursor: pointer;
   }
-  .filters {
+  .filters,.social {
+    margin-bottom: 10px;
+    a {
+      color:#fff;
+      &:hover {
+        text-decoration:none;
+      }
+    }
     .fa-circle {
-      color:rgba($icon-grn,.5);
+      color:rgba(#738191,.5);
     }
     .active {
       .fa-circle {
-        color:rgba($icon-grn,1);
+        color:rgba(#738191,1);
+      }
+    }
+  }
+  .social {
+    text-align: right;
+    .fa-stack:hover {
+      .fa-circle {
+        color:rgba(#738191,1);
       }
     }
   }
@@ -1080,8 +1121,8 @@ Countries
 TOOL BAR
 *********************/
 #tool-bar{
-  background-color: rgba($icon-grn, .5);
-  padding:6px 10px;
+  background-color: rgba(#738191, .5);
+  //padding:6px 10px;
   margin-bottom: 0;
   position:relative;
 
@@ -1093,11 +1134,11 @@ TOOL BAR
     }
   }
   .fa-circle {
-    color: rgba($icon-grn, .5);
+    color: rgba(#738191, .5);
   }
   .active {
     .fa-circle {
-      color: rgba($icon-grn, 1);
+      color: rgba(#738191, 1);
     }
   }
   .right {
@@ -1696,11 +1737,12 @@ footer{
 
 
 .overlay {
-  background:rgba(#333,.5);
-  color:#fff;
+  background:rgba(#fff,1);
   z-index:99999;
   padding:10px 10px;
+  text-align: center;
   table {
+    margin:0 auto;
     th {
       padding:0 15px;
       font-size:18px;

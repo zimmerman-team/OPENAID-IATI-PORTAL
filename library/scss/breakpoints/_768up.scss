@@ -57,7 +57,7 @@ come into play. Have fun!
 			}
 			&:hover {
 				.fa-circle {
-					color:rgba($icon-grn,1);
+					color:rgba(#738191,1);
 				}
 			}
 		}
@@ -264,20 +264,4 @@ come into play. Have fun!
 
 .navbar-collapse {
 	padding:0;
-}
-
-.overlay {
-  position:absolute;
-  left:15px;
-  right:15px;
-  text-align:center;
-  table {
-    margin:0 auto;
-    th {
-      
-    }
-    td {
-      
-    }
-  }
 }

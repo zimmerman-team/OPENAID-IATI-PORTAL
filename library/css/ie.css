@@ -206,7 +206,7 @@ come into play. Have fun!
 }
 /* line 59, ../scss/breakpoints/_768up.scss */
 .actions .filters span:hover .fa-circle {
-  color: #00a99d;
+  color: #738191;
 }
 /* line 67, ../scss/breakpoints/_768up.scss */
 .actions .dash a .fa-circle, .actions .dash span .fa-circle {
@@ -340,18 +340,6 @@ come into play. Have fun!
 /* line 265, ../scss/breakpoints/_768up.scss */
 .navbar-collapse {
   padding: 0;
-}
-
-/* line 269, ../scss/breakpoints/_768up.scss */
-.overlay {
-  position: absolute;
-  left: 15px;
-  right: 15px;
-  text-align: center;
-}
-/* line 274, ../scss/breakpoints/_768up.scss */
-.overlay table {
-  margin: 0 auto;
 }
 
 /******************************************************************

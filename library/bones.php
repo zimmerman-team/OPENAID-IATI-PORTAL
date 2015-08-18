@@ -67,7 +67,7 @@ function bones_scripts_and_styles() {
   if (!is_admin()) {	
 
 
-  		wp_register_style( 'titilium', 'http://fonts.googleapis.com/css?family=Titillium+Web:400,600,700', array(), '' );
+  		wp_register_style( 'titilium', 'http://fonts.googleapis.com/css?family=Titillium+Web:200,300,400,600,700', array(), '' );
 		wp_register_style( 'bubbleChart-css', get_stylesheet_directory_uri() . '/css/bubbleChart.css', array(), '' );
 		wp_register_style( 'bootstrap-css', get_stylesheet_directory_uri() . '/bower_components/bootstrap/dist/css/bootstrap.css', array(), '' );
 		wp_register_style( 'leaflet-css', get_stylesheet_directory_uri() . '/bower_components/leafletjs/dist/leaflet.css', array(), '' );

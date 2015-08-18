@@ -1,4 +1,4 @@
-<div class="row">
+<!-- <div class="row">
   <div class="col-xs-4"> 
     <a 
       class="dashboard-button" 
@@ -26,10 +26,32 @@
       <i class="fa fa-list-ul fa-stack-1x fa-inverse"></i>
     </a>
   </div>
+</div> -->
+
+<div class="row search">
+  <div class="col-sm-12">
+    <div class="hp-block groen hp-block-top hp-home no-padding">
+      <div class="row">
+        <div class="col-sm-12 col-md-8 col-lg-6 col-md-offset-2 col-lg-offset-3">
+          <div class="search-box">
+            <form ng-submit="vm.save()">
+              <div class="form-group">
+                <input type="text" placeholder="Filter op trefwoord...">
+                <button class="btn-search" type="button">
+                    <span class="glyphicon glyphicon-search"></span>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
  <div class="row actions">
-    <div class="col-md-12 filters">
+    <div class="col-md-5 filters">
+      Filters: 
         <span 
             class="fa-stack fa-lg" 
             ng-click="vm.toggleOpenPanel('recipient_countries')" 
@@ -122,6 +144,30 @@
         </span>
 
     </div>
+
+    <div class="col-md-3 filters">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <a ng-click="vm.resetFilters()" class="fa fa-refresh fa-stack-1x fa-inverse"></a>
+      </span>
+      <span class="tool-text">Wis actieve filters</span>
+    </div>
+
+    <div class="col-md-4 social">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <a ng-click="vm.share('twitter')" class="fa fa-twitter fa-stack-1x fa-inverse"></a>
+      </span>
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <a ng-click="vm.share('linkedin')" class="fa fa-linkedin fa-stack-1x fa-inverse"></a>
+      </span>
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <a ng-click="vm.share('facebook')" class="fa fa-facebook fa-stack-1x fa-inverse"></a>
+      </span>
+    </div>
+
 </div>
 
 <tool-bar></tool-bar>
