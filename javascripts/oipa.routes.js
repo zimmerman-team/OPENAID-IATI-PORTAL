@@ -28,8 +28,8 @@
             }
         })
         .state({
-            name:         'iati-explorer',
-            url:          '/iati-explorer/',
+            name:         'activities',
+            url:          '/projecten/',
             controller:   'ExploreController',
             controllerAs: 'vm',
             templateUrl:  templateBaseUrl + '/templates/layout/iati-explorer.html',
@@ -37,7 +37,7 @@
                 label: 'IATI Explorer'
             }
         })
-        .state({
+        .state({ // DEPRECATED
             name:         'iati-explorer-map',
             url:          '/iati-explorer/map/',
             controller:   'ExploreController',
@@ -47,7 +47,7 @@
                 label: 'IATI Explorer'
             }
         })
-        .state({
+        .state({ // DEPRECATED
             name:         'iati-explorer-list',
             url:          '/iati-explorer/lijst/',
             controller:   'ExploreController',
@@ -68,13 +68,13 @@
             }
         })
         .state({
-            name:        'countries-map',
-            url:         '/locaties/map/',
+            name:        'locations-map',
+            url:         '/locaties/',
             controller:  'ExploreController',
             controllerAs: 'vm',
             templateUrl: templateBaseUrl + '/templates/countries/countries-view-map.html',
             ncyBreadcrumb: {
-                label: 'Landen'
+                label: 'Locaties'
             }
         })
         .state({
@@ -99,7 +99,7 @@
             }
         })
         .state({
-            name:        'countries',
+            name:        'locations',
             url:         '/locaties/',
             controller:  'CountriesVisualisationController',
             controllerAs: 'vm',
