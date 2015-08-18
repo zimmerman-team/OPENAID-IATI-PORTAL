@@ -17,7 +17,7 @@
         formattedData: '=',
         refreshVisualisation: '='
       },
-      templateUrl: templateBaseUrl + '/templates/geovis/geovis.html'
+      templateUrl: templateBaseUrl + '/templates/_charts/geovis/geovis.html'
     };
 
     return directive;

@@ -31,7 +31,7 @@
         aggregationKey: '@',
         timeSlider: '=',
       },
-      templateUrl: templateBaseUrl + '/templates/stackedBarChart/stacked-bar-chart.html'
+      templateUrl: templateBaseUrl + '/templates/_charts/stackedBarChart/stacked-bar-chart.html'
     };
 
     return directive;

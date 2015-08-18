@@ -16,7 +16,7 @@
       scope: {
         aggregationFilters: '=',
       },
-      templateUrl: templateBaseUrl + '/templates/charts/oipa-total-figures-chart.html'
+      templateUrl: templateBaseUrl + '/templates/_charts/oipa-total-figures-chart.html'
     };
 
     return directive;

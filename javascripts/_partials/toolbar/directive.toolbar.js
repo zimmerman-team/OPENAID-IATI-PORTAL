@@ -22,7 +22,7 @@
     */
     var directive = {
       restrict: 'E',
-      templateUrl: templateBaseUrl + '/templates/toolbar/tool-bar.html'
+      templateUrl: templateBaseUrl + '/templates/_partials/toolbar/tool-bar.html'
     };
 
     return directive;

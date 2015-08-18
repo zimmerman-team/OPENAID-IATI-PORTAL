@@ -31,7 +31,7 @@
         chartXAxisEuroFormat: '@',
         chartXAxisStaggerLabels: '@',
       },
-      templateUrl: templateBaseUrl + '/templates/charts/oipa-line-chart.html'
+      templateUrl: templateBaseUrl + '/templates/_charts/oipa-line-chart.html'
     };
 
     return directive;

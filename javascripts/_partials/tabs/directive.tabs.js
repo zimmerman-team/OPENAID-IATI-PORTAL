@@ -26,7 +26,7 @@
       controllerAs: 'vm',
       restrict: 'E',
       scope: {},
-      templateUrl: templateBaseUrl + '/templates/tabs/tabs.html'
+      templateUrl: templateBaseUrl + '/templates/_partials/tabs/tabs.html'
     };
 
     return directive;

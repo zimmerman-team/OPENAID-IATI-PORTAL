@@ -22,7 +22,7 @@
             url:          '/',
             controller:   'IndexController',
             controllerAs: 'vm',
-            templateUrl:  templateBaseUrl + '/templates/layout/index.html',
+            templateUrl:  templateBaseUrl + '/templates/_layout/index.html',
             ncyBreadcrumb: {
                 label: 'Home'
             }
@@ -32,7 +32,7 @@
             url:          '/projecten/',
             controller:   'ExploreController',
             controllerAs: 'vm',
-            templateUrl:  templateBaseUrl + '/templates/layout/iati-explorer.html',
+            templateUrl:  templateBaseUrl + '/templates/activities/activities-view-list-map.html',
             ncyBreadcrumb: {
                 label: 'IATI Explorer'
             }
@@ -42,7 +42,7 @@
             url:          '/iati-explorer/map/',
             controller:   'ExploreController',
             controllerAs: 'vm',
-            templateUrl:  templateBaseUrl + '/templates/layout/iati-explorer-map.html',
+            templateUrl:  templateBaseUrl + '/templates/_layout/iati-explorer-map.html',
             ncyBreadcrumb: {
                 label: 'IATI Explorer'
             }
@@ -52,7 +52,7 @@
             url:          '/iati-explorer/lijst/',
             controller:   'ExploreController',
             controllerAs: 'vm',
-            templateUrl:  templateBaseUrl + '/templates/layout/iati-explorer-list.html',
+            templateUrl:  templateBaseUrl + '/templates/_layout/iati-explorer-list.html',
             ncyBreadcrumb: {
                 label: 'IATI Explorer'
             }
@@ -72,17 +72,17 @@
             url:         '/locaties/',
             controller:  'ExploreController',
             controllerAs: 'vm',
-            templateUrl: templateBaseUrl + '/templates/countries/countries-view-map.html',
+            templateUrl: templateBaseUrl + '/templates/locations/locations-view-map.html',
             ncyBreadcrumb: {
                 label: 'Locaties'
             }
         })
         .state({
-            name:        'countries-list',
+            name:        'locations-list',
             url:         '/locaties/lijst/',
             controller:  'CountriesController',
             controllerAs: 'vm',
-            templateUrl: templateBaseUrl + '/templates/countries/countries-view-list.html',
+            templateUrl: templateBaseUrl + '/templates/locations/locations-view-list.html',
             ncyBreadcrumb: {
                 label: 'Landen'
             }
@@ -103,7 +103,7 @@
             url:         '/locaties/',
             controller:  'CountriesVisualisationController',
             controllerAs: 'vm',
-            templateUrl: templateBaseUrl + '/templates/countries/countries-view-visualisation.html',
+            templateUrl: templateBaseUrl + '/templates/locations/locations-view-visualisation.html',
             ncyBreadcrumb: {
                 label: 'Landen'
             }

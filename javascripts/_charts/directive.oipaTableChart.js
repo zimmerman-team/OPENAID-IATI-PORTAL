@@ -23,7 +23,7 @@
         refreshData: '=',
         shownIds: '='
       },
-      templateUrl: templateBaseUrl + '/templates/charts/oipa-table-chart.html'
+      templateUrl: templateBaseUrl + '/templates/_charts/oipa-table-chart.html'
     };
 
     return directive;

@@ -6,7 +6,7 @@
   'use strict';
 
   angular
-    .module('oipa.navbar')
+    .module('oipa.layout')
     .directive('topNavbar', topNavbar);
 
   topNavbar.$inject = ['templateBaseUrl'];
@@ -26,7 +26,7 @@
       scope: {
         collection: '='
       },
-      templateUrl: templateBaseUrl + '/templates/layout/navbar.html'
+      templateUrl: templateBaseUrl + '/templates/_layout/navbar.html'
     };
 
     return directive;

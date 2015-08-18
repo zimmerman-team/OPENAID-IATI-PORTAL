@@ -25,7 +25,7 @@
       controllerAs: 'vm',
       restrict: 'E',
       scope: {},
-      templateUrl: templateBaseUrl + '/templates/search/search-box.html'
+      templateUrl: templateBaseUrl + '/templates/_partials/search/search-box.html'
     };
 
     return directive;

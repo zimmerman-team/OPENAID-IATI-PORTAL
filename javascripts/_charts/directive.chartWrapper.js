@@ -11,7 +11,7 @@
 
     var directive = {
       restrict: 'E',
-      templateUrl: templateBaseUrl + '/templates/charts/chart-wrapper.html'
+      templateUrl: templateBaseUrl + '/templates/_charts/chart-wrapper.html'
     };
 
     return directive;

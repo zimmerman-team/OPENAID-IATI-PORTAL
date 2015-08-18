@@ -6,7 +6,7 @@
   'use strict';
 
   angular
-    .module('oipa.navbar')
+    .module('oipa.layout')
     .controller('NavbarController', NavbarController);
 
   NavbarController.$inject = ['$scope', 'templateBaseUrl', 'homeUrl'];

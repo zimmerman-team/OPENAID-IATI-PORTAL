@@ -15,8 +15,6 @@
             'oipa.routes',
             'oipa.layout',
             'oipa.charts',
-            'oipa.navbar',
-            'oipa.footer',
             'oipa.search',
             'oipa.toolbar',
             'oipa.aggregations',

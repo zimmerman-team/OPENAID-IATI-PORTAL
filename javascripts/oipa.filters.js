@@ -46,4 +46,29 @@ angular.module('oipa').filter('cut', function () {
         return curSymbol + out;
       }
     }
+}).filter('shortcurrency', function(){
+
+    return function(input, curSymbol) {
+      var curSymbol = curSymbol || "$";
+      var out = '';
+      var minus = input < 0;
+
+      if(input > 999999999){
+        out = (input / 1000000000).toFixed(2) + ' mld';
+      } else if(input > 999999){
+        out = (input / 1000000).toFixed(2) + ' mln';
+      } else{
+        out = (input / 1000).toFixed(2) + ' d'; 
+      }
+
+      if(minus){
+        return "-" + curSymbol + out;
+      } else{
+        return curSymbol + out;
+      }
+
+    }
 });
+
+
+
