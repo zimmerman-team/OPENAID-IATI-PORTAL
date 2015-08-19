@@ -1,0 +1,29 @@
+<div class="filter-panel year">
+	<div class="checkbox">
+		<label class="switch">
+			<input type="checkbox" ng-model="vm.on"><i></i>
+			<span>Selecteer jaar</span>
+		</label>
+	</div>
+
+	<div class="slide" ng-class="{ 'active' : vm.on }">	
+		<slider slider-id="time-slider"
+	        ng-model="vm.budgetValue"
+	        value="[2012, 2015]"
+	        min="2012"
+	        max="2015"
+	        step="1"
+	        range="true"
+	        precision="2"
+	        reversed="false"
+	        orientation="horizontal"
+	        handle="round"
+	        enabled="true"
+	        ng-disabled="false"
+	        naturalarrowkeys="false"
+	        selection="before"
+	        tooltip="always">
+		</slider>
+	</div>
+	<button class="btn btn-default btn-openaid btn-save" ng-click="vm.save()">Save</button>
+</div>

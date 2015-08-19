@@ -94,32 +94,9 @@ come into play. Have fun!
 
 .filter-box {
   .btn {
-  	transition:all 0.2s;
-  	&.selectedCountries {
-  		&:hover {
-      		background: darken(#00a315,10%);
-      	}
-    }
-    &.selectedRegions {
-    	&:hover {
-      		background: darken(#0083cb,10%);
-      	}
-    }
-    &.selectedSectors {
-    	&:hover {
-      		background: darken(#93278f,10%);
-      	}
-    }
-    &.selectedImplementingOrganisations {
-    	&:hover {
-      		background: darken(#d14a95,10%);
-      	}
-    }
-    &.selectedActivityStatuses {
-    	&:hover {
-      		background: darken(#fb943b,10%);
-      	}
-    }
+  	.fa {
+  		transition:all 0.2s;
+  	}
   	&:hover {
   		.fa {
   			transform: scale(1.3);
