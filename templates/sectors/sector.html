@@ -1,144 +1,74 @@
 <div id="main-content" class="container">
 
+    <detail-topbar></detail-topbar>
+
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="rel">
+                <filter-panel-budget ng-show="vm.isOpenedHeader('budget')"></filter-panel-budget>
+                <filter-panel-activity-status ng-show="vm.isOpenedHeader('activity_status')"></filter-panel-activity-status>
+                <filter-panel-implementing-organisations ng-show="vm.isOpenedHeader('implementing_organisations')"></filter-panel-implementing-organisations>
+            </div>
+        </div>
+    </div>
+
     <div class="row">
         <div class="col-md-12">
-
-            <search-box></search-box>
-            
-            <div class="row actions">
-                <div class="col-md-6 col-sm-7 filters">
-                    <span class="makeblock">filters</span> 
-                    <span class="fa-stack fa-lg" ng-click="vm.toggleOpenPanel('budget')" ng-class="{'active': vm.isOpenedHeader('budget')}">
-                      <i class="fa fa-circle fa-stack-2x"></i>
-                      <i class="fa fa-pie-chart fa-stack-1x fa-inverse"></i>
-                    </span>
-                    <span class="fa-stack fa-lg" ng-click="vm.toggleOpenPanel('sectors')" ng-class="{'active': vm.isOpenedHeader('sectors')}">
-                      <i class="fa fa-circle fa-stack-2x"></i>
-                      <i class="fa fa-suitcase fa-stack-1x fa-inverse"></i>
-                    </span>
-                    <span class="fa-stack fa-lg" ng-click="vm.toggleOpenPanel('activity_status')" ng-class="{'active': vm.isOpenedHeader('activity_status')}">
-                      <i class="fa fa-circle fa-stack-2x"></i>
-                      <i class="fa fa-money fa-stack-1x fa-inverse"></i>
-                    </span>
-                    <span class="fa-stack fa-lg" ng-click="vm.toggleOpenPanel('implementing_organisations')" ng-class="{'active': vm.isOpenedHeader('implementing_organisations')}">
-                      <i class="fa fa-circle fa-stack-2x"></i>
-                      <i class="fa fa-fire fa-stack-1x fa-inverse"></i>
-                    </span>
-                </div>
-                <div class="col-md-6 col-sm-5 dash text-right-not-xs">
-                    <span class="makeblock">dashboards</span> 
-                    <span class="fa-stack fa-lg" ng-click="vm.dashboard = 'charts'">
-                      <i class="fa fa-circle fa-stack-2x"></i>
-                      <i class="fa fa-line-chart fa-stack-1x fa-inverse"></i>
-                    </span>
-                </div>
+            <div class="hp-block wit">
+                <h1>{{vm.sector.name}}</h1>
+                <p>Beschrijving</p>
             </div>
+        </div>
+    </div>
 
-            <tool-bar></tool-bar>
+    <subnav-bar></subnav-bar>
 
-            <!-- <div id="tool-bar" style="position: relative">
-                <div class="row">
-                    
-                    <div class="col-xs-12 col-sm-12 text-right">
-                        <span class="fa-stack fa-lg">
-                            <i class="fa fa-circle fa-stack-2x"></i>
-                            <a ng-click="vm.showDownload()" class="fa fa-download fa-stack-1x fa-inverse"></a>
-                        </span>
-                        <span class="fa-stack fa-lg">
-                            <i class="fa fa-circle fa-stack-2x"></i>
-                            <a ng-click="vm.share('twitter')" class="fa fa-twitter fa-stack-1x fa-inverse"></a>
-                        </span>
-                        <span class="fa-stack fa-lg">
-                            <i class="fa fa-circle fa-stack-2x"></i>
-                            <a ng-click="vm.share('linkedin')" class="fa fa-linkedin fa-stack-1x fa-inverse"></a>
-                        </span>
-                        <span class="fa-stack fa-lg">
-                            <i class="fa fa-circle fa-stack-2x"></i>
-                            <a ng-click="vm.share('facebook')" class="fa fa-facebook fa-stack-1x fa-inverse"></a>
-                        </span>
-                    </div>
-                </div>
-            </div> -->
+    <div class="row">
+        <!-- start linker kolom -->
+        <div class="col-md-4">
 
-
+            <!--start van een wit blokje -->
             <div class="row">
-                <div class="col-xs-12">
-                    <div class="rel">
-                        <filter-panel-budget ng-show="vm.isOpenedHeader('budget')"></filter-panel-budget>
-                        <filter-panel-activity-status ng-show="vm.isOpenedHeader('activity_status')"></filter-panel-activity-status>
-                        <filter-panel-implementing-organisations ng-show="vm.isOpenedHeader('implementing_organisations')"></filter-panel-implementing-organisations>
+                <div class="col-sm-12 activity-list-item">
+                    <div class="hp-block wit" ng-click="vm.dashboard = 'list'">
+                        <p><b>Sector code</b><br>XXX</p>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-
-
-    <div class="row">
-        <div class="col-md-12">
-            <div class="hp-block">
-                <h1>{{vm.sector.name}}</h1>  
-            </div>
-        </div>
-    </div>
-
-
-    <div class="row">
-        <div class="col-md-6">
-            <div class="hp-block groen clickable" ng-click="vm.dashboard = 'list'">
-                <div class="expand">
-                    <span class="fa-stack fa-lg">
-                        <i class="fa fa-circle fa-stack-2x"></i>
-                        <i class="fa fa-share fa-stack-1x fa-share"></i>
-                    </span>
+            <!-- eind van een wit blokje -->
+            <!--start van een wit blokje -->
+            <div class="row">
+                <div class="col-sm-12 activity-list-item">
+                    <div class="hp-block wit" ng-click="vm.dashboard = 'list'">
+                        <p><b>Budget</b><br>{{vm.totalBudget | currency :'€':0}}</p>
+                    </div>
                 </div>
-                <h3>Totaal aantal activiteiten</h3>
-                <span class="number">{{vm.activityCount}}</span>
             </div>
+            <!-- eind van een wit blokje -->
+
         </div>
-        <div class="col-md-6">
-            <div class="hp-block roze">
-                <h3>Totaal budget</h3>
-                <span class="number">{{vm.totalBudget | currency :'€':0}}</span>
+        <!-- eind linker kolom -->
+
+        <!-- start rechter kolom -->
+        <div class="col-md-8">
+
+            <!--start van een wit blokje -->
+            <div class="row">
+                <div class="col-sm-12 activity-list-item">
+                    <div class="hp-block wit" ng-click="vm.dashboard = 'list'">
+                        <h3>Transacties</h3>
+                        CHART
+                    </div>
+                </div>
             </div>
+            <!-- eind van een wit blokje -->
+
         </div>
+        <!-- eind rechter kolom -->
     </div>
 
-    <div class="row">
-        <div class="col-md-6">
-            <div class="hp-block blauw">
-                <h3>Donoren</h3>
-                <span class="number">{{vm.donorCount}}</span>
-            </div>
-        </div>
-    </div>
 
-    <div class="row">
-        <div class="col-md-6">
-            <div class="hp-block blauw clickable" ng-click="vm.dashboard = 'organisaties'">
-                <div class="expand">
-                    <span class="fa-stack fa-lg">
-                        <i class="fa fa-circle fa-stack-2x"></i>
-                        <i class="fa fa-share fa-stack-1x fa-share"></i>
-                    </span>
-                </div>
-                <h3>Aantal organisaties</h3>
-                <span class="number">{{vm.organisationCount}}</span>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="hp-block blauw clickable" ng-click="vm.dashboard = 'landen'">
-                <div class="expand">
-                    <span class="fa-stack fa-lg">
-                        <i class="fa fa-circle fa-stack-2x"></i>
-                        <i class="fa fa-share fa-stack-1x fa-share"></i>
-                    </span>
-                </div>
-                <h3>Aantal landen</h3>
-                <span class="number">{{vm.countryCount}}</span>
-            </div>
-        </div>
-    </div>
+    <!-- 
 
     <activity-list ng-show="vm.dashboard == 'list'"></activity-list>
     <div class="row" ng-show="vm.dashboard == 'charts'">
@@ -231,7 +161,7 @@
     <div class="row explore-block-content" ng-show="vm.dashboard == 'organisaties'">
         <implementing-organisations-list has-to-contain='sectors__in'></implementing-organisations-list>
     </div>
-
+ -->
 </div>
 
 

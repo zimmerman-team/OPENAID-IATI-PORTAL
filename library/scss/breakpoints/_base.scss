@@ -422,12 +422,14 @@ NAVBAR
     &.navbar-right {
       .active {
         a {
-          color:$oranje;
+          color:#fff;
         }
       }
       a {
         color:#808080;
-
+        &:hover {
+          color: #fff;
+        }
       }
     }
   }
