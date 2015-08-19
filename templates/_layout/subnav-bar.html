@@ -1,9 +1,9 @@
 <div class="row">
 	<div class="col-sm-12">
 		<div class="subnav">
-
+			{{vm}}efwf
 			<ul>
-				<li class="active"><a href="#">Samenvatting</a></li>
+				<li ng-repeat="tab in vm.tabs" ng-class="{'active': vm.isOpenedTab(tab.id)}"><a ng-click="vm.openTab(tab.id)">{{tab.name}} ({{tab.count}})</a></li>
 				<li><a href="#">Projecten (321)</a></li>
 				<li><a href="#">Landen (5)</a></li>
 				<li><a href="#">Regio's (3) </a></li>

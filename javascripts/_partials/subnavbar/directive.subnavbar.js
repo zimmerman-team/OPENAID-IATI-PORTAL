@@ -22,7 +22,13 @@
     * @memberOf oipa.partials
     */
     var directive = {
+      controller: 'TopNavbarController',
+      controllerAs: 'vm',
       restrict: 'E',
+      scope: {
+        'tabs': '=',
+        'selectedTab': '=',
+      },
       templateUrl: templateBaseUrl + '/templates/_partials/subnavbar/sub-navbar.html'
     };
 

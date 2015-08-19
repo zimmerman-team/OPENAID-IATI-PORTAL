@@ -1,6 +1,6 @@
 /**
-* CountriesController
-* @namespace oipa.countries.controllers
+* CountryController
+* @namespace oipa.countries
 */
 (function () {
   'use strict';
@@ -12,7 +12,7 @@
   CountryController.$inject = ['$scope', 'Countries', 'templateBaseUrl', '$stateParams', 'FilterSelection', 'Aggregations'];
 
   /**
-  * @namespace CountriesController
+  * @namespace CountryController
   */
   function CountryController($scope, Countries, templateBaseUrl, $stateParams, FilterSelection, Aggregations) {
     var vm = this;
@@ -25,8 +25,20 @@
     vm.organisationCount = '';
     vm.donorCount = '';
     vm.totalBudget = '';
-    vm.dashboard = 'charts'; // options: charts, list, sectors, organisaties
     vm.filterSelection = FilterSelection;
+    vm.selectedTab = 0;
+
+    vm.tabs = [
+      {'id': 'samenvatting', 'name': 'Samenvatting', 'count': ''},
+      {'id': 'activities', 'name': 'Projecten', 'count': '1'},
+      {'id': 'countries', 'name': 'Landen', 'count': '2'},
+      {'id': 'regions', 'name': 'Regio\'s', 'count': '3'},
+      {'id': 'sectors', 'name': 'Sectoren', 'count': '4'},
+    ]
+
+    vm.openTab = vm.tabs[0];
+
+    
 
 
     /**
@@ -44,7 +56,6 @@
       // for each active country, get the results
       Countries.getCountry(vm.country_id).then(successFn, errorFn);
       
-
       if(partnerlanden[vm.country_id] !== undefined){
         vm.partnerType = partnerlanden[vm.country_id]; 
       } else {
