@@ -149,18 +149,18 @@
         <div class="col-md-12">
             <div class="hp-block wit">
                 <h3>Documenten</h3>
+
                 <div ng-show="vm.activity.documents.length == 0">
                     Geen documenten beschikbaar.
                 </div>
 
-                <table class="table">
+                <table class="table documents">
                     <tbody>
                         <tr ng-repeat="document in vm.activity.documents">
                             
                             <td>
                                 <a href="{{document.url}}">
-                                    <i class="glyphicon glyphicon-download-alt"></i>
-                                    {{document.title}}
+                                    <i class="glyphicon glyphicon-download-alt"></i>{{document.title}}
                                 </a>
                             </td>
                             
