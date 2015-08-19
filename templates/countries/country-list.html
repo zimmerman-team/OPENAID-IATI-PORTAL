@@ -13,17 +13,18 @@
             </div>
         </div>
     </div>
+
+    <div class="col-md-12">
     
-    <div class="activity-list-item" 
-        ng-show="vm.activities.length != 0"
-        dir-paginate="item in vm.countries | itemsPerPage: 5"  
-        pagination-id="countryList">
-        <div class="col-md-12">
+        <div class="activity-list-item" 
+            ng-show="vm.activities.length != 0"
+            dir-paginate="item in vm.countries | itemsPerPage: 5"  
+            pagination-id="countryList">
             <div class="hp-block wit">
                 <div class="row">
                     <div class="col-sm-4">
                         <span class="flag-icon flag-icon-{{item.country_id | lowercase }} big"></span>
-                        <h1><a ui-sref="country({ country_id: item.country_id })">{{ item.name }}</a></h1>
+                        <h3><a ui-sref="country({ country_id: item.country_id })">{{ item.name }}</a></h3>
                     </div>
                     <div class="col-sm-4">
                         {{item.total_disbursements  | currency :'€':0}}
@@ -34,6 +35,7 @@
                 </div>
             </div>
         </div>
+
     </div>
 
     <div class="col-md-12 text-center pag">

@@ -178,17 +178,17 @@ come into play. Have fun!
 }
 /* line 20, ../scss/breakpoints/_768up.scss */
 .pagination li a:hover {
-  background-color: #1a8dbe;
+  background-color: #f15a24;
   color: #fff;
 }
 /* line 27, ../scss/breakpoints/_768up.scss */
 .pagination li.active a:hover {
-  background-color: #00766e;
+  background-color: #f15a24;
 }
 /* line 34, ../scss/breakpoints/_768up.scss */
 .pagination li:first-of-type a:hover, .pagination li:last-of-type a:hover {
   background-color: transparent;
-  color: #1a8dbe;
+  color: #f15a24;
 }
 
 /* line 44, ../scss/breakpoints/_768up.scss */

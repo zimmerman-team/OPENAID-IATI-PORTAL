@@ -384,7 +384,7 @@ NAVBAR
     text-decoration: none;
   }
   .glyphicon {
-    font-size:24px;
+    font-size:18px;
   }
 
   button.navbar-toggle {
@@ -477,13 +477,19 @@ NAVBAR
 .subnav {
   background:#333;
   text-transform: uppercase;
+  padding:5px 10px;
+  margin-bottom:15px;
+  font-size:14px;
   ul {
+    margin:0;
     li {
       list-style: none;
       display: inline-block;
       margin-right: 15px;
       a {
+        text-decoration: none;
         color:#fff;
+        cursor: pointer;
       }
       &.active, &:hover {
         a {
@@ -497,6 +503,10 @@ NAVBAR
   }
 }
 //Breadcrumbs
+
+.angular-leaflet-map  {
+  margin-bottom: 15px;
+}
 
 .breadcrumb {
   margin:0 0 10px;
@@ -871,19 +881,19 @@ tr {
       border: 0;
       border-radius: 3px;
       color:#fff;
-      background-color: $blauw;
+      background-color: #333;
       margin-left:2px;
     }
     &.active {
       a {
-        background-color: $icon-grn;
+        background-color: $oranje;
       }
     }
     &:first-of-type, &:last-of-type {
       a {
         background: none;
         font-weight: bold;
-        color:$blauw;
+        color:#333;
         font-family: 'FontAwesome';
       }
     }
@@ -1518,14 +1528,13 @@ ACTIVITY LIST
 *********************/
 
 .sort {
-  font-size: 1.2em;
+  font-size: 16px;
   background: #fff;
   color:#222;
   padding:15px;
   overflow: hidden;
   white-space: nowrap;
-  margin-top:10px;
-  margin-bottom:10px;
+  margin-bottom:15px;
   .sort-item {
     margin-right: 15px;
     cursor:pointer;

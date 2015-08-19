@@ -18,14 +18,14 @@ come into play. Have fun!
 		a {
 			transition:all 0.2s;
 			&:hover {
-				background-color: darken($blauw,10%);
+				background-color: $oranje;
 				color:#fff;
 			}
 		}
 	    &.active {
 			a {
 				&:hover {
-					background-color: darken($icon-grn,10%);
+					background-color: $oranje;
 					}
 				}
 			}
@@ -33,7 +33,7 @@ come into play. Have fun!
 			a {
 				&:hover {
 					background-color: transparent;
-					color: darken($blauw,10%);
+					color: $oranje;
 				}
 			}
 		}
