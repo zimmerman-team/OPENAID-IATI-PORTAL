@@ -1634,6 +1634,16 @@ footer{
   padding:0;
 }
 .top5 {
+  a {
+    color:#222 !important;
+  }
+  .flag-icon {
+    margin: 0 8px 0px 10px;
+  }
+  .no {
+    width: 17px;
+    display:inline-block;
+  }
   .selectbox {
     margin: 5px 0 15px;
   }
