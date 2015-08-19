@@ -15,6 +15,10 @@
                 selected-tab='vm.selectedTab'>
             </sub-navbar>
 
+            <div ng-show="vm.selectedTab == 'activities'">
+                <activity-list></activity-list>
+            </div>
+
 
         </div>
     </div>

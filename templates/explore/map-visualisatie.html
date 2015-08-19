@@ -1,80 +1,17 @@
-<div class="row">
-  <div class="col-xs-6">
-    <div 
-      class="tab" 
-      id="landentab" 
-      ng-click="vm.setGeoView('landen')"
-      ng-class="{'active': vm.selectedGeoView('landen')}">
-      Landen
-    </div>
-  </div>
-  <div class="col-xs-6">
-    <div 
-      class="tab" 
-      id="regiotab" 
-      ng-click="vm.setGeoView('regios')"
-      ng-class="{'active': vm.selectedGeoView('regios')}">
-      Regio's
-    </div>
-  </div>
-</div>
 
-<div class="map-holder">
-
-  <div class="map">
-    <!-- <h3 class="text-left-xs">
-      IATI activiteiten kaart Nederland
-    </h3> -->
-
-    <div class="legend" ng-show="vm.selectedGeoView('landen')">
-      <h3>Partnerlanden</h3>
-
-      <div class="check kleur-{{item.id}}" dir-paginate="item in vm.countryRelation | itemsPerPage: 10">
-        <label class="switch" for="id{{item.id}}">
-          <input id="id{{item.id}}" checklist-model="vm.selectedCountryRelation" checklist-value="item" type="checkbox">
-          <i class="faker"></i>
-          <span class="labels">
-            <span class="fa-stack">
-              <span class="fa fa-circle fa-stack-2x kleur"></span>
-              <span class="fa fa-map-marker fa-stack-1x fa-inverse"></span>
-            </span>
-            <span>{{item.name}}</span>
-          </span>
-        </label>
+<div class="map">
+  <div class="geomap-mask">  
+    <leaflet defaults="vm.defaults" center="vm.center" markers="vm.markers" height="400px" width="100%">
+      <div class="map-switch">
+        <label class="wrapper">
+        <div class="button custom-select ff-hack">
+          <select>
+            <option>Overzicht per land</option>
+            <option>Overzicht per regio</option>
+          </select>
+        </div>
+          </label>
       </div>
-    </div>
-
-<!--     <div class="info">
-
-      <span class="flag-icon flag-icon-af"></span>
-
-      <h4>Afghanistan</h4>
-
-      <p><b>Activiteiten:</b> 341</p>
-      <p><b>Sectoren:</b> 21</p>
-      <p><b>Totaal budget:</b> 0,00</p>
-      <p><b>Type relatie:</b> Hulp relatie</p>
-      <button class="btn btn-default">Ga naar landen overzicht</button>
-
-    </div> -->
-
-    <div class="geomap-mask">  
-      <leaflet defaults="vm.defaults" center="vm.center" markers="vm.markers" height="600px" width="100%"></leaflet>
-    </div>
-
-    <!-- <svg height="0" width="0" class="clip">
-      <defs>
-        <clipPath id="clipping">
-          <circle stroke="#000000" stroke-miterlimit="10" cx="300" cy="300" r="300" />
-        </clipPath>
-      </defs>
-    </svg> -->
-
-    <h4 class="hidden-xs">
-      Klik op een land voor meer informatie
-    </h4>
-
+    </leaflet>
   </div>
-
 </div>
-

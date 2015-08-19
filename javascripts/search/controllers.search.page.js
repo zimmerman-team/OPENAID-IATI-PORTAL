@@ -9,21 +9,16 @@
 
   function SearchPageController(templateBaseUrl) {
     var vm = this;
-    vm.selectedTab = 'samenvatting';
+    vm.selectedTab = 'activities';
 
     vm.tabs = [
-      {'id': 'activities', 'name': 'Projecten', 'count': '1'},
-      {'id': 'organisations', 'name': 'Organisaties', 'count': '4'},
-      {'id': 'sectors', 'name': 'Sectoren', 'count': '4'},
-      {'id': 'countries', 'name': 'Landen', 'count': '4'},
-      {'id': 'regions', 'name': 'Regios', 'count': '4'},
+      {'id': 'activities', 'name': 'Projecten', 'count': 'to do'},
+      {'id': 'organisations', 'name': 'Organisaties', 'count': 'to do'},
+      {'id': 'sectors', 'name': 'Sectoren', 'count': 'to do'},
+      {'id': 'countries', 'name': 'Landen', 'count': 'to do'},
+      {'id': 'regions', 'name': 'Regio\'s', 'count': 'to do'},
     ];
 
-    activate();
-
-    function activate() {
-      
-    }
 
   }
 })();
