@@ -15,10 +15,16 @@ body {
 }
 
 a {
-  color:$oranje;
+  color:#222;
+  text-decoration: underline;
   &:hover {
-    color:darken($oranje,10%);
+    color:$oranje;
   }
+}
+
+.col-centered{
+  float: none;
+  margin: 0 auto;
 }
 
 /****
@@ -173,7 +179,7 @@ hr{
 
   &.hp-block-top{
     font-size: 17px;
-
+    margin-bottom: 0;
     h1{
       margin-bottom: 10px;
     }
@@ -211,10 +217,7 @@ hr{
   }
   &.groen {
     background-color:$groen;
-    background-color: rgba($groen, 0.35);
-    a {
-      color:#fff;
-    }
+    background-color: rgba($groen, 0.2);
   }
   &.roze {
     background-color:$roze;
@@ -290,7 +293,7 @@ hr{
       }
       input {
         height: 40px;
-        padding:0 6px;
+        padding:0 12px;
         line-height: 40px;
         background:#fff;
         display: inline-block;
@@ -299,7 +302,7 @@ hr{
         border-top-right-radius:20px;
         border-bottom-right-radius:20px;
         border:1px solid #ccc;
-        font-size:16px;
+        font-size:15px;
       }
       .btn-search {
         background:$oranje;
@@ -377,6 +380,12 @@ NAVBAR
   border: 0 !important;
   margin-bottom: 12px;
   font-weight: 300;
+  a {
+    text-decoration: none;
+  }
+  .glyphicon {
+    font-size:24px;
+  }
 
   button.navbar-toggle {
     color:#fff;
@@ -446,7 +455,11 @@ NAVBAR
 
 .navbar-brand{
   margin-right: 20px;
-  padding-top: 5px;
+  padding-top: 13px;
+  img {
+    max-width: 120px;
+    height: auto;
+  }
 }
 
 .nav > li > a{
@@ -598,8 +611,9 @@ FILTER BAR
 }
 
 .actions {
+  margin-top:5px;
   color:#fff;
-  font-size: 1.2em;
+  font-size: 16px;
 
 
   span {
@@ -809,6 +823,13 @@ tr {
       margin-top: 0;
       display: block;
       float: right;
+  }
+}
+
+.legend {
+  .ng-binding {
+    display: inline;
+    float: none;
   }
 }
 
@@ -1651,7 +1672,12 @@ footer{
 .no-padding {
   padding:0;
 }
+.selectbox5 {
+  margin-top:0;
+  margin-bottom: 15px;
+}
 .top5 {
+  margin-bottom: 15px;
   a {
     color:#222 !important;
   }
@@ -1662,14 +1688,12 @@ footer{
     width: 17px;
     display:inline-block;
   }
-  .selectbox {
-    margin: 5px 0 15px;
-  }
   .nvd3-svg {
     background-color:#fff;
     padding-top:10px;
   }
   table {
+    margin-bottom: 0;
     th {
       font-weight: 600;
     }
@@ -1763,7 +1787,6 @@ footer{
 .legend {
   text-align: center;
   margin-top:10px;
-  margin-bottom: 20px;
   .check {
     position: relative;
     display: inline-block;

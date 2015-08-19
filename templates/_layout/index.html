@@ -21,28 +21,6 @@
 
     <div class="row">
         <div class="col-sm-12 map">
-            <div class="overlay">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Uitgave ontwikkelingshulp</th>
-                            <th>Projecten</th>
-                            <th>Landen</th>
-                            <th>Sectoren</th>
-                            <th>Organisaties</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>€ 24.604.177.536</td>
-                            <td>3498</td>
-                            <td>54</td>
-                            <td>62</td>
-                            <td>234</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
             <div class="geomap-mask">  
                 <leaflet 
                     defaults="vm.defaults" 
@@ -69,6 +47,23 @@
         </div>
     </div>
 
+    <hr>
+
+     <div class="row">
+        <div class="col-md-3 col-centered selectbox5">
+            <label class="wrapper">
+                <div class="button custom-select ff-hack">
+
+                    <select ng-model="vm.top5">
+                        <option value='recipient-country'>Top 5 landen</option>
+                        <option value='transaction-receiver-org'>Top 5 organisaties</option>
+                        <option value='sector'>Top 5 sectors</option>
+                    </select>
+
+                </div>
+            </label>
+        </div>
+    </div>
 
     <div class="row">
         <div class="col-md-12">
@@ -82,20 +77,6 @@
                     ng-bind-html="vm.customFields['landen']['text']">
                     </div>
 
-                    <div class="col-md-4 selectbox">
-                        <label class="wrapper">
-                            <div class="button custom-select ff-hack">
-
-                                <select ng-model="vm.top5">
-                                    <option value='recipient-country'>Top 5 landen</option>
-                                    <option value='transaction-receiver-org'>Top 5 organisaties</option>
-                                    <option value='sector'>Top 5 sectors</option>
-                                </select>
-
-                            </div>
-                        </label>
-                    </div>
-
                     <oipa-table-chart 
                         aggregation-filters='vm.tableChartOptions.aggregationFilters' 
                         group-by='vm.tableChartOptions.groupBy' 
@@ -107,17 +88,23 @@
                         shown-ids='vm.shownIds'
                     ></oipa-table-chart>
 
-                    <oipa-line-chart 
-                        aggregation-filters='vm.shownIds' 
-                        group-by='vm.lineChartOptions.groupBy' 
-                        group-by-id='vm.lineChartOptions.groupById' 
-                        aggregation-key='disbursement' 
-                        chart-x-axis='' 
-                        chart-y-axis='Uitgaven'
-                        chart-y-axis-euro-format='true' 
-                        chart-x-axis-stagger-labels='false' 
-                        chart-type='lineChart'
-                        axis-label-distance='28'></oipa-line-chart>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="hp-block no-padding wit">
+             <oipa-line-chart 
+                aggregation-filters='vm.shownIds' 
+                group-by='vm.lineChartOptions.groupBy' 
+                group-by-id='vm.lineChartOptions.groupById' 
+                aggregation-key='disbursement' 
+                chart-x-axis='' 
+                chart-y-axis='Uitgaven'
+                chart-y-axis-euro-format='true' 
+                chart-x-axis-stagger-labels='false' 
+                chart-type='lineChart'
+                axis-label-distance='28'></oipa-line-chart>
             </div>
         </div>
     </div>

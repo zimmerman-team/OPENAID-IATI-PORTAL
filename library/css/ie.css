@@ -323,6 +323,26 @@ This is the desktop size. It's larger than an iPad so it will only
 be seen on the Desktop.
 
 ******************************************************************/
+/* line 30, ../scss/breakpoints/_1030up.scss */
+.navbar .navbar-nav {
+  width: 56%;
+  text-align: center;
+}
+/* line 33, ../scss/breakpoints/_1030up.scss */
+.navbar .navbar-nav li {
+  display: inline-block;
+  float: none;
+}
+/* line 38, ../scss/breakpoints/_1030up.scss */
+.navbar .navbar-header, .navbar .navbar-right {
+  width: 22%;
+  padding-top: 5px;
+}
+/* line 43, ../scss/breakpoints/_1030up.scss */
+.navbar .navbar-right {
+  text-align: right;
+}
+
 /*
 you can call the larger styles if you want, but there's really no need
 */

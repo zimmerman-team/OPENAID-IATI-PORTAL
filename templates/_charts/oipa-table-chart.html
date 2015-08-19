@@ -2,12 +2,11 @@
     <tbody>
         <tr ng-repeat="item in vm.chartData">
         	<td class="colour"><div></div></td>
-            <td>
+            <td width="30%">
             	<span class="no">1.</span>
             	<a href="#">
 	            	<!-- de vlag hieronder alleen voor countries -->
-	            	<span class="flag-icon flag-icon-af{{item.country.code | lowercase }}"></span>
-	            	<span>{{item.name}}</span>
+	            	<span class="flag-icon flag-icon-af{{item.country.code | lowercase }}"></span><span>{{item.name}}</span>
             	</a>
             </td>
             <td>{{item.total_disbursements | shortcurrency :'€'}}</td>

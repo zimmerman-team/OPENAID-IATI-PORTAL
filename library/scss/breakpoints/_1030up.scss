@@ -24,3 +24,23 @@ be seen on the Desktop.
 // 		margin-bottom: 10px;
 // 	}
 // }
+
+
+.navbar {
+	.navbar-nav {
+		width:56%;
+		text-align: center;
+		li {
+			display: inline-block;
+			float: none;
+		}
+	}
+	.navbar-header,.navbar-right {
+		width:22%;
+		padding-top:5px;
+	}
+
+	.navbar-right {
+		text-align: right;
+	}
+}
