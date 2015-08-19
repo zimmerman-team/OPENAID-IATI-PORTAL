@@ -26,13 +26,11 @@
     vm.donorCount = '';
     vm.totalBudget = '';
     vm.filterSelection = FilterSelection;
-    vm.selectedTab = 0;
+    vm.selectedTab = 'samenvatting';
 
     vm.tabs = [
       {'id': 'samenvatting', 'name': 'Samenvatting', 'count': ''},
       {'id': 'activities', 'name': 'Projecten', 'count': '1'},
-      {'id': 'countries', 'name': 'Landen', 'count': '2'},
-      {'id': 'regions', 'name': 'Regio\'s', 'count': '3'},
       {'id': 'sectors', 'name': 'Sectoren', 'count': '4'},
     ]
 

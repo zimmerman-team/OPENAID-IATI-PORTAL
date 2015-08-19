@@ -11,18 +11,10 @@
 
   subNavbar.$inject = ['templateBaseUrl'];
 
-  /**
-  * @namespace topNavBar
-  */
   function subNavbar(templateBaseUrl) {
 
-    /**
-    * @name directive
-    * @desc The directive to be returned
-    * @memberOf oipa.partials
-    */
     var directive = {
-      controller: 'TopNavbarController',
+      controller: 'SubNavbarController',
       controllerAs: 'vm',
       restrict: 'E',
       scope: {

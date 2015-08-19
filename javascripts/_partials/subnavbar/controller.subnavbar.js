@@ -9,16 +9,17 @@
     .module('oipa.partials')
     .controller('SubNavbarController', SubNavbarController);
 
-  SubNavbarController.$inject = ['$scope', '$state'];
+  SubNavbarController.$inject = ['$scope'];
 
   /**
   * @namespace CountriesController
   */
-  function SubNavbarController($scope, $state) {
+  function SubNavbarController($scope) {
     var vm = this;
     vm.tabs = $scope.tabs;
 
-    vm.changeTab = function(id){
+    vm.openTab = function(id){
+    console.log(id);
       $scope.selectedTab = id;
     }
   }

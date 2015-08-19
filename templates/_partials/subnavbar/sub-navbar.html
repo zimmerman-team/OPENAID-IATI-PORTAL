@@ -3,7 +3,6 @@
         <div class="subnav">
             <ul>
                 <li ng-repeat="tab in vm.tabs" ng-class="{'active': vm.isOpenedTab(tab.id)}"><a ng-click="vm.openTab(tab.id)">{{tab.name}} ({{tab.count}})</a></li>
-                
             </ul>
         </div>
     </div>

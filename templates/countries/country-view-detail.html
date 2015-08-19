@@ -21,195 +21,126 @@
             </div>
         </div>
     </div>
+    {{vm.selectedTab}}
+    <sub-navbar 
+        tabs='vm.tabs' 
+        selected-tab='vm.selectedTab'>
+    </sub-navbar>
 
-    <sub-navbar></sub-navbar>
 
-    <leaflet 
-        defaults="vm.defaults" 
-        center="vm.center" 
-        markers="vm.markers" 
-        height="400px" 
-        width="100%">
-    </leaflet>
+    <div ng-show="vm.selectedTab == 'samenvatting'">
 
-    <div class="row">
 
-        <!-- start linker kolom -->
-        <div class="col-md-4">
+        <leaflet 
+            defaults="vm.defaults" 
+            center="vm.center" 
+            markers="vm.markers" 
+            height="400px" 
+            width="100%">
+        </leaflet>
 
-            <!--start van een wit blokje -->
-            <div class="row">
-                <div class="col-sm-12 activity-list-item">
-                    <div class="hp-block wit" ng-click="vm.dashboard = 'list'">
-                        <p><b>IATI identifier</b><br>Niet beschikbaar</p>
+        <div class="row">
+
+            <!-- start linker kolom -->
+            <div class="col-md-4">
+
+                <!--start van een wit blokje -->
+                <div class="row">
+                    <div class="col-sm-12 activity-list-item">
+                        <div class="hp-block wit" ng-click="vm.dashboard = 'list'">
+                            <p><b>IATI identifier</b><br>Niet beschikbaar</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <!-- eind van een wit blokje -->
-            <!--start van een wit blokje -->
-            <div class="row">
-                <div class="col-sm-12 activity-list-item">
-                    <div class="hp-block wit" ng-click="vm.dashboard = 'list'">
-                        <p><b>Laatste update</b><br>Niet beschikbaar</p>
-                        <p><b>Startdatum</b><br>Niet beschikbaar</p>
-                        <p><b>Einddatum</b><br>Niet beschikbaar</p>
+                <!-- eind van een wit blokje -->
+                <!--start van een wit blokje -->
+                <div class="row">
+                    <div class="col-sm-12 activity-list-item">
+                        <div class="hp-block wit" ng-click="vm.dashboard = 'list'">
+                            <p><b>Laatste update</b><br>Niet beschikbaar</p>
+                            <p><b>Startdatum</b><br>Niet beschikbaar</p>
+                            <p><b>Einddatum</b><br>Niet beschikbaar</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <!-- eind van een wit blokje -->
-            <!--start van een wit blokje -->
-            <div class="row">
-                <div class="col-sm-12 activity-list-item">
-                    <div class="hp-block wit" ng-click="vm.dashboard = 'list'">
-                        <p>
-                            <b>Uitgaven per jaar</b><br>
-                            Niet beschikbaar<br>
-                            Bla<br>
-                            Bla
-                        </p>
-                        <p>
-                            <b>Budgetten per jaar</b><br>
-                            Niet beschikbaar<br>
-                            Bla<br>
-                            Bla
-                        </p>
-                        <p>
-                            <b>Verplichtingen per jaar</b><br>
-                            Niet beschikbaar<br>
-                            Bla<br>
-                            Bla
-                        </p>
+                <!-- eind van een wit blokje -->
+                <!--start van een wit blokje -->
+                <div class="row">
+                    <div class="col-sm-12 activity-list-item">
+                        <div class="hp-block wit" ng-click="vm.dashboard = 'list'">
+                            <p>
+                                <b>Uitgaven per jaar</b><br>
+                                Niet beschikbaar<br>
+                                Bla<br>
+                                Bla
+                            </p>
+                            <p>
+                                <b>Budgetten per jaar</b><br>
+                                Niet beschikbaar<br>
+                                Bla<br>
+                                Bla
+                            </p>
+                            <p>
+                                <b>Verplichtingen per jaar</b><br>
+                                Niet beschikbaar<br>
+                                Bla<br>
+                                Bla
+                            </p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <!-- eind van een wit blokje -->
-            <!--start van een wit blokje -->
-            <div class="row">
-                <div class="col-sm-12 activity-list-item">
-                    <div class="hp-block wit" ng-click="vm.dashboard = 'list'">
-                        <p><b>Land</b><br>Niet beschikbaar</p>
-                        <p><b>Regio</b><br>Niet beschikbaar</p>
+                <!-- eind van een wit blokje -->
+                <!--start van een wit blokje -->
+                <div class="row">
+                    <div class="col-sm-12 activity-list-item">
+                        <div class="hp-block wit" ng-click="vm.dashboard = 'list'">
+                            <p><b>Land</b><br>Niet beschikbaar</p>
+                            <p><b>Regio</b><br>Niet beschikbaar</p>
+                        </div>
                     </div>
                 </div>
+                <!-- eind van een wit blokje -->
+
             </div>
-            <!-- eind van een wit blokje -->
-            <!--start van een wit blokje -->
-            <div class="row">
-                <div class="col-sm-12 activity-list-item">
-                    <div class="hp-block wit" ng-click="vm.dashboard = 'list'">
-                        <p><b>Sector</b><br>Niet beschikbaar</p>
-                        <p><b>Sector code</b><br>Niet beschikbaar</p>
+            <!-- eind linker kolom -->
+
+            <!-- start rechter kolom -->
+            <div class="col-md-8">
+
+                <!--start van een wit blokje -->
+                <div class="row">
+                    <div class="col-sm-12 activity-list-item">
+                        <div class="hp-block wit" ng-click="vm.dashboard = 'list'">
+                            <h3>Transacties</h3>
+                            CHART
+                        </div>
                     </div>
                 </div>
-            </div>
-            <!-- eind van een wit blokje -->
-
-        </div>
-        <!-- eind linker kolom -->
-
-        <!-- start rechter kolom -->
-        <div class="col-md-8">
-
-            <!--start van een wit blokje -->
-            <div class="row">
-                <div class="col-sm-12 activity-list-item">
-                    <div class="hp-block wit" ng-click="vm.dashboard = 'list'">
-                        <h3>Transacties</h3>
-                        CHART
+                <!-- eind van een wit blokje -->
+                <!--start van een wit blokje -->
+                <div class="row">
+                    <div class="col-sm-12 activity-list-item">
+                        <div class="hp-block wit" ng-click="vm.dashboard = 'list'">
+                            <h3>Documenten</h3>
+                            DOCS
+                        </div>
                     </div>
                 </div>
-            </div>
-            <!-- eind van een wit blokje -->
-            <!--start van een wit blokje -->
-            <div class="row">
-                <div class="col-sm-12 activity-list-item">
-                    <div class="hp-block wit" ng-click="vm.dashboard = 'list'">
-                        <h3>Documenten</h3>
-                        DOCS
-                    </div>
-                </div>
-            </div>
-            <!-- eind van een wit blokje -->
+                <!-- eind van een wit blokje -->
 
-        </div>
-
-        <!-- eind recher kolom -->
-    </div>
-
-    <!-- <div class="row">
-        <div class="col-md-6">
-            <div class="hp-block groen clickable" ng-click="vm.dashboard = 'list'">
-                <div class="expand">
-                    <span class="fa-stack fa-lg">
-                        <i class="fa fa-circle fa-stack-2x"></i>
-                        <i class="fa fa-share fa-stack-1x fa-share"></i>
-                    </span>
-                </div>
-                <h3>Totaal aantal activiteiten</h3>
-                <span class="number">{{vm.activityCount}}</span>
             </div>
-        </div>
-        <div class="col-md-6">
-            <div class="hp-block roze">
-                <h3>Totaal budget</h3>
-                <span class="number">{{vm.totalBudget | currency :'€':0}}</span>
-            </div>
+
+            <!-- eind recher kolom -->
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-md-6">
-            <div class="hp-block blauw">
-                <h3>Type relatie</h3>
-                <span class="number">{{vm.partnerType}}</span>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="hp-block blauw">
-                <h3>Donoren</h3>
-                <span class="number">{{vm.donorCount}}</span>
-            </div>
-        </div>
+    <div ng-show="vm.selectedTab == 'activities'">
+        <activity-list></activity-list>
     </div>
 
-    <div class="row">
-        <div class="col-md-6">
-            <div class="hp-block blauw clickable" ng-click="vm.dashboard = 'organisaties'">
-                <div class="expand">
-                    <span class="fa-stack fa-lg">
-                        <i class="fa fa-circle fa-stack-2x"></i>
-                        <i class="fa fa-share fa-stack-1x fa-share"></i>
-                    </span>
-                </div>
-                <h3>Aantal organisaties</h3>
-                <span class="number">{{vm.organisationCount}}</span>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="hp-block blauw clickable" ng-click="vm.dashboard = 'sectors'">
-                <div class="expand">
-                    <span class="fa-stack fa-lg">
-                        <i class="fa fa-circle fa-stack-2x"></i>
-                        <i class="fa fa-share fa-stack-1x fa-share"></i>
-                    </span>
-                </div>
-                <h3>Aantal sectoren</h3>
-                <span class="number">{{vm.sectorCount}}</span>
-            </div>
-        </div>
+    <div ng-show="vm.selectedTab == 'sectors'">
+        <sector-list></sector-list>
     </div>
-
-    <activity-list ng-show="vm.dashboard == 'list'"></activity-list>
-    <div class="row" ng-show="vm.dashboard == 'charts'">
-        <chart-wrapper></chart-wrapper>
-    </div>
-    <div class="row explore-block-content" ng-show="vm.dashboard == 'sectors'">
-        <sector-list has-to-contain='countries__in'></sector-list>
-
-    </div>
-    <div class="row explore-block-content" ng-show="vm.dashboard == 'organisaties'">
-        <implementing-organisations-list has-to-contain='countries__in'></implementing-organisations-list>
-    </div> -->
 
 </div>
 
