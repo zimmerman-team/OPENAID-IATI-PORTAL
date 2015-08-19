@@ -1,0 +1,35 @@
+<div class="row search">
+  <div class="col-sm-12">
+    <div class="hp-block groen hp-block-top hp-home no-padding">
+      <div class="row">
+        <div class="col-sm-12 col-md-6 col-lg-3 ">
+          <div class="vis-select">
+
+            <label class="wrapper">
+              <div class="button custom-select ff-hack">
+                <select
+                  ng-model="vm.selectedView"
+                  ng-change="vm.changeView()">
+                  <option ng-repeat="view in vm.views" value="{{view.id}}">{{view.name}}</option>
+                </select>
+              </div>
+            </label>
+
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-6 col-lg-6">
+          <div class="search-box">
+            <form ng-submit="vm.save()">
+              <div class="form-group">
+                <input type="text" ng-model="vm.searchValue" placeholder="Filter op trefwoord...">
+                <button class="btn-search" type="button">
+                    <span class="glyphicon glyphicon-search"></span>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

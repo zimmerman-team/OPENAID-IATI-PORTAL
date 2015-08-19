@@ -1,5 +1,5 @@
 <?php get_header(); ?>
-<top-navbar></top-navbar>
+<navbar></navbar>
 
 <div id="openaid-main" ui-view></div>
 

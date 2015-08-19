@@ -79,7 +79,7 @@
             }
         })
         .state({
-            name:        'organisations-list',
+            name:        'organisation-list',
             url:         '/organisaties/lijst/',
             controller:  'ImplementingOrganisationsExploreController',
             controllerAs: 'vm',
@@ -100,22 +100,22 @@
             templateUrl: templateBaseUrl + '/templates/implementingOrganisations/implementing-organisation.html'
         })
         .state({
-            name:        'themas-list',
-            url:         '/themas/lijst/',
+            name:        'sector-list',
+            url:         '/sectoren/lijst/',
             controller:  'SectorsExploreController',
             controllerAs: 'vm',
             templateUrl: templateBaseUrl + '/templates/sectors/sectors-view-list.html'
         })
         .state({
-            name:        'themas',
-            url:         '/themas/',
+            name:        'sectors',
+            url:         '/sectoren/',
             controller:  'SectorsVisualisationController',
             controllerAs: 'vm',
             templateUrl: templateBaseUrl + '/templates/sectors/sectors-view-visualisation.html'
         })
         .state({
-            name:        'thema',
-            url:         '/themas/:sector_id/',
+            name:        'sector',
+            url:         '/sector/:sector_id/',
             controller:  'SectorController',
             controllerAs: 'vm',
             templateUrl: templateBaseUrl + '/templates/sectors/sector.html'

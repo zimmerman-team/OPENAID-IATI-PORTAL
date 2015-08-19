@@ -7,14 +7,14 @@
 
   angular
     .module('oipa.layout')
-    .directive('topNavbar', topNavbar);
+    .directive('navbar', navbar);
 
-  topNavbar.$inject = ['templateBaseUrl'];
+  navbar.$inject = ['templateBaseUrl'];
 
   /**
   * @namespace Collection
   */
-  function topNavbar(templateBaseUrl) {
+  function navbar(templateBaseUrl) {
 
     /**
     * @name directive

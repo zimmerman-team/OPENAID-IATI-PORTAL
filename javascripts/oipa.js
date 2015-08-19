@@ -14,6 +14,7 @@
             'oipa.config',
             'oipa.routes',
             'oipa.layout',
+            'oipa.partials',
             'oipa.charts',
             'oipa.search',
             'oipa.toolbar',
