@@ -397,7 +397,7 @@ NAVBAR
       line-height: 50px;
       margin:0 10px;
       &.home {
-        line-height: 57px;
+        line-height: 60px;
       }
     }
     a {
@@ -1354,8 +1354,14 @@ Sunburst vis
 
   .sector-vis-sunburst{
     margin-bottom: 5em;
+    background:rgba(#fff,.3);
   }
 
+}
+
+.sector-vis-sunburst{
+  background:rgba(#fff,.3);
+  margin-bottom: 15px;
 }
 
 .zz_tooltip{
@@ -1628,6 +1634,18 @@ footer{
 }
 
 .geomap-mask {
+}
+
+.map-switch {
+  position:absolute;
+  top:5px;
+  left:50%;
+  width:200px;
+  margin-left: -100px;
+  z-index: 9999;
+  select {
+      font-size:14px;
+  }
 }
 
 .no-padding {
