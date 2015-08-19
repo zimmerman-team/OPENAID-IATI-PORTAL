@@ -17,14 +17,15 @@ come into play. Have fun!
 	li {
 		a {
 			transition:all 0.2s;
-			&:hover {
+			&:hover,&:focus,&:active {
 				background-color: $oranje;
 				color:#fff;
 			}
 		}
 	    &.active {
 			a {
-				&:hover {
+				background-color: $oranje;
+				&:hover,&:focus,&:active {
 					background-color: $oranje;
 					}
 				}
@@ -122,7 +123,7 @@ come into play. Have fun!
 	transition:all 0.2s;
 	&:hover {
 		color:#fff;
-		background: rgba($blauw,1);
+		background: rgba($oranje,1);
 	}
 }
 

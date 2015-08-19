@@ -177,96 +177,100 @@ come into play. Have fun!
   transition: all 0.2s;
 }
 /* line 20, ../scss/breakpoints/_768up.scss */
-.pagination li a:hover {
+.pagination li a:hover, .pagination li a:focus, .pagination li a:active {
   background-color: #f15a24;
   color: #fff;
 }
-/* line 27, ../scss/breakpoints/_768up.scss */
-.pagination li.active a:hover {
+/* line 26, ../scss/breakpoints/_768up.scss */
+.pagination li.active a {
   background-color: #f15a24;
 }
-/* line 34, ../scss/breakpoints/_768up.scss */
+/* line 28, ../scss/breakpoints/_768up.scss */
+.pagination li.active a:hover, .pagination li.active a:focus, .pagination li.active a:active {
+  background-color: #f15a24;
+}
+/* line 35, ../scss/breakpoints/_768up.scss */
 .pagination li:first-of-type a:hover, .pagination li:last-of-type a:hover {
   background-color: transparent;
   color: #f15a24;
 }
 
-/* line 44, ../scss/breakpoints/_768up.scss */
+/* line 45, ../scss/breakpoints/_768up.scss */
 .filter-panel .btn-save {
   transition: all 0.2s;
 }
-/* line 46, ../scss/breakpoints/_768up.scss */
+/* line 47, ../scss/breakpoints/_768up.scss */
 .filter-panel .btn-save:hover {
   background: #71a230;
 }
 
-/* line 55, ../scss/breakpoints/_768up.scss */
+/* line 56, ../scss/breakpoints/_768up.scss */
 .actions .filters span .fa-circle {
   transition: all 0.2s;
 }
-/* line 59, ../scss/breakpoints/_768up.scss */
+/* line 60, ../scss/breakpoints/_768up.scss */
 .actions .filters span:hover .fa-circle {
   color: #738191;
 }
-/* line 67, ../scss/breakpoints/_768up.scss */
+/* line 68, ../scss/breakpoints/_768up.scss */
 .actions .dash a .fa-circle, .actions .dash span .fa-circle {
   transition: all 0.2s;
 }
-/* line 72, ../scss/breakpoints/_768up.scss */
+/* line 73, ../scss/breakpoints/_768up.scss */
 .actions .dash a:nth-of-type(2):hover .fa-circle, .actions .dash span:nth-of-type(2):hover .fa-circle {
   color: #00a99d;
 }
-/* line 79, ../scss/breakpoints/_768up.scss */
+/* line 80, ../scss/breakpoints/_768up.scss */
 .actions .dash a:nth-of-type(3):hover .fa-circle, .actions .dash span:nth-of-type(3):hover .fa-circle {
   color: #ad7979;
 }
-/* line 86, ../scss/breakpoints/_768up.scss */
+/* line 87, ../scss/breakpoints/_768up.scss */
 .actions .dash a:nth-of-type(4):hover .fa-circle, .actions .dash span:nth-of-type(4):hover .fa-circle {
   color: #29abe2;
 }
 
-/* line 97, ../scss/breakpoints/_768up.scss */
+/* line 98, ../scss/breakpoints/_768up.scss */
 .filter-box .btn .fa {
   transition: all 0.2s;
 }
-/* line 101, ../scss/breakpoints/_768up.scss */
+/* line 102, ../scss/breakpoints/_768up.scss */
 .filter-box .btn:hover .fa {
   transform: scale(1.3);
 }
 
-/* line 110, ../scss/breakpoints/_768up.scss */
+/* line 111, ../scss/breakpoints/_768up.scss */
 #tool-bar span .fa-circle {
   transition: all 0.2s;
 }
-/* line 114, ../scss/breakpoints/_768up.scss */
+/* line 115, ../scss/breakpoints/_768up.scss */
 #tool-bar span:hover .fa-circle {
   color: #00a99d;
 }
 
-/* line 121, ../scss/breakpoints/_768up.scss */
+/* line 122, ../scss/breakpoints/_768up.scss */
 .btn-default {
   transition: all 0.2s;
 }
-/* line 123, ../scss/breakpoints/_768up.scss */
+/* line 124, ../scss/breakpoints/_768up.scss */
 .btn-default:hover {
   color: #fff;
-  background: #29abe2;
+  background: #f15a24;
 }
 
-/* line 129, ../scss/breakpoints/_768up.scss */
+/* line 130, ../scss/breakpoints/_768up.scss */
 .hp-block.clickable {
   transition: all 0.2s;
 }
-/* line 131, ../scss/breakpoints/_768up.scss */
+/* line 132, ../scss/breakpoints/_768up.scss */
 .hp-block.clickable:hover {
   background-color: rgba(41, 171, 226, 0.6);
 }
-/* line 135, ../scss/breakpoints/_768up.scss */
+/* line 136, ../scss/breakpoints/_768up.scss */
 .hp-block.clickable.groen:hover {
   background-color: rgba(0, 169, 157, 0.6);
 }
 
-/* line 141, ../scss/breakpoints/_768up.scss */
+/* line 142, ../scss/breakpoints/_768up.scss */
 .eq {
   display: -webkit-box;
   display: -webkit-flex;
@@ -274,13 +278,13 @@ come into play. Have fun!
   display: flex;
 }
 
-/* line 148, ../scss/breakpoints/_768up.scss */
+/* line 149, ../scss/breakpoints/_768up.scss */
 .makeblock {
   display: inline;
   margin-top: 0;
 }
 
-/* line 179, ../scss/breakpoints/_768up.scss */
+/* line 180, ../scss/breakpoints/_768up.scss */
 .info {
   padding: 0;
   position: absolute;
@@ -293,22 +297,22 @@ come into play. Have fun!
   margin-left: 180px;
   z-index: 9999;
 }
-/* line 190, ../scss/breakpoints/_768up.scss */
+/* line 191, ../scss/breakpoints/_768up.scss */
 .info .flag-icon {
   margin-top: .5em;
 }
 
-/* line 222, ../scss/breakpoints/_768up.scss */
+/* line 223, ../scss/breakpoints/_768up.scss */
 .navbar .btn.btn-default, .navbar .btn-group .btn {
   margin-right: 10px;
 }
 
-/* line 227, ../scss/breakpoints/_768up.scss */
+/* line 228, ../scss/breakpoints/_768up.scss */
 .navbar-header {
   margin: 0 auto;
 }
 
-/* line 231, ../scss/breakpoints/_768up.scss */
+/* line 232, ../scss/breakpoints/_768up.scss */
 .navbar-collapse {
   padding: 0;
 }
@@ -323,22 +327,26 @@ This is the desktop size. It's larger than an iPad so it will only
 be seen on the Desktop.
 
 ******************************************************************/
-/* line 30, ../scss/breakpoints/_1030up.scss */
+/* line 29, ../scss/breakpoints/_1030up.scss */
+.navbar {
+  padding-bottom: 3px;
+}
+/* line 31, ../scss/breakpoints/_1030up.scss */
 .navbar .navbar-nav {
   width: 56%;
   text-align: center;
 }
-/* line 33, ../scss/breakpoints/_1030up.scss */
+/* line 34, ../scss/breakpoints/_1030up.scss */
 .navbar .navbar-nav li {
   display: inline-block;
   float: none;
 }
-/* line 38, ../scss/breakpoints/_1030up.scss */
+/* line 39, ../scss/breakpoints/_1030up.scss */
 .navbar .navbar-header, .navbar .navbar-right {
   width: 22%;
-  padding-top: 5px;
+  padding-top: 4px;
 }
-/* line 43, ../scss/breakpoints/_1030up.scss */
+/* line 44, ../scss/breakpoints/_1030up.scss */
 .navbar .navbar-right {
   text-align: right;
 }
