@@ -1535,6 +1535,13 @@ ACTIVITY LIST
 .activity-list-item {
   margin-bottom: 13px;
   overflow: hidden;
+  a {
+    color:$oranje;
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
   .hp-block {
     margin-bottom: 2px;
     p {
