@@ -22,6 +22,10 @@ a {
   }
 }
 
+  a.fa {
+      text-decoration: none;
+  }
+
 .col-centered{
   float: none;
   margin: 0 auto;
@@ -168,7 +172,6 @@ hr{
 }
 
 .hp-block{
-  background-color: rgba($blauw, 0.1);
   padding: 15px;
   margin: 0 0 15px 0;
   font-size: 17px;
@@ -616,6 +619,14 @@ FILTER BAR
   text-align: left;
   margin-top:15px;
 }
+
+.about-page {
+  .social {
+    text-align: center !important;
+    margin-bottom: 0 !important;
+  }
+}
+
 
 .actions {
   margin-top:5px;
