@@ -35,6 +35,7 @@
 
         if(toSave){
           // update
+          FilterSelection.openedPanel = '';
           vm.updateSelectionString();
           FilterSelection.toSave = false;
         }

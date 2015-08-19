@@ -21,7 +21,6 @@
 	    	
 	    	$scope.$watch('vm.filterSelection.selectionString', function (selectionString) {
 		        vm.selectionString = selectionString;
-		        FilterSelection.openedPanel = '';
 		    }, true);
 
 	    	setTimeout(function(){ FilterSelection.toReset = true; }, 100);

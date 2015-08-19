@@ -73,9 +73,7 @@ ZzSunburst = (function() {
   };
 
   ZzSunburst.prototype.mouseOverPath = function(d){
-    console.log(sunburst.zooming);
     if (sunburst.zooming) return false;
-    console.log('hovering');
 
     sunburst.tooltip.showTooltip(d);
     sunburst.middleAmount.text(d.abbreviatedValue);
@@ -107,6 +105,7 @@ ZzSunburst = (function() {
 
     // return colors on all
     path = sunburst.vis.selectAll('path');
+
     
     // on state 0 show with 0.3 opacity
     // else show full
@@ -214,7 +213,7 @@ ZzSunburst = (function() {
         .enter().append("path")
         .attr("d", sunburst.arc)
         .style("fill", function(d) { return d.fill; })
-        .attr("opacity", 1)
+        .attr("fill-opacity", 0.3)
         .each(function(d) { this._current = sunburst.updateArc(d); })
         .on("click", zoom)
         .on("mouseover", that.mouseOverPath)
@@ -248,7 +247,10 @@ ZzSunburst = (function() {
         return {depth: d.depth + 1, x: outsideAngle(d.x), dx: 0};
       }
 
-      d3.transition().duration(d3.event.altKey ? 7500 : 750).each(function() {
+      d3.transition()
+        .duration(d3.event.altKey ? 7500 : 750)
+        .call(sunburst.endOfTransition, sunburst.endOfZoom)
+        .each(function() {
 
  
         path.exit().transition()
@@ -268,7 +270,6 @@ ZzSunburst = (function() {
             .attrTween("d", function(d) { return sunburst.arcTween.call(this, sunburst.updateArc(d)); });
       });
 
-
     }
 
     function zoom(p){
@@ -278,6 +279,7 @@ ZzSunburst = (function() {
 
     function zoomIn(p){
       if (document.documentElement.__transition__) return;
+
       sunburst.updateBreadcrumb(p);
       sunburst.tooltip.hideTooltip();
 
@@ -312,7 +314,10 @@ ZzSunburst = (function() {
         return {depth: d.depth, x: outsideAngle(d.x), dx: outsideAngle(d.x + d.dx) - outsideAngle(d.x)};
       }
 
-      d3.transition().duration(d3.event.altKey ? 7500 : 750).each(function() {
+      d3.transition()
+        .duration(d3.event.altKey ? 7500 : 750)
+        .call(sunburst.endOfTransition, sunburst.endOfZoom)
+        .each(function() {
 
         if (level == 2){
 
@@ -361,8 +366,20 @@ ZzSunburst = (function() {
     // if (root !== p) enterArc = insideArc, exitArc = outsideArc, outsideAngle.range([p.x, p.x + p.dx]);
   }
 
-  ZzSunburst.prototype.updateLegenda = function(d) {
+  ZzSunburst.prototype.endOfZoom = function(){
+    sunburst.zooming = false;
+  }
 
+  ZzSunburst.prototype.endOfTransition = function(transition, callback) {
+    var n = 0;
+    transition.each(function() { ++n; })
+      .each('end', function() {
+        if (!--n) callback.apply(this, arguments);
+      });
+  }
+
+  ZzSunburst.prototype.updateLegenda = function(d) {
+    
     var legendaData = [];
 
     for(var i = 0;i < d.children.length;i++){
@@ -374,7 +391,7 @@ ZzSunburst = (function() {
     }
 
     var legend = this.legend.selectAll('rect').data(legendaData);
-        
+    
     legend.enter()
       .append('circle')
       .attr('cx', 18)
@@ -534,9 +551,9 @@ function CustomTooltip(tooltipId, width){
   
   function showTooltip(d){
     $("#"+tooltipId).html('<div class="tt-header" style="background-color:'+d.color+';">'+d.name+'</div><div class="tt-text">'+d.abbreviatedValue+'</div>');
-    $("#"+tooltipId).show(0);
     
     updatePosition(d3.event);
+    $("#"+tooltipId).show('scale', 1000);
   }
   
   function hideTooltip(){

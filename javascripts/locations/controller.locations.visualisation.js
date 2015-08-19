@@ -1,20 +1,20 @@
 /**
-* CountriesVisualisationController
-* @namespace oipa.countries.controllers
+* LocationsVisualisationController
+* @namespace oipa.locations
 */
 (function () {
   'use strict';
 
   angular
-    .module('oipa.countries')
-    .controller('CountriesVisualisationController', CountriesVisualisationController);
+    .module('oipa.locations')
+    .controller('LocationsVisualisationController', LocationsVisualisationController);
 
-  CountriesVisualisationController.$inject = ['$scope', 'FilterSelection', 'Aggregations', 'templateBaseUrl'];
+  LocationsVisualisationController.$inject = ['$scope', 'FilterSelection', 'Aggregations', 'templateBaseUrl'];
 
   /**
-  * @namespace CountriesVisualisationController
+  * @namespace LocationsVisualisationController
   */
-  function CountriesVisualisationController($scope, FilterSelection, Aggregations, templateBaseUrl) {
+  function LocationsVisualisationController($scope, FilterSelection, Aggregations, templateBaseUrl) {
     var vm = this;
     vm.filterSelection = FilterSelection;
     vm.selectionString = '';

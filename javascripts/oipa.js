@@ -20,6 +20,7 @@
             'oipa.aggregations',
             'oipa.countries',
             'oipa.regions',
+            'oipa.locations',
             'oipa.sectors',
             'oipa.filters',
             'oipa.budget',

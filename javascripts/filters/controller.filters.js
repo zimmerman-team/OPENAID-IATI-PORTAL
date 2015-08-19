@@ -45,6 +45,7 @@
     activate();
 
     function activate() {
+      
     }
 
     vm.goToPage = function(type){

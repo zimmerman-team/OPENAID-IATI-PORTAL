@@ -18,8 +18,7 @@
     var vm = this;
     vm.country = null;
     vm.country_id = $stateParams.country_id;
-    vm.openedPanel = '';
-    vm.showSelection = false;
+
     vm.partnerType = '';
     vm.activityCount = '';
     vm.sectorCount = '';
@@ -28,32 +27,6 @@
     vm.totalBudget = '';
     vm.dashboard = 'charts'; // options: charts, list, sectors, organisaties
     vm.filterSelection = FilterSelection;
-
-    vm.toggleSelection = function(){
-        vm.showSelection = !vm.showSelection;
-        FilterSelection.openedPanel = '';
-    }
-
-    vm.resetFilters = function(){
-        FilterSelection.toReset = true;
-    }
-
-    vm.saveFilters = function(){
-        FilterSelection.toSave = true;
-        FilterSelection.openedPanel = '';
-    }
-
-    vm.isOpenedHeader = function(slug){
-      return FilterSelection.openedPanel == slug;
-    }
-
-    vm.showDownload = function(){
-        console.log("TO DO; show download options");
-    }
-
-    vm.share = function(medium){
-        console.log("TO DO; open "+medium+" share url in new window");
-    }
 
 
     /**

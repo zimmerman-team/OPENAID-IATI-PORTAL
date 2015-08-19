@@ -37,29 +37,9 @@
                 label: 'IATI Explorer'
             }
         })
-        .state({ // DEPRECATED
-            name:         'iati-explorer-map',
-            url:          '/iati-explorer/map/',
-            controller:   'ExploreController',
-            controllerAs: 'vm',
-            templateUrl:  templateBaseUrl + '/templates/_layout/iati-explorer-map.html',
-            ncyBreadcrumb: {
-                label: 'IATI Explorer'
-            }
-        })
-        .state({ // DEPRECATED
-            name:         'iati-explorer-list',
-            url:          '/iati-explorer/lijst/',
-            controller:   'ExploreController',
-            controllerAs: 'vm',
-            templateUrl:  templateBaseUrl + '/templates/_layout/iati-explorer-list.html',
-            ncyBreadcrumb: {
-                label: 'IATI Explorer'
-            }
-        })
         .state({
             name:        'activiteit',
-            url:         '/iati-explorer/:activity_id/',
+            url:         '/projecten/:activity_id/',
             controller:  'ActivityController',
             controllerAs: 'vm',
             templateUrl: templateBaseUrl + '/templates/activities/activity.html',
@@ -69,22 +49,12 @@
         })
         .state({
             name:        'locations-map',
-            url:         '/locaties/',
+            url:         '/locaties/lijst/',
             controller:  'ExploreController',
             controllerAs: 'vm',
-            templateUrl: templateBaseUrl + '/templates/locations/locations-view-map.html',
+            templateUrl: templateBaseUrl + '/templates/locations/locations-view-map-list.html',
             ncyBreadcrumb: {
                 label: 'Locaties'
-            }
-        })
-        .state({
-            name:        'locations-list',
-            url:         '/locaties/lijst/',
-            controller:  'CountriesController',
-            controllerAs: 'vm',
-            templateUrl: templateBaseUrl + '/templates/locations/locations-view-list.html',
-            ncyBreadcrumb: {
-                label: 'Landen'
             }
         })
         .state({
@@ -101,7 +71,7 @@
         .state({
             name:        'locations',
             url:         '/locaties/',
-            controller:  'CountriesVisualisationController',
+            controller:  'LocationsVisualisationController',
             controllerAs: 'vm',
             templateUrl: templateBaseUrl + '/templates/locations/locations-view-visualisation.html',
             ncyBreadcrumb: {
@@ -116,13 +86,6 @@
             templateUrl: templateBaseUrl + '/templates/implementingOrganisations/implementing-organisations-view-list.html'
         })
         .state({
-            name:        'organisations-map',
-            url:         '/organisaties/map/',
-            controller:  'ExploreController',
-            controllerAs: 'vm',
-            templateUrl: templateBaseUrl + '/templates/implementingOrganisations/implementing-organisations-view-map.html'
-        })
-        .state({
             name:        'organisations',
             url:         '/organisaties/',
             controller:  'ImplementingOrganisationsVisualisationController',
@@ -135,13 +98,6 @@
             controller:  'ImplementingOrganisationController',
             controllerAs: 'vm',
             templateUrl: templateBaseUrl + '/templates/implementingOrganisations/implementing-organisation.html'
-        })
-        .state({
-            name:        'themas-map',
-            url:         '/themas/map/',
-            controller:  'ExploreController',
-            controllerAs: 'vm',
-            templateUrl: templateBaseUrl + '/templates/sectors/sectors-view-map.html',
         })
         .state({
             name:        'themas-list',

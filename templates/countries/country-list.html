@@ -1,38 +1,40 @@
-<div class="col-md-12" ng-show="vm.activities.length == 0">
-    <div class="svg-loader">
-        <img src="{{templateBaseUrl}}/images/spinning-circles.svg" width="70" alt="">
-    </div>
-</div>
-<div class="col-md-12">
-    <div class="sort">
-        <div class="row">
-            <div class="col-xs-4">
-                resultaten {{vm.offset + 1}} - {{vm.maxShown()}} van {{vm.totalActivities}}
-            </div>
+<div class="row">
+    <div class="col-md-12" ng-show="vm.activities.length == 0">
+        <div class="svg-loader">
+            <img src="{{templateBaseUrl}}/images/spinning-circles.svg" width="70" alt="">
         </div>
     </div>
-</div>
-<div class="activity-list-item" 
-    ng-show="vm.activities.length != 0"
-    dir-paginate="item in vm.countries | itemsPerPage: 5"  
-    pagination-id="countryList">
-        <div class="col-md-12">
-            <div class="hp-block">
-                <a ui-sref="land({ country_id: item.country_id })"></a>
-                <div class="expand">
-                    <span class="fa-stack fa-lg">
-                        <i class="fa fa-circle fa-stack-2x"></i>
-                        <i class="fa fa-share fa-stack-1x fa-share"></i>
-                    </span>
+    <div class="col-md-12">
+        <div class="sort">
+            <div class="row">
+                <div class="col-xs-4">
+                    resultaten {{vm.offset + 1}} - {{vm.maxShown()}} van {{vm.totalActivities}}
                 </div>
-                <h1>{{ item.name }}</h1>
-                <p><b>Directe landuitgaven:</b> {{item.total_disbursements  | currency :'€':0}}</p>
             </div>
         </div>
-</div>
-<div class="col-md-12 text-center pag">
-    <dir-pagination-controls 
-    pagination-id="countryList" 
-    on-page-change="pageChanged(newPageNumber)">
-    </dir-pagination-controls>
+    </div>
+    <div class="activity-list-item" 
+        ng-show="vm.activities.length != 0"
+        dir-paginate="item in vm.countries | itemsPerPage: 5"  
+        pagination-id="countryList">
+            <div class="col-md-12">
+                <div class="hp-block">
+                    <a ui-sref="land({ country_id: item.country_id })"></a>
+                    <div class="expand">
+                        <span class="fa-stack fa-lg">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-share fa-stack-1x fa-share"></i>
+                        </span>
+                    </div>
+                    <h1>{{ item.name }}</h1>
+                    <p><b>Directe landuitgaven:</b> {{item.total_disbursements  | currency :'€':0}}</p>
+                </div>
+            </div>
+    </div>
+    <div class="col-md-12 text-center pag">
+        <dir-pagination-controls 
+        pagination-id="countryList" 
+        on-page-change="pageChanged(newPageNumber)">
+        </dir-pagination-controls>
+    </div>
 </div>
