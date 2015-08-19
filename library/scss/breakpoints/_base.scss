@@ -810,23 +810,23 @@ tr {
 .filter-box {
   padding:15px;
   .btn {
-    color:#fff;
+    color:#222;
     border-radius: 4px;
     margin-right: 4px;
     &.selectedCountries {
-      background: #00a315;
+      background: #fff;
     }
     &.selectedRegions {
-      background: #0083cb;
+      background: #fff;
     }
     &.selectedSectors {
-      background: #93278f;
+      background: #fff;
     }
     &.selectedImplementingOrganisations {
-      background: #d14a95;
+      background: #fff;
     }
     &.selectedActivityStatuses {
-      background: #fb943b;
+      background: #fff;
     }
     // &.roze {
     //   background: #ff7fd5;

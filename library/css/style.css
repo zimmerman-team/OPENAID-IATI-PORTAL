@@ -4015,29 +4015,29 @@ tr td {
 }
 /* line 812, ../scss/breakpoints/_base.scss */
 .filter-box .btn {
-  color: #fff;
+  color: #222;
   border-radius: 4px;
   margin-right: 4px;
 }
 /* line 816, ../scss/breakpoints/_base.scss */
 .filter-box .btn.selectedCountries {
-  background: #00a315;
+  background: #fff;
 }
 /* line 819, ../scss/breakpoints/_base.scss */
 .filter-box .btn.selectedRegions {
-  background: #0083cb;
+  background: #fff;
 }
 /* line 822, ../scss/breakpoints/_base.scss */
 .filter-box .btn.selectedSectors {
-  background: #93278f;
+  background: #fff;
 }
 /* line 825, ../scss/breakpoints/_base.scss */
 .filter-box .btn.selectedImplementingOrganisations {
-  background: #d14a95;
+  background: #fff;
 }
 /* line 828, ../scss/breakpoints/_base.scss */
 .filter-box .btn.selectedActivityStatuses {
-  background: #fb943b;
+  background: #fff;
 }
 
 /* line 837, ../scss/breakpoints/_base.scss */
