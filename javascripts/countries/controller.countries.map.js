@@ -22,7 +22,7 @@
 
     angular.extend($scope, {
       defaults: {
-          tileLayer: 'https://{s}.tiles.mapbox.com/v3/zimmerman2014.hmpkg505/{z}/{x}/{y}.png',
+          tileLayer: 'https://{s}.tiles.mapbox.com/v3/zimmerman2014.088155ee/{z}/{x}/{y}.png',
           maxZoom: 12,
           minZoom: 2,
           attributionControl: false,
