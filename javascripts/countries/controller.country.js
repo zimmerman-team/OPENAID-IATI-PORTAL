@@ -34,8 +34,6 @@
       {'id': 'sectors', 'name': 'Sectoren', 'count': '4'},
     ]
 
-    vm.openTab = vm.tabs[0];
-
     
 
 
