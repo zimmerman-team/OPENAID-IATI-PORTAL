@@ -6,7 +6,7 @@
             	<span class="no">1.</span>
             	<a href="#">
 	            	<!-- de vlag hieronder alleen voor countries -->
-	            	<span class="flag-icon flag-icon-af{{item.country.code | lowercase }}"></span><span>{{item.name}}</span>
+	            	<span ng-if="item.country_id" class="flag-icon flag-icon-{{item.country_id | lowercase }}"></span><span>{{item.name}}</span>
             	</a>
             </td>
             <td>{{item.total_disbursements | shortcurrency :'€'}}</td>
