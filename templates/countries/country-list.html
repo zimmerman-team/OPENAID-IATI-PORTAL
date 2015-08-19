@@ -22,7 +22,7 @@
             <div class="hp-block wit">
                 <div class="row">
                     <div class="col-sm-4">
-                        <span class="flag-icon flag-icon-af{{item.country.code | lowercase }} big"></span>
+                        <span class="flag-icon flag-icon-{{item.country_id | lowercase }} big"></span>
                         <h1><a ui-sref="land({ country_id: item.country_id })">{{ item.name }}</a></h1>
                     </div>
                     <div class="col-sm-4">
