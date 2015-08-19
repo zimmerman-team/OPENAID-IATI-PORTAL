@@ -13,24 +13,28 @@
             </div>
         </div>
     </div>
+    
     <div class="activity-list-item" 
         ng-show="vm.activities.length != 0"
         dir-paginate="item in vm.countries | itemsPerPage: 5"  
         pagination-id="countryList">
-            <div class="col-md-12">
-                <div class="hp-block">
-                    <a ui-sref="land({ country_id: item.country_id })"></a>
-                    <div class="expand">
-                        <span class="fa-stack fa-lg">
-                            <i class="fa fa-circle fa-stack-2x"></i>
-                            <i class="fa fa-share fa-stack-1x fa-share"></i>
-                        </span>
+        <div class="col-md-12">
+            <div class="hp-block wit">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <h1><a ui-sref="land({ country_id: item.country_id })">{{ item.name }}</a></h1>
                     </div>
-                    <h1>{{ item.name }}</h1>
-                    <p><b>Directe landuitgaven:</b> {{item.total_disbursements  | currency :'€':0}}</p>
+                    <div class="col-sm-4">
+                        {{item.total_disbursements  | currency :'€':0}}
+                    </div>
+                    <div class="col-sm-4">
+                        <a>XX projecten</a>
+                    </div>
                 </div>
             </div>
+        </div>
     </div>
+
     <div class="col-md-12 text-center pag">
         <dir-pagination-controls 
         pagination-id="countryList" 
