@@ -30,7 +30,7 @@
                 <div class="col-md-12">
                     <div class="hp-block wit header">
                         <h2><a ui-sref="activiteit({ activity_id: item.id })">{{ item.titles[0].title }}</a></h2>
-                        <p>Optional description</p>
+                        <p>{{item.descriptions[0].description}}</p>
                     </div>
                     <div class="hp-block wit">
                         <div class="row">
@@ -41,13 +41,13 @@
                                 <p><b>Sector</b><br><a ng-repeat="sector in item.sectors" >{{ sector.name }}</a></p>
                             </div>
                             <div class="col-md-4">
-                                <p><b>Status</b><br>Status</p> 
+                                <p><b>Status</b><br>{{item.activity_status.name}}</p> 
                                 <p><b>Startdatum</b><br>{{ item.start_actual }}</p>
-                                <p><b>Einddatum</b><br>Eind</p> 
+                                <p><b>Einddatum</b><br>{{ item.end_actual }}</p> 
                             </div>
                             <div class="col-md-4">
-                                <p><b>Rapporterende organisatie</b><br>DGIS</p> 
-                                <p><b>IATI identifier</b><br>NL-BLABLA</p> 
+                                <p><b>Rapporterende organisatie</b><br>{{item.reporting_organisation.name}}</p> 
+                                <p><b>IATI identifier</b><br>{{item.iati_identifier}}</p> 
                             </div>
                         </div>
                     </div>
