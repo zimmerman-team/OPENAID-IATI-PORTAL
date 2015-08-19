@@ -625,6 +625,9 @@ FILTER BAR
     text-align: center !important;
     margin-bottom: 0 !important;
   }
+  .hp-block {
+    padding:0;
+  }
 }
 
 
@@ -1559,6 +1562,9 @@ ACTIVITY LIST
       text-decoration: underline;
     }
   }
+  .flag-icon {
+    margin-right: 10px;
+  }
   .hp-block {
     margin-bottom: 2px;
     p {
@@ -1699,6 +1705,11 @@ footer{
 .selectbox5 {
   margin-top:0;
   margin-bottom: 15px;
+  select {
+    font-weight: 600;
+    font-size:18px;
+    padding-left:10px;
+  }
 }
 .top5 {
   margin-bottom: 15px;
