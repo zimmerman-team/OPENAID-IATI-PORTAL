@@ -19,8 +19,11 @@
     vm.tabs = $scope.tabs;
 
     vm.openTab = function(id){
-    console.log(id);
       $scope.selectedTab = id;
+    }
+
+    vm.isOpenedTab = function(id){
+        return $scope.selectedTab == id;
     }
   }
 })();
