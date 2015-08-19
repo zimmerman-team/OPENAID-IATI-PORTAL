@@ -219,12 +219,13 @@ ZzSunburst = (function() {
         .on("mouseover", that.mouseOverPath)
         .on("mouseout", that.mouseOutPath);
 
-    this.updateLegenda(root);
+    this.updateLegend(root);
     this.updateBreadcrumb(root);
 
     function zoomOut(p) {
-      if (document.documentElement.__transition__) return;
       if(p == undefined){ return false; }
+
+      sunburst.updateLegend(p.parent);
       sunburst.updateBreadcrumb(p.parent);
 
       var level = sunburst.getLevel(p, 0);
@@ -273,19 +274,25 @@ ZzSunburst = (function() {
     }
 
     function zoom(p){
+
+      var level = sunburst.getLevel(p, 0);
+
+      if(sunburst.zooming || level == 3){
+        return false;
+      } 
+
       sunburst.zooming = true;
-      return p.depth == 0 ? zoomOut(p) : zoomIn(p);
+      return sunburst.state == 0 || level > 1 ? zoomIn(p) : zoomOut(p);
     }
 
     function zoomIn(p){
-      if (document.documentElement.__transition__) return;
 
+      sunburst.updateLegend(p);
       sunburst.updateBreadcrumb(p);
       sunburst.tooltip.hideTooltip();
 
       var level = sunburst.getLevel(p, 0);
       sunburst.state = level;
-      console.log(level);
 
       if(level == 1){
         path = path.data(sunburst.partition.nodes(p), function(d) { return d.key; });
@@ -378,63 +385,72 @@ ZzSunburst = (function() {
       });
   }
 
-  ZzSunburst.prototype.updateLegenda = function(d) {
-    
-    var legendaData = [];
+  ZzSunburst.prototype.updateLegend = function(d) {
 
-    for(var i = 0;i < d.children.length;i++){
-      legendaData.push(d.children[i]);
-    }
+    var that = this;
 
-    function mouseOverLegend(d){
-      sunburst.mouseOverPath(d);
-    }
+    var legendItems = that.partition(d).slice(1);
 
-    var legend = this.legend.selectAll('rect').data(legendaData);
-    
-    legend.enter()
-      .append('circle')
-      .attr('cx', 18)
-      .attr('cy', function(d, i){ return 13 + (i * 40); })
-      .attr('r', 8)
-      .attr('fill', function(d){return d.color; });
+    var legendItem = this.legend.selectAll("g.legendItem")
+        .data(legendItems, function(d) { return d.id; });
 
-    legend.enter()
-      .append('text')
-      .attr('x', 30)
-      .attr('y', function(d, i){ return 19 + (i * 40); })
-      .attr('font-size', '16px')
-      .attr('fill', '#444')
-      .attr('style', 'text-anchor: start;')
-      .text(function(d){return d.name; })
-      .each(function(d){ d.textWidth = this.getBBox().width; })
-      .on('mouseover', mouseOverLegend);
+    var legendItemEnter = legendItem.enter().append("g")
+        .attr("class", "legendItem")
+        .attr("transform", function(d, i) { return "translate(0," + (10 + (i * 30)) + ")"; })
+        .on("click", that.clickRegion);
 
-    legend.enter()
-      .insert('rect', ':first-child')
-      .attr('width', function(d){ return d.textWidth + 42; })
-      .attr('height', 26)
-      .attr('x', 0)
-      .attr('y', function(d, i){ return i * 40; })
-      .attr('rx', 13)
-      .attr('ry', 13)
-      .attr('fill', '#fff');
+      legendItemEnter
+        .append('circle')
+        .attr('cx', function(d){ return 12 + ((d.depth - 1) * 15); })
+        .attr('cy', -5)
+        .attr('r', 4)
+        .attr('fill', function(d){return d.color; });
 
-    d3.transition().duration(750).each(function() {
+      legendItemEnter
+        .append('text')
+        .attr('x', function(d){ return 25 + ((d.depth - 1) * 15); })
+        .attr('y', 0)
+        .attr('font-size', '16px')
+        .attr('fill', '#444')
+        .attr('style', 'text-anchor: start;')
+        .text(function(d){ return d.name; })
+        .each(function(d){ d.textWidth = this.getBBox().width; });
 
-      legend.exit().transition()
-          .style('fill-opacity', 0)
-          .remove();
+      legendItemEnter
+        .insert('rect', ':first-child')
+        .attr('width', function(d){ return d.textWidth + 42; })
+        .attr('height', 20)
+        .attr('x', function(d){ return 0 + ((d.depth - 1) * 15); })
+        .attr('y', -15)
+        .attr('rx', 10)
+        .attr('ry', 10)
+        .attr('fill', '#fff');
 
-      legend.enter().append('text')
-          .style('fill-opacity', 0.7)
-          .style('fill', '#fff');
+    // Transition nodes to their new position.
+    var nodeUpdate = legendItem.transition()
+      .duration(750)
+      .attr("transform", function(d, i) { return "translate(0," + (10 + (i * 30)) + ")"; });
 
-      legend.transition()
-          .style('fill-opacity', 0.7)
-          .style('fill', '#fff');
+    nodeUpdate.select("circle")
+        .attr('r', 6)
+        .attr('fill', function(d){return d.color; });
 
-    });
+    nodeUpdate.select("text")
+        .style("fill-opacity", 1);
+
+
+    // Transition exiting nodes to the parent's new position.
+    var nodeExit = legendItem.exit().transition()
+        .duration(750)
+        .attr("opacity", 1e-6)
+        .remove();
+
+    nodeExit.select("circle")
+        .attr("r", 1e-6);
+
+    nodeExit.select("text")
+        .style("fill-opacity", 1e-6);
+
   }
 
 
@@ -522,15 +538,8 @@ ZzSunburst = (function() {
   }
 
 
-
-
   return ZzSunburst;
 })();
-
-
-
-
-
 
 
 
@@ -553,7 +562,7 @@ function CustomTooltip(tooltipId, width){
     $("#"+tooltipId).html('<div class="tt-header" style="background-color:'+d.color+';">'+d.name+'</div><div class="tt-text">'+d.abbreviatedValue+'</div>');
     
     updatePosition(d3.event);
-    $("#"+tooltipId).show('scale', 1000);
+    $("#"+tooltipId).show(0);
   }
   
   function hideTooltip(){
@@ -591,5 +600,3 @@ function CustomTooltip(tooltipId, width){
     updatePosition: updatePosition
   }
 }
-
-
