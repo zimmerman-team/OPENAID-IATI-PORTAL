@@ -1,13 +1,9 @@
 <div id="main-content" class="container activity">
 
+    <detail-topbar></detail-topbar>
+
     <div class="row">
-        <div class="col-md-12">
-
-            <div ncy-breadcrumb></div>
-
-            <search-box></search-box>
-            
-
+        <div class="col-md-12">       
 
             <div class="row">
                 <div class="col-xs-12">
@@ -23,49 +19,160 @@
     </div>
 
     <div class="row">
-        <div class="col-md-6">
-            <div class="hp-block groen">
-                <h3>Status activiteit</h3>
-                <span class="number">{{vm.activity.activity_status.name}}</span>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="hp-block roze">
-                <h3>Totaal budget</h3>
-                <span class="number">{{vm.activity.total_budget | currency :'€':0}}</span>
+        <div class="col-md-12">
+            <div class="hp-block wit">
+                <h1>{{vm.activity.titles[0].title}}</h1>
+                <p>{{vm.activity.descriptions[0].description}}</p>
             </div>
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-md-12">
-            <div class="hp-block">
-                <div class="row">
-                    <div class="col-md-8">
-                        <h1>{{vm.activity.titles[0].title}}</h1>
-                        <hr>
-                        <p>
-                            {{vm.activity.descriptions[0].description}}
-                        </p>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="project-circle" ng-repeat="country in vm.activity.countries">
-                            <span class="flag-icon flag-icon-{{country.code | lowercase }}"></span>
-                            <h4>{{country.name}}</h4>
-                            <p><b>Type relatie:</b> {{vm.landPartnerType}}</p>
-                            <p><b>Start datum:</b> {{vm.activity.start_actual}}</p>
-                            <p><b>Eind datum:</b> {{vm.activity.end_actual}}</p>
-                            <a ui-sref="land({ country_id: country.code })" class="btn btn-default">Naar landen pagina</a>
+    <subnav-bar></subnav-bar>
 
-                        </div>
-                    </div>  
+    <!-- KAART HIER -->
+
+    <div class="row">
+        <!-- start linker kolom -->
+        <div class="col-md-4">
+
+            <!--start van een wit blokje -->
+            <div class="row">
+                <div class="col-sm-12 activity-list-item">
+                    <div class="hp-block wit" ng-click="vm.dashboard = 'list'">
+                        <p><b>IATI identifier</b><br>XXX</p>
+                    </div>
                 </div>
             </div>
+            <!-- eind van een wit blokje -->
+            <!--start van een wit blokje -->
+            <div class="row">
+                <div class="col-sm-12 activity-list-item">
+                    <div class="hp-block wit" ng-click="vm.dashboard = 'list'">
+                        <p><b>Laatste update</b><br>XXX</p>
+                        <p><b>Startdatum</b><br>{{vm.activity.start_actual}}</p>
+                        <p><b>Einddatum</b><br>{{vm.activity.end_actual}}</p>
+                    </div>
+                </div>
+            </div>
+            <!-- eind van een wit blokje -->
+            <!--start van een wit blokje -->
+            <div class="row">
+                <div class="col-sm-12 activity-list-item">
+                    <div class="hp-block wit" ng-click="vm.dashboard = 'list'">
+                        <p><b>Website</b><br>Niet beschikbaar</p>
+                    </div>
+                </div>
+            </div>
+            <!-- eind van een wit blokje -->
+
+        </div>
+        <!-- eind linker kolom -->
+
+        <!-- start midden kolom -->
+        <div class="col-md-4">
+
+            <!--start van een wit blokje -->
+            <div class="row">
+                <div class="col-sm-12 activity-list-item">
+                    <div class="hp-block wit" ng-click="vm.dashboard = 'list'">
+                        <p><b>Status</b><br>{{vm.activity.activity_status.name}}</p>
+                    </div>
+                </div>
+            </div>
+            <!-- eind van een wit blokje -->
+            <!--start van een wit blokje -->
+            <div class="row">
+                <div class="col-sm-12 activity-list-item">
+                    <div class="hp-block wit" ng-click="vm.dashboard = 'list'">
+                        <p><b>Budget</b><br>{{vm.activity.total_budget | currency :'€':0}}</p>
+                    </div>
+                </div>
+            </div>
+            <!-- eind van een wit blokje -->
+            <!--start van een wit blokje -->
+            <div class="row">
+                <div class="col-sm-12 activity-list-item">
+                    <div class="hp-block wit" ng-click="vm.dashboard = 'list'">
+                        <p><b>Rapporterende organisatie</b><br>Niet beschikbaar</p>
+                        <p><b>Deelnemende organisaties</b><br>Niet beschikbaar</p>
+                    </div>
+                </div>
+            </div>
+            <!-- eind van een wit blokje -->
+
+        </div>
+        <!-- eind midden kolom -->
+
+        <!-- start rechter kolom -->
+        <div class="col-md-4">
+
+            <!--start van een wit blokje -->
+            <div class="row">
+                <div class="col-sm-12 activity-list-item">
+                    <div class="hp-block wit" ng-click="vm.dashboard = 'list'">
+                        <p><b>Land</b><br><a ui-sref="land({ country_id: country.code })">{{country.name}}</a></p>
+                        <p><b>Regio</b><br>Niet beschikbaar</p>
+                    </div>
+                </div>
+            </div>
+            <!-- eind van een wit blokje -->
+            <!--start van een wit blokje -->
+            <div class="row">
+                <div class="col-sm-12 activity-list-item">
+                    <div class="hp-block wit" ng-click="vm.dashboard = 'list'">
+                        <p><b>Sector</b><br>Niet beschikbaar</p>
+                        <p><b>Sector code</b><br>Niet beschikbaar</p>
+                    </div>
+                </div>
+            </div>
+            <!-- eind van een wit blokje -->
+
+        </div>
+        <!-- eind rechter kolom -->
+    </div>
+
+
+
+    <!-- voor op transacties page -->
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="hp-block wit">
+                <h3>Transacties</h3>
+                <nvd3 options="vm.transactionChartOptions" data="vm.transactionData" class="with-3d-shadow with-transitions"></nvd3>
+            </div>
         </div>
     </div>
 
 
+    <!-- voor op documenten page -->
     <div class="row">
+        <div class="col-md-12">
+            <div class="hp-block wit">
+                <h3>Documenten</h3>
+                <div ng-show="vm.activity.documents.length == 0">
+                    Geen documenten beschikbaar.
+                </div>
+
+                <table class="table">
+                    <tbody>
+                        <tr ng-repeat="document in vm.activity.documents">
+                            
+                            <td>
+                                <a href="{{document.url}}">
+                                    <i class="glyphicon glyphicon-download-alt"></i>
+                                    {{document.title}}
+                                </a>
+                            </td>
+                            
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- <div class="row">
         <div class="col-md-12">
             <div class="hp-block finance">
                 <h3>Financieel overzicht</h3>
@@ -102,48 +209,8 @@
                 </table>
             </div>
         </div>
-    </div>
+    </div> -->
 
-    <div class="row">
-        <div class="col-md-12">
-            <div class="hp-block">
-                <h3>Documenten</h3>
-                <div ng-show="vm.activity.documents.length == 0">
-                    No documents available.
-                </div>
-
-                <table class="table">
-                    <tbody>
-                        <tr ng-repeat="document in vm.activity.documents">
-                            
-                            <td>
-                                <a href="{{document.url}}">
-                                    <i class="glyphicon glyphicon-download-alt"></i>
-                                    {{document.title}}
-                                </a>
-                            </td>
-                            
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-
-
-    <div class="row">
-        <div class="col-md-12 text-center">
-            <!-- <div style="text-align: center;margin-bottom: 40px;cursor: pointer;" ng-click="vm.showDetails = true">
-                <span class="fa-stack fa-lg">
-                    <i class="fa fa-circle fa-stack-2x"></i>
-                    <a ng-click="vm.toggleSelection()" class="fa fa-align-justify fa-stack-1x fa-inverse"></a>
-                </span>
-
-                <h3>toon alle IATI informatie van deze activiteit</h3>
-            </div> -->
-            <h3 style="margin-bottom:20px;">Beta versie. Binnenkort meer IATI informatie beschikbaar.</h3>
-        </div>
-    </div>
 
    <!--  <div class="row" ng-show="vm.showDetails == true">
         <div class="col-md-12">

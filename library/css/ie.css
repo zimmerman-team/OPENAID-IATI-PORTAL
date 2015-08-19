@@ -273,29 +273,20 @@ come into play. Have fun!
   background: #29abe2;
 }
 
-/* line 153, ../scss/breakpoints/_768up.scss */
-.activity-list-item .hp-block {
-  transition: all 0.2s;
-}
-/* line 157, ../scss/breakpoints/_768up.scss */
-.activity-list-item:hover .hp-block {
-  background-color: rgba(41, 171, 226, 0.4);
-}
-
-/* line 163, ../scss/breakpoints/_768up.scss */
+/* line 152, ../scss/breakpoints/_768up.scss */
 .hp-block.clickable {
   transition: all 0.2s;
 }
-/* line 165, ../scss/breakpoints/_768up.scss */
+/* line 154, ../scss/breakpoints/_768up.scss */
 .hp-block.clickable:hover {
   background-color: rgba(41, 171, 226, 0.6);
 }
-/* line 169, ../scss/breakpoints/_768up.scss */
+/* line 158, ../scss/breakpoints/_768up.scss */
 .hp-block.clickable.groen:hover {
   background-color: rgba(0, 169, 157, 0.6);
 }
 
-/* line 175, ../scss/breakpoints/_768up.scss */
+/* line 164, ../scss/breakpoints/_768up.scss */
 .eq {
   display: -webkit-box;
   display: -webkit-flex;
@@ -303,13 +294,13 @@ come into play. Have fun!
   display: flex;
 }
 
-/* line 182, ../scss/breakpoints/_768up.scss */
+/* line 171, ../scss/breakpoints/_768up.scss */
 .makeblock {
   display: inline;
   margin-top: 0;
 }
 
-/* line 213, ../scss/breakpoints/_768up.scss */
+/* line 202, ../scss/breakpoints/_768up.scss */
 .info {
   padding: 0;
   position: absolute;
@@ -322,22 +313,22 @@ come into play. Have fun!
   margin-left: 180px;
   z-index: 9999;
 }
-/* line 224, ../scss/breakpoints/_768up.scss */
+/* line 213, ../scss/breakpoints/_768up.scss */
 .info .flag-icon {
   margin-top: .5em;
 }
 
-/* line 256, ../scss/breakpoints/_768up.scss */
+/* line 245, ../scss/breakpoints/_768up.scss */
 .navbar .btn.btn-default, .navbar .btn-group .btn {
   margin-right: 10px;
 }
 
-/* line 261, ../scss/breakpoints/_768up.scss */
+/* line 250, ../scss/breakpoints/_768up.scss */
 .navbar-header {
   margin: 0 auto;
 }
 
-/* line 265, ../scss/breakpoints/_768up.scss */
+/* line 254, ../scss/breakpoints/_768up.scss */
 .navbar-collapse {
   padding: 0;
 }

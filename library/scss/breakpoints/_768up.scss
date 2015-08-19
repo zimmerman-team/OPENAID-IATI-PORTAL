@@ -149,17 +149,6 @@ come into play. Have fun!
 	}
 }
 
-.activity-list-item {
-	.hp-block {
-		transition:all 0.2s;
-	}
-	&:hover {
-		.hp-block {
-			background-color: rgba($blauw,.4)
-		}
-	}
-}
-
 .hp-block.clickable {
 	transition:all 0.2s;
 	&:hover {

@@ -4,8 +4,9 @@
             <img src="{{templateBaseUrl}}/images/spinning-circles.svg" width="70" alt="">
         </div>
     </div>
+
     <div class="col-md-12">
-        <div class="sort">
+        <div class="sort wit">
             <div class="row">
                 <div class="col-xs-4">
                     resultaten {{vm.offset + 1}} - {{vm.maxShown()}} van {{vm.totalActivities}}
@@ -18,28 +19,40 @@
             </div>
         </div>
     </div>
-    <div class="activity-list-item" 
-        ng-show="vm.activities.length != 0"
-        dir-paginate="item in vm.activities | itemsPerPage: 5"  
-        pagination-id="activityList"
-        total-items="vm.totalActivities" 
-        current-page="vm.pagination.current">
-            <div class="col-md-12">
-                <div class="hp-block">
-                    <a ui-sref="activiteit({ activity_id: item.id })"></a>
-                    <div class="expand">
-                        <span class="fa-stack fa-lg">
-                            <i class="fa fa-circle fa-stack-2x"></i>
-                            <i class="fa fa-share fa-stack-1x fa-share"></i>
-                        </span>
+
+    <div class="row">
+        <div class="activity-list-item col-sm-12" 
+            ng-show="vm.activities.length != 0"
+            dir-paginate="item in vm.activities | itemsPerPage: 5"  
+            pagination-id="activityList"
+            total-items="vm.totalActivities" 
+            current-page="vm.pagination.current">
+                <div class="col-md-12">
+                    <div class="hp-block wit header">
+                        <h2><a ui-sref="activiteit({ activity_id: item.id })">{{ item.titles[0].title }}</a></h2>
+                        <p>Optional description</p>
                     </div>
-                    <h1>{{ item.titles[0].title }}</h1>
-                    <p><b>Land:</b> <span ng-repeat="country in item.countries">{{ country.name }}</span></p>
-                    <p><b>Sector:</b> <span ng-repeat="sector in item.sectors" >{{ sector.name }}</span></p>
-                    <p><b>Budget:</b> {{item.total_budget  | currency :'€':0}}</p>
-                    <p><b>Startdatum:</b> {{ item.start_actual }}</p>
+                    <div class="hp-block wit">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <p><b>Budget</b><br>{{item.total_budget  | currency :'€':0}}</p>
+                                <p><b>Land</b><br><a ng-repeat="country in item.countries">{{ country.name }}</a></p>
+                                <p><b>Regio</b><br><a>Regio</a></p>
+                                <p><b>Sector</b><br><a ng-repeat="sector in item.sectors" >{{ sector.name }}</a></p>
+                            </div>
+                            <div class="col-md-4">
+                                <p><b>Status</b><br>Status</p> 
+                                <p><b>Startdatum</b><br>{{ item.start_actual }}</p>
+                                <p><b>Einddatum</b><br>Eind</p> 
+                            </div>
+                            <div class="col-md-4">
+                                <p><b>Rapporterende organisatie</b><br>DGIS</p> 
+                                <p><b>IATI identifier</b><br>NL-BLABLA</p> 
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
+        </div>
     </div>
     <div class="col-md-12 text-center pag">
         <dir-pagination-controls 

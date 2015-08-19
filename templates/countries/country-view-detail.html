@@ -28,12 +28,15 @@
     <div class="row">
         <div class="col-md-12">
             <div class="hp-block wit">
-                <span class="flag-icon flag-icon-{{vm.country.code | lowercase }} big"></span><h1 class="title">{{vm.country.name}}</h1>  
+                <span class="flag-icon flag-icon-{{vm.country.code | lowercase }} big"></span><h1 class="title">{{vm.country.name}}</h1> 
+                <p>Land beschrijving</p> 
             </div>
         </div>
     </div>
 
     <subnav-bar></subnav-bar>
+
+    <!-- KAART HIER -->
 
     <div class="row">
 
@@ -42,10 +45,66 @@
 
             <!--start van een wit blokje -->
             <div class="row">
-                <div class="col-sm-12">
+                <div class="col-sm-12 activity-list-item">
                     <div class="hp-block wit" ng-click="vm.dashboard = 'list'">
-                        <h4>Totaal aantal activiteiten</h4>
-                        <span class="number">{{vm.activityCount}}</span>
+                        <p><b>IATI identifier</b><br>Niet beschikbaar</p>
+                    </div>
+                </div>
+            </div>
+            <!-- eind van een wit blokje -->
+            <!--start van een wit blokje -->
+            <div class="row">
+                <div class="col-sm-12 activity-list-item">
+                    <div class="hp-block wit" ng-click="vm.dashboard = 'list'">
+                        <p><b>Laatste update</b><br>Niet beschikbaar</p>
+                        <p><b>Startdatum</b><br>Niet beschikbaar</p>
+                        <p><b>Einddatum</b><br>Niet beschikbaar</p>
+                    </div>
+                </div>
+            </div>
+            <!-- eind van een wit blokje -->
+            <!--start van een wit blokje -->
+            <div class="row">
+                <div class="col-sm-12 activity-list-item">
+                    <div class="hp-block wit" ng-click="vm.dashboard = 'list'">
+                        <p>
+                            <b>Uitgaven per jaar</b><br>
+                            Niet beschikbaar<br>
+                            Bla<br>
+                            Bla
+                        </p>
+                        <p>
+                            <b>Budgetten per jaar</b><br>
+                            Niet beschikbaar<br>
+                            Bla<br>
+                            Bla
+                        </p>
+                        <p>
+                            <b>Verplichtingen per jaar</b><br>
+                            Niet beschikbaar<br>
+                            Bla<br>
+                            Bla
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!-- eind van een wit blokje -->
+            <!--start van een wit blokje -->
+            <div class="row">
+                <div class="col-sm-12 activity-list-item">
+                    <div class="hp-block wit" ng-click="vm.dashboard = 'list'">
+                        <p><b>Land</b><br>Niet beschikbaar</p>
+                        <p><b>Regio</b><br>Niet beschikbaar</p>
+                    </div>
+                </div>
+            </div>
+            <!-- eind van een wit blokje -->
+            <!--start van een wit blokje -->
+            <div class="row">
+                <div class="col-sm-12 activity-list-item">
+                    <div class="hp-block wit" ng-click="vm.dashboard = 'list'">
+                        <p><b>Sector</b><br>Niet beschikbaar</p>
+                        <p><b>Sector code</b><br>Niet beschikbaar</p>
                     </div>
                 </div>
             </div>
@@ -59,10 +118,20 @@
 
             <!--start van een wit blokje -->
             <div class="row">
-                <div class="col-sm-12">
+                <div class="col-sm-12 activity-list-item">
                     <div class="hp-block wit" ng-click="vm.dashboard = 'list'">
-                        <h3>Totaal aantal activiteiten</h3>
-                        <span class="number">{{vm.activityCount}}</span>
+                        <h3>Transacties</h3>
+                        CHART
+                    </div>
+                </div>
+            </div>
+            <!-- eind van een wit blokje -->
+            <!--start van een wit blokje -->
+            <div class="row">
+                <div class="col-sm-12 activity-list-item">
+                    <div class="hp-block wit" ng-click="vm.dashboard = 'list'">
+                        <h3>Documenten</h3>
+                        DOCS
                     </div>
                 </div>
             </div>
