@@ -72,7 +72,7 @@
         if(data.data.length == 0){vm.totalBudget = 0 } else { vm.totalBudget = data.data[0]['total_disbursements']};
       }, errorFn);
 
-      Aggregations.aggregation('transaction-receiver-org', 'iati-identifier', selectionString).then(function(data, status, headers, config){
+      Aggregations.aggregation('transaction__receiver-org', 'iati-identifier', selectionString).then(function(data, status, headers, config){
         vm.organisationCount = data.data.length;
       }, errorFn);
 

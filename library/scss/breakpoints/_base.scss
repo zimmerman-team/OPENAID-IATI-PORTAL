@@ -1342,6 +1342,29 @@ TABS
 }
 
 /*********************
+Search suggest box
+*********************/
+.search-suggest-box{
+  z-index: 99999;
+  position: absolute;
+  top: 40px; 
+  left: 16px; 
+  width: 120%; 
+  min-height: 100px; 
+  background-color: #fff;
+  text-align: left;
+
+  .header{
+    background-color: #333;
+    color: #fff;
+    a{
+      color: #fff;
+    }
+  }
+}
+
+
+/*********************
 Tab geo chart vis 
 *********************/
 #geovis-0 .region{

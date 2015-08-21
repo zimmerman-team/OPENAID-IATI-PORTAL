@@ -30,27 +30,37 @@
                     <div class="hp-block wit">
                         <div class="row">
                             <div class="col-md-4">
-                                <p><b>Budget</b><br>{{item.total_budget  | currency :'€':0}}</p>
+                                <p><b>Budget</b><br>
+                                    <span ng-if='item.total_budget.length'>{{item.total_budget | shortcurrency :'€'}}</span>
+                                    <span ng-if='!item.total_budget.length'>Niet beschikbaar</span>
+                                </p>
                                 <p><b>Land</b><br>
                                     <a ui-sref="country({'country_id': country.code})" ng-repeat="country in item.countries">
                                         {{ country.name }}
                                     </a>
+                                    <span ng-show='!item.countries.length'>Niet beschikbaar</span>
                                 </p>
                                 <p><b>Regio</b><br>
                                     <a ui-sref="region({'region_id': region.code})" ng-repeat="region in item.regions">
                                         {{ region.name }}
                                     </a>
+                                    <span ng-show='!item.regions.length'>Niet beschikbaar</span>
                                 </p>
                                 <p><b>Sector</b><br>
                                     <a ui-sref="sector({'sector_id': sector.code})" ng-repeat="sector in item.sectors">
                                         {{ sector.name }}
                                     </a>
+                                    <span ng-show='!item.sectors.length'>Niet beschikbaar</span>
                                 </p>
                             </div>
                             <div class="col-md-4">
                                 <p><b>Status</b><br>{{item.activity_status.name}}</p> 
-                                <p><b>Startdatum</b><br>{{ item.start_actual }}</p>
-                                <p><b>Einddatum</b><br>{{ item.end_actual }}</p> 
+                                <p><b>Startdatum</b><br>
+                                    {{item.start_actual.length ? item.start_actual : 'Niet beschikbaar'}}
+                                </p>
+                                <p><b>Einddatum</b><br>
+                                    {{item.end_actual.length ? item.end_actual : 'Niet beschikbaar'}}
+                                </p> 
                             </div>
                             <div class="col-md-4">
                                 <p><b>Rapporterende organisatie</b><br>{{item.reporting_organisation.name}}</p> 

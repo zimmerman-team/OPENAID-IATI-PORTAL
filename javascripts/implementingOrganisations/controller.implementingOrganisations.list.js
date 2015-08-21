@@ -27,6 +27,7 @@
         current: 1
     };
     vm.loading = 0;
+    vm.submitSearch = '';
 
     $scope.pageChanged = function(newPage) {
         vm.offset = (newPage * vm.page_size) - vm.page_size;
@@ -66,7 +67,7 @@
           return false;
         }
       }
-      Aggregations.aggregation('transaction-receiver-org', 'disbursement', selectionString + '&order_by=-total_disbursements').then(succesFn, errorFn);
+      Aggregations.aggregation('transaction__receiver-org', 'disbursement', selectionString + '&order_by=-total_disbursements').then(succesFn, errorFn);
 
       function succesFn(data, status, headers, config){
 

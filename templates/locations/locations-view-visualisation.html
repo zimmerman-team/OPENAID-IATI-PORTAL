@@ -2,7 +2,8 @@
 
     <top-navbar 
         views="[{'id':'locations', 'name': 'Bekijk visualisatie'}, {'id':'locations-map', 'name': 'Bekijk op kaart & lijst'}]"
-        search-value="vm.searchValue"></top-navbar>
+        search-value="vm.searchValue"
+        submit-search="vm.submitSearch"></top-navbar>
 
     <filter-bar current-page="countries"></filter-bar>
 
@@ -41,8 +42,6 @@
                         refresh-visualisation="vm.refreshVisualisation" 
                         formatted-data="vm.visualisationData">
                     </geo-visualisation>
-
-                    <!-- <img src="{{vm.templateBaseUrl}}/images/locaties-preview.png" alt=""> -->
                 </div>
             </div>
         </div>

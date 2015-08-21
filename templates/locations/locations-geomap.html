@@ -1,5 +1,3 @@
-
-<!-- {{vm.selectedCountryRelation}} -->
 <div class="map">
   <div class="geomap-mask">  
     <leaflet defaults="vm.defaults" center="vm.center" markers="vm.markers" height="600px" width="100%">
@@ -20,10 +18,10 @@
                 
                 <input 
                   id="id{{item.id}}" 
-                  checklist-model="vm.selectedCountryRelation" 
-                  checklist-value="item"  
-                  ng-change="console.log('test');"
+                  checklist-model="vm.selectedCountryRelation"
+                  checklist-value="item"
                   type="checkbox">
+                  
 
                 <i class="faker"></i>
                 <span class="labels">

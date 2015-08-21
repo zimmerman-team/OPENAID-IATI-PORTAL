@@ -1,14 +1,181 @@
-<div class="search-box">
-    <form ng-submit="vm.save()">
+<div class="search-box" style="position:relative;">
+    <form ng-submit="vm.submit()">
 	    <div class="form-group">
 	        <input 
 	            ng-model="vm.searchString" 
 	            type="text" 
 	            class="form-control" 
+                ng-change="vm.search()"
 	            placeholder="Zoek op locatie, project, sector, organisatie, IATI ID, of keyword">
-	        <button class="btn-search" type="button" ng-click="vm.save()">
+	        <button class="btn-search" type="submit">
 	            <span class="glyphicon glyphicon-search"></span>
 	        </button>
         </div>
     </form>
+
+    <div ng-if="vm.showResults" class="search-suggest-box">
+        
+        <div class="header">
+            <div class="row">
+                <div class="col-md-9">
+                    <a ui-sref="activities">Activiteiten ({{vm.searchData.activities.total}})</a>
+                </div>
+                <div class="col-md-3">
+                    <a ui-sref="activities">Show more</a>
+                </div>
+            </div>
+        </div>
+        <div class="results">
+            <div class="row" ng-repeat="activity in vm.searchData.activities.data">
+                <div class="col-md-9">
+                    <a ui-sref='activiteit({"activity_id": activity.id})'>{{activity.titles[0].title}}</a>
+                </div>
+                <div class="col-md-3">
+                    {{activity.iati_identifier}}
+                </div>
+            </div>
+             <div class="row" ng-show="!vm.searchData.countries.data.length">
+                <div class="col-md-9">
+                    0 resultaten
+                </div>
+            </div>
+            <div class="row" ng-show="!vm.searchData.activities.loaded">
+                <div class="svg-loader">
+                    <img src="{{vm.templateBaseUrl}}/images/spinning-circles.svg" width="50" alt="">
+                </div>
+            </div>
+        </div>
+
+        <div class="header">
+            <div class="row">
+                <div class="col-md-9">
+                    <a ui-sref="locations-map">Landen ({{vm.searchData.countries.total}})</a>
+                </div>
+                <div class="col-md-3">
+                    <a ui-sref="locations-map">Show more</a>
+                </div>
+            </div>
+        </div>
+        <div class="results">
+            <div class="row" ng-repeat="country in vm.searchData.countries.data">
+                <div class="col-md-9">
+                    <a ui-sref='country({"country_id": country.country_id})'>{{country.name}}</a>
+                </div>
+                <div class="col-md-3">
+                    {{country.activity_count}} activiteiten
+                </div>
+            </div>
+
+            <div class="row" ng-show="!vm.searchData.countries.data.length">
+                <div class="col-md-9">
+                    0 resultaten
+                </div>
+            </div>
+            <div class="row" ng-show="!vm.searchData.countries.loaded">
+                <div class="svg-loader">
+                    <img src="{{vm.templateBaseUrl}}/images/spinning-circles.svg" width="50" alt="">
+                </div>
+            </div>
+        </div>
+
+        <div class="header">
+            <div class="row">
+                <div class="col-md-9">
+                    <a ui-sref="locations-map">Regio's ({{vm.searchData.regions.total}})</a>
+                </div>
+                <div class="col-md-3">
+                    <a ui-sref="locations-map">Show more</a>
+                </div>
+            </div>
+        </div>
+        <div class="results">
+            <div class="row" ng-repeat="region in vm.searchData.regions.data">
+                <div class="col-md-9">
+                    <a ui-sref='region({"country_id": region.region_id})'>{{region.name}}</a>
+                </div>
+                <div class="col-md-3">
+                    {{region.activity_count}} activiteiten
+                </div>
+            </div>
+
+            <div class="row" ng-show="!vm.searchData.regions.data.length">
+                <div class="col-md-9">
+                    0 resultaten
+                </div>
+            </div>
+            <div class="row" ng-show="!vm.searchData.regions.loaded">
+                <div class="svg-loader">
+                    <img src="{{vm.templateBaseUrl}}/images/spinning-circles.svg" width="50" alt="">
+                </div>
+            </div>
+        </div>
+
+
+        <div class="header">
+            <div class="row">
+                <div class="col-md-9">
+                    <a ui-sref="sector-list">Sectoren ({{vm.searchData.sectors.total}})</a>
+                </div>
+                <div class="col-md-3">
+                    <a ui-sref="sector-list">Show more</a>
+                </div>
+            </div>
+        </div>
+        <div class="results">
+            <div class="row" ng-repeat="sector in vm.searchData.sectors.data">
+                <div class="col-md-9">
+                    <a ui-sref='sector({"sector_id": sector.sector_id})'>{{sector.name}}</a>
+                </div>
+                <div class="col-md-3">
+                    {{sector.activity_count}} activiteiten
+                </div>
+            </div>
+
+            <div class="row" ng-show="!vm.searchData.sectors.data.length">
+                <div class="col-md-9">
+                    0 resultaten
+                </div>
+            </div>
+            <div class="row" ng-show="!vm.searchData.sectors.loaded">
+                <div class="svg-loader">
+                    <img src="{{vm.templateBaseUrl}}/images/spinning-circles.svg" width="50" alt="">
+                </div>
+            </div>
+        </div>
+
+        <div class="header">
+            <div class="row">
+                <div class="col-md-9">
+                    <a ui-sref="organisation-list">Organisaties ({{vm.searchData.organisations.total}})</a>
+                </div>
+                <div class="col-md-3">
+                    <a ui-sref="organisation-list">Show more</a>
+                </div>
+            </div>
+        </div>
+        <div class="results">
+            <div class="row" ng-repeat="organisation in vm.searchData.organisations.data">
+                <div class="col-md-9">
+                    <a ui-sref='organisation({"organisation_id": organisation.receiver_organisation_id})'>{{organisation.name}}</a>
+                </div>
+                <div class="col-md-3">
+                    {{organisation.activity_count}} transacties
+                </div>
+            </div>
+
+            <div class="row" ng-show="!vm.searchData.organisations.data.length">
+                <div class="col-md-9">
+                    0 resultaten
+                </div>
+            </div>
+
+            <div class="row" ng-show="!vm.searchData.organisations.loaded">
+                <div class="svg-loader">
+                    <img src="{{vm.templateBaseUrl}}/images/spinning-circles.svg" width="50" alt="">
+                </div>
+            </div>
+        </div>
+
+
+    </div>
 </div>

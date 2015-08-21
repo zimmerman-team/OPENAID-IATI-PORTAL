@@ -12,6 +12,7 @@
         vm.filterSelection = FilterSelection;
         vm.selectionString = '';
         vm.templateBaseUrl = templateBaseUrl;
+        vm.submitSearch = '';
 
         activate();
 

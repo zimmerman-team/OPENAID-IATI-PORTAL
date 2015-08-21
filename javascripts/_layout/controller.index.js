@@ -53,9 +53,9 @@
         aggregationExtraSelect: 'iati-identifier',
         aggregationExtraSelectIn: 'countries__in'
       },
-      'transaction-receiver-org': {
+      'transaction__receiver-org': {
         aggregationFilters: '&amp;order_by=-total_disbursements&amp;limit=5',
-        groupBy: 'transaction-receiver-org',
+        groupBy: 'transaction__receiver-org',
         groupById: 'receiver_organisation_id',
         aggregationKey: 'disbursement',
         aggregationExtraSelect: 'iati-identifier',
@@ -73,15 +73,15 @@
 
     vm.top5ListOptions = {
       'recipient-country': {
-        groupBy: 'recipient-country,transaction_date_year',
+        groupBy: 'recipient-country,transaction__transaction-date_year',
         groupById: 'country_id'
       },
-      'transaction-receiver-org': {
-        groupBy: 'transaction-receiver-org,transaction_date_year',
+      'transaction__receiver-org': {
+        groupBy: 'transaction__receiver-org,transaction__transaction-date_year',
         groupById: 'receiver_organisation_id',
       },
       'sector': {
-        groupBy: 'sector,transaction_date_year',
+        groupBy: 'sector,transaction__transaction-date_year',
         groupById: 'sector_id',
       }
     };

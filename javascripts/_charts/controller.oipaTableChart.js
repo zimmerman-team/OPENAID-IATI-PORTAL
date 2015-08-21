@@ -51,7 +51,7 @@
           }
           filter__in = filter__in.join();
 
-          if(vm.groupBy == 'transaction-receiver-org'){
+          if(vm.groupBy == 'transaction__receiver-org'){
             vm.groupBy = 'participating-org';
             vm.groupById = 'organisation_id';
           }

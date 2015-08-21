@@ -15,121 +15,128 @@
         selected-tab='vm.selectedTab'>
     </sub-navbar>
 
-    <locations-geo-map></locations-geo-map>
+    
+    <div ng-show="vm.selectedTab == 'samenvatting'">
 
-    <div class="row" ng-show="vm.selectedTab == 'samenvatting'">
-        <!-- start linker kolom -->
-        <div class="col-md-4">
+        <locations-geo-map></locations-geo-map>
 
-            <!--start van een wit blokje -->
-            <div class="row">
-                <div class="col-sm-12 activity-list-item">
-                    <div class="hp-block wit">
-                        <p><b>IATI identifier</b><br>{{vm.activity.iati_identifier}}</p>
+        <div class="row">
+
+            <!-- start linker kolom -->
+            <div class="col-md-4">
+
+                <!--start van een wit blokje -->
+                <div class="row">
+                    <div class="col-sm-12 activity-list-item">
+                        <div class="hp-block wit">
+                            <p><b>IATI identifier</b><br>{{vm.activity.iati_identifier}}</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <!-- eind van een wit blokje -->
-            <!--start van een wit blokje -->
-            <div class="row">
-                <div class="col-sm-12 activity-list-item">
-                    <div class="hp-block wit">
-                        <p><b>Laatste update</b><br>{{vm.activity.last_updated_datetime | date : 'dd-mm-yyyy'}}</p>
-                        <p><b>Startdatum</b><br>{{vm.activity.start_actual.length ? vm.activity.start_actual : 'Niet beschikbaar'}}</p>
-                        <p><b>Einddatum</b><br>{{vm.activity.end_actual.length ? vm.activity.end_actual : 'Niet beschikbaar'}}</p>
+                <!-- eind van een wit blokje -->
+                <!--start van een wit blokje -->
+                <div class="row">
+                    <div class="col-sm-12 activity-list-item">
+                        <div class="hp-block wit">
+                            <p><b>Laatste update</b><br>{{vm.activity.last_updated_datetime | date : 'dd-mm-yyyy'}}</p>
+                            <p><b>Startdatum</b><br>{{vm.activity.start_actual.length ? vm.activity.start_actual : 'Niet beschikbaar'}}</p>
+                            <p><b>Einddatum</b><br>{{vm.activity.end_actual.length ? vm.activity.end_actual : 'Niet beschikbaar'}}</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <!-- eind van een wit blokje -->
-            <!--start van een wit blokje -->
-            <div class="row">
-                <div class="col-sm-12 activity-list-item">
-                    <div class="hp-block wit">
-                        <p><b>Website</b><br>{{vm.activity.websites.length ? vm.activity.websites[0].url : 'Niet beschikbaar'}}</p>
+                <!-- eind van een wit blokje -->
+                <!--start van een wit blokje -->
+                <div class="row">
+                    <div class="col-sm-12 activity-list-item">
+                        <div class="hp-block wit">
+                            <p><b>Website</b><br>{{vm.activity.websites.length ? vm.activity.websites[0].url : 'Niet beschikbaar'}}</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <!-- eind van een wit blokje -->
+                <!-- eind van een wit blokje -->
 
+            </div>
+            <!-- eind linker kolom -->
+
+            <!-- start midden kolom -->
+            <div class="col-md-4">
+
+                <!--start van een wit blokje -->
+                <div class="row">
+                    <div class="col-sm-12 activity-list-item">
+                        <div class="hp-block wit">
+                            <p><b>Status</b><br>{{vm.activity.activity_status.name}}</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- eind van een wit blokje -->
+                <!--start van een wit blokje -->
+                <div class="row">
+                    <div class="col-sm-12 activity-list-item">
+                        <div class="hp-block wit">
+                            <p><b>Budget</b><br>
+                                <span ng-if='vm.activity.total_budget.length'>{{vm.activity.total_budget | currency :'€':0}}</span>
+                                <span ng-if='!vm.activity.total_budget.length'>Niet beschikbaar</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- eind van een wit blokje -->
+                <!--start van een wit blokje -->
+                <div class="row">
+                    <div class="col-sm-12 activity-list-item">
+                        <div class="hp-block wit">
+                            <p><b>Rapporterende organisatie</b><br>{{vm.activity.reporting_organisation.name}}</p>
+                            <p><b>Deelnemende organisaties</b><br><span ng-repeat='org in vm.activity.participating_organisations'>{{org.name}}, </span></p>
+                        </div>
+                    </div>
+                </div>
+                <!-- eind van een wit blokje -->
+
+            </div>
+            <!-- eind midden kolom -->
+
+            <!-- start rechter kolom -->
+            <div class="col-md-4">
+
+                <!--start van een wit blokje -->
+                <div class="row">
+                    <div class="col-sm-12 activity-list-item">
+                        <div class="hp-block wit">
+                            <p>
+                                <b>Land</b><br>
+                                <a ng-repeat="country in vm.activity.countries" ui-sref="country({ country_id: country.code })">
+                                    {{country.name}}
+                                </a>
+                                <span ng-if='vm.activity.countries.length == 0'>Niet beschikbaar</span>
+                            </p>
+
+                            <p>
+                                <b>Regio</b><br>
+                                <a ng-repeat="region in vm.activity.regions" ui-sref="region({ region_id: region.code })">
+                                    {{region.name}}
+                                </a>
+                                <span ng-if='vm.activity.regions.length == 0'>Niet beschikbaar</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- eind van een wit blokje -->
+                <!--start van een wit blokje -->
+                <div class="row">
+                    <div class="col-sm-12 activity-list-item">
+                        <div class="hp-block wit" ng-click="vm.dashboard = 'list'">
+                            <p><b>Sector</b><br>{{vm.activity.sectors[0].name}}</p>
+                            <p><b>Sector code</b><br>{{vm.activity.sectors[0].code}}</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- eind van een wit blokje -->
+
+            </div>
+            <!-- eind rechter kolom -->
         </div>
-        <!-- eind linker kolom -->
-
-        <!-- start midden kolom -->
-        <div class="col-md-4">
-
-            <!--start van een wit blokje -->
-            <div class="row">
-                <div class="col-sm-12 activity-list-item">
-                    <div class="hp-block wit">
-                        <p><b>Status</b><br>{{vm.activity.activity_status.name}}</p>
-                    </div>
-                </div>
-            </div>
-            <!-- eind van een wit blokje -->
-            <!--start van een wit blokje -->
-            <div class="row">
-                <div class="col-sm-12 activity-list-item">
-                    <div class="hp-block wit">
-                        <p><b>Budget</b><br>{{vm.activity.total_budget | currency :'€':0}}</p>
-                    </div>
-                </div>
-            </div>
-            <!-- eind van een wit blokje -->
-            <!--start van een wit blokje -->
-            <div class="row">
-                <div class="col-sm-12 activity-list-item">
-                    <div class="hp-block wit">
-                        <p><b>Rapporterende organisatie</b><br>{{vm.activity.reporting_organisation.name}}</p>
-                        <p><b>Deelnemende organisaties</b><br><span ng-repeat='org in vm.activity.participating_organisations'>{{org.name}}, </span></p>
-                    </div>
-                </div>
-            </div>
-            <!-- eind van een wit blokje -->
-
-        </div>
-        <!-- eind midden kolom -->
-
-        <!-- start rechter kolom -->
-        <div class="col-md-4">
-
-            <!--start van een wit blokje -->
-            <div class="row">
-                <div class="col-sm-12 activity-list-item">
-                    <div class="hp-block wit">
-                        <p>
-                            <b>Land</b><br>
-                            <a ng-repeat="country in vm.activity.countries" ui-sref="country({ country_id: country.code })">
-                                {{country.name}}
-                            </a>
-                            <span ng-if='vm.activity.countries.length == 0'>Niet beschikbaar</span>
-                        </p>
-
-                        <p>
-                            <b>Regio</b><br>
-                            <a ng-repeat="region in vm.activity.regions" ui-sref="region({ region_id: region.code })">
-                                {{region.name}}
-                            </a>
-                            <span ng-if='vm.activity.regions.length == 0'>Niet beschikbaar</span>
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <!-- eind van een wit blokje -->
-            <!--start van een wit blokje -->
-            <div class="row">
-                <div class="col-sm-12 activity-list-item">
-                    <div class="hp-block wit" ng-click="vm.dashboard = 'list'">
-                        <p><b>Sector</b><br>{{vm.activity.sectors[0].name}}</p>
-                        <p><b>Sector code</b><br>{{vm.activity.sectors[0].code}}</p>
-                    </div>
-                </div>
-            </div>
-            <!-- eind van een wit blokje -->
-
-        </div>
-        <!-- eind rechter kolom -->
     </div>
-
 
 
     <!-- voor op transacties page -->

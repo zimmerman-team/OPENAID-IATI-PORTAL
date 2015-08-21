@@ -36,7 +36,7 @@
          * @memberOf oipa.implementingOrganisations
          */
         function all() {
-            var url = oipaUrl + '/activity-aggregate-any/?format=json&group_by=participating-org&aggregation_key=iati-identifier';
+            var url = oipaUrl + '/aggregate/?format=json&group_by=participating-org&aggregation_key=iati-identifier';
             if(reportingOrganisationId){
                 url += '&reporting_organisation__in=' + reportingOrganisationId;
             }

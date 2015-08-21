@@ -93,8 +93,8 @@
           vm.markers[key].opacity = 0;
         }
 
-        Aggregations.aggregation('recipient-country-geo', 'iati-identifier', vm.selectionString).then(countrySuccessFn, errorFn);
-        Aggregations.aggregation('recipient-region-geo', 'iati-identifier', vm.selectionString).then(regionSuccessFn, errorFn);
+        Aggregations.aggregation('recipient-country', 'iati-identifier', vm.selectionString).then(countrySuccessFn, errorFn);
+        Aggregations.aggregation('recipient-region', 'iati-identifier', vm.selectionString).then(regionSuccessFn, errorFn);
 
         function countrySuccessFn(data, status, headers, config) {
             vm.updateCountryMarkers(data.data);

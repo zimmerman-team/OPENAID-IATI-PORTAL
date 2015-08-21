@@ -25,7 +25,7 @@
 
         function aggregation(group_by, aggregation_key, filters, order_by, limit){
 
-            var url = oipaUrl + '/activity-aggregate-any/?format=json&group_by='+group_by+'&aggregation_key='+aggregation_key
+            var url = oipaUrl + '/aggregate/?format=json&group_by='+group_by+'&aggregation_key='+aggregation_key
             if(reportingOrganisationId){
                 url += '&reporting_organisation__in=' + reportingOrganisationId
             }

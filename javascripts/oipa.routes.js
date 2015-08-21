@@ -30,7 +30,7 @@
         .state({
             name:         'activities',
             url:          '/projecten/',
-            controller:   'ExploreController',
+            controller:   'ActivitiesExploreController',
             controllerAs: 'vm',
             templateUrl:  templateBaseUrl + '/templates/activities/activities-view-list-map.html',
             ncyBreadcrumb: {

@@ -32,7 +32,6 @@
             'oipa.sunburst',
             'oipa.geovis',
             'oipa.tabs',
-            'oipa.explore',
             'oipa.activities',
             'oipa.policyMarkers',
             'oipa.stackedBarChart',

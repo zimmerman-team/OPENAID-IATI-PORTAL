@@ -37,6 +37,10 @@
       $state.go(vm.selectedView);
     }
 
+    vm.submitForm = function(){
+      $scope.submitSearch = true;
+    }
+
 
 
   }

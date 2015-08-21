@@ -36,6 +36,10 @@
       $scope.$watch("vm.filterSelection.selectionString", function (selectionString) {
           vm.update(selectionString);
       }, true);
+
+      $scope.$watch("searchValue", function (searchValue) {
+          vm.update(vm.filterSelection.selectionString + '&name_query='+searchValue);
+      }, true);
     }
 
     vm.minMaxShown = function(){

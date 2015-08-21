@@ -12,7 +12,7 @@
         vm.filterSelection = FilterSelection;
         vm.selectionString = '';
         vm.geoView = 'countries';
-
+        vm.submitSearch = '';
     }
 
 })();

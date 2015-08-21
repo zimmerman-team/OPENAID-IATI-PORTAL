@@ -20,10 +20,19 @@
     vm.selectionString = '';
     vm.sunburstData = '';
     vm.refreshSunburst = false;
+    vm.searchValue = '';
+    vm.submitSearch = false;
 
     activate();
 
     function activate() {
+
+      $scope.$watch('vm.submitSearch', function(submitSearch){
+        if(submitSearch){
+          // to do: UPDATE SUNBURST DATA WITH SEARCHVALUE
+          vm.submitSearch = false;
+        }
+      }, true);
 
       $scope.$watch('vm.filterSelection.selectionString', function (selectionString) {
           vm.selectionString = selectionString;

@@ -27,7 +27,8 @@
       restrict: 'E',
       scope: {
         hasToContain: '@',
-        count: '=?'
+        count: '=?',
+        searchValue: '=?'
       },
       templateUrl: templateBaseUrl + '/templates/sectors/sectors-list.html'
     };

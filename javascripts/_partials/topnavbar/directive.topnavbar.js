@@ -20,6 +20,7 @@
       scope: {
         'views': '=',
         'searchValue': '=',
+        'submitSearch': '='
       },
       templateUrl: templateBaseUrl + '/templates/_partials/topnavbar/top-navbar.html'
     };

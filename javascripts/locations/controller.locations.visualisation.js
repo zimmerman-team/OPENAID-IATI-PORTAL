@@ -21,6 +21,7 @@
     vm.visualisationData = '';
     vm.refreshVisualisation = false;
     vm.templateBaseUrl = templateBaseUrl;
+    vm.submitSearch = '';
 
     activate();
 

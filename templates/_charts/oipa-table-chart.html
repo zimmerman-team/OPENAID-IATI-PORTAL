@@ -3,7 +3,7 @@
         <tr ng-repeat="item in vm.chartData">
         	<td class="colour"><div></div></td>
             <td width="30%">
-            	<span class="no">1.</span>
+            	<span class="no">{{$index + 1}}.</span>
             	<a ui-sref="country({ country_id: item.country_id })">
 	            	<span ng-if="item.country_id" class="flag-icon flag-icon-{{item.country_id | lowercase }}"></span><span>{{item.name}}</span>
             	</a>
