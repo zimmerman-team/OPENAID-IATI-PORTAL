@@ -19,6 +19,21 @@
                 <activity-list></activity-list>
             </div>
 
+            <div ng-show="vm.selectedTab == 'organisations'">
+                <implementing-organisations-list></implementing-organisations-list>
+            </div>
+
+            <div ng-show="vm.selectedTab == 'sectors'">
+                <sector-list></sector-list>
+            </div>
+
+            <div ng-show="vm.selectedTab == 'countries'">
+                <country-list></country-list>
+            </div>
+
+            <div ng-show="vm.selectedTab == 'regions'">
+                <region-list></region-list>
+            </div>
 
         </div>
     </div>

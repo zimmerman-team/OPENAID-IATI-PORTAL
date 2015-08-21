@@ -21,7 +21,7 @@
     vm.order_by = 'total_disbursements';
     vm.page_size = 5;
     vm.offset = 0;
-    vm.totalActivities = 0;
+    vm.totalCountries = 0;
     vm.hasToContain = $scope.hasToContain;
     vm.pagination = {
         current: 1
@@ -32,11 +32,7 @@
         vm.offset = (newPage * vm.page_size) - vm.page_size;
     };
 
-    /**
-    * @name activate
-    * @desc Actions to be performed when this controller is instantiated
-    * @memberOf oipa.activityStatus.ActivityStatusController
-    */
+
     function activate() {
       // use predefined filters or the filter selection
       $scope.$watch("vm.filterSelection.selectionString", function (selectionString) {
@@ -44,12 +40,20 @@
       }, true);
     }
     
-    vm.maxShown = function(){
-      if(vm.offset + vm.page_size > vm.totalActivities){
-        return vm.totalActivities;
+    vm.minMaxShown = function(){
+      var max = 0;
+      if(vm.offset + vm.page_size > vm.totalCountries){
+        max = vm.totalCountries;
       } else{
-        return (vm.offset + vm.page_size);
+        max = (vm.offset + vm.page_size);
       }
+
+      var min = 0;
+      if(vm.totalCountries > 0){
+        min = vm.offset;
+      }
+
+      return min + ' - ' + max;
     }
 
     vm.update = function(selectionString){
@@ -63,7 +67,8 @@
       function succesFn(data, status, headers, config){
 
         vm.countries = data.data;
-        vm.totalActivities = vm.countries.length;
+        vm.totalCountries = vm.countries.length;
+        $scope.count = vm.totalCountries;
       }
 
       function errorFn(data, status, headers, config){

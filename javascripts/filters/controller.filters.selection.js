@@ -11,9 +11,6 @@
 
   FiltersSelectionController.$inject = ['$scope', 'FilterSelection', 'Countries', 'Regions', 'Budget', 'Sectors', 'ImplementingOrganisations', 'ActivityStatus', 'Search'];
 
-  /**
-  * @namespace FiltersController
-  */
   function FiltersSelectionController($scope, FilterSelection, Countries, Regions, Budget, Sectors, ImplementingOrganisations, ActivityStatus, Search) {
     var vm = this;
     vm.selectedCountries = Countries.selectedCountries;
@@ -24,17 +21,14 @@
     vm.selectedBudget = Budget.budget;
     vm.filterSelection = FilterSelection;
 
-    /**
-    * @name activate
-    * @desc Actions to be performed when this controller is instantiated
-    * @memberOf oipa.filters.controllers.FiltersController
-    */
+
     function activate() {
 
       $scope.$watch("vm.filterSelection.toSave", function (toSave) {
 
         if(toSave){
-          // update
+
+          // update filters
           FilterSelection.openedPanel = '';
           vm.updateSelectionString();
           FilterSelection.toSave = false;
@@ -44,7 +38,8 @@
       $scope.$watch("vm.filterSelection.toReset", function (toReset) {
 
         if(toReset){
-          // update
+
+          // reset filters
           vm.resetSelection();
           FilterSelection.toReset = false;
         }

@@ -1,23 +1,6 @@
 <div id="main-content" class="container activity">
-
-    <detail-topbar></detail-topbar>
-
-    <div class="row">
-        <div class="col-md-12">       
-
-            <div class="row">
-                <div class="col-xs-12">
-                    <div class="rel">
-                        <filter-panel-budget ng-show="vm.isOpenedHeader('budget')"></filter-panel-budget>
-                        <filter-panel-sectors ng-show="vm.isOpenedHeader('sectors')"></filter-panel-sectors>
-                        <filter-panel-activity-status ng-show="vm.isOpenedHeader('activity_status')"></filter-panel-activity-status>
-                        <filter-panel-implementing-organisations ng-show="vm.isOpenedHeader('implementing_organisations')"></filter-panel-implementing-organisations>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
+    <detail-filter-bar></detail-filter-bar>
+    
     <div class="row">
         <div class="col-md-12">
             <div class="hp-block wit">
@@ -27,19 +10,22 @@
         </div>
     </div>
 
-    <subnav-bar></subnav-bar>
+    <sub-navbar 
+        tabs='vm.tabs' 
+        selected-tab='vm.selectedTab'>
+    </sub-navbar>
 
-    <!-- KAART HIER -->
+    <locations-geo-map></locations-geo-map>
 
-    <div class="row">
+    <div class="row" ng-show="vm.selectedTab == 'samenvatting'">
         <!-- start linker kolom -->
         <div class="col-md-4">
 
             <!--start van een wit blokje -->
             <div class="row">
                 <div class="col-sm-12 activity-list-item">
-                    <div class="hp-block wit" ng-click="vm.dashboard = 'list'">
-                        <p><b>IATI identifier</b><br>XXX</p>
+                    <div class="hp-block wit">
+                        <p><b>IATI identifier</b><br>{{vm.activity.iati_identifier}}</p>
                     </div>
                 </div>
             </div>
@@ -47,10 +33,10 @@
             <!--start van een wit blokje -->
             <div class="row">
                 <div class="col-sm-12 activity-list-item">
-                    <div class="hp-block wit" ng-click="vm.dashboard = 'list'">
-                        <p><b>Laatste update</b><br>XXX</p>
-                        <p><b>Startdatum</b><br>{{vm.activity.start_actual}}</p>
-                        <p><b>Einddatum</b><br>{{vm.activity.end_actual}}</p>
+                    <div class="hp-block wit">
+                        <p><b>Laatste update</b><br>{{vm.activity.last_updated_datetime | date : 'dd-mm-yyyy'}}</p>
+                        <p><b>Startdatum</b><br>{{vm.activity.start_actual.length ? vm.activity.start_actual : 'Niet beschikbaar'}}</p>
+                        <p><b>Einddatum</b><br>{{vm.activity.end_actual.length ? vm.activity.end_actual : 'Niet beschikbaar'}}</p>
                     </div>
                 </div>
             </div>
@@ -58,8 +44,8 @@
             <!--start van een wit blokje -->
             <div class="row">
                 <div class="col-sm-12 activity-list-item">
-                    <div class="hp-block wit" ng-click="vm.dashboard = 'list'">
-                        <p><b>Website</b><br>Niet beschikbaar</p>
+                    <div class="hp-block wit">
+                        <p><b>Website</b><br>{{vm.activity.websites.length ? vm.activity.websites[0].url : 'Niet beschikbaar'}}</p>
                     </div>
                 </div>
             </div>
@@ -74,7 +60,7 @@
             <!--start van een wit blokje -->
             <div class="row">
                 <div class="col-sm-12 activity-list-item">
-                    <div class="hp-block wit" ng-click="vm.dashboard = 'list'">
+                    <div class="hp-block wit">
                         <p><b>Status</b><br>{{vm.activity.activity_status.name}}</p>
                     </div>
                 </div>
@@ -83,7 +69,7 @@
             <!--start van een wit blokje -->
             <div class="row">
                 <div class="col-sm-12 activity-list-item">
-                    <div class="hp-block wit" ng-click="vm.dashboard = 'list'">
+                    <div class="hp-block wit">
                         <p><b>Budget</b><br>{{vm.activity.total_budget | currency :'€':0}}</p>
                     </div>
                 </div>
@@ -92,9 +78,9 @@
             <!--start van een wit blokje -->
             <div class="row">
                 <div class="col-sm-12 activity-list-item">
-                    <div class="hp-block wit" ng-click="vm.dashboard = 'list'">
-                        <p><b>Rapporterende organisatie</b><br>Niet beschikbaar</p>
-                        <p><b>Deelnemende organisaties</b><br>Niet beschikbaar</p>
+                    <div class="hp-block wit">
+                        <p><b>Rapporterende organisatie</b><br>{{vm.activity.reporting_organisation.name}}</p>
+                        <p><b>Deelnemende organisaties</b><br><span ng-repeat='org in vm.activity.participating_organisations'>{{org.name}}, </span></p>
                     </div>
                 </div>
             </div>
@@ -109,9 +95,22 @@
             <!--start van een wit blokje -->
             <div class="row">
                 <div class="col-sm-12 activity-list-item">
-                    <div class="hp-block wit" ng-click="vm.dashboard = 'list'">
-                        <p><b>Land</b><br><a ui-sref="land({ country_id: country.code })">{{country.name}}</a></p>
-                        <p><b>Regio</b><br>Niet beschikbaar</p>
+                    <div class="hp-block wit">
+                        <p>
+                            <b>Land</b><br>
+                            <a ng-repeat="country in vm.activity.countries" ui-sref="country({ country_id: country.code })">
+                                {{country.name}}
+                            </a>
+                            <span ng-if='vm.activity.countries.length == 0'>Niet beschikbaar</span>
+                        </p>
+
+                        <p>
+                            <b>Regio</b><br>
+                            <a ng-repeat="region in vm.activity.regions" ui-sref="region({ region_id: region.code })">
+                                {{region.name}}
+                            </a>
+                            <span ng-if='vm.activity.regions.length == 0'>Niet beschikbaar</span>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -120,8 +119,8 @@
             <div class="row">
                 <div class="col-sm-12 activity-list-item">
                     <div class="hp-block wit" ng-click="vm.dashboard = 'list'">
-                        <p><b>Sector</b><br>Niet beschikbaar</p>
-                        <p><b>Sector code</b><br>Niet beschikbaar</p>
+                        <p><b>Sector</b><br>{{vm.activity.sectors[0].name}}</p>
+                        <p><b>Sector code</b><br>{{vm.activity.sectors[0].code}}</p>
                     </div>
                 </div>
             </div>
@@ -134,7 +133,7 @@
 
 
     <!-- voor op transacties page -->
-    <div class="row">
+    <div class="row" ng-if="vm.selectedTab == 'transactions'">
         <div class="col-sm-12">
             <div class="hp-block wit">
                 <h3>Transacties</h3>
@@ -145,7 +144,7 @@
 
 
     <!-- voor op documenten page -->
-    <div class="row">
+    <div class="row" ng-show="vm.selectedTab == 'documents'">
         <div class="col-md-12">
             <div class="hp-block wit">
                 <h3>Documenten</h3>

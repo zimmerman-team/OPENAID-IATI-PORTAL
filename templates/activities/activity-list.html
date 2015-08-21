@@ -1,15 +1,10 @@
 <div class="explore-block-content row">
-    <div class="col-md-12" ng-show="vm.activities.length == 0">
-        <div class="svg-loader">
-            <img src="{{templateBaseUrl}}/images/spinning-circles.svg" width="70" alt="">
-        </div>
-    </div>
 
     <div class="col-md-12">
         <div class="sort wit">
             <div class="row">
                 <div class="col-xs-4">
-                    resultaten {{vm.offset + 1}} - {{vm.maxShown()}} van {{vm.totalActivities}}
+                    resultaten {{vm.minMaxShown()}} van {{vm.totalActivities}}
                 </div>
                 <div class="col-xs-8 text-right-not-xs">
                     <span class="sort-item hidden-xs">sorteer op:</span>
@@ -36,9 +31,21 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <p><b>Budget</b><br>{{item.total_budget  | currency :'€':0}}</p>
-                                <p><b>Land</b><br><a ng-repeat="country in item.countries">{{ country.name }}</a></p>
-                                <p><b>Regio</b><br><a>Regio</a></p>
-                                <p><b>Sector</b><br><a ng-repeat="sector in item.sectors" >{{ sector.name }}</a></p>
+                                <p><b>Land</b><br>
+                                    <a ui-sref="country({'country_id': country.code})" ng-repeat="country in item.countries">
+                                        {{ country.name }}
+                                    </a>
+                                </p>
+                                <p><b>Regio</b><br>
+                                    <a ui-sref="region({'region_id': region.code})" ng-repeat="region in item.regions">
+                                        {{ region.name }}
+                                    </a>
+                                </p>
+                                <p><b>Sector</b><br>
+                                    <a ui-sref="sector({'sector_id': sector.code})" ng-repeat="sector in item.sectors">
+                                        {{ sector.name }}
+                                    </a>
+                                </p>
                             </div>
                             <div class="col-md-4">
                                 <p><b>Status</b><br>{{item.activity_status.name}}</p> 

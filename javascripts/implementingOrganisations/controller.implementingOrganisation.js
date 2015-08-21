@@ -9,55 +9,47 @@
     .module('oipa.implementingOrganisations')
     .controller('ImplementingOrganisationController', ImplementingOrganisationController);
 
-  ImplementingOrganisationController.$inject = ['$scope', 'ImplementingOrganisations', 'templateBaseUrl', '$stateParams', 'FilterSelection', 'Aggregations'];
+  ImplementingOrganisationController.$inject = ['$scope', '$stateParams', 'ImplementingOrganisations', 'FilterSelection', 'Aggregations'];
 
   /**
   * @namespace CountriesController
   */
-  function ImplementingOrganisationController($scope, ImplementingOrganisations, templateBaseUrl, $stateParams, FilterSelection, Aggregations) {
+  function ImplementingOrganisationController($scope, $stateParams, ImplementingOrganisations, FilterSelection, Aggregations) {
     var vm = this;
     vm.organisation = null;
     vm.organisation_id = $stateParams.organisation_id;
-    vm.openedPanel = '';
-    vm.showSelection = false;
-    vm.partnerType = '';
-    vm.activityCount = '';
-    vm.sectorCount = '';
-    vm.countryCount = '';
-    vm.donorCount = '';
-    vm.totalBudget = '';
-    vm.dashboard = 'charts'; // options: charts, list, sectors, landen
     vm.filterSelection = FilterSelection;
     vm.selectionString = '';
+    vm.selectedTab = 'samenvatting';
 
-    vm.toggleSelection = function(){
-      vm.showSelection = !vm.showSelection;
-      vm.openedPanel = '';
-    }
+    vm.tabs = [
+      {'id': 'samenvatting', 'name': 'Samenvatting', 'count': -1},
+      {'id': 'activities', 'name': 'Projecten', 'count': -1},
+      {'id': 'sectors', 'name': 'Sectoren', 'count': -1},
+      {'id': 'countries', 'name': 'Landen', 'count': -1},
+      {'id': 'regions', 'name': 'Regio\'s', 'count': -1},
+    ]
 
-    vm.resetFilters = function(){
-      FilterSelection.toReset = true;
-    }
 
-    /**
-    * @name activate
-    * @desc Actions to be performed when this controller is instantiated
-    * @memberOf oipa.countries.controllers.CountryController
-    */
+    activate();
+
     function activate() {
+
+      vm.filterSelection.toReset = true;
+      ImplementingOrganisations.selectedImplementingOrganisations.push({'organisation_id': vm.organisation_id, 'name': ''});
 
       $scope.$watch('vm.filterSelection.selectionString', function (selectionString) {
         vm.update(selectionString);
-        vm.openedPanel = '';
       }, true);
 
-      // for each active country, get the results
       ImplementingOrganisations.get(vm.organisation_id).then(successFn, errorFn);
 
       function successFn(data, status, headers, config) {
+
         vm.organisation = data.data;
-        ImplementingOrganisations.selectedImplementingOrganisations.push({'organisation_id':vm.organisation.code,'name':vm.organisation.name});
-        FilterSelection.toSave = true;
+        ImplementingOrganisations.selectedImplementingOrganisations[0] = {'organisation_id':vm.organisation.code,'name':vm.organisation.name};
+        vm.filterSelection.toSave = true;
+        setTimeout(function(){ vm.update(vm.filterSelection.selectionString); }, 3000);
       }
 
     }
@@ -72,28 +64,17 @@
 
       vm.selectionString = selectionString;
 
-      Aggregations.aggregation('participating-org', 'iati-identifier', selectionString).then(function(data, status, headers, config){
-        vm.activityCount = data.data[0]['activity_count'];
+      Aggregations.aggregation('transaction_date_year', 'disbursement', selectionString).then(function(data, status, headers, config){
+        vm.disbursements_by_year = data.data;
       }, errorFn);
 
-      Aggregations.aggregation('transaction-receiver-org', 'disbursement', selectionString).then(function(data, status, headers, config){
-        vm.totalBudget = data.data[0]['total_disbursements'];
+      Aggregations.aggregation('transaction_date_year', 'commitment', selectionString).then(function(data, status, headers, config){
+        vm.commitments_by_year = data.data;
       }, errorFn);
 
-      Aggregations.aggregation('recipient-country', 'iati-identifier', selectionString).then(function(data, status, headers, config){
-        vm.countryCount = data.data.length;
-      }, errorFn);
-
-      Aggregations.aggregation('reporting-org', 'iati-identifier', selectionString).then(function(data, status, headers, config){
-        vm.donorCount = data.data.length;
-      }, errorFn);
-
-      Aggregations.aggregation('sector', 'iati-identifier', selectionString).then(function(data, status, headers, config){
-        vm.sectorCount = data.data.length;
-      }, errorFn);
     }
 
-    activate();
+    
 
   }
 })();

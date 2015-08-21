@@ -23,7 +23,7 @@
     }
 
     vm.isOpenedTab = function(id){
-        return $scope.selectedTab == id;
+      return $scope.selectedTab == id;
     }
   }
 })();

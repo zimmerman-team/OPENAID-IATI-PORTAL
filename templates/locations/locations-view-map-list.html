@@ -7,11 +7,13 @@
                 search-value="vm.searchValue"></top-navbar>
 
             <filter-bar current-page="countries"></filter-bar>
-           
-            <explore-geo-map></explore-geo-map>
-             
-            <country-list></country-list>
+
+            <locations-geo-map geo-view="vm.geoView"></locations-geo-map>
+
+            <country-list ng-show="vm.geoView == 'countries'"></country-list>
             
+            <region-list ng-show="vm.geoView == 'regions'"></region-list>
+
         </div>
     </div>
 </div>

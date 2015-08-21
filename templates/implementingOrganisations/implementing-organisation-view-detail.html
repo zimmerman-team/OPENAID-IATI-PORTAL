@@ -1,0 +1,121 @@
+<div id="main-content" class="container">
+
+    <detail-filter-bar></detail-filter-bar>
+    
+    <div class="row">
+        <div class="col-md-12">
+            <div class="hp-block wit">
+                <h1>{{vm.organisation.name}}</h1>
+                <p>Description. Nullam id dolor id nibh ultricies vehicula ut id elit. Donec ullamcorper nulla non metus auctor fringilla. Maecenas faucibus mollis interdum. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. <u><strong>deze data bestaat niet in de dataset</strong></u></p>
+            </div>
+        </div>
+    </div>
+
+    <sub-navbar 
+        tabs='vm.tabs' 
+        selected-tab='vm.selectedTab'>
+    </sub-navbar>
+
+    <div class="row">
+
+        <div ng-show="vm.selectedTab == 'samenvatting'">
+            <!-- start linker kolom -->
+            <div class="col-md-4">
+
+                <!--start van een wit blokje -->
+                <div class="row">
+                    <div class="col-sm-12 activity-list-item">
+                        <div class="hp-block wit">
+                            <p><b>Organisatie identifier</b><br>{{vm.organisation.original_ref}}</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- eind van een wit blokje -->
+
+                <!--start van een wit blokje -->
+                <div class="row">
+                    <div class="col-sm-12 activity-list-item">
+                        <div class="hp-block wit">
+                            <p>
+                                <b>Uitgaven per jaar</b><br>
+                                <div ng-repeat="disbursement in vm.disbursements_by_year">
+                                    {{disbursement.transaction_date_year}}: {{disbursement.total_disbursements | shortcurrency :'€'}}
+                                </div>
+                            </p>
+                            <p>
+                                <b>Budgetten per jaar</b><br>
+                                XXX<br>
+                                XXX
+                            </p>
+                            <p>
+                                <b>Verplichtingen per jaar</b><br>
+                                <div ng-repeat="commitment in vm.commitments_by_year">
+                                    {{commitment.transaction_date_year}}: {{commitment.total_commitments | shortcurrency :'€'}}
+                                </div>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- eind van een wit blokje -->
+
+            </div>
+            <!-- eind linker kolom -->
+
+            <!-- start rechter kolom -->
+            <div class="col-md-8">
+
+                <!--start van een wit blokje -->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="hp-block wit">
+                            <h3>Transacties</h3>
+                            <oipa-line-chart 
+                                aggregation-filters='' 
+                                group-by='recipient-country' 
+                                group-by-id='country_id' 
+                                aggregation-key='disbursement' 
+                                chart-x-axis='' 
+                                chart-y-axis='Uitgaven'
+                                chart-y-axis-euro-format='true' 
+                                chart-x-axis-stagger-labels='false' 
+                                chart-type='lineChart'
+                                axis-label-distance='28'></oipa-line-chart>
+                        </div>
+                    </div>
+                </div>
+                <!-- eind van een wit blokje -->
+
+            </div>
+
+            <!-- eind recher kolom -->
+        </div>
+
+        <!-- einde samenvatting -->
+    </div>
+
+    <div ng-show="vm.selectedTab == 'activities'">
+        <activity-list 
+            count='vm.tabs[1].count'></activity-list>
+    </div>
+
+    <div ng-show="vm.selectedTab == 'sectors'">
+        <sector-list 
+            has-to-contain='participating_organisations__organisation__code__in' 
+            count='vm.tabs[2].count'></sector-list>
+    </div>
+
+    <div ng-show="vm.selectedTab == 'countries'">
+        <country-list 
+            has-to-contain='participating_organisations__organisation__code__in' 
+            count='vm.tabs[3].count'></country-list>
+    </div>
+    <div ng-show="vm.selectedTab == 'regions'">
+        <region-list 
+            has-to-contain='participating_organisations__organisation__code__in' 
+            count='vm.tabs[4].count'></region-list>
+    </div>
+
+
+</div>
+
+

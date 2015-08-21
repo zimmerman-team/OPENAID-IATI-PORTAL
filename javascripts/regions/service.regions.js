@@ -22,7 +22,7 @@
 		var Regions = {
 			selectedRegions: m.selectedRegions,
 			all: all,
-			get: get
+			get: get,
 		};
 
 		return Regions;
@@ -53,7 +53,7 @@
 	     * @memberOf oipa.filters.services.Filters
 	     */
 	     function get(id) {
-	     	return $http.get('/regions/' + id + '?format=json', { cache: true });
+	     	return $http.get(oipaUrl + '/regions/' + id + '/?format=json', { cache: true });
 	     }
 	}
 })();

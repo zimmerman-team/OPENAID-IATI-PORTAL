@@ -1,0 +1,40 @@
+
+<!-- {{vm.selectedCountryRelation}} -->
+<div class="map">
+  <div class="geomap-mask">  
+    <leaflet defaults="vm.defaults" center="vm.center" markers="vm.markers" height="600px" width="100%">
+      <div class="map-switch">
+        <label class="wrapper">
+        <div class="button custom-select ff-hack">
+          <select ng-model="vm.geoView" ng-change="vm.changeView()">
+            <option value="countries">Overzicht per land</option>
+            <option value="regions">Overzicht per regio</option>
+          </select>
+        </div>
+          </label>
+      </div>
+    </leaflet>
+    <div class="legend" ng-if="legend && vm.geoView == 'countries'">
+        <div class="check kleur-{{item.id}}" ng-repeat="item in vm.countryRelation">
+            <label class="switch" for="id{{item.id}}">
+                
+                <input 
+                  id="id{{item.id}}" 
+                  checklist-model="vm.selectedCountryRelation" 
+                  checklist-value="item"  
+                  ng-change="console.log('test');"
+                  type="checkbox">
+
+                <i class="faker"></i>
+                <span class="labels">
+                    <span class="fa-stack">
+                        <span class="fa fa-circle fa-stack-2x kleur"></span>
+                        <span class="fa fa-map-marker fa-stack-1x fa-inverse"></span>
+                    </span>
+                    <span>{{item.name}}</span>
+                </span>
+            </label>
+        </div>
+    </div>
+  </div>
+</div>

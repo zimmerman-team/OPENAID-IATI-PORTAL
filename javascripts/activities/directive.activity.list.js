@@ -27,9 +27,10 @@
       restrict: 'E',
       scope: {
         customFilters: '@',
-        hasToContain: '@'
+        hasToContain: '@',
+        count: '=?'
       },
-      templateUrl: templateBaseUrl + '/templates/activities/activities-list.html'
+      templateUrl: templateBaseUrl + '/templates/activities/activity-list.html'
     };
 
     return directive;

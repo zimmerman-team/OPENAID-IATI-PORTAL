@@ -53,12 +53,20 @@
       vm.update(vm.filterSelection.selectionString);
     }
 
-    vm.maxShown = function(){
+    vm.minMaxShown = function(){
+      var max = 0;
       if(vm.offset + vm.page_size > vm.totalActivities){
-        return vm.totalActivities;
+        max = vm.totalActivities;
       } else{
-        return (vm.offset + vm.page_size);
+        max = (vm.offset + vm.page_size);
       }
+
+      var min = 0;
+      if(vm.totalActivities > 0){
+        min = vm.offset;
+      }
+
+      return min + ' - ' + max;
     }
 
     vm.update = function(selectionString){
@@ -71,8 +79,9 @@
       Activities.list(selectionString, vm.page_size, vm.order_by, vm.offset).then(succesFn, errorFn);
 
       function succesFn(data, status, headers, config){
-        vm.totalActivities = data.data.meta.total_count;
         vm.activities = data.data.objects;
+        vm.totalActivities = data.data.meta.total_count;
+        $scope.count = vm.totalActivities;        
       }
 
       function errorFn(data, status, headers, config){

@@ -1,0 +1,91 @@
+<div id="main-content" class="container">
+    <detail-filter-bar></detail-filter-bar>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="hp-block wit">
+                <h1>{{vm.sector.name}}</h1>
+                <p>Beschrijving. <u><strong>deze data bestaat niet in de dataset</strong></u></p>
+            </div>
+        </div>
+    </div>
+
+    <sub-navbar tabs="vm.tabs" selected-tab="vm.selectedTab"></sub-navbar>
+
+    <div ng-show="vm.selectedTab == 'samenvatting'">
+    
+        <div class="row">
+            <!-- start linker kolom -->
+            <div class="col-md-4">
+
+                <!--start van een wit blokje -->
+                <div class="row">
+                    <div class="col-sm-12 activity-list-item">
+                        <div class="hp-block wit">
+                            <p><b>Sector code</b><br>{{vm.sector.code}}</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- eind van een wit blokje -->
+                <!--start van een wit blokje -->
+                <div class="row">
+                    <div class="col-sm-12 activity-list-item">
+                        <div class="hp-block wit">
+                            <p><b>Budget</b><br>{{vm.totalBudget | currency :'€':0}}</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- eind van een wit blokje -->
+
+            </div>
+            <!-- eind linker kolom -->
+
+            <!-- start rechter kolom -->
+            <div class="col-md-8">
+
+                <!--start van een wit blokje -->
+                <div class="row">
+                    <div class="col-sm-12 activity-list-item">
+                        <div class="hp-block wit">
+                            <h3>Transacties</h3>
+                            CHART
+                        </div>
+                    </div>
+                </div>
+                <!-- eind van een wit blokje -->
+
+            </div>
+            <!-- eind rechter kolom -->
+        </div>
+    </div>
+
+
+
+
+    <div ng-show="vm.selectedTab == 'activities'">
+        <activity-list 
+            has-to-contain="sectors__in"  
+            count="vm.tabs[1].count"></activity-list>
+    </div>
+
+    <div ng-show="vm.selectedTab == 'countries'">
+        <country-list 
+            has-to-contain="sectors__in" 
+            count="vm.tabs[2].count"></country-list>
+    </div>
+
+    <div ng-show="vm.selectedTab == 'regions'">
+        <region-list 
+            has-to-contain="sectors__in" 
+            count="vm.tabs[3].count"></region-list>
+    </div>
+
+    <div ng-show="vm.selectedTab == 'implementing-organisations'">
+        <implementing-organisations-list 
+            has-to-contain="sectors__in" 
+            count="vm.tabs[4].count"></implementing-organisations-list>
+    </div>
+
+</div>
+
+

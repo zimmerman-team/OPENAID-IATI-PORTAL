@@ -1,5 +1,5 @@
 /**
-* LocationGeoMapController
+* LocationsGeoMapController
 * @namespace oipa.locations
 */
 (function () {
@@ -7,15 +7,18 @@
 
   angular
     .module('oipa.locations')
-    .controller('LocationGeoMapController', LocationGeoMapController);
+    .controller('LocationsGeoMapController', LocationsGeoMapController);
 
-  LocationGeoMapController.$inject = ['$scope', 'leafletData', 'Aggregations', 'templateBaseUrl', 'homeUrl', 'FilterSelection'];
+  LocationsGeoMapController.$inject = ['$scope', 'leafletData', 'Aggregations', 'templateBaseUrl', 'homeUrl', 'FilterSelection'];
 
   /**
-  * @namespace LocationGeoMapController
+  * @namespace LocationsGeoMapController
   */
-  function LocationGeoMapController($scope, leafletData, Aggregations, templateBaseUrl, homeUrl, FilterSelection) {
+  function LocationsGeoMapController($scope, leafletData, Aggregations, templateBaseUrl, homeUrl, FilterSelection) {
     var vm = this;
+
+    vm.geoView = "countries";
+
     vm.templateBaseUrl = templateBaseUrl;
     vm.countryRelation = [
       {'id':1, 'name': 'Hulp relatie'}, 
@@ -52,17 +55,11 @@
       Overige: { html: '<div class="fa fa-map-marker fa-stack-1x fa-inverse marker-circle marker-circle-Overige"></div>',type: 'div',iconSize: [28, 35],iconAnchor: [14, 18],markerColor: 'blue',iconColor: 'white',},
     };
 
-
     vm.filterSelection = FilterSelection;
     vm.selectionString = '';
 
-    vm.geoView = 'landen';
+    vm.geoView = 'countries';
     vm.resultCounter = 0;
-
-    vm.countryRelationChanged = function(id){
-      console.log('wfgr');
-      console.log(id);
-    }
 
     /**
     * @name activate
@@ -72,15 +69,25 @@
     function activate() {
 
       $scope.$watch("vm.selectedCountryRelation", function (selectionString) {
-        console.log(selectionString);
-        console.log('geerg');
-          if(vm.markerData.length > 0){
-            vm.updateMarkers();
-          }
+          // if(vm.markerData.length > 0){
+          //   vm.updateMarkers();
+          // }
       }, true);
 
       $scope.$watch('vm.filterSelection.selectionString', function (selectionString) {
         vm.selectionString = selectionString;
+        vm.updateMap();
+      }, true);
+    }
+
+
+
+    vm.changeView = function(){
+      $scope.geoView = vm.geoView;
+      vm.updateMap();
+    }
+
+    vm.updateMap = function(){
 
         for(var key in vm.markers){
           vm.markers[key].opacity = 0;
@@ -89,43 +96,17 @@
         Aggregations.aggregation('recipient-country-geo', 'iati-identifier', vm.selectionString).then(countrySuccessFn, errorFn);
         Aggregations.aggregation('recipient-region-geo', 'iati-identifier', vm.selectionString).then(regionSuccessFn, errorFn);
 
-        
-      }, true);
+        function countrySuccessFn(data, status, headers, config) {
+            vm.updateCountryMarkers(data.data);
+        }
 
-      $scope.$watch("vm.geoView", function (viewName) {
-          for(var key in vm.markers){
-            vm.markers[key].opacity = 0;
-          }
+        function regionSuccessFn(data, status, headers, config){
+            vm.updateRegionMarkers(data.data);
+        }
 
-          Aggregations.aggregation('recipient-country-geo', 'iati-identifier', vm.selectionString).then(countrySuccessFn, errorFn);
-          Aggregations.aggregation('recipient-region-geo', 'iati-identifier', vm.selectionString).then(regionSuccessFn, errorFn);
-
-      }, true);
-
-
-      function countrySuccessFn(data, status, headers, config) {
-        vm.updateCountryMarkers(data.data);
-      }
-
-      function regionSuccessFn(data, status, headers, config){
-        vm.updateRegionMarkers(data.data);
-      }
-
-      function errorFn(data, status, headers, config) {
-        console.log("getting countries failed");
-      }
-
-
-      // for each active country, get the results
-      
-    }
-
-    vm.setGeoView = function(viewName){
-      vm.geoView = viewName;
-    }
-
-    vm.selectedGeoView = function(viewName){
-      return vm.geoView == viewName ? true : false;
+        function errorFn(data, status, headers, config) {
+            console.log("getting countries failed");
+        }
     }
 
     vm.updateCountryMarkers = function(markerData) {
@@ -168,7 +149,7 @@
           }
         }
 
-        if(vm.geoView != 'landen' && vm.markers[markerData[i].country_id] !== undefined){
+        if(vm.geoView != 'countries' && vm.markers[markerData[i].country_id] !== undefined){
           vm.markers[markerData[i].country_id].opacity = 0;
         }
       }
@@ -195,7 +176,7 @@
           }
         }
 
-        if(vm.geoView != 'regios' && vm.markers[markerData[i].region_id] !== undefined){
+        if(vm.geoView != 'regions' && vm.markers[markerData[i].region_id] !== undefined){
           vm.markers[markerData[i].region_id].opacity = 0;
         }
       }

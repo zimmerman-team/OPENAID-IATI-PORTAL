@@ -5,8 +5,8 @@
     <div class="row">
         <div class="col-md-12">
             <div class="hp-block wit">
-                <span class="flag-icon flag-icon-{{vm.country.code | lowercase }} big"></span><h1 class="title">{{vm.country.name}}</h1> 
-                <p>Land beschrijving. <u><strong>deze data bestaat niet in de dataset</strong></u></p> 
+                <h1 class="title">{{vm.region.name}}</h1> 
+                <p>Regio beschrijving. <u><strong>deze data bestaat niet in de dataset</strong></u></p> 
             </div>
         </div>
     </div>
@@ -18,13 +18,30 @@
 
     <div ng-show="vm.selectedTab == 'samenvatting'">
 
-        <locations-geo-map></locations-geo-map>
+        <leaflet 
+            defaults="vm.defaults" 
+            center="vm.center" 
+            markers="vm.markers" 
+            height="400px" 
+            width="100%">
+        </leaflet>
 
         <div class="row">
 
             <!-- start linker kolom -->
             <div class="col-md-4">
 
+                <!--start van een wit blokje -->
+                <div class="row">
+                    <div class="col-sm-12 activity-list-item">
+                        <div class="hp-block wit" ng-click="vm.dashboard = 'list'">
+                            <p><b>Laatste update</b><br>Niet beschikbaar</p>
+                            <p><b>Startdatum</b><br>Niet beschikbaar</p>
+                            <p><b>Einddatum</b><br>Niet beschikbaar</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- eind van een wit blokje -->
                 <!--start van een wit blokje -->
                 <div class="row">
                     <div class="col-sm-12 activity-list-item">
@@ -51,7 +68,6 @@
                     </div>
                 </div>
                 <!-- eind van een wit blokje -->
-           
             </div>
             <!-- eind linker kolom -->
 
@@ -76,21 +92,11 @@
     </div>
 
     <div ng-show="vm.selectedTab == 'activities'">
-        <activity-list 
-            has-to-contain="countries__in" 
-            count="vm.tabs[1].count"></activity-list>
+        <activity-list></activity-list>
     </div>
 
     <div ng-show="vm.selectedTab == 'sectors'">
-        <sector-list 
-            has-to-contain="countries__in" 
-            count="vm.tabs[2].count"></sector-list>
-    </div>
-
-    <div ng-show="vm.selectedTab == 'implementing-organisations'">
-        <implementing-organisations-list 
-            has-to-contain="countries__in"
-            count="vm.tabs[3].count"></implementing-organisations-list>
+        <sector-list></sector-list>
     </div>
 
 </div>

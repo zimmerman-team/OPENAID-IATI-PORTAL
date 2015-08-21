@@ -42,7 +42,7 @@
             url:         '/projecten/:activity_id/',
             controller:  'ActivityController',
             controllerAs: 'vm',
-            templateUrl: templateBaseUrl + '/templates/activities/activity.html',
+            templateUrl: templateBaseUrl + '/templates/activities/activity-view-detail.html',
             ncyBreadcrumb: {
                 label: 'IATI Activiteit detail pagina'
             }
@@ -50,7 +50,7 @@
         .state({
             name:        'locations-map',
             url:         '/locaties/lijst/',
-            controller:  'ExploreController',
+            controller:  'LocationsMapListController',
             controllerAs: 'vm',
             templateUrl: templateBaseUrl + '/templates/locations/locations-view-map-list.html',
             ncyBreadcrumb: {
@@ -66,6 +66,17 @@
             ncyBreadcrumb: {
                 parent: 'landen',
                 label: '{{vm.country.name}}'
+            }
+        })
+        .state({
+            name:        'region',
+            url:         '/regions/:region_id/',
+            controller:  'RegionController',
+            controllerAs: 'vm',
+            templateUrl: templateBaseUrl + '/templates/regions/region-view-detail.html',
+            ncyBreadcrumb: {
+                parent: 'regio\'s',
+                label: '{{vm.region.name}}'
             }
         })
         .state({
@@ -97,7 +108,7 @@
             url:         '/organisaties/:organisation_id/',
             controller:  'ImplementingOrganisationController',
             controllerAs: 'vm',
-            templateUrl: templateBaseUrl + '/templates/implementingOrganisations/implementing-organisation.html'
+            templateUrl: templateBaseUrl + '/templates/implementingOrganisations/implementing-organisation-view-detail.html'
         })
         .state({
             name:        'sector-list',
@@ -118,7 +129,7 @@
             url:         '/sector/:sector_id/',
             controller:  'SectorController',
             controllerAs: 'vm',
-            templateUrl: templateBaseUrl + '/templates/sectors/sector.html'
+            templateUrl: templateBaseUrl + '/templates/sectors/sector-view-detail.html'
         })
         
         .state({

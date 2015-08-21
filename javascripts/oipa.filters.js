@@ -58,7 +58,7 @@ angular.module('oipa').filter('cut', function () {
       } else if(input > 999999){
         out = (input / 1000000).toFixed(2) + ' mln';
       } else{
-        out = (input / 1000).toFixed(2) + ' d'; 
+        out = (input / 1000).toFixed(0) + ' '; 
       }
 
       if(minus){

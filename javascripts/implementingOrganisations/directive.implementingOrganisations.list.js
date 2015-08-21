@@ -27,6 +27,7 @@
       restrict: 'E',
       scope: {
         hasToContain: '@',
+        count: '=?'
       },
       templateUrl: templateBaseUrl + '/templates/implementingOrganisations/implementing-organisations-list.html'
     };

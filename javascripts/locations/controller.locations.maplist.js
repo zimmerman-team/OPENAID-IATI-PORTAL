@@ -2,25 +2,17 @@
     'use strict';
 
     angular
-        .module('oipa.explore')
-        .controller('ExploreController', ExploreController);
+        .module('oipa.locations')
+        .controller('LocationsMapListController', LocationsMapListController);
 
-    ExploreController.$inject = ['$scope', 'FilterSelection'];
+    LocationsMapListController.$inject = ['$scope', 'FilterSelection'];
 
-    function ExploreController($scope, FilterSelection){
+    function LocationsMapListController($scope, FilterSelection){
         var vm = this;
         vm.filterSelection = FilterSelection;
         vm.selectionString = '';
-        
-        activate();
+        vm.geoView = 'countries';
 
-        function activate() {
-            
-            $scope.$watch('vm.filterSelection.selectionString', function (selectionString) {
-                console.log('selection string changed');
-            }, true);
-            
-        }
     }
 
 })();

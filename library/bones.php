@@ -152,7 +152,8 @@ function bones_scripts_and_styles() {
 		wp_register_script( 'service.timeSlider', get_stylesheet_directory_uri() . '/javascripts/_partials/timeSlider/service.timeSlider.js', array('oipa'), '', true );
 		
 		wp_register_script( 'directive.filters.filter.bar', get_stylesheet_directory_uri() . '/javascripts/_partials/filterbar/directive.filter.bar.js', array('oipa'), '', true );
-
+		wp_register_script( 'directive.filterbar.detail.filter.bar', get_stylesheet_directory_uri() . '/javascripts/_partials/filterbar/directive.detail.filter.bar.js', array('oipa'), '', true );
+		
 
 		// _HELPERS
 		wp_register_script( 'module.pagination', get_stylesheet_directory_uri() . '/javascripts/_helpers/angularUtils/directives/pagination/dirPagination.js', array('angular'), '', true );
@@ -187,7 +188,9 @@ function bones_scripts_and_styles() {
 		wp_register_script( 'module.locations', get_stylesheet_directory_uri() . '/javascripts/locations/module.locations.js', array('oipa'), '', true );
 		wp_register_script( 'controller.locations.maplist', get_stylesheet_directory_uri() . '/javascripts/locations/controller.locations.maplist.js', array('oipa'), '', true );
 		wp_register_script( 'controller.locations.visualisation', get_stylesheet_directory_uri() . '/javascripts/locations/controller.locations.visualisation.js', array('oipa'), '', true );
-		
+		wp_register_script( 'controller.locations.geomap', get_stylesheet_directory_uri() . '/javascripts/locations/controller.locations.geomap.js', array('oipa'), '', true );
+		wp_register_script( 'directive.locations.geomap', get_stylesheet_directory_uri() . '/javascripts/locations/directive.locations.geomap.js', array('oipa'), '', true );
+
 
 		wp_register_script( 'module.activities', get_stylesheet_directory_uri() . '/javascripts/activities/module.activities.js', array('oipa'), '', true );
 		wp_register_script( 'controller.activities', get_stylesheet_directory_uri() . '/javascripts/activities/controller.activities.js', array('oipa'), '', true );
@@ -203,9 +206,13 @@ function bones_scripts_and_styles() {
 		wp_register_script( 'service.budget', get_stylesheet_directory_uri() . '/javascripts/budgets/service.budget.js', array('oipa'), '', true );
 
 		wp_register_script( 'module.regions', get_stylesheet_directory_uri() . '/javascripts/regions/module.regions.js', array('oipa'), '', true );
+		wp_register_script( 'controller.region', get_stylesheet_directory_uri() . '/javascripts/regions/controller.region.js', array('oipa'), '', true );
 		wp_register_script( 'controller.regions', get_stylesheet_directory_uri() . '/javascripts/regions/controller.regions.js', array('oipa'), '', true );
-		wp_register_script( 'directive.regions', get_stylesheet_directory_uri() . '/javascripts/regions/directive.regions.js', array('oipa'), '', true );
 		wp_register_script( 'service.regions', get_stylesheet_directory_uri() . '/javascripts/regions/service.regions.js', array('oipa'), '', true );
+		wp_register_script( 'controller.regions.list', get_stylesheet_directory_uri() . '/javascripts/regions/controller.regions.list.js', array('oipa'), '', true );
+		wp_register_script( 'directive.regions.list', get_stylesheet_directory_uri() . '/javascripts/regions/directive.regions.list.js', array('oipa'), '', true );
+		
+
 
 		wp_register_script( 'module.sectors', get_stylesheet_directory_uri() . '/javascripts/sectors/module.sectors.js', array('oipa'), '', true );
 		wp_register_script( 'controller.sectors', get_stylesheet_directory_uri() . '/javascripts/sectors/controller.sectors.js', array('oipa'), '', true );
@@ -235,9 +242,7 @@ function bones_scripts_and_styles() {
 		
 		wp_register_script( 'module.explore', get_stylesheet_directory_uri() . '/javascripts/explore/module.explore.js', array('oipa'), '', true );
 		wp_register_script( 'controller.explore', get_stylesheet_directory_uri() . '/javascripts/explore/controller.explore.js', array('oipa'), '', true );
-		wp_register_script( 'controller.explore.geomap', get_stylesheet_directory_uri() . '/javascripts/explore/controller.explore.geomap.js', array('oipa'), '', true );
-		wp_register_script( 'directive.explore.geomap', get_stylesheet_directory_uri() . '/javascripts/explore/directive.explore.geomap.js', array('oipa'), '', true );
-
+		
 		wp_register_script( 'module.pages', get_stylesheet_directory_uri() . '/javascripts/pages/module.pages.js', array('oipa'), '', true );
 		wp_register_script( 'controller.pages', get_stylesheet_directory_uri() . '/javascripts/pages/controller.pages.js', array('oipa'), '', true );
 
@@ -296,9 +301,6 @@ function bones_scripts_and_styles() {
 
 		wp_enqueue_script( 'module.explore' );
 		wp_enqueue_script( 'controller.explore' );
-		wp_enqueue_script( 'controller.explore.geomap' );
-		wp_enqueue_script( 'directive.explore.geomap' );
-
 
 		wp_enqueue_script( 'bones-modernizr' );
 		wp_enqueue_script( 'jquery' );
@@ -360,6 +362,8 @@ function bones_scripts_and_styles() {
 		wp_enqueue_script( 'module.locations' );
 		wp_enqueue_script( 'controller.locations.maplist' );
 		wp_enqueue_script( 'controller.locations.visualisation' );
+		wp_enqueue_script( 'controller.locations.geomap' );
+		wp_enqueue_script( 'directive.locations.geomap' );
 
 
 
@@ -428,9 +432,12 @@ function bones_scripts_and_styles() {
 
 		
 		wp_enqueue_script( 'module.regions' );
+		wp_enqueue_script( 'controller.region' );
 		wp_enqueue_script( 'controller.regions' );
-		wp_enqueue_script( 'directive.regions' );
 		wp_enqueue_script( 'service.regions' );
+		wp_enqueue_script( 'controller.regions.list' );
+		wp_enqueue_script( 'directive.regions.list' );
+		
 
 		wp_enqueue_script( 'module.sectors' );
 		wp_enqueue_script( 'controller.sectors' );
@@ -449,6 +456,7 @@ function bones_scripts_and_styles() {
 		wp_enqueue_script( 'service.filters' );
 		wp_enqueue_script( 'service.filters.selection' );
 		wp_enqueue_script( 'directive.filters.filter.bar' );
+		wp_enqueue_script( 'directive.filterbar.detail.filter.bar' );
 		wp_enqueue_script( 'directive.filters.filter.selection.box' );
 		wp_enqueue_script( 'directive.filters.recipientcountries.panel' );
 		wp_enqueue_script( 'directive.filters.recipientregions.panel' );

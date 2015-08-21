@@ -26,7 +26,8 @@
       controllerAs: 'vm',
       restrict: 'E',
       scope: {
-        hasToContain: '@'
+        hasToContain: '@',
+        count: '=?'
       },
       templateUrl: templateBaseUrl + '/templates/sectors/sectors-list.html'
     };

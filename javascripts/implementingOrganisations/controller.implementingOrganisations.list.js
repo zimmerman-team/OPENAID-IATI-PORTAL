@@ -21,7 +21,7 @@
     vm.order_by = 'total_disbursements';
     vm.page_size = 5;
     vm.offset = 0;
-    vm.totalActivities = 0;
+    vm.totalOrganisations = 0;
     vm.hasToContain = $scope.hasToContain;
     vm.pagination = {
         current: 1
@@ -44,12 +44,20 @@
       }, true);
     }
     
-    vm.maxShown = function(){
-      if(vm.offset + vm.page_size > vm.totalActivities){
-        return vm.totalActivities;
+    vm.minMaxShown = function(){
+      var max = 0;
+      if(vm.offset + vm.page_size > vm.totalOrganisations){
+        max = vm.totalOrganisations;
       } else{
-        return (vm.offset + vm.page_size);
+        max = (vm.offset + vm.page_size);
       }
+
+      var min = 0;
+      if(vm.totalOrganisations > 0){
+        min = vm.offset;
+      }
+
+      return min + ' - ' + max;
     }
 
     vm.update = function(selectionString){
@@ -63,11 +71,12 @@
       function succesFn(data, status, headers, config){
 
         vm.organisations = data.data;
-        vm.totalActivities = vm.organisations.length;
+        vm.totalOrganisations = vm.organisations.length;
+        $scope.count = vm.totalOrganisations;
       }
 
       function errorFn(data, status, headers, config){
-        console.warn('error getting data for activity.list.block');
+        console.warn('error getting data for implementing organistions');
       }
     }
 

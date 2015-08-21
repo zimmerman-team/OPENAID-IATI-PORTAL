@@ -19,6 +19,7 @@
       restrict: 'E',
       scope: {
         hasToContain: '@',
+        count: '=?'
       },
       templateUrl: templateBaseUrl + '/templates/countries/country-list.html'
     };

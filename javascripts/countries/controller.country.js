@@ -18,23 +18,16 @@
     var vm = this;
     vm.country = null;
     vm.country_id = $stateParams.country_id;
-
     vm.partnerType = '';
-    vm.activityCount = '';
-    vm.sectorCount = '';
-    vm.organisationCount = '';
-    vm.donorCount = '';
-    vm.totalBudget = '';
     vm.filterSelection = FilterSelection;
     vm.selectedTab = 'samenvatting';
 
     vm.tabs = [
-      {'id': 'samenvatting', 'name': 'Samenvatting', 'count': ''},
-      {'id': 'activities', 'name': 'Projecten', 'count': '1'},
-      {'id': 'sectors', 'name': 'Sectoren', 'count': '4'},
+      {'id': 'samenvatting', 'name': 'Samenvatting', 'count': -1},
+      {'id': 'activities', 'name': 'Projecten', 'count': -1},
+      {'id': 'sectors', 'name': 'Sectoren', 'count': -1},
+      {'id': 'implementing-organisations', 'name': 'Organisaties', 'count': -1},
     ]
-
-    
 
 
     /**
@@ -46,7 +39,6 @@
 
       $scope.$watch('vm.filterSelection.selectionString', function (selectionString) {
         vm.update(selectionString);
-        FilterSelection.openedPanel = '';
       }, true);
 
       // for each active country, get the results
