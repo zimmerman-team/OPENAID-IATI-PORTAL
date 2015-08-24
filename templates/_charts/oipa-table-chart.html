@@ -1,4 +1,23 @@
-<table class="table">
+<table class="table top5-table">
+    <thead>
+        <tr>
+            <th>
+                <label class="wrapper">
+                    <div class="custom-select ff-hack">
+
+                        <select ng-model="vm.top5">
+                            <option value='recipient-country'>Top 5 landen</option>
+                            <option value='transaction__receiver-org'>Top 5 organisaties</option>
+                            <option value='sector'>Top 5 sectors</option>
+                        </select>
+
+                    </div>
+                </label>
+            </th>
+            <th>Totaal uitgaven</th>
+            <th>Aantal projecten</th>
+        </tr>
+    </thead>
     <tbody>
         <tr ng-repeat="item in vm.chartData">
         	<td class="colour"><div></div></td>
