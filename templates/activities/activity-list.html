@@ -3,13 +3,24 @@
     <div class="col-md-12">
         <div class="sort wit">
             <div class="row">
-                <div class="col-xs-4">
+                <div class="col-xs-8">
                     resultaten {{vm.minMaxShown()}} van {{vm.totalActivities}}
                 </div>
-                <div class="col-xs-8 text-right-not-xs">
-                    <span class="sort-item hidden-xs">sorteer op:</span>
+                <div class="col-xs-4 text-right-not-xs">
+                    <!-- <span class="sort-item hidden-xs">sorteer op:</span>
                     <span class="sort-item" ng-click="vm.toggleOrder('total_budget')">budget<span class="glyphicon glyphicon-resize-vertical"></span></span>
-                    <span class="sort-item" ng-click="vm.toggleOrder('start_actual')">startdatum<span class="glyphicon glyphicon-resize-vertical"></span></span>
+                    <span class="sort-item" ng-click="vm.toggleOrder('start_actual')">startdatum<span class="glyphicon glyphicon-resize-vertical"></span></span> -->
+                    <label class="wrapper">
+                      <div class="custom-select ff-hack">
+                        <select
+                          ng-model="vm.selectedView"
+                          ng-change="vm.changeView()">
+                          <option value="">Sorteer op...</option>
+                          <option value="total_budget">Budget</option>
+                          <option value="start_actual">Startdatum</option>
+                        </select>
+                      </div>
+                    </label>
                 </div>
             </div>
         </div>

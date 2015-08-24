@@ -1641,6 +1641,13 @@ ACTIVITY LIST
     margin-right: 15px;
     cursor:pointer;
   }
+  .custom-select {
+    margin-top:0;
+    select {
+      font-size:14px;
+      padding:3px 30px 3px 5px;
+    }
+  }
 }
 
 .activity-list-item {
