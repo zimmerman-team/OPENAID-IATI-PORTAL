@@ -46,7 +46,6 @@
     }
 
     vm.toggleOrder = function(){
-      vm.offset = 0;
       vm.update(vm.filterSelection.selectionString);
     }
 
@@ -72,6 +71,8 @@
           return false;
         }
       }
+
+      vm.offset = 0;
 
       Activities.list(selectionString, vm.page_size, vm.order_by, vm.offset).then(succesFn, errorFn);
 
