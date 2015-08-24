@@ -16,7 +16,13 @@
 
     $scope.homeUrl = homeUrl;
     $scope.templateBaseUrl = templateBaseUrl;
+    activate();
 
+
+    function activate(){
+      // jQuery hier
+      
+    }
     
   }
 })();

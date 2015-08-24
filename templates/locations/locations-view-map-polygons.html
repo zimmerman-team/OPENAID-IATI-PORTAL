@@ -8,9 +8,15 @@
                 submit-search="vm.submitSearch"></top-navbar>
 
             <filter-bar current-page="countries"></filter-bar>
-
-            <locations-polygon-map geo-view="vm.geoView"></locations-polygon-map>
+            
+            <div class="map">
+              <div class="geomap-mask">
+                <leaflet center="vm.center" geojson="vm.geojsonData" height="600px" width="100%"></leaflet>
+              </div>
+            </div>
 
         </div>
     </div>
 </div>
+
+{{vm.geojson}}

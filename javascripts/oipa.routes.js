@@ -58,6 +58,16 @@
             }
         })
         .state({
+            name:        'locations-polygonmap',
+            url:         '/locaties/kaart/',
+            controller:  'LocationsPolygonGeoMapController',
+            controllerAs: 'vm',
+            templateUrl: templateBaseUrl + '/templates/locations/locations-view-map-polygons.html',
+            ncyBreadcrumb: {
+                label: 'Locaties'
+            }
+        })
+        .state({
             name:        'country',
             url:         '/landen/:country_id/',
             controller:  'CountryController',
