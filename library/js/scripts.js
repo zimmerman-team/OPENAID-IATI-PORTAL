@@ -114,5 +114,11 @@ jQuery(document).ready(function($) {
    * Let's fire off the gravatar function
    * You can remove this if you don't need it
   */
+  $("#toTop").on('click',function(event){
+    event.preventDefault();
+    $("html, body").animate({
+      scrollTop:0
+    },400);
+  });
 
 }); /* end of as page load scripts */

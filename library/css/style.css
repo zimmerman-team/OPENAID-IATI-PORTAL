@@ -5149,6 +5149,17 @@ footer img {
   margin-bottom: 0 !important;
 }
 
+/* line 2086, ../scss/breakpoints/_base.scss */
+#toTop {
+  display: none;
+  position: fixed;
+  bottom: 10px;
+  z-index: 99;
+  cursor: pointer;
+  right: 10px;
+  opacity: .8;
+}
+
 /*********************
 LARGER MOBILE DEVICES
 This is for devices like the Galaxy Note or something that's

@@ -2083,6 +2083,16 @@ footer{
   margin-bottom:0 !important;
 }
 
+#toTop {
+  display: none;
+  position: fixed;
+  bottom: 10px;
+  z-index: 99;
+  cursor: pointer;
+  right: 10px;
+  opacity: .8;
+}
+
 // svg.clip {
 //   height: 0;
 //   width: 0;
