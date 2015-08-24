@@ -660,13 +660,27 @@ FILTER BAR
   position:relative;
   .dash {
     float: left;
+    .positioner {
+      background:rgba(#738191,.5);
+      padding:0 20px;
+      border-radius:20px;
+    }
+    a, a:hover {
+      color: #fff;
+      text-decoration: none;
+    }
     &.title {
       line-height: 2.35em;
       margin-right: 6px;
     }
+    i {
+      margin-right: 10px;
+    }
     &.list {
       .vis-type {
         display: none;
+        height: 42px;
+        line-height: 42px;
         &:first-of-type {
           display: block;
         }
