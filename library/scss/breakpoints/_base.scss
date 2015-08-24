@@ -35,6 +35,9 @@ a {
   padding-top:70px;
 }
 
+.faux-pad {
+  padding-top:50px;
+}
 
 
 /****
@@ -639,14 +642,44 @@ FILTER BAR
     padding:0;
     width: 1140px;
   }
+  top:0;
+  transition:top .2s;
   &.fixed {
     top:58px;
     position:fixed;
-    z-index:99999;
-    background:#CCCCB6;
+    z-index:999;
+    background:rgba(30,30,30,.7);
     width: 100%;
     left:0;
     padding-top:10px;
+    transition:top .2s;
+  }
+}
+
+.dash-select {
+  position:relative;
+  .dash {
+    float: left;
+    &.title {
+      line-height: 2.35em;
+      margin-right: 6px;
+    }
+    &.list {
+      .vis-type {
+        display: none;
+        &:first-of-type {
+          display: block;
+        }
+      }
+      &:hover {
+        .positioner {
+          position:absolute;
+          .vis-type {
+            display: block;
+          }
+        }
+      }
+    }
   }
 }
 
@@ -718,34 +751,6 @@ FILTER BAR
     .fa-stack:hover {
       .fa-circle {
         color:rgba(#738191,1);
-      }
-    }
-  }
-  .dash {
-    a, span {
-      &:nth-of-type(2) {
-        .fa-circle {
-          color:rgba($icon-grn,.5);
-        }
-        &.active {
-          color:rgba($icon-grn,1);
-        }
-      }
-      &:nth-of-type(3) {
-        .fa-circle {
-          color:rgba($roze,.5);
-        }
-        &.active {
-          color:rgba($roze,1);
-        }
-      }
-      &:nth-of-type(4) {
-        .fa-circle {
-          color:rgba($blauw,.5);
-        }
-        &.active {
-          color:rgba($blauw,1);
-        }
       }
     }
   }
@@ -1789,10 +1794,14 @@ footer{
 .map-switch {
   position:absolute;
   top:5px;
-  left:50%;
+  left:50px;
   width:200px;
-  margin-left: -100px;
-  z-index: 9999;
+  z-index: 99;
+  .custom-select {
+    box-shadow:0 1px 5px rgba(0,0,0,0.65);
+    border-radius:4px;
+    border-color:#ccc;
+  }
   select {
       font-size:14px;
   }
@@ -1800,6 +1809,9 @@ footer{
 
 .no-padding {
   padding:0;
+}
+.no-top {
+  margin-top: 0;
 }
 .selectbox5 {
   margin-top:0;
@@ -1998,11 +2010,6 @@ footer{
   }
 }
 
-.leaflet-control-container {
-  position:absolute;
-  bottom:70px;
-}
-
 .map {
   .leaflet-div-icon {
     background: none;
@@ -2020,6 +2027,9 @@ footer{
     a.btn {
       color: #fff;
     }
+  }
+  .leaflet-top, .leaflet-bottom {
+    z-index: 9;
   }
   a.leaflet-popup-close-button {
     display: block;

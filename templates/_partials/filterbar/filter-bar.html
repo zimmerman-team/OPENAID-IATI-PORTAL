@@ -1,7 +1,9 @@
+<div class="pad-helper"></div>
+
 <div class="filters-fixed">
   <div class="container">
     <div class="row actions">
-      <div class="col-md-5 filters">
+      <div class="col-md-6 filters">
         Filters: 
           <span 
               class="fa-stack fa-lg" 
@@ -120,17 +122,44 @@
             <i class="fa fa-search fa-stack-1x fa-inverse"></i>
           </span>
 
+          <span class="fa-stack fa-lg">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <a ng-click="vm.resetFilters()" class="fa fa-refresh fa-stack-1x fa-inverse"></a>
+          </span>
+
       </div>
 
-      <div class="col-md-3 filters text-center">
+      <div class="col-md-3 filters dash-select">
+        <div class="dash title">Dashboard:</div>
+        <div class="dash list">
+          <div class="positioner">
+            <div class="vis-type">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <a class="fa fa-eye fa-stack-1x fa-inverse"></a>
+              </span>
+              Visualisatie
+            </div>
+            <div class="vis-type">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <a class="fa fa-eye fa-stack-1x fa-inverse"></a>
+              </span>
+              Kaart en lijst
+            </div>
+          </div>
+        </div>
+
+
+<!--         <top-navbar></top-navbar>
+ -->  </div>
+
+      <div class="col-md-3 social">
         <span class="fa-stack fa-lg">
           <i class="fa fa-circle fa-stack-2x"></i>
-          <a ng-click="vm.resetFilters()" class="fa fa-refresh fa-stack-1x fa-inverse"></a>
+          <a class="fa fa-download fa-stack-1x fa-inverse"></a>
         </span>
-        <span class="tool-text">Wis actieve filters</span>
-      </div>
 
-      <div class="col-md-4 social">
         <span class="fa-stack fa-lg">
           <i class="fa fa-circle fa-stack-2x"></i>
           <a target="_blank" ng-href="http://twitter.com/home?status={{vm.shareDescription}}" class="fa fa-twitter fa-stack-1x fa-inverse"></a>

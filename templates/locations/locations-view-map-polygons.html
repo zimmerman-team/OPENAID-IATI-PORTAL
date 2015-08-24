@@ -2,11 +2,14 @@
     <div class="row">
         <div class="col-md-12">
 
+            <filter-bar current-page="countries"></filter-bar>
+
             <top-navbar 
                 views="[{'id':'locations-polygonmap', 'name': 'Bekijk op kaart'}, {'id':'locations', 'name': 'Bekijk visualisatie'}, {'id':'locations-map', 'name': 'Bekijk op kaart & lijst'}]"
                 search-value="vm.searchValue"
                 submit-search="vm.submitSearch"></top-navbar>
 
+<<<<<<< Updated upstream
             <filter-bar current-page="countries"></filter-bar>
             
             <div class="map">
@@ -14,6 +17,9 @@
                 <leaflet center="vm.center" geojson="vm.geojsonData" height="600px" width="100%"></leaflet>
               </div>
             </div>
+=======
+            <locations-polygon-map geo-view="vm.geoView"></locations-polygon-map>
+>>>>>>> Stashed changes
 
         </div>
     </div>
