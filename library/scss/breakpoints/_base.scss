@@ -656,43 +656,53 @@ FILTER BAR
   }
 }
 
-.dash-select {
-  position:relative;
-  .dash {
-    float: left;
-    .positioner {
-      background:rgba(#738191,.5);
-      padding:0 20px;
-      border-radius:20px;
+.dash-wrap {
+  float: left;
+  margin-right: 20px;
+  position: relative;
+  .select-wrap {
+    background:rgba(#738191,1);
+    border-radius:0 0 20px 20px;
+    display: none;
+    position: absolute;
+    width: 100%;
+    .fa {
+      visibility: hidden;
     }
-    a, a:hover {
-      color: #fff;
-      text-decoration: none;
-    }
-    &.title {
-      line-height: 2.35em;
-      margin-right: 6px;
-    }
-    i {
-      margin-right: 10px;
-    }
-    &.list {
-      .vis-type {
-        display: none;
-        height: 42px;
-        line-height: 42px;
-        &:first-of-type {
-          display: block;
-        }
-      }
+  }
+  a, a:hover {
+    color: #fff;
+    text-decoration: none;
+  }
+  .title {
+    line-height: 42px;
+    padding:0 20px;
+    background:rgba(#738191,.5);
+    height: 42px;
+    border-radius:20px;
+  }
+  i {
+    margin-right: 10px;
+  }
+  .vis-type {
+    line-height: 42px;
+    padding:0 20px;
+    height: 42px;
+    a {
+      cursor: pointer;
       &:hover {
-        .positioner {
-          position:absolute;
-          .vis-type {
-            display: block;
-          }
-        }
+        color:$oranje;
       }
+    }
+  }
+  &:hover {
+    .title {
+      background:rgba(#738191,1);
+      border-bottom-left-radius:0;
+      border-bottom-right-radius:0;
+    }
+    .select-wrap {
+      display: block;
     }
   }
 }
