@@ -31,6 +31,10 @@ a {
   margin: 0 auto;
 }
 
+#openaid-main {
+  padding-top:70px;
+}
+
 
 
 /****
@@ -358,7 +362,7 @@ hr{
     max-width: 600px;
     border-radius: 8px;
     padding: 12px 16px 20px;
-    z-index: 99;
+    z-index: 999999;
     h3{
       margin-top: 0;
       margin-bottom: 6px;
@@ -368,7 +372,7 @@ hr{
 .actions {
   .glyphicon-popup {
     white-space: nowrap;
-    top:-46px;
+    top:46px;
     min-width: 0;
     left:-50%;
     padding:0px 10px;
@@ -385,6 +389,9 @@ NAVBAR
   border: 0 !important;
   margin-bottom: 12px;
   font-weight: 300;
+  position:fixed;
+  width: 100%;
+  z-index: 99999;
   a {
     text-decoration: none;
   }
@@ -485,7 +492,7 @@ NAVBAR
     li {
       list-style: none;
       display: inline-block;
-      margin-right: 15px;
+      margin-right: 25px;
       a {
         text-decoration: none;
         color:#fff;
@@ -524,6 +531,15 @@ NAVBAR
 /*********************
 SEARCH BAR
 *********************/
+
+.selectvis {
+  margin-bottom:10px;   
+  .vis-select {
+    padding:0 15px;
+    text-align: left;
+    margin:10px 0;
+  }
+}
 
 .search-box {
   margin-top: 15px;
@@ -575,6 +591,15 @@ SEARCH BAR
   }
 }
 
+#filter-panel-background {
+  position: absolute;
+  left: 0; 
+  top:0; 
+  width: 100%; 
+  height: 100%;
+  z-index: 99;
+}
+
 /*********************
 Dashboard buttons
 *********************/
@@ -609,15 +634,25 @@ Dashboard buttons
 /*********************
 FILTER BAR
 *********************/
+.filters-fixed {
+  .container {
+    padding:0;
+    width: 1140px;
+  }
+  &.fixed {
+    top:58px;
+    position:fixed;
+    z-index:99999;
+    background:#CCCCB6;
+    width: 100%;
+    left:0;
+    padding-top:10px;
+  }
+}
+
 .makeblock {
   display: block;
   margin-top:5px;
-}
-
-.vis-select {
-  padding:0 15px;
-  text-align: left;
-  margin-top:15px;
 }
 
 .about-page {
@@ -630,18 +665,38 @@ FILTER BAR
   }
 }
 
+.detailbar {
+  margin-bottom: 10px;
+  .fa-circle {
+    color:rgba(#738191,.5);
+    transition:all .3s;
+  }
+  .fa-stack {
+    a {
+      color:#fff;
+    }
+  }
+  .social {
+    text-align: right;
+    .fa-stack:hover {
+      .fa-circle {
+        color:rgba(#738191,1);
+      }
+    }
+  }
+}
 
 .actions {
-  margin-top:5px;
   color:#fff;
   font-size: 16px;
-
+  z-index: 9999;
+  position: relative;
 
   span {
     cursor: pointer;
   }
   .filters,.social {
-    margin-bottom: 10px;
+    //margin-bottom: 10px;
     a {
       color:#fff;
       &:hover {
@@ -714,7 +769,7 @@ h4 {
 }
 
 .filter-panel {
-  z-index: 99999;
+  z-index: 999;
   background-color: #fff;
   position: absolute;
   width: 100%;
@@ -1204,9 +1259,11 @@ TOOL BAR
   //padding:6px 10px;
   margin-bottom: 10px;
   position:relative;
+  margin-top: 10px;
 
   a {
     cursor: pointer;
+    text-decoration: none;
     &:hover {
       //color:#fff;
       text-decoration: none;
@@ -1357,8 +1414,19 @@ Search suggest box
   .header{
     background-color: #333;
     color: #fff;
+    padding:5px 10px;
     a{
       color: #fff;
+    }
+  }
+  .results {
+    padding:5px 10px;
+    a {
+      color:$oranje;
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
     }
   }
 }
@@ -1659,6 +1727,7 @@ footer{
   color: #fff;
   padding-top:35px;
   padding-bottom: 35px;
+  margin-top:50px;
 
   a{
     color: #fff;
