@@ -9,12 +9,12 @@
     .module('oipa.filters')
     .controller('FiltersController', FiltersController);
 
-  FiltersController.$inject = ['$state', '$scope', 'Filters', 'FilterSelection', '$sce'];
+  FiltersController.$inject = ['$state', '$location', '$document', '$scope', 'Filters', 'FilterSelection', '$sce'];
 
   /**
   * @namespace FiltersController
   */
-  function FiltersController($state, $scope, Filters, FilterSelection, $sce) {
+  function FiltersController($state, $location, $document, $scope, Filters, FilterSelection, $sce) {
     var vm = this;
     vm.showSelection = false;
     vm.filterSelection = FilterSelection;
@@ -26,6 +26,10 @@
     vm.filterSelection = FilterSelection;
     vm.selectionString = '';
     vm.currentHoverText = '';
+    vm.pageUrl = '';
+    vm.pageUrlDecoded = $location.absUrl();
+    vm.pageTitle = $document[0].title;
+    vm.shareDescription = '';
 
     vm.buttonTexts = {
       'recipient_countries': {'text': 'Ontvangend land', hoverShow: false},
@@ -34,10 +38,10 @@
       'recipient_sectors': {'text': 'Sector', hoverShow: false},
       'recipient_activity_status': {'text': 'Activiteit status', hoverShow: false},
       'recipient_implementing_organisations': {'text': 'Ontvangende organisatie', hoverShow: false},
-      'download': {'text': 'Download is nog niet geimplementeerd', hoverShow: false},
-      'share_twitter': {'text': 'Twitter share is nog niet geimplementeerd', hoverShow: false},
-      'share_linkedin': {'text': 'LinkedIn share is nog niet geimplementeerd', hoverShow: false},
-      'share_facebook': {'text': 'Facebook share is nog niet geimplementeerd', hoverShow: false},
+      'download': {'text': 'Download projecten', hoverShow: false},
+      'share_twitter': {'text': 'Deel via Twitter', hoverShow: false},
+      'share_linkedin': {'text': 'Deel via LinkedIn', hoverShow: false},
+      'share_facebook': {'text': 'Deel via Facebook', hoverShow: false},
     };
 
     vm.currentHoverText = '';
@@ -45,7 +49,8 @@
     activate();
 
     function activate() {
-      
+      vm.pageUrl = encodeURIComponent(vm.pageUrlDecoded);
+      vm.shareDescription = encodeURIComponent('Bekijk de ontwikkelingshulpprojecten van de Rijksoverheid op ' + vm.pageUrlDecoded);
     }
 
     vm.goToPage = function(type){
@@ -122,6 +127,7 @@
     }
 
     vm.share = function(medium){
+
       console.log("TO DO; open "+medium+" share url in new window");
     }
     

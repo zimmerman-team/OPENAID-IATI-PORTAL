@@ -39,8 +39,8 @@
                     <div class="col-sm-12 activity-list-item">
                         <div class="hp-block wit">
                             <p><b>Laatste update</b><br>{{vm.activity.last_updated_datetime | date : 'dd-mm-yyyy'}}</p>
-                            <p><b>Startdatum</b><br>{{vm.activity.start_actual.length ? vm.activity.start_actual : 'Niet beschikbaar'}}</p>
-                            <p><b>Einddatum</b><br>{{vm.activity.end_actual.length ? vm.activity.end_actual : 'Niet beschikbaar'}}</p>
+                            <p><b>Startdatum</b><br>{{vm.activity.start_actual.length ? vm.activity.start_actual : 'Geen data beschikbaar'}}</p>
+                            <p><b>Einddatum</b><br>{{vm.activity.end_actual.length ? vm.activity.end_actual : 'Geen data beschikbaar'}}</p>
                         </div>
                     </div>
                 </div>
@@ -49,7 +49,7 @@
                 <div class="row">
                     <div class="col-sm-12 activity-list-item">
                         <div class="hp-block wit">
-                            <p><b>Website</b><br>{{vm.activity.websites.length ? vm.activity.websites[0].url : 'Niet beschikbaar'}}</p>
+                            <p><b>Website</b><br>{{vm.activity.websites.length ? vm.activity.websites[0].url : 'Geen data beschikbaar'}}</p>
                         </div>
                     </div>
                 </div>
@@ -76,7 +76,7 @@
                         <div class="hp-block wit">
                             <p><b>Budget</b><br>
                                 <span ng-if='vm.activity.total_budget.length'>{{vm.activity.total_budget | currency :'€':0}}</span>
-                                <span ng-if='!vm.activity.total_budget.length'>Niet beschikbaar</span>
+                                <span ng-if='!vm.activity.total_budget.length'>Geen data beschikbaar</span>
                             </p>
                         </div>
                     </div>
@@ -108,7 +108,7 @@
                                 <a ng-repeat="country in vm.activity.countries" ui-sref="country({ country_id: country.code })">
                                     {{country.name}}
                                 </a>
-                                <span ng-if='vm.activity.countries.length == 0'>Niet beschikbaar</span>
+                                <span ng-if='vm.activity.countries.length == 0'>Geen data beschikbaar</span>
                             </p>
 
                             <p>
@@ -116,7 +116,7 @@
                                 <a ng-repeat="region in vm.activity.regions" ui-sref="region({ region_id: region.code })">
                                     {{region.name}}
                                 </a>
-                                <span ng-if='vm.activity.regions.length == 0'>Niet beschikbaar</span>
+                                <span ng-if='vm.activity.regions.length == 0'>Geen data beschikbaar</span>
                             </p>
                         </div>
                     </div>
