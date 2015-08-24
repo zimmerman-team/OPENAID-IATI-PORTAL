@@ -21,7 +21,6 @@
     vm.excludeFilter = $scope.excludeFilter;
     vm.excludeDashboard = $scope.excludeDashboard;
     vm.currentPage = $scope.currentPage;
-    vm.openedPanel = ''; 
     vm.showSelection = false;
     vm.filterSelection = FilterSelection;
     vm.selectionString = '';
@@ -97,7 +96,6 @@
 
     vm.toggleOpenPanel = function(slug){
       if(FilterSelection.openedPanel == slug){
-        FilterSelection.openedPanel = '';
         FilterSelection.toSave = true;
       } else {
         vm.setOpenedHeader(slug);
@@ -114,8 +112,8 @@
     }
 
     vm.saveFilters = function(){
+      console.log(vm.openedPanel);
       FilterSelection.toSave = true;
-      FilterSelection.openedPanel = '';
     }
 
     vm.isOpenedHeader = function(slug){
@@ -126,10 +124,6 @@
       console.log("TO DO; show download options");
     }
 
-    vm.share = function(medium){
-
-      console.log("TO DO; open "+medium+" share url in new window");
-    }
     
   }
 })();

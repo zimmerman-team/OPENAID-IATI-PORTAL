@@ -22,12 +22,14 @@
 		m.toSave = false;
 		m.toReset = false;
 		m.openPanel = '';
+		m.openedPanel = '';
 		
 		var FilterSelection = {
 			toSave: m.toSave,
 			toReset: m.toReset,
 			selectionString: m.selectionString,
-			openPanel: m.openPanel
+			openPanel: m.openPanel,
+			openedPanel: m.openedPanel
 		};
 
 		return FilterSelection;
