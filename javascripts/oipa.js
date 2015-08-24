@@ -10,6 +10,7 @@
             'angularUtils.directives.dirPagination',
             'nvd3',
             'leaflet-directive',
+            'infinite-scroll',
             'oipa.constants',
             'oipa.config',
             'oipa.routes',

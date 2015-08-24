@@ -7,17 +7,16 @@
                     resultaten {{vm.minMaxShown()}} van {{vm.totalActivities}}
                 </div>
                 <div class="col-xs-4 text-right-not-xs">
-                    <!-- <span class="sort-item hidden-xs">sorteer op:</span>
-                    <span class="sort-item" ng-click="vm.toggleOrder('total_budget')">budget<span class="glyphicon glyphicon-resize-vertical"></span></span>
-                    <span class="sort-item" ng-click="vm.toggleOrder('start_actual')">startdatum<span class="glyphicon glyphicon-resize-vertical"></span></span> -->
                     <label class="wrapper">
                       <div class="custom-select ff-hack">
                         <select
-                          ng-model="vm.selectedView"
-                          ng-change="vm.changeView()">
+                          ng-model="vm.order_by"
+                          ng-change="vm.toggleOrder()">
                           <option value="">Sorteer op...</option>
-                          <option value="total_budget">Budget</option>
-                          <option value="start_actual">Startdatum</option>
+                          <option value="total_budget">Budget - oplopend</option>
+                          <option value="-total_budget">Budget - aflopend</option>
+                          <option value="start_actual">Startdatum - oplopend</option>
+                          <option value="-start_actual">Startdatum - aflopend</option>
                         </select>
                       </div>
                     </label>
@@ -26,13 +25,10 @@
         </div>
     </div>
 
-    <div class="row">
+    <div class="row" infinite-scroll='vm.nextPage()' infinite-scroll-disabled='vm.busy' infinite-scroll-distance='1'>
         <div class="activity-list-item col-sm-12" 
             ng-show="vm.activities.length != 0"
-            dir-paginate="item in vm.activities | itemsPerPage: 5"  
-            pagination-id="activityList"
-            total-items="vm.totalActivities" 
-            current-page="vm.pagination.current">
+            ng-repeat="item in vm.activities">
                 <div class="col-md-12">
                     <div class="hp-block wit header">
                         <h2><a ui-sref="activiteit({ activity_id: item.id })">{{ item.titles[0].title }}</a></h2>
@@ -83,9 +79,9 @@
         </div>
     </div>
     <div class="col-md-12 text-center pag">
-        <dir-pagination-controls 
+       <!--  <dir-pagination-controls 
         pagination-id="activityList" 
         on-page-change="pageChanged(newPageNumber)">
-        </dir-pagination-controls>
+        </dir-pagination-controls> -->
     </div>
 </div>

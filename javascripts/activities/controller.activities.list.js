@@ -26,6 +26,7 @@
     vm.pagination = {
         current: 1
     };
+    vm.busy = false;
 
     $scope.pageChanged = function(newPage) {
         vm.offset = (newPage * vm.page_size) - vm.page_size;
@@ -44,12 +45,8 @@
       }, true);
     }
 
-    vm.toggleOrder = function(name){
-      if (vm.order_by.charAt(0) === '-'){
-        vm.order_by = name;
-      } else {
-        vm.order_by = '-' + name;
-      }
+    vm.toggleOrder = function(){
+      vm.offset = 0;
       vm.update(vm.filterSelection.selectionString);
     }
 
@@ -63,7 +60,7 @@
 
       var min = 0;
       if(vm.totalActivities > 0){
-        min = vm.offset;
+        min = 1;
       }
 
       return min + ' - ' + max;
@@ -88,6 +85,29 @@
         console.warn('error getting data for activity.list.block');
       }
     }
+
+    vm.nextPage = function(){
+      console.log('called');
+      if (vm.busy) return;
+      vm.busy = true;
+      vm.offset = vm.offset + 5;
+
+      Activities.list(vm.filterSelection.selectionString, vm.page_size, vm.order_by, vm.offset).then(succesFn, errorFn);
+
+      function succesFn(data, status, headers, config){
+        for (var i = 0; i < data.data.objects.length; i++) {
+          vm.activities.push(data.data.objects[i]);
+        }
+        vm.busy = false;   
+      }
+
+      function errorFn(data, status, headers, config){
+        console.warn('error getting data on busy');
+      }
+    };
+
+
+
 
     activate();
   }
