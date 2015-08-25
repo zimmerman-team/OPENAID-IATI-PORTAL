@@ -26,6 +26,9 @@
     activate();
 
     function activate() {
+      FilterSelection.toReset = true;
+      FilterSelection.selectionString = '';
+
       Aggregations.aggregation('recipient-country', 'disbursement', '').then(successFn, errorFn);
 
       function successFn(data, status, headers, config) {

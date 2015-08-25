@@ -9,12 +9,12 @@
     .module('oipa.filters')
     .controller('FiltersController', FiltersController);
 
-  FiltersController.$inject = ['$state', '$location', '$document', '$scope', 'Filters', 'FilterSelection', '$sce'];
+  FiltersController.$inject = ['$state', '$location', '$document', '$scope', 'Filters', 'FilterSelection', '$sce', 'homeUrl'];
 
   /**
   * @namespace FiltersController
   */
-  function FiltersController($state, $location, $document, $scope, Filters, FilterSelection, $sce) {
+  function FiltersController($state, $location, $document, $scope, Filters, FilterSelection, $sce, homeUrl) {
     var vm = this;
     vm.showSelection = false;
     vm.filterSelection = FilterSelection;
@@ -29,7 +29,6 @@
     vm.shareDescription = '';
     vm.selectedView = '';
     vm.views = $scope.views;
-
 
     vm.buttonTexts = {
       'recipient_countries': {'text': 'Ontvangend land', hoverShow: false},
@@ -114,7 +113,6 @@
     }
 
     vm.saveFilters = function(){
-      console.log(vm.openedPanel);
       FilterSelection.toSave = true;
     }
 
@@ -122,8 +120,9 @@
       return FilterSelection.openedPanel == slug;
     }
 
-    vm.showDownload = function(){
-      console.log("TO DO; show download options");
+    vm.download = function(format){
+      var url = homeUrl + '/export/?format='+format+'&filters=' + encodeURIComponent(FilterSelection.selectionString);
+      window.open(url);
     }
 
     

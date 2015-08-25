@@ -3,25 +3,27 @@
 
 <div class="row detailbar">
     <div class="col-sm-12 social text-right">
-        <span class="fa-stack fa-lg download-button">
+        <span 
+          class="fa-stack fa-lg download-button" 
+          ng-if="vm.currentPage == 'activity' || vm.currentPage == 'activities'">
             <i class="fa fa-circle fa-stack-2x"></i>
             <i class="fa fa-download fa-stack-1x fa-inverse"></i>
             <div class="download-wrap">
-                <a>
+                <a ng-click="vm.download('csv')">
                     Download CSV
                     <span class="fa-stack fa-lg download-button">
                         <i class="fa fa-circle fa-stack-2x"></i>
                         <i class="fa fa-download fa-stack-1x fa-inverse"></i>
                     </span>
                 </a>
-                <a>
+                <a ng-click="vm.download('xml')">
                     Download XML
                     <span class="fa-stack fa-lg download-button">
                         <i class="fa fa-circle fa-stack-2x"></i>
                         <i class="fa fa-download fa-stack-1x fa-inverse"></i>
                     </span>
                 </a>
-                <a>
+                <a ng-click="vm.download('json')">
                     Download JSON
                     <span class="fa-stack fa-lg download-button">
                         <i class="fa fa-circle fa-stack-2x"></i>

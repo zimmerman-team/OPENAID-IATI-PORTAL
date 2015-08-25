@@ -67,7 +67,6 @@
       }
 
       FilterSelection.selectionString = selectList.join('');
-      
     }
 
     vm.selectArrayToString = function(header, id_slug, arr){
@@ -114,7 +113,6 @@
       FilterSelection.toSave = true;
     }
 
-    
     vm.removeSearch = function(){
       Search.searchString = '';
       FilterSelection.toSave = true;

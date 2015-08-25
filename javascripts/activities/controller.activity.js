@@ -9,7 +9,7 @@
     .module('oipa.activities')
     .controller('ActivityController', ActivityController);
 
-  ActivityController.$inject = ['Activities', '$stateParams'];
+  ActivityController.$inject = ['Activities', '$stateParams', 'FilterSelection'];
 
   /**
   * @namespace ActivitiesController
@@ -31,11 +31,13 @@
 
 
     function activate() {
+      FilterSelection.toReset = true;
+      FilterSelection.selectionString = '';
+      
       Activities.get(vm.activityId).then(successFn, errorFn);
 
       function successFn(data, status, headers, config) {
         vm.activity = data.data;
-        console.log(vm.activity);
         vm.transactionData = vm.reformatTransactionData();
         vm.tabs[2].count = vm.activity.documents.length;
       }

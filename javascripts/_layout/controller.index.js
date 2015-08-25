@@ -9,14 +9,20 @@
     .module('oipa.layout')
     .controller('IndexController', IndexController);
 
-  IndexController.$inject = ['$scope', '$sce'];
+  IndexController.$inject = ['$scope', '$sce', 'FilterSelection'];
 
-  function IndexController($scope, $sce) {
+  function IndexController($scope, $sce, FilterSelection) {
     var vm = this;
 
     activate();
 
     function activate() {
+
+      FilterSelection.toReset = true;
+      FilterSelection.selectionString = '';
+      
+      console.log('toReset');
+
       for (var cf in vm.customFields){
           vm.customFields[cf].hoverShow = false;
           vm.customFields[cf].text = $sce.trustAsHtml(vm.customFields[cf][0]);

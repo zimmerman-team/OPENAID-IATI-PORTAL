@@ -35,7 +35,9 @@
 
     function activate() {
 
-      vm.filterSelection.toReset = true;
+      FilterSelection.toReset = true;
+      FilterSelection.selectionString = '';
+
       ImplementingOrganisations.selectedImplementingOrganisations.push({'organisation_id': vm.organisation_id, 'name': ''});
 
       $scope.$watch('vm.filterSelection.selectionString', function (selectionString) {

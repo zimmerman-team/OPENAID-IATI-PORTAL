@@ -19,6 +19,9 @@
 
         function activate() {
 
+            FilterSelection.toReset = true;
+            FilterSelection.selectionString = '';
+
             $scope.$watch('vm.filterSelection.selectionString', function (selectionString) {
                 vm.selectionString = selectionString;
                 FilterSelection.openedPanel = '';

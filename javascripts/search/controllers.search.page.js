@@ -5,9 +5,9 @@
     .module('oipa.searchPage')
     .controller('SearchPageController', SearchPageController);
 
-  SearchPageController.$inject = ['templateBaseUrl', '$scope', '$stateParams'];
+  SearchPageController.$inject = ['templateBaseUrl', '$scope', '$stateParams', 'FilterSelection'];
 
-  function SearchPageController(templateBaseUrl, $scope, $stateParams) {
+  function SearchPageController(templateBaseUrl, $scope, $stateParams, FilterSelection) {
     var vm = this;
     vm.selectedTab = 'activities';
     vm.searchValue = '';
@@ -23,6 +23,8 @@
     activate();
 
     function activate(){
+      FilterSelection.toReset = true;
+      FilterSelection.selectionString = '';
 
       if($stateParams.search != undefined){
         vm.searchValue = $stateParams.search;

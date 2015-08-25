@@ -9,10 +9,13 @@
 
     function LocationsMapListController($scope, FilterSelection){
         var vm = this;
-        vm.filterSelection = FilterSelection;
-        vm.selectionString = '';
         vm.geoView = 'countries';
-        vm.submitSearch = '';
+        activate();
+
+        function activate(){
+            FilterSelection.toReset = true;
+            FilterSelection.selectionString = '';
+        }
     }
 
 })();
