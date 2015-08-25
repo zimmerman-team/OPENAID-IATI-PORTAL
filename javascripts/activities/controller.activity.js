@@ -14,7 +14,7 @@
   /**
   * @namespace ActivitiesController
   */
-  function ActivityController(Activities, $stateParams) {
+  function ActivityController(Activities, $stateParams, FilterSelection) {
     var vm = this;
     vm.activity = null;
     vm.activityId = $stateParams.activity_id;
