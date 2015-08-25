@@ -2155,6 +2155,10 @@ footer{
     a.btn {
       color: #fff;
       text-decoration: none;
+      background:#333;
+      &:hover {
+        background:$oranje;
+      }
     }
   }
   .leaflet-top, .leaflet-bottom {
