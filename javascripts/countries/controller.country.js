@@ -63,26 +63,20 @@
 
     vm.update = function(selectionString){
       if (selectionString.indexOf("countries__in") < 0){ return false;}
-
-      Aggregations.aggregation('recipient-country', 'iati-identifier', selectionString).then(function(data, status, headers, config){
-        if(data.data.length == 0){vm.activityCount = 0 } else { vm.activityCount = data.data[0]['activity_count']};
+      
+      Aggregations.aggregation('transaction__transaction-date_year', 'disbursement', selectionString).then(function(data, status, headers, config){
+        vm.disbursements_by_year = data.data.results;
+        
       }, errorFn);
 
-      Aggregations.aggregation('recipient-country', 'disbursement', selectionString).then(function(data, status, headers, config){
-        if(data.data.length == 0){vm.totalBudget = 0 } else { vm.totalBudget = data.data[0]['total_disbursements']};
+      Aggregations.aggregation('transaction__transaction-date_year', 'commitment', selectionString).then(function(data, status, headers, config){
+        vm.commitments_by_year = data.data.results;
       }, errorFn);
 
-      Aggregations.aggregation('transaction__receiver-org', 'iati-identifier', selectionString).then(function(data, status, headers, config){
-        vm.organisationCount = data.data.length;
+      Aggregations.aggregation('budget__period_start_year', 'budget__value', selectionString).then(function(data, status, headers, config){
+        vm.budget_by_year = data.data.results;
       }, errorFn);
 
-      Aggregations.aggregation('reporting-org', 'iati-identifier', selectionString).then(function(data, status, headers, config){
-        vm.donorCount = data.data.length;
-      }, errorFn);
-
-      Aggregations.aggregation('sector', 'iati-identifier', selectionString).then(function(data, status, headers, config){
-        vm.sectorCount = data.data.length;
-      }, errorFn);
     }
 
     activate();

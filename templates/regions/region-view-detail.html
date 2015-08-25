@@ -34,35 +34,24 @@
                 <!--start van een wit blokje -->
                 <div class="row">
                     <div class="col-sm-12 activity-list-item">
-                        <div class="hp-block wit" ng-click="vm.dashboard = 'list'">
-                            <p><b>Laatste update</b><br>Geen data beschikbaar</p>
-                            <p><b>Startdatum</b><br>Geen data beschikbaar</p>
-                            <p><b>Einddatum</b><br>Geen data beschikbaar</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- eind van een wit blokje -->
-                <!--start van een wit blokje -->
-                <div class="row">
-                    <div class="col-sm-12 activity-list-item">
-                        <div class="hp-block wit" ng-click="vm.dashboard = 'list'">
+                        <div class="hp-block wit">
                             <p>
                                 <b>Uitgaven per jaar</b><br>
-                                Geen data beschikbaar<br>
-                                Bla<br>
-                                Bla
+                                <div ng-repeat="disbursement in vm.disbursements_by_year">
+                                    {{disbursement.transaction_date_year}}: {{disbursement.total_disbursements | shortcurrency :'€'}}
+                                </div>
                             </p>
                             <p>
                                 <b>Budgetten per jaar</b><br>
-                                Geen data beschikbaar<br>
-                                Bla<br>
-                                Bla
+                                <div ng-if="disbursement.transaction_date_year != 0" ng-repeat="disbursement in vm.disbursements_by_year">
+                                    {{disbursement.transaction_date_year}}: {{disbursement.total_disbursements | shortcurrency :'€'}}
+                                </div>
                             </p>
                             <p>
                                 <b>Verplichtingen per jaar</b><br>
-                                Geen data beschikbaar<br>
-                                Bla<br>
-                                Bla
+                                <div ng-repeat="commitment in vm.commitments_by_year">
+                                    {{commitment.transaction_date_year}}: {{commitment.total_commitments | shortcurrency :'€'}}
+                                </div>
                             </p>
                         </div>
                     </div>
@@ -92,11 +81,24 @@
     </div>
 
     <div ng-show="vm.selectedTab == 'activities'">
-        <activity-list></activity-list>
+        <activity-list
+            has-to-contain="regions__in" 
+            count="vm.tabs[1].count"
+            shown="vm.selectedTab == 'activities'"></activity-list>
     </div>
 
     <div ng-show="vm.selectedTab == 'sectors'">
-        <sector-list></sector-list>
+        <sector-list
+            has-to-contain="regions__in" 
+            count="vm.tabs[2].count"
+            shown="vm.selectedTab == 'sectors'"></sector-list>
+    </div>
+
+    <div ng-show="vm.selectedTab == 'implementing-organisations'">
+        <implementing-organisations-list
+            has-to-contain="regions__in" 
+            count="vm.tabs[3].count"
+            shown="vm.selectedTab == 'implementing-organisations'"></implementing-organisations-list>
     </div>
 
 </div>

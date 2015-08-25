@@ -87,7 +87,7 @@
         Aggregations.aggregation('recipient-country', 'iati-identifier', vm.selectionString).then(countrySuccessFn, errorFn);
 
         function countrySuccessFn(data, status, headers, config) {
-            vm.updateCountryPolygons(data.data);
+            vm.updateCountryPolygons(data.data.results);
         }
 
         function errorFn(data, status, headers, config) {

@@ -28,7 +28,8 @@
       scope: {
         hasToContain: '@',
         count: '=?',
-        searchValue: '=?'
+        searchValue: '=?',
+        shown: '=?'
       },
       templateUrl: templateBaseUrl + '/templates/sectors/sectors-list.html'
     };

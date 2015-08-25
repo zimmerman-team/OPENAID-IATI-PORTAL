@@ -43,7 +43,7 @@
       function succesFn(data, status, headers, config){
 
         if(vm.aggregationExtraSelect == 'iati-identifier'){
-          vm.unformattedData = data.data;
+          vm.unformattedData = data.data.results;
 
           var filter__in = [];
           for(var i = 0;i < vm.unformattedData.length;i++){
@@ -62,8 +62,8 @@
         } else if(vm.aggregationExtraSelect == 'iati-identifier-add'){
 
           var countMap = {};
-          for(var i = 0;i < data.data.length;i++){
-            countMap[data.data[i][vm.groupById]] = data.data[i]['activity_count'];
+          for(var i = 0;i < data.data.results.length;i++){
+            countMap[data.data.results[i][vm.groupById]] = data.data.results[i]['activity_count'];
           }
 
           if(vm.groupById == 'organisation_id'){
@@ -78,7 +78,7 @@
 
         } else {
           if(vm.unformattedData == []){
-            vm.chartData = vm.reformatData(data.data);
+            vm.chartData = vm.reformatData(data.data.results);
           } else {
             vm.chartData = vm.reformatData(vm.unformattedData);
           }

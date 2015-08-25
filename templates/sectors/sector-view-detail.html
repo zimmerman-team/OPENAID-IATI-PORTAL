@@ -31,7 +31,24 @@
                 <div class="row">
                     <div class="col-sm-12 activity-list-item">
                         <div class="hp-block wit">
-                            <p><b>Budget</b><br>{{vm.totalBudget | currency :'€':0}}</p>
+                            <p>
+                                <b>Uitgaven per jaar</b><br>
+                                <div ng-repeat="disbursement in vm.disbursements_by_year">
+                                    {{disbursement.transaction_date_year}}: {{disbursement.total_disbursements | shortcurrency :'€'}}
+                                </div>
+                            </p>
+                            <p>
+                                <b>Budgetten per jaar</b><br>
+                                <div ng-if="disbursement.transaction_date_year != 0" ng-repeat="disbursement in vm.disbursements_by_year">
+                                    {{disbursement.transaction_date_year}}: {{disbursement.total_disbursements | shortcurrency :'€'}}
+                                </div>
+                            </p>
+                            <p>
+                                <b>Verplichtingen per jaar</b><br>
+                                <div ng-repeat="commitment in vm.commitments_by_year">
+                                    {{commitment.transaction_date_year}}: {{commitment.total_commitments | shortcurrency :'€'}}
+                                </div>
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -48,7 +65,10 @@
                     <div class="col-sm-12 activity-list-item">
                         <div class="hp-block wit">
                             <h3>Transacties</h3>
-                            CHART
+                            <nvd3 
+                                options="vm.transactionChartOptions" 
+                                data="vm.transactionData" 
+                                class="with-3d-shadow with-transitions"></nvd3>
                         </div>
                     </div>
                 </div>
@@ -59,31 +79,32 @@
         </div>
     </div>
 
-
-
-
     <div ng-show="vm.selectedTab == 'activities'">
         <activity-list 
             has-to-contain="sectors__in"  
-            count="vm.tabs[1].count"></activity-list>
+            count="vm.tabs[1].count"
+            shown="vm.selectedTab == 'activities'"></activity-list>
     </div>
 
     <div ng-show="vm.selectedTab == 'countries'">
         <country-list 
             has-to-contain="sectors__in" 
-            count="vm.tabs[2].count"></country-list>
+            count="vm.tabs[2].count"
+            shown="vm.selectedTab == 'countries'"></country-list>
     </div>
 
     <div ng-show="vm.selectedTab == 'regions'">
         <region-list 
             has-to-contain="sectors__in" 
-            count="vm.tabs[3].count"></region-list>
+            count="vm.tabs[3].count"
+            shown="vm.selectedTab == 'regions'"></region-list>
     </div>
 
     <div ng-show="vm.selectedTab == 'implementing-organisations'">
         <implementing-organisations-list 
             has-to-contain="sectors__in" 
-            count="vm.tabs[4].count"></implementing-organisations-list>
+            count="vm.tabs[4].count"
+            shown="vm.selectedTab == 'implementing-organisations'"></implementing-organisations-list>
     </div>
 
 </div>

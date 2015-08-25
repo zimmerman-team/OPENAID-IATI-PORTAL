@@ -44,8 +44,9 @@
                             </p>
                             <p>
                                 <b>Budgetten per jaar</b><br>
-                                XXX<br>
-                                XXX
+                                <div ng-if="disbursement.transaction_date_year != 0" ng-repeat="disbursement in vm.disbursements_by_year">
+                                    {{disbursement.transaction_date_year}}: {{disbursement.total_disbursements | shortcurrency :'€'}}
+                                </div>
                             </p>
                             <p>
                                 <b>Verplichtingen per jaar</b><br>
@@ -95,24 +96,28 @@
 
     <div ng-show="vm.selectedTab == 'activities'">
         <activity-list 
-            count='vm.tabs[1].count'></activity-list>
+            count='vm.tabs[1].count'
+            shown="vm.selectedTab == 'activities'"></activity-list>
     </div>
 
     <div ng-show="vm.selectedTab == 'sectors'">
         <sector-list 
             has-to-contain='participating_organisations__organisation__code__in' 
-            count='vm.tabs[2].count'></sector-list>
+            count='vm.tabs[2].count'
+            shown="vm.selectedTab == 'sectors'"></sector-list>
     </div>
 
     <div ng-show="vm.selectedTab == 'countries'">
         <country-list 
             has-to-contain='participating_organisations__organisation__code__in' 
-            count='vm.tabs[3].count'></country-list>
+            count='vm.tabs[3].count'
+            shown="vm.selectedTab == 'countries'"></country-list>
     </div>
     <div ng-show="vm.selectedTab == 'regions'">
         <region-list 
             has-to-contain='participating_organisations__organisation__code__in' 
-            count='vm.tabs[4].count'></region-list>
+            count='vm.tabs[4].count'
+            shown="vm.selectedTab == 'regions'"></region-list>
     </div>
 
 

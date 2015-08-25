@@ -15,7 +15,7 @@
   * @namespace ActivitiesController
   */
   function OipaLineChartController($scope, Aggregations) {
-
+    
     var vm = this;
     vm.groupBy = $scope.groupBy;
     vm.groupById = $scope.groupById;
@@ -76,10 +76,10 @@
       function succesFn(data, status, headers, config){
         
         if(vm.mapping != undefined){
-          data.data = vm[vm.mapping + 'ReMap'](data.data);
+          data.data.results = vm[vm.mapping + 'ReMap'](data.data.results);
         }
-   
-        vm.chartData = vm.reformatData(data.data);
+        console.log(data);
+        vm.chartData = vm.reformatData(data.data.results);
       }
 
       function errorFn(data, status, headers, config){

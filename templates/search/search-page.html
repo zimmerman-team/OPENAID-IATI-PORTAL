@@ -5,34 +5,57 @@
                 <h1>Inzicht in ontwikkelingshulp<small>open data van de Rijksoverheid </small></h1>
                 <div class="row">
                     <div class="col-sm-12 col-md-8 col-lg-6 col-md-offset-2 col-lg-offset-3">
-                        <search-box></search-box>
+                        <search-box current-page="search" search-value="vm.searchValue"></search-box>
                     </div>
                 </div>
             </div>
 
-             <sub-navbar 
-                tabs='vm.tabs' 
-                selected-tab='vm.selectedTab'>
-            </sub-navbar>
+            <div ng-hide="vm.searchValue == ''">
 
-            <div ng-show="vm.selectedTab == 'activities'">
-                <activity-list></activity-list>
-            </div>
+                 <sub-navbar 
+                    tabs='vm.tabs' 
+                    selected-tab='vm.selectedTab'>
+                </sub-navbar>
 
-            <div ng-show="vm.selectedTab == 'organisations'">
-                <implementing-organisations-list></implementing-organisations-list>
-            </div>
+                <div ng-show="vm.selectedTab == 'activities'">
+                    <activity-list 
+                        has-to-contain="query" 
+                        count="vm.tabs[0].count"
+                        shown="vm.selectedTab == 'activities'"
+                        search-value="vm.searchValue"></activity-list>
+                </div>
 
-            <div ng-show="vm.selectedTab == 'sectors'">
-                <sector-list></sector-list>
-            </div>
+                <div ng-show="vm.selectedTab == 'organisations'">
+                    <implementing-organisations-list
+                        has-to-contain="name_query" 
+                        count="vm.tabs[1].count"
+                        shown="vm.selectedTab == 'organisations'"
+                        search-value="vm.searchValue"></implementing-organisations-list>
+                </div>
 
-            <div ng-show="vm.selectedTab == 'countries'">
-                <country-list></country-list>
-            </div>
+                <div ng-show="vm.selectedTab == 'sectors'">
+                    <sector-list 
+                        has-to-contain="name_query" 
+                        count="vm.tabs[2].count"
+                        shown="vm.selectedTab == 'sectors'"
+                        search-value="vm.searchValue"></sector-list>
+                </div>
 
-            <div ng-show="vm.selectedTab == 'regions'">
-                <region-list></region-list>
+                <div ng-show="vm.selectedTab == 'countries'">
+                    <country-list
+                        has-to-contain="name_query" 
+                        count="vm.tabs[3].count"
+                        shown="vm.selectedTab == 'countries'"
+                        search-value="vm.searchValue"></country-list>
+                </div>
+
+                <div ng-show="vm.selectedTab == 'regions'">
+                    <region-list
+                        has-to-contain="name_query" 
+                        count="vm.tabs[4].count"
+                        shown="vm.selectedTab == 'regions'"
+                        search-value="vm.searchValue"></region-list>
+                </div>
             </div>
 
         </div>

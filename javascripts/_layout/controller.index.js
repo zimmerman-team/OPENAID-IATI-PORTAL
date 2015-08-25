@@ -9,9 +9,9 @@
     .module('oipa.layout')
     .controller('IndexController', IndexController);
 
-  IndexController.$inject = ['$scope', '$sce', 'Aggregations', 'homeUrl'];
+  IndexController.$inject = ['$scope', '$sce'];
 
-  function IndexController($scope, $sce, Aggregations, homeUrl) {
+  function IndexController($scope, $sce) {
     var vm = this;
 
     activate();

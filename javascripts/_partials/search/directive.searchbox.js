@@ -24,7 +24,10 @@
       controller: 'SearchController',
       controllerAs: 'vm',
       restrict: 'E',
-      scope: {},
+      scope: {
+        'currentPage': '@',
+        'searchValue': '=?'
+      },
       templateUrl: templateBaseUrl + '/templates/_partials/search/search-box.html'
     };
 

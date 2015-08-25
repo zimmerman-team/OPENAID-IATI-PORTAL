@@ -23,7 +23,7 @@
 
         return Aggregations;
 
-        function aggregation(group_by, aggregation_key, filters, order_by, limit){
+        function aggregation(group_by, aggregation_key, filters, order_by, limit, offset){
 
             var url = oipaUrl + '/aggregate/?format=json&group_by='+group_by+'&aggregation_key='+aggregation_key
             if(reportingOrganisationId){
@@ -39,6 +39,10 @@
                 url += '&limit=' + limit;
             }
             
+            if(offset !== undefined){
+                url += '&offset=' + offset;
+            }
+
             return $http.get(url, { cache: true });
         }
     }

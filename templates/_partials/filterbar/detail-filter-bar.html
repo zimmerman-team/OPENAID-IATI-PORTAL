@@ -12,15 +12,15 @@
     <div class="col-sm-6 social text-right">
         <span class="fa-stack fa-lg">
             <i class="fa fa-circle fa-stack-2x"></i>
-            <a ng-click="vm.share('twitter')" class="fa fa-twitter fa-stack-1x fa-inverse"></a>
+            <a ng-href="http://twitter.com/home?status={{vm.shareDescription}}" class="fa fa-twitter fa-stack-1x fa-inverse"></a>
         </span>
         <span class="fa-stack fa-lg">
             <i class="fa fa-circle fa-stack-2x"></i>
-            <a ng-click="vm.share('linkedin')" class="fa fa-linkedin fa-stack-1x fa-inverse"></a>
+            <a ng-href="http://www.linkedin.com/shareArticle?mini=true&url={{vm.pageUrl}}&title={{vm.shareDescription}}" class="fa fa-linkedin fa-stack-1x fa-inverse"></a>
         </span>
         <span class="fa-stack fa-lg">
             <i class="fa fa-circle fa-stack-2x"></i>
-            <a ng-click="vm.share('facebook')" class="fa fa-facebook fa-stack-1x fa-inverse"></a>
+            <a ng-href="http://www.facebook.com/sharer/sharer.php?s=100&p[url]={{vm.pageUrl}}" class="fa fa-facebook fa-stack-1x fa-inverse"></a>
         </span>
     </div>
 </div>

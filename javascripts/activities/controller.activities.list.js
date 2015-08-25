@@ -23,58 +23,48 @@
     vm.offset = 0;
     vm.totalActivities = 0;
     vm.hasToContain = $scope.hasToContain;
-    vm.pagination = {
-        current: 1
-    };
     vm.busy = false;
+    vm.extraSelectionString = '';
 
-    $scope.pageChanged = function(newPage) {
-        vm.offset = (newPage * vm.page_size) - vm.page_size;
-        vm.update(vm.filterSelection.selectionString);
-    };
-
-    /**
-    * @name activate
-    * @desc Actions to be performed when this controller is instantiated
-    * @memberOf oipa.activityStatus.ActivityStatusController
-    */
     function activate() {
-      // use predefined filters or the filter selection
       $scope.$watch("vm.filterSelection.selectionString", function (selectionString) {
-          vm.update(selectionString);
+        vm.update(selectionString);
       }, true);
+
+      $scope.$watch("searchValue", function (searchValue) {
+        if (searchValue == undefined) return false; 
+        searchValue == '' ? vm.extraSelectionString = '' : vm.extraSelectionString = '&query='+searchValue;
+        vm.update();
+      }, true);
+
+      // do not prefetch when the list is hidden
+      if($scope.shown != undefined){
+        $scope.$watch("shown", function (shown) {
+            vm.busy = !shown ? true : false;
+        }, true);
+      }
     }
 
     vm.toggleOrder = function(){
       vm.update(vm.filterSelection.selectionString);
     }
 
-    vm.minMaxShown = function(){
-      var max = 0;
-      if(vm.offset + vm.page_size > vm.totalActivities){
-        max = vm.totalActivities;
-      } else{
-        max = (vm.offset + vm.page_size);
-      }
-
-      var min = 0;
-      if(vm.totalActivities > 0){
-        min = 1;
-      }
-
-      return min + ' - ' + max;
-    }
-
-    vm.update = function(selectionString){
+    vm.hasContains = function(){
       if(vm.hasToContain !== undefined){
-        if(selectionString.indexOf(vm.hasToContain) < 0){
+        var totalString = vm.filterSelection.selectionString + vm.extraSelectionString;
+        if(totalString.indexOf(vm.hasToContain) < 0){
           return false;
         }
       }
+      return true;
+    }
+
+    vm.update = function(){
+      if (!vm.hasContains()) return false;
 
       vm.offset = 0;
 
-      Activities.list(selectionString, vm.page_size, vm.order_by, vm.offset).then(succesFn, errorFn);
+      Activities.list(vm.filterSelection.selectionString + vm.extraSelectionString, vm.page_size, vm.order_by, vm.offset).then(succesFn, errorFn);
 
       function succesFn(data, status, headers, config){
         vm.activities = data.data.objects;
@@ -88,12 +78,11 @@
     }
 
     vm.nextPage = function(){
-      console.log('called');
-      if (vm.busy) return;
+      if (!vm.hasContains() || vm.busy || (vm.totalActivities < (vm.offset + 5))) return;
+
       vm.busy = true;
       vm.offset = vm.offset + 5;
-
-      Activities.list(vm.filterSelection.selectionString, vm.page_size, vm.order_by, vm.offset).then(succesFn, errorFn);
+      Activities.list(vm.filterSelection.selectionString + vm.extraSelectionString, vm.page_size, vm.order_by, vm.offset).then(succesFn, errorFn);
 
       function succesFn(data, status, headers, config){
         for (var i = 0; i < data.data.objects.length; i++) {
@@ -103,12 +92,9 @@
       }
 
       function errorFn(data, status, headers, config){
-        console.warn('error getting data on busy');
+        console.warn('error getting data on lazy loading');
       }
     };
-
-
-
 
     activate();
   }

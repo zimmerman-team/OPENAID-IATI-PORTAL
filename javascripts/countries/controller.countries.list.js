@@ -18,19 +18,12 @@
     var vm = this;
     vm.filterSelection = FilterSelection;
     vm.countries = [];
-    vm.order_by = 'total_disbursements';
-    vm.page_size = 5;
-    vm.offset = 0;
     vm.totalCountries = 0;
+    vm.order_by = 'name';
+    vm.offset = 0;
     vm.hasToContain = $scope.hasToContain;
-    vm.pagination = {
-        current: 1
-    };
-    vm.loading = 0;
-
-    $scope.pageChanged = function(newPage) {
-        vm.offset = (newPage * vm.page_size) - vm.page_size;
-    };
+    vm.busy = false;
+    vm.extraSelectionString = '';
 
 
     function activate() {
@@ -38,43 +31,66 @@
       $scope.$watch("vm.filterSelection.selectionString", function (selectionString) {
           vm.update(selectionString);
       }, true);
-    }
-    
-    vm.minMaxShown = function(){
-      var max = 0;
-      if(vm.offset + vm.page_size > vm.totalCountries){
-        max = vm.totalCountries;
-      } else{
-        max = (vm.offset + vm.page_size);
-      }
 
-      var min = 0;
-      if(vm.totalCountries > 0){
-        min = vm.offset;
-      }
+      $scope.$watch("searchValue", function (searchValue) {
+        if(searchValue == undefined) return
+        searchValue == '' ? vm.extraSelectionString = '' : vm.extraSelectionString = '&name_query='+searchValue;
+        vm.update();
+      }, true);
 
-      return min + ' - ' + max;
+      // do not prefetch when the list is hidden
+      if($scope.shown != undefined){
+        $scope.$watch("shown", function (shown) {
+          vm.busy = !shown ? true : false;
+        }, true);
+      }
     }
 
-    vm.update = function(selectionString){
+    vm.hasContains = function(){
       if(vm.hasToContain !== undefined){
-        if(selectionString.indexOf(vm.hasToContain) < 0){
+        var totalString = vm.filterSelection.selectionString + vm.extraSelectionString;
+        if(totalString.indexOf(vm.hasToContain) < 0){
           return false;
         }
       }
-      Aggregations.aggregation('recipient-country', 'disbursement', selectionString + '&order_by=-total_disbursements').then(succesFn, errorFn);
+      return true;
+    }
+
+    vm.update = function(){
+      if (!vm.hasContains()) return false;
+
+      vm.offset = 0;
+      Aggregations.aggregation('recipient-country', 'disbursement', vm.filterSelection.selectionString + vm.extraSelectionString, vm.order_by, 5, vm.offset).then(succesFn, errorFn);
 
       function succesFn(data, status, headers, config){
-
-        vm.countries = data.data;
-        vm.totalCountries = vm.countries.length;
+        vm.countries = data.data.results;
+        vm.totalCountries = data.data.count;
         $scope.count = vm.totalCountries;
       }
 
       function errorFn(data, status, headers, config){
-        console.warn('error getting data for activity.list.block');
+        console.warn('error getting data for country.block');
       }
     }
+
+    vm.nextPage = function(){
+      if (!vm.hasContains() || vm.busy || (vm.totalCountries < (vm.offset + 5))) return;
+
+      vm.busy = true;
+      vm.offset = vm.offset + 5;
+      Aggregations.aggregation('recipient-country', 'disbursement', vm.filterSelection.selectionString + vm.extraSelectionString, vm.order_by, 5, vm.offset).then(succesFn, errorFn);
+
+      function succesFn(data, status, headers, config){
+        for (var i = 0; i < data.data.results.length; i++) {
+          vm.countries.push(data.data.results[i]);
+        }
+        vm.busy = false;
+      }
+
+      function errorFn(data, status, headers, config){
+        console.warn('error getting data on lazy loading');
+      }
+    };
 
     activate();
   }

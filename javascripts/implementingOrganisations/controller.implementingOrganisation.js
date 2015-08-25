@@ -60,16 +60,19 @@
 
     vm.update = function(selectionString){
 
-      if (selectionString.indexOf("participating_organisations__organisation__code__in") < 0){ return false;}
+      if (selectionString.indexOf("participating_organisations__organisation__code__in") < 0) return false;
 
-      vm.selectionString = selectionString;
-
-      Aggregations.aggregation('transaction_date_year', 'disbursement', selectionString).then(function(data, status, headers, config){
-        vm.disbursements_by_year = data.data;
+      Aggregations.aggregation('transaction__transaction-date_year', 'disbursement', selectionString).then(function(data, status, headers, config){
+        vm.disbursements_by_year = data.data.results;
+        
       }, errorFn);
 
-      Aggregations.aggregation('transaction_date_year', 'commitment', selectionString).then(function(data, status, headers, config){
-        vm.commitments_by_year = data.data;
+      Aggregations.aggregation('transaction__transaction-date_year', 'commitment', selectionString).then(function(data, status, headers, config){
+        vm.commitments_by_year = data.data.results;
+      }, errorFn);
+
+      Aggregations.aggregation('budget__period_start_year', 'budget__value', selectionString).then(function(data, status, headers, config){
+        vm.budget_by_year = data.data.results;
       }, errorFn);
 
     }

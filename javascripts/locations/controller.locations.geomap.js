@@ -97,11 +97,11 @@
         Aggregations.aggregation('recipient-region', 'iati-identifier', vm.selectionString).then(regionSuccessFn, errorFn);
 
         function countrySuccessFn(data, status, headers, config) {
-            vm.updateCountryMarkers(data.data);
+            vm.updateCountryMarkers(data.data.results);
         }
 
         function regionSuccessFn(data, status, headers, config){
-            vm.updateRegionMarkers(data.data);
+            vm.updateRegionMarkers(data.data.results);
         }
 
         function errorFn(data, status, headers, config) {

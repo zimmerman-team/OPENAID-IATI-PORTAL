@@ -45,7 +45,7 @@
       Aggregations.aggregation('sector', 'disbursement', '').then(successFn, errorFn);
 
       function successFn(data, status, headers, config) {
-        vm.reformatSunburstData(data.data);
+        vm.reformatSunburstData(data.data.results);
       }
 
       function errorFn(data, status, headers, config) {

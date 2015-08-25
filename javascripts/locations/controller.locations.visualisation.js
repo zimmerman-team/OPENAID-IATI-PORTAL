@@ -29,7 +29,7 @@
       Aggregations.aggregation('recipient-country', 'disbursement', '').then(successFn, errorFn);
 
       function successFn(data, status, headers, config) {
-        vm.visualisationData = vm.reformatVisualisationData(data.data);
+        vm.visualisationData = vm.reformatVisualisationData(data.data.results);
         vm.refreshVisualisation = true;
       }
 

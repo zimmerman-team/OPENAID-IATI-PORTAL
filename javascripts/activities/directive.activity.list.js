@@ -26,9 +26,10 @@
       controllerAs: 'vm',
       restrict: 'E',
       scope: {
-        customFilters: '@',
         hasToContain: '@',
-        count: '=?'
+        searchValue: '=?',
+        count: '=?',
+        shown: '=?'
       },
       templateUrl: templateBaseUrl + '/templates/activities/activity-list.html'
     };

@@ -19,6 +19,7 @@
     vm.templateBaseUrl = templateBaseUrl;
     vm.searchString = '';
     vm.showResults = false;
+    vm.currentPage = $scope.currentPage;
 
     vm.searchData = {
       'activities': {'total': 0, 'data': [], 'loaded': false},
@@ -29,8 +30,14 @@
     }
 
     vm.submit = function(){
+
       // set parameter search and go to search results page
-      $state.go('search');
+      if(vm.currentPage == 'search'){
+        $scope.searchValue = vm.searchString;
+        vm.showResults = false;
+      } else {
+        $state.go('search');
+      }
     }
 
     vm.search = function(){
@@ -62,29 +69,29 @@
 
       // get results from countries aggregation
       Aggregations.aggregation('recipient-country', 'iati-identifier', '&name_query=' + vm.searchString).then(function(data, status, headers, config){
-        vm.searchData.countries.data = data.data.slice(0,3);
-        vm.searchData.countries.total = data.data.length;
+        vm.searchData.countries.data = data.data.results.slice(0,3);
+        vm.searchData.countries.total = data.data.count;
         vm.searchData.countries.loaded = true;
       }, errorFn);
 
       // get results from regions aggregation
       Aggregations.aggregation('recipient-region', 'iati-identifier', '&name_query=' + vm.searchString).then(function(data, status, headers, config){
-        vm.searchData.regions.data = data.data.slice(0,3);
-        vm.searchData.regions.total = data.data.length;
+        vm.searchData.regions.data = data.data.results.slice(0,3);
+        vm.searchData.regions.total = data.data.count;
         vm.searchData.regions.loaded = true;
       }, errorFn);
 
       // get results from sectors aggregation
       Aggregations.aggregation('sector', 'iati-identifier', '&name_query=' + vm.searchString).then(function(data, status, headers, config){
-        vm.searchData.sectors.data = data.data.slice(0,3);
-        vm.searchData.sectors.total = data.data.length;
+        vm.searchData.sectors.data = data.data.results.slice(0,3);
+        vm.searchData.sectors.total = data.data.count;
         vm.searchData.sectors.loaded = true;
       }, errorFn);
 
       // get results from organisations aggregation
       Aggregations.aggregation('transaction__receiver-org', 'iati-identifier', '&name_query=' + vm.searchString).then(function(data, status, headers, config){
-        vm.searchData.organisations.data = data.data.slice(0,3);
-        vm.searchData.organisations.total = data.data.length;
+        vm.searchData.organisations.data = data.data.results.slice(0,3);
+        vm.searchData.organisations.total = data.data.count;
         vm.searchData.organisations.loaded = true;
       }, errorFn);
     }

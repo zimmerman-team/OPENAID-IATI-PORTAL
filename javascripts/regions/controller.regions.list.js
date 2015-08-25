@@ -12,71 +12,84 @@
   RegionListController.$inject = ['$scope', 'Aggregations', 'FilterSelection'];
 
   /**
-  * @namespace CountriesExploreController
+  * @namespace regionsExploreController
   */
   function RegionListController($scope, Aggregations, FilterSelection) {
     var vm = this;
     vm.filterSelection = FilterSelection;
     vm.regions = [];
-    vm.order_by = 'total_disbursements';
-    vm.page_size = 5;
+    vm.totalRegions = 0;
+    vm.order_by = 'name';
     vm.offset = 0;
-    vm.totalActivities = 0;
     vm.hasToContain = $scope.hasToContain;
-    vm.pagination = {
-        current: 1
-    };
-    vm.loading = 0;
+    vm.busy = false;
+    vm.extraSelectionString = '';
 
-    $scope.pageChanged = function(newPage) {
-        vm.offset = (newPage * vm.page_size) - vm.page_size;
-    };
-
-    /**
-    * @name activate
-    * @desc Actions to be performed when this controller is instantiated
-    * @memberOf oipa.activityStatus.ActivityStatusController
-    */
     function activate() {
       // use predefined filters or the filter selection
       $scope.$watch("vm.filterSelection.selectionString", function (selectionString) {
           vm.update(selectionString);
       }, true);
-    }
-    
-    vm.minMaxShown = function(){
-      var max = 0;
-      if(vm.offset + vm.page_size > vm.totalActivities){
-        max = vm.totalActivities;
-      } else{
-        max = (vm.offset + vm.page_size);
+
+      $scope.$watch("searchValue", function (searchValue) {
+        if(searchValue == undefined) return
+        searchValue == '' ? vm.extraSelectionString = '' : vm.extraSelectionString = '&name_query='+searchValue;
+        vm.update();
+      }, true);
+
+      // do not prefetch when the list is hidden
+      if($scope.shown != undefined){
+        $scope.$watch("shown", function (shown) {
+          vm.busy = !shown ? true : false;
+        }, true);
       }
-      var min = 0;
-      if(vm.totalActivities > 0){
-        min = vm.offset;
-      }
-      return min + ' - ' + max;
     }
 
-    vm.update = function(selectionString){
+    vm.hasContains = function(){
       if(vm.hasToContain !== undefined){
-        if(selectionString.indexOf(vm.hasToContain) < 0){
+        var totalString = vm.filterSelection.selectionString + vm.extraSelectionString;
+        if(totalString.indexOf(vm.hasToContain) < 0){
           return false;
         }
       }
-      Aggregations.aggregation('recipient-region', 'disbursement', selectionString + '&order_by=-total_disbursements').then(succesFn, errorFn);
+      return true;
+    }
+
+    vm.update = function(){
+      if (!vm.hasContains()) return false;
+
+      vm.offset = 0;
+      Aggregations.aggregation('recipient-region', 'disbursement', vm.filterSelection.selectionString + vm.extraSelectionString, vm.order_by, 5, vm.offset).then(succesFn, errorFn);
 
       function succesFn(data, status, headers, config){
-
-        vm.regions = data.data;
-        vm.totalActivities = vm.regions.length;
-        $scope.count = vm.totalActivities;
+        vm.regions = data.data.results;
+        vm.totalRegions = data.data.count;
+        $scope.count = vm.totalRegions;
       }
 
       function errorFn(data, status, headers, config){
-        console.warn('error getting data for activity.list.block');
+        console.warn('error getting data for region.block');
       }
     }
+
+    vm.nextPage = function(){
+      if (!vm.hasContains() || vm.busy || (vm.totalRegions < (vm.offset + 5))) return;
+
+      vm.busy = true;
+      vm.offset = vm.offset + 5;
+      Aggregations.aggregation('recipient-region', 'disbursement', vm.filterSelection.selectionString + vm.extraSelectionString, vm.order_by, 5, vm.offset).then(succesFn, errorFn);
+
+      function succesFn(data, status, headers, config){
+        for (var i = 0; i < data.data.results.length; i++) {
+          vm.regions.push(data.data.results[i]);
+        }
+        vm.busy = false;
+      }
+
+      function errorFn(data, status, headers, config){
+        console.warn('error getting data on lazy loading');
+      }
+    };
 
     activate();
   }

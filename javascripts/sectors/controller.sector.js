@@ -33,7 +33,6 @@
 
       $scope.$watch('vm.filterSelection.selectionString', function (selectionString) {
         vm.update(selectionString);
-        vm.openedPanel = '';
       }, true);
 
       // for each active country, get the results
@@ -54,7 +53,17 @@
 
       if (selectionString.indexOf("sectors__in") < 0){ return false;}
 
+      Aggregations.aggregation('transaction__transaction-date_year', 'disbursement', selectionString).then(function(data, status, headers, config){
+        vm.disbursements_by_year = data.data.results;
+      }, errorFn);
 
+      Aggregations.aggregation('transaction__transaction-date_year', 'commitment', selectionString).then(function(data, status, headers, config){
+        vm.commitments_by_year = data.data.results;
+      }, errorFn);
+
+      Aggregations.aggregation('budget__period_start_year', 'budget__value', selectionString).then(function(data, status, headers, config){
+        vm.budget_by_year = data.data.results;
+      }, errorFn);
 
     }
 

@@ -19,7 +19,9 @@
       restrict: 'E',
       scope: {
         hasToContain: '@',
-        count: '=?'
+        count: '=?',
+        searchValue: '=?',
+        shown: '=?'
       },
       templateUrl: templateBaseUrl + '/templates/regions/region-list.html'
     };

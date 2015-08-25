@@ -38,7 +38,7 @@
       Aggregations.aggregation('recipient-country', 'disbursement', selectionString).then(succesFn, errorFn);
 
       function succesFn(data, status, headers, config){
-        vm.reformatData(data.data);
+        vm.reformatData(data.data.results);
       }
 
       function errorFn(data, status, headers, config){
