@@ -49,6 +49,22 @@
                 <div class="row">
                     <div class="col-sm-12 activity-list-item">
                         <div class="hp-block wit">
+                            <p><b>Samenwerkingsverband</b><br>
+                                <span ng-if='vm.activity.collaboration_type.name.length'>{{vm.activity.collaboration_type.name}}</span>
+                                <span ng-if='!vm.activity.collaboration_type.name.length'>Geen data beschikbaar</span>
+                            </p>
+                            <p><b>Type hulp</b><br>
+                                <span ng-if='vm.activity.default_aid_type.name.length'>{{vm.activity.default_aid_type.name}}</span>
+                                <span ng-if='!vm.activity.default_aid_type.name.length'>Geen data beschikbaar</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- eind van een wit blokje -->
+                <!--start van een wit blokje -->
+                <div class="row">
+                    <div class="col-sm-12 activity-list-item">
+                        <div class="hp-block wit">
                             <p><b>Website</b><br>{{vm.activity.websites.length ? vm.activity.websites[0].url : 'Geen data beschikbaar'}}</p>
                         </div>
                     </div>
@@ -77,6 +93,18 @@
                             <p><b>Budget</b><br>
                                 <span ng-if='vm.activity.total_budget.length'>{{vm.activity.total_budget | currency :'€':0}}</span>
                                 <span ng-if='!vm.activity.total_budget.length'>Geen data beschikbaar</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- eind van een wit blokje -->
+                <!--start van een wit blokje -->
+                <div class="row">
+                    <div class="col-sm-12 activity-list-item">
+                        <div class="hp-block wit">
+                            <p><b>Financieringstype</b><br>
+                                <span ng-if='vm.activity.default_finance_type.name.length'>{{vm.activity.default_finance_type.name}}</span>
+                                <span ng-if='!vm.activity.default_finance_type.name.length'>Geen data beschikbaar</span>
                             </p>
                         </div>
                     </div>
@@ -128,6 +156,22 @@
                         <div class="hp-block wit" ng-click="vm.dashboard = 'list'">
                             <p><b>Sector</b><br>{{vm.activity.sectors[0].name}}</p>
                             <p><b>Sector code</b><br>{{vm.activity.sectors[0].code}}</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- eind van een wit blokje -->
+                <!--start van een wit blokje -->
+                <div class="row">
+                    <div class="col-sm-12 activity-list-item">
+                        <div class="hp-block wit" ng-click="vm.dashboard = 'list'">
+                            <b>Beleidsmarkers</b>
+                            <ul ng-if='vm.activity.policy_markers.length != 0'>
+                                <li ng-repeat="marker in vm.activity.policy_markers">
+                                {{marker.name}}
+                                </li>
+                            </ul>
+                            <span ng-if='vm.activity.policy_markers.length == 0'>Geen data beschikbaar</span>
+                            
                         </div>
                     </div>
                 </div>

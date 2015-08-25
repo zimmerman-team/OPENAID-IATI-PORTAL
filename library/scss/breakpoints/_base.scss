@@ -1709,6 +1709,12 @@ ACTIVITY LIST
       text-decoration: underline;
     }
   }
+  ul {
+    margin: 0 0 0 20px;
+    li {
+      list-style: disc;
+    }
+  }
   .flag-icon {
     margin-right: 10px;
   }
