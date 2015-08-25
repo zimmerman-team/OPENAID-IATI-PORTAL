@@ -30,6 +30,10 @@
     vm.pageTitle = $document[0].title;
     vm.shareDescription = '';
 
+    vm.selectedView = '';
+    vm.views = $scope.views;
+
+
     vm.buttonTexts = {
       'recipient_countries': {'text': 'Ontvangend land', hoverShow: false},
       'recipient_regions': {'text': 'Ontvangende regio', hoverShow: false},
@@ -48,8 +52,16 @@
     activate();
 
     function activate() {
+      if($scope.views.length > 0){
+        vm.selectedView = $scope.views[0]['id'];
+      }
+
       vm.pageUrl = encodeURIComponent(vm.pageUrlDecoded);
       vm.shareDescription = encodeURIComponent('Bekijk de ontwikkelingshulpprojecten van de Rijksoverheid op ' + vm.pageUrlDecoded);
+    }
+
+    vm.changeView = function(){
+      $state.go(vm.selectedView);
     }
 
     vm.goToPage = function(type){

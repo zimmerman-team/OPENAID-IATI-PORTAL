@@ -31,7 +31,7 @@
       Regions.all().then(regionsSuccessFn, regionsErrorFn);
 
       function regionsSuccessFn(data, status, headers, config) {
-        vm.recipientRegions = data.data;
+        vm.recipientRegions = data.data.results;
       }
 
       function regionsErrorFn(data, status, headers, config) {

@@ -25,7 +25,7 @@
       Sectors.all().then(successFn, errorFn);
 
       function successFn(data, status, headers, config) {
-        vm.sectors = data.data;
+        vm.sectors = data.data.results;
       }
 
       function errorFn(data, status, headers, config) {

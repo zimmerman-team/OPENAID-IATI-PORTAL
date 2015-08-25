@@ -38,7 +38,7 @@
       * @desc Update collections array on view
       */
       function successFn(data, status, headers, config) {
-        vm.recipientCountries = data.data;
+        vm.recipientCountries = data.data.results;
       }
 
       function errorFn(data, status, headers, config) {

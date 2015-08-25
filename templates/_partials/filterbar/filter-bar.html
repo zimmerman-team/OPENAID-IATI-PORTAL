@@ -12,16 +12,10 @@
                 Type dashboard
               </div>
               <div class="select-wrap">
-                <div class="vis-type">
-                  <a>
+                <div class="vis-type" ng-repeat="view in vm.views">
+                  <a ui-sref="{{view.id}}">
                     <i class="fa fa-eye fa-inverse"></i>
-                    Visualisatie
-                  </a>
-                </div>
-                <div class="vis-type">
-                  <a>
-                    <i class="fa fa-eye fa-inverse"></i>
-                    Kaart en lijst
+                    {{view.name}}
                   </a>
                 </div>
               </div>
@@ -174,7 +168,7 @@
   </div>
 </div>
 
-<!-- transparent filter panel background, absolute en full screen achter het panel hangen (en voor al het andere) -->
+<!-- transparent filter panel background for hide on click -->
 <div 
   ng-hide="vm.isOpenedHeader('')" 
   ng-click="vm.saveFilters()" 

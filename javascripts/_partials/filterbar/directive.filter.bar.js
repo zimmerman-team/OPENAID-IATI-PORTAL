@@ -28,7 +28,8 @@
       scope: {
         'excludeFilter': '@',
         'excludeDashboard': '@',
-        'currentPage': '@'
+        'currentPage': '@',
+        'views': '='
       },
       templateUrl: templateBaseUrl + '/templates/_partials/filterbar/filter-bar.html'
     };

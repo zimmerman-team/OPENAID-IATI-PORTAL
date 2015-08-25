@@ -31,7 +31,7 @@
       ImplementingOrganisations.all().then(successFn, errorFn);
 
       function successFn(data, status, headers, config) {
-        vm.implementingOrganisations = data.data;
+        vm.implementingOrganisations = data.data.results;
       }
 
 

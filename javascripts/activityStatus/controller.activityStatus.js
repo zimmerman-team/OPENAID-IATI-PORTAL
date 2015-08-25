@@ -35,7 +35,7 @@
       * @desc Update collections array on view
       */
       function successFn(data, status, headers, config) {
-        vm.activityStatuses = data.data;
+        vm.activityStatuses = data.data.results;
       }
 
       function errorFn(data, status, headers, config) {
