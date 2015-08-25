@@ -10,7 +10,7 @@
   function financialsLineChart(templateBaseUrl) {
 
     var directive = {
-      controller: 'FinancialsLinechartController',
+      controller: 'FinancialsLineChartController',
       controllerAs: 'vm',
       restrict: 'E',
       scope: {

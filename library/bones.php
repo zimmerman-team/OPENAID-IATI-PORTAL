@@ -494,8 +494,8 @@ function bones_scripts_and_styles() {
 		wp_enqueue_script( 'ext.bubbleChart' );
 		wp_enqueue_script( 'service.bubbleChart' );
 
-		wp_enqueue_script( 'directive.financialsLineChart' );
 		wp_enqueue_script( 'controller.financialsLineChart' );
+		wp_enqueue_script( 'directive.financialsLineChart' );
 
 		wp_enqueue_script( 'module.sunburst');
 		wp_enqueue_script( 'controller.sunburst');

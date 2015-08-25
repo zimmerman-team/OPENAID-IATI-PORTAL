@@ -5,10 +5,10 @@
     .module('oipa.charts')
     .controller('FinancialsLinechartController', FinancialsLinechartController);
 
-  FinancialsLinechartController.$inject = ['$scope', 'Aggregations', 'FilterSelection'];
+  FinancialsLinechartController.$inject = ['Aggregations', '$scope'];
 
 
-  function FinancialsLinechartController($scope, Aggregations, FilterSelection) {
+  function FinancialsLinechartController(Aggregations, $scope) {
     var vm = this;
     vm.filterSelection = FilterSelection;
     var loadedCount = 0;
@@ -34,7 +34,7 @@
         xAxis: {
             axisLabel: '',
             tickFormat: function(d) {
-                return d3.format('r')(d);
+              
                 return d3.time.format('%Y-%m-%d')(new Date(d))
             },
             showMaxMin: false,
@@ -50,8 +50,6 @@
       }
     };
 
-    activate();
-
     function activate() {
 
         if($scope.hasToContain != undefined) vm.hasToContain = $scope.hasToContain; 
@@ -62,13 +60,8 @@
     }
 
     vm.update = function(selectionString){
-      console.log(selectionString);
 
       if (selectionString.indexOf(vm.hasToContain) < 0){ return false;}
-
-      function errorFn(data, status, headers, config){
-        console.log(data);
-      }
 
       Aggregations.aggregation('transaction__transaction-date_year', 'disbursement', selectionString).then(function(data, status, headers, config){
         vm.disbursements_by_year = data.data.results;
@@ -77,7 +70,6 @@
 
       Aggregations.aggregation('transaction__transaction-date_year', 'commitment', selectionString).then(function(data, status, headers, config){
         vm.commitments_by_year = data.data.results;
-        console.log(vm.commitments_by_year);
         vm.startReformatTransactionData();
       }, errorFn);
 
@@ -89,7 +81,7 @@
 
     vm.startReformatTransactionData = function(){
         loadedCount++;
-        console.log(loadedCount);
+        
         if(loadedCount > 2){
             vm.transactionData = vm.reformatTransactionData();
             loadedCount = 0;
@@ -117,24 +109,22 @@
       ];
 
       var values = [];
-      for (var i = 0; i < vm.commitments_by_year.length;i++){
-        values.push([vm.commitments_by_year[i]['transaction_date_year'], vm.commitments_by_year[i]['total_commitments']]);
+      for (var i = 0; i < commitments_by_year.length;i++){
+        values.push([commitments_by_year['transaction_date_year'], commitments_by_year['total_disbursements']]);
       }
       data[0].values = values;
 
-      values = [];
-      for (var i = 0; i < vm.disbursements_by_year.length;i++){
-        values.push([vm.disbursements_by_year[i]['transaction_date_year'], vm.disbursements_by_year[i]['total_disbursements']]);
+      var values = [];
+      for (var i = 0; i < disbursements_by_year.length;i++){
+        values.push([disbursements_by_year['transaction_date_year'], disbursements_by_year['total_disbursements']]);
       }
       data[1].values = values;
 
-      values = [];
-      for (var i = 0; i < vm.budget_by_year.length;i++){
-        values.push([vm.budget_by_year[i]['budget__period_start_year'], vm.budget_by_year[i]['budget__value']]);
+      var values = [];
+      for (var i = 0; i < budget_by_year.length;i++){
+        values.push([budget_by_year['budget__period_start_year'], budget_by_year['budget__value']]);
       }
       data[2].values = values;
-
-      console.log(data);
 
       return data;
     }

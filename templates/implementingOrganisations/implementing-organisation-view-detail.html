@@ -70,17 +70,9 @@
                     <div class="col-sm-12">
                         <div class="hp-block wit">
                             <h3>Transacties</h3>
-                            <oipa-line-chart 
-                                aggregation-filters='' 
-                                group-by='recipient-country' 
-                                group-by-id='country_id' 
-                                aggregation-key='disbursement' 
-                                chart-x-axis='' 
-                                chart-y-axis='Uitgaven'
-                                chart-y-axis-euro-format='true' 
-                                chart-x-axis-stagger-labels='false' 
-                                chart-type='lineChart'
-                                axis-label-distance='28'></oipa-line-chart>
+                            <financials-line-chart 
+                                has-to-contain="participating_organisations__organisation__code__in">
+                            </financials-line-chart>
                         </div>
                     </div>
                 </div>
