@@ -720,12 +720,22 @@ FILTER BAR
       }
     }
   }
-  .fa-activities {
+  .fa-locations, .fa-sectors {
+    &:before {
+      content: "\f0e4";
+    }
+  }
+  .fa-locations-polygonmap {
+    &:before {
+      content: "\f0ac";
+    }
+  }
+  .fa-activities, .fa-locations-map {
     &:before {
       content: "\f279";
     }
   }
-  .fa-activities-list {
+  .fa-activities-list, .fa-sector-list, .fa-organisations {
     &:before {
       content: "\f03a";
     }
