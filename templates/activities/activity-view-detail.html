@@ -91,7 +91,7 @@
                     <div class="col-sm-12 activity-list-item">
                         <div class="hp-block wit">
                             <p><b>Budget</b><br>
-                                <span ng-if='vm.activity.total_budget.length'>{{vm.activity.total_budget | currency :'€':0}}</span>
+                                <span ng-if='vm.activity.total_budget.length'>{{vm.activity.total_budget | shortcurrency :'€'}}</span>
                                 <span ng-if='!vm.activity.total_budget.length'>Geen data beschikbaar</span>
                             </p>
                         </div>
