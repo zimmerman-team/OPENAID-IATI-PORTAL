@@ -682,15 +682,13 @@ FILTER BAR
   float: left;
   margin-right: 20px;
   position: relative;
+  width: 210px;
   .select-wrap {
     background:rgba(#738191,1);
     border-radius:0 0 20px 20px;
     display: none;
     position: absolute;
     width: 100%;
-    .fa {
-      visibility: hidden;
-    }
   }
   a, a:hover {
     color: #fff;
@@ -702,6 +700,7 @@ FILTER BAR
     background:rgba(#738191,.5);
     height: 42px;
     border-radius:20px;
+    width: 100%;
   }
   i {
     margin-right: 10px;
@@ -710,11 +709,25 @@ FILTER BAR
     line-height: 42px;
     padding:0 20px;
     height: 42px;
+    white-space: nowrap;
     a {
       cursor: pointer;
       &:hover {
         color:$oranje;
+        .fa-inverse {
+          color:$oranje;
+        }
       }
+    }
+  }
+  .fa-activities {
+    &:before {
+      content: "\f279";
+    }
+  }
+  .fa-activities-list {
+    &:before {
+      content: "\f03a";
     }
   }
   &:hover {
@@ -725,6 +738,38 @@ FILTER BAR
     }
     .select-wrap {
       display: block;
+    }
+  }
+}
+
+.download-button {
+  position: relative;
+  cursor: pointer;
+  &:hover {
+    .download-wrap {
+      display: block;
+    }
+  }
+  .download-wrap {
+    display: none;
+    background:#738191;
+    position: absolute;
+    top:0;
+    right:0;
+    font-size:16px;
+    z-index: 99;
+    padding:0 0 0 15px;
+    border-radius:20px;
+    a {
+      display: block;
+      white-space: nowrap;
+      text-decoration:none;
+      &:hover {
+        color:$oranje;
+        .fa-inverse {
+          color: $oranje;
+        }
+      }
     }
   }
 }

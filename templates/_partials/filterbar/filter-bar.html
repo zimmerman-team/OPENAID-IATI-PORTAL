@@ -8,13 +8,13 @@
 
             <div class="dash-wrap">
               <div class="title">
-                <i class="fa fa-eye fa-inverse"></i>
+                <i class="fa fa-desktop fa-inverse"></i>
                 Type dashboard
               </div>
               <div class="select-wrap">
                 <div class="vis-type" ng-repeat="view in vm.views">
                   <a ui-sref="{{view.id}}">
-                    <i class="fa fa-eye fa-inverse"></i>
+                    <i class="fa fa-{{view.id}} fa-inverse"></i>
                     {{view.name}}
                   </a>
                 </div>
@@ -126,9 +126,33 @@
       </div>
 
       <div class="col-md-3 social">
-        <span class="fa-stack fa-lg">
-          <i class="fa fa-circle fa-stack-2x"></i>
-          <a class="fa fa-download fa-stack-1x fa-inverse"></a>
+      
+        <span class="fa-stack fa-lg download-button">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-download fa-stack-1x fa-inverse"></i>
+            <div class="download-wrap">
+                <a>
+                    Download CSV
+                    <span class="fa-stack fa-lg download-button">
+                        <i class="fa fa-circle fa-stack-2x"></i>
+                        <i class="fa fa-download fa-stack-1x fa-inverse"></i>
+                    </span>
+                </a>
+                <a>
+                    Download XML
+                    <span class="fa-stack fa-lg download-button">
+                        <i class="fa fa-circle fa-stack-2x"></i>
+                        <i class="fa fa-download fa-stack-1x fa-inverse"></i>
+                    </span>
+                </a>
+                <a>
+                    Download JSON
+                    <span class="fa-stack fa-lg download-button">
+                        <i class="fa fa-circle fa-stack-2x"></i>
+                        <i class="fa fa-download fa-stack-1x fa-inverse"></i>
+                    </span>
+                </a>
+            </div>
         </span>
 
         <span class="fa-stack fa-lg">
