@@ -35,6 +35,7 @@
 
       function successFn(data, status, headers, config) {
         vm.activity = data.data;
+        console.log(vm.activity);
         vm.transactionData = vm.reformatTransactionData();
         vm.tabs[2].count = vm.activity.documents.length;
       }
