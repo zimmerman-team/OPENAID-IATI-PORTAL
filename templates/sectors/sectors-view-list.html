@@ -1,11 +1,11 @@
 <div id="main-content" class="container">
 
+    <filter-bar current-page="themas"></filter-bar>
+
     <top-navbar 
         views="[{'id':'sector-list', 'name': 'Bekijk in lijst'}, {'id':'sectors', 'name': 'Bekijk visualisatie'}]"
         search-value="vm.searchValue"
         submit-search="vm.submitSearch"></top-navbar>
     
-    <filter-bar current-page="themas"></filter-bar>
-
     <sector-list search-value="vm.sectorSearchValue"></sector-list>
 </div>

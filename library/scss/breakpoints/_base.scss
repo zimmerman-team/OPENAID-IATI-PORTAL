@@ -35,6 +35,9 @@ a {
   padding-top:70px;
 }
 
+.faux-pad {
+  padding-top:50px;
+}
 
 
 /****
@@ -58,6 +61,28 @@ TEMP
 
 oipa-table-chart .table tbody tr td.colour {
   display: none;
+}
+.table.top5-table {
+  th {
+    font-size:18px;
+    font-weight: 600;
+    vertical-align: middle !important;
+    border: 0 !important;
+  }
+  tr:nth-child(odd) {
+    td {
+      background: rgba($groen, 0.3);
+    }
+  }
+  .custom-select {
+    margin-top: 0;
+    width: 200px;
+    select {
+      font-weight: 600;
+      font-size:18px;
+      padding-left:10px;
+    }
+  }
 }
 
 .about-page{
@@ -639,14 +664,68 @@ FILTER BAR
     padding:0;
     width: 1140px;
   }
+  top:0;
+  transition:top .2s;
   &.fixed {
     top:58px;
     position:fixed;
-    z-index:99999;
-    background:#CCCCB6;
+    z-index:999;
+    background:rgba(30,30,30,.7);
     width: 100%;
     left:0;
     padding-top:10px;
+    transition:top .2s;
+  }
+}
+
+.dash-wrap {
+  float: left;
+  margin-right: 20px;
+  position: relative;
+  .select-wrap {
+    background:rgba(#738191,1);
+    border-radius:0 0 20px 20px;
+    display: none;
+    position: absolute;
+    width: 100%;
+    .fa {
+      visibility: hidden;
+    }
+  }
+  a, a:hover {
+    color: #fff;
+    text-decoration: none;
+  }
+  .title {
+    line-height: 42px;
+    padding:0 20px;
+    background:rgba(#738191,.5);
+    height: 42px;
+    border-radius:20px;
+  }
+  i {
+    margin-right: 10px;
+  }
+  .vis-type {
+    line-height: 42px;
+    padding:0 20px;
+    height: 42px;
+    a {
+      cursor: pointer;
+      &:hover {
+        color:$oranje;
+      }
+    }
+  }
+  &:hover {
+    .title {
+      background:rgba(#738191,1);
+      border-bottom-left-radius:0;
+      border-bottom-right-radius:0;
+    }
+    .select-wrap {
+      display: block;
+    }
   }
 }
 
@@ -718,34 +797,6 @@ FILTER BAR
     .fa-stack:hover {
       .fa-circle {
         color:rgba(#738191,1);
-      }
-    }
-  }
-  .dash {
-    a, span {
-      &:nth-of-type(2) {
-        .fa-circle {
-          color:rgba($icon-grn,.5);
-        }
-        &.active {
-          color:rgba($icon-grn,1);
-        }
-      }
-      &:nth-of-type(3) {
-        .fa-circle {
-          color:rgba($roze,.5);
-        }
-        &.active {
-          color:rgba($roze,1);
-        }
-      }
-      &:nth-of-type(4) {
-        .fa-circle {
-          color:rgba($blauw,.5);
-        }
-        &.active {
-          color:rgba($blauw,1);
-        }
       }
     }
   }
@@ -1631,9 +1682,7 @@ ACTIVITY LIST
 
 .sort {
   font-size: 16px;
-  background: #fff;
   color:#222;
-  padding:15px;
   overflow: hidden;
   white-space: nowrap;
   margin-bottom:15px;
@@ -1789,10 +1838,14 @@ footer{
 .map-switch {
   position:absolute;
   top:5px;
-  left:50%;
+  left:50px;
   width:200px;
-  margin-left: -100px;
-  z-index: 9999;
+  z-index: 99;
+  .custom-select {
+    box-shadow:0 1px 5px rgba(0,0,0,0.65);
+    border-radius:4px;
+    border-color:#ccc;
+  }
   select {
       font-size:14px;
   }
@@ -1801,15 +1854,10 @@ footer{
 .no-padding {
   padding:0;
 }
-.selectbox5 {
-  margin-top:0;
-  margin-bottom: 15px;
-  select {
-    font-weight: 600;
-    font-size:18px;
-    padding-left:10px;
-  }
+.no-top {
+  margin-top: 0;
 }
+
 .top5 {
   margin-bottom: 15px;
   a {
@@ -1998,11 +2046,6 @@ footer{
   }
 }
 
-.leaflet-control-container {
-  position:absolute;
-  bottom:70px;
-}
-
 .map {
   .leaflet-div-icon {
     background: none;
@@ -2020,6 +2063,9 @@ footer{
     a.btn {
       color: #fff;
     }
+  }
+  .leaflet-top, .leaflet-bottom {
+    z-index: 9;
   }
   a.leaflet-popup-close-button {
     display: block;
@@ -2049,6 +2095,16 @@ footer{
 
 .no-margin {
   margin-bottom:0 !important;
+}
+
+#toTop {
+  display: none;
+  position: fixed;
+  bottom: 10px;
+  z-index: 99;
+  cursor: pointer;
+  right: 10px;
+  opacity: .8;
 }
 
 // svg.clip {
