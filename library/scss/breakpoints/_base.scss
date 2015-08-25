@@ -692,6 +692,7 @@ FILTER BAR
     max-height: 0;
     opacity: 0;
     transition: all .1s;
+    visibility: hidden;
   }
   &:hover {
     .title {
@@ -705,6 +706,7 @@ FILTER BAR
       max-height: 400px;
       opacity: 1;
       transition: all .3s;
+      visibility: visible;
     }
   }
   a, a:hover {
@@ -1941,7 +1943,10 @@ footer{
 .top5 {
   margin-bottom: 15px;
   a {
-    color:#222 !important;
+    color:#222;
+    &:hover {
+      color:$oranje;
+    }
   }
   .flag-icon {
     margin: 0 8px 0px 10px;
