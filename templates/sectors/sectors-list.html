@@ -9,6 +9,13 @@
         </div>
     </div>
 
+    <div ng-if='vm.totalSectors == 0' class="col-sm-12">
+        <div class="hp-block wit">
+            <h2>Geen resultaten gevonden</h2>
+            <p>Pas een of meerdere van je geselecteerde filters aan om wel resultaten te vinden. Let op: het aantal hits dat je per filterterm ziet gaat over enkel deze individuele term, en niet over de combinatie van al je geselecteerde termen.</p>
+        </div>
+    </div>
+
     <div class="col-md-12" infinite-scroll='vm.nextPage()' infinite-scroll-disabled='vm.busy' infinite-scroll-distance='1'>
         <div class="activity-list-item" 
             ng-show="vm.sectors.length != 0"

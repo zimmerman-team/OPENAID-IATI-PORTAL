@@ -101,7 +101,7 @@ ZzSunburst = (function() {
     var root = sunburst.getRoot(d);
     sunburst.tooltip.hideTooltip();
     sunburst.middleAmount.text(root.abbreviatedValue);
-    sunburst.middleAmount.attr('fill', '#fff');
+    sunburst.middleAmount.attr('fill', '#ccc');
 
     // return colors on all
     path = sunburst.vis.selectAll('path');
@@ -204,7 +204,7 @@ ZzSunburst = (function() {
         .attr("x", 0)
         .attr("y", 10)
         .attr("font-size", "32px")
-        .attr('fill', '#fff')
+        .attr('fill', '#ccc')
         .attr('style', 'text-anchor: middle;')
         .text(root.abbreviatedValue);
 
