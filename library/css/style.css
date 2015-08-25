@@ -5188,12 +5188,20 @@ footer img {
   font-size: 18px;
 }
 
-/* line 2135, ../scss/breakpoints/_base.scss */
+/* line 2134, ../scss/breakpoints/_base.scss */
+.region-marker-circle {
+  width: 200px;
+  height: 200px;
+  border-radius: 100px;
+  background: rgba(241, 90, 36, 0.5);
+}
+
+/* line 2142, ../scss/breakpoints/_base.scss */
 .map .leaflet-div-icon {
   background: none;
   border: 0;
 }
-/* line 2139, ../scss/breakpoints/_base.scss */
+/* line 2146, ../scss/breakpoints/_base.scss */
 .map .leaflet-popup-content-wrapper {
   width: 280px;
   height: 280px;
@@ -5202,15 +5210,16 @@ footer img {
   padding: 20px;
   background-color: rgba(255, 255, 255, 0.9);
 }
-/* line 2148, ../scss/breakpoints/_base.scss */
+/* line 2155, ../scss/breakpoints/_base.scss */
 .map .leaflet-container a.btn {
   color: #fff;
+  text-decoration: none;
 }
-/* line 2152, ../scss/breakpoints/_base.scss */
+/* line 2160, ../scss/breakpoints/_base.scss */
 .map .leaflet-top, .map .leaflet-bottom {
   z-index: 9;
 }
-/* line 2155, ../scss/breakpoints/_base.scss */
+/* line 2163, ../scss/breakpoints/_base.scss */
 .map a.leaflet-popup-close-button {
   display: block;
   background: #fff;
@@ -5224,27 +5233,27 @@ footer img {
   font-weight: 700;
   box-shadow: 0 3px 15px rgba(0, 0, 0, 0.4);
 }
-/* line 2168, ../scss/breakpoints/_base.scss */
+/* line 2176, ../scss/breakpoints/_base.scss */
 .map p {
   margin: 0 0 2px;
   font-size: 1em;
 }
-/* line 2172, ../scss/breakpoints/_base.scss */
+/* line 2180, ../scss/breakpoints/_base.scss */
 .map .flag-icon {
   font-size: 2.5em;
   border-radius: 4px;
 }
-/* line 2176, ../scss/breakpoints/_base.scss */
+/* line 2184, ../scss/breakpoints/_base.scss */
 .map .btn {
   margin-top: 10px;
 }
 
-/* line 2181, ../scss/breakpoints/_base.scss */
+/* line 2189, ../scss/breakpoints/_base.scss */
 .no-margin {
   margin-bottom: 0 !important;
 }
 
-/* line 2185, ../scss/breakpoints/_base.scss */
+/* line 2193, ../scss/breakpoints/_base.scss */
 #toTop {
   display: none;
   position: fixed;

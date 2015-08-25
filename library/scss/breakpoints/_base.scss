@@ -2131,6 +2131,13 @@ footer{
   }
 }
 
+.region-marker-circle {
+  width: 200px;
+  height: 200px;
+  border-radius:100px;
+  background:rgba($oranje,.5);
+}
+
 .map {
   .leaflet-div-icon {
     background: none;
@@ -2147,6 +2154,7 @@ footer{
   .leaflet-container {
     a.btn {
       color: #fff;
+      text-decoration: none;
     }
   }
   .leaflet-top, .leaflet-bottom {

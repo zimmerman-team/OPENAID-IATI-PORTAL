@@ -53,6 +53,7 @@
       EXITrelatie: { html: '<div class="fa fa-map-marker fa-stack-1x fa-inverse marker-circle marker-circle-EXITrelatie"></div>',type: 'div',iconSize: [28, 35],iconAnchor: [14, 18],markerColor: 'blue',iconColor: 'white',},
       Handelsrelatie: { html: '<div class="fa fa-map-marker fa-stack-1x fa-inverse marker-circle marker-circle-Handelsrelatie"></div>',type: 'div',iconSize: [28, 35],iconAnchor: [14, 18],markerColor: 'blue',iconColor: 'white',},
       Overige: { html: '<div class="fa fa-map-marker fa-stack-1x fa-inverse marker-circle marker-circle-Overige"></div>',type: 'div',iconSize: [28, 35],iconAnchor: [14, 18],markerColor: 'blue',iconColor: 'white',},
+      Regiocirkel: { html: '<div class="region-marker-circle"></div>' ,type: 'div',iconSize: [200, 200],iconAnchor: [100, 100],markerColor: 'blue',iconColor: 'white',}
     };
 
     vm.filterSelection = FilterSelection;
@@ -172,7 +173,7 @@
             '<p><b>Activiteiten:</b> '+markerData[i]['activity_count']+'</p>'+
             '<p><b>Totaal budget:</b> XXX</p>'+
             '<a class="btn btn-default" href="'+homeUrl+'/regios/'+markerData[i].region_id+'/">Ga naar regio overzicht</a>',
-            icon: vm.markerIcons['Overige'],
+            icon: vm.markerIcons['Regiocirkel'],
           }
         }
 
