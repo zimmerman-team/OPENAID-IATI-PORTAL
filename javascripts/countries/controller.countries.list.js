@@ -60,7 +60,7 @@
       if (!vm.hasContains()) return false;
 
       vm.offset = 0;
-      Aggregations.aggregation('recipient-country', 'disbursement', vm.filterSelection.selectionString + vm.extraSelectionString, vm.order_by, 5, vm.offset).then(succesFn, errorFn);
+      Aggregations.aggregation('recipient-country', 'disbursement', vm.filterSelection.selectionString + vm.extraSelectionString, vm.order_by, 15, vm.offset).then(succesFn, errorFn);
 
       function succesFn(data, status, headers, config){
         vm.countries = data.data.results;
