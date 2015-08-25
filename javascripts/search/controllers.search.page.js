@@ -5,9 +5,9 @@
     .module('oipa.searchPage')
     .controller('SearchPageController', SearchPageController);
 
-  SearchPageController.$inject = ['templateBaseUrl', '$scope'];
+  SearchPageController.$inject = ['templateBaseUrl', '$scope', '$stateParams'];
 
-  function SearchPageController(templateBaseUrl, $scope) {
+  function SearchPageController(templateBaseUrl, $scope, $stateParams) {
     var vm = this;
     vm.selectedTab = 'activities';
     vm.searchValue = '';
@@ -19,6 +19,20 @@
       {'id': 'countries', 'name': 'Landen', 'count': -1},
       {'id': 'regions', 'name': 'Regio\'s', 'count': -1},
     ];
+
+    activate();
+
+    function activate(){
+
+      if($stateParams.search != undefined){
+        vm.searchValue = $stateParams.search;
+      }
+
+      if($stateParams.tab != undefined){
+        vm.selectedTab = $stateParams.tab;
+      }
+
+    }
 
 
 

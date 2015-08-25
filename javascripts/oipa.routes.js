@@ -38,6 +38,16 @@
             }
         })
         .state({
+            name:         'activities-list',
+            url:          '/projecten/',
+            controller:   'ActivitiesExploreController',
+            controllerAs: 'vm',
+            templateUrl:  templateBaseUrl + '/templates/activities/activities-view-list.html',
+            ncyBreadcrumb: {
+                label: 'IATI Explorer'
+            }
+        })
+        .state({
             name:        'activiteit',
             url:         '/projecten/:activity_id/',
             controller:  'ActivityController',
@@ -161,7 +171,7 @@
         })
         .state({
             name:        'search',
-            url:         '/zoeken/',
+            url:         '/zoeken/?search&tab',
             controller:  'SearchPageController',
             controllerAs: 'vm',
             templateUrl: templateBaseUrl + '/templates/search/search-page.html'

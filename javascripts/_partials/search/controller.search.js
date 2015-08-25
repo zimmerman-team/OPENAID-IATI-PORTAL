@@ -29,6 +29,17 @@
       'organisations': {'total': 0, 'data': [], 'loaded': false},
     }
 
+    activate();
+    
+    function activate(){
+      $scope.$watch('searchValue', function(searchValue){
+        if(searchValue != ''){
+          vm.searchString = searchValue;
+        }
+        vm.showResults = false;
+      }, true);
+    }
+
     vm.submit = function(){
 
       // set parameter search and go to search results page

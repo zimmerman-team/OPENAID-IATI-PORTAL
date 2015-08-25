@@ -18,10 +18,10 @@
         <div class="header">
             <div class="row">
                 <div class="col-md-9">
-                    <a ui-sref="activities">Activiteiten ({{vm.searchData.activities.total}})</a>
+                    <a ui-sref='search({"search": vm.searchString, "tab": "activities"})'>Activiteiten ({{vm.searchData.activities.total}})</a>
                 </div>
                 <div class="col-md-3">
-                    <a ui-sref="activities">Show more</a>
+                    <a ui-sref='search({"search": vm.searchString, "tab": "activities"})'>Show more</a>
                 </div>
             </div>
         </div>
@@ -49,10 +49,10 @@
         <div class="header">
             <div class="row">
                 <div class="col-md-9">
-                    <a ui-sref="locations-map">Landen ({{vm.searchData.countries.total}})</a>
+                    <a ui-sref='search({"search": vm.searchString, "tab": "countries"})'>Landen ({{vm.searchData.countries.total}})</a>
                 </div>
                 <div class="col-md-3">
-                    <a ui-sref="locations-map">Show more</a>
+                    <a ui-sref='search({"search": vm.searchString, "tab": "countries"})'>Show more</a>
                 </div>
             </div>
         </div>
@@ -81,10 +81,10 @@
         <div class="header">
             <div class="row">
                 <div class="col-md-9">
-                    <a ui-sref="locations-map">Regio's ({{vm.searchData.regions.total}})</a>
+                    <a ui-sref='search({"search": vm.searchString, "tab": "regions"})'>Regio's ({{vm.searchData.regions.total}})</a>
                 </div>
                 <div class="col-md-3">
-                    <a ui-sref="locations-map">Show more</a>
+                    <a ui-sref='search({"search": vm.searchString, "tab": "regions"})'>Show more</a>
                 </div>
             </div>
         </div>
@@ -114,10 +114,10 @@
         <div class="header">
             <div class="row">
                 <div class="col-md-9">
-                    <a ui-sref="sector-list">Sectoren ({{vm.searchData.sectors.total}})</a>
+                    <a ui-sref='search({"search": vm.searchString, "tab": "sectors"})'>Sectoren ({{vm.searchData.sectors.total}})</a>
                 </div>
                 <div class="col-md-3">
-                    <a ui-sref="sector-list">Show more</a>
+                    <a ui-sref='search({"search": vm.searchString, "tab": "sectors"})'>Show more</a>
                 </div>
             </div>
         </div>
@@ -146,10 +146,10 @@
         <div class="header">
             <div class="row">
                 <div class="col-md-9">
-                    <a ui-sref="organisation-list">Organisaties ({{vm.searchData.organisations.total}})</a>
+                    <a ui-sref='search({"search": vm.searchString, "tab": "organisations"})'>Organisaties ({{vm.searchData.organisations.total}})</a>
                 </div>
                 <div class="col-md-3">
-                    <a ui-sref="organisation-list">Show more</a>
+                    <a ui-sref='search({"search": vm.searchString, "tab": "organisations"})'>Show more</a>
                 </div>
             </div>
         </div>
@@ -175,7 +175,5 @@
                 </div>
             </div>
         </div>
-
-
     </div>
 </div>
