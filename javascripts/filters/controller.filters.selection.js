@@ -20,6 +20,7 @@
     vm.selectedActivityStatuses = ActivityStatus.selectedActivityStatuses;
     vm.selectedBudget = Budget.budget;
     vm.filterSelection = FilterSelection;
+    vm.search = Search;
 
 
     function activate() {
@@ -110,6 +111,12 @@
       Budget.toReset = true;
       Budget.budget.budgetValue = [100000,300000];
       Budget.budget.on = false;
+      FilterSelection.toSave = true;
+    }
+
+    
+    vm.removeSearch = function(){
+      Search.searchString = '';
       FilterSelection.toSave = true;
     }
 

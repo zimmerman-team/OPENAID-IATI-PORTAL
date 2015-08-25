@@ -26,12 +26,21 @@
 				<span class="fa fa-remove"></span>
 			</a>
 
+			<a 
+				ng-if="vm.search.searchString.length > 0" 
+				class="btn filter-selected-button selectedRegions" 
+				ng-click="vm.removeSearch()">
+				'{{vm.search.searchString}}'
+				<span class="fa fa-remove"></span>
+			</a>
+
 			<div style="margin-bottom:4px;" ng-show="!(
 			vm.selectedCountries.length + 
 			vm.selectedRegions.length + 
 			vm.selectedSectors.length + 
 			vm.selectedImplementingOrganisations.length + 
-			vm.selectedActivityStatuses.length)">
+			vm.selectedActivityStatuses.length +
+			vm.search.searchString.length)">
 				No filters selected
 			</div>
 		</div>

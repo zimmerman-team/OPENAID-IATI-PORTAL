@@ -21,15 +21,12 @@
     vm.excludeFilter = $scope.excludeFilter;
     vm.excludeDashboard = $scope.excludeDashboard;
     vm.currentPage = $scope.currentPage;
-    vm.showSelection = false;
-    vm.filterSelection = FilterSelection;
     vm.selectionString = '';
     vm.currentHoverText = '';
     vm.pageUrl = '';
     vm.pageUrlDecoded = $location.absUrl();
     vm.pageTitle = $document[0].title;
     vm.shareDescription = '';
-
     vm.selectedView = '';
     vm.views = $scope.views;
 
@@ -41,6 +38,7 @@
       'recipient_sectors': {'text': 'Sector', hoverShow: false},
       'recipient_activity_status': {'text': 'Activiteit status', hoverShow: false},
       'recipient_implementing_organisations': {'text': 'Ontvangende organisatie', hoverShow: false},
+      'search': {'text': 'Zoek in text', hoverShow: false},
       'download': {'text': 'Download projecten', hoverShow: false},
       'share_twitter': {'text': 'Deel via Twitter', hoverShow: false},
       'share_linkedin': {'text': 'Deel via LinkedIn', hoverShow: false},
@@ -75,14 +73,6 @@
     vm.isIncludedFilter = function(id){
       if(vm.excludeFilter != undefined){
         return (vm.excludeFilter.indexOf(id) > -1) ? false : true;
-      } else {
-        return true;
-      }
-    }
-
-    vm.isIncludedDashboard = function(id){
-      if(vm.excludeDashboard != undefined){
-        return (vm.excludeDashboard.indexOf(id) > -1) ? false : true;
       } else {
         return true;
       }

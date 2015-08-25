@@ -1,0 +1,18 @@
+<div class="filter-panel">
+    <div class="row filter-panel-header-wrapper">
+        <div class="col-md-4">
+            <div class="search-box">
+                <form ng-submit="vm.submit()">
+                    <div class="form-group">
+                        <input ng-model="vm.query" class="form-control" placeholder="Zoek in text..">
+                        <button class="btn-search" type="button">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <button class="btn btn-default btn-openaid btn-save" ng-click="vm.save()">Save</button>
+</div>

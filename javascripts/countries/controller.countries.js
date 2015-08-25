@@ -48,7 +48,6 @@
 
     vm.save = function(){
       FilterSelection.toSave = true;
-      FilterSelection.openedPanel = '';
     }
 
   }

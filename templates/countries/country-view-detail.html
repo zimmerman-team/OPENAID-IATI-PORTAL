@@ -62,7 +62,9 @@
                     <div class="col-sm-12 activity-list-item">
                         <div class="hp-block wit" ng-click="vm.dashboard = 'list'">
                             <h3>Transacties</h3>
-                            CHART
+                            <financials-line-chart 
+                                has-to-contain="countries__in">
+                            </financials-line-chart>
                         </div>
                     </div>
                 </div>

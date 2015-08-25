@@ -39,7 +39,7 @@
         })
         .state({
             name:         'activities-list',
-            url:          '/projecten/',
+            url:          '/projecten/lijst/',
             controller:   'ActivitiesExploreController',
             controllerAs: 'vm',
             templateUrl:  templateBaseUrl + '/templates/activities/activities-view-list.html',
@@ -110,19 +110,19 @@
             }
         })
         .state({
-            name:        'organisation-list',
-            url:         '/organisaties/lijst/',
+            name:        'organisations',
+            url:         '/organisaties/',
             controller:  'ImplementingOrganisationsExploreController',
             controllerAs: 'vm',
             templateUrl: templateBaseUrl + '/templates/implementingOrganisations/implementing-organisations-view-list.html'
         })
-        .state({
-            name:        'organisations',
-            url:         '/organisaties/',
-            controller:  'ImplementingOrganisationsVisualisationController',
-            controllerAs: 'vm',
-            templateUrl: templateBaseUrl + '/templates/implementingOrganisations/implementing-organisations-view-visualisation.html'
-        })
+        // .state({
+        //     name:        'organisations',
+        //     url:         '/organisaties/',
+        //     controller:  'ImplementingOrganisationsVisualisationController',
+        //     controllerAs: 'vm',
+        //     templateUrl: templateBaseUrl + '/templates/implementingOrganisations/implementing-organisations-view-visualisation.html'
+        // })
         .state({
             name:        'organisation',
             url:         '/organisaties/:organisation_id/',

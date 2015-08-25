@@ -68,7 +68,9 @@
                     <div class="col-sm-12 activity-list-item">
                         <div class="hp-block wit" ng-click="vm.dashboard = 'list'">
                             <h3>Transacties</h3>
-                            CHART
+                            <financials-line-chart 
+                                has-to-contain="regions__in">
+                            </financials-line-chart>
                         </div>
                     </div>
                 </div>
@@ -83,21 +85,21 @@
     <div ng-show="vm.selectedTab == 'activities'">
         <activity-list
             has-to-contain="regions__in" 
-            count="vm.tabs[1].count"
+            count="vm.tabs[1].count" 
             shown="vm.selectedTab == 'activities'"></activity-list>
     </div>
 
     <div ng-show="vm.selectedTab == 'sectors'">
         <sector-list
             has-to-contain="regions__in" 
-            count="vm.tabs[2].count"
+            count="vm.tabs[2].count" 
             shown="vm.selectedTab == 'sectors'"></sector-list>
     </div>
 
     <div ng-show="vm.selectedTab == 'implementing-organisations'">
         <implementing-organisations-list
             has-to-contain="regions__in" 
-            count="vm.tabs[3].count"
+            count="vm.tabs[3].count" 
             shown="vm.selectedTab == 'implementing-organisations'"></implementing-organisations-list>
     </div>
 

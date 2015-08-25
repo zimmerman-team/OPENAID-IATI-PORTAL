@@ -96,29 +96,24 @@
             <i class="fa fa-circle fa-stack-2x"></i>
             <i class="fa fa-money fa-stack-1x fa-inverse"></i>
           </span>
-          <span 
-              class="fa-stack fa-lg" 
-              ng-click="vm.toggleOpenPanel('implementing_organisations')" 
-              ng-class="{'active': vm.isOpenedHeader('implementing_organisations')}"
-              ng-mouseover="vm.hoverIn('recipient_implementing_organisations')" 
-              ng-mouseleave="vm.hoverOut('recipient_implementing_organisations')"
-              ng-show="vm.isIncludedFilter('recipient_implementing_organisations')">
-            <div 
-              class="glyphicon-popup" 
-              ng-show="vm.buttonTexts['recipient_implementing_organisations'].hoverShow" 
-              ng-bind-html="vm.currentHoverText"></div>
-            <i class="fa fa-circle fa-stack-2x"></i>
-            <i class="fa fa-fire fa-stack-1x fa-inverse"></i>
-          </span>
-
-          <span class="fa-stack fa-lg">
+      
+          <!-- <span class="fa-stack fa-lg">
             <div class="glyphicon-popup"></div>
             <i class="fa fa-circle fa-stack-2x"></i>
             <i class="fa fa-calendar fa-stack-1x fa-inverse"></i>
           </span>
-
-          <span class="fa-stack fa-lg">
-            <div class="glyphicon-popup"></div>
+ -->
+          <span 
+              class="fa-stack fa-lg" 
+              ng-click="vm.toggleOpenPanel('search')" 
+              ng-class="{'active': vm.isOpenedHeader('search')}"
+              ng-mouseover="vm.hoverIn('search')" 
+              ng-mouseleave="vm.hoverOut('search')"
+              ng-show="vm.isIncludedFilter('search')">
+            <div 
+              class="glyphicon-popup" 
+              ng-show="vm.buttonTexts['search'].hoverShow" 
+              ng-bind-html="vm.currentHoverText"></div>
             <i class="fa fa-circle fa-stack-2x"></i>
             <i class="fa fa-search fa-stack-1x fa-inverse"></i>
           </span>
@@ -162,6 +157,7 @@
                 <filter-panel-budget ng-show="vm.isOpenedHeader('budget')"></filter-panel-budget>
                 <filter-panel-sectors ng-show="vm.isOpenedHeader('sectors')"></filter-panel-sectors>
                 <filter-panel-activity-status ng-show="vm.isOpenedHeader('activity_status')"></filter-panel-activity-status>
+                <filter-panel-search ng-show="vm.isOpenedHeader('search')"></filter-panel-search>
             </div>
         </div>
     </div>
