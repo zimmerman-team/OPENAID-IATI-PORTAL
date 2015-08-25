@@ -52,7 +52,7 @@
     activate();
 
     function activate() {
-      if($scope.views.length > 0){
+      if($scope.views != undefined && $scope.views.length > 0){
         vm.selectedView = $scope.views[0]['id'];
       }
 

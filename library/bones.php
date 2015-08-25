@@ -294,9 +294,11 @@ function bones_scripts_and_styles() {
 		wp_register_script( 'directive.oipaTotalFiguresChart', get_stylesheet_directory_uri() . '/javascripts/_charts/directive.oipaTotalFiguresChart.js', array(), '', true );
 		wp_register_script( 'controller.oipaTotalFiguresChart', get_stylesheet_directory_uri() . '/javascripts/_charts/controller.oipaTotalFiguresChart.js', array(), '', true );
 
+		wp_register_script( 'directive.financialsLineChart', get_stylesheet_directory_uri() . '/javascripts/_charts/directive.financialsLineChart.js', array(), '', true );
+		wp_register_script( 'controller.financialsLineChart', get_stylesheet_directory_uri() . '/javascripts/_charts/controller.financialsLineChart.js', array(), '', true );
+
 		wp_register_script( 'directive.chartWrapper', get_stylesheet_directory_uri() . '/javascripts/_charts/directive.chartWrapper.js', array(), '', true );
-		
-		
+
 		wp_enqueue_script( 'bones-modernizr' );
 		wp_enqueue_script( 'jquery' );
 		wp_enqueue_script( 'jquery-scripts' );
@@ -491,6 +493,9 @@ function bones_scripts_and_styles() {
 		wp_enqueue_script( 'service.bubbleChart' );
 		wp_enqueue_script( 'ext.bubbleChart' );
 		wp_enqueue_script( 'service.bubbleChart' );
+
+		wp_enqueue_script( 'directive.financialsLineChart' );
+		wp_enqueue_script( 'controller.financialsLineChart' );
 
 		wp_enqueue_script( 'module.sunburst');
 		wp_enqueue_script( 'controller.sunburst');
