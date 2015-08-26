@@ -5,14 +5,15 @@
                 <form ng-submit="vm.submit()">
                     <div class="form-group">
                         <input ng-model="vm.query" class="form-control" placeholder="Vul een zoekterm in...">
-                        <!-- <button class="btn-search" type="button">
+                        <button class="btn-search" type="button" ng-click="vm.save()">
                             <span class="glyphicon glyphicon-search"></span>
-                        </button> -->
+                        </button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
 
-    <button class="btn btn-default btn-openaid btn-save" ng-click="vm.save()">Save</button>
-</div>
+<!--     <button class="btn btn-default btn-openaid btn-save" ng-click="vm.save()">Voeg trefwoord toe aan filters</button>
+ -->
+ </div>

@@ -617,7 +617,7 @@ SEARCH BAR
 }
 
 #filter-panel-background {
-  position: absolute;
+  position: fixed;
   left: 0; 
   top:0; 
   width: 100%; 
@@ -666,6 +666,9 @@ FILTER BAR
   }
   top:0;
   transition:top .2s;
+  .actions {
+    margin-bottom: 10px;
+  }
   &.fixed {
     top:58px;
     position:fixed;
@@ -678,6 +681,7 @@ FILTER BAR
     #tool-bar {
       margin-bottom: 0;
       background:transparent;
+      color:#fff;
     }
   }
 }
@@ -759,7 +763,7 @@ FILTER BAR
       content: "\f279";
     }
   }
-  .fa-activities-list, .fa-sector-list, .fa-organisations {
+  .fa-activities-list, .fa-sector-list, .fa-organisations, .fa-locations-list {
     &:before {
       content: "\f03a";
     }
@@ -909,11 +913,7 @@ h4 {
   .search-box {
     padding-left:0;
     margin-top: 0;
-    &.keywords {
-      input {
-        border-radius:0;
-      }
-    }
+    margin-bottom: 0;
   }
   &.budget {
     .checkbox {
@@ -1396,7 +1396,7 @@ TOOL BAR
   //padding:6px 10px;
   margin-bottom: 10px;
   position:relative;
-  margin-top: 10px;
+  //margin-top: 10px;
 
   a {
     cursor: pointer;
