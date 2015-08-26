@@ -5,10 +5,10 @@
     .module('oipa.charts')
     .controller('FinancialsLinechartController', FinancialsLinechartController);
 
-  FinancialsLinechartController.$inject = ['$scope', 'Aggregations', 'FilterSelection'];
+  FinancialsLinechartController.$inject = ['$scope', 'Aggregations', 'FilterSelection', '$filter'];
 
 
-  function FinancialsLinechartController($scope, Aggregations, FilterSelection) {
+  function FinancialsLinechartController($scope, Aggregations, FilterSelection, $filter) {
     var vm = this;
     vm.filterSelection = FilterSelection;
     var loadedCount = 0;
@@ -16,7 +16,7 @@
     vm.transactionData = [];
     vm.transactionChartOptions = {
       chart: {
-        type: 'lineChart',
+        type: 'multiBarChart',
         height: 450,
         margin : {
             top: 20,
@@ -28,9 +28,9 @@
         y: function(d){ return d[1]; },
         color: d3.scale.category10().range(),
         transitionDuration: 300,
-        useInteractiveGuideline: true,
-        clipVoronoi: false,
-        interpolate: 'step',
+        // useInteractiveGuideline: true,
+        // clipVoronoi: false,
+        // interpolate: 'step',
         xAxis: {
             axisLabel: '',
             tickFormat: function(d) {
@@ -43,7 +43,7 @@
         yAxis: {
             axisLabel: '',
             tickFormat: function(d){
-                return d3.format('r')(d);
+              return $filter('shortcurrency')(d,'€');
             },
             axisLabelDistance: 20
         }
@@ -69,17 +69,17 @@
         console.log(data);
       }
 
-      Aggregations.aggregation('transaction__transaction-date_year', 'disbursement', selectionString).then(function(data, status, headers, config){
+      Aggregations.aggregation('transaction__transaction-date_year', 'disbursement', selectionString, 'transaction_date_year').then(function(data, status, headers, config){
         vm.disbursements_by_year = data.data.results;
         vm.startReformatTransactionData();
       }, errorFn);
 
-      Aggregations.aggregation('transaction__transaction-date_year', 'commitment', selectionString).then(function(data, status, headers, config){
+      Aggregations.aggregation('transaction__transaction-date_year', 'commitment', selectionString, 'transaction_date_year').then(function(data, status, headers, config){
         vm.commitments_by_year = data.data.results;
         vm.startReformatTransactionData();
       }, errorFn);
 
-      Aggregations.aggregation('budget__period_start_year', 'budget__value', selectionString).then(function(data, status, headers, config){
+      Aggregations.aggregation('budget__period_start_year', 'budget__value', selectionString, 'budget__period_start_year').then(function(data, status, headers, config){
         vm.budget_by_year = data.data.results;
         vm.startReformatTransactionData();
       }, errorFn);
