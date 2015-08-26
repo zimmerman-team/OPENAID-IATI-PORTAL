@@ -24,6 +24,7 @@
         chartType: '@',
         axisLabelDistance: '@',
         mapLegend: '@',
+        mapHeight: '@',
         geoView: '=?'
       },
       templateUrl: templateBaseUrl + '/templates/locations/locations-geomap.html'

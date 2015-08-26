@@ -1,15 +1,15 @@
 <div class="map">
   <div class="geomap-mask">  
-    <leaflet defaults="vm.defaults" center="vm.center" markers="vm.markers" height="600px" width="100%">
+    <leaflet defaults="vm.defaults" center="vm.center" markers="vm.markers" height="{{vm.mapHeight}}" width="100%">
       <div class="map-switch">
         <label class="wrapper">
-        <div class="button custom-select ff-hack">
-          <select ng-model="vm.geoView" ng-change="vm.changeView()">
-            <option value="countries">Overzicht per land</option>
-            <option value="regions">Overzicht per regio</option>
-          </select>
-        </div>
-          </label>
+          <div class="button custom-select ff-hack">
+            <select ng-model="vm.geoView" ng-change="vm.changeView()">
+              <option value="countries">Overzicht per land</option>
+              <option value="regions">Overzicht per regio</option>
+            </select>
+          </div>
+        </label>
       </div>
     </leaflet>
     <div class="legend" ng-if="mapLegend && vm.geoView == 'countries'">
@@ -22,7 +22,6 @@
                   checklist-value="item"
                   type="checkbox"
                   checklist-change="vm.changeSelectedCountryRelations()">
-                  
 
                 <i class="faker"></i>
                 <span class="labels">

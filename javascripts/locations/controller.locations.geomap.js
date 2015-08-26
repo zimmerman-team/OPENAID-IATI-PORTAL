@@ -19,7 +19,7 @@
     var vm = this;
 
     vm.geoView = "countries";
-
+    vm.mapHeight = $scope.mapHeight;
     vm.templateBaseUrl = templateBaseUrl;
     vm.countryRelation = [
       {'id':1, 'name': 'Hulp relatie'}, 
