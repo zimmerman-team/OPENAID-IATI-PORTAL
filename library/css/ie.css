@@ -159,23 +159,9 @@ them in here, they won't work.
   display: inline;
 }
 
-/* line 37, ../scss/breakpoints/_481up.scss */
-.navbar .nav.navbar-nav.navbar-right .active a {
-  color: #fff;
-}
-/* line 41, ../scss/breakpoints/_481up.scss */
-.navbar .nav.navbar-nav.navbar-right a {
-  color: #808080;
-}
-/* line 43, ../scss/breakpoints/_481up.scss */
-.navbar .nav.navbar-nav.navbar-right a:hover {
-  color: #fff;
-}
-
-/* line 51, ../scss/breakpoints/_481up.scss */
-.search-suggest-box {
-  left: 16px;
-  width: 120%;
+/* line 34, ../scss/breakpoints/_481up.scss */
+.filters-fixed .container {
+  width: 481px;
 }
 
 /******************************************************************
@@ -326,14 +312,42 @@ come into play. Have fun!
   margin-right: 10px;
 }
 
-/* line 228, ../scss/breakpoints/_768up.scss */
+/* line 231, ../scss/breakpoints/_768up.scss */
+.navbar .nav.navbar-nav.navbar-right .active a {
+  color: #fff;
+}
+/* line 235, ../scss/breakpoints/_768up.scss */
+.navbar .nav.navbar-nav.navbar-right a {
+  color: #808080;
+}
+/* line 237, ../scss/breakpoints/_768up.scss */
+.navbar .nav.navbar-nav.navbar-right a:hover {
+  color: #fff;
+}
+
+/* line 245, ../scss/breakpoints/_768up.scss */
+.search-suggest-box {
+  left: 16px;
+  width: 120%;
+}
+
+/* line 251, ../scss/breakpoints/_768up.scss */
 .navbar-header {
   margin: 0 auto;
 }
 
-/* line 232, ../scss/breakpoints/_768up.scss */
+/* line 255, ../scss/breakpoints/_768up.scss */
 .navbar-collapse {
   padding: 0;
+}
+
+/* line 260, ../scss/breakpoints/_768up.scss */
+.filters-fixed.fixed {
+  top: 53px;
+}
+/* line 263, ../scss/breakpoints/_768up.scss */
+.filters-fixed .container {
+  width: 720px;
 }
 
 /******************************************************************
@@ -347,27 +361,17 @@ be seen on the Desktop.
 
 ******************************************************************/
 /* line 29, ../scss/breakpoints/_1030up.scss */
-.navbar {
-  padding-bottom: 3px;
+.filters-fixed.fixed {
+  top: 50px;
 }
-/* line 31, ../scss/breakpoints/_1030up.scss */
-.navbar .navbar-nav {
-  width: 56%;
-  text-align: center;
+/* line 32, ../scss/breakpoints/_1030up.scss */
+.filters-fixed .container {
+  width: 940px;
 }
-/* line 34, ../scss/breakpoints/_1030up.scss */
-.navbar .navbar-nav li {
-  display: inline-block;
-  float: none;
-}
-/* line 39, ../scss/breakpoints/_1030up.scss */
-.navbar .navbar-header, .navbar .navbar-right {
-  width: 22%;
-  padding-top: 4px;
-}
-/* line 44, ../scss/breakpoints/_1030up.scss */
-.navbar .navbar-right {
-  text-align: right;
+
+/* line 37, ../scss/breakpoints/_1030up.scss */
+#openaid-main {
+  padding-top: 60px;
 }
 
 /*

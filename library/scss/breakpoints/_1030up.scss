@@ -25,23 +25,15 @@ be seen on the Desktop.
 // 	}
 // }
 
+.filters-fixed {
+	&.fixed {
+		top:50px;
+	}
+  .container {
+    width: 940px;
+  }
+}
 
-.navbar {
-	padding-bottom:3px;
-	.navbar-nav {
-		width:56%;
-		text-align: center;
-		li {
-			display: inline-block;
-			float: none;
-		}
-	}
-	.navbar-header,.navbar-right {
-		width:22%;
-		padding-top:4px;
-	}
-
-	.navbar-right {
-		text-align: right;
-	}
+#openaid-main {
+  padding-top:60px;
 }
