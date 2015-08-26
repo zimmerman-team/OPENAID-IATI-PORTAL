@@ -37,7 +37,7 @@ ZzLocationVis = (function() {
       "679": { x: 350, y: 0},
       "789": { x: 350, y: 0},
       "889": { x: 350, y: 0},
-      "998": { x: 38950, y: 0},
+      "998": { x: 350, y: 0},
     };
 
     // init vis
@@ -106,34 +106,6 @@ ZzLocationVis = (function() {
       .text('Wereldwijd ongespecificeerd');
   };
 
-  ZzLocationVis.prototype.setBubbleCenters = function(all_regions){
-    var that = this;
-
-    for(var i = 0;i < all_regions.length;i++){
-      var region = all_regions[i];
-      if(region.depth > 1){
-        if(region.depth > 3){
-          region = region.parent;
-        }
-        that.group_centers[all_regions[i].id]['y'] = that.group_centers[region.parent.id]['y']
-      }
-    }
-  }
-
-  ZzLocationVis.prototype.clickRegion = function(d){
-    
-    if (d.children) {
-      d._children = d.children;
-      d.children = null;
-    } else {
-      d.children = d._children;
-      d._children = null;
-    }
-    geoLocationVis.updateLegend(d);
-    geoLocationVis.update();
-  }
-
-
   ZzLocationVis.prototype.updateLegend = function(d) {
 
     var that = this;
@@ -154,7 +126,7 @@ ZzLocationVis = (function() {
     var node = this.vis.selectAll("g.region")
         .data(nodes, function(d) { return d.id; });
 
-    // Enter any new nodes at the parent's previous position.
+    // Enter any new nodes
     var nodeEnter = node.enter().append("g")
         .attr("class", "region")
         .attr("transform", function(d, i) { return "translate(50," + (100 + (i * 150)) + ")"; })
@@ -205,7 +177,7 @@ ZzLocationVis = (function() {
     nodeUpdate.select("text")
         .style("fill-opacity", 1);
 
-    // Transition exiting nodes to the parent's new position.
+    // Transition exiting nodes to the parent's position.
     var nodeExit = node.exit().transition()
         .duration(750)
         .attr("opacity", 1e-6)
@@ -221,12 +193,9 @@ ZzLocationVis = (function() {
 
   ZzLocationVis.prototype.updateData = function(data){
 
+    if(!data) return false;
+
     var that = this;
-
-    if(!data){
-      return false;
-    }
-
     that.mappingData = data.mapping;
     that.data = data.data;
 
@@ -310,6 +279,28 @@ ZzLocationVis = (function() {
     })(this);
   };
 
+
+
+
+
+
+
+
+  // listeners and tooltips
+
+  ZzLocationVis.prototype.clickRegion = function(d){
+    
+    if (d.children) {
+      d._children = d.children;
+      d.children = null;
+    } else {
+      d.children = d._children;
+      d._children = null;
+    }
+    geoLocationVis.updateLegend(d);
+    geoLocationVis.update();
+  }
+
   ZzLocationVis.prototype.mouseOver = function(e){
     // show country id of all countries within this region
     var circlesInRegion = geoLocationVis.vis.selectAll(".nodeText")
@@ -337,6 +328,11 @@ ZzLocationVis = (function() {
     geoLocationVis.tooltip.showTooltip(d);
     d3.event.stopPropagation();
   }
+
+  
+
+
+
 
   function CustomTooltip(tooltipId, width){
     var tooltipId = tooltipId;
