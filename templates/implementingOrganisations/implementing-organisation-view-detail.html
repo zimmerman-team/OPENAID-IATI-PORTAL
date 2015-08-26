@@ -15,86 +15,75 @@
         selected-tab='vm.selectedTab'>
     </sub-navbar>
 
-    <div class="row">
+    <div class="row" ng-show="vm.selectedTab == 'samenvatting'">
 
-        <div ng-show="vm.selectedTab == 'samenvatting'">
-            <!-- start linker kolom -->
-            <div class="col-md-4">
+        <div class="col-md-12">
 
-                <!--start van een wit blokje -->
-                <div class="row">
-                    <div class="col-sm-12 activity-list-item">
-                        <div class="hp-block wit">
-                            <p><b>Organisatie identifier</b><br>{{vm.organisation.original_ref}}</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- eind van een wit blokje -->
-
-                <!--start van een wit blokje -->
-                <div class="row">
-                    <div class="col-sm-12 activity-list-item">
-
-                        <div class="hp-block wit with-p-margin">
-                            <p><b>Uitgaven per jaar</b></p>
-                            <table class="table table-striped">
-                                <tbody>
-                                    <tr ng-repeat="disbursement in vm.disbursements_by_year">
-                                        <td>{{disbursement.transaction_date_year}}</td>
-                                        <td>{{disbursement.total_disbursements | shortcurrency :'€'}}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <p><b>Budgetten per jaar</b></p>
-                            <table class="table table-striped" ng-if="disbursement.transaction_date_year != 0" >
-                                <tbody>
-                                    <tr ng-repeat="disbursement in vm.disbursements_by_year">
-                                        <td>{{disbursement.transaction_date_year}}</td>
-                                        <td>{{disbursement.total_disbursements | shortcurrency :'€'}}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <p><b>Verplichtingen per jaar</b></p>
-                            <table class="table table-striped">
-                                <tbody>
-                                    <tr ng-repeat="commitment in vm.commitments_by_year">
-                                        <td>{{commitment.transaction_date_year}}</td>
-                                        <td>{{commitment.total_commitments | shortcurrency :'€'}}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-
-                    </div>
-                </div>
-                <!-- eind van een wit blokje -->
-
-            </div>
-            <!-- eind linker kolom -->
-
-            <!-- start rechter kolom -->
-            <div class="col-md-8">
-
-                <!--start van een wit blokje -->
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="hp-block wit">
-                            <h3>Transacties</h3>
-                            <financials-line-chart 
-                                has-to-contain="participating_organisations__organisation__code__in">
-                            </financials-line-chart>
-                        </div>
-                    </div>
-                </div>
-                <!-- eind van een wit blokje -->
-
+            <div class="hp-block wit">
+                <h3>Transacties</h3>
+                <financials-line-chart 
+                    has-to-contain="participating_organisations__organisation__code__in">
+                </financials-line-chart>
             </div>
 
-            <!-- eind recher kolom -->
         </div>
 
-        <!-- einde samenvatting -->
+        <div class="col-md-4">
+            <div class="row">
+                <div class="col-sm-12 activity-list-item">
+                    <div class="hp-block wit">
+                        <p><b>Organisatie identifier</b><br>{{vm.organisation.original_ref}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 activity-list-item">
+                    <div class="hp-block wit financial">
+                        <p><b>Uitgaven per jaar</b></p>
+                        <table class="table table-striped">
+                            <tbody>
+                                <tr ng-repeat="disbursement in vm.disbursements_by_year">
+                                    <td>{{disbursement.transaction_date_year}}</td>
+                                    <td>{{disbursement.total_disbursements | shortcurrency :'€'}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 activity-list-item">
+            <div class="hp-block wit financial">
+                <p><b>Budgetten per jaar</b></p>
+                <table class="table table-striped" ng-if="disbursement.transaction_date_year != 0" >
+                    <tbody>
+                        <tr ng-repeat="disbursement in vm.disbursements_by_year">
+                            <td>{{disbursement.transaction_date_year}}</td>
+                            <td>{{disbursement.total_disbursements | shortcurrency :'€'}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="col-md-4 activity-list-item">
+            <div class="hp-block wit financial">
+                <p><b>Verplichtingen per jaar</b></p>
+                <table class="table table-striped">
+                    <tbody>
+                        <tr ng-repeat="commitment in vm.commitments_by_year">
+                            <td>{{commitment.transaction_date_year}}</td>
+                            <td>{{commitment.total_commitments | shortcurrency :'€'}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
     </div>
+
+    <!-- einde samenvatting -->
 
     <div ng-show="vm.selectedTab == 'activities'">
         <activity-list 

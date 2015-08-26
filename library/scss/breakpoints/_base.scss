@@ -1792,6 +1792,9 @@ ACTIVITY LIST
     margin-right: 15px;
     cursor:pointer;
   }
+  .ng-binding {
+    line-height: 41px;
+  }
   .custom-select {
     margin-top:0;
     select {
@@ -1823,9 +1826,15 @@ ACTIVITY LIST
   }
   .hp-block {
     margin-bottom: 2px;
-    &.with-p-margin {
+    &.financial {
       p:last-of-type {
         margin-bottom: 15px !important;
+      }
+      td {
+        &:first-of-type {
+          font-weight: 600;
+          border-right:1px solid #ddd;
+        }
       }
     }
     p {
@@ -1956,12 +1965,11 @@ footer{
   width:200px;
   z-index: 99;
   .custom-select {
-    box-shadow:0 1px 5px rgba(0,0,0,0.65);
     //border-radius:4px;
     border-color:#ccc;
   }
   select {
-      font-size:18px;
+      font-size:16px;
       font-weight: 600;
       padding-left:10px;
   }

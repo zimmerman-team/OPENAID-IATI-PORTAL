@@ -40,7 +40,8 @@
       minZoom: 2,
       attributionControl: false,
       scrollWheelZoom: false,
-      continuousWorld: false
+      continuousWorld: false,
+      zoomControlPosition: 'topright'
     };
     vm.center = {
         lat: 14.505,
