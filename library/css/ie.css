@@ -159,6 +159,25 @@ them in here, they won't work.
   display: inline;
 }
 
+/* line 37, ../scss/breakpoints/_481up.scss */
+.navbar .nav.navbar-nav.navbar-right .active a {
+  color: #fff;
+}
+/* line 41, ../scss/breakpoints/_481up.scss */
+.navbar .nav.navbar-nav.navbar-right a {
+  color: #808080;
+}
+/* line 43, ../scss/breakpoints/_481up.scss */
+.navbar .nav.navbar-nav.navbar-right a:hover {
+  color: #fff;
+}
+
+/* line 51, ../scss/breakpoints/_481up.scss */
+.search-suggest-box {
+  left: 16px;
+  width: 120%;
+}
+
 /******************************************************************
 Site Name:
 Author:

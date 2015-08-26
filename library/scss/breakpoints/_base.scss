@@ -465,19 +465,6 @@ NAVBAR
         }
       }
     }
-    &.navbar-right {
-      .active {
-        a {
-          color:#fff;
-        }
-      }
-      a {
-        color:#808080;
-        &:hover {
-          color: #fff;
-        }
-      }
-    }
   }
 }
 
@@ -1542,8 +1529,8 @@ Search suggest box
   z-index: 99999;
   position: absolute;
   top: 40px; 
-  left: 16px; 
-  width: 120%; 
+  left: 0; 
+  width: 100%; 
   min-height: 100px; 
   background-color: #fff;
   text-align: left;
