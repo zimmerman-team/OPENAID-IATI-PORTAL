@@ -675,6 +675,10 @@ FILTER BAR
     left:0;
     padding-top:10px;
     transition:top .2s;
+    #tool-bar {
+      margin-bottom: 0;
+      background:transparent;
+    }
   }
 }
 
@@ -903,7 +907,13 @@ h4 {
   padding:15px;
   left:0;
   .search-box {
-    padding-left:8px;
+    padding-left:0;
+    margin-top: 0;
+    &.keywords {
+      input {
+        border-radius:0;
+      }
+    }
   }
   &.budget {
     .checkbox {
@@ -1544,6 +1554,9 @@ Search suggest box
     padding:5px 10px;
     a{
       color: #fff;
+        &:hover {
+          color: $oranje;
+        }
     }
   }
   .results {
@@ -1757,7 +1770,7 @@ ACTIVITY LIST
 *********************/
 
 .sort {
-  font-size: 16px;
+  font-size: 20px;
   color:#222;
   overflow: hidden;
   white-space: nowrap;
@@ -1769,8 +1782,9 @@ ACTIVITY LIST
   .custom-select {
     margin-top:0;
     select {
-      font-size:14px;
-      padding:3px 30px 3px 5px;
+      font-size:18px;
+      font-weight: 600;
+      padding-left:10px;
     }
   }
 }
@@ -1796,6 +1810,11 @@ ACTIVITY LIST
   }
   .hp-block {
     margin-bottom: 2px;
+    &.with-p-margin {
+      p:last-of-type {
+        margin-bottom: 15px !important;
+      }
+    }
     p {
       margin-bottom: 15px;
       &:last-of-type {
@@ -1820,32 +1839,32 @@ ACTIVITY LIST
 
 ///Table oipa charts
 //oipa-table-chart {
-.table {
-  tbody {
-    border:0;
-    tr {
-      td {
-        &.colour {
-          padding-right:0;
-          div {
-            background: $blauw;
-            margin-top:3px;
-            height:12px;
-            width: 12px;
-            border-radius: 6px;
-          }
-        }
-        border:0;
-        // span {
-        //   text-decoration: underline;
-        // }
-      }
-      &:nth-child(odd) {
-        background:#fff;
-      }
-    }
-  }
-}
+// .table {
+//   tbody {
+//     border:0;
+//     tr {
+//       td {
+//         &.colour {
+//           padding-right:0;
+//           div {
+//             background: $blauw;
+//             margin-top:3px;
+//             height:12px;
+//             width: 12px;
+//             border-radius: 6px;
+//           }
+//         }
+//         border:0;
+//         // span {
+//         //   text-decoration: underline;
+//         // }
+//       }
+//       &:nth-child(odd) {
+//         background:#fff;
+//       }
+//     }
+//   }
+// }
 
 .finance {
   thead {
@@ -1919,17 +1938,19 @@ footer{
 
 .map-switch {
   position:absolute;
-  top:5px;
-  left:50px;
+  top:3px;
+  left:8px;;
   width:200px;
   z-index: 99;
   .custom-select {
     box-shadow:0 1px 5px rgba(0,0,0,0.65);
-    border-radius:4px;
+    //border-radius:4px;
     border-color:#ccc;
   }
   select {
-      font-size:14px;
+      font-size:18px;
+      font-weight: 600;
+      padding-left:10px;
   }
 }
 

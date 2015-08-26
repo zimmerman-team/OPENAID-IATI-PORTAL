@@ -73,6 +73,10 @@
       }
     }
 
+    vm.toggleOrder = function(){
+      vm.update(vm.filterSelection.selectionString);
+    }
+
     vm.nextPage = function(){
       if (!vm.hasContains() || vm.busy || (vm.totalSectors < (vm.offset + 5))) return;
 

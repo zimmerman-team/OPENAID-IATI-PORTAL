@@ -210,7 +210,7 @@
     vm.historicalBarChartReformatData = function(data){
 
       var formattedData = [{
-          "key" : "Aantal activiteiten",
+          "key" : "Aantal projecten",
           "bar": true,
           "values" : []
       }];

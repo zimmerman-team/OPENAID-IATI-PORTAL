@@ -72,6 +72,10 @@
       }
     }
 
+    vm.toggleOrder = function(){
+      vm.update(vm.filterSelection.selectionString);
+    }
+
     vm.nextPage = function(){
       if (!vm.hasContains() || vm.busy || (vm.totalRegions < (vm.offset + 5))) return;
 

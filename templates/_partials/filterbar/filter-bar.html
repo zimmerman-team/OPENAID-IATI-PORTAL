@@ -118,7 +118,14 @@
             <i class="fa fa-search fa-stack-1x fa-inverse"></i>
           </span>
 
-          <span class="fa-stack fa-lg">
+          <span
+            class="fa-stack fa-lg"
+            ng-mouseover="vm.hoverIn('reset')" 
+            ng-mouseleave="vm.hoverOut('reset')">
+            <div 
+              class="glyphicon-popup" 
+              ng-show="vm.buttonTexts['reset'].hoverShow" 
+              ng-bind-html="vm.currentHoverText"></div>
             <i class="fa fa-circle fa-stack-2x"></i>
             <a ng-click="vm.resetFilters()" class="fa fa-refresh fa-stack-1x fa-inverse"></a>
           </span>

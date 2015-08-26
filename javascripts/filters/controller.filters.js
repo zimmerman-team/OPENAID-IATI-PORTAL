@@ -38,6 +38,7 @@
       'recipient_activity_status': {'text': 'Activiteit status', hoverShow: false},
       'recipient_implementing_organisations': {'text': 'Ontvangende organisatie', hoverShow: false},
       'search': {'text': 'Zoek in text', hoverShow: false},
+      'reset': {'text': 'Reset filters', hoverShow: false},
       'download': {'text': 'Download projecten', hoverShow: false},
       'share_twitter': {'text': 'Deel via Twitter', hoverShow: false},
       'share_linkedin': {'text': 'Deel via LinkedIn', hoverShow: false},

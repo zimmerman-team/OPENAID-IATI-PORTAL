@@ -1936,7 +1936,7 @@ angular.module("leaflet-directive").factory('leafletMapDefaults', ["$q", "leafle
             touchZoom: true,
             zoomControl: true,
             zoomsliderControl: false,
-            zoomControlPosition: 'topleft',
+            zoomControlPosition: 'topright',
             attributionControl: true,
             controls: {
                 layers: {

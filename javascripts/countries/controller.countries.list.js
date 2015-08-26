@@ -46,6 +46,10 @@
       }
     }
 
+    vm.toggleOrder = function(){
+      vm.update(vm.filterSelection.selectionString);
+    }
+
     vm.hasContains = function(){
       if(vm.hasToContain !== undefined){
         var totalString = vm.filterSelection.selectionString + vm.extraSelectionString;

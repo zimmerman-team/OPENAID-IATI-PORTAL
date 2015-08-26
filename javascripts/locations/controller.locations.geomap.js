@@ -140,7 +140,7 @@
                 lng: parseInt(location[0]),
                 message: '<span class="flag-icon flag-icon-'+flag_lc+'"></span>'+
                 '<h4>'+markerData[i].name+'</h4>'+
-                '<p><b>Activiteiten:</b> '+markerData[i]['activity_count']+'</p>'+
+                '<p><b>Projecten:</b> '+markerData[i]['activity_count']+'</p>'+
                 '<p><b>Totaal budget:</b> XXX</p>'+
                 '<p><b>Type relatie:</b> '+partnerType+'</p>'+
                 '<a class="btn btn-default" href="'+homeUrl+'/landen/'+markerData[i].country_id+'/">Ga naar overzicht land</a>',
@@ -170,7 +170,7 @@
             lng: parseInt(location[0]),
             message: '<span class="flag-icon flag-icon-'+markerData[i].region_id+'"></span>'+
             '<h4>'+markerData[i].name+'</h4>'+
-            '<p><b>Activiteiten:</b> '+markerData[i]['activity_count']+'</p>'+
+            '<p><b>Projecten:</b> '+markerData[i]['activity_count']+'</p>'+
             '<p><b>Totaal budget:</b> XXX</p>'+
             '<a class="btn btn-default" href="'+homeUrl+'/regios/'+markerData[i].region_id+'/">Ga naar regio overzicht</a>',
             icon: vm.markerIcons['Regiocirkel'],

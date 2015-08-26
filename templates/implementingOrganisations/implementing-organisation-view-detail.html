@@ -34,26 +34,37 @@
                 <!--start van een wit blokje -->
                 <div class="row">
                     <div class="col-sm-12 activity-list-item">
-                        <div class="hp-block wit">
-                            <p>
-                                <b>Uitgaven per jaar</b><br>
-                                <div ng-repeat="disbursement in vm.disbursements_by_year">
-                                    {{disbursement.transaction_date_year}}: {{disbursement.total_disbursements | shortcurrency :'€'}}
-                                </div>
-                            </p>
-                            <p>
-                                <b>Budgetten per jaar</b><br>
-                                <div ng-if="disbursement.transaction_date_year != 0" ng-repeat="disbursement in vm.disbursements_by_year">
-                                    {{disbursement.transaction_date_year}}: {{disbursement.total_disbursements | shortcurrency :'€'}}
-                                </div>
-                            </p>
-                            <p>
-                                <b>Verplichtingen per jaar</b><br>
-                                <div ng-repeat="commitment in vm.commitments_by_year">
-                                    {{commitment.transaction_date_year}}: {{commitment.total_commitments | shortcurrency :'€'}}
-                                </div>
-                            </p>
+
+                        <div class="hp-block wit with-p-margin">
+                            <p><b>Uitgaven per jaar</b></p>
+                            <table class="table table-striped">
+                                <tbody>
+                                    <tr ng-repeat="disbursement in vm.disbursements_by_year">
+                                        <td>{{disbursement.transaction_date_year}}</td>
+                                        <td>{{disbursement.total_disbursements | shortcurrency :'€'}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <p><b>Budgetten per jaar</b></p>
+                            <table class="table table-striped" ng-if="disbursement.transaction_date_year != 0" >
+                                <tbody>
+                                    <tr ng-repeat="disbursement in vm.disbursements_by_year">
+                                        <td>{{disbursement.transaction_date_year}}</td>
+                                        <td>{{disbursement.total_disbursements | shortcurrency :'€'}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <p><b>Verplichtingen per jaar</b></p>
+                            <table class="table table-striped">
+                                <tbody>
+                                    <tr ng-repeat="commitment in vm.commitments_by_year">
+                                        <td>{{commitment.transaction_date_year}}</td>
+                                        <td>{{commitment.total_commitments | shortcurrency :'€'}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
+
                     </div>
                 </div>
                 <!-- eind van een wit blokje -->

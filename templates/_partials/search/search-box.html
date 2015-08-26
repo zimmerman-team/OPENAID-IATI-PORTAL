@@ -18,7 +18,7 @@
         <div class="header">
             <div class="row">
                 <div class="col-md-9">
-                    <a ui-sref='search({"search": vm.searchString, "tab": "activities"})'>Activiteiten ({{vm.searchData.activities.total}})</a>
+                    <a ui-sref='search({"search": vm.searchString, "tab": "activities"})'>Projecten ({{vm.searchData.activities.total}})</a>
                 </div>
                 <div class="col-md-3">
                     <a ui-sref='search({"search": vm.searchString, "tab": "activities"})'>Show more</a>
@@ -62,7 +62,7 @@
                     <a ui-sref='country({"country_id": country.country_id})'>{{country.name}}</a>
                 </div>
                 <div class="col-md-3">
-                    {{country.activity_count}} activiteiten
+                    {{country.activity_count}} projecten
                 </div>
             </div>
 
@@ -94,7 +94,7 @@
                     <a ui-sref='region({"country_id": region.region_id})'>{{region.name}}</a>
                 </div>
                 <div class="col-md-3">
-                    {{region.activity_count}} activiteiten
+                    {{region.activity_count}} projecten
                 </div>
             </div>
 
@@ -127,7 +127,7 @@
                     <a ui-sref='sector({"sector_id": sector.sector_id})'>{{sector.name}}</a>
                 </div>
                 <div class="col-md-3">
-                    {{sector.activity_count}} activiteiten
+                    {{sector.activity_count}} projecten
                 </div>
             </div>
 
