@@ -116,21 +116,21 @@
       for(var i = 0; i < data.length;i++){
         if(sector2dMapping[data[i].sector_id.toString().substring(0,2)] != undefined){
           var sector2 = {
-            'id': data[i].sector_id.toString().substring(0,2),
+            'sector_id': data[i].sector_id.toString().substring(0,2),
             'name': sector2dMapping[data[i].sector_id.toString().substring(0,2)]['name'],
             'color': sector2dMapping[data[i].sector_id.toString().substring(0,2)]['color'],
             'children': {}
           }  
         } else if(sector2dMapping[data[i].sector_id.toString().substring(0,1)] != undefined) {
           var sector2 = {
-            'id': data[i].sector_id.toString().substring(0,1),
+            'sector_id': data[i].sector_id.toString().substring(0,1),
             'name': sector2dMapping[data[i].sector_id.toString().substring(0,1)]['name'],
             'color': sector2dMapping[data[i].sector_id.toString().substring(0,1)]['color'],
             'children': {}
           }  
         } else {
           var sector2 = {
-            'id': '9',
+            'sector_id': '9',
             'name': sector2dMapping['9']['name'],
             'color': sector2dMapping['9']['color'],
             'children': {}
@@ -138,20 +138,20 @@
         }
 
         var sector3 = {
-          'id': data[i].sector_id.toString().substring(0,3),
+          'sector_id': data[i].sector_id.toString().substring(0,3),
           'name': sector3dMapping[data[i].sector_id.toString().substring(0,3)],
           'children': {}
         }
 
-        if(tempData[sector2.id] == undefined){
-          tempData[sector2.id] = sector2;
+        if(tempData[sector2.sector_id] == undefined){
+          tempData[sector2.sector_id] = sector2;
         }
 
-        if(tempData[sector2.id]['children'][sector3.id] == undefined){
-          tempData[sector2.id]['children'][sector3.id] = sector3;
+        if(tempData[sector2.sector_id]['children'][sector3.sector_id] == undefined){
+          tempData[sector2.sector_id]['children'][sector3.sector_id] = sector3;
         }
 
-        tempData[sector2.id]['children'][sector3.id]['children'][data[i].sector_id.toString()] = data[i];
+        tempData[sector2.sector_id]['children'][sector3.sector_id]['children'][data[i].sector_id.toString()] = data[i];
       }
 
       var formattedData = {

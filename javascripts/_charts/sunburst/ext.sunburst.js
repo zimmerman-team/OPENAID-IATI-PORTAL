@@ -182,6 +182,7 @@ ZzSunburst = (function() {
           d.fill = fill(d);
           d.color = d.fill;
           d.abbreviatedValue = abbreviatedValue(d);
+          d.id = d.sector_id;
         });
 
     // Now redefine the value function to use the previously-computed sum.
@@ -390,7 +391,7 @@ ZzSunburst = (function() {
 
     var that = this;
 
-    var legendItems = that.partition(d);
+    var legendItems = that.partition(d).slice(1);
 
     var legendItem = this.legend.selectAll("g.legendItem")
         .data(legendItems, function(d) { return d.id; });
@@ -398,7 +399,8 @@ ZzSunburst = (function() {
     var legendItemEnter = legendItem.enter().append("g")
         .attr("class", "legendItem")
         .attr("transform", function(d, i) { return "translate(0," + (10 + (i * 30)) + ")"; })
-        .on("click", that.clickRegion);
+        .on("mouseover", that.mouseOverPath)
+        .on("mouseout", that.mouseOutPath);
 
       legendItemEnter
         .append('circle')
