@@ -23,7 +23,7 @@
 
         return Aggregations;
 
-        function aggregation(group_by, aggregation_key, filters, order_by, limit, offset){
+        function aggregation(group_by, aggregation_key, filters, order_by, limit, offset, extra_select){
 
             var url = oipaUrl + '/aggregate/?format=json&group_by='+group_by+'&aggregation_key='+aggregation_key
             if(reportingOrganisationId){
@@ -41,6 +41,10 @@
             
             if(offset !== undefined){
                 url += '&offset=' + offset;
+            }
+
+            if(extra_select != undefined){
+                url += '&extra_select=' + extra_select
             }
 
             return $http.get(url, { cache: true });
