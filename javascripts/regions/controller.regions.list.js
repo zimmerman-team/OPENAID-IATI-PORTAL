@@ -77,11 +77,11 @@
     }
 
     vm.nextPage = function(){
-      if (!vm.hasContains() || vm.busy || (vm.totalRegions < (vm.offset + 5))) return;
+      if (!vm.hasContains() || vm.busy || (vm.totalRegions < (vm.offset + 15))) return;
 
       vm.busy = true;
-      vm.offset = vm.offset + 5;
-      Aggregations.aggregation('recipient-region', 'disbursement', vm.filterSelection.selectionString + vm.extraSelectionString, vm.order_by, 5, vm.offset, 'activity_count').then(succesFn, errorFn);
+      vm.offset = vm.offset + 15;
+      Aggregations.aggregation('recipient-region', 'disbursement', vm.filterSelection.selectionString + vm.extraSelectionString, vm.order_by, 15, vm.offset, 'activity_count').then(succesFn, errorFn);
 
       function succesFn(data, status, headers, config){
         for (var i = 0; i < data.data.results.length; i++) {
