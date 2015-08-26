@@ -12,7 +12,7 @@
           </label>
       </div>
     </leaflet>
-    <div class="legend" ng-if="legend && vm.geoView == 'countries'">
+    <div class="legend" ng-if="mapLegend && vm.geoView == 'countries'">
         <div class="check kleur-{{item.id}}" ng-repeat="item in vm.countryRelation">
             <label class="switch" for="id{{item.id}}">
                 
@@ -20,7 +20,8 @@
                   id="id{{item.id}}" 
                   checklist-model="vm.selectedCountryRelation"
                   checklist-value="item"
-                  type="checkbox">
+                  type="checkbox"
+                  checklist-change="vm.changeSelectedCountryRelations()">
                   
 
                 <i class="faker"></i>

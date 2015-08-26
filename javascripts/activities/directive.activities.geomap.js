@@ -3,11 +3,11 @@
 
   angular
     .module('oipa.activities')
-    .directive('activityGeomap', activityGeomap);
+    .directive('activitiesGeomap', activitiesGeomap);
 
-  activityGeomap.$inject = ['templateBaseUrl'];
+  activitiesGeomap.$inject = ['templateBaseUrl'];
 
-  function activityGeomap(templateBaseUrl) {
+  function activitiesGeomap(templateBaseUrl) {
 
     var directive = {
       controller: 'LocationsPolygonGeoMapController',
@@ -16,7 +16,7 @@
       scope: {
         activity: '='
       },
-      templateUrl: templateBaseUrl + '/templates/activities/activity-geomap.html'
+      templateUrl: templateBaseUrl + '/templates/activities/activities-geomap.html'
     };
 
     return directive;

@@ -51,6 +51,7 @@
         useInteractiveGuideline: true,
         clipVoronoi: false,
         showControls: false,
+        interpolate: 'monotone',
         xAxis: {
             axisLabel: vm.xAxis,
             tickFormat: function(d) {
@@ -78,7 +79,6 @@
         if(vm.mapping != undefined){
           data.data.results = vm[vm.mapping + 'ReMap'](data.data.results);
         }
-        console.log(data);
         vm.chartData = vm.reformatData(data.data.results);
       }
 

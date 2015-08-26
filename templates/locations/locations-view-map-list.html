@@ -6,12 +6,7 @@
                 views="[{'id':'locations-map', 'name': 'Bekijk op kaart & lijst'}, {'id':'locations', 'name': 'Bekijk visualisatie'}, {'id':'locations-polygonmap', 'name': 'Bekijk op kaart'}]"
                 current-page="countries"></filter-bar>
 
-        <!--     <top-navbar 
-                
-                search-value="vm.searchValue"
-                submit-search="vm.submitSearch"></top-navbar> -->
-
-            <locations-geo-map geo-view="vm.geoView"></locations-geo-map>
+            <locations-geo-map geo-view="vm.geoView" map-legend='true'></locations-geo-map>
 
             <country-list ng-show="vm.geoView == 'countries'"></country-list>
             

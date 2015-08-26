@@ -2,6 +2,7 @@
 * LocationsGeoMapController
 * @namespace oipa.locations
 */
+
 (function () {
   'use strict';
 
@@ -69,19 +70,15 @@
     */
     function activate() {
 
-      $scope.$watch("vm.selectedCountryRelation", function (selectionString) {
-          // if(vm.markerData.length > 0){
-          //   vm.updateMarkers();
-          // }
-      }, true);
-
       $scope.$watch('vm.filterSelection.selectionString', function (selectionString) {
         vm.selectionString = selectionString;
         vm.updateMap();
       }, true);
     }
 
-
+    vm.changeSelectedCountryRelations = function(){
+      vm.updateMap();
+    }
 
     vm.changeView = function(){
       $scope.geoView = vm.geoView;
@@ -125,7 +122,6 @@
         }
         
         if (selectedCountryRelationMap[partnerType] !== undefined){
-
           if(vm.markers[markerData[i].country_id] !== undefined){
             vm.markers[markerData[i].country_id].opacity = 1;
           } else {
@@ -150,7 +146,7 @@
           }
         }
 
-        if(vm.geoView != 'countries' && vm.markers[markerData[i].country_id] !== undefined){
+        if(vm.geoView != 'countries' || selectedCountryRelationMap[partnerType] === undefined){
           vm.markers[markerData[i].country_id].opacity = 0;
         }
       }

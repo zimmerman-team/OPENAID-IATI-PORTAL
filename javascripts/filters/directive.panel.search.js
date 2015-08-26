@@ -13,7 +13,9 @@
       controller: 'SearchPanelController',
       controllerAs: 'vm',
       restrict: 'E',
-      scope: {},
+      scope: {
+        
+      },
       templateUrl: templateBaseUrl + '/templates/filters/filter-panel-search.html'
     };
 
