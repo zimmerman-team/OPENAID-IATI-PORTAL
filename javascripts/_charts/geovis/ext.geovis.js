@@ -22,22 +22,22 @@ ZzLocationVis = (function() {
     this.mappingData = null;
 
     this.group_centers = {
-      "89": { x: 350, y: 0},
-      "298": { x: 350, y: 0},
-      "189": { x: 350, y: 0},
-      "289": { x: 350, y: 0},
-      "498": { x: 350, y: 0},
-      "380": { x: 350, y: 0},
-      "389": { x: 350, y: 0},
-      "489": { x: 350, y: 0},
-      "798": { x: 350, y: 0},
-      "589": { x: 350, y: 0},
-      "619": { x: 350, y: 0},
-      "689": { x: 350, y: 0},
-      "679": { x: 350, y: 0},
-      "789": { x: 350, y: 0},
-      "889": { x: 350, y: 0},
-      "998": { x: 350, y: 0},
+      "89": { x: 350, y: 600},
+      "298": { x: 350, y: 150},
+      "189": { x: 350, y: 150},
+      "289": { x: 350, y: 150},
+      "498": { x: 350, y: 300},
+      "380": { x: 350, y: 300},
+      "389": { x: 350, y: 300},
+      "489": { x: 350, y: 300},
+      "798": { x: 350, y: 450},
+      "589": { x: 350, y: 450},
+      "619": { x: 350, y: 450},
+      "689": { x: 350, y: 450},
+      "679": { x: 350, y: 450},
+      "789": { x: 350, y: 450},
+      "889": { x: 350, y: 750},
+      "998": { x: 350, y: 900},
     };
 
     // init vis
@@ -52,6 +52,10 @@ ZzLocationVis = (function() {
         .on('click', function(d){          
           geoLocationVis.tooltip.hideTooltip();
         });
+
+    this.countries = this.vis.append('g')
+        .attr('class', 'countries')
+        .attr('transform', 'translate(0,50)');
 
     // init left
     var left = this.vis.append('rect')
@@ -106,14 +110,26 @@ ZzLocationVis = (function() {
       .text('Wereldwijd ongespecificeerd');
 
     
-    var direct = this.vis.append('text')
-      .attr('x', 15)
-      .attr('y', 30)
-      .attr('font-size', '14px')
-      .attr('fill', '#444')
-      .attr('style', 'text-anchor: start;')
-      .text('Direct')
-      .on('click', this.toggleDirect);
+    var direct = this.vis.append('g.checkbox')
+      .append('text')
+        .attr('x', 15)
+        .attr('y', 30)
+        .attr('font-size', '14px')
+        .attr('fill', '#444')
+        .attr('style', 'text-anchor: start;')
+        .text('Directe uitgaven')
+        .on('click', this.toggleDirect);
+    direct.append('rect')
+      .attr('width', 100)
+      .attr('height', 100)
+      .attr('x', 0)
+      .attr('y', 0)
+      .attr('rx', 10)
+      .attr('ry', 10)
+      .attr('fill', '#fff')
+      .attr('fill-opacity', 1)
+      .attr('stroke', '#444')
+      .attr('stroke-width', 1);
 
     var indirect = this.vis.append('text')
       .attr('x', 150)
@@ -121,26 +137,30 @@ ZzLocationVis = (function() {
       .attr('font-size', '14px')
       .attr('fill', '#444')
       .attr('style', 'text-anchor: start;')
-      .text('Indirect')
+      .text('Indirecte uitgaven')
       .on('click', this.toggleIndirect);
 
   };
 
 
   ZzLocationVis.prototype.toggleIndirect = function() {
-    
+
     // Update the nodes…
     var node = geoLocationVis.vis.selectAll(".node")
-        .data(geoLocationVis.data, function(d) { return d.id; });
+      .data(geoLocationVis.data, function(d) { return d.id; });
 
     // Transition nodes to their new position.
     var nodeUpdate = node.transition()
       .duration(750)
-      .attr("stroke-width", function(){
-        return Math.random() * 10;
+      .each(function(d){ 
+        d.indirect_value = 0;
+        d.radius = geoLocationVis.radius_scale(d.total_disbursements + d.indirect_value)
       })
-      .attr("r", function(){
-        return Math.random() * 10;
+      .style("r", function(d){
+        return d.radius;
+      })
+      .style("stroke-width", function(d){
+        return d.indirect_value;
       });
 
   }
@@ -252,16 +272,21 @@ ZzLocationVis = (function() {
       d.group = d.region_id;
       d.fill = d.color;
       d.value = d.total_disbursements;
-      d.x = that.group_centers[d.group]['x'];
-      d.y = that.group_centers[d.group]['y'];
-      d.radius = that.radius_scale(d.total_disbursements);
+      d.indirect_value = Math.random() * d.total_disbursements; 
+      d.x = that.group_centers[d.group]['x'] + ((Math.random() * 40) - 20);
+      d.y = that.group_centers[d.group]['y'] + ((Math.random() * 40) - 20);
+      d.radius = that.radius_scale(d.total_disbursements + d.indirect_value);
+      d.stroke = '#fff';
+      d.stroke_width = that.radius_scale(d.indirect_value);
+      d._stroke_width = d.stroke_width; 
+      d._indirect_value = d.indirect_value; 
     });
 
     that.nodes = that.data;
     that.force.nodes(that.nodes);
 
     // create / update bubbles, group them by region
-    this.circles = that.vis.selectAll(".node")
+    this.circles = that.countries.selectAll(".node")
       .data(that.nodes)
     .enter().append("circle")
       .attr("class", "node")
@@ -269,8 +294,8 @@ ZzLocationVis = (function() {
       .attr("cy", function(d) { return d.y; })
       .attr("r", function(d) { return d.radius; })
       .style("fill", function(d) { return d.fill; })
-      .style("stroke", function(d) { return '#fff'; })
-      .style("stroke-width", function(d) { return '#fff'; })
+      .style("stroke", function(d) { return d.stroke; })
+      .style("stroke-width", function(d) { return d.stroke_width; })
       .on('mouseover', that.mouseOver)
       .on('mouseout', that.mouseOut)
       .on('click', that.mouseClick)
@@ -311,7 +336,7 @@ ZzLocationVis = (function() {
   }
 
   ZzLocationVis.prototype.charge = function(d) {
-    return -Math.pow(d.radius, 2) / 8;
+    return -Math.pow(d.radius + d.stroke_width, 2) / 12;
   };
 
   ZzLocationVis.prototype.move_towards_year = function(alpha) {
@@ -319,7 +344,7 @@ ZzLocationVis = (function() {
       return function(d) {
         var target = _this.group_centers[d.group];        
         d.x = d.x + (target.x - d.x) * _this.damper * alpha * 1.1;
-        return d.y = d.y + (target.y - d.y) * _this.damper * alpha * 2;
+        return d.y = d.y + (target.y - d.y) * _this.damper * alpha * 1.5;
       };
     })(this);
   };

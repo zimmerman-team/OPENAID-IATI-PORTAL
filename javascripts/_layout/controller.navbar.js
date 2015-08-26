@@ -9,17 +9,23 @@
     .module('oipa.layout')
     .controller('NavbarController', NavbarController);
 
-  NavbarController.$inject = ['$scope', 'templateBaseUrl', 'homeUrl'];
+  NavbarController.$inject = ['$scope', '$state', 'templateBaseUrl', 'homeUrl'];
 
-  function NavbarController($scope, templateBaseUrl, homeUrl) {
+  function NavbarController($scope, $state, templateBaseUrl, homeUrl) {
     var vm = this;
 
     $scope.homeUrl = homeUrl;
     $scope.templateBaseUrl = templateBaseUrl;
+    vm.stateName = '';
+    vm.state = $state;
     activate();
 
-
     function activate(){
+
+      $scope.$watch('vm.state.current.name', function(name){
+        if (['activities', 'activities-list', 'activiteit'].indexOf(name) >= 0) vm.stateName = 'activities';
+      }, true);
+
       $(window).scroll(function() {
         var height = $(window).scrollTop();
         var $fixedbar = $('.filters-fixed');
