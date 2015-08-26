@@ -113,6 +113,35 @@
           },
       ];
 
+      var min = 0;
+      var max = 0;
+
+      if(vm.commitments_by_year.length){
+        min = vm.commitments_by_year[0]['transaction_date_year'];
+        max = vm.commitments_by_year[(vm.commitments_by_year.length - 1)]['transaction_date_year'];
+      }
+
+      if(vm.disbursements_by_year.length){
+        if(vm.disbursements_by_year[0]['transaction_date_year'] < min){
+          min = vm.disbursements_by_year[0]['transaction_date_year'];
+        }
+        if(vm.disbursements_by_year[(vm.disbursements_by_year.length - 1)]['transaction_date_year'] > max){
+          max = vm.disbursements_by_year[(vm.disbursements_by_year.length - 1)]['transaction_date_year'];
+        }
+      }
+
+      if(vm.budget_by_year.length){
+        if(vm.budget_by_year[0]['budget__period_start_year'] < min){
+          min = vm.budget_by_year[0]['budget__period_start_year'];
+        }
+        if(vm.budget_by_year[(vm.budget_by_year.length - 1)]['budget__period_start_year'] > max){
+          max = vm.budget_by_year[(vm.budget_by_year.length - 1)]['budget__period_start_year'];
+        }
+      }
+
+      console.log(min);
+      console.log(max);
+
       var values = [];
       for (var i = 0; i < vm.commitments_by_year.length;i++){
         values.push([vm.commitments_by_year[i]['transaction_date_year'], vm.commitments_by_year[i]['total_commitments']]);

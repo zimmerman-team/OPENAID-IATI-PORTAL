@@ -83,7 +83,7 @@ ZzLocationVis = (function() {
     // top labels
     var leftText = this.vis.append('text')
       .attr('x', 15)
-      .attr('y', 30)
+      .attr('y', 60)
       .attr('font-size', '16px')
       .attr('fill', '#444')
       .attr('style', 'text-anchor: start;')
@@ -91,7 +91,7 @@ ZzLocationVis = (function() {
 
     var midText = this.vis.append('text')
       .attr('x', 545)
-      .attr('y', 30)
+      .attr('y', 60)
       .attr('font-size', '16px')
       .attr('fill', '#444')
       .attr('style', 'text-anchor: start;')
@@ -99,12 +99,57 @@ ZzLocationVis = (function() {
 
     var rightText = this.vis.append('text')
       .attr('x', 765)
-      .attr('y', 30)
+      .attr('y', 60)
       .attr('font-size', '16px')
       .attr('fill', '#444')
       .attr('style', 'text-anchor: start;')
       .text('Wereldwijd ongespecificeerd');
+
+    
+    var direct = this.vis.append('text')
+      .attr('x', 15)
+      .attr('y', 30)
+      .attr('font-size', '14px')
+      .attr('fill', '#444')
+      .attr('style', 'text-anchor: start;')
+      .text('Direct')
+      .on('click', this.toggleDirect);
+
+    var indirect = this.vis.append('text')
+      .attr('x', 150)
+      .attr('y', 30)
+      .attr('font-size', '14px')
+      .attr('fill', '#444')
+      .attr('style', 'text-anchor: start;')
+      .text('Indirect')
+      .on('click', this.toggleIndirect);
+
   };
+
+
+  ZzLocationVis.prototype.toggleIndirect = function() {
+    
+    // Update the nodes…
+    var node = geoLocationVis.vis.selectAll(".node")
+        .data(geoLocationVis.data, function(d) { return d.id; });
+
+    // Transition nodes to their new position.
+    var nodeUpdate = node.transition()
+      .duration(750)
+      .attr("stroke-width", function(){
+        return Math.random() * 10;
+      })
+      .attr("r", function(){
+        return Math.random() * 10;
+      });
+
+  }
+
+  ZzLocationVis.prototype.toggleDirect = function() {
+
+  }
+
+
 
   ZzLocationVis.prototype.updateLegend = function(d) {
 
@@ -129,7 +174,7 @@ ZzLocationVis = (function() {
     // Enter any new nodes
     var nodeEnter = node.enter().append("g")
         .attr("class", "region")
-        .attr("transform", function(d, i) { return "translate(50," + (100 + (i * 150)) + ")"; })
+        .attr("transform", function(d, i) { return "translate(50," + (150 + (i * 150)) + ")"; })
         .on("click", that.clickRegion);
 
       nodeEnter
@@ -162,7 +207,7 @@ ZzLocationVis = (function() {
     // Transition nodes to their new position.
     var nodeUpdate = node.transition()
       .duration(750)
-      .attr("transform", function(d, i) { return "translate(50," + (100 + (i * 150)) + ")"; })
+      .attr("transform", function(d, i) { return "translate(50," + (150 + (i * 150)) + ")"; })
       .each(function(d,i){ 
 
         that.group_centers[d.id]['y'] = 100 + (i * 150);
@@ -224,7 +269,8 @@ ZzLocationVis = (function() {
       .attr("cy", function(d) { return d.y; })
       .attr("r", function(d) { return d.radius; })
       .style("fill", function(d) { return d.fill; })
-      .style("stroke", function(d) { return d.fill; })
+      .style("stroke", function(d) { return '#fff'; })
+      .style("stroke-width", function(d) { return '#fff'; })
       .on('mouseover', that.mouseOver)
       .on('mouseout', that.mouseOut)
       .on('click', that.mouseClick)
@@ -240,7 +286,7 @@ ZzLocationVis = (function() {
 
     this.mappingData.children.forEach(collapse);
     this.updateLegend(this.mappingData);
-    this.update(this.data); 
+    this.update(); 
   }
 
   ZzLocationVis.prototype.update = function() {
@@ -271,16 +317,12 @@ ZzLocationVis = (function() {
   ZzLocationVis.prototype.move_towards_year = function(alpha) {
     return (function(_this) {
       return function(d) {
-        var target;
-        target = _this.group_centers[d.group];
+        var target = _this.group_centers[d.group];        
         d.x = d.x + (target.x - d.x) * _this.damper * alpha * 1.1;
         return d.y = d.y + (target.y - d.y) * _this.damper * alpha * 2;
       };
     })(this);
   };
-
-
-
 
 
 
@@ -328,10 +370,6 @@ ZzLocationVis = (function() {
     geoLocationVis.tooltip.showTooltip(d);
     d3.event.stopPropagation();
   }
-
-  
-
-
 
 
   function CustomTooltip(tooltipId, width){

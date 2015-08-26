@@ -47,7 +47,7 @@
         $scope.searchValue = vm.searchString;
         vm.showResults = false;
       } else {
-        $state.go('search');
+        $state.go('search', { search: vm.searchString });
       }
     }
 
