@@ -278,6 +278,7 @@ ZzSunburst = (function() {
       var level = sunburst.getLevel(p, 0);
 
       if(sunburst.zooming || level == 3){
+        window.location.href = home_url + '/sectoren/'+p.sector_id+'/';
         return false;
       } 
 
@@ -389,7 +390,7 @@ ZzSunburst = (function() {
 
     var that = this;
 
-    var legendItems = that.partition(d).slice(1);
+    var legendItems = that.partition(d);
 
     var legendItem = this.legend.selectAll("g.legendItem")
         .data(legendItems, function(d) { return d.id; });

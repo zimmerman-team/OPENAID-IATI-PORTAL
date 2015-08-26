@@ -58,17 +58,17 @@
     vm.reformatSunburstData = function(data){
 
       var sector2dMapping = {
-        '11': {'name': 'Onderwijs', 'color': '#00BA96'},
-        '12': {'name': 'Gezondheid', 'color': '#00FFCE'},
-        '13': {'name': 'Bevolkingsbeleid en reproductieve gezondheid', 'color': '#4A671E'},
-        '14': {'name': 'Water en sanitatie', 'color': '#29ABE2'},
-        '15': {'name': 'Bestuur en mensenrechten', 'color': '#663C20'},
-        '16': {'name': 'Andere sociale infrastructuur en diensten', 'color': '#F6A000'},
-        '2': {'name': 'Economische sectoren', 'color': '#AD7979'},
-        '3': {'name': 'Productieve sectoren', 'color': '#D00A10'},
-        '4': {'name': 'Multi sector', 'color': '#7AC943'},
-        '7': {'name': 'Humanitaire hulp', 'color': '#E5E5E5'},
-        '9': {'name': 'Overige hulp', 'color': '#003ABA'}
+        '11': {'name': 'Onderwijs', 'color': '#c00726'},
+        '12': {'name': 'Gezondheid', 'color': '#4fa30e'},
+        '13': {'name': 'Bevolkingsbeleid en reproductieve gezondheid', 'color': '#f73300'},
+        '14': {'name': 'Water en sanitatie', 'color': '#40bce7'},
+        '15': {'name': 'Bestuur en mensenrechten', 'color': '#d80069'},
+        '16': {'name': 'Andere sociale infrastructuur en diensten', 'color': '#f76800'},
+        '2': {'name': 'Economische sectoren', 'color': '#9f0943'},
+        '3': {'name': 'Productieve sectoren', 'color': '#f8a200'},
+        '4': {'name': 'Multi sector', 'color': '#f8c700'},
+        '7': {'name': 'Humanitaire hulp', 'color': '#2364a3'},
+        '9': {'name': 'Overige hulp', 'color': '#20456d'}
       };
 
       var sector3dMapping = {

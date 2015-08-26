@@ -146,7 +146,7 @@
         })
         .state({
             name:        'sector',
-            url:         '/sector/:sector_id/',
+            url:         '/sectoren/:sector_id/',
             controller:  'SectorController',
             controllerAs: 'vm',
             templateUrl: templateBaseUrl + '/templates/sectors/sector-view-detail.html'
