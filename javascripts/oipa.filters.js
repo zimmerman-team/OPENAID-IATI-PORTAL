@@ -53,6 +53,7 @@ angular.module('oipa').filter('cut', function () {
       var out = '';
       var minus = input < 0;
       var addZeros = false;
+      input = Math.abs(input);
 
       if(input > 999999999){
         out = (input / 1000000000).toFixed(2) + ' mld';
