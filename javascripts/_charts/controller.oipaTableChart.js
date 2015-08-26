@@ -18,9 +18,8 @@
     vm.chartData = [];
     vm.unformattedData = []; 
 
-    vm.top5 = 'recipient-country';   
-
     function activate() {
+
       $scope.$watch('refreshData', function(refreshData){
 
         if(refreshData == true){

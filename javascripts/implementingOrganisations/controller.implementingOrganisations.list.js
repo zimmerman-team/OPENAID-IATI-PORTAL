@@ -64,7 +64,7 @@
       if (!vm.hasContains()) return false;
 
       vm.offset = 0;
-      Aggregations.aggregation('transaction__receiver-org', 'disbursement', vm.filterSelection.selectionString + vm.extraSelectionString, vm.order_by, 15, vm.offset).then(succesFn, errorFn);
+      Aggregations.aggregation('transaction__receiver-org', 'disbursement', vm.filterSelection.selectionString + vm.extraSelectionString, vm.order_by, 15, vm.offset, 'activity_count').then(succesFn, errorFn);
 
       function succesFn(data, status, headers, config){
         vm.organisations = data.data.results;
@@ -82,7 +82,7 @@
 
       vm.busy = true;
       vm.offset = vm.offset + 5;
-      Aggregations.aggregation('transaction__receiver-org', 'disbursement', vm.filterSelection.selectionString + vm.extraSelectionString, vm.order_by, 5, vm.offset).then(succesFn, errorFn);
+      Aggregations.aggregation('transaction__receiver-org', 'disbursement', vm.filterSelection.selectionString + vm.extraSelectionString, vm.order_by, 5, vm.offset, 'activity_count').then(succesFn, errorFn);
 
       function succesFn(data, status, headers, config){
         for (var i = 0; i < data.data.results.length; i++) {

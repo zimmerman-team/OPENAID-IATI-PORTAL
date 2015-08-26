@@ -21,7 +21,6 @@
       FilterSelection.toReset = true;
       FilterSelection.selectionString = '';
       
-      console.log('toReset');
 
       for (var cf in vm.customFields){
           vm.customFields[cf].hoverShow = false;

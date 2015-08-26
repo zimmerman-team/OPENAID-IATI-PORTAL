@@ -112,7 +112,7 @@
         transitionDuration: 300,
         useInteractiveGuideline: true,
         clipVoronoi: false,
-        interpolate: 'step',
+        interpolate: 'monotone',
         xAxis: {
             axisLabel: '',
             tickFormat: function(d) {

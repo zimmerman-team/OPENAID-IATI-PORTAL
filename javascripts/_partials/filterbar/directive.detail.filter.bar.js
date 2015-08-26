@@ -17,7 +17,10 @@
       controller: 'FiltersController',
       controllerAs: 'vm',
       restrict: 'E',
-      scope: {},
+      scope: {
+        'currentPage': '@',
+        'activityId': '=?'
+      },
       templateUrl: templateBaseUrl + '/templates/_partials/filterbar/detail-filter-bar.html'
     };
 

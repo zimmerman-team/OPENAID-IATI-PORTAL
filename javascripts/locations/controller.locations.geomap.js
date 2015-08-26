@@ -2,6 +2,7 @@
 * LocationsGeoMapController
 * @namespace oipa.locations
 */
+
 (function () {
   'use strict';
 
@@ -9,12 +10,12 @@
     .module('oipa.locations')
     .controller('LocationsGeoMapController', LocationsGeoMapController);
 
-  LocationsGeoMapController.$inject = ['$scope', 'leafletData', 'Aggregations', 'templateBaseUrl', 'homeUrl', 'FilterSelection'];
+  LocationsGeoMapController.$inject = ['$scope', 'leafletData', 'Aggregations', 'templateBaseUrl', 'homeUrl', 'FilterSelection', '$filter'];
 
   /**
   * @namespace LocationsGeoMapController
   */
-  function LocationsGeoMapController($scope, leafletData, Aggregations, templateBaseUrl, homeUrl, FilterSelection) {
+  function LocationsGeoMapController($scope, leafletData, Aggregations, templateBaseUrl, homeUrl, FilterSelection, $filter) {
     var vm = this;
 
     vm.geoView = "countries";
@@ -69,19 +70,15 @@
     */
     function activate() {
 
-      $scope.$watch("vm.selectedCountryRelation", function (selectionString) {
-          // if(vm.markerData.length > 0){
-          //   vm.updateMarkers();
-          // }
-      }, true);
-
       $scope.$watch('vm.filterSelection.selectionString', function (selectionString) {
         vm.selectionString = selectionString;
         vm.updateMap();
       }, true);
     }
 
-
+    vm.changeSelectedCountryRelations = function(){
+      vm.updateMap();
+    }
 
     vm.changeView = function(){
       $scope.geoView = vm.geoView;
@@ -94,8 +91,8 @@
           vm.markers[key].opacity = 0;
         }
 
-        Aggregations.aggregation('recipient-country', 'iati-identifier', vm.selectionString).then(countrySuccessFn, errorFn);
-        Aggregations.aggregation('recipient-region', 'iati-identifier', vm.selectionString).then(regionSuccessFn, errorFn);
+        Aggregations.aggregation('recipient-country', 'disbursement', vm.selectionString, 'name', 1000, 0, 'activity_count').then(countrySuccessFn, errorFn);
+        Aggregations.aggregation('recipient-region', 'disbursement', vm.selectionString, 'name', 1000, 0, 'activity_count').then(regionSuccessFn, errorFn);
 
         function countrySuccessFn(data, status, headers, config) {
             vm.updateCountryMarkers(data.data.results);
@@ -125,9 +122,16 @@
         }
         
         if (selectedCountryRelationMap[partnerType] !== undefined){
-
           if(vm.markers[markerData[i].country_id] !== undefined){
             vm.markers[markerData[i].country_id].opacity = 1;
+
+            vm.markers[markerData[i].country_id].message = '<span class="flag-icon flag-icon-'+flag_lc+'"></span>'+
+                '<h4>'+markerData[i].name+'</h4>'+
+                '<p><b>Activiteiten:</b> '+markerData[i]['activity_count']+'</p>'+
+                '<p><b>Totale uitgaven:</b> '+ $filter('shortcurrency')(markerData[i]['total_disbursements'],'€') +'</p>'+
+                '<p><b>Type relatie:</b> '+partnerType+'</p>'+
+                '<a class="btn btn-default" href="'+homeUrl+'/landen/'+markerData[i].country_id+'/">Ga naar overzicht land</a>';
+
           } else {
 
             if(markerData[i].location != null){
@@ -141,16 +145,16 @@
                 message: '<span class="flag-icon flag-icon-'+flag_lc+'"></span>'+
                 '<h4>'+markerData[i].name+'</h4>'+
                 '<p><b>Projecten:</b> '+markerData[i]['activity_count']+'</p>'+
-                '<p><b>Totaal budget:</b> XXX</p>'+
+                '<p><b>Totale uitgaven:</b> '+ $filter('shortcurrency')(markerData[i]['total_disbursements'],'€') +'</p>'+
                 '<p><b>Type relatie:</b> '+partnerType+'</p>'+
                 '<a class="btn btn-default" href="'+homeUrl+'/landen/'+markerData[i].country_id+'/">Ga naar overzicht land</a>',
                 icon: vm.markerIcons[partnerType],
               }
-            }
+            } 
           }
         }
 
-        if(vm.geoView != 'countries' && vm.markers[markerData[i].country_id] !== undefined){
+        if(vm.geoView != 'countries' || selectedCountryRelationMap[partnerType] === undefined){
           vm.markers[markerData[i].country_id].opacity = 0;
         }
       }
@@ -162,6 +166,12 @@
 
         if(vm.markers[markerData[i].region_id] !== undefined){
           vm.markers[markerData[i].region_id].opacity = 1;
+          vm.markers[markerData[i].region_id].message = '<span class="flag-icon flag-icon-'+markerData[i].region_id+'"></span>'+
+            '<h4>'+markerData[i].name+'</h4>'+
+            '<p><b>Activiteiten:</b> '+markerData[i]['activity_count']+'</p>'+
+            '<p><b>Totale uitgaven:</b> '+ $filter('shortcurrency')(markerData[i]['total_disbursements'],'€') + '</p>'+
+            '<a class="btn btn-default" href="'+homeUrl+'/regios/'+markerData[i].region_id+'/">Ga naar regio overzicht</a>';
+
         } else if(markerData[i].location != null){
           var location = markerData[i].location.substr(6, (markerData[i].location.length - 7));
           location = location.split(' ');
@@ -171,7 +181,7 @@
             message: '<span class="flag-icon flag-icon-'+markerData[i].region_id+'"></span>'+
             '<h4>'+markerData[i].name+'</h4>'+
             '<p><b>Projecten:</b> '+markerData[i]['activity_count']+'</p>'+
-            '<p><b>Totaal budget:</b> XXX</p>'+
+            '<p><b>Totale uitgaven:</b> '+ $filter('shortcurrency')(markerData[i]['total_disbursements'],'€') + '</p>'+
             '<a class="btn btn-default" href="'+homeUrl+'/regios/'+markerData[i].region_id+'/">Ga naar regio overzicht</a>',
             icon: vm.markerIcons['Regiocirkel'],
           }

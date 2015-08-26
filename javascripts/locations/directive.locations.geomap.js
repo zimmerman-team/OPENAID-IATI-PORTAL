@@ -23,7 +23,7 @@
         chartYAxis: '@',
         chartType: '@',
         axisLabelDistance: '@',
-        legend: '@',
+        mapLegend: '@',
         geoView: '=?'
       },
       templateUrl: templateBaseUrl + '/templates/locations/locations-geomap.html'

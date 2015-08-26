@@ -21,7 +21,8 @@
         aggregationExtraSelect: '=',
         aggregationExtraSelectIn: '=',
         refreshData: '=',
-        shownIds: '='
+        shownIds: '=',
+        topFive: '=?'
       },
       templateUrl: templateBaseUrl + '/templates/_charts/oipa-table-chart.html'
     };

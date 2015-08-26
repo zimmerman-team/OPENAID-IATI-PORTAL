@@ -22,7 +22,7 @@
     <div class="row">
         <div class="col-sm-12 map">
             <div class="geomap-mask">  
-                <locations-geo-map legend='true'></locations-geo-map>
+                <locations-geo-map map-legend='true'></locations-geo-map>
             </div>
         </div>
     </div>
@@ -33,24 +33,25 @@
         <div class="col-md-12">
             <div class="hp-block no-padding wit clearfix top5">
 
-                    <a class="glyphicon glyphicon-info-sign" ng-mouseover="hoverIn('landen')" ng-mouseleave="hoverOut('landen')">
+<!-- <a class="glyphicon glyphicon-info-sign" ng-mouseover="hoverIn('landen')" ng-mouseleave="hoverOut('landen')">
                     </a>
                     <div 
                     class="glyphicon-popup" 
                     ng-show="vm.customFields['landen'].hoverShow" 
                     ng-bind-html="vm.customFields['landen']['text']">
-                    </div>
+                    </div> -->
 
-                    <oipa-table-chart 
-                        aggregation-filters='vm.tableChartOptions.aggregationFilters' 
-                        group-by='vm.tableChartOptions.groupBy' 
-                        group-by-id='vm.tableChartOptions.groupById' 
-                        aggregation-key='vm.tableChartOptions.aggregationKey' 
-                        aggregation-extra-select='vm.tableChartOptions.aggregationExtraSelect' 
-                        aggregation-extra-select-in='vm.tableChartOptions.aggregationExtraSelectIn' 
-                        refresh-data='vm.refreshTableChart' 
-                        shown-ids='vm.shownIds'
-                    ></oipa-table-chart>
+                <oipa-table-chart 
+                    aggregation-filters='vm.tableChartOptions.aggregationFilters' 
+                    group-by='vm.tableChartOptions.groupBy' 
+                    group-by-id='vm.tableChartOptions.groupById' 
+                    aggregation-key='vm.tableChartOptions.aggregationKey' 
+                    aggregation-extra-select='vm.tableChartOptions.aggregationExtraSelect' 
+                    aggregation-extra-select-in='vm.tableChartOptions.aggregationExtraSelectIn' 
+                    refresh-data='vm.refreshTableChart' 
+                    shown-ids='vm.shownIds'
+                    top-five='vm.top5'
+                ></oipa-table-chart>
 
             </div>
         </div>
