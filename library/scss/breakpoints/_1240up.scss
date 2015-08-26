@@ -9,3 +9,36 @@ on larger screens.
 
 ******************************************************************/
 
+//navbar centreren, pas bij hoge res, anders gaat het springen
+.navbar {
+	padding-bottom:3px;
+	.navbar-nav {
+		width:56%;
+		text-align: center;
+		li {
+			display: inline-block;
+			float: none;
+		}
+	}
+	.navbar-header,.navbar-right {
+		width:22%;
+		padding-top:4px;
+	}
+
+	.navbar-right {
+		text-align: right;
+	}
+}
+
+.filters-fixed {
+	&.fixed {
+		top:58px;
+	}
+	.container {
+		width: 1140px;
+	}
+}
+
+#openaid-main {
+  padding-top:70px;
+}

@@ -2,13 +2,17 @@
 <nav class="navbar navbar-default" ng-controller="NavbarController as vm">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+
+      <button type="button" class="navbar-toggle collapsed hidden-xs" data-toggle="collapse" data-target="#navbar-collapse">
         <i class="fa fa-bars fa-2x"></i>
       </button>
+
+      <span class="visible-xs-inline-block mobilenav" ui-sref-active="active"><a class="" ui-sref="about">Over Openaid</a></span>
+
       <a class="navbar-brand" href="{{ homeUrl }}">
         <img src="{{templateBaseUrl}}/images/openaidnl-logo.png" />
       </a>
-      </div>
+    </div>
     <div class="collapse navbar-collapse" id="navbar-collapse">
       <ul class="nav navbar-nav">
         <li class="home hidden-xs" ui-sref-active="active"><a class="" ui-sref="home"><i class="glyphicon glyphicon-home"></i></a></li>
@@ -23,7 +27,7 @@
           <a class="" ui-sref="locations">Locaties</a></li>
         <li ui-sref-active="active" class="hidden-xs"><a class="" ui-sref="sectors">Sectoren</a></li>
         <li ui-sref-active="active" class="hidden-xs"><a class="" ui-sref="organisations">Organisaties</a></li>
-        <li ui-sref-active="active"><a class="" ui-sref="search">Zoeken</a></li>
+        <li ui-sref-active="active" class="hidden-xs"><a class="" ui-sref="search">Zoeken</a></li>
         <!-- <li ui-sref-active="active"><a class="" ui-sref="iati-publiceren">IATI publiceren</a></li> -->
       </ul>
       <ul class="nav navbar-nav navbar-right">

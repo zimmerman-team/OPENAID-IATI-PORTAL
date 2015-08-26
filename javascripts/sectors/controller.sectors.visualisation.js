@@ -58,17 +58,17 @@
     vm.reformatSunburstData = function(data){
 
       var sector2dMapping = {
-        '11': {'name': 'Onderwijs', 'color': '#00BA96'},
-        '12': {'name': 'Gezondheid', 'color': '#00FFCE'},
-        '13': {'name': 'Bevolkingsbeleid en reproductieve gezondheid', 'color': '#4A671E'},
-        '14': {'name': 'Water en sanitatie', 'color': '#29ABE2'},
-        '15': {'name': 'Bestuur en mensenrechten', 'color': '#663C20'},
-        '16': {'name': 'Andere sociale infrastructuur en diensten', 'color': '#F6A000'},
-        '2': {'name': 'Economische sectoren', 'color': '#AD7979'},
-        '3': {'name': 'Productieve sectoren', 'color': '#D00A10'},
-        '4': {'name': 'Multi sector', 'color': '#7AC943'},
-        '7': {'name': 'Humanitaire hulp', 'color': '#E5E5E5'},
-        '9': {'name': 'Overige hulp', 'color': '#003ABA'}
+        '11': {'name': 'Onderwijs', 'color': '#c00726'},
+        '12': {'name': 'Gezondheid', 'color': '#4fa30e'},
+        '13': {'name': 'Bevolkingsbeleid en reproductieve gezondheid', 'color': '#f73300'},
+        '14': {'name': 'Water en sanitatie', 'color': '#40bce7'},
+        '15': {'name': 'Bestuur en mensenrechten', 'color': '#d80069'},
+        '16': {'name': 'Andere sociale infrastructuur en diensten', 'color': '#f76800'},
+        '2': {'name': 'Economische sectoren', 'color': '#9f0943'},
+        '3': {'name': 'Productieve sectoren', 'color': '#f8a200'},
+        '4': {'name': 'Multi sector', 'color': '#f8c700'},
+        '7': {'name': 'Humanitaire hulp', 'color': '#2364a3'},
+        '9': {'name': 'Overige hulp', 'color': '#20456d'}
       };
 
       var sector3dMapping = {
@@ -116,21 +116,21 @@
       for(var i = 0; i < data.length;i++){
         if(sector2dMapping[data[i].sector_id.toString().substring(0,2)] != undefined){
           var sector2 = {
-            'id': data[i].sector_id.toString().substring(0,2),
+            'sector_id': data[i].sector_id.toString().substring(0,2),
             'name': sector2dMapping[data[i].sector_id.toString().substring(0,2)]['name'],
             'color': sector2dMapping[data[i].sector_id.toString().substring(0,2)]['color'],
             'children': {}
           }  
         } else if(sector2dMapping[data[i].sector_id.toString().substring(0,1)] != undefined) {
           var sector2 = {
-            'id': data[i].sector_id.toString().substring(0,1),
+            'sector_id': data[i].sector_id.toString().substring(0,1),
             'name': sector2dMapping[data[i].sector_id.toString().substring(0,1)]['name'],
             'color': sector2dMapping[data[i].sector_id.toString().substring(0,1)]['color'],
             'children': {}
           }  
         } else {
           var sector2 = {
-            'id': '9',
+            'sector_id': '9',
             'name': sector2dMapping['9']['name'],
             'color': sector2dMapping['9']['color'],
             'children': {}
@@ -138,20 +138,20 @@
         }
 
         var sector3 = {
-          'id': data[i].sector_id.toString().substring(0,3),
+          'sector_id': data[i].sector_id.toString().substring(0,3),
           'name': sector3dMapping[data[i].sector_id.toString().substring(0,3)],
           'children': {}
         }
 
-        if(tempData[sector2.id] == undefined){
-          tempData[sector2.id] = sector2;
+        if(tempData[sector2.sector_id] == undefined){
+          tempData[sector2.sector_id] = sector2;
         }
 
-        if(tempData[sector2.id]['children'][sector3.id] == undefined){
-          tempData[sector2.id]['children'][sector3.id] = sector3;
+        if(tempData[sector2.sector_id]['children'][sector3.sector_id] == undefined){
+          tempData[sector2.sector_id]['children'][sector3.sector_id] = sector3;
         }
 
-        tempData[sector2.id]['children'][sector3.id]['children'][data[i].sector_id.toString()] = data[i];
+        tempData[sector2.sector_id]['children'][sector3.sector_id]['children'][data[i].sector_id.toString()] = data[i];
       }
 
       var formattedData = {
