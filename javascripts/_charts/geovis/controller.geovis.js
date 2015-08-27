@@ -28,6 +28,10 @@
         }
         $scope.refreshVisualisation = false;
       }, true);
+
+      $scope.$on("$destroy", function() {
+        delete vm.chart;
+      });
     }
 
     vm.update = function(formattedData){
@@ -35,6 +39,8 @@
         vm.chart.updateData(formattedData);
       }
     }
+
+
 
     activate();
   }

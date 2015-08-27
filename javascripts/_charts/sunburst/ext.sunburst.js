@@ -283,6 +283,7 @@ ZzSunburst = (function() {
   ZzSunburst.prototype.zoomIn = function(p){
 
     p.children = p._children;
+    var parentX = p.x;
 
     var that = sunburst;
 
@@ -299,11 +300,18 @@ ZzSunburst = (function() {
 
     if(level == 1){
       that.path = that.path.data(that.partition.nodes(p), function(d) { return d.key; });
+      var enterArc = function outsideArc(d) {
+        return {depth: 1, x: parentX, dx: 0};
+      }
     }
 
     if(level == 2){
       that.outer_circle.transition().duration(2500).ease('elastic').attr("r", that.radius + 30);
       that.path = that.path.data(that.partition.nodes(p.parent), function(d) { return d.key; });
+
+      var enterArc = function outsideArc(d) {
+        return {depth: d.depth - 1, x: d.parent.x, dx: 0};
+      }
     }
 
     // Rescale outside angles to match the new layout.
@@ -316,9 +324,7 @@ ZzSunburst = (function() {
           ? {depth: d.depth - 1, x: 2 * Math.PI, dx: 0} : {depth: 0, x: 0, dx: 2 * Math.PI};
     }
 
-    var enterArc = function outsideArc(d) {
-      return {depth: d.depth, x: outsideAngle(d.x), dx: outsideAngle(d.x + d.dx) - outsideAngle(d.x)};
-    }
+    
 
     d3.transition()
       .duration(d3.event.altKey ? 7500 : 750)
@@ -331,7 +337,7 @@ ZzSunburst = (function() {
             .attrTween("d", function(d) { return that.arcTween.call(this, exitArc(d)); })
             .remove();
 
-          that.path.enter().append("path")
+          that.path.enter().insert("path", ":first-child")
               .style("fill-opacity", function(d) { return 1; })
               .style("fill", function(d) { return d.color; })
               .on("click", that.zoom)

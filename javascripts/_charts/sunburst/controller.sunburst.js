@@ -29,6 +29,10 @@
         }
         $scope.refreshSunburst = false;
       }, true);
+
+      $scope.$on("$destroy", function() {
+        delete vm.chart;
+      });
     }
 
     vm.update = function(formattedData){
