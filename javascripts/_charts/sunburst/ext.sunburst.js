@@ -95,7 +95,6 @@ ZzSunburst = (function() {
   };
 
   // LISTENERS
-
   ZzSunburst.prototype.mouseOverPath = function(d){
     if (sunburst.zooming) return false;
 
@@ -146,9 +145,13 @@ ZzSunburst = (function() {
   }
 
   // MAIN FUNC
-
   ZzSunburst.prototype.update = function(root) {
     var that = this;
+
+    // make sure zoom is at 0
+    sunburst.state = 0;
+    sunburst.zooming = true;
+
 
     function key(d) {
       var k = [], p = d;
@@ -215,6 +218,9 @@ ZzSunburst = (function() {
           d.id = d.sector_id;
         });
 
+    this.partition
+        .value(function(d) { return d.sum; });
+
     function collapse(d) {
       if (d.children) {
         d._children = d.children;
@@ -224,9 +230,6 @@ ZzSunburst = (function() {
     }
 
     root.children.forEach(collapse);
-
-    this.partition
-        .value(function(d) { return d.sum; });
 
     this.middleAmount.text(root.abbreviatedValue);
 
@@ -247,12 +250,14 @@ ZzSunburst = (function() {
         .attr("d", that.arc)
         .style("fill", function(d) { return d.fill; })
         .attr("fill-opacity", 0.3)
-        .each(function(d) { this._current = that.updateArc(d); });
-        
+        .attrTween("d", function(d) { return that.arcTween.call(this, that.updateArc(d)); });
+
     this.path.exit().remove();
 
     this.updateLegend(root);
     this.updateBreadcrumb(root);
+
+    setTimeout(function(){ sunburst.zooming = false; }, 800);
 
 
     // When zooming out, arcs enter from the inside and exit to the outside.
