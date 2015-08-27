@@ -39,6 +39,7 @@ ZzSunburst = (function() {
     this.outer_circle = that.vis.append("circle")
         .attr("r", that.radius - 48)
         .attr('fill', 'transparent')
+        .style('pointer-events', 'none')
         .attr('stroke', '#fff')
         .attr('stroke-width', 1);
 
@@ -269,7 +270,6 @@ ZzSunburst = (function() {
 
     var that = sunburst;
     var level = that.getLevel(p, 0);
-
     if(that.zooming || level == 3){
       that.zooming ? false : window.location.href = home_url + '/sectoren/'+p.sector_id+'/';
       return false;

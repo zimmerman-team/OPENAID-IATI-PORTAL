@@ -92,7 +92,6 @@
 
     vm.showExactLocation = function() {
 
-      console.log(vm.geoLocation);
       if(!vm.geoLocation.center_longlat){
         return false;
       }
