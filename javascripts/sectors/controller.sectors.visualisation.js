@@ -58,7 +58,6 @@
     }
 
     vm.reformatSunburstData = function(data){
-      console.log(data);
 
       var sector2dMapping = {
         '11': {'name': 'Onderwijs', 'color': '#c00726'},
