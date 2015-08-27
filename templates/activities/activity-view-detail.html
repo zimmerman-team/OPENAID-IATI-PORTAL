@@ -156,17 +156,17 @@
                 <div class="row">
                     <div class="col-sm-12 activity-list-item">
                         <div class="hp-block wit" ng-click="vm.dashboard = 'list'">
-                            <p><b>Sector</b><br>{{vm.activity.sectors[0].name}}</p>
-                            <p><b>Sector code</b><br>{{vm.activity.sectors[0].code}}</p>
+                            <p><b>Sector</b><br><a ui-sref="sector({ sector_id: vm.activity.sectors[0].code })">{{vm.activity.sectors[0].name}}</a></p>
+                            <p><b>Sector code</b><br><a ui-sref="sector({ sector_id: vm.activity.sectors[0].code })">{{vm.activity.sectors[0].code}}</a></p>
                         </div>
                     </div>
                 </div>
                 <!-- eind van een wit blokje -->
                 <!--start van een wit blokje -->
-                <div class="row">
+                <div class="row" style="display: none;">
                     <div class="col-sm-12 activity-list-item">
                         <div class="hp-block wit" ng-click="vm.dashboard = 'list'">
-                            <b>Beleidsmarkers</b>
+                            <b>Beleidskenmerken</b>
                             <ul ng-if='vm.activity.policy_markers.length != 0'>
                                 <li ng-repeat="marker in vm.activity.policy_markers">
                                 {{marker.name}}

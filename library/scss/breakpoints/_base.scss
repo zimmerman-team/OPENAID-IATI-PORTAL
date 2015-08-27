@@ -2182,6 +2182,11 @@ footer{
   height: 200px;
   border-radius:100px;
   background:rgba($oranje,.5);
+  background:rgba(40,40,40,.5);
+}
+
+.region-marker-circle:hover {
+  background:rgba($oranje,.5);
 }
 
 .map {

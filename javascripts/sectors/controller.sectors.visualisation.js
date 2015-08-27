@@ -31,7 +31,6 @@
 
       $scope.$watch('vm.submitSearch', function(submitSearch){
         if(submitSearch){
-          // to do: UPDATE SUNBURST DATA WITH SEARCHVALUE
           vm.submitSearch = false;
         }
       }, true);
