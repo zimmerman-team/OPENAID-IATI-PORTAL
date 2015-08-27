@@ -1,7 +1,7 @@
 <div class="map hidden-xs">
   <div class="geomap-mask">  
     <leaflet defaults="vm.defaults" center="vm.center" markers="vm.markers" height="{{vm.mapHeight}}" width="100%">
-      <div class="map-switch">
+      <div ng-show="vm.mapDropdown" class="map-switch">
         <label class="wrapper">
           <div class="button custom-select ff-hack">
             <select ng-model="vm.geoView" ng-change="vm.changeView()">
@@ -12,7 +12,7 @@
         </label>
       </div>
     </leaflet>
-    <div class="legend" ng-if="mapLegend && vm.geoView == 'countries'">
+    <div class="legend" ng-show="mapLegend && vm.geoView == 'countries'">
         <div class="check kleur-{{item.id}}" ng-repeat="item in vm.countryRelation">
             <label class="switch" for="id{{item.id}}">
                 

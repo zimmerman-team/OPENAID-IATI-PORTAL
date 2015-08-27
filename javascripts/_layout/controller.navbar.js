@@ -30,6 +30,10 @@
         else if (['search'].indexOf(name) >= 0) { vm.stateName = 'search'; }
         else if (['about'].indexOf(name) >= 0) { vm.stateName = 'about'; }
         else { vm.stateName = 'home'; }
+
+        $("html, body").animate({
+          scrollTop:0
+        },400);
       }, true);
 
       $(window).scroll(function() {

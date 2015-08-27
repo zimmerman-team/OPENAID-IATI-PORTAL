@@ -17,7 +17,7 @@
 
     <div ng-show="vm.selectedTab == 'samenvatting'">
 
-        <locations-geo-map map-height='350px'></locations-geo-map>
+        <temp-locations-geo-map exact-location="vm.country" map-height="350px"></temp-locations-geo-map>
 
         <div class="row">
             <div class="col-md-12">
@@ -41,6 +41,15 @@
 
             <!-- start linker kolom -->
             <div class="col-md-4 activity-list-item">
+
+                <div class="row">
+                    <div class="col-sm-12 activity-list-item">
+                        <div class="hp-block wit">
+                            <p><b>Land code</b><br>{{vm.country.code}}</p>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="hp-block wit financial">
                     <p><b>Uitgaven per jaar</b></p>
                     <table class="table table-striped">

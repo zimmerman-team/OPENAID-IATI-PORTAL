@@ -242,6 +242,12 @@ ZzSunburst = (function() {
         .on("click", that.zoom)
         .on("mouseover", that.mouseOverPath)
         .on("mouseout", that.mouseOutPath);
+
+    this.path.transition()
+        .attr("d", that.arc)
+        .style("fill", function(d) { return d.fill; })
+        .attr("fill-opacity", 0.3)
+        .each(function(d) { this._current = that.updateArc(d); });
         
     this.path.exit().remove();
 

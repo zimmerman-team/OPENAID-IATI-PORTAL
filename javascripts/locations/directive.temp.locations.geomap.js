@@ -3,21 +3,22 @@
 
   angular
     .module('oipa.locations')
-    .directive('locationsGeoMap', locationsGeoMap);
+    .directive('tempLocationsGeoMap', tempLocationsGeoMap);
 
-  locationsGeoMap.$inject = ['templateBaseUrl','$http'];
+  tempLocationsGeoMap.$inject = ['templateBaseUrl','$http'];
 
-  function locationsGeoMap(templateBaseUrl) {
+  function tempLocationsGeoMap(templateBaseUrl) {
 
     var directive = {
-      controller: 'LocationsGeoMapController',
+      controller: 'TempLocationsGeoMapController',
       controllerAs: 'vm',
       restrict: 'E',
       scope: {
-        mapDropdown: '@',
         mapLegend: '@',
         mapHeight: '@',
-        geoView: '=?'
+        mapDropdown: '@',
+        geoView: '=?',
+        exactLocation: '=?',
       },
       templateUrl: templateBaseUrl + '/templates/locations/locations-geomap.html'
     };
