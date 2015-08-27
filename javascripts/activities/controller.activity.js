@@ -9,12 +9,12 @@
     .module('oipa.activities')
     .controller('ActivityController', ActivityController);
 
-  ActivityController.$inject = ['Activities', '$stateParams', 'FilterSelection'];
+  ActivityController.$inject = ['Activities', '$stateParams', 'FilterSelection', '$filter'];
 
   /**
   * @namespace ActivitiesController
   */
-  function ActivityController(Activities, $stateParams, FilterSelection) {
+  function ActivityController(Activities, $stateParams, FilterSelection, $filter) {
     var vm = this;
     vm.activity = null;
     vm.activityId = $stateParams.activity_id;
@@ -28,7 +28,6 @@
     ]
 
     activate();
-
 
     function activate() {
       FilterSelection.toReset = true;
@@ -125,7 +124,7 @@
         yAxis: {
             axisLabel: '',
             tickFormat: function(d){
-                return d3.format('r')(d);
+                return $filter('shortcurrency')(d,'€');
             },
             axisLabelDistance: 20
         }

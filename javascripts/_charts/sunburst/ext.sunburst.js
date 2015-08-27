@@ -143,7 +143,6 @@ ZzSunburst = (function() {
 
       if(d.depth == 2) d3color = d3color.darker(0.3)
       if(d.depth == 3) d3color = d3color.darker(0.7)
-
       if(d.depth > 1) { 
         d3color = d3color.darker(0.3)
         d3color.s = 1 - (Math.random() / 2);
@@ -242,6 +241,7 @@ ZzSunburst = (function() {
       if(p == undefined){ return false; }
 
       p.children = null;   
+      sunburst.middleAmount.attr('opacity', 1);
 
       sunburst.updateLegend(p.parent);
       sunburst.updateBreadcrumb(p.parent);
@@ -298,7 +298,8 @@ ZzSunburst = (function() {
 
       if(sunburst.zooming || level == 3){
         sunburst.zooming ? false : window.location.href = home_url + '/sectoren/'+p.sector_id+'/';
-      } 
+        return false;
+      }
 
       sunburst.zooming = true;
       return sunburst.state == 0 || level > 1 ? zoomIn(p) : zoomOut(p);
@@ -314,6 +315,10 @@ ZzSunburst = (function() {
 
       var level = sunburst.getLevel(p, 0);
       sunburst.state = level;
+
+      if(sunburst.state == 1){
+        sunburst.middleAmount.attr('opacity', 0);
+      }
 
       if(level == 1){
         path = path.data(sunburst.partition.nodes(p), function(d) { return d.key; });
