@@ -38,13 +38,15 @@
 
       $scope.$watch('vm.filterSelection.selectionString', function (selectionString) {
           vm.selectionString = selectionString;
+          vm.activateSunburst();
+
       }, true);
 
       setTimeout(function(){ FilterSelection.toReset = true; }, 100);
     }
 
     vm.activateSunburst = function(){
-      Aggregations.aggregation('sector', 'disbursement', '').then(successFn, errorFn);
+      Aggregations.aggregation('sector', 'disbursement', vm.selectionString).then(successFn, errorFn);
 
       function successFn(data, status, headers, config) {
         vm.reformatSunburstData(data.data.results);
@@ -56,6 +58,7 @@
     }
 
     vm.reformatSunburstData = function(data){
+      console.log(data);
 
       var sector2dMapping = {
         '11': {'name': 'Onderwijs', 'color': '#c00726'},

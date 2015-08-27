@@ -137,38 +137,45 @@ ZzSunburst = (function() {
 
       if(d.depth == 1) color = d.color
       if(d.depth == 2) color = d.parent.color
-      if(d.depth == 3) color = d.parent.parent.color
+      if(d.depth == 3) color = d.parent.color
 
-      var d3color = d3.lab(color);
+      var d3color = d3.hsl(color)
 
-      if(d.depth == 2) d3color = d3color.darker()
-      if(d.depth == 3) d3color = d3color.darker().darker()
+      if(d.depth == 2) d3color = d3color.darker(0.3)
+      if(d.depth == 3) d3color = d3color.darker(0.7)
 
-      // testcolor = testcolor - 1;
-      // if((d3color.l - testcolor) > 0){
-      //   d3color.l = d3color.l - testcolor;
-      // }
-
+      if(d.depth > 1) { 
+        d3color = d3color.darker(0.3)
+        d3color.s = 1 - (Math.random() / 2);
+        d3color.l = (Math.random() / 2) + 0.2;
+      }
+      
       return d3color;
     }
 
     function abbreviatedValue(d){
 
-      if(d.value > 999999999){
-        return (d.value / 1000000000).toFixed(2) + ' mld';
-      } else if(d.value > 999999){
-        return (d.value / 1000000).toFixed(2) + ' mln';
+      var out = '';
+      var addZeros = false;
+      var input = d.value;
+
+      if(input > 999999999){
+        out = (input / 1000000000).toFixed(2) + ' mld';
+      } else if(input > 999999){
+        out = (input / 1000000).toFixed(2) + ' mln';
       } else{
-        return (d.value / 1000).toFixed(2) + ' d'; 
+        addZeros = true;
+        out = (input / 1000).toFixed(0); 
       }
+      out = out.replace('.', ',');
+      if(addZeros) out += '.000';
+      return '€ ' + out;
     }
 
     this.partition = d3.layout.partition()
         .sort(function(a, b) { return d3.ascending(a.name, b.name); })
         .size([2 * Math.PI, that.radius]);
 
-    
-    
     // Compute the initial layout on the entire tree to sum sizes.
     // Also compute the full name and fill color for each node,
     // and stash the children so they can be restored as we descend.
@@ -185,9 +192,17 @@ ZzSunburst = (function() {
           d.id = d.sector_id;
         });
 
-    // Now redefine the value function to use the previously-computed sum.
+    function collapse(d) {
+      if (d.children) {
+        d._children = d.children;
+        d._children.forEach(collapse);    
+        d.children = null;
+      }
+    }
+
+    root.children.forEach(collapse);
+
     this.partition
-        .children(function(d, depth) { return depth < 1 ? d._children : null; })
         .value(function(d) { return d.sum; });
 
     this.outer_circle = that.vis.append("circle")
@@ -226,11 +241,14 @@ ZzSunburst = (function() {
     function zoomOut(p) {
       if(p == undefined){ return false; }
 
+      p.children = null;   
+
       sunburst.updateLegend(p.parent);
       sunburst.updateBreadcrumb(p.parent);
 
       var level = sunburst.getLevel(p, 0);
       sunburst.state = level - 1;
+
       sunburst.outer_circle.transition().duration(1000).ease('back').attr("r", sunburst.radius - 48);
 
       path = path.data(sunburst.partition.nodes(p.parent).slice(1), function(d) { return d.key; });
@@ -279,8 +297,7 @@ ZzSunburst = (function() {
       var level = sunburst.getLevel(p, 0);
 
       if(sunburst.zooming || level == 3){
-        window.location.href = home_url + '/sectoren/'+p.sector_id+'/';
-        return false;
+        sunburst.zooming ? false : window.location.href = home_url + '/sectoren/'+p.sector_id+'/';
       } 
 
       sunburst.zooming = true;
@@ -288,6 +305,8 @@ ZzSunburst = (function() {
     }
 
     function zoomIn(p){
+
+      p.children = p._children;
 
       sunburst.updateLegend(p);
       sunburst.updateBreadcrumb(p);
@@ -302,12 +321,12 @@ ZzSunburst = (function() {
 
       if(level == 2){
         sunburst.outer_circle.transition().duration(2500).ease('elastic').attr("r", sunburst.radius + 30);
-        path = path.data(sunburst.partition.children(function(d, depth) { return depth < 1 || p.name == d.name ? d._children : null; }).nodes(p.parent), function(d) { return d.key; });
+        path = path.data(sunburst.partition.nodes(p.parent), function(d) { return d.key; });
       }
 
-      if(level == 3){
-        return false;
-      }
+      // if(level == 3){
+      //   return false;
+      // }
 
       // Rescale outside angles to match the new layout.
       var outsideAngle = d3.scale.linear().domain([0, 2 * Math.PI]);
@@ -328,46 +347,51 @@ ZzSunburst = (function() {
         .call(sunburst.endOfTransition, sunburst.endOfZoom)
         .each(function() {
 
-        if (level == 2){
+          if (level == 2){
 
-          path.exit().transition()
-            .attrTween("d", function(d) { return sunburst.arcTween.call(this, exitArc(d)); })
-            .remove();
+            path.exit().transition()
+              .attrTween("d", function(d) { return sunburst.arcTween.call(this, exitArc(d)); })
+              .remove();
 
-          path.enter().append("path")
-              .style("fill-opacity", function(d) { return 1; })
-              .style("fill", function(d) { return d.color; })
-              .on("click", zoom)
-              .on("mouseover", that.mouseOverPath)
-              .on("mouseout", that.mouseOutPath)
-              .each(function(d) { this._current = enterArc(d); });
+            path.enter().append("path")
+                .style("fill-opacity", function(d) { return 1; })
+                .style("fill", function(d) { return d.color; })
+                .on("click", zoom)
+                .on("mouseover", that.mouseOverPath)
+                .on("mouseout", that.mouseOutPath)
+                .each(function(d) { this._current = enterArc(d); });
 
-          path.transition()
-              .style("fill-opacity", 1)
-              .style("fill", function(d) { return d.color; })
-              .attrTween("d", function(d) { return sunburst.arcTween.call(this, sunburst.updateArc(d)); });
+            path.transition()
+                .style("fill-opacity", 1)
+                .style("fill", function(d) { return d.color; })
+                .attrTween("d", function(d) { return sunburst.arcTween.call(this, sunburst.updateArc(d)); });
 
-        } else {
+          } else {
 
-          path.exit().transition()
-            .style("fill-opacity", function(d) { return d.depth === 2; })
-            .attrTween("d", function(d) { return sunburst.arcTween.call(this, exitArc(d)); })
-            .remove();
+            path.exit().transition()
+              .style("fill-opacity", function(d) { return d.depth === 2; })
+              .attrTween("d", function(d) { return sunburst.arcTween.call(this, exitArc(d)); })
+              .remove();
 
-          path.enter().append("path")
-              .style("fill-opacity", function(d) { return d.depth === 1; })
-              .style("fill", function(d) { return d.fill; })
-              .on("click", zoom)
-              .on("mouseover", that.mouseOverPath)
-              .on("mouseout", that.mouseOutPath)
-              .each(function(d) { this._current = enterArc(d); });
+            path.enter().append("path")
+                .style("fill-opacity", function(d) { return d.depth === 1; })
+                .style("fill", function(d) { return d.fill; })
+                .on("click", zoom)
+                .on("mouseover", that.mouseOverPath)
+                .on("mouseout", that.mouseOutPath)
+                .each(function(d) { this._current = enterArc(d); });
 
-          path.transition()
-              .style("fill-opacity", 1)
-              .attrTween("d", function(d) { return sunburst.arcTween.call(this, sunburst.updateArc(d)); });
-        }
+            path.transition()
+                .style("fill-opacity", 1)
+                .attrTween("d", function(d) { return sunburst.arcTween.call(this, sunburst.updateArc(d)); });
+          }
 
       });
+      
+
+      if(level == 2 && sunburst.state == 2){
+        p.children = null;
+      }
     }
 
     // When zooming out, arcs enter from the inside and exit to the outside.
@@ -390,28 +414,34 @@ ZzSunburst = (function() {
   ZzSunburst.prototype.updateLegend = function(d) {
 
     var that = this;
+    var level = sunburst.getLevel(d, 0);
 
-    var legendItems = that.partition(d).slice(1);
+    if(sunburst.state == 0 || level == 0){
+      var legendItems = that.partition(d);
+    } else if(sunburst.state == 1 || sunburst.state == 2){
+      var testpartition = d3.layout.partition();
+      var legendItems = testpartition(d.parent);
+    }
 
     var legendItem = this.legend.selectAll("g.legendItem")
         .data(legendItems, function(d) { return d.id; });
 
     var legendItemEnter = legendItem.enter().append("g")
         .attr("class", "legendItem")
-        .attr("transform", function(d, i) { return "translate(0," + (10 + (i * 30)) + ")"; })
+        .attr("transform", function(d, i) { return "translate(" + (d.depth * 15) + "," + (10 + (i * 30)) + ")"; })
         .on("mouseover", that.mouseOverPath)
         .on("mouseout", that.mouseOutPath);
 
       legendItemEnter
         .append('circle')
-        .attr('cx', function(d){ return 12 + ((d.depth - 1) * 15); })
+        .attr('cx', 12)
         .attr('cy', -5)
         .attr('r', 4)
         .attr('fill', function(d){return d.color; });
 
       legendItemEnter
         .append('text')
-        .attr('x', function(d){ return 25 + ((d.depth - 1) * 15); })
+        .attr('x', 25)
         .attr('y', 0)
         .attr('font-size', '16px')
         .attr('fill', '#444')
@@ -423,7 +453,7 @@ ZzSunburst = (function() {
         .insert('rect', ':first-child')
         .attr('width', function(d){ return d.textWidth + 42; })
         .attr('height', 20)
-        .attr('x', function(d){ return 0 + ((d.depth - 1) * 15); })
+        .attr('x', 0)
         .attr('y', -15)
         .attr('rx', 10)
         .attr('ry', 10)
@@ -432,7 +462,7 @@ ZzSunburst = (function() {
     // Transition nodes to their new position.
     var nodeUpdate = legendItem.transition()
       .duration(750)
-      .attr("transform", function(d, i) { return "translate(0," + (10 + (i * 30)) + ")"; });
+      .attr("transform", function(d, i) { return "translate(" + (d.depth * 15) + "," + (10 + (i * 30)) + ")"; });
 
     nodeUpdate.select("circle")
         .attr('r', 6)

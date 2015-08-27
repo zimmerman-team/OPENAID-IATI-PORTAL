@@ -109,27 +109,35 @@ ZzLocationVis = (function() {
       .attr('style', 'text-anchor: start;')
       .text('Wereldwijd ongespecificeerd');
 
-    
-    var direct = this.vis.append('g.checkbox')
-      .append('text')
-        .attr('x', 15)
-        .attr('y', 30)
-        .attr('font-size', '14px')
-        .attr('fill', '#444')
-        .attr('style', 'text-anchor: start;')
-        .text('Directe uitgaven')
-        .on('click', this.toggleDirect);
+    var direct = this.vis.append('g')
+      .attr('class', 'direct');
+    direct.append('text')
+      .attr('x', 55)
+      .attr('y', 30)
+      .attr('font-size', '14px')
+      .attr('fill', '#444')
+      .attr('style', 'text-anchor: start;')
+      .text('Directe uitgaven')
+      .on('click', this.toggleDirect);
     direct.append('rect')
-      .attr('width', 100)
-      .attr('height', 100)
-      .attr('x', 0)
-      .attr('y', 0)
-      .attr('rx', 10)
-      .attr('ry', 10)
+      .attr('width', 30)
+      .attr('height', 17)
+      .attr('x', 15)
+      .attr('y', 20)
+      .attr('rx', 9)
+      .attr('ry', 9)
       .attr('fill', '#fff')
       .attr('fill-opacity', 1)
-      .attr('stroke', '#444')
+      .attr('stroke', '#aaa')
       .attr('stroke-width', 1);
+    direct.append('circle')
+      .attr('cx', 23)
+      .attr('cy', 29)
+      .attr('r', 9)
+      .attr('fill', '#000')
+      .attr('fill-opacity', 1)
+      .attr('stroke-width', 0);
+      
 
     var indirect = this.vis.append('text')
       .attr('x', 150)

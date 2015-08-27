@@ -21,7 +21,6 @@
     function activate() {
 
       vm.chartId = "sunburst-" + Sunburst.sunburstCount;
-      Sunburst.sunburstCount++;
       vm.chart = new ZzSunburst(vm.chartId);
       
       $scope.$watch("refreshSunburst", function (refreshSunburst) {
