@@ -23,8 +23,7 @@
     activate();
 
     function activate(){
-      FilterSelection.toReset = true;
-      FilterSelection.selectionString = '';
+      FilterSelection.reset();
 
       if($stateParams.search != undefined){
         vm.searchValue = $stateParams.search;

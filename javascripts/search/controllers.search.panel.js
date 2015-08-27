@@ -12,13 +12,12 @@
     vm.query = '';
 
     vm.submit = function(){
-      Search.searchString = vm.query;
-      FilterSelection.toSave = true;
+      vm.save();
     }
 
     vm.save = function(){
       Search.searchString = vm.query;
-      FilterSelection.toSave = true;
+      FilterSelection.save();
     }
 
   }

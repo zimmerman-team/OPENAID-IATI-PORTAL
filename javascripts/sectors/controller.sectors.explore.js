@@ -22,8 +22,7 @@
     activate();
 
     function activate() {
-      FilterSelection.toReset = true;
-      FilterSelection.selectionString = '';
+      FilterSelection.reset();
 
       $scope.$watch('vm.submitSearch', function(submitSearch){
         if(submitSearch){

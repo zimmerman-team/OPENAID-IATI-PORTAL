@@ -87,6 +87,7 @@
 
     <div ng-show="vm.selectedTab == 'activities'">
         <activity-list 
+            has-to-contain='participating_organisations__organisation__code__in' 
             count='vm.tabs[1].count'
             shown="vm.selectedTab == 'activities'"></activity-list>
     </div>

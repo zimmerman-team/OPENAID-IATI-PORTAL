@@ -35,8 +35,7 @@
 
     function activate() {
 
-      FilterSelection.toReset = true;
-      FilterSelection.selectionString = '';
+      FilterSelection.reset();
 
       ImplementingOrganisations.selectedImplementingOrganisations.push({'organisation_id': vm.organisation_id, 'name': ''});
 
@@ -50,7 +49,7 @@
 
         vm.organisation = data.data;
         ImplementingOrganisations.selectedImplementingOrganisations[0] = {'organisation_id':vm.organisation.code,'name':vm.organisation.name};
-        vm.filterSelection.toSave = true;
+        vm.filterSelection.save();
         setTimeout(function(){ vm.update(vm.filterSelection.selectionString); }, 3000);
       }
 

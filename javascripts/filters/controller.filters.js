@@ -98,7 +98,7 @@
 
     vm.toggleOpenPanel = function(slug){
       if(FilterSelection.openedPanel == slug){
-        FilterSelection.toSave = true;
+        FilterSelection.save();
       } else {
         vm.setOpenedHeader(slug);
       }
@@ -110,11 +110,11 @@
     }
 
     vm.resetFilters = function(){
-      FilterSelection.toReset = true;
+      FilterSelection.reset();
     }
 
     vm.saveFilters = function(){
-      FilterSelection.toSave = true;
+      FilterSelection.save();
     }
 
     vm.isOpenedHeader = function(slug){

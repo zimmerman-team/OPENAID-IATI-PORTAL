@@ -16,13 +16,12 @@
 
     function activate(){
 
-      FilterSelection.toReset = true;
-      FilterSelection.selectionString = '';
+      FilterSelection.reset();
 
       $scope.$watch('vm.submitSearch', function(submitSearch){
         if(submitSearch){
           Search.searchString = vm.searchValue;
-          FilterSelection.toSave = true;
+          FilterSelection.save();
           vm.submitSearch = false;
         }
         

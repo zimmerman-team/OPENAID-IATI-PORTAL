@@ -41,7 +41,7 @@
 
     vm.save = function(){
       // logic to save the filters
-      FilterSelection.toSave = true;
+      FilterSelection.save();
     }
 
 

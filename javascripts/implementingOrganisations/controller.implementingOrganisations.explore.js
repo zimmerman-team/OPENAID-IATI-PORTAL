@@ -19,15 +19,14 @@
 
         function activate() {
 
-            FilterSelection.toReset = true;
-            FilterSelection.selectionString = '';
+            FilterSelection.reset();
 
             $scope.$watch('vm.filterSelection.selectionString', function (selectionString) {
                 vm.selectionString = selectionString;
                 FilterSelection.openedPanel = '';
             }, true);
 
-            setTimeout(function(){ FilterSelection.toReset = true; }, 100);
+            setTimeout(function(){ FilterSelection.reset(); }, 100);
         }
 
         vm.toggleSelection = function(){
@@ -36,12 +35,11 @@
         }
 
         vm.resetFilters = function(){
-            FilterSelection.toReset = true;
+            FilterSelection.reset();
         }
 
         vm.saveFilters = function(){
-            FilterSelection.toSave = true;
-            FilterSelection.openedPanel = '';
+            FilterSelection.save();
         }
 
         vm.isOpenedHeader = function(slug){

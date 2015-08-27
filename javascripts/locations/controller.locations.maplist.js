@@ -13,8 +13,7 @@
         activate();
 
         function activate(){
-            FilterSelection.toReset = true;
-            FilterSelection.selectionString = '';
+            FilterSelection.reset();
         }
     }
 

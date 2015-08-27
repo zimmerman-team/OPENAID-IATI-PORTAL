@@ -34,9 +34,7 @@
     ]
 
     function activate() {
-      FilterSelection.toReset = true;
-      FilterSelection.selectionString = '';
-
+      FilterSelection.reset();
       $scope.$watch('vm.filterSelection.selectionString', function (selectionString) {
         vm.update(selectionString);
       }, true);
@@ -46,7 +44,7 @@
       function successFn(data, status, headers, config) {
         vm.region = data.data;
         Regions.selectedRegions.push({'region_id':vm.region.code,'name':vm.region.name});
-        FilterSelection.toSave = true;
+        FilterSelection.save();
       }
     }
 

@@ -18,8 +18,7 @@
 
     function activate() {
 
-      FilterSelection.toReset = true;
-      FilterSelection.selectionString = '';
+      FilterSelection.reset();
       
 
       for (var cf in vm.customFields){

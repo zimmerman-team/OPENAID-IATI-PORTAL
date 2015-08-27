@@ -47,7 +47,7 @@
     }
 
     vm.save = function(){
-      FilterSelection.toSave = true;
+      FilterSelection.save();
     }
 
   }

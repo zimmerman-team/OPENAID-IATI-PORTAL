@@ -26,8 +26,7 @@
     activate();
 
     function activate() {
-      FilterSelection.toReset = true;
-      FilterSelection.selectionString = '';
+      FilterSelection.reset();
 
       $scope.$watch('vm.submitSearch', function(submitSearch){
         if(submitSearch){
@@ -41,7 +40,6 @@
 
       }, true);
 
-      setTimeout(function(){ FilterSelection.toReset = true; }, 100);
     }
 
     vm.activateSunburst = function(){

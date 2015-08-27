@@ -30,8 +30,7 @@
     activate();
 
     function activate() {
-      FilterSelection.toReset = true;
-      FilterSelection.selectionString = '';
+      FilterSelection.reset();
       
       Activities.get(vm.activityId).then(successFn, errorFn);
 

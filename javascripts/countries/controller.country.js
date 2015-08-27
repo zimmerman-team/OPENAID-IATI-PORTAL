@@ -29,16 +29,13 @@
       {'id': 'implementing-organisations', 'name': 'Organisaties', 'count': -1},
     ]
 
-
     /**
     * @name activate
     * @desc Actions to be performed when this controller is instantiated
     * @memberOf oipa.countries.controllers.CountryController
     */
     function activate() {
-
-      FilterSelection.toReset = true;
-      FilterSelection.selectionString = '';
+      FilterSelection.reset();
 
       $scope.$watch('vm.filterSelection.selectionString', function (selectionString) {
         vm.update(selectionString);
@@ -56,7 +53,7 @@
       function successFn(data, status, headers, config) {
         vm.country = data.data;
         Countries.selectedCountries.push({'country_id':vm.country.code,'name':vm.country.name});
-        FilterSelection.toSave = true;
+        FilterSelection.save();
       }
     }
 

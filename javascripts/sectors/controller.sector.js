@@ -30,8 +30,7 @@
     ]
 
     function activate() {
-      FilterSelection.toReset = true;
-      FilterSelection.selectionString = '';
+      FilterSelection.reset();
 
       $scope.$watch('vm.filterSelection.selectionString', function (selectionString) {
         vm.update(selectionString);
@@ -43,7 +42,7 @@
       function successFn(data, status, headers, config) {
         vm.sector = data.data;
         Sectors.selectedSectors.push({"sector_id":vm.sector.code,"name":vm.sector.name});
-        FilterSelection.toSave = true;
+        FilterSelection.save();
       }
     }
 

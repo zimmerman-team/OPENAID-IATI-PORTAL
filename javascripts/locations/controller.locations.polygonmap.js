@@ -55,8 +55,7 @@
 
     function activate() {
 
-      FilterSelection.toReset = true;
-      FilterSelection.selectionString = '';
+      FilterSelection.reset();
 
       $scope.$watch('vm.filterSelection.selectionString', function (selectionString) {
         vm.selectionString = selectionString;
