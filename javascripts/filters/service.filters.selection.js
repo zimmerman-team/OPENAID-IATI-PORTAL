@@ -31,7 +31,7 @@
 
 		m.save = function(){
 			m.updateSelectionString();
-			m.openedPanel = '';
+			FilterSelection.openedPanel = '';
 		}
 
 		m.updateSelectionString = function(){
@@ -88,9 +88,6 @@
 	      Budget.budget.on = false;
 	      m.save();
 	    }
-
-
-
 		
 		var FilterSelection = {
 			save: m.save,

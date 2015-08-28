@@ -1,5 +1,4 @@
 var geoLocationVis = null;
-var teststuff = null;
 ZzLocationVis = (function() {
 
   function ZzLocationVis(id) {
@@ -7,37 +6,38 @@ ZzLocationVis = (function() {
     geoLocationVis = this;
   }
 
+  // INIT
   ZzLocationVis.prototype.init = function(id) {
 
     this.vis = null;
     this.vis_id = id;
-    this.layout_gravity = -0.0001;
+    this.layout_gravity = -0.001;
     this.damper = 0.05;
-    this.friction = 0.9;
+    this.friction = 0.7;
     this.force = d3.layout.force().size([520, 2000]);
     this.circles = null;
     this.nodes = [];
-    this.tooltip = CustomTooltip("sunburst_tooltip", 120);
+    this.tooltip = CustomTooltip("sunburst_tooltip", 250);
     this.mapping = d3.layout.tree();
     this.mappingData = null;
 
     this.group_centers = {
-      "89": { x: 350, y: 600},
-      "298": { x: 350, y: 150},
-      "189": { x: 350, y: 150},
-      "289": { x: 350, y: 150},
-      "498": { x: 350, y: 300},
-      "380": { x: 350, y: 300},
-      "389": { x: 350, y: 300},
-      "489": { x: 350, y: 300},
-      "798": { x: 350, y: 450},
-      "589": { x: 350, y: 450},
-      "619": { x: 350, y: 450},
-      "689": { x: 350, y: 450},
-      "679": { x: 350, y: 450},
-      "789": { x: 350, y: 450},
-      "889": { x: 350, y: 750},
-      "998": { x: 350, y: 900},
+      "89": { x: 350, y: 600, 'color': '#F6A000'},
+      "298": { x: 350, y: 150, 'color': '#5598B5'},
+      "189": { x: 350, y: 150, 'color': '#5598B5'},
+      "289": { x: 350, y: 150, 'color': '#A6E4F4'},
+      "498": { x: 350, y: 300, 'color': '#00BA96'},
+      "380": { x: 350, y: 300, 'color': '#14EFC5'},
+      "389": { x: 350, y: 300, 'color': '#C2FFF3'},
+      "489": { x: 350, y: 300, 'color': '#C2FFF3'},
+      "798": { x: 350, y: 450, 'color': '#4A671E'},
+      "589": { x: 350, y: 450, 'color': '#8DB746'},
+      "619": { x: 350, y: 450, 'color': '#C1F460'},
+      "689": { x: 350, y: 450, 'color': '#ABDD1F'},
+      "679": { x: 350, y: 450, 'color': '#EDFFC5'},
+      "789": { x: 350, y: 450, 'color': '#EDFFC5'},
+      "889": { x: 350, y: 750, 'color': '#EDFFC5'},
+      "998": { x: 350, y: 750, 'color': '#888888'},
     };
 
     // init vis
@@ -53,9 +53,7 @@ ZzLocationVis = (function() {
           geoLocationVis.tooltip.hideTooltip();
         });
 
-    this.countries = this.vis.append('g')
-        .attr('class', 'countries')
-        .attr('transform', 'translate(0,50)');
+    
 
     // init left
     var left = this.vis.append('rect')
@@ -109,76 +107,80 @@ ZzLocationVis = (function() {
       .attr('style', 'text-anchor: start;')
       .text('Wereldwijd ongespecificeerd');
 
-    var direct = this.vis.append('g')
-      .attr('class', 'direct');
-    direct.append('text')
+    this.direct = this.vis.append('g')
+      .attr('class', 'direct')
+      .attr('transform', 'translate(10,0)');
+    this.direct.append('text')
       .attr('x', 55)
-      .attr('y', 30)
+      .attr('y', 27)
       .attr('font-size', '14px')
       .attr('fill', '#444')
       .attr('style', 'text-anchor: start;')
       .text('Directe uitgaven')
       .on('click', this.toggleDirect);
-    direct.append('rect')
+    this.direct.append('rect')
       .attr('width', 30)
       .attr('height', 17)
       .attr('x', 15)
-      .attr('y', 20)
+      .attr('y', 13)
       .attr('rx', 9)
       .attr('ry', 9)
       .attr('fill', '#fff')
       .attr('fill-opacity', 1)
       .attr('stroke', '#aaa')
       .attr('stroke-width', 1);
-    direct.append('circle')
+    this.direct.append('circle')
+      .attr('class', 'directCircle')
       .attr('cx', 23)
-      .attr('cy', 29)
+      .attr('cy', 22)
       .attr('r', 9)
       .attr('fill', '#000')
       .attr('fill-opacity', 1)
       .attr('stroke-width', 0);
-      
 
-    var indirect = this.vis.append('text')
-      .attr('x', 150)
-      .attr('y', 30)
+
+    this.indirect = this.vis.append('g')
+      .attr('class', 'direct')
+      .attr('transform', 'translate(200,0)')
+    this.indirect.append('text')
+      .attr('x', 55)
+      .attr('y', 27)
       .attr('font-size', '14px')
       .attr('fill', '#444')
       .attr('style', 'text-anchor: start;')
       .text('Indirecte uitgaven')
       .on('click', this.toggleIndirect);
+    this.indirect.append('rect')
+      .attr('width', 30)
+      .attr('height', 17)
+      .attr('x', 15)
+      .attr('y', 13)
+      .attr('rx', 9)
+      .attr('ry', 9)
+      .attr('fill', '#fff')
+      .attr('fill-opacity', 1)
+      .attr('stroke', '#aaa')
+      .attr('stroke-width', 1);
+    this.indirect.append('circle')
+      .attr('class', 'indirectCircle')
+      .attr('cx', 23)
+      .attr('cy', 22)
+      .attr('r', 9)
+      .attr('fill', '#000')
+      .attr('fill-opacity', 1)
+      .attr('stroke-width', 0);
 
+      this.countries = this.vis.append('g')
+        .attr('class', 'countries')
+        .attr('transform', 'translate(0,50)');
   };
 
 
-  ZzLocationVis.prototype.toggleIndirect = function() {
-
-    // Update the nodes…
-    var node = geoLocationVis.vis.selectAll(".node")
-      .data(geoLocationVis.data, function(d) { return d.id; });
-
-    // Transition nodes to their new position.
-    var nodeUpdate = node.transition()
-      .duration(750)
-      .each(function(d){ 
-        d.indirect_value = 0;
-        d.radius = geoLocationVis.radius_scale(d.total_disbursements + d.indirect_value)
-      })
-      .style("r", function(d){
-        return d.radius;
-      })
-      .style("stroke-width", function(d){
-        return d.indirect_value;
-      });
-
-  }
-
-  ZzLocationVis.prototype.toggleDirect = function() {
-
-  }
+  
 
 
 
+  // FLOW
   ZzLocationVis.prototype.updateLegend = function(d) {
 
     var that = this;
@@ -186,7 +188,7 @@ ZzLocationVis = (function() {
     function setHiddenChildrenPosition(d, i){
       if(d._children){
         for (var y = 0;y < d._children.length;y++){
-          that.group_centers[d._children[y].id]['y'] = 100 + (i * 150);
+          that.group_centers[d._children[y].id]['y'] = 200 + (i * 150);
           setHiddenChildrenPosition(d._children[y], i);
         }
       }
@@ -202,7 +204,7 @@ ZzLocationVis = (function() {
     // Enter any new nodes
     var nodeEnter = node.enter().append("g")
         .attr("class", "region")
-        .attr("transform", function(d, i) { return "translate(50," + (150 + (i * 150)) + ")"; })
+        .attr("transform", function(d, i) { return "translate(50," + (180 + (i * 190)) + ")"; })
         .on("click", that.clickRegion);
 
       nodeEnter
@@ -235,11 +237,9 @@ ZzLocationVis = (function() {
     // Transition nodes to their new position.
     var nodeUpdate = node.transition()
       .duration(750)
-      .attr("transform", function(d, i) { return "translate(50," + (150 + (i * 150)) + ")"; })
+      .attr("transform", function(d, i) { return "translate(50," + (180 + (i * 190)) + ")"; })
       .each(function(d,i){ 
-
-        that.group_centers[d.id]['y'] = 100 + (i * 150);
-
+        that.group_centers[d.id]['y'] = 200 + (i * 150);
         setHiddenChildrenPosition(d, i);
       });
 
@@ -265,29 +265,25 @@ ZzLocationVis = (function() {
   }
 
   ZzLocationVis.prototype.updateData = function(data){
-
     if(!data) return false;
 
     var that = this;
     that.mappingData = data.mapping;
-    that.data = data.data;
+    that.data = data.data.countries;
+    that.regionData = data.data.regions;
 
-    var maxvalue = d3.max(that.data, function(d) { return d.total_disbursements; });
+    var maxvalue = d3.max(that.data, function(d) { return d.value + d.value2; });
     this.radius_scale = d3.scale.pow().exponent(0.5).domain([0, maxvalue]).range([2, 20]);
 
     that.data.forEach(function(d) {
-      d.id = d.country_id;
-      d.group = d.region_id;
       d.fill = d.color;
-      d.value = d.total_disbursements;
-      d.indirect_value = Math.random() * d.total_disbursements; 
       d.x = that.group_centers[d.group]['x'] + ((Math.random() * 40) - 20);
       d.y = that.group_centers[d.group]['y'] + ((Math.random() * 40) - 20);
-      d.radius = that.radius_scale(d.total_disbursements + d.indirect_value);
+      d.radius = that.radius_scale(d.value + d.value2);
       d.stroke = '#fff';
-      d.stroke_width = that.radius_scale(d.indirect_value);
+      d.stroke_width = that.radius_scale(d.value2);
       d._stroke_width = d.stroke_width; 
-      d._indirect_value = d.indirect_value; 
+      d._value2 = d.value2; 
     });
 
     that.nodes = that.data;
@@ -295,19 +291,30 @@ ZzLocationVis = (function() {
 
     // create / update bubbles, group them by region
     this.circles = that.countries.selectAll(".node")
-      .data(that.nodes)
-    .enter().append("circle")
+      .data(that.nodes);
+
+    this.circles.enter().append("circle")
       .attr("class", "node")
       .attr("cx", function(d) { return d.x; })
       .attr("cy", function(d) { return d.y; })
-      .attr("r", function(d) { return d.radius; })
+      .attr("r", 0)
       .style("fill", function(d) { return d.fill; })
       .style("stroke", function(d) { return d.stroke; })
-      .style("stroke-width", function(d) { return d.stroke_width; })
-      .on('mouseover', that.mouseOver)
+      .style("stroke-width", 0)
+      .on("mouseover", that.mouseOver)
       .on('mouseout', that.mouseOut)
       .on('click', that.mouseClick)
       .call(that.force.drag);
+
+    this.circles.transition()
+      .attr("r", function(d) { return d.radius; })
+      .style("fill", function(d) { return d.fill; })
+      .style("stroke", function(d) { return d.stroke; })
+      .style("stroke-width", function(d) { return d.stroke_width; });
+
+    this.circles.exit()
+      .remove();
+
 
     function collapse(d) {
       if (d.children) {
@@ -320,7 +327,62 @@ ZzLocationVis = (function() {
     this.mappingData.children.forEach(collapse);
     this.updateLegend(this.mappingData);
     this.update(); 
+    this.updateRegionData();
   }
+
+
+  ZzLocationVis.prototype.updateRegionData = function() {
+
+    var that = this;
+
+    var previousY = 0;
+
+    that.regionData.forEach(function(d) {
+      
+      d.fill = that.group_centers[d.id].color;
+      d.color = d.fill;
+      d.x = 640;
+      d.y = that.group_centers[d.id].y;
+      // if(d.y == previousY){
+        // d.radius = 0;
+      // } else {
+        d.radius = that.radius_scale(d.value);
+      // }
+      
+      previousY = d.y;
+
+      if(d.id == 998){
+        d.x = 870;
+        d.y = 501;
+      }
+    });
+
+    var regionCircles = that.vis.selectAll(".regionNode")
+      .data(that.regionData, function(d) { return d.id; });
+
+    regionCircles.enter().append("circle")
+      .attr("class", "regionNode")
+      .attr("cx", function(d) { return d.x; })
+      .attr("cy", function(d) { return d.y; })
+      .attr("r", 0)
+      .style("fill", function(d) { return d.fill; })
+      .style("stroke", function(d) { return d.stroke; })
+      .style("stroke-width", function(d) { return d.stroke_width; })
+      .on('click', that.mouseClick);
+
+    regionCircles.exit()
+      .attr("r", 0)
+      .remove();
+
+    regionCircles.transition()
+      .duration(750)
+      .attr("r", function(d) { return d.radius; })
+      .attr("cy", function(d) { return d.y; })
+      .style("fill", function(d) { return d.fill; })
+      .style("stroke", function(d) { return d.stroke; })
+      .style("stroke-width", function(d) { return d.stroke_width; });
+  }
+
 
   ZzLocationVis.prototype.update = function() {
 
@@ -343,6 +405,8 @@ ZzLocationVis = (function() {
     this.force.start();
   }
 
+  // HELPERS
+
   ZzLocationVis.prototype.charge = function(d) {
     return -Math.pow(d.radius + d.stroke_width, 2) / 12;
   };
@@ -361,8 +425,7 @@ ZzLocationVis = (function() {
 
 
 
-  // listeners and tooltips
-
+  // LISTENERS
   ZzLocationVis.prototype.clickRegion = function(d){
     
     if (d.children) {
@@ -374,11 +437,13 @@ ZzLocationVis = (function() {
     }
     geoLocationVis.updateLegend(d);
     geoLocationVis.update();
+    geoLocationVis.updateRegionData();
   }
 
   ZzLocationVis.prototype.mouseOver = function(e){
+
     // show country id of all countries within this region
-    var circlesInRegion = geoLocationVis.vis.selectAll(".nodeText")
+    var circlesInRegion = geoLocationVis.countries.selectAll(".nodeText")
       .data(geoLocationVis.nodes)
     .enter().append("text")
       .filter(function(d) { return d.group == e.group; })
@@ -387,15 +452,16 @@ ZzLocationVis = (function() {
       .attr("y", function(d) { return d.y; })
       .attr('style', 'text-anchor: middle;')
       .attr("dominant-baseline", "central")
-      .attr('font-size', function(d){ return Math.round(d.radius); })
+      .attr('font-size', function(d){ return Math.round(d.radius + (d.stroke_width / 2)); })
       .attr('fill', '#444')
       .attr("pointer-events", "none")
-      .text(function(d){ return d.country_id; });
+      .text(function(d){ return d.id; });
+
   };
 
   ZzLocationVis.prototype.mouseOut = function(d){
     // hide country id's
-    geoLocationVis.vis.selectAll('.nodeText').remove();
+    geoLocationVis.countries.selectAll('.nodeText').remove();
   };
 
   ZzLocationVis.prototype.mouseClick = function(d){
@@ -404,19 +470,108 @@ ZzLocationVis = (function() {
     d3.event.stopPropagation();
   }
 
+  ZzLocationVis.prototype.toggleIndirect = function() {
 
+    geoLocationVis.indirect.select('circle')
+      .attr('cx', 38);
+
+    // Update the nodes
+    var node = geoLocationVis.vis.selectAll(".node")
+      .data(geoLocationVis.data, function(d) { return d.id; });
+
+    // Transition nodes to their new position.
+    var nodeUpdate = node.transition()
+      .duration(750)
+      .each(function(d){ 
+        d.value2 = 0;
+        d.radius = geoLocationVis.radius_scale(d.value + d.value2)
+      })
+      .style("r", function(d){
+        return d.radius;
+      })
+      .style("stroke-width", function(d){
+        return d.value2;
+      });
+
+  }
+
+  ZzLocationVis.prototype.toggleDirect = function() {
+    geoLocationVis.vis.selectAll('g.direct circle')
+      .transition()
+      .attr('x', 40);
+
+    // Update the nodes…
+    var node = geoLocationVis.vis.selectAll(".node")
+      .data(geoLocationVis.data, function(d) { return d.id; });
+
+    // Transition nodes to their new position.
+    var nodeUpdate = node.transition()
+      .duration(750)
+      .each(function(d){ 
+        d.value2 = d._value2;
+        d.stroke_width = geoLocationVis.radius_scale(d.value2);
+        d.radius = geoLocationVis.radius_scale(d.value + d.value2)
+
+      })
+      .style("r", function(d){
+        return d.radius;
+      })
+      .style("stroke-width", function(d){
+        return d.stroke_width;
+      });
+
+
+
+  }
+
+
+
+  // TOOPTIP
   function CustomTooltip(tooltipId, width){
     var tooltipId = tooltipId;
-    $("body").append("<div class='zz_tooltip' id='"+tooltipId+"'></div>");
+    $("body").append("<div class='zz_tooltip geovis' id='"+tooltipId+"'></div>");
     
     if(width){
       $("#"+tooltipId).css("width", width);
     }
     
     hideTooltip();
+
+    
+
     
     function showTooltip(d){
-      $("#"+tooltipId).html('<div class="tt-header" style="background-color:'+d.color+';">'+d.name+'</div><div class="tt-text">'+d.value+'</div>');
+      function abbreviatedValue(input){
+
+        var out = '';
+        var addDot = false;
+
+        if(input > 999999999){
+          out = (input / 1000000000).toFixed(2) + ' mld';
+        } else if(input > 999999){
+          out = (input / 1000000).toFixed(2) + ' mln';
+        } else if(input > 1000){
+          addDot = true;
+        }else {
+          out = input.toFixed(0); 
+        }
+        // openaid -> comma's
+        out = out.replace('.', ',');
+
+        if(addDot == true){
+          input = input.toString();
+          out = input.substring(0, (input.length - 3)) + '.' + input.substring((input.length - 3), input.length);
+        }
+
+        return '€ ' + out;
+      }
+
+
+      if (d.id === parseInt(d.id, 10))
+          $("#"+tooltipId).html('<div class="tt-header" style="background-color:'+d.color+';">'+d.name+'</div><div class="tt-text">Niet aan land te relateren uitgaven: '+abbreviatedValue(d.value)+'</div>');
+      else
+          $("#"+tooltipId).html('<div class="tt-header" style="background-color:'+d.color+';">'+d.name+'</div><div class="tt-text">Directe uitgaven: '+abbreviatedValue(d.value)+'<br>Indirecte uitgaven: '+abbreviatedValue(d.value2)+'</div>');
+      
       $("#"+tooltipId).show(0);
       
       updatePosition(d3.event);
@@ -446,8 +601,8 @@ ZzLocationVis = (function() {
         tttop = curY + yOffset;
       } 
 
-      tttop = tttop - 150;
-      ttleft = ttleft - 60;
+      tttop = tttop - 140;
+      ttleft = ttleft - 150;
       $(ttid).css('top', tttop + 'px').css('left', ttleft + 'px');
     }
     

@@ -52,21 +52,25 @@ angular.module('oipa').filter('cut', function () {
       var curSymbol = curSymbol || "$";
       var out = '';
       var minus = input < 0;
-      var addZeros = false;
+      var addDot = false;
       input = Math.abs(input);
 
       if(input > 999999999){
         out = (input / 1000000000).toFixed(2) + ' mld';
       } else if(input > 999999){
         out = (input / 1000000).toFixed(2) + ' mln';
-      } else{
-        addZeros = true;
-        out = (input / 1000).toFixed(0); 
+      } else if(input > 1000){
+        addDot = true;
+      }else {
+        out = input.toFixed(0); 
       }
       // openaid -> comma's
       out = out.replace('.', ',');
 
-      if(addZeros) out += '.000';
+      if(addDot == true){
+        input = input.toString();
+        out = input.substring(0, (input.length - 3)) + '.' + input.substring((input.length - 3), input.length);
+      }
 
       if(minus){
         return "-" + curSymbol + out;

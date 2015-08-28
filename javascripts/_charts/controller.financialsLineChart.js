@@ -31,7 +31,7 @@
         // useInteractiveGuideline: true,
         // clipVoronoi: false,
         // interpolate: 'step',
-        showControls: false, 
+        // showControls: false, 
         xAxis: {
             axisLabel: '',
             tickFormat: function(d) {
@@ -99,12 +99,12 @@
       var data = [
           {
               values: [],      //values - represents the array of {x,y} data points
-              key: 'Commitments', 
+              key: 'Verplichtingen', 
               color: '#2077B4'  
           },
           {
               values: [],
-              key: 'Disbursements',
+              key: 'Uitgaven',
               color: '#FF7F0E'
           },
           {
