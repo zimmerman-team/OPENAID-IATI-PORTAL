@@ -92,10 +92,6 @@
 
     vm.updateMap = function(){
 
-        for(var key in vm.markers){
-          vm.markers[key].opacity = 0;
-        }
-
         Aggregations.aggregation('recipient-country', 'disbursement', vm.selectionString, 'name', 1000, 0, 'activity_count').then(countrySuccessFn, errorFn);
         Aggregations.aggregation('recipient-region', 'disbursement', vm.selectionString, 'name', 1000, 0, 'activity_count').then(regionSuccessFn, errorFn);
 
@@ -114,18 +110,20 @@
         }
     }
 
+    vm.deleteAllMarkers = function(){
+
+      for (var obj in vm.markers) {
+        delete vm.markers[obj];
+      }
+    }
+
     vm.updateCountryMarkers = function(markerData) {
       
       if(vm.geoView != 'countries'){
         return false;
       }
 
-      // delete regions if they exist
-      for (var i = 0; i < vm.regionMarkerData.length;i++){
-          if(vm.markers[vm.regionMarkerData[i].region_id] != undefined){
-              delete vm.markers[vm.regionMarkerData[i].region_id];
-          }
-      }
+      vm.deleteAllMarkers();
 
       var selectedCountryRelationMap = {};
       for(var i = 0;i < vm.selectedCountryRelation.length;i++){
@@ -139,7 +137,13 @@
             partnerType = partnerlanden[vm.countryMarkerData[i].country_id].replace(/\s/g, ''); 
           }
 
-          if (selectedCountryRelationMap[partnerType] !== undefined){
+          if (selectedCountryRelationMap[partnerType] === undefined){
+
+            if(vm.markers[vm.countryMarkerData[i].country_id] != undefined){
+              delete vm.markers[vm.countryMarkerData[i].country_id];
+            }
+
+          } else {
             var message = '<span class="flag-icon flag-icon-'+flag_lc+'"></span>'+
                   '<h4>'+vm.countryMarkerData[i].name+'</h4>'+
                   '<p><b>Activiteiten:</b> '+vm.countryMarkerData[i]['activity_count']+'</p>'+
@@ -171,12 +175,7 @@
         return false;
       }
 
-      // delete countries if they exist
-      for (var i = 0; i < vm.countryMarkerData.length;i++){
-          if(vm.markers[vm.countryMarkerData[i].country_id] != undefined){
-              delete vm.markers[vm.countryMarkerData[i].country_id];
-          }
-      }
+      vm.deleteAllMarkers();
 
       for (var i = 0; i < vm.regionMarkerData.length;i++){
 
@@ -199,8 +198,6 @@
           }
 
           vm.markers[vm.regionMarkerData[i].region_id].message = message;
-
-          
         }
       }
     }

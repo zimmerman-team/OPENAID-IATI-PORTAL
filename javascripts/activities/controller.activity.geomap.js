@@ -37,6 +37,7 @@
       EXITrelatie: { html: '<div class="fa fa-map-marker fa-stack-1x fa-inverse marker-circle marker-circle-EXITrelatie"></div>',type: 'div',iconSize: [28, 35],iconAnchor: [14, 18],markerColor: 'blue',iconColor: 'white',},
       Handelsrelatie: { html: '<div class="fa fa-map-marker fa-stack-1x fa-inverse marker-circle marker-circle-Handelsrelatie"></div>',type: 'div',iconSize: [28, 35],iconAnchor: [14, 18],markerColor: 'blue',iconColor: 'white',},
       Overige: { html: '<div class="fa fa-map-marker fa-stack-1x fa-inverse marker-circle marker-circle-Overige"></div>',type: 'div',iconSize: [28, 35],iconAnchor: [14, 18],markerColor: 'blue',iconColor: 'white',},
+      Regiocirkel: { html: '<div class="region-marker-circle"></div>' ,type: 'div',iconSize: [200, 200],iconAnchor: [100, 100],markerColor: 'blue',iconColor: 'white',}
     };
 
     vm.activity = $scope.activity;
@@ -136,13 +137,15 @@
         if (!region.center_longlat) return;
         var location = region.center_longlat.replace('POINT (', '').replace(')', '');
         location = location.split(' ');
-        vm.markers[region.code] = {
-            lat: parseInt(location[1]),
-            lng: parseInt(location[0]),
-            message: '<h4>'+region.name+'</h4>'+
-                '<a class="btn btn-default" href="'+homeUrl+'/regios/'+region.code+'/">Ga naar overzicht regio</a>',
-            icon: vm.markerIcons['Overige'],
-        }
+
+        var message = '<h4>'+region.name+'</h4>'+
+              '<a class="btn btn-default" href="'+homeUrl+'/regions/'+region.code+'/">Ga naar regio overzicht</a>';
+
+            vm.markers[region.code] = {
+              lat: parseInt(location[1]),
+              lng: parseInt(location[0]),
+              icon: vm.markerIcons['Regiocirkel'],
+            }
       }
     }
 

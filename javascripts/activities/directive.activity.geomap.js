@@ -10,7 +10,7 @@
   function activityGeomap(templateBaseUrl) {
 
     var directive = {
-      controller: 'LocationsPolygonGeoMapController',
+      controller: 'ActivityGeoMapController',
       controllerAs: 'vm',
       restrict: 'E',
       scope: {
