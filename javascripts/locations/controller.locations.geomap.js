@@ -93,6 +93,7 @@
     vm.updateMap = function(){
 
         Aggregations.aggregation('recipient-country', 'disbursement', vm.selectionString, 'name', 1000, 0, 'activity_count').then(countrySuccessFn, errorFn);
+        
         Aggregations.aggregation('recipient-region', 'disbursement', vm.selectionString, 'name', 1000, 0, 'activity_count').then(regionSuccessFn, errorFn);
 
         function countrySuccessFn(data, status, headers, config) {

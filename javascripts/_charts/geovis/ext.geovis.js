@@ -116,6 +116,7 @@ ZzLocationVis = (function() {
       .attr('font-size', '14px')
       .attr('fill', '#444')
       .attr('style', 'text-anchor: start;')
+      .style('cursor', 'pointer')
       .text('Directe uitgaven')
       .on('click', this.toggleDirect);
     this.direct.append('rect')
@@ -149,6 +150,7 @@ ZzLocationVis = (function() {
       .attr('fill', '#444')
       .attr('style', 'text-anchor: start;')
       .text('Indirecte uitgaven')
+      .style('cursor', 'pointer')
       .on('click', this.toggleIndirect);
     this.indirect.append('rect')
       .attr('width', 30)
