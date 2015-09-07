@@ -97,12 +97,18 @@
             <i class="fa fa-money fa-stack-1x fa-inverse"></i>
           </span>
       
-          <!-- <span class="fa-stack fa-lg">
+          <span
+              class="fa-stack fa-lg"
+              ng-click="vm.toggleOpenPanel('year')" 
+              ng-class="{'active': vm.isOpenedHeader('year')}"
+              ng-mouseover="vm.hoverIn('year')" 
+              ng-mouseleave="vm.hoverOut('year')"
+              ng-show="vm.isIncludedFilter('year')">
             <div class="glyphicon-popup"></div>
             <i class="fa fa-circle fa-stack-2x"></i>
             <i class="fa fa-calendar fa-stack-1x fa-inverse"></i>
           </span>
- -->
+
           <span 
               class="fa-stack fa-lg" 
               ng-click="vm.toggleOpenPanel('search')" 

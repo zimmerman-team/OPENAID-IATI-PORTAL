@@ -37,6 +37,7 @@
       'recipient_sectors': {'text': 'Sector', hoverShow: false},
       'recipient_activity_status': {'text': 'Activiteit status', hoverShow: false},
       'recipient_implementing_organisations': {'text': 'Ontvangende organisatie', hoverShow: false},
+      'year': {'text': 'Year', hoverShow: false},
       'search': {'text': 'Zoek in text', hoverShow: false},
       'reset': {'text': 'Reset filters', hoverShow: false},
       'download': {'text': 'Download projecten', hoverShow: false},
