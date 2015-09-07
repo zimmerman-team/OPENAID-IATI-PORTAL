@@ -89,7 +89,7 @@ ZzLocationVis = (function() {
       .attr('font-size', '16px')
       .attr('fill', '#444')
       .attr('style', 'text-anchor: start;')
-      .text('Uitgaven per regio');
+      .text('Expenditure per region');
 
     var midText = this.vis.append('text')
       .attr('x', 545)
@@ -97,7 +97,7 @@ ZzLocationVis = (function() {
       .attr('font-size', '16px')
       .attr('fill', '#444')
       .attr('style', 'text-anchor: start;')
-      .text('Ongespecificeerd per regio');
+      .text('Unspecified per region');
 
     var rightText = this.vis.append('text')
       .attr('x', 765)
@@ -105,7 +105,7 @@ ZzLocationVis = (function() {
       .attr('font-size', '16px')
       .attr('fill', '#444')
       .attr('style', 'text-anchor: start;')
-      .text('Wereldwijd ongespecificeerd');
+      .text('Worldwide unspecified');
 
     this.direct = this.vis.append('g')
       .attr('class', 'direct')
@@ -117,7 +117,7 @@ ZzLocationVis = (function() {
       .attr('fill', '#444')
       .attr('style', 'text-anchor: start;')
       .style('cursor', 'pointer')
-      .text('Directe uitgaven')
+      .text('Direct expenditure')
       .on('click', this.toggleDirect);
     this.direct.append('rect')
       .attr('width', 30)
@@ -149,7 +149,7 @@ ZzLocationVis = (function() {
       .attr('font-size', '14px')
       .attr('fill', '#444')
       .attr('style', 'text-anchor: start;')
-      .text('Indirecte uitgaven')
+      .text('Indirect expenditure')
       .style('cursor', 'pointer')
       .on('click', this.toggleIndirect);
     this.indirect.append('rect')

@@ -18,7 +18,7 @@
     </sub-navbar>
 
     
-    <div ng-show="vm.selectedTab == 'samenvatting'">
+    <div ng-show="vm.selectedTab == 'summary'">
 
         <activity-geomap map-height="350px" activity="vm.activity"></activity-geomap>
 
@@ -40,9 +40,9 @@
                 <div class="row">
                     <div class="col-sm-12 activity-list-item">
                         <div class="hp-block wit">
-                            <p><b>Laatste update</b><br>{{vm.activity.last_updated_datetime | date : 'd MMM yyyy'}}</p>
-                            <p><b>Startdatum</b><br>{{vm.activity.start_actual.length ? vm.activity.start_actual : 'No data available' | date : 'd MMM yyyy'}}</p>
-                            <p><b>Einddatum</b><br>{{vm.activity.end_actual.length ? vm.activity.end_actual : 'No data available' | date : 'd MMM yyyy'}}</p>
+                            <p><b>Last update</b><br>{{vm.activity.last_updated_datetime | date : 'd MMM yyyy'}}</p>
+                            <p><b>Starting date</b><br>{{vm.activity.start_actual.length ? vm.activity.start_actual : 'No data available' | date : 'd MMM yyyy'}}</p>
+                            <p><b>Ending date</b><br>{{vm.activity.end_actual.length ? vm.activity.end_actual : 'No data available' | date : 'd MMM yyyy'}}</p>
                         </div>
                     </div>
                 </div>
@@ -51,11 +51,11 @@
                 <div class="row">
                     <div class="col-sm-12 activity-list-item">
                         <div class="hp-block wit">
-                            <p><b>Samenwerkingsverband</b><br>
+                            <p><b>Collaboration type</b><br>
                                 <span ng-if='vm.activity.collaboration_type.name.length'>{{vm.activity.collaboration_type.name}}</span>
                                 <span ng-if='!vm.activity.collaboration_type.name.length'>No data available</span>
                             </p>
-                            <p><b>Type hulp</b><br>
+                            <p><b>Aid type</b><br>
                                 <span ng-if='vm.activity.default_aid_type.name.length'>{{vm.activity.default_aid_type.name}}</span>
                                 <span ng-if='!vm.activity.default_aid_type.name.length'>No data available</span>
                             </p>
@@ -104,7 +104,7 @@
                 <div class="row">
                     <div class="col-sm-12 activity-list-item">
                         <div class="hp-block wit">
-                            <p><b>Financieringstype</b><br>
+                            <p><b>Finance type</b><br>
                                 <span ng-if='vm.activity.default_finance_type.name.length'>{{vm.activity.default_finance_type.name}}</span>
                                 <span ng-if='!vm.activity.default_finance_type.name.length'>No data available</span>
                             </p>
@@ -140,8 +140,8 @@
                 <div class="row">
                     <div class="col-sm-12 activity-list-item">
                         <div class="hp-block wit">
-                            <p><b>Rapporterende organisatie</b><br>{{vm.activity.reporting_organisation.name}}</p>
-                            <p><b>Deelnemende organisaties</b><br><span ng-repeat='org in vm.activity.participating_organisations'>{{org.name}}, </span></p>
+                            <p><b>Reporting organisations</b><br>{{vm.activity.reporting_organisation.name}}</p>
+                            <p><b>Participating organisations</b><br><span ng-repeat='org in vm.activity.participating_organisations'>{{org.name}}, </span></p>
                         </div>
                     </div>
                 </div>
@@ -158,7 +158,7 @@
                     <div class="col-sm-12 activity-list-item">
                         <div class="hp-block wit">
                             <p>
-                                <b>Land</b><br>
+                                <b>Country</b><br>
                                 <a ng-repeat="country in vm.activity.countries" ui-sref="country({ country_id: country.code })">
                                     {{country.name}}
                                 </a>
@@ -166,7 +166,7 @@
                             </p>
 
                             <p>
-                                <b>Regio</b><br>
+                                <b>Region</b><br>
                                 <a ng-repeat="region in vm.activity.regions" ui-sref="region({ region_id: region.code })">
                                     {{region.name}}
                                 </a>
@@ -221,7 +221,7 @@
     <div class="row" ng-if="vm.selectedTab == 'transactions'">
         <div class="col-sm-12">
             <div class="hp-block wit">
-                <h3>Transacties</h3>
+                <h3>Transactions</h3>
                 <nvd3 options="vm.transactionChartOptions" data="vm.transactionData" class="with-3d-shadow with-transitions"></nvd3>
             </div>
         </div>
@@ -232,10 +232,10 @@
     <div class="row" ng-show="vm.selectedTab == 'documents'">
         <div class="col-md-12">
             <div class="hp-block wit">
-                <h3>Documenten</h3>
+                <h3>Documents</h3>
 
                 <div ng-show="vm.activity.documents.length == 0">
-                    Geen documenten beschikbaar.
+                    No documents available.
                 </div>
 
                 <table class="table documents">

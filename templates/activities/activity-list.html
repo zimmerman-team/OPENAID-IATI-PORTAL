@@ -4,7 +4,7 @@
         <div class="sort">
             <div class="row">
                 <div class="col-xs-8">
-                    {{vm.totalActivities}} resultaten
+                    {{vm.totalActivities}} results
                 </div>
                 <div class="col-xs-4 text-right-not-xs">
                     <label class="wrapper">
@@ -12,11 +12,11 @@
                         <select
                           ng-model="vm.order_by"
                           ng-change="vm.toggleOrder()">
-                          <option value="">Sorteer op...</option>
-                          <option value="start_actual">Startdatum (oplopend)</option>
-                          <option value="-start_actual">Startdatum (aflopend)</option>
-                          <option value="total_budget">Budget (oplopend)</option>
-                          <option value="-total_budget">Budget (aflopend)</option>
+                          <option value="">Sort by...</option>
+                          <option value="start_actual">Starting date (increasing)</option>
+                          <option value="-start_actual">Starting date (decreasing)</option>
+                          <option value="total_budget">Budget (increasing)</option>
+                          <option value="-total_budget">Budget (decreasing)</option>
                         </select>
                       </div>
                     </label>
@@ -27,8 +27,8 @@
 
     <div ng-if='vm.totalActivities == 0' class="col-sm-12">
         <div class="hp-block wit">
-            <h2>Geen resultaten gevonden</h2>
-            <p>Pas een of meerdere van je geselecteerde filters aan om wel resultaten te vinden.</p>
+            <h2>Nothing found</h2>
+            <p>Please select some different filters.</p>
         </div>
     </div>
 
@@ -44,40 +44,40 @@
                     <div class="hp-block wit">
                         <div class="row">
                             <div class="col-md-4">
-                                <p><b>Raming/estimate</b><br>
+                                <p><b>Estimated budget</b><br>
                                     <span ng-if='item.total_budget.length'>{{item.total_budget | shortcurrency :'€'}}</span>
-                                    <span ng-if='!item.total_budget.length'>Geen data beschikbaar</span>
+                                    <span ng-if='!item.total_budget.length'>No data available</span>
                                 </p>
-                                <p><b>Land</b><br>
+                                <p><b>Country</b><br>
                                     <a ui-sref="country({'country_id': country.code})" ng-repeat="country in item.countries">
                                         {{ country.name }}
                                     </a>
-                                    <span ng-show='!item.countries.length'>Geen data beschikbaar</span>
+                                    <span ng-show='!item.countries.length'>No data available</span>
                                 </p>
-                                <p><b>Regio</b><br>
+                                <p><b>Region</b><br>
                                     <a ui-sref="region({'region_id': region.code})" ng-repeat="region in item.regions">
                                         {{ region.name }}
                                     </a>
-                                    <span ng-show='!item.regions.length'>Geen data beschikbaar</span>
+                                    <span ng-show='!item.regions.length'>No data available</span>
                                 </p>
                                 <p><b>Sector</b><br>
                                     <a ui-sref="sector({'sector_id': sector.code})" ng-repeat="sector in item.sectors">
                                         {{ sector.name }}
                                     </a>
-                                    <span ng-show='!item.sectors.length'>Geen data beschikbaar</span>
+                                    <span ng-show='!item.sectors.length'>No data available</span>
                                 </p>
                             </div>
                             <div class="col-md-4">
                                 <p><b>Status</b><br>{{item.activity_status.name}}</p> 
-                                <p><b>Startdatum</b><br>
-                                    {{item.start_actual.length ? item.start_actual : 'Geen data beschikbaar'}}
+                                <p><b>Starting date</b><br>
+                                    {{item.start_actual.length ? item.start_actual : 'No data available'}}
                                 </p>
-                                <p><b>Einddatum</b><br>
-                                    {{item.end_actual.length ? item.end_actual : 'Geen data beschikbaar'}}
+                                <p><b>Ending date</b><br>
+                                    {{item.end_actual.length ? item.end_actual : 'No data available'}}
                                 </p> 
                             </div>
                             <div class="col-md-4">
-                                <p><b>Rapporterende organisatie</b><br>{{item.reporting_organisation.name}}</p> 
+                                <p><b>Reporting organisation</b><br>{{item.reporting_organisation.name}}</p> 
                                 <p><b>IATI identifier</b><br>{{item.iati_identifier}}</p> 
                             </div>
                         </div>
