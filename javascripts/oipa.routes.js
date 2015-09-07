@@ -29,7 +29,7 @@
         })
         .state({
             name:         'activities',
-            url:          '/projecten/',
+            url:          '/projects/',
             controller:   'ActivitiesExploreController',
             controllerAs: 'vm',
             templateUrl:  templateBaseUrl + '/templates/activities/activities-view-list-map.html',
@@ -39,7 +39,7 @@
         })
         .state({
             name:         'activities-list',
-            url:          '/projecten/lijst/',
+            url:          '/projects/lijst/',
             controller:   'ActivitiesExploreController',
             controllerAs: 'vm',
             templateUrl:  templateBaseUrl + '/templates/activities/activities-view-list.html',
@@ -49,7 +49,7 @@
         })
         .state({
             name:        'activiteit',
-            url:         '/projecten/:activity_id/',
+            url:         '/projects/:activity_id/',
             controller:  'ActivityController',
             controllerAs: 'vm',
             templateUrl: templateBaseUrl + '/templates/activities/activity-view-detail.html',
@@ -59,7 +59,7 @@
         })
         .state({
             name:        'locations-map',
-            url:         '/locaties/lijst/',
+            url:         '/locations/list/',
             controller:  'LocationsMapListController',
             controllerAs: 'vm',
             templateUrl: templateBaseUrl + '/templates/locations/locations-view-map-list.html',
@@ -69,7 +69,7 @@
         })
         .state({
             name:        'locations-polygonmap',
-            url:         '/locaties/kaart/',
+            url:         '/locations/map/',
             controller:  'LocationsPolygonGeoMapController',
             controllerAs: 'vm',
             templateUrl: templateBaseUrl + '/templates/locations/locations-view-map-polygons.html',
@@ -79,12 +79,12 @@
         })
         .state({
             name:        'country',
-            url:         '/landen/:country_id/',
+            url:         '/countries/:country_id/',
             controller:  'CountryController',
             controllerAs: 'vm',
             templateUrl: templateBaseUrl + '/templates/countries/country-view-detail.html',
             ncyBreadcrumb: {
-                parent: 'landen',
+                parent: 'countries',
                 label: '{{vm.country.name}}'
             }
         })
@@ -131,7 +131,7 @@
         // })
         .state({
             name:        'organisations',
-            url:         '/organisaties/',
+            url:         '/organisations/',
             controller:  'ImplementingOrganisationsExploreController',
             controllerAs: 'vm',
             templateUrl: templateBaseUrl + '/templates/implementingOrganisations/implementing-organisations-view-list.html'
@@ -145,28 +145,28 @@
         // })
         .state({
             name:        'organisation',
-            url:         '/organisaties/:organisation_id/',
+            url:         '/organisations/:organisation_id/',
             controller:  'ImplementingOrganisationController',
             controllerAs: 'vm',
             templateUrl: templateBaseUrl + '/templates/implementingOrganisations/implementing-organisation-view-detail.html'
         })
         .state({
             name:        'sector-list',
-            url:         '/sectoren/lijst/',
+            url:         '/sectors/lijst/',
             controller:  'SectorsExploreController',
             controllerAs: 'vm',
             templateUrl: templateBaseUrl + '/templates/sectors/sectors-view-list.html'
         })
         .state({
             name:        'sectors',
-            url:         '/sectoren/',
+            url:         '/sectors/',
             controller:  'SectorsVisualisationController',
             controllerAs: 'vm',
             templateUrl: templateBaseUrl + '/templates/sectors/sectors-view-visualisation.html'
         })
         .state({
             name:        'sector',
-            url:         '/sectoren/:sector_id/',
+            url:         '/sectors/:sector_id/',
             controller:  'SectorController',
             controllerAs: 'vm',
             templateUrl: templateBaseUrl + '/templates/sectors/sector-view-detail.html'
