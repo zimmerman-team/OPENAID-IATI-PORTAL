@@ -101,10 +101,13 @@
               class="fa-stack fa-lg"
               ng-click="vm.toggleOpenPanel('year')" 
               ng-class="{'active': vm.isOpenedHeader('year')}"
-              ng-mouseover="vm.hoverIn('year')" 
-              ng-mouseleave="vm.hoverOut('year')"
-              ng-show="vm.isIncludedFilter('year')">
-            <div class="glyphicon-popup"></div>
+              ng-mouseover="vm.hoverIn('recipient_year')" 
+              ng-mouseleave="vm.hoverOut('recipient_year')"
+              ng-show="vm.isIncludedFilter('recipient_year')">
+            <div 
+              class="glyphicon-popup"
+              ng-show="vm.buttonTexts['recipient_year'].hoverShow" 
+              ng-bind-html="vm.currentHoverText"></div>
             <i class="fa fa-circle fa-stack-2x"></i>
             <i class="fa fa-calendar fa-stack-1x fa-inverse"></i>
           </span>
