@@ -100,15 +100,35 @@
             }
         })
         .state({
-            name:        'locations',
-            url:         '/locaties/',
-            controller:  'LocationsVisualisationController',
+            name:        'regions-list',
+            url:         '/regions/',
+            controller:  'RegionListController',
             controllerAs: 'vm',
-            templateUrl: templateBaseUrl + '/templates/locations/locations-view-visualisation.html',
+            templateUrl: templateBaseUrl + '/templates/regions/region-view-list.html',
             ncyBreadcrumb: {
-                label: 'Landen'
+                label: 'Regio\'s'
             }
         })
+        .state({
+            name:        'regions-vis',
+            url:         '/regions/visualisation',
+            controller:  'RegionsVisualisationController',
+            controllerAs: 'vm',
+            templateUrl: templateBaseUrl + '/templates/regions/region-view-visualisation.html',
+            ncyBreadcrumb: {
+                label: 'Regio\'s'
+            }
+        })
+        // .state({
+        //     name:        'locations',
+        //     url:         '/locaties/',
+        //     controller:  'LocationsVisualisationController',
+        //     controllerAs: 'vm',
+        //     templateUrl: templateBaseUrl + '/templates/locations/locations-view-visualisation.html',
+        //     ncyBreadcrumb: {
+        //         label: 'Landen'
+        //     }
+        // })
         .state({
             name:        'organisations',
             url:         '/organisaties/',

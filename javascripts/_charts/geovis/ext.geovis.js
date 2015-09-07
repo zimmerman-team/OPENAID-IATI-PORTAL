@@ -223,8 +223,15 @@ ZzLocationVis = (function() {
         .attr('font-size', '16px')
         .attr('fill', '#444')
         .attr('style', 'text-anchor: start;')
+        .attr('class','dropdown closed')
         .text(function(d){ return d.name; })
         .each(function(d){ d.textWidth = this.getBBox().width; });
+
+      nodeEnter
+        .append("svg:path")
+        .attr("d", d3.svg.symbol().type("triangle-up"))
+        .attr("transform", function(d) { return "translate(" +  ((d.depth - 1) * 15 ) + ","+ -5 + ") rotate(90)"; })
+        .style("fill", "#444");
 
       nodeEnter
         .insert('rect', ':first-child')

@@ -116,6 +116,30 @@
                 <div class="row">
                     <div class="col-sm-12 activity-list-item">
                         <div class="hp-block wit">
+                            <p><b>Flow type</b><br>
+                                <span ng-if='vm.activity.default_flow_type.name.length'>{{vm.activity.default_flow_type.name}}</span>
+                                <span ng-if='!vm.activity.default_flow_type.name.length'>No data available</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- eind van een wit blokje -->
+                <!--start van een wit blokje -->
+                <div class="row">
+                    <div class="col-sm-12 activity-list-item">
+                        <div class="hp-block wit">
+                            <p><b>Tied status</b><br>
+                                <span ng-if='vm.activity.default_tied_status.name.length'>{{vm.activity.default_tied_status.name}}</span>
+                                <span ng-if='!vm.activity.default_tied_status.name.length'>No data available</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- eind van een wit blokje -->
+                <!--start van een wit blokje -->
+                <div class="row">
+                    <div class="col-sm-12 activity-list-item">
+                        <div class="hp-block wit">
                             <p><b>Rapporterende organisatie</b><br>{{vm.activity.reporting_organisation.name}}</p>
                             <p><b>Deelnemende organisaties</b><br><span ng-repeat='org in vm.activity.participating_organisations'>{{org.name}}, </span></p>
                         </div>
@@ -148,6 +172,14 @@
                                 </a>
                                 <span ng-if='vm.activity.regions.length == 0'>No data available</span>
                             </p>
+
+                            <p>
+                                <b>Locations</b><br>
+                                <span ng-repeat="location in vm.activity.locations" >
+                                    {{location.name}},
+                                </span>
+                                <span ng-if='vm.activity.locations.length == 0'>No data available</span>
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -163,10 +195,10 @@
                 </div>
                 <!-- eind van een wit blokje -->
                 <!--start van een wit blokje -->
-                <div class="row" style="display: none;">
+                <div class="row">
                     <div class="col-sm-12 activity-list-item">
                         <div class="hp-block wit" ng-click="vm.dashboard = 'list'">
-                            <b>Beleidskenmerken</b>
+                            <b>Policy Markers</b>
                             <ul ng-if='vm.activity.policy_markers.length != 0'>
                                 <li ng-repeat="marker in vm.activity.policy_markers">
                                 {{marker.name}}

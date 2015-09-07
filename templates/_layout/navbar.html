@@ -19,23 +19,27 @@
         <li  
           ng-class="{'active': vm.stateName == 'activities'}" 
           class="hidden-xs">
-          <a class="" ui-sref="activities">Projecten</a></li>
+          <a class="" ui-sref="activities">Projects</a></li>
         <li 
           ng-class="{'active': vm.stateName == 'locations'}" 
           class="hidden-xs">
-          <a class="" ui-sref="locations-map">Locaties</a></li>
+          <a class="" ui-sref="locations-map">Countries</a></li>
+        <li 
+          ng-class="{'active': vm.stateName == 'regions'}" 
+          class="hidden-xs">
+          <a class="" ui-sref="regions-list">Regions</a></li>
         <li 
           ng-class="{'active': vm.stateName == 'sectors'}" 
-          class="hidden-xs"><a class="" ui-sref="sectors">Sectoren</a></li>
+          class="hidden-xs"><a class="" ui-sref="sectors">Sectors</a></li>
         <li 
           ng-class="{'active': vm.stateName == 'organisations'}" 
-          class="hidden-xs"><a class="" ui-sref="organisations">Organisaties</a></li>
+          class="hidden-xs"><a class="" ui-sref="organisations">Organisations</a></li>
         <li 
           ng-class="{'active': vm.stateName == 'search'}" 
-          class="hidden-xs"><a class="" ui-sref="search">Zoeken</a></li>
+          class="hidden-xs"><a class="" ui-sref="search">Search</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li ui-sref-active="active"><a class="" ui-sref="about">Over Openaid</a></li>
+        <li ui-sref-active="active"><a class="" ui-sref="about">About Openaid</a></li>
       </ul>
     </div>
   </div>
