@@ -31,7 +31,7 @@
         // useInteractiveGuideline: true,
         // clipVoronoi: false,
         // interpolate: 'step',
-        // showControls: false, 
+        showControls: false, 
         xAxis: {
             axisLabel: '',
             tickFormat: function(d) {

@@ -11,7 +11,6 @@
 		  		<div class="col-sm-12">
 			  		<h3>Credits:</h3>
 			  		Designed & developed by: <a target="_blank" href="http://www.zimmermanzimmerman.nl">Zimmerman & Zimmerman</a><br>
-			  		Initiative and funding by: <a target="_blank" href="http://www.akvo.org">Akvo</a> as part of <a target="_blank" href="http://rsr.akvo.org/project/2210/">PPP Phase 2 2011-2014</a>
 		    	</div>
 		    </div>
 		    
