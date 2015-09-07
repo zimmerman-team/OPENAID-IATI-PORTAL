@@ -36,6 +36,11 @@
       FilterSelection.removeAll(selectedArr);
     }
 
+    vm.removeBudgetFilter = function(){
+      vm.selectedBudget.on = false;
+      FilterSelection.save();
+    }
+
     
 
     vm.removeSearch = function(){

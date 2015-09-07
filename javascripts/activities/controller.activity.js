@@ -29,9 +29,7 @@
 
     activate();
 
-    function activate() {
-      FilterSelection.reset();
-      
+    function activate() {      
       Activities.get(vm.activityId).then(successFn, errorFn);
 
       function successFn(data, status, headers, config) {

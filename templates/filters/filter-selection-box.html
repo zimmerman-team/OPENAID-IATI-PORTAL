@@ -34,13 +34,21 @@
 				<span class="fa fa-remove"></span>
 			</a>
 
+			<a 
+				class="btn filter-selected-button selectedActivityStatuses" 
+				ng-show="vm.selectedBudget.on" 
+				ng-click="vm.removeBudgetFilter()">
+				Budget: {{vm.selectedBudget.value[0] | shortcurrency :'€'}} - {{vm.selectedBudget.value[1] | shortcurrency :'€'}}
+				<span class="fa fa-remove"></span>
+			</a>
+
 			<div style="margin-bottom:4px;" ng-show="!(
 			vm.selectedCountries.length + 
 			vm.selectedRegions.length + 
 			vm.selectedSectors.length + 
 			vm.selectedImplementingOrganisations.length + 
 			vm.selectedActivityStatuses.length +
-			vm.search.searchString.length)">
+			vm.search.searchString.length) && !vm.selectedBudget.on">
 				No filters selected
 			</div>
 		</div>
