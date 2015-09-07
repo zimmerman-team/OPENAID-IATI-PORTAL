@@ -125,7 +125,6 @@ ZzSunburst = (function() {
     if (that.zooming) return false;
      
     var root = that.getRoot(d);
-    that.tooltip.hideTooltip();
     that.middleAmount.text(root.abbreviatedValue);
     that.middleAmount.attr('fill', '#ccc');
 
@@ -628,7 +627,7 @@ function CustomTooltip(tooltipId, width){
   hideTooltip();
   
   function showTooltip(d){
-    $("#"+tooltipId).html('<div class="tt-header" style="background-color:'+d.color+';">'+d.name+'</div><div class="tt-text">'+d.abbreviatedValue+'</div>');
+    $("#"+tooltipId).html('<div class="tt-header" style="background-color:'+d.color+';">'+d.name+'</div><div class="tt-text">'+d.abbreviatedValue+'<br><a style="pointer-events: all" href='+home_url+'/sectors/'+d.sector_id+'>Go to sector page</a></div>');
     
     updatePosition(d3.event);
     $("#"+tooltipId).show(0);
