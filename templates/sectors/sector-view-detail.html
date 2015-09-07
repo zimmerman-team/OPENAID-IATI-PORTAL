@@ -57,11 +57,11 @@
             <div class="col-md-4 activity-list-item">
                 <div class="hp-block wit financial">
                     <p><b>Budgetten per jaar</b></p>
-                    <table class="table table-striped" ng-if="disbursement.transaction_date_year != 0" >
+                    <table class="table table-striped" ng-if="budget_by_year.budget__period_start_year != 0" >
                         <tbody>
-                            <tr ng-repeat="disbursement in vm.disbursements_by_year">
-                                <td>{{disbursement.transaction_date_year}}</td>
-                                <td>{{disbursement.total_disbursements | shortcurrency :'€'}}</td>
+                            <tr ng-repeat="budget in vm.budget_by_year">
+                                <td>{{budget.budget__period_start_year}}</td>
+                                <td>{{budget.budget__value | shortcurrency :'€'}}</td>
                             </tr>
                         </tbody>
                     </table>
