@@ -66,12 +66,12 @@ ZzLocationVis = (function() {
 
     // init top
     var tophead = this.vis.append('rect')
-      .attr('width', 1000)
+      .attr('width', 740)
       .attr('height', 40)
       .attr('x', 0)
       .attr('y', 0)
       .attr('fill', '#fff')
-      .attr('fill-opacity', 0.3);
+      .attr('fill-opacity', 0.3);  
 
     // var left = this.vis.append('rect')
     //   .attr('width', 520)
@@ -91,6 +91,13 @@ ZzLocationVis = (function() {
     //   .attr('fill-opacity', 0.3);
 
     // init right
+    var righthead = this.vis.append('rect')
+      .attr('width', 250)
+      .attr('height', 40)
+      .attr('x', 750)
+      .attr('y', 0)
+      .attr('fill', '#fff')
+      .attr('fill-opacity', 0.3);
     var right = this.vis.append('rect')
       .attr('width', 250)
       .attr('height', 1900)
@@ -102,7 +109,7 @@ ZzLocationVis = (function() {
     // top labels
     var leftText = this.vis.append('text')
       .attr('x', 260)
-      .attr('y', 80)
+      .attr('y', 27)
       .attr('font-size', '19px')
       .attr('fill', '#444')
       .attr('style', 'text-anchor: start;')
@@ -110,7 +117,7 @@ ZzLocationVis = (function() {
 
     var midText = this.vis.append('text')
       .attr('x', 545)
-      .attr('y', 80)
+      .attr('y', 27)
       .attr('font-size', '19px')
       .attr('fill', '#444')
       .attr('style', 'text-anchor: start;')
@@ -118,7 +125,7 @@ ZzLocationVis = (function() {
 
     var rightText = this.vis.append('text')
       .attr('x', 780)
-      .attr('y', 80)
+      .attr('y', 27)
       .attr('font-size', '19px')
       .attr('fill', '#444')
       .attr('style', 'text-anchor: start;')
@@ -190,7 +197,7 @@ ZzLocationVis = (function() {
 
       this.countries = this.vis.append('g')
         .attr('class', 'countries')
-        .attr('transform', 'translate(0,50)');
+        .attr('transform', 'translate(0,0)');
   };
   
 
@@ -224,7 +231,7 @@ ZzLocationVis = (function() {
       nodeEnter
         .append('text')
         .attr('x', function(d){ return 10 + ((d.depth - 1) * 15); })
-        .attr('y', 0)
+        .attr('y', -14)
         .attr('font-size', '17px')
         .attr('fill', '#444')
         .attr('style', 'text-anchor: start;')
@@ -234,7 +241,7 @@ ZzLocationVis = (function() {
       nodeEnter
         .append("svg:path")
         .attr("d", d3.svg.symbol().type("triangle-up"))
-        .attr("transform", function(d) { return "translate(" +  (((d.depth - 1) * 15) + d.textWidth + 40) + ","+ -5 + ") rotate(90)"; })
+        .attr("transform", function(d) { return "translate(" +  (((d.depth - 1) * 15) + d.textWidth + 40) + ","+ -19 + ") rotate(90)"; })
         .style("fill", "#444");
 
       nodeEnter
@@ -242,7 +249,58 @@ ZzLocationVis = (function() {
         .attr('width', function(d){ return d.textWidth + 52; })
         .attr('height', 26)
         .attr('x', function(d){ return 0 + ((d.depth - 1) * 15); })
-        .attr('y', -18)
+        .attr('y', -32)
+        .attr('rx', 10)
+        .attr('ry', 10)
+        .attr('fill', '#fff');
+
+      //legend stuff level 1
+      nodeEnter
+        .append('circle')
+        .attr('cx', function(d){ return 12 + ((d.depth - 1) * 15); })
+        .attr('cy', 11)
+        .attr('r', 4)
+        .attr('fill', function(d){return d.color; });
+      nodeEnter
+        .append('text')
+        .attr('x', function(d){ return 25 + ((d.depth - 1) * 15); })
+        .attr('y', 16)
+        .attr('font-size', '15px')
+        .attr('fill', '#444')
+        .attr('style', 'text-anchor: start;')
+        .text('Direct expenditure')
+        .each(function(d){ d.textWidth = this.getBBox().width; });
+      nodeEnter
+        .insert('rect', ':first-child')
+        .attr('width', function(d){ return d.textWidth + 37; })
+        .attr('height', 20)
+        .attr('x', function(d){ return 0 + ((d.depth - 1) * 15); })
+        .attr('y', 1)
+        .attr('rx', 10)
+        .attr('ry', 10)
+        .attr('fill', '#fff');
+    //legend stuff level 2
+      nodeEnter
+        .append('circle')
+        .attr('cx', function(d){ return 12 + ((d.depth - 1) * 15); })
+        .attr('cy', 36)
+        .attr('r', 6)
+        .attr('fill', function(d){return shadeBlend(-0.6,d.color); });
+      nodeEnter
+        .append('text')
+        .attr('x', function(d){ return 25 + ((d.depth - 1) * 15); })
+        .attr('y', 41)
+        .attr('font-size', '15px')
+        .attr('fill', '#444')
+        .attr('style', 'text-anchor: start;')
+        .text('Indirect expenditure')
+        .each(function(d){ d.textWidth = this.getBBox().width; });
+      nodeEnter
+        .insert('rect', ':first-child')
+        .attr('width', function(d){ return d.textWidth + 37; })
+        .attr('height', 20)
+        .attr('x', function(d){ return 0 + ((d.depth - 1) * 15); })
+        .attr('y', 26)
         .attr('rx', 10)
         .attr('ry', 10)
         .attr('fill', '#fff');
