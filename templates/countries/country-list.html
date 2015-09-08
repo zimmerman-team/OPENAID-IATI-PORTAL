@@ -3,7 +3,7 @@
         <div class="sort">
             <div class="row">
                 <div class="col-xs-8">
-                    {{vm.totalCountries}} resultaten 
+                    {{vm.totalCountries}} results 
                 </div>
                 <div class="col-xs-4 text-right-not-xs">
                     <label class="wrapper">
@@ -11,11 +11,11 @@
                         <select
                           ng-model="vm.order_by"
                           ng-change="vm.toggleOrder()">
-                          <option value="">Sorteer op...</option>
-                          <option value="name">Naam (A - Z)</option>
-                          <option value="-name">Naam (Z - A)</option>
-                          <option value="total_disbursements">Uitgaven (oplopend)</option>
-                          <option value="-total_disbursements">Uitgaven (aflopend)</option>
+                          <option value="">Sort by...</option>
+                          <option value="name">Name (A - Z)</option>
+                          <option value="-name">Name (Z - A)</option>
+                          <option value="total_disbursements">Expenditure (increasing)</option>
+                          <option value="-total_disbursements">Expenditure (decreasing)</option>
                         </select>
                       </div>
                     </label>
@@ -26,8 +26,8 @@
 
     <div ng-if='vm.totalCountries == 0' class="col-sm-12">
         <div class="hp-block wit">
-            <h2>Geen resultaten gevonden</h2>
-            <p>Pas een of meerdere van je geselecteerde filters aan om wel resultaten te vinden.</p>
+            <h2>Nothing found</h2>
+            <p>Please select some different filters.</p>
         </div>
     </div>
 

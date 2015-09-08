@@ -19,12 +19,12 @@
     vm.activity = null;
     vm.activityId = $stateParams.activity_id;
 
-    vm.selectedTab = 'samenvatting';
+    vm.selectedTab = 'summary';
 
     vm.tabs = [
-      {'id': 'samenvatting', 'name': 'Samenvatting', 'count': -1},
-      {'id': 'transactions', 'name': 'Transacties', 'count': -1},
-      {'id': 'documents', 'name': 'Documenten', 'count': -1},
+      {'id': 'summary', 'name': 'Summary', 'count': -1},
+      {'id': 'transactions', 'name': 'Transactions', 'count': -1},
+      {'id': 'documents', 'name': 'Documents', 'count': -1},
     ]
 
     activate();
@@ -48,12 +48,12 @@
       var data = [
         {
             values: [],      //values - represents the array of {x,y} data points
-            key: 'Verplichtingen', 
+            key: 'Commitment', 
             color: '#2077B4'  
         },
         {
             values: [],
-            key: 'Uitgaven',
+            key: 'Expenditure',
             color: '#FF7F0E'
         },
       ];

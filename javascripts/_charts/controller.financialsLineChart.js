@@ -99,12 +99,12 @@
       var data = [
           {
               values: [],      //values - represents the array of {x,y} data points
-              key: 'Verplichtingen', 
+              key: 'Commitment', 
               color: '#2077B4'  
           },
           {
               values: [],
-              key: 'Uitgaven',
+              key: 'Expenditure',
               color: '#FF7F0E'
           },
           {

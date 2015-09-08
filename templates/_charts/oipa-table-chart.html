@@ -6,22 +6,43 @@
                     <div class="custom-select ff-hack">
 
                         <select ng-model="topFive">
-                            <option value='recipient-country'>Top 5 landen</option>
-                            <option value='transaction__receiver-org'>Top 5 organisaties</option>
+                            <option value='recipient-country'>Top 5 countries</option>
+                            <option value='transaction__receiver-org'>Top 5 organisations</option>
                             <option value='sector'>Top 5 sectors</option>
                         </select>
 
                     </div>
                 </label>
             </th>
-            <th>Totaal uitgaven</th>
-            <th>Aantal projecten</th>
+            <th>
+                <div class="custom-select ff-hack">
+
+                    <select>
+                        <option value='2015'>Expenditure in 2015</option>
+                        <option value='2014'>Expenditure in 2014</option>
+                        <option value='2013'>Expenditure in 2013</option>
+                    </select>
+
+                </div>
+            </th>
+            <th>
+                <label class="wrapper">
+                    <div class="custom-select ff-hack">
+
+                        <select>
+                            <option value=''>Active projects</option>
+                            <option value=''>Completed projects</option>
+                        </select>
+
+                    </div>
+                </label>
+            </th>
         </tr>
     </thead>
     <tbody>
         <tr ng-repeat="item in vm.chartData">
-        	<td class="colour"><div></div></td>
-            <td width="30%">
+<!--         	<td class="colour"><div></div></td>
+ -->        <td>
             	<span class="no">{{$index + 1}}.</span>
             	<a ui-sref="country({ country_id: item.country_id })">
 	            	<span ng-if="item.country_id" class="flag-icon flag-icon-{{item.country_id | lowercase }}"></span><span>{{item.name}}</span>

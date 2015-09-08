@@ -27,7 +27,7 @@
                 <div class="row">
                     <div class="col-sm-12 activity-list-item">
                         <div class="hp-block wit" ng-click="vm.dashboard = 'list'">
-                            <h3>Transacties</h3>
+                            <h3>Transactions</h3>
                             <financials-line-chart 
                                 has-to-contain="regions__in">
                             </financials-line-chart>
@@ -46,13 +46,13 @@
                 <div class="row">
                     <div class="col-sm-12 activity-list-item">
                         <div class="hp-block wit">
-                            <p><b>Regio code</b><br>{{vm.region.code}}</p>
+                            <p><b>Region code</b><br>{{vm.region.code}}</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="hp-block wit financial">
-                    <p><b>Uitgaven per jaar</b></p>
+                    <p><b>Expenditure per year</b></p>
                     <table class="table table-striped">
                         <tbody>
                             <tr ng-repeat="disbursement in vm.disbursements_by_year">
@@ -66,7 +66,8 @@
 
             <div class="col-md-4 activity-list-item">
                 <div class="hp-block wit financial">
-                    <p><b>Budgetten per jaar</b></p>
+
+                    <p><b>Budget per year</b></p>
                     <table class="table table-striped" ng-if="budget_by_year.budget__period_start_year != 0" >
                         <tbody>
                             <tr ng-repeat="budget in vm.budget_by_year">
@@ -80,7 +81,7 @@
 
             <div class="col-md-4 activity-list-item">
                 <div class="hp-block wit financial">
-                    <p><b>Verplichtingen per jaar</b></p>
+                    <p><b>Commitment per year</b></p>
                     <table class="table table-striped">
                         <tbody>
                             <tr ng-repeat="commitment in vm.commitments_by_year">

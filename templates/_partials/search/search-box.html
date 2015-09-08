@@ -18,7 +18,7 @@
         <div class="header">
             <div class="row">
                 <div class="col-md-9">
-                    <a ui-sref='search({"search": vm.searchString, "tab": "activities"})'>Projecten ({{vm.searchData.activities.total}})</a>
+                    <a ui-sref='search({"search": vm.searchString, "tab": "activities"})'>Projects ({{vm.searchData.activities.total}})</a>
                 </div>
                 <div class="col-md-3">
                     <a ui-sref='search({"search": vm.searchString, "tab": "activities"})'>Show more</a>
@@ -36,7 +36,7 @@
             </div>
              <div class="row" ng-show="!vm.searchData.countries.data.length">
                 <div class="col-md-9">
-                    0 resultaten
+                    0 results
                 </div>
             </div>
             <div class="row" ng-show="!vm.searchData.activities.loaded">
@@ -49,7 +49,7 @@
         <div class="header">
             <div class="row">
                 <div class="col-md-9">
-                    <a ui-sref='search({"search": vm.searchString, "tab": "countries"})'>Landen ({{vm.searchData.countries.total}})</a>
+                    <a ui-sref='search({"search": vm.searchString, "tab": "countries"})'>Countries ({{vm.searchData.countries.total}})</a>
                 </div>
                 <div class="col-md-3">
                     <a ui-sref='search({"search": vm.searchString, "tab": "countries"})'>Show more</a>
@@ -62,13 +62,13 @@
                     <a ui-sref='country({"country_id": country.country_id})'>{{country.name}}</a>
                 </div>
                 <div class="col-md-3">
-                    {{country.activity_count}} projecten
+                    {{country.activity_count}} projects
                 </div>
             </div>
 
             <div class="row" ng-show="!vm.searchData.countries.data.length">
                 <div class="col-md-9">
-                    0 resultaten
+                    0 results
                 </div>
             </div>
             <div class="row" ng-show="!vm.searchData.countries.loaded">
@@ -81,7 +81,7 @@
         <div class="header">
             <div class="row">
                 <div class="col-md-9">
-                    <a ui-sref='search({"search": vm.searchString, "tab": "regions"})'>Regio's ({{vm.searchData.regions.total}})</a>
+                    <a ui-sref='search({"search": vm.searchString, "tab": "regions"})'>Regions ({{vm.searchData.regions.total}})</a>
                 </div>
                 <div class="col-md-3">
                     <a ui-sref='search({"search": vm.searchString, "tab": "regions"})'>Show more</a>
@@ -94,13 +94,13 @@
                     <a ui-sref='region({"country_id": region.region_id})'>{{region.name}}</a>
                 </div>
                 <div class="col-md-3">
-                    {{region.activity_count}} projecten
+                    {{region.activity_count}} projects
                 </div>
             </div>
 
             <div class="row" ng-show="!vm.searchData.regions.data.length">
                 <div class="col-md-9">
-                    0 resultaten
+                    0 results
                 </div>
             </div>
             <div class="row" ng-show="!vm.searchData.regions.loaded">
@@ -114,7 +114,7 @@
         <div class="header">
             <div class="row">
                 <div class="col-md-9">
-                    <a ui-sref='search({"search": vm.searchString, "tab": "sectors"})'>Sectoren ({{vm.searchData.sectors.total}})</a>
+                    <a ui-sref='search({"search": vm.searchString, "tab": "sectors"})'>Sectors ({{vm.searchData.sectors.total}})</a>
                 </div>
                 <div class="col-md-3">
                     <a ui-sref='search({"search": vm.searchString, "tab": "sectors"})'>Show more</a>
@@ -127,13 +127,13 @@
                     <a ui-sref='sector({"sector_id": sector.sector_id})'>{{sector.name}}</a>
                 </div>
                 <div class="col-md-3">
-                    {{sector.activity_count}} projecten
+                    {{sector.activity_count}} projects
                 </div>
             </div>
 
             <div class="row" ng-show="!vm.searchData.sectors.data.length">
                 <div class="col-md-9">
-                    0 resultaten
+                    0 results
                 </div>
             </div>
             <div class="row" ng-show="!vm.searchData.sectors.loaded">
@@ -146,7 +146,7 @@
         <div class="header">
             <div class="row">
                 <div class="col-md-9">
-                    <a ui-sref='search({"search": vm.searchString, "tab": "organisations"})'>Organisaties ({{vm.searchData.organisations.total}})</a>
+                    <a ui-sref='search({"search": vm.searchString, "tab": "organisations"})'>Organisations ({{vm.searchData.organisations.total}})</a>
                 </div>
                 <div class="col-md-3">
                     <a ui-sref='search({"search": vm.searchString, "tab": "organisations"})'>Show more</a>
@@ -159,13 +159,13 @@
                     <a ui-sref='organisation({"organisation_id": organisation.receiver_organisation_id})'>{{organisation.name}}</a>
                 </div>
                 <div class="col-md-3">
-                    {{organisation.activity_count}} transacties
+                    {{organisation.activity_count}} transactions
                 </div>
             </div>
 
             <div class="row" ng-show="!vm.searchData.organisations.data.length">
                 <div class="col-md-9">
-                    0 resultaten
+                    0 results
                 </div>
             </div>
 

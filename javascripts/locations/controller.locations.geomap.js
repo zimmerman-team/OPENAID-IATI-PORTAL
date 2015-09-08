@@ -10,12 +10,12 @@
     .module('oipa.locations')
     .controller('LocationsGeoMapController', LocationsGeoMapController);
 
-  LocationsGeoMapController.$inject = ['$scope', 'leafletData', 'Aggregations', 'templateBaseUrl', 'homeUrl', 'FilterSelection', '$filter'];
+  LocationsGeoMapController.$inject = ['$scope', 'leafletData', 'Aggregations', 'templateBaseUrl', 'homeUrl', 'FilterSelection', '$sce', '$filter'];
 
   /**
   * @namespace LocationsGeoMapController
   */
-  function LocationsGeoMapController($scope, leafletData, Aggregations, templateBaseUrl, homeUrl, FilterSelection, $filter) {
+  function LocationsGeoMapController($scope, leafletData, Aggregations, templateBaseUrl, homeUrl, FilterSelection, $sce, $filter) {
     var vm = this;
 
     vm.geoView = "countries";
@@ -34,6 +34,15 @@
       {'id':3, 'name': 'EXIT relatie'}, 
       {'id':4, 'name': 'Handelsrelatie'}, 
       {'id':5, 'name': 'Overige'}];
+
+    vm.currentHoverText = '';
+    vm.buttonTexts = {
+      'hover1': {'text': 'Hulp txt', hoverShow: false},
+      'hover2': {'text': 'Overgangsrelatie txt', hoverShow: false},
+      'hover3': {'text': 'Exit txt', hoverShow: false},
+      'hover4': {'text': 'Handelstxt', hoverShow: false},
+      'hover5': {'text': 'Overige txt', hoverShow: false},
+    };
 
     vm.defaults = {
       tileLayer: 'https://{s}.tiles.mapbox.com/v3/zimmerman2014.088155ee/{z}/{x}/{y}.png',
@@ -110,6 +119,15 @@
             console.log("getting countries failed");
         }
     }
+
+    vm.hoverIn = function(id){
+      vm.buttonTexts[id].hoverShow = true;
+      vm.currentHoverText =  $sce.trustAsHtml(vm.buttonTexts[id].text);
+    };
+
+    vm.hoverOut = function(id){
+        vm.buttonTexts[id].hoverShow = false;
+    };
 
     vm.deleteAllMarkers = function(){
 

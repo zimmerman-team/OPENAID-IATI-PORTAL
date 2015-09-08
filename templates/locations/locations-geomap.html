@@ -5,8 +5,8 @@
         <label class="wrapper">
           <div class="button custom-select ff-hack">
             <select ng-model="vm.geoView" ng-change="vm.changeView()">
-              <option value="countries">Overzicht per land</option>
-              <option value="regions">Overzicht per regio</option>
+              <option value="countries">Overview per country</option>
+              <option value="regions">Overview per region</option>
             </select>
           </div>
         </label>
@@ -24,7 +24,9 @@
                   checklist-change="vm.changeSelectedCountryRelations()">
 
                 <i class="faker"></i>
-                <span class="labels">
+                <span class="labels"
+                  ng-mouseover="vm.hoverIn('hover'+item.id)" 
+                  ng-mouseleave="vm.hoverOut('hover'+item.id)">
                     <span class="fa-stack">
                         <span class="fa fa-circle fa-stack-2x kleur"></span>
                         <span class="fa fa-map-marker fa-stack-1x fa-inverse"></span>
@@ -32,6 +34,10 @@
                     <span>{{item.name}}</span>
                 </span>
             </label>
+            <div 
+              class="glyphicon-popup" 
+              ng-show="vm.buttonTexts['hover{{item.id}}'].hoverShow" 
+              ng-bind-html="vm.currentHoverText"></div>
         </div>
     </div>
   </div>

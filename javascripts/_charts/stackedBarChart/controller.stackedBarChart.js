@@ -34,7 +34,7 @@
                 showMaxMin: false
             },
             yAxis: {
-                axisLabel: 'Uitgaven',
+                axisLabel: 'Expenditure',
                 tickFormat: function(d){
                     return d3.format(',.0f')(d);
                 }
@@ -102,16 +102,16 @@
 
       //first sum to top categrories
       var name_labels = {
-        '11':'onderwijs',
-        '12':'gezondheid',
-        '13':'bevolkings beleid',
-        '14':'water en sanitatie',
-        '15':'Bestuur en mensenrechten',
-        '16':'andere sociale infrastructuur en diensten',
-        '21':'transport en opslag',
-        '22':'communicatie',
-        '23':'energy generatie en aanlevering',
-        '24':'economische sectoren',
+        '11':'Education',
+        '12':'Healthcare',
+        '13':'Population policy',
+        '14':'Water and sanitation',
+        '15':'Government and human rights',
+        '16':'Other social infrastructure and services',
+        '21':'Transportation and storage',
+        '22':'Communication',
+        '23':'Energy generation and supply',
+        '24':'Economic sectors',
         '25':'25 ? BUSINESS AND OTHER SERVICES',
         '31':'AGRICULTURE',
         '32':'INDUSTRY',
