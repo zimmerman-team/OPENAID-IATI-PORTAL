@@ -17,7 +17,7 @@ ZzLocationVis = (function() {
     this.force = d3.layout.force().size([520, 2000]);
     this.circles = null;
     this.nodes = [];
-    this.tooltip = CustomTooltip("sunburst_tooltip", 250);
+    this.tooltip = CustomTooltip("sunburst_tooltip", 300);
     this.mapping = d3.layout.tree();
     this.mappingData = null;
 
@@ -37,7 +37,7 @@ ZzLocationVis = (function() {
       "679": { x: 350, y: 450, 'color': '#EDFFC5'},
       "789": { x: 350, y: 450, 'color': '#EDFFC5'},
       "889": { x: 350, y: 750, 'color': '#EDFFC5'},
-      "998": { x: 350, y: 750, 'color': '#888888'},
+      "998": { x: 350, y: 750, 'color': '#FF7373'},
     };
 
     // init vis
@@ -55,12 +55,20 @@ ZzLocationVis = (function() {
 
     
 
-    // init left
+    // init top
+    var tophead = this.vis.append('rect')
+      .attr('width', 1000)
+      .attr('height', 40)
+      .attr('x', 0)
+      .attr('y', 0)
+      .attr('fill', '#fff')
+      .attr('fill-opacity', 0.3);
+
     var left = this.vis.append('rect')
       .attr('width', 520)
       .attr('height', 1900)
       .attr('x', 0)
-      .attr('y', 0)
+      .attr('y', 50)
       .attr('fill', '#fff')
       .attr('fill-opacity', 0.3);
 
@@ -69,7 +77,7 @@ ZzLocationVis = (function() {
       .attr('width', 210)
       .attr('height', 1900)
       .attr('x', 530)
-      .attr('y', 0)
+      .attr('y', 50)
       .attr('fill', '#fff')
       .attr('fill-opacity', 0.3);
 
@@ -78,85 +86,85 @@ ZzLocationVis = (function() {
       .attr('width', 250)
       .attr('height', 1900)
       .attr('x', 750)
-      .attr('y', 0)
+      .attr('y', 50)
       .attr('fill', '#fff')
       .attr('fill-opacity', 0.3);
 
     // top labels
     var leftText = this.vis.append('text')
       .attr('x', 15)
-      .attr('y', 60)
-      .attr('font-size', '16px')
+      .attr('y', 80)
+      .attr('font-size', '19px')
       .attr('fill', '#444')
       .attr('style', 'text-anchor: start;')
       .text('Expenditure per region');
 
     var midText = this.vis.append('text')
       .attr('x', 545)
-      .attr('y', 60)
-      .attr('font-size', '16px')
+      .attr('y', 80)
+      .attr('font-size', '19px')
       .attr('fill', '#444')
       .attr('style', 'text-anchor: start;')
       .text('Unspecified per region');
 
     var rightText = this.vis.append('text')
       .attr('x', 765)
-      .attr('y', 60)
-      .attr('font-size', '16px')
+      .attr('y', 80)
+      .attr('font-size', '19px')
       .attr('fill', '#444')
       .attr('style', 'text-anchor: start;')
       .text('Worldwide unspecified');
 
-    this.direct = this.vis.append('g')
-      .attr('class', 'direct')
-      .attr('transform', 'translate(10,0)');
-    this.direct.append('text')
-      .attr('x', 55)
-      .attr('y', 27)
-      .attr('font-size', '14px')
-      .attr('fill', '#444')
-      .attr('style', 'text-anchor: start;')
-      .style('cursor', 'pointer')
-      .text('Direct expenditure')
-      .on('click', this.toggleDirect);
-    this.direct.append('rect')
-      .attr('width', 30)
-      .attr('height', 17)
-      .attr('x', 15)
-      .attr('y', 13)
-      .attr('rx', 9)
-      .attr('ry', 9)
-      .attr('fill', '#fff')
-      .attr('fill-opacity', 1)
-      .attr('stroke', '#aaa')
-      .attr('stroke-width', 1);
-    this.direct.append('circle')
-      .attr('class', 'directCircle')
-      .attr('cx', 23)
-      .attr('cy', 22)
-      .attr('r', 9)
-      .attr('fill', '#000')
-      .attr('fill-opacity', 1)
-      .attr('stroke-width', 0);
+    // this.direct = this.vis.append('g')
+    //   .attr('class', 'direct')
+    //   .attr('transform', 'translate(10,0)');
+    // this.direct.append('text')
+    //   .attr('x', 55)
+    //   .attr('y', 25)
+    //   .attr('font-size', '14px')
+    //   .attr('fill', '#444')
+    //   .attr('style', 'text-anchor: start;')
+    //   .style('cursor', 'pointer')
+    //   .text('Direct expenditure')
+    //   .on('click', this.toggleDirect);
+    // this.direct.append('rect')
+    //   .attr('width', 30)
+    //   .attr('height', 17)
+    //   .attr('x', 15)
+    //   .attr('y', 13)
+    //   .attr('rx', 9)
+    //   .attr('ry', 9)
+    //   .attr('fill', '#fff')
+    //   .attr('fill-opacity', 1)
+    //   .attr('stroke', '#aaa')
+    //   .attr('stroke-width', 1);
+    // this.direct.append('circle')
+    //   .attr('class', 'directCircle')
+    //   .attr('cx', 23)
+    //   .attr('cy', 22)
+    //   .attr('r', 9)
+    //   .attr('fill', '#000')
+    //   .attr('fill-opacity', 1)
+    //   .attr('stroke-width', 0);
 
 
     this.indirect = this.vis.append('g')
       .attr('class', 'direct')
-      .attr('transform', 'translate(200,0)')
+      .attr('transform', 'translate(0,0)')
+      .style('cursor', 'pointer')
+      .on('click', this.toggleIndirect);
     this.indirect.append('text')
       .attr('x', 55)
-      .attr('y', 27)
+      .attr('y', 25)
       .attr('font-size', '14px')
       .attr('fill', '#444')
       .attr('style', 'text-anchor: start;')
-      .text('Indirect expenditure')
-      .style('cursor', 'pointer')
-      .on('click', this.toggleIndirect);
+      .text('Indirect expenditure');
     this.indirect.append('rect')
       .attr('width', 30)
       .attr('height', 17)
       .attr('x', 15)
-      .attr('y', 13)
+      .attr('y', 12)
       .attr('rx', 9)
       .attr('ry', 9)
       .attr('fill', '#fff')
@@ -165,10 +173,10 @@ ZzLocationVis = (function() {
       .attr('stroke-width', 1);
     this.indirect.append('circle')
       .attr('class', 'indirectCircle')
-      .attr('cx', 23)
-      .attr('cy', 22)
+      .attr('cx', 38)
+      .attr('cy', 21)
       .attr('r', 9)
-      .attr('fill', '#000')
+      .attr('fill', '#00a99d')
       .attr('fill-opacity', 1)
       .attr('stroke-width', 0);
 
@@ -223,19 +231,18 @@ ZzLocationVis = (function() {
         .attr('font-size', '16px')
         .attr('fill', '#444')
         .attr('style', 'text-anchor: start;')
-        .attr('class','dropdown closed')
         .text(function(d){ return d.name; })
         .each(function(d){ d.textWidth = this.getBBox().width; });
 
       nodeEnter
         .append("svg:path")
         .attr("d", d3.svg.symbol().type("triangle-up"))
-        .attr("transform", function(d) { return "translate(" +  ((d.depth - 1) * 15 ) + ","+ -5 + ") rotate(90)"; })
+        .attr("transform", function(d) { return "translate(" +  (((d.depth - 1) * 15) + d.textWidth + 40) + ","+ -5 + ") rotate(90)"; })
         .style("fill", "#444");
 
       nodeEnter
         .insert('rect', ':first-child')
-        .attr('width', function(d){ return d.textWidth + 42; })
+        .attr('width', function(d){ return d.textWidth + 52; })
         .attr('height', 20)
         .attr('x', function(d){ return 0 + ((d.depth - 1) * 15); })
         .attr('y', -15)
@@ -289,7 +296,7 @@ ZzLocationVis = (function() {
       d.x = that.group_centers[d.group]['x'] + ((Math.random() * 40) - 20);
       d.y = that.group_centers[d.group]['y'] + ((Math.random() * 40) - 20);
       d.radius = that.radius_scale(d.value + d.value2);
-      d.stroke = '#fff';
+      d.stroke = '#444';
       d.stroke_width = that.radius_scale(d.value2);
       d._stroke_width = d.stroke_width; 
       d._value2 = d.value2; 
@@ -462,7 +469,7 @@ ZzLocationVis = (function() {
       .attr('style', 'text-anchor: middle;')
       .attr("dominant-baseline", "central")
       .attr('font-size', function(d){ return Math.round(d.radius + (d.stroke_width / 2)); })
-      .attr('fill', '#444')
+      .attr('fill', '#fff')
       .attr("pointer-events", "none")
       .text(function(d){ return d.id; });
 
@@ -481,30 +488,71 @@ ZzLocationVis = (function() {
 
   ZzLocationVis.prototype.toggleIndirect = function() {
 
-    geoLocationVis.indirect.select('circle')
-      .attr('cx', 38);
+    if (geoLocationVis.indirect.select('circle').attr('fill') != '#000000') {
 
-    // Update the nodes
-    var node = geoLocationVis.vis.selectAll(".node")
-      .data(geoLocationVis.data, function(d) { return d.id; });
+        geoLocationVis.indirect.select('circle')
+        .attr('cx', 23)
+        .attr('fill', '#000000');
 
-    // Transition nodes to their new position.
-    var nodeUpdate = node.transition()
-      .duration(750)
-      .each(function(d){ 
-        d.value2 = 0;
-        d.radius = geoLocationVis.radius_scale(d.value + d.value2)
-      })
-      .style("r", function(d){
-        return d.radius;
-      })
-      .style("stroke-width", function(d){
-        return d.value2;
-      });
+      // Update the nodes
+      var node = geoLocationVis.vis.selectAll(".node")
+        .data(geoLocationVis.data, function(d) { return d.id; });
+
+      // Transition nodes to their new position.
+      var nodeUpdate = node.transition()
+        .duration(750)
+        .each(function(d){ 
+          d.value2 = 0;
+          d.radius = geoLocationVis.radius_scale(d.value + d.value2)
+        })
+        .style("r", function(d){
+          return d.radius;
+        })
+        .style("stroke-width", function(d){
+          return d.value2;
+        });
+
+    }
+
+    else {
+        geoLocationVis.indirect.select('circle')
+        .attr('cx', 38)
+        .attr('fill', '#00a99d');
+
+      geoLocationVis.vis.selectAll('g.direct circle')
+        .transition()
+        .attr('x', 40);
+
+      // Update the nodes…
+      var node = geoLocationVis.vis.selectAll(".node")
+        .data(geoLocationVis.data, function(d) { return d.id; });
+
+      // Transition nodes to their new position.
+      var nodeUpdate = node.transition()
+        .duration(750)
+        .each(function(d){ 
+          d.value2 = d._value2;
+          d.stroke_width = geoLocationVis.radius_scale(d.value2);
+          d.radius = geoLocationVis.radius_scale(d.value + d.value2)
+
+        })
+        .style("r", function(d){
+          return d.radius;
+        })
+        .style("stroke-width", function(d){
+          return d.stroke_width;
+        });
+    }
+
+    
 
   }
 
   ZzLocationVis.prototype.toggleDirect = function() {
+    geoLocationVis.indirect.select('circle')
+      .attr('cx', 38)
+      .attr('fill', '#00a99d');
+
     geoLocationVis.vis.selectAll('g.direct circle')
       .transition()
       .attr('x', 40);
@@ -577,9 +625,9 @@ ZzLocationVis = (function() {
 
 
       if (d.id === parseInt(d.id, 10))
-          $("#"+tooltipId).html('<div class="tt-header" style="background-color:'+d.color+';">'+d.name+'</div><div class="tt-text">Niet aan land te relateren uitgaven: '+abbreviatedValue(d.value)+'</div>');
+          $("#"+tooltipId).html('<div class="tt-header" style="background-color:'+d.color+';">'+d.name+'</div><div class="tt-text">Non-country related expenditure: '+abbreviatedValue(d.value)+'</div>');
       else
-          $("#"+tooltipId).html('<div class="tt-header" style="background-color:'+d.color+';">'+d.name+'</div><div class="tt-text">Directe uitgaven: '+abbreviatedValue(d.value)+'<br>Indirecte uitgaven: '+abbreviatedValue(d.value2)+'</div>');
+          $("#"+tooltipId).html('<div class="tt-header" style="background-color:'+d.color+';">'+d.name+'</div><div class="tt-text">Direct expenditure: '+abbreviatedValue(d.value)+'<br>Indirect expenditure: '+abbreviatedValue(d.value2)+'</div>');
       
       $("#"+tooltipId).show(0);
       
