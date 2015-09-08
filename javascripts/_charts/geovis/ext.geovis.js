@@ -6,6 +6,17 @@ ZzLocationVis = (function() {
     geoLocationVis = this;
   }
 
+  function shadeBlend(p,c0,c1) {
+    var n=p<0?p*-1:p,u=Math.round,w=parseInt;
+    if(c0.length>7){
+        var f=c0.split(","),t=(c1?c1:p<0?"rgb(0,0,0)":"rgb(255,255,255)").split(","),R=w(f[0].slice(4)),G=w(f[1]),B=w(f[2]);
+        return "rgb("+(u((w(t[0].slice(4))-R)*n)+R)+","+(u((w(t[1])-G)*n)+G)+","+(u((w(t[2])-B)*n)+B)+")"
+    }else{
+        var f=w(c0.slice(1),16),t=w((c1?c1:p<0?"#000000":"#FFFFFF").slice(1),16),R1=f>>16,G1=f>>8&0x00FF,B1=f&0x0000FF;
+        return "#"+(0x1000000+(u(((t>>16)-R1)*n)+R1)*0x10000+(u(((t>>8&0x00FF)-G1)*n)+G1)*0x100+(u(((t&0x0000FF)-B1)*n)+B1)).toString(16).slice(1)
+    }
+  }
+
   // INIT
   ZzLocationVis.prototype.init = function(id) {
 
@@ -14,8 +25,8 @@ ZzLocationVis = (function() {
     this.layout_gravity = -0.001;
     this.damper = 0.05;
     this.friction = 0.75;
-    this.force = d3.layout.force().size([520, 2000]);
-    this.circles = null;
+    this.forces = {};
+    this.circles = {};
     this.nodes = [];
     this.tooltip = CustomTooltip("sunburst_tooltip", 300);
     this.mapping = d3.layout.tree();
@@ -64,22 +75,22 @@ ZzLocationVis = (function() {
       .attr('fill', '#fff')
       .attr('fill-opacity', 0.3);
 
-    var left = this.vis.append('rect')
-      .attr('width', 520)
-      .attr('height', 1900)
-      .attr('x', 0)
-      .attr('y', 50)
-      .attr('fill', '#fff')
-      .attr('fill-opacity', 0.3);
+    // var left = this.vis.append('rect')
+    //   .attr('width', 520)
+    //   .attr('height', 1900)
+    //   .attr('x', 0)
+    //   .attr('y', 50)
+    //   .attr('fill', '#fff')
+    //   .attr('fill-opacity', 0.3);
 
-    // init mid
-    var mid = this.vis.append('rect')
-      .attr('width', 210)
-      .attr('height', 1900)
-      .attr('x', 530)
-      .attr('y', 50)
-      .attr('fill', '#fff')
-      .attr('fill-opacity', 0.3);
+    // // init mid
+    // var mid = this.vis.append('rect')
+    //   .attr('width', 210)
+    //   .attr('height', 1900)
+    //   .attr('x', 530)
+    //   .attr('y', 50)
+    //   .attr('fill', '#fff')
+    //   .attr('fill-opacity', 0.3);
 
     // init right
     var right = this.vis.append('rect')
@@ -92,7 +103,7 @@ ZzLocationVis = (function() {
 
     // top labels
     var leftText = this.vis.append('text')
-      .attr('x', 15)
+      .attr('x', 260)
       .attr('y', 80)
       .attr('font-size', '19px')
       .attr('fill', '#444')
@@ -108,7 +119,7 @@ ZzLocationVis = (function() {
       .text('Unspecified per region');
 
     var rightText = this.vis.append('text')
-      .attr('x', 765)
+      .attr('x', 780)
       .attr('y', 80)
       .attr('font-size', '19px')
       .attr('fill', '#444')
@@ -214,21 +225,14 @@ ZzLocationVis = (function() {
     // Enter any new nodes
     var nodeEnter = node.enter().append("g")
         .attr("class", "region")
-        .attr("transform", function(d, i) { return "translate(50," + (180 + (i * 190)) + ")"; })
+        .attr("transform", function(d, i) { return "translate(15," + (180 + (i * 190)) + ")"; })
         .on("click", that.clickRegion);
 
       nodeEnter
-        .append('circle')
-        .attr('cx', function(d){ return 12 + ((d.depth - 1) * 15); })
-        .attr('cy', -5)
-        .attr('r', 4)
-        .attr('fill', function(d){return d.color; });
-
-      nodeEnter
         .append('text')
-        .attr('x', function(d){ return 25 + ((d.depth - 1) * 15); })
+        .attr('x', function(d){ return 10 + ((d.depth - 1) * 15); })
         .attr('y', 0)
-        .attr('font-size', '16px')
+        .attr('font-size', '17px')
         .attr('fill', '#444')
         .attr('style', 'text-anchor: start;')
         .text(function(d){ return d.name; })
@@ -243,9 +247,60 @@ ZzLocationVis = (function() {
       nodeEnter
         .insert('rect', ':first-child')
         .attr('width', function(d){ return d.textWidth + 52; })
+        .attr('height', 26)
+        .attr('x', function(d){ return 0 + ((d.depth - 1) * 15); })
+        .attr('y', -18)
+        .attr('rx', 10)
+        .attr('ry', 10)
+        .attr('fill', '#fff');
+
+    //legend stuff level 1
+      nodeEnter
+        .append('circle')
+        .attr('cx', function(d){ return 12 + ((d.depth - 1) * 15); })
+        .attr('cy', 26)
+        .attr('r', 4)
+        .attr('fill', function(d){return d.color; });
+      nodeEnter
+        .append('text')
+        .attr('x', function(d){ return 25 + ((d.depth - 1) * 15); })
+        .attr('y', 31)
+        .attr('font-size', '15px')
+        .attr('fill', '#444')
+        .attr('style', 'text-anchor: start;')
+        .text('Direct expenditure')
+        .each(function(d){ d.textWidth = this.getBBox().width; });
+      nodeEnter
+        .insert('rect', ':first-child')
+        .attr('width', function(d){ return d.textWidth + 37; })
         .attr('height', 20)
         .attr('x', function(d){ return 0 + ((d.depth - 1) * 15); })
-        .attr('y', -15)
+        .attr('y', 16)
+        .attr('rx', 10)
+        .attr('ry', 10)
+        .attr('fill', '#fff');
+    //legend stuff level 2
+      nodeEnter
+        .append('circle')
+        .attr('cx', function(d){ return 12 + ((d.depth - 1) * 15); })
+        .attr('cy', 51)
+        .attr('r', 6)
+        .attr('fill', function(d){return shadeBlend(-0.6,d.color); });
+      nodeEnter
+        .append('text')
+        .attr('x', function(d){ return 25 + ((d.depth - 1) * 15); })
+        .attr('y', 56)
+        .attr('font-size', '15px')
+        .attr('fill', '#444')
+        .attr('style', 'text-anchor: start;')
+        .text('Indirect expenditure')
+        .each(function(d){ d.textWidth = this.getBBox().width; });
+      nodeEnter
+        .insert('rect', ':first-child')
+        .attr('width', function(d){ return d.textWidth + 37; })
+        .attr('height', 20)
+        .attr('x', function(d){ return 0 + ((d.depth - 1) * 15); })
+        .attr('y', 41)
         .attr('rx', 10)
         .attr('ry', 10)
         .attr('fill', '#fff');
@@ -253,7 +308,7 @@ ZzLocationVis = (function() {
     // Transition nodes to their new position.
     var nodeUpdate = node.transition()
       .duration(750)
-      .attr("transform", function(d, i) { return "translate(50," + (180 + (i * 190)) + ")"; })
+      .attr("transform", function(d, i) { return "translate(15," + (180 + (i * 190)) + ")"; })
       .each(function(d,i){ 
         that.group_centers[d.id]['y'] = 200 + (i * 150);
         setHiddenChildrenPosition(d, i);
@@ -296,40 +351,54 @@ ZzLocationVis = (function() {
       d.x = that.group_centers[d.group]['x'] + ((Math.random() * 40) - 20);
       d.y = that.group_centers[d.group]['y'] + ((Math.random() * 40) - 20);
       d.radius = that.radius_scale(d.value + d.value2);
-      d.stroke = '#444';
+      d.stroke = shadeBlend(-0.6,d.color);
       d.stroke_width = that.radius_scale(d.value2);
       d._stroke_width = d.stroke_width; 
       d._value2 = d.value2; 
     });
 
-    that.nodes = that.data;
-    that.force.nodes(that.nodes);
+    for (var i = 0;i < data.mapping.children.length;i++){
 
-    // create / update bubbles, group them by region
-    this.circles = that.countries.selectAll(".node")
-      .data(that.nodes);
+      var main_region_id = data.mapping.children[i].id;
 
-    this.circles.enter().append("circle")
-      .attr("class", "node")
-      .attr("cx", function(d) { return d.x; })
-      .attr("cy", function(d) { return d.y; })
-      .attr("r", 0)
-      .style("fill", function(d) { return d.fill; })
-      .style("stroke", function(d) { return d.stroke; })
-      .style("stroke-width", 0)
-      .on("mouseover", that.mouseOver)
-      .on('mouseout', that.mouseOut)
-      .on('click', that.mouseClick)
-      .call(that.force.drag);
+      var nodes = [];
+      that.data.forEach(function(d) {
+        if(d.group.toString().charAt(0) == main_region_id.toString().charAt(0)){
+          nodes.push(d);
+        }
+      });
 
-    this.circles.transition()
-      .attr("r", function(d) { return d.radius; })
-      .style("fill", function(d) { return d.fill; })
-      .style("stroke", function(d) { return d.stroke; })
-      .style("stroke-width", function(d) { return d.stroke_width; });
+      that.forces[main_region_id] = d3.layout.force().nodes(nodes);
+      
+      // create / update bubbles, group them by region
+      that.circles[main_region_id] = that.countries.selectAll(".node"+main_region_id)
+        .data(nodes);
+      
+      that.circles[main_region_id].enter().append("circle")
+        .attr("class", "node")
+        .attr("cx", function(d) { return d.x; })
+        .attr("cy", function(d) { return d.y; })
+        .attr("r", 0)
+        .style("fill", function(d) { return d.fill; })
+        .style("stroke", function(d) { return d.stroke; })
+        .style("stroke-width", 0)
+        .on("mouseover", that.mouseOver)
+        .on('mouseout', that.mouseOut)
+        .on('click', that.mouseClick)
+        .call(that.forces[main_region_id].drag);
 
-    this.circles.exit()
-      .remove();
+      that.circles[main_region_id].transition()
+        .attr("r", function(d) { return d.radius; })
+        .style("fill", function(d) { return d.fill; })
+        .style("stroke", function(d) { return d.stroke; })
+        .style("stroke-width", function(d) { return d.stroke_width; });
+
+      that.circles[main_region_id].exit()
+        .remove();
+
+    }
+
+    
 
 
     function collapse(d) {
@@ -404,21 +473,26 @@ ZzLocationVis = (function() {
 
     var that = this;
 
-    this.force
-      .gravity(this.layout_gravity)
-      .charge(this.charge)
-      .friction(this.friction)
-      .on("tick", (function(_this) {
-      return function(e) {
-        return _this.circles.each(_this.move_towards_year(e.alpha)).attr("cx", function(d) {
-          return d.x;
-        }).attr("cy", function(d) {
-          return d.y;
-        });
-      };
-    })(this));
+    for (var i = 0;i < that.mappingData.children.length;i++){
+      var main_region_id = that.mappingData.children[i].id;
 
-    this.force.start();
+      that.forces[main_region_id]
+        .gravity(this.layout_gravity)
+        .charge(this.charge)
+        .friction(this.friction)
+        .on("tick", (function(_this) {
+        return function(e) {
+          return _this.circles[main_region_id]
+          .each(_this.move_towards_group(e.alpha)).attr("cx", function(d) {
+            return d.x;
+          }).attr("cy", function(d) {
+            return d.y;
+          });
+        };
+      })(this));
+
+      this.forces[main_region_id].start();
+    }
   }
 
   // HELPERS
@@ -427,10 +501,10 @@ ZzLocationVis = (function() {
     return -Math.pow(d.radius + d.stroke_width, 2) / 12;
   };
 
-  ZzLocationVis.prototype.move_towards_year = function(alpha) {
+  ZzLocationVis.prototype.move_towards_group = function(alpha) {
     return (function(_this) {
       return function(d) {
-        var target = _this.group_centers[d.group];        
+        var target = _this.group_centers[d.group];    
         d.x = d.x + (target.x - d.x) * _this.damper * alpha * 1.1;
         return d.y = d.y + (target.y - d.y) * _this.damper * alpha * 1.5;
       };

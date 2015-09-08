@@ -73,7 +73,8 @@
     vm.preReformatVisualisationData = function(){
       vm.countCalls++;
       if(vm.countCalls > 2){
-        vm.visualisationData = vm.reformatVisualisationData();
+        var data = vm.reformatVisualisationData();
+        vm.visualisationData = angular.copy(data);
         vm.refreshVisualisation = true;
         vm.countCalls = 0;
       }
@@ -247,8 +248,6 @@
           'regions': regions
         }
       }
-
-      console.log(data);
       
       return data;
     }
