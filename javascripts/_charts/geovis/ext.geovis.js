@@ -241,12 +241,12 @@ ZzLocationVis = (function() {
       nodeEnter
         .append("svg:path")
         .attr("d", d3.svg.symbol().type("triangle-up"))
-        .attr("transform", function(d) { return "translate(" +  (((d.depth - 1) * 15) + d.textWidth + 40) + ","+ -19 + ") rotate(90)"; })
+        .attr("transform", function(d) { return "translate(" +  (((d.depth - 1) * 15) + d.textWidth + 24) + ","+ -19 + ") rotate(90)"; })
         .style("fill", "#444");
 
       nodeEnter
         .insert('rect', ':first-child')
-        .attr('width', function(d){ return d.textWidth + 52; })
+        .attr('width', function(d){ return d.textWidth + 36; })
         .attr('height', 26)
         .attr('x', function(d){ return 0 + ((d.depth - 1) * 15); })
         .attr('y', -32)
@@ -255,13 +255,16 @@ ZzLocationVis = (function() {
         .attr('fill', '#fff');
 
       //legend stuff level 1
-      nodeEnter
+      var nodeEnterLegend = nodeEnter.append('g')
+        .attr('class','legend');
+
+      nodeEnterLegend
         .append('circle')
         .attr('cx', function(d){ return 12 + ((d.depth - 1) * 15); })
         .attr('cy', 11)
         .attr('r', 4)
         .attr('fill', function(d){return d.color; });
-      nodeEnter
+      nodeEnterLegend
         .append('text')
         .attr('x', function(d){ return 25 + ((d.depth - 1) * 15); })
         .attr('y', 16)
@@ -270,7 +273,7 @@ ZzLocationVis = (function() {
         .attr('style', 'text-anchor: start;')
         .text('Direct expenditure')
         .each(function(d){ d.textWidth = this.getBBox().width; });
-      nodeEnter
+      nodeEnterLegend
         .insert('rect', ':first-child')
         .attr('width', function(d){ return d.textWidth + 37; })
         .attr('height', 20)
@@ -280,13 +283,13 @@ ZzLocationVis = (function() {
         .attr('ry', 10)
         .attr('fill', '#fff');
     //legend stuff level 2
-      nodeEnter
+      nodeEnterLegend
         .append('circle')
         .attr('cx', function(d){ return 12 + ((d.depth - 1) * 15); })
         .attr('cy', 36)
         .attr('r', 6)
         .attr('fill', function(d){return shadeBlend(-0.6,d.color); });
-      nodeEnter
+      nodeEnterLegend
         .append('text')
         .attr('x', function(d){ return 25 + ((d.depth - 1) * 15); })
         .attr('y', 41)
@@ -295,7 +298,7 @@ ZzLocationVis = (function() {
         .attr('style', 'text-anchor: start;')
         .text('Indirect expenditure')
         .each(function(d){ d.textWidth = this.getBBox().width; });
-      nodeEnter
+      nodeEnterLegend
         .insert('rect', ':first-child')
         .attr('width', function(d){ return d.textWidth + 37; })
         .attr('height', 20)
