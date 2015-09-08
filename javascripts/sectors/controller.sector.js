@@ -2,6 +2,7 @@
 * CountriesController
 * @namespace oipa.countries.controllers
 */
+var sectorLayoutTest = null;
 (function () {
   'use strict';
 
@@ -9,15 +10,16 @@
     .module('oipa.sectors')
     .controller('SectorController', SectorController);
 
-  SectorController.$inject = ['$scope', 'Sectors', 'templateBaseUrl', '$stateParams', 'FilterSelection', 'Aggregations'];
+  SectorController.$inject = ['$scope', 'Sectors', 'templateBaseUrl', '$stateParams', 'FilterSelection', 'Aggregations', 'sectorMapping'];
 
   /**
   * @namespace CountriesController
   */
-  function SectorController($scope, Sectors, templateBaseUrl, $stateParams, FilterSelection, Aggregations) {
+  function SectorController($scope, Sectors, templateBaseUrl, $stateParams, FilterSelection, Aggregations, sectorMapping) {
     var vm = this;
     vm.sector = null;
-    vm.sector_id = $stateParams.sector_id;
+    vm.sector_id = parseInt($stateParams.sector_id);
+    vm.sector_digit = 0;
     vm.filterSelection = FilterSelection;
     vm.selectedTab = 'samenvatting';
 
@@ -29,13 +31,35 @@
       {'id': 'implementing-organisations', 'name': 'Organisaties', 'count': -1},
     ]
 
+    // to do , make this smarter
+    function findSector(needle, haystack){
+      
+    }
+
+    function listChildren(sector){
+      // if()
+    }
+
     function activate() {
+
+      if(vm.sector_id < 100){
+        vm.sector_digit = 2;
+      } else if(100 < vm.sector_id < 9999){
+        vm.sector_digit = 3;
+      } else {
+        vm.sector_digit = 5;
+      }
+
+      sector = findSector(vm.sector_id, sectorMapping.children);
+      sectors = listChildren(sector);
+
+
 
       $scope.$watch('vm.filterSelection.selectionString', function (selectionString) {
         vm.update(selectionString);
       }, true);
 
-      // for each active country, get the results
+      // for each active sector, get the results
       Sectors.get(vm.sector_id).then(successFn, errorFn);
 
       function successFn(data, status, headers, config) {

@@ -55,11 +55,9 @@ ZzSunburst = (function() {
         .attr('fill', '#ccc')
         .attr('style', 'text-anchor: middle;');
 
-
   };
 
   // HELPERS
-
   ZzSunburst.prototype.getRoot = function(p){
     if(p.hasOwnProperty('parent')){
       return this.getRoot(p.parent);
@@ -259,7 +257,6 @@ ZzSunburst = (function() {
 
     setTimeout(function(){ sunburst.zooming = false; }, 800);
 
-
     // When zooming out, arcs enter from the inside and exit to the outside.
     // Exiting outside arcs transition to the new layout.
     // if (root !== p) enterArc = insideArc, exitArc = outsideArc, outsideAngle.range([p.x, p.x + p.dx]);
@@ -270,14 +267,12 @@ ZzSunburst = (function() {
     var that = sunburst;
     var level = that.getLevel(p, 0);
     if(that.zooming || level == 3){
-      that.zooming ? false : window.location.href = home_url + '/sectoren/'+p.sector_id+'/';
       return false;
     }
 
     that.zooming = true;
     return that.state == 0 || level > 1 ? that.zoomIn(p) : that.zoomOut(p);
   }
-
 
   ZzSunburst.prototype.zoomIn = function(p){
 
@@ -521,7 +516,6 @@ ZzSunburst = (function() {
 
   }
 
-
   ZzSunburst.prototype.updateBreadcrumb = function(p) {
 
     function getAncestors(node) {
@@ -545,7 +539,6 @@ ZzSunburst = (function() {
         length += current.textWidth + 29;
       }
       
-
       return length;
     }
 
@@ -606,65 +599,59 @@ ZzSunburst = (function() {
   }
 
 
+  function CustomTooltip(tooltipId, width){
+    var tooltipId = tooltipId;
+    $("body").append("<div class='zz_tooltip' id='"+tooltipId+"'></div>");
+    
+    if(width){
+      $("#"+tooltipId).css("width", width);
+    }
+    
+    hideTooltip();
+    
+    function showTooltip(d){
+      $("#"+tooltipId).html('<div class="tt-header" style="background-color:'+d.color+';">'+d.name+'</div><div class="tt-text">'+d.abbreviatedValue+'<br><a style="pointer-events: all" target="_blank" href="'+home_url+'/sectors/'+d.sector_id+'/">Go to sector page</a></div>');
+      
+      updatePosition(d3.event);
+      $("#"+tooltipId).show(0);
+    }
+    
+    function hideTooltip(){
+      $("#"+tooltipId).hide();
+    }
+    
+    function updatePosition(event){
+      var ttid = "#"+tooltipId;
+      var xOffset = 20;
+      var yOffset = 10;
+      
+      var ttw = $(ttid).width();
+      var tth = $(ttid).height();
+      var wscrY = $(window).scrollTop();
+      var wscrX = $(window).scrollLeft();
+      var curX = (document.all) ? event.clientX + wscrX : event.pageX;
+      var curY = (document.all) ? event.clientY + wscrY : event.pageY;
+      var ttleft = ((curX - wscrX + xOffset*2 + ttw) > $(window).width()) ? curX - ttw - xOffset*2 : curX + xOffset;
+      if (ttleft < wscrX + xOffset){
+        ttleft = wscrX + xOffset;
+      } 
+      var tttop = ((curY - wscrY + yOffset*2 + tth) > $(window).height()) ? curY - tth - yOffset*2 : curY + yOffset;
+      if (tttop < wscrY + yOffset){
+        tttop = curY + yOffset;
+      } 
+
+      tttop = tttop - 150;
+      ttleft = ttleft - 60;
+      $(ttid).css('top', tttop + 'px').css('left', ttleft + 'px');
+    }
+    
+    return {
+      showTooltip: showTooltip,
+      hideTooltip: hideTooltip,
+      updatePosition: updatePosition
+    }
+  }
+
   return ZzSunburst;
 })();
 
-
-
-
-
-
-
-
-function CustomTooltip(tooltipId, width){
-  var tooltipId = tooltipId;
-  $("body").append("<div class='zz_tooltip' id='"+tooltipId+"'></div>");
-  
-  if(width){
-    $("#"+tooltipId).css("width", width);
-  }
-  
-  hideTooltip();
-  
-  function showTooltip(d){
-    $("#"+tooltipId).html('<div class="tt-header" style="background-color:'+d.color+';">'+d.name+'</div><div class="tt-text">'+d.abbreviatedValue+'<br><a style="pointer-events: all" href='+home_url+'/sectors/'+d.sector_id+'>Go to sector page</a></div>');
-    
-    updatePosition(d3.event);
-    $("#"+tooltipId).show(0);
-  }
-  
-  function hideTooltip(){
-    $("#"+tooltipId).hide();
-  }
-  
-  function updatePosition(event){
-    var ttid = "#"+tooltipId;
-    var xOffset = 20;
-    var yOffset = 10;
-    
-    var ttw = $(ttid).width();
-    var tth = $(ttid).height();
-    var wscrY = $(window).scrollTop();
-    var wscrX = $(window).scrollLeft();
-    var curX = (document.all) ? event.clientX + wscrX : event.pageX;
-    var curY = (document.all) ? event.clientY + wscrY : event.pageY;
-    var ttleft = ((curX - wscrX + xOffset*2 + ttw) > $(window).width()) ? curX - ttw - xOffset*2 : curX + xOffset;
-    if (ttleft < wscrX + xOffset){
-      ttleft = wscrX + xOffset;
-    } 
-    var tttop = ((curY - wscrY + yOffset*2 + tth) > $(window).height()) ? curY - tth - yOffset*2 : curY + yOffset;
-    if (tttop < wscrY + yOffset){
-      tttop = curY + yOffset;
-    } 
-
-    tttop = tttop - 150;
-    ttleft = ttleft - 60;
-    $(ttid).css('top', tttop + 'px').css('left', ttleft + 'px');
-  }
-  
-  return {
-    showTooltip: showTooltip,
-    hideTooltip: hideTooltip,
-    updatePosition: updatePosition
-  }
-}

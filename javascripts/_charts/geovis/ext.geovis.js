@@ -53,8 +53,6 @@ ZzLocationVis = (function() {
           geoLocationVis.tooltip.hideTooltip();
         });
 
-    
-
     // init left
     var left = this.vis.append('rect')
       .attr('width', 520)
@@ -110,6 +108,7 @@ ZzLocationVis = (function() {
     this.direct = this.vis.append('g')
       .attr('class', 'direct')
       .attr('transform', 'translate(10,0)');
+
     this.direct.append('text')
       .attr('x', 55)
       .attr('y', 27)
@@ -119,6 +118,7 @@ ZzLocationVis = (function() {
       .style('cursor', 'pointer')
       .text('Directe uitgaven')
       .on('click', this.toggleDirect);
+
     this.direct.append('rect')
       .attr('width', 30)
       .attr('height', 17)
@@ -130,6 +130,7 @@ ZzLocationVis = (function() {
       .attr('fill-opacity', 1)
       .attr('stroke', '#aaa')
       .attr('stroke-width', 1);
+
     this.direct.append('circle')
       .attr('class', 'directCircle')
       .attr('cx', 23)
@@ -138,7 +139,6 @@ ZzLocationVis = (function() {
       .attr('fill', '#000')
       .attr('fill-opacity', 1)
       .attr('stroke-width', 0);
-
 
     this.indirect = this.vis.append('g')
       .attr('class', 'direct')
@@ -176,11 +176,7 @@ ZzLocationVis = (function() {
         .attr('class', 'countries')
         .attr('transform', 'translate(0,50)');
   };
-
-
   
-
-
 
   // FLOW
   ZzLocationVis.prototype.updateLegend = function(d) {
