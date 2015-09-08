@@ -29,15 +29,34 @@ var sectorLayoutTest = null;
       {'id': 'countries', 'name': 'Landen', 'count': -1},
       {'id': 'regions', 'name': 'Regio\'s', 'count': -1},
       {'id': 'implementing-organisations', 'name': 'Organisaties', 'count': -1},
+      {'id': 'sectors', 'name': 'Sectoren', 'count': -1},
     ]
 
     // to do , make this smarter
     function findSector(needle, haystack){
-      
+      for(var i = 0; i < haystack.length; i++){
+        if(haystack[i].sector_id == needle){
+          vm.sector = haystack[i];
+          break;
+        }
+        if(haystack[i].hasOwnProperty('children')){
+          findSector(needle, haystack[i].children);
+        }
+      }
     }
 
-    function listChildren(sector){
-      // if()
+    function listChildren(arr, sector){
+      if(sector.hasOwnProperty('children')){
+        for(var i = 0; i < sector.children.length; i++){
+          if(parseInt(sector.children[i].sector_id) > 9999){
+            arr.push(sector.children[i]);  
+          }
+          if(sector.children[i].hasOwnProperty('children')){
+            arr = listChildren(arr, sector.children[i]);
+          }
+        }
+      }
+      return arr;
     }
 
     function activate() {
@@ -49,24 +68,16 @@ var sectorLayoutTest = null;
       } else {
         vm.sector_digit = 5;
       }
-
-      sector = findSector(vm.sector_id, sectorMapping.children);
-      sectors = listChildren(sector);
-
-
+      findSector(vm.sector_id, sectorMapping.children);
+      var sectors = listChildren([],vm.sector);
+      for (var i = 0;i < sectors.length;i++){
+        Sectors.selectedSectors.push({"sector_id":sectors[i].sector_id,"name":sectors[i].name});
+      }
+      FilterSelection.save();
 
       $scope.$watch('vm.filterSelection.selectionString', function (selectionString) {
         vm.update(selectionString);
       }, true);
-
-      // for each active sector, get the results
-      Sectors.get(vm.sector_id).then(successFn, errorFn);
-
-      function successFn(data, status, headers, config) {
-        vm.sector = data.data;
-        Sectors.selectedSectors.push({"sector_id":vm.sector.code,"name":vm.sector.name});
-        FilterSelection.save();
-      }
     }
 
     function errorFn(data, status, headers, config) {

@@ -32,7 +32,7 @@
                 <div class="row">
                     <div class="col-sm-12 activity-list-item">
                         <div class="hp-block wit">
-                            <p><b>Sector code</b><br>{{vm.sector.code}}</p>
+                            <p><b>Sector code</b><br>{{vm.sector.sector_id}}</p>
                         </div>
                     </div>
                 </div>
@@ -112,6 +112,13 @@
             has-to-contain="sectors__in" 
             count="vm.tabs[4].count"
             shown="vm.selectedTab == 'implementing-organisations'"></implementing-organisations-list>
+    </div>
+
+    <div ng-show="vm.selectedTab == 'sectors' && vm.sector_digit != 5">
+        <sector-list 
+            has-to-contain="sectors__in" 
+            count="vm.tabs[5].count"
+            shown="vm.selectedTab == 'sectors'"></sector-list>
     </div>
 
 </div>
