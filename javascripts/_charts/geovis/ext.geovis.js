@@ -215,10 +215,10 @@ ZzLocationVis = (function() {
     var node = this.vis.selectAll("g.region")
         .data(nodes, function(d) { return d.id; });
 
+    
     // Enter any new nodes
     var nodeEnter = node.enter().append("g")
         .attr("class", "region")
-        .attr("transform", function(d, i) { return "translate(15," + (180 + (i * 190)) + ")"; })
         .on("click", that.clickRegion);
 
       nodeEnter
@@ -247,61 +247,27 @@ ZzLocationVis = (function() {
         .attr('ry', 10)
         .attr('fill', '#fff');
 
-    //legend stuff level 1
-      nodeEnter
-        .append('circle')
-        .attr('cx', function(d){ return 12 + ((d.depth - 1) * 15); })
-        .attr('cy', 26)
-        .attr('r', 4)
-        .attr('fill', function(d){return d.color; });
-      nodeEnter
-        .append('text')
-        .attr('x', function(d){ return 25 + ((d.depth - 1) * 15); })
-        .attr('y', 31)
-        .attr('font-size', '15px')
-        .attr('fill', '#444')
-        .attr('style', 'text-anchor: start;')
-        .text('Direct expenditure')
-        .each(function(d){ d.textWidth = this.getBBox().width; });
-      nodeEnter
-        .insert('rect', ':first-child')
-        .attr('width', function(d){ return d.textWidth + 37; })
-        .attr('height', 20)
-        .attr('x', function(d){ return 0 + ((d.depth - 1) * 15); })
-        .attr('y', 16)
-        .attr('rx', 10)
-        .attr('ry', 10)
-        .attr('fill', '#fff');
-    //legend stuff level 2
-      nodeEnter
-        .append('circle')
-        .attr('cx', function(d){ return 12 + ((d.depth - 1) * 15); })
-        .attr('cy', 51)
-        .attr('r', 6)
-        .attr('fill', function(d){return shadeBlend(-0.6,d.color); });
-      nodeEnter
-        .append('text')
-        .attr('x', function(d){ return 25 + ((d.depth - 1) * 15); })
-        .attr('y', 56)
-        .attr('font-size', '15px')
-        .attr('fill', '#444')
-        .attr('style', 'text-anchor: start;')
-        .text('Indirect expenditure')
-        .each(function(d){ d.textWidth = this.getBBox().width; });
-      nodeEnter
-        .insert('rect', ':first-child')
-        .attr('width', function(d){ return d.textWidth + 37; })
-        .attr('height', 20)
-        .attr('x', function(d){ return 0 + ((d.depth - 1) * 15); })
-        .attr('y', 41)
-        .attr('rx', 10)
-        .attr('ry', 10)
-        .attr('fill', '#fff');
+
+    var lastDepth = 0;
+    var y = 0;
+
 
     // Transition nodes to their new position.
     var nodeUpdate = node.transition()
       .duration(750)
-      .attr("transform", function(d, i) { return "translate(15," + (180 + (i * 190)) + ")"; })
+
+      .attr("transform", function(d, i) { 
+          
+          if(d.depth != 1 && lastDepth == 1){
+            y += 60;
+          } else {
+            y += 140;
+          }
+
+          lastDepth = d.depth;
+
+        return "translate(15," + y + ")"; 
+      })
       .each(function(d,i){ 
         that.group_centers[d.id]['y'] = 200 + (i * 150);
         setHiddenChildrenPosition(d, i);
