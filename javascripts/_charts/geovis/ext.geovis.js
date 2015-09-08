@@ -25,8 +25,8 @@ ZzLocationVis = (function() {
     this.layout_gravity = -0.001;
     this.damper = 0.05;
     this.friction = 0.75;
-    this.forces = {};
-    this.circles = {};
+    this.forces = d3.layout.force();
+    this.circles = [];
     this.nodes = [];
     this.tooltip = CustomTooltip("sunburst_tooltip", 300);
     this.mapping = d3.layout.tree();
@@ -350,49 +350,38 @@ ZzLocationVis = (function() {
       d._value2 = d.value2; 
     });
 
-    for (var i = 0;i < data.mapping.children.length;i++){
+    that.nodes = that.data;
 
-      var main_region_id = data.mapping.children[i].id;
+    that.force = d3.layout.force().nodes(that.nodes);
 
-      var nodes = [];
-      that.data.forEach(function(d) {
-        if(d.group.toString().charAt(0) == main_region_id.toString().charAt(0)){
-          nodes.push(d);
-        }
-      });
-
-      that.forces[main_region_id] = d3.layout.force().nodes(nodes);
-      
-      // create / update bubbles, group them by region
-      that.circles[main_region_id] = that.countries.selectAll(".node"+main_region_id)
-        .data(nodes);
-      
-      that.circles[main_region_id].enter().append("circle")
-        .attr("class", "node")
-        .attr("cx", function(d) { return d.x; })
-        .attr("cy", function(d) { return d.y; })
-        .attr("r", 0)
-        .style("fill", function(d) { return d.fill; })
-        .style("stroke", function(d) { return d.stroke; })
-        .style("stroke-width", 0)
-        .on("mouseover", that.mouseOver)
-        .on('mouseout', that.mouseOut)
-        .on('click', that.mouseClick)
-        .call(that.forces[main_region_id].drag);
-
-      that.circles[main_region_id].transition()
-        .attr("r", function(d) { return d.radius; })
-        .style("fill", function(d) { return d.fill; })
-        .style("stroke", function(d) { return d.stroke; })
-        .style("stroke-width", function(d) { return d.stroke_width; });
-
-      that.circles[main_region_id].exit()
-        .remove();
-
-    }
 
     
+    // create / update bubbles, group them by region
+    that.circles = that.countries.selectAll(".node")
+      .data(that.nodes);
+    
+    that.circles.enter().append("circle")
+      .attr("class", "node")
+      .attr("cx", function(d) { return d.x; })
+      .attr("cy", function(d) { return d.y; })
+      .attr("r", 0)
+      .style("fill", function(d) { return d.fill; })
+      .style("stroke", function(d) { return d.stroke; })
+      .style("stroke-width", 0)
+      .on("mouseover", that.mouseOver)
+      .on('mouseout', that.mouseOut)
+      .on('click', that.mouseClick)
+      .call(that.force.drag);
 
+    that.circles.transition()
+      .attr("r", function(d) { return d.radius; })
+      .style("fill", function(d) { return d.fill; })
+      .style("stroke", function(d) { return d.stroke; })
+      .style("stroke-width", function(d) { return d.stroke_width; });
+
+    that.circles.exit()
+      .remove();
+    
 
     function collapse(d) {
       if (d.children) {
@@ -465,27 +454,23 @@ ZzLocationVis = (function() {
   ZzLocationVis.prototype.update = function() {
 
     var that = this;
+    that.force
+      .gravity(this.layout_gravity)
+      .charge(this.charge)
+      .friction(this.friction)
+      .on("tick", (function(_this) {
+      return function(e) {
+        return _this.circles
+        .each(_this.move_towards_group(e.alpha)).attr("cx", function(d) {
+          return d.x;
+        }).attr("cy", function(d) {
+          return d.y;
+        });
+      };
+    })(this));
 
-    for (var i = 0;i < that.mappingData.children.length;i++){
-      var main_region_id = that.mappingData.children[i].id;
-
-      that.forces[main_region_id]
-        .gravity(this.layout_gravity)
-        .charge(this.charge)
-        .friction(this.friction)
-        .on("tick", (function(_this) {
-        return function(e) {
-          return _this.circles[main_region_id]
-          .each(_this.move_towards_group(e.alpha)).attr("cx", function(d) {
-            return d.x;
-          }).attr("cy", function(d) {
-            return d.y;
-          });
-        };
-      })(this));
-
-      this.forces[main_region_id].start();
-    }
+    that.force.start();
+    
   }
 
   // HELPERS
