@@ -318,8 +318,8 @@ ZzLocationVis = (function() {
       .duration(750)
 
       .attr("transform", function(d, i) { 
-          
-          if(d.depth != 1 && lastDepth == 1){
+        
+          if( ( d.depth != 1 && lastDepth == 1 ) || ( d.depth == 3 && lastDepth == 2) ) {
             y += 60;
           } else {
             y += 140;
@@ -340,6 +340,20 @@ ZzLocationVis = (function() {
 
     nodeUpdate.select("text")
         .style("fill-opacity", 1);
+
+    nodeUpdate.select("g.legend")
+        .attr("opacity", function(d, i) { 
+          console.log(d);
+
+          if( 
+            ( d.id == 298 ||
+              d.id == 498 ||
+              d.id == 798 ||
+              d.id == 619) && !d._children ) {
+            return "0";
+          }
+
+        });
 
     // Transition exiting nodes to the parent's position.
     var nodeExit = node.exit().transition()
