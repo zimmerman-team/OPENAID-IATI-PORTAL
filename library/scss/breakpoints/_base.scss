@@ -1891,7 +1891,7 @@ ACTIVITY LIST
       color:darken($oranje, 15%);
     }
   }
-  &.collapsed {
+  .collapsed {
     .expandme {
       &:before {
         font-family: FontAwesome;
@@ -1899,7 +1899,7 @@ ACTIVITY LIST
       }
     }
   }
-  &.expanded {
+  .expanded {
     .expandme {
       &:before {
         font-family: FontAwesome;
@@ -1908,11 +1908,25 @@ ACTIVITY LIST
     }
   }
   .children {
+    .wit {
+      background: darken(#fff,4%);
+    }
     .left-pad {
       padding-left:25px;
     }
     h3 {
-      font-size:20px;
+      font-size:22px;
+    }
+    .children {
+      .wit {
+        background: darken(#fff,8%);
+      }
+      .left-pad {
+        padding-left:50px;
+      }
+      h3 {
+        font-size:20px;
+      }
     }
   }
 }
