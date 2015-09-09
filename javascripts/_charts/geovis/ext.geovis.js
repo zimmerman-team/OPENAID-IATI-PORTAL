@@ -250,7 +250,13 @@ ZzLocationVis = (function() {
 
     var nodeEnterClick = nodeEnter.append('g')
         .attr('class','clickme')
-        .on("click", that.clickRegion);    
+        .on("click", that.clickRegion)
+        .on("mouseover", function(){
+          d3.select(this).selectAll('rect').attr('fill','#e4e4e4');
+        })  
+        .on('mouseout', function(){
+          d3.select(this).selectAll('rect').attr('fill','#fff');
+        });    
 
       nodeEnterClick
         .append('text')
