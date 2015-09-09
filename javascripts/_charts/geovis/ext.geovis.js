@@ -266,11 +266,26 @@ ZzLocationVis = (function() {
         .append("svg:path")
         .attr("d", d3.svg.symbol().type("triangle-up"))
         .attr("transform", function(d) { return "translate(" +  (((d.depth - 1) * 15) + d.textWidth + 24) + ","+ -59 + ") rotate(90)"; })
-        .style("fill", "#444");
+        .style("fill", "#444")
+        .attr('fill-opacity',function(d){
+          if(d._children) {
+            return "1";
+          }
+          else {
+            return "0";
+          }
+        });
 
       nodeEnterClick
         .insert('rect', ':first-child')
-        .attr('width', function(d){ return d.textWidth + 36; })
+        .attr('width', function(d){ 
+          if(d._children) {
+            return d.textWidth + 36;
+          }
+          else {
+            return d.textWidth + 22;
+          } 
+        })
         .attr('height', 26)
         .attr('x', function(d){ return 0 + ((d.depth - 1) * 15); })
         .attr('y', -72)
