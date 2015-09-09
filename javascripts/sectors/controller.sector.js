@@ -61,19 +61,27 @@ var sectorLayoutTest = null;
 
     function activate() {
 
+
       if(vm.sector_id < 100){
         vm.sector_digit = 2;
-      } else if(100 < vm.sector_id < 9999){
+      } else if(100 < vm.sector_id && vm.sector_id < 9999){
         vm.sector_digit = 3;
       } else {
         vm.sector_digit = 5;
       }
       findSector(vm.sector_id, sectorMapping.children);
       var sectors = listChildren([],vm.sector);
+
+      if(vm.sector_digit == 5){
+        Sectors.selectedSectors.push({"sector_id":vm.sector.sector_id,"name":vm.sector.name});
+      }
+
       for (var i = 0;i < sectors.length;i++){
         Sectors.selectedSectors.push({"sector_id":sectors[i].sector_id,"name":sectors[i].name});
       }
       FilterSelection.save();
+
+
 
       $scope.$watch('vm.filterSelection.selectionString', function (selectionString) {
         vm.update(selectionString);

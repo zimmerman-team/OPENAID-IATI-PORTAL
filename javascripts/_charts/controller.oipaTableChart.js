@@ -9,14 +9,17 @@
     .module('oipa.charts')
     .controller('OipaTableChartController', OipaTableChartController);
 
-  OipaTableChartController.$inject = ['$scope', 'Aggregations'];
+  OipaTableChartController.$inject = ['$scope', 'Aggregations', 'homeUrl'];
 
-  function OipaTableChartController($scope, Aggregations) {
+  function OipaTableChartController($scope, Aggregations, homeUrl) {
 
     var vm = this;
-    
     vm.chartData = [];
     vm.unformattedData = []; 
+    vm.extraFilters = '';
+    vm.homeUrl = homeUrl;
+
+
 
     function activate() {
 
@@ -24,13 +27,15 @@
 
         if(refreshData == true){
 
+          vm.extraFilters = '&activity_status__in=' + $scope.activityStatus;
+          vm.extraFilters += '&transaction_date__year__in=' + $scope.transactionYear;
+
           vm.groupBy = $scope.groupBy;
           vm.groupById = $scope.groupById;
           vm.aggregationKey = $scope.aggregationKey;
           vm.aggregationFilters = $scope.aggregationFilters;
           vm.aggregationExtraSelect = $scope.aggregationExtraSelect;
           vm.aggregationExtraSelectIn = $scope.aggregationExtraSelectIn;
-
           vm.loadData();
           $scope.refreshData = false;
         }
@@ -38,8 +43,8 @@
     }
 
     vm.loadData = function(){
-
-      Aggregations.aggregation(vm.groupBy, vm.aggregationKey, vm.aggregationFilters).then(succesFn, errorFn);
+      console.log($scope);
+      Aggregations.aggregation(vm.groupBy, vm.aggregationKey, vm.aggregationFilters + vm.extraFilters).then(succesFn, errorFn);
 
       function succesFn(data, status, headers, config){
 
@@ -57,8 +62,9 @@
             vm.groupById = 'organisation_id';
           }
 
-          Aggregations.aggregation(vm.groupBy, 'iati-identifier', '&' + vm.aggregationExtraSelectIn + '=' + filter__in).then(succesFn, errorFn);
           vm.aggregationExtraSelect = 'iati-identifier-add';
+          Aggregations.aggregation(vm.groupBy, 'iati-identifier', '&activity_status__in=' + $scope.activityStatus +'&' + vm.aggregationExtraSelectIn + '=' + filter__in).then(succesFn, errorFn);
+          
           
         } else if(vm.aggregationExtraSelect == 'iati-identifier-add'){
 
@@ -93,7 +99,7 @@
         }
 
         if(_in.length > 1){
-          $scope.shownIds = '&' + vm.aggregationExtraSelectIn + '=' + _in.join();
+          $scope.shownIds = '&' + vm.aggregationExtraSelectIn + '=' + _in.join() + '&activity_status__in=' + $scope.activityStatus;
         }
 
       }
@@ -104,6 +110,10 @@
     }
 
     vm.reformatData = function(data){
+
+      for (var i = 0;i < data.length;i++){
+        data[i].id = data[i][vm.groupById];
+      }
       return data;
     }
 

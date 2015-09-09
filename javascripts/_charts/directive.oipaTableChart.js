@@ -22,7 +22,10 @@
         aggregationExtraSelectIn: '=',
         refreshData: '=',
         shownIds: '=',
-        topFive: '=?'
+        topFive: '=',
+        activityStatus: '=',
+        transactionYear: '=',
+        groupSref: '='
       },
       templateUrl: templateBaseUrl + '/templates/_charts/oipa-table-chart.html'
     };

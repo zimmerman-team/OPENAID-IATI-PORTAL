@@ -7,7 +7,7 @@
 
                         <select ng-model="topFive">
                             <option value='recipient-country'>Top 5 countries</option>
-                            <option value='transaction__receiver-org'>Top 5 organisations</option>
+                            <option value='transaction__receiver-org'>Top 5 implementing organisations</option>
                             <option value='sector'>Top 5 sectors</option>
                         </select>
 
@@ -17,10 +17,22 @@
             <th>
                 <div class="custom-select ff-hack">
 
-                    <select>
+                    <select ng-model="transactionYear">
                         <option value='2015'>Expenditure in 2015</option>
                         <option value='2014'>Expenditure in 2014</option>
                         <option value='2013'>Expenditure in 2013</option>
+                        <option value='2012'>Expenditure in 2012</option>
+                        <option value='2011'>Expenditure in 2011</option>
+                        <option value='2010'>Expenditure in 2010</option>
+                        <option value='2009'>Expenditure in 2009</option>
+                        <option value='2008'>Expenditure in 2008</option>
+                        <option value='2007'>Expenditure in 2007</option>
+                        <option value='2006'>Expenditure in 2006</option>
+                        <option value='2005'>Expenditure in 2005</option>
+                        <option value='2004'>Expenditure in 2004</option>
+                        <option value='2003'>Expenditure in 2003</option>
+                        <option value='2002'>Expenditure in 2002</option>
+                        <option value='2001'>Expenditure in 2001</option>
                     </select>
 
                 </div>
@@ -29,9 +41,9 @@
                 <label class="wrapper">
                     <div class="custom-select ff-hack">
 
-                        <select>
-                            <option value=''>Active projects</option>
-                            <option value=''>Completed projects</option>
+                        <select ng-model="activityStatus">
+                            <option value='2'>Active projects</option>
+                            <option value='3,4'>Completed projects</option>
                         </select>
 
                     </div>
@@ -44,7 +56,9 @@
 <!--         	<td class="colour"><div></div></td>
  -->        <td>
             	<span class="no">{{$index + 1}}.</span>
-            	<a ui-sref="country({ country_id: item.country_id })">
+
+            	<!-- <a ui-sref="country({ country_id: item.country_id })"> -->
+                <a ng-href="{{vm.homeUrl+'/'+groupSref+'/'+item.id+'/'}}">
 	            	<span ng-if="item.country_id" class="flag-icon flag-icon-{{item.country_id | lowercase }}"></span><span>{{item.name}}</span>
             	</a>
             </td>

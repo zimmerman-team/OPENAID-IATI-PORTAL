@@ -45,12 +45,15 @@
                     aggregation-filters='vm.tableChartOptions.aggregationFilters' 
                     group-by='vm.tableChartOptions.groupBy' 
                     group-by-id='vm.tableChartOptions.groupById' 
+                    group-sref='vm.tableChartOptions.groupSref' 
                     aggregation-key='vm.tableChartOptions.aggregationKey' 
                     aggregation-extra-select='vm.tableChartOptions.aggregationExtraSelect' 
                     aggregation-extra-select-in='vm.tableChartOptions.aggregationExtraSelectIn' 
                     refresh-data='vm.refreshTableChart' 
-                    shown-ids='vm.shownIds'
-                    top-five='vm.top5'
+                    shown-ids='vm.shownIds' 
+                    top-five='vm.top5' 
+                    activity-status='vm.activityStatus' 
+                    transaction-year='vm.transactionYear' 
                 ></oipa-table-chart>
 
             </div>
@@ -61,14 +64,15 @@
             <div class="hp-block wit">
              <oipa-line-chart 
                 aggregation-filters='vm.shownIds' 
+                has-to-contain='activity_status' 
                 group-by='vm.lineChartOptions.groupBy' 
                 group-by-id='vm.lineChartOptions.groupById' 
                 aggregation-key='disbursement' 
                 chart-x-axis='' 
-                chart-y-axis='Expenditure'
+                chart-y-axis='Expenditure' 
                 chart-y-axis-euro-format='true' 
                 chart-x-axis-stagger-labels='false' 
-                chart-type='lineChart'
+                chart-type='multiBarChart' 
                 axis-label-distance='28'></oipa-line-chart>
             </div>
         </div>

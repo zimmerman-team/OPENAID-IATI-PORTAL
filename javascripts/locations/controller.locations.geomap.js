@@ -168,7 +168,7 @@
                   '<p><b>Activities:</b> '+vm.countryMarkerData[i]['activity_count']+'</p>'+
                   '<p><b>Total expenditure:</b> '+ $filter('shortcurrency')(vm.countryMarkerData[i]['total_disbursements'],'€') +'</p>'+
                   '<p><b>Relationship type:</b> '+partnerType+'</p>'+
-                  '<a class="btn btn-default" href="'+homeUrl+'/landen/'+vm.countryMarkerData[i].country_id+'/">Go to country overview</a>';
+                  '<a class="btn btn-default" href="'+homeUrl+'/countries/'+vm.countryMarkerData[i].country_id+'/">Go to country overview</a>';
 
             if(vm.markers[vm.countryMarkerData[i].country_id] === undefined){
               if(vm.countryMarkerData[i].location != null){

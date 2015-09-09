@@ -23,6 +23,7 @@
     vm.aggregationKey = $scope.aggregationKey;
     vm.aggregationKeyId = $scope.aggregationKeyId;
     vm.aggregationFilters = $scope.aggregationFilters;
+    vm.hasToContain = $scope.hasToContain;
     vm.xAxis = $scope.chartXAxis;
     vm.yAxis = $scope.chartYAxis;
     vm.chartType = $scope.chartType;
@@ -112,6 +113,13 @@
       }
       
       $scope.$watch('aggregationFilters', function (aggregationFilters) {
+
+        if(vm.hasToContain != undefined){
+          if(aggregationFilters.indexOf(vm.hasToContain) < 0){
+            return false;
+          }
+        }
+
         vm.groupBy = $scope.groupBy;
         vm.groupById = $scope.groupById;
         vm.aggregationFilters = aggregationFilters;
@@ -141,6 +149,54 @@
 
       var formattedData = [];
       for (var key in mappedData){
+        formattedData.push(mappedData[key]);
+      }
+
+      return formattedData;
+    }
+
+    vm.multiBarChartReformatData = function(data){
+
+      var mappedData = {};
+
+      for (var i = 0; i < data.length;i++){
+        if(mappedData[data[i][vm.groupById]] === undefined){
+          mappedData[data[i][vm.groupById]] = {
+            key: data[i]['name'],
+            values: {},
+          }
+        }
+
+        mappedData[data[i][vm.groupById]].values[data[i]['transaction_date_year']] = data[i]['total_disbursements'];
+      }
+
+      var min = 2100;
+      var max = 1900;
+
+      // define min max
+      for (var key in mappedData){
+        for(var ikey in mappedData[key].values){
+          if(ikey < min){min = ikey;}
+          if(ikey > max){max = ikey;}
+        }
+      }
+
+      for (var key in mappedData){
+        for(var i = min;i < max;i++){
+          if(mappedData[key].values[i] == undefined){
+            mappedData[key].values[i] = 0;
+          }
+        }
+      }
+
+      var formattedData = [];
+      for (var key in mappedData){
+        var values = [];
+        for (var ikey in mappedData[key].values){
+          values.push([ikey,mappedData[key].values[ikey]]);
+        }
+        mappedData[key].values = values;
+
         formattedData.push(mappedData[key]);
       }
 
