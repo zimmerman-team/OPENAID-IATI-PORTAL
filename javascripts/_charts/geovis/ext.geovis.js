@@ -22,9 +22,10 @@ ZzLocationVis = (function() {
 
     this.vis = null;
     this.vis_id = id;
-    this.layout_gravity = -0.001;
+    this.layout_gravity = 0;
+    this.charge = -40;
     this.damper = 0.05;
-    this.friction = 0.75;
+    this.friction = 0.8;
     this.forces = d3.layout.force();
     this.circles = [];
     this.nodes = [];
@@ -33,22 +34,22 @@ ZzLocationVis = (function() {
     this.mappingData = null;
 
     this.group_centers = {
-      "89": { x: 350, y: 600, 'color': '#F6A000'},
+      "89": { x: 350, y: 750, 'color': '#F6A000'},
       "298": { x: 350, y: 150, 'color': '#5598B5'},
       "189": { x: 350, y: 150, 'color': '#5598B5'},
       "289": { x: 350, y: 150, 'color': '#A6E4F4'},
-      "498": { x: 350, y: 300, 'color': '#00BA96'},
-      "380": { x: 350, y: 300, 'color': '#14EFC5'},
-      "389": { x: 350, y: 300, 'color': '#C2FFF3'},
-      "489": { x: 350, y: 300, 'color': '#C2FFF3'},
-      "798": { x: 350, y: 450, 'color': '#4A671E'},
-      "589": { x: 350, y: 450, 'color': '#8DB746'},
-      "619": { x: 350, y: 450, 'color': '#C1F460'},
-      "689": { x: 350, y: 450, 'color': '#ABDD1F'},
-      "679": { x: 350, y: 450, 'color': '#EDFFC5'},
-      "789": { x: 350, y: 450, 'color': '#EDFFC5'},
-      "889": { x: 350, y: 750, 'color': '#EDFFC5'},
-      "998": { x: 350, y: 750, 'color': '#FF7373'},
+      "498": { x: 350, y: 350, 'color': '#00BA96'},
+      "380": { x: 350, y: 350, 'color': '#14EFC5'},
+      "389": { x: 350, y: 350, 'color': '#C2FFF3'},
+      "489": { x: 350, y: 350, 'color': '#C2FFF3'},
+      "798": { x: 350, y: 550, 'color': '#4A671E'},
+      "589": { x: 350, y: 550, 'color': '#8DB746'},
+      "619": { x: 350, y: 550, 'color': '#C1F460'},
+      "689": { x: 350, y: 550, 'color': '#ABDD1F'},
+      "679": { x: 350, y: 550, 'color': '#EDFFC5'},
+      "789": { x: 350, y: 550, 'color': '#EDFFC5'},
+      "889": { x: 350, y: 950, 'color': '#EDFFC5'},
+      "998": { x: 350, y: 950, 'color': '#FF7373'},
     };
 
     // init vis
@@ -195,9 +196,13 @@ ZzLocationVis = (function() {
       .attr('fill-opacity', 1)
       .attr('stroke-width', 0);
 
-      this.countries = this.vis.append('g')
-        .attr('class', 'countries')
-        .attr('transform', 'translate(0,0)');
+    this.regions_wrap = this.vis.append('g')
+      .attr('class', 'regions-wrap')
+      .attr('transform', 'translate(0,-20)');
+
+    this.countries = this.vis.append('g')
+      .attr('class', 'countries')
+      .attr('transform', 'translate(0,-30)');
   };
   
 
@@ -209,7 +214,7 @@ ZzLocationVis = (function() {
     function setHiddenChildrenPosition(d, i){
       if(d._children){
         for (var y = 0;y < d._children.length;y++){
-          that.group_centers[d._children[y].id]['y'] = 200 + (i * 150);
+          that.group_centers[d._children[y].id]['y'] = 180 + (i * 190);
           setHiddenChildrenPosition(d._children[y], i);
         }
       }
@@ -219,37 +224,56 @@ ZzLocationVis = (function() {
     var nodes = that.mapping(that.mappingData).slice(1);
 
     // Update the nodes…
-    var node = this.vis.selectAll("g.region")
+    var node = this.regions_wrap.selectAll("g.region")
         .data(nodes, function(d) { return d.id; });
 
     
     // Enter any new nodes
     var nodeEnter = node.enter().append("g")
-        .attr("class", "region")
-        .on("click", that.clickRegion);
+        .attr("class", "region");
 
-      nodeEnter
+    //white bg
+    var nodeEnterBg = nodeEnter.append('g')
+      .attr("class", "background");
+
+    nodeEnterBg
+      .insert('rect')
+      .attr('class','bg')
+      .attr('width', 740)
+      .attr('height', 200)
+      .attr('x', -15)
+      .attr('y', -130)
+      .attr('fill', '#fff')
+      .attr('fill-opacity', 0.3);
+
+    //region name, clickable
+
+    var nodeEnterClick = nodeEnter.append('g')
+        .attr('class','clickme')
+        .on("click", that.clickRegion);    
+
+      nodeEnterClick
         .append('text')
         .attr('x', function(d){ return 10 + ((d.depth - 1) * 15); })
-        .attr('y', -14)
+        .attr('y', -54)
         .attr('font-size', '17px')
         .attr('fill', '#444')
         .attr('style', 'text-anchor: start;')
         .text(function(d){ return d.name; })
         .each(function(d){ d.textWidth = this.getBBox().width; });
 
-      nodeEnter
+      nodeEnterClick
         .append("svg:path")
         .attr("d", d3.svg.symbol().type("triangle-up"))
-        .attr("transform", function(d) { return "translate(" +  (((d.depth - 1) * 15) + d.textWidth + 24) + ","+ -19 + ") rotate(90)"; })
+        .attr("transform", function(d) { return "translate(" +  (((d.depth - 1) * 15) + d.textWidth + 24) + ","+ -59 + ") rotate(90)"; })
         .style("fill", "#444");
 
-      nodeEnter
+      nodeEnterClick
         .insert('rect', ':first-child')
         .attr('width', function(d){ return d.textWidth + 36; })
         .attr('height', 26)
         .attr('x', function(d){ return 0 + ((d.depth - 1) * 15); })
-        .attr('y', -32)
+        .attr('y', -72)
         .attr('rx', 10)
         .attr('ry', 10)
         .attr('fill', '#fff');
@@ -261,13 +285,13 @@ ZzLocationVis = (function() {
       nodeEnterLegend
         .append('circle')
         .attr('cx', function(d){ return 12 + ((d.depth - 1) * 15); })
-        .attr('cy', 11)
+        .attr('cy', -29)
         .attr('r', 4)
         .attr('fill', function(d){return d.color; });
       nodeEnterLegend
         .append('text')
         .attr('x', function(d){ return 25 + ((d.depth - 1) * 15); })
-        .attr('y', 16)
+        .attr('y', -24)
         .attr('font-size', '15px')
         .attr('fill', '#444')
         .attr('style', 'text-anchor: start;')
@@ -278,7 +302,7 @@ ZzLocationVis = (function() {
         .attr('width', function(d){ return d.textWidth + 37; })
         .attr('height', 20)
         .attr('x', function(d){ return 0 + ((d.depth - 1) * 15); })
-        .attr('y', 1)
+        .attr('y', -39)
         .attr('rx', 10)
         .attr('ry', 10)
         .attr('fill', '#fff');
@@ -286,13 +310,13 @@ ZzLocationVis = (function() {
       nodeEnterLegend
         .append('circle')
         .attr('cx', function(d){ return 12 + ((d.depth - 1) * 15); })
-        .attr('cy', 36)
+        .attr('cy', -4)
         .attr('r', 6)
         .attr('fill', function(d){return shadeBlend(-0.6,d.color); });
       nodeEnterLegend
         .append('text')
         .attr('x', function(d){ return 25 + ((d.depth - 1) * 15); })
-        .attr('y', 41)
+        .attr('y', 1)
         .attr('font-size', '15px')
         .attr('fill', '#444')
         .attr('style', 'text-anchor: start;')
@@ -303,7 +327,7 @@ ZzLocationVis = (function() {
         .attr('width', function(d){ return d.textWidth + 37; })
         .attr('height', 20)
         .attr('x', function(d){ return 0 + ((d.depth - 1) * 15); })
-        .attr('y', 26)
+        .attr('y', -14)
         .attr('rx', 10)
         .attr('ry', 10)
         .attr('fill', '#fff');
@@ -318,20 +342,23 @@ ZzLocationVis = (function() {
       .duration(750)
 
       .attr("transform", function(d, i) { 
-        
+          
           if( ( d.depth != 1 && lastDepth == 1 ) || ( d.depth == 3 && lastDepth == 2) ) {
             y += 60;
           } else {
-            y += 140;
+            y += 200;
           }
 
           lastDepth = d.depth;
 
+          d.groupHeight = y;
+          console.log(d.groupHeight);
         return "translate(15," + y + ")"; 
       })
       .each(function(d,i){ 
-        that.group_centers[d.id]['y'] = 200 + (i * 150);
+        that.group_centers[d.id]['y'] = d.groupHeight - 20;
         setHiddenChildrenPosition(d, i);
+        console.log(d.groupHeight);
       });
 
     nodeUpdate.select("circle")
@@ -341,10 +368,51 @@ ZzLocationVis = (function() {
     nodeUpdate.select("text")
         .style("fill-opacity", 1);
 
+    //bg adjust on expanded
+    nodeUpdate.select("rect.bg")
+        .attr('height', function(d,i) {
+          if( 
+            ( d.id == 298 ||
+              d.id == 498 ||
+              d.id == 798) && !d._children ) {
+            return "90";
+          }
+          else if ( 
+            d.id == 189 ||
+            d.id == 380 ||
+            d.id == 589 ||
+            d.id == 689 ) {
+            return "170";
+          }
+          else if ((d.id == 619 && d._children) || d.id == 489) {
+            return "200";
+          }
+          else if (d.id == 619 && !d._children) {
+            return "100";
+          }
+          else {
+            return "190";
+          }
+        })
+        .attr('y', function(d,i){
+          if ( 
+            d.id == 189 ||
+            d.id == 380 ||
+            d.id == 589 ||
+            d.id == 689 ) {
+            return "-100";
+          }
+          else if (d.id == 619 || d.id == 489 ) {
+            return "-140";
+          }
+          else {
+            return "-130";
+          }
+        });
+
+    //hide legend if expanded with children
     nodeUpdate.select("g.legend")
         .attr("opacity", function(d, i) { 
-          console.log(d);
-
           if( 
             ( d.id == 298 ||
               d.id == 498 ||
@@ -353,7 +421,7 @@ ZzLocationVis = (function() {
             return "0";
           }
 
-        });
+        });        
 
     // Transition exiting nodes to the parent's position.
     var nodeExit = node.exit().transition()
@@ -499,6 +567,7 @@ ZzLocationVis = (function() {
       .gravity(this.layout_gravity)
       .charge(this.charge)
       .friction(this.friction)
+      .chargeDistance(0)
       .on("tick", (function(_this) {
       return function(e) {
         return _this.circles

@@ -4638,7 +4638,7 @@ Search suggest box
 Tab geo chart vis 
 *********************/
 /* line 1595, ../scss/breakpoints/_base.scss */
-#geovis-0 .region {
+#geovis-0 .clickme {
   cursor: pointer;
 }
 
