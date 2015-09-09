@@ -122,8 +122,8 @@
             lng: parseInt(location[0]),
             message: '<span class="flag-icon flag-icon-'+flag_lc+'"></span>'+
                 '<h4>'+country.name+'</h4>'+
-                '<p><b>Type relatie:</b> '+partnerType+'</p>'+
-                '<a class="btn btn-default" href="'+homeUrl+'/landen/'+country.code+'/">Ga naar overzicht land</a>',
+                '<p><b>Relationship type:</b> '+partnerType+'</p>'+
+                '<a class="btn btn-default" href="'+homeUrl+'/landen/'+country.code+'/">Go to country overview</a>',
             icon: vm.markerIcons[partnerType],
         }
       }
