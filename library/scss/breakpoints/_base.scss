@@ -1880,6 +1880,41 @@ ACTIVITY LIST
       }
     }
   }
+  //hierarchie
+  .expandme {
+    width: 25px;
+    display: inline-block;
+    cursor: pointer;
+    color:$oranje;
+    transition: all .3s;
+    &:hover {
+      color:darken($oranje, 15%);
+    }
+  }
+  &.collapsed {
+    .expandme {
+      &:before {
+        font-family: FontAwesome;
+        content: "\f0da";
+      }
+    }
+  }
+  &.expanded {
+    .expandme {
+      &:before {
+        font-family: FontAwesome;
+        content: "\f0d7";
+      }
+    }
+  }
+  .children {
+    .left-pad {
+      padding-left:25px;
+    }
+    h3 {
+      font-size:20px;
+    }
+  }
 }
 
 .pag {

@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /******************************************************************
 Site Name:
 Author:
@@ -26,7 +27,7 @@ the whole project.
 /**
  * Correct `block` display not defined in IE 8/9.
  */
-/* line 23, ../scss/partials/_normalize.scss */
+/* line 12, ../scss/partials/_normalize.scss */
 article,
 aside,
 details,
@@ -45,7 +46,7 @@ summary {
 /**
  * Correct `inline-block` display not defined in IE 8/9.
  */
-/* line 33, ../scss/partials/_normalize.scss */
+/* line 31, ../scss/partials/_normalize.scss */
 audio,
 canvas,
 video {
@@ -66,7 +67,7 @@ audio:not([controls]) {
  * Address `[hidden]` styling not present in IE 8/9.
  * Hide the `template` element in IE, Safari, and Firefox < 22.
  */
-/* line 53, ../scss/partials/_normalize.scss */
+/* line 52, ../scss/partials/_normalize.scss */
 [hidden],
 template {
   display: none;
@@ -120,7 +121,7 @@ a:focus {
 /**
  * Improve readability when focused and also mouse hovered in all browsers.
  */
-/* line 106, ../scss/partials/_normalize.scss */
+/* line 105, ../scss/partials/_normalize.scss */
 a:active,
 a:hover {
   outline: 0;
@@ -150,7 +151,7 @@ abbr[title] {
 /**
  * Address style set to `bolder` in Firefox 4+, Safari 5, and Chrome.
  */
-/* line 138, ../scss/partials/_normalize.scss */
+/* line 136, ../scss/partials/_normalize.scss */
 b,
 strong,
 .strong {
@@ -160,7 +161,7 @@ strong,
 /**
  * Address styling not present in Safari 5 and Chrome.
  */
-/* line 148, ../scss/partials/_normalize.scss */
+/* line 146, ../scss/partials/_normalize.scss */
 dfn,
 em,
 .em {
@@ -199,7 +200,7 @@ pre {
 /**
  * Correct font family set oddly in Safari 5 and Chrome.
  */
-/* line 188, ../scss/partials/_normalize.scss */
+/* line 185, ../scss/partials/_normalize.scss */
 code,
 kbd,
 pre,
@@ -227,7 +228,7 @@ q {
 /**
  * Address inconsistent and variable font size in all browsers.
  */
-/* line 213, ../scss/partials/_normalize.scss */
+/* line 212, ../scss/partials/_normalize.scss */
 q:before,
 q:after {
   content: '';
@@ -242,7 +243,7 @@ small, .small {
 /**
  * Prevent `sub` and `sup` affecting `line-height` in all browsers.
  */
-/* line 227, ../scss/partials/_normalize.scss */
+/* line 226, ../scss/partials/_normalize.scss */
 sub,
 sup {
   font-size: 75%;
@@ -267,7 +268,7 @@ sub {
 /*
  * Addresses margins set differently in IE6/7.
  */
-/* line 253, ../scss/partials/_normalize.scss */
+/* line 250, ../scss/partials/_normalize.scss */
 dl,
 menu,
 ol,
@@ -288,7 +289,7 @@ menu {
   padding: 0 0 0 40px;
 }
 
-/* line 270, ../scss/partials/_normalize.scss */
+/* line 269, ../scss/partials/_normalize.scss */
 ol,
 ul {
   padding: 0;
@@ -298,7 +299,7 @@ ul {
 /*
  * Corrects list images handled incorrectly in IE7.
  */
-/* line 280, ../scss/partials/_normalize.scss */
+/* line 279, ../scss/partials/_normalize.scss */
 nav ul,
 nav ol {
   list-style: none;
@@ -365,7 +366,7 @@ legend {
  * 2. Correct font size not being inherited in all browsers.
  * 3. Address margins set differently in Firefox 4+, Safari 5, and Chrome.
  */
-/* line 350, ../scss/partials/_normalize.scss */
+/* line 347, ../scss/partials/_normalize.scss */
 button,
 input,
 select,
@@ -382,7 +383,7 @@ textarea {
  * Address Firefox 4+ setting `line-height` on `input` using `!important` in
  * the UA stylesheet.
  */
-/* line 362, ../scss/partials/_normalize.scss */
+/* line 361, ../scss/partials/_normalize.scss */
 button,
 input {
   line-height: normal;
@@ -394,7 +395,7 @@ input {
  * Correct `button` style inheritance in Chrome, Safari 5+, and IE 8+.
  * Correct `select` style inheritance in Firefox 4+ and Opera.
  */
-/* line 374, ../scss/partials/_normalize.scss */
+/* line 373, ../scss/partials/_normalize.scss */
 button,
 select {
   text-transform: none;
@@ -407,7 +408,7 @@ select {
  * 3. Improve usability and consistency of cursor style between image-type
  *    `input` and others.
  */
-/* line 389, ../scss/partials/_normalize.scss */
+/* line 386, ../scss/partials/_normalize.scss */
 button,
 html input[type="button"],
 input[type="reset"],
@@ -421,7 +422,7 @@ input[type="submit"] {
 /**
  * Re-set default cursor for disabled elements.
  */
-/* line 399, ../scss/partials/_normalize.scss */
+/* line 398, ../scss/partials/_normalize.scss */
 button[disabled],
 html input[disabled] {
   cursor: default;
@@ -431,7 +432,7 @@ html input[disabled] {
  * 1. Address box sizing set to `content-box` in IE 8/9/10.
  * 2. Remove excess padding in IE 8/9/10.
  */
-/* line 409, ../scss/partials/_normalize.scss */
+/* line 408, ../scss/partials/_normalize.scss */
 input[type="checkbox"],
 input[type="radio"] {
   box-sizing: border-box;
@@ -459,7 +460,7 @@ input[type="search"] {
  * Remove inner padding and search cancel button in Safari 5 and Chrome
  * on OS X.
  */
-/* line 433, ../scss/partials/_normalize.scss */
+/* line 432, ../scss/partials/_normalize.scss */
 input[type="search"]::-webkit-search-cancel-button,
 input[type="search"]::-webkit-search-decoration {
   -webkit-appearance: none;
@@ -468,7 +469,7 @@ input[type="search"]::-webkit-search-decoration {
 /**
  * Remove inner padding and border in Firefox 4+.
  */
-/* line 442, ../scss/partials/_normalize.scss */
+/* line 441, ../scss/partials/_normalize.scss */
 button::-moz-focus-inner,
 input::-moz-focus-inner {
   border: 0;
@@ -506,7 +507,7 @@ table {
   box-sizing: border-box;
 }
 
-/* line 480, ../scss/partials/_normalize.scss */
+/* line 479, ../scss/partials/_normalize.scss */
 .image-replacement,
 .ir {
   text-indent: 100%;
@@ -593,7 +594,6 @@ FONT FACE
   font-weight: normal;
   font-style: normal;
 }
-
 /*
 The following is based of Typebase:
 https://github.com/devinhunt/typebase.css
@@ -3129,7 +3129,7 @@ probably best not to use it. I mean, were you going to anyway? */
   height: 8px;
   top: 50%;
   right: .7em;
-  margin-top: -0.8em;
+  margin-top: -.8em;
   font-family: 'FontAwesome';
   z-index: 2;
   /* This hack make the select behind the arrow clickable in some browsers */
@@ -3197,7 +3197,6 @@ x:-o-prefocus, .custom-select::after {
     width: calc(100% + em);
   }
 }
-
 /* Firefox focus has odd artifacts around the text, this kills that. See https://developer.mozilla.org/en-US/docs/Web/CSS/:-moz-focusring */
 /* line 116, ../scss/partials/_select.scss */
 .custom-select select:-moz-focusring {
@@ -4747,7 +4746,7 @@ Sunburst vis
   width: 0;
   position: absolute;
   pointer-events: none;
-  border-color: rgba(0, 0, 0, 0);
+  border-color: transparent;
   border-top-color: #fff;
   border-width: 10px;
   margin-left: -10px;
@@ -4829,7 +4828,7 @@ SLIDER TOOLTIP
 }
 /* line 1789, ../scss/breakpoints/_base.scss */
 .slide .tooltip .tooltip-inner:before {
-  content: '\20AC\2008';
+  content: "€ ";
 }
 /* line 1793, ../scss/breakpoints/_base.scss */
 .slide .tooltip.top {
@@ -4934,13 +4933,43 @@ ACTIVITY LIST
 .activity-list-item .hp-block.header p {
   margin-bottom: 0;
 }
+/* line 1884, ../scss/breakpoints/_base.scss */
+.activity-list-item .expandme {
+  width: 25px;
+  display: inline-block;
+  cursor: pointer;
+  color: #f15a24;
+  transition: all .3s;
+}
+/* line 1890, ../scss/breakpoints/_base.scss */
+.activity-list-item .expandme:hover {
+  color: #bc3b0c;
+}
+/* line 1896, ../scss/breakpoints/_base.scss */
+.activity-list-item.collapsed .expandme:before {
+  font-family: FontAwesome;
+  content: "\f0da";
+}
+/* line 1904, ../scss/breakpoints/_base.scss */
+.activity-list-item.expanded .expandme:before {
+  font-family: FontAwesome;
+  content: "\f0d7";
+}
+/* line 1911, ../scss/breakpoints/_base.scss */
+.activity-list-item .children .left-pad {
+  padding-left: 25px;
+}
+/* line 1914, ../scss/breakpoints/_base.scss */
+.activity-list-item .children h3 {
+  font-size: 20px;
+}
 
-/* line 1885, ../scss/breakpoints/_base.scss */
+/* line 1920, ../scss/breakpoints/_base.scss */
 .pag {
   padding-bottom: 1em;
 }
 
-/* line 1920, ../scss/breakpoints/_base.scss */
+/* line 1955, ../scss/breakpoints/_base.scss */
 .finance thead {
   border-top: 1px solid #666666;
   border-bottom: 1px solid #666666;
@@ -4949,7 +4978,7 @@ ACTIVITY LIST
 /*********************
 FOOTER
 *********************/
-/* line 1932, ../scss/breakpoints/_base.scss */
+/* line 1967, ../scss/breakpoints/_base.scss */
 footer {
   background-color: #333;
   color: #fff;
@@ -4957,25 +4986,25 @@ footer {
   padding-bottom: 35px;
   margin-top: 50px;
 }
-/* line 1939, ../scss/breakpoints/_base.scss */
+/* line 1974, ../scss/breakpoints/_base.scss */
 footer a {
   color: #fff;
   text-decoration: underline;
 }
-/* line 1944, ../scss/breakpoints/_base.scss */
+/* line 1979, ../scss/breakpoints/_base.scss */
 footer .row {
   text-align: center;
 }
-/* line 1947, ../scss/breakpoints/_base.scss */
+/* line 1982, ../scss/breakpoints/_base.scss */
 footer h1 {
   margin-bottom: 6px;
 }
-/* line 1950, ../scss/breakpoints/_base.scss */
+/* line 1985, ../scss/breakpoints/_base.scss */
 footer img {
   max-width: 100%;
 }
 
-/* line 1957, ../scss/breakpoints/_base.scss */
+/* line 1992, ../scss/breakpoints/_base.scss */
 .ic {
   display: inline-block;
   font-family: 'iconscustom';
@@ -4987,28 +5016,28 @@ footer img {
   -moz-osx-font-smoothing: grayscale;
   transform: translate(0, 0);
 }
-/* line 1967, ../scss/breakpoints/_base.scss */
+/* line 2002, ../scss/breakpoints/_base.scss */
 .ic.ic-globe:before {
   content: "A";
 }
-/* line 1970, ../scss/breakpoints/_base.scss */
+/* line 2005, ../scss/breakpoints/_base.scss */
 .ic.ic-map:before {
   content: "@";
 }
 
-/* line 1976, ../scss/breakpoints/_base.scss */
+/* line 2011, ../scss/breakpoints/_base.scss */
 .map-holder {
   background-color: rgba(41, 171, 226, 0.3);
   position: relative;
   padding: 15px;
   margin-bottom: 15px;
 }
-/* line 1981, ../scss/breakpoints/_base.scss */
+/* line 2016, ../scss/breakpoints/_base.scss */
 .map-holder h3 {
   margin-top: 0;
 }
 
-/* line 1989, ../scss/breakpoints/_base.scss */
+/* line 2024, ../scss/breakpoints/_base.scss */
 .map-switch {
   position: absolute;
   top: 3px;
@@ -5016,68 +5045,68 @@ footer img {
   width: 220px;
   z-index: 99;
 }
-/* line 1995, ../scss/breakpoints/_base.scss */
+/* line 2030, ../scss/breakpoints/_base.scss */
 .map-switch .custom-select {
   border-color: #ccc;
 }
-/* line 1999, ../scss/breakpoints/_base.scss */
+/* line 2034, ../scss/breakpoints/_base.scss */
 .map-switch select {
   font-size: 16px;
   font-weight: 600;
   padding-left: 10px;
 }
 
-/* line 2006, ../scss/breakpoints/_base.scss */
+/* line 2041, ../scss/breakpoints/_base.scss */
 .no-padding {
   padding: 0;
 }
 
-/* line 2009, ../scss/breakpoints/_base.scss */
+/* line 2044, ../scss/breakpoints/_base.scss */
 .no-top {
   margin-top: 0;
 }
 
-/* line 2013, ../scss/breakpoints/_base.scss */
+/* line 2048, ../scss/breakpoints/_base.scss */
 .top5 {
   margin-bottom: 15px;
 }
-/* line 2015, ../scss/breakpoints/_base.scss */
+/* line 2050, ../scss/breakpoints/_base.scss */
 .top5 a {
   color: #222;
 }
-/* line 2017, ../scss/breakpoints/_base.scss */
+/* line 2052, ../scss/breakpoints/_base.scss */
 .top5 a:hover {
   color: #f15a24;
 }
-/* line 2021, ../scss/breakpoints/_base.scss */
+/* line 2056, ../scss/breakpoints/_base.scss */
 .top5 .flag-icon {
   margin: 0 8px 0px 10px;
 }
-/* line 2024, ../scss/breakpoints/_base.scss */
+/* line 2059, ../scss/breakpoints/_base.scss */
 .top5 .no {
   width: 17px;
   display: inline-block;
 }
-/* line 2028, ../scss/breakpoints/_base.scss */
+/* line 2063, ../scss/breakpoints/_base.scss */
 .top5 .nvd3-svg {
   background-color: #fff;
   padding-top: 10px;
 }
-/* line 2032, ../scss/breakpoints/_base.scss */
+/* line 2067, ../scss/breakpoints/_base.scss */
 .top5 table {
   margin-bottom: 0;
 }
-/* line 2034, ../scss/breakpoints/_base.scss */
+/* line 2069, ../scss/breakpoints/_base.scss */
 .top5 table th {
   font-weight: 600;
 }
-/* line 2039, ../scss/breakpoints/_base.scss */
+/* line 2074, ../scss/breakpoints/_base.scss */
 .top5 table tbody tr td {
   padding-left: 10px;
   padding-right: 10px;
 }
 
-/* line 2048, ../scss/breakpoints/_base.scss */
+/* line 2083, ../scss/breakpoints/_base.scss */
 .marker-circle {
   border-radius: 22px;
   font-size: 15px;
@@ -5085,57 +5114,57 @@ footer img {
   height: 22px;
 }
 
-/* line 2057, ../scss/breakpoints/_base.scss */
+/* line 2092, ../scss/breakpoints/_base.scss */
 .legend .kleur-2 .fa.kleur {
   color: #cf2026;
 }
 
-/* line 2060, ../scss/breakpoints/_base.scss */
+/* line 2095, ../scss/breakpoints/_base.scss */
 .legend .kleur-3 .fa.kleur {
   color: #4b672f;
 }
 
-/* line 2063, ../scss/breakpoints/_base.scss */
+/* line 2098, ../scss/breakpoints/_base.scss */
 .legend .kleur-4 .fa.kleur {
   color: #f4a01d;
 }
 
-/* line 2066, ../scss/breakpoints/_base.scss */
+/* line 2101, ../scss/breakpoints/_base.scss */
 .legend .kleur-5 .fa.kleur {
   color: #927fba;
 }
 
-/* line 2070, ../scss/breakpoints/_base.scss */
+/* line 2105, ../scss/breakpoints/_base.scss */
 .marker-circle-Overgangsrelatie {
   background-color: rgba(207, 32, 38, 0.8);
 }
 
-/* line 2074, ../scss/breakpoints/_base.scss */
+/* line 2109, ../scss/breakpoints/_base.scss */
 .marker-circle-EXITrelatie {
   background-color: rgba(75, 103, 47, 0.8);
 }
 
-/* line 2078, ../scss/breakpoints/_base.scss */
+/* line 2113, ../scss/breakpoints/_base.scss */
 .marker-circle-Hulprelatie {
   background-color: rgba(63, 169, 245, 0.8);
 }
 
-/* line 2082, ../scss/breakpoints/_base.scss */
+/* line 2117, ../scss/breakpoints/_base.scss */
 .marker-circle-Handelsrelatie {
   background-color: rgba(244, 160, 29, 0.8);
 }
 
-/* line 2086, ../scss/breakpoints/_base.scss */
+/* line 2121, ../scss/breakpoints/_base.scss */
 .marker-circle-Overige {
   background-color: rgba(146, 127, 186, 0.8);
 }
 
-/* line 2089, ../scss/breakpoints/_base.scss */
+/* line 2124, ../scss/breakpoints/_base.scss */
 .marker-circle-Overige2 {
   background-color: rgba(50, 50, 50, 0.8);
 }
 
-/* line 2093, ../scss/breakpoints/_base.scss */
+/* line 2128, ../scss/breakpoints/_base.scss */
 .tab {
   font-size: 24px;
   text-align: center;
@@ -5144,16 +5173,16 @@ footer img {
   cursor: pointer;
   transition: all .2s;
 }
-/* line 2100, ../scss/breakpoints/_base.scss */
+/* line 2135, ../scss/breakpoints/_base.scss */
 .tab.active, .tab:hover {
   background: rgba(41, 171, 226, 0.3);
 }
-/* line 2103, ../scss/breakpoints/_base.scss */
+/* line 2138, ../scss/breakpoints/_base.scss */
 .tab.active {
   cursor: auto;
 }
 
-/* line 2108, ../scss/breakpoints/_base.scss */
+/* line 2143, ../scss/breakpoints/_base.scss */
 .info {
   text-align: left;
   float: right;
@@ -5162,86 +5191,86 @@ footer img {
   padding: 10px;
   margin-bottom: 15px;
 }
-/* line 2115, ../scss/breakpoints/_base.scss */
+/* line 2150, ../scss/breakpoints/_base.scss */
 .info p {
   margin-bottom: 0;
 }
-/* line 2118, ../scss/breakpoints/_base.scss */
+/* line 2153, ../scss/breakpoints/_base.scss */
 .info .flag-icon {
   font-size: 2.5em;
   border-radius: 4px;
 }
-/* line 2122, ../scss/breakpoints/_base.scss */
+/* line 2157, ../scss/breakpoints/_base.scss */
 .info .btn {
   margin-top: 10px;
 }
 
-/* line 2127, ../scss/breakpoints/_base.scss */
+/* line 2162, ../scss/breakpoints/_base.scss */
 .legend {
   text-align: center;
   margin-top: 10px;
   /*** custom checkboxes ***/
 }
-/* line 2130, ../scss/breakpoints/_base.scss */
+/* line 2165, ../scss/breakpoints/_base.scss */
 .legend .check {
   position: relative;
   display: inline-block;
 }
-/* line 2134, ../scss/breakpoints/_base.scss */
+/* line 2169, ../scss/breakpoints/_base.scss */
 .legend label {
   font-weight: normal;
   cursor: pointer;
 }
-/* line 2138, ../scss/breakpoints/_base.scss */
+/* line 2173, ../scss/breakpoints/_base.scss */
 .legend .labels {
   margin-left: 38px;
 }
-/* line 2141, ../scss/breakpoints/_base.scss */
+/* line 2176, ../scss/breakpoints/_base.scss */
 .legend h3 {
   font-size: 1.2em;
 }
-/* line 2144, ../scss/breakpoints/_base.scss */
+/* line 2179, ../scss/breakpoints/_base.scss */
 .legend .check {
   margin-right: 20px;
 }
-/* line 2146, ../scss/breakpoints/_base.scss */
+/* line 2181, ../scss/breakpoints/_base.scss */
 .legend .check:last-of-type {
   margin-right: 0;
 }
-/* line 2178, ../scss/breakpoints/_base.scss */
+/* line 2213, ../scss/breakpoints/_base.scss */
 .legend .faker {
   position: absolute;
   top: 4px;
 }
-/* line 2182, ../scss/breakpoints/_base.scss */
+/* line 2217, ../scss/breakpoints/_base.scss */
 .legend .fa.kleur {
   color: #29abe2;
 }
 
-/* line 2188, ../scss/breakpoints/_base.scss */
+/* line 2223, ../scss/breakpoints/_base.scss */
 .overlay {
   background: white;
   z-index: 99999;
   padding: 10px 10px;
   text-align: center;
 }
-/* line 2193, ../scss/breakpoints/_base.scss */
+/* line 2228, ../scss/breakpoints/_base.scss */
 .overlay table {
   margin: 0 auto;
 }
-/* line 2195, ../scss/breakpoints/_base.scss */
+/* line 2230, ../scss/breakpoints/_base.scss */
 .overlay table th {
   padding: 0 15px;
   font-size: 18px;
   font-weight: 600;
 }
-/* line 2200, ../scss/breakpoints/_base.scss */
+/* line 2235, ../scss/breakpoints/_base.scss */
 .overlay table td {
   padding: 5px 15px 0 15px;
   font-size: 18px;
 }
 
-/* line 2207, ../scss/breakpoints/_base.scss */
+/* line 2242, ../scss/breakpoints/_base.scss */
 .region-marker-circle {
   width: 200px;
   height: 200px;
@@ -5250,17 +5279,17 @@ footer img {
   background: rgba(40, 40, 40, 0.5);
 }
 
-/* line 2215, ../scss/breakpoints/_base.scss */
+/* line 2250, ../scss/breakpoints/_base.scss */
 .region-marker-circle:hover {
   background: rgba(241, 90, 36, 0.5);
 }
 
-/* line 2220, ../scss/breakpoints/_base.scss */
+/* line 2255, ../scss/breakpoints/_base.scss */
 .map .leaflet-div-icon {
   background: none;
   border: 0;
 }
-/* line 2224, ../scss/breakpoints/_base.scss */
+/* line 2259, ../scss/breakpoints/_base.scss */
 .map .leaflet-popup-content-wrapper {
   width: 280px;
   height: 280px;
@@ -5269,21 +5298,21 @@ footer img {
   padding: 20px;
   background-color: rgba(255, 255, 255, 0.9);
 }
-/* line 2233, ../scss/breakpoints/_base.scss */
+/* line 2268, ../scss/breakpoints/_base.scss */
 .map .leaflet-container a.btn {
   color: #fff;
   text-decoration: none;
   background: #333;
 }
-/* line 2237, ../scss/breakpoints/_base.scss */
+/* line 2272, ../scss/breakpoints/_base.scss */
 .map .leaflet-container a.btn:hover {
   background: #f15a24;
 }
-/* line 2242, ../scss/breakpoints/_base.scss */
+/* line 2277, ../scss/breakpoints/_base.scss */
 .map .leaflet-top, .map .leaflet-bottom {
   z-index: 9;
 }
-/* line 2245, ../scss/breakpoints/_base.scss */
+/* line 2280, ../scss/breakpoints/_base.scss */
 .map a.leaflet-popup-close-button {
   display: block;
   background: #fff;
@@ -5297,27 +5326,27 @@ footer img {
   font-weight: 700;
   box-shadow: 0 3px 15px rgba(0, 0, 0, 0.4);
 }
-/* line 2258, ../scss/breakpoints/_base.scss */
+/* line 2293, ../scss/breakpoints/_base.scss */
 .map p {
   margin: 0 0 2px;
   font-size: 1em;
 }
-/* line 2262, ../scss/breakpoints/_base.scss */
+/* line 2297, ../scss/breakpoints/_base.scss */
 .map .flag-icon {
   font-size: 2.5em;
   border-radius: 4px;
 }
-/* line 2266, ../scss/breakpoints/_base.scss */
+/* line 2301, ../scss/breakpoints/_base.scss */
 .map .btn {
   margin-top: 10px;
 }
 
-/* line 2271, ../scss/breakpoints/_base.scss */
+/* line 2306, ../scss/breakpoints/_base.scss */
 .no-margin {
   margin-bottom: 0 !important;
 }
 
-/* line 2275, ../scss/breakpoints/_base.scss */
+/* line 2310, ../scss/breakpoints/_base.scss */
 #toTop {
   display: none;
   position: fixed;
@@ -5329,56 +5358,56 @@ footer img {
 }
 
 @media (max-width: 1000px) {
-  /* line 2294, ../scss/breakpoints/_base.scss */
+  /* line 2329, ../scss/breakpoints/_base.scss */
   .navbar-header {
     float: none;
   }
 
-  /* line 2297, ../scss/breakpoints/_base.scss */
+  /* line 2332, ../scss/breakpoints/_base.scss */
   .navbar-left, .navbar-right {
     float: none !important;
   }
 
-  /* line 2300, ../scss/breakpoints/_base.scss */
+  /* line 2335, ../scss/breakpoints/_base.scss */
   .navbar-toggle {
     display: block;
   }
 
-  /* line 2303, ../scss/breakpoints/_base.scss */
+  /* line 2338, ../scss/breakpoints/_base.scss */
   .navbar-collapse {
     border-top: 1px solid transparent;
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
   }
 
-  /* line 2307, ../scss/breakpoints/_base.scss */
+  /* line 2342, ../scss/breakpoints/_base.scss */
   .navbar-fixed-top {
     top: 0;
     border-width: 0 0 1px;
   }
 
-  /* line 2311, ../scss/breakpoints/_base.scss */
+  /* line 2346, ../scss/breakpoints/_base.scss */
   .navbar-collapse.collapse {
-    display: none!important;
+    display: none !important;
   }
 
-  /* line 2314, ../scss/breakpoints/_base.scss */
+  /* line 2349, ../scss/breakpoints/_base.scss */
   .navbar-nav {
-    float: none!important;
+    float: none !important;
     margin-top: 7.5px;
   }
 
-  /* line 2318, ../scss/breakpoints/_base.scss */
+  /* line 2353, ../scss/breakpoints/_base.scss */
   .navbar-nav > li {
     float: none;
   }
 
-  /* line 2321, ../scss/breakpoints/_base.scss */
+  /* line 2356, ../scss/breakpoints/_base.scss */
   .navbar-nav > li > a {
     padding-top: 10px;
     padding-bottom: 10px;
   }
 
-  /* line 2325, ../scss/breakpoints/_base.scss */
+  /* line 2360, ../scss/breakpoints/_base.scss */
   .collapse.in {
     display: block !important;
   }
