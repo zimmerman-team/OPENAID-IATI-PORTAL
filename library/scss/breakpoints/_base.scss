@@ -108,9 +108,10 @@ html {
 }
 
 body{
-  /*background-color: #404040;*/
-  background-image: url('../../images/bg.jpg');
-  background-size: cover;
+  background-color: #F5F3F3;
+  /*background-image: url('../../images/bg.png');
+  background-size: auto;
+  background-repeat: repeat;*/
   color: $textstd;
   font-family: $titillium;
 }
