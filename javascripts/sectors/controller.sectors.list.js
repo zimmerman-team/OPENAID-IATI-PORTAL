@@ -9,12 +9,12 @@
     .module('oipa.sectors')
     .controller('SectorListController', SectorListController);
 
-  SectorListController.$inject = ['$scope', 'Aggregations', 'FilterSelection'];
+  SectorListController.$inject = ['$scope', 'Aggregations', 'FilterSelection', 'sectorMapping'];
 
   /**
-  * @namespace CountriesExploreController
+  * @namespace SectorListController
   */
-  function SectorListController($scope, Aggregations, FilterSelection) {
+  function SectorListController($scope, Aggregations, FilterSelection, sectorMapping) {
     var vm = this;
     vm.filterSelection = FilterSelection;
     vm.sectors = [];
@@ -44,6 +44,9 @@
           vm.busy = !shown ? true : false;
         }, true);
       }
+
+
+
     }
 
     vm.hasContains = function(){
@@ -94,7 +97,7 @@
       function errorFn(data, status, headers, config){
         console.warn('error getting data on lazy loading');
       }
-    };
+    }
 
     activate();
   }

@@ -13,7 +13,7 @@ ZzSunburst = (function() {
     this.zooming = false;
     this.vis = null;
     this.vis_id = id;
-    this.tooltip = CustomTooltip("sunburst_tooltip", 120);
+    this.tooltip = CustomTooltip("sunburst_tooltip", 180);
     this.state = 0;
     var margin = {top: 270, right: 480, bottom: 270, left: 480};
     this.radius = 250;
@@ -460,7 +460,8 @@ ZzSunburst = (function() {
         .attr("class", "legendItem")
         .attr("transform", function(d, i) { return "translate(" + (d.depth * 15) + "," + (10 + (i * 30)) + ")"; })
         .on("mouseover", that.mouseOverPath)
-        .on("mouseout", that.mouseOutPath);
+        .on("mouseout", that.mouseOutPath)
+        .on("click", function(d){ window.open(home_url + '/sectors/' +d.sector_id+ '/'); });
 
     legendItemEnter
       .append('circle')
@@ -601,7 +602,7 @@ ZzSunburst = (function() {
 
   function CustomTooltip(tooltipId, width){
     var tooltipId = tooltipId;
-    $("body").append("<div class='zz_tooltip' id='"+tooltipId+"'></div>");
+    $("#openaid-main").append("<div class='zz_tooltip' id='"+tooltipId+"'></div>");
     
     if(width){
       $("#"+tooltipId).css("width", width);

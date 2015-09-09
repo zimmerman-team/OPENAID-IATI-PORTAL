@@ -1625,7 +1625,7 @@ Sunburst vis
 *********************/
 
 
-#sector-sunburst{
+/*#sector-sunburst{
 
   #sunburst-0{
     display: inline-block;
@@ -1660,13 +1660,21 @@ Sunburst vis
   .sector-vis-sunburst{
     margin-bottom: 5em;
     background:rgba(#fff,.3);
+    
+
+
   }
 
-}
+}*/
 
 .sector-vis-sunburst{
   background:rgba(#fff,.3);
   margin-bottom: 15px;
+
+
+  .legendItem, path{
+    cursor: pointer;
+  }
 }
 
 .zz_tooltip{
