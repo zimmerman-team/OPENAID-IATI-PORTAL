@@ -262,10 +262,15 @@ ZzLocationVis = (function() {
         .text(function(d){ return d.name; })
         .each(function(d){ d.textWidth = this.getBBox().width; });
 
-      nodeEnterClick
+      var nodeEnterTriangle = nodeEnterClick.append('g')
+        .attr('class','triangle')
+        .attr('transform', function(d) { return "translate(" +  (((d.depth - 1) * 15) + d.textWidth + 24) + ","+ -59 + ")"; } )
+
+      nodeEnterTriangle
         .append("svg:path")
+        .attr('class','arrow')
         .attr("d", d3.svg.symbol().type("triangle-up"))
-        .attr("transform", function(d) { return "translate(" +  (((d.depth - 1) * 15) + d.textWidth + 24) + ","+ -59 + ") rotate(90)"; })
+        .attr("transform", "rotate(90)" )
         .style("fill", "#444")
         .attr('fill-opacity',function(d){
           if(d._children) {
@@ -373,8 +378,17 @@ ZzLocationVis = (function() {
       .each(function(d,i){ 
         that.group_centers[d.id]['y'] = d.groupHeight - 20;
         setHiddenChildrenPosition(d, i);
-        console.log(d.groupHeight);
       });
+
+    nodeUpdate.select(".arrow")
+        .attr('transform',function(d){
+          if( !d._children ) {
+            return "rotate(180)";
+          }
+          else {
+            return "rotate(90)";
+          }
+        });
 
     nodeUpdate.select("circle")
         .attr('r', 6)
