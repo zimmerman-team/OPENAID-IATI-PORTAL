@@ -101,7 +101,7 @@ ZzLocationVis = (function() {
       .attr('fill-opacity', 0.3);
     var right = this.vis.append('rect')
       .attr('width', 250)
-      .attr('height', 1900)
+      .attr('height', 990)
       .attr('x', 750)
       .attr('y', 50)
       .attr('fill', '#fff')
