@@ -30,14 +30,19 @@
 
     function activate() {
       // use predefined filters or the filter selection
-      $scope.$watch("vm.filterSelection.selectionString", function (selectionString) {
+      $scope.$watch("vm.filterSelection.selectionString", function (selectionString, oldString) {
+        if(selectionString !== oldString){
           vm.update(selectionString);
+        }
       }, true);
 
-      $scope.$watch("searchValue", function (searchValue) {
+      $scope.$watch("searchValue", function (searchValue, oldSearchValue) {
         if(searchValue == undefined) return false;
-        searchValue == '' ? vm.extraSelectionString = '' : vm.extraSelectionString = '&name_query='+searchValue;
-        vm.update();
+        if(searchValue !== oldSearchValue){
+          searchValue == '' ? vm.extraSelectionString = '' : vm.extraSelectionString = '&name_query='+searchValue;
+          vm.update();
+        }
+        
       }, true);
 
       // do not prefetch when the list is hidden
@@ -47,8 +52,7 @@
         }, true);
       }
 
-
-
+      vm.update(vm.filterSelection.selectionString);
     }
 
     vm.hasContains = function(){

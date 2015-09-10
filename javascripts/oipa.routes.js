@@ -101,7 +101,7 @@
         })
         .state({
             name:        'regions-list',
-            url:         '/regions/',
+            url:         '/regions/list/',
             controller:  'RegionListController',
             controllerAs: 'vm',
             templateUrl: templateBaseUrl + '/templates/regions/region-view-list.html',
@@ -111,7 +111,7 @@
         })
         .state({
             name:        'regions-vis',
-            url:         '/regions/visualisation',
+            url:         '/regions/',
             controller:  'RegionsVisualisationController',
             controllerAs: 'vm',
             templateUrl: templateBaseUrl + '/templates/regions/region-view-visualisation.html',
@@ -119,16 +119,6 @@
                 label: 'Regio\'s'
             }
         })
-        // .state({
-        //     name:        'locations',
-        //     url:         '/locaties/',
-        //     controller:  'LocationsVisualisationController',
-        //     controllerAs: 'vm',
-        //     templateUrl: templateBaseUrl + '/templates/locations/locations-view-visualisation.html',
-        //     ncyBreadcrumb: {
-        //         label: 'Landen'
-        //     }
-        // })
         .state({
             name:        'organisations',
             url:         '/organisations/',

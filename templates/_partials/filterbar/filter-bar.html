@@ -7,7 +7,7 @@
       <div class="col-md-9 filters">
 
             <div class="dash-wrap">
-              <div class="title">
+              <div class="title" ng-class="{ zeroopacity : !vm.views.length }">
                 <i class="fa fa-desktop fa-inverse"></i>
                 Select dashboard
               </div>
@@ -34,7 +34,7 @@
               ng-show="vm.buttonTexts['recipient_countries'].hoverShow" 
               ng-bind-html="vm.currentHoverText"></div>
             <i class="fa fa-circle fa-stack-2x"></i>
-            <i class="fa fa-map-marker fa-stack-1x fa-inverse"></i>
+            <i class="fa fa-map-signs fa-stack-1x fa-inverse"></i>
           </span>
 
           <span 
@@ -50,7 +50,7 @@
                   ng-bind-html="vm.currentHoverText"></div>
 
             <i class="fa fa-circle fa-stack-2x"></i>
-            <i class="fa fa-globe fa-stack-1x fa-inverse"></i>
+            <i class="fa fa-map-marker fa-stack-1x fa-inverse"></i>
           </span>
           <span 
               class="fa-stack fa-lg" 
@@ -65,7 +65,7 @@
               ng-bind-html="vm.currentHoverText"></div>
 
             <i class="fa fa-circle fa-stack-2x"></i>
-            <i class="fa fa-pie-chart fa-stack-1x fa-inverse"></i>
+            <i class="fa fa-eur fa-stack-1x fa-inverse"></i>
           </span>
           <span 
               class="fa-stack fa-lg" 
@@ -80,7 +80,7 @@
               ng-bind-html="vm.currentHoverText"></div>
 
             <i class="fa fa-circle fa-stack-2x"></i>
-            <i class="fa fa-suitcase fa-stack-1x fa-inverse"></i>
+            <i class="fa fa-university fa-stack-1x fa-inverse"></i>
           </span>
           <span 
               class="fa-stack fa-lg" 
@@ -94,7 +94,7 @@
               ng-show="vm.buttonTexts['recipient_activity_status'].hoverShow" 
               ng-bind-html="vm.currentHoverText"></div>
             <i class="fa fa-circle fa-stack-2x"></i>
-            <i class="fa fa-money fa-stack-1x fa-inverse"></i>
+            <i class="fa fa-line-chart fa-stack-1x fa-inverse"></i>
           </span>
       
           <span

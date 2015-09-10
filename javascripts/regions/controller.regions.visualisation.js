@@ -9,12 +9,12 @@
     .module('oipa.regions')
     .controller('RegionsVisualisationController', RegionsVisualisationController);
 
-  RegionsVisualisationController.$inject = ['$scope', 'FilterSelection', 'Aggregations', 'templateBaseUrl'];
+  RegionsVisualisationController.$inject = ['$scope', 'FilterSelection', 'Aggregations', 'templateBaseUrl', 'regionMapping'];
 
   /**
   * @namespace RegionsVisualisationController
   */
-  function RegionsVisualisationController($scope, FilterSelection, Aggregations, templateBaseUrl) {
+  function RegionsVisualisationController($scope, FilterSelection, Aggregations, templateBaseUrl, regionMapping) {
     var vm = this;
     vm.filterSelection = FilterSelection;
     vm.selectionString = '';
@@ -45,10 +45,14 @@
       Aggregations.aggregation('recipient-country', 'disbursement', vm.selectionString + '&extra_select=country_region_id').then(countrySuccessFn, errorFn);
 
       // indirect country disbursements
-      Aggregations.aggregation('location_countries', 'location_disbursement', vm.selectionString).then(indirectCountrySuccessFn, errorFn);
+      Aggregations.aggregation('location_countries', 'location_disbursement', vm.selectionString + '&not_in_recipientcountries=true').then(indirectCountrySuccessFn, errorFn);
 
       // indirect region disbursements
-      Aggregations.aggregation('recipient-region', 'disbursement', vm.selectionString + '&not_in_locations=true').then(indirectRegionSuccessFn, errorFn);
+      Aggregations.aggregation('recipient-region', 'disbursement', vm.selectionString + '&in_locations=true').then(indirectRegionSuccessFn, errorFn);
+
+      // direct region disbursements
+      Aggregations.aggregation('recipient-region', 'disbursement', vm.selectionString + '&not_in_locations=true').then(directRegionSuccessFn, errorFn);
+
 
       function countrySuccessFn(data, status, headers, config){
         vm.directCountryValues = data.data.results;
@@ -65,6 +69,11 @@
         vm.preReformatVisualisationData(); 
       }
 
+      function directRegionSuccessFn(data, status, headers, config){
+        vm.directRegionValues = data.data.results;
+        vm.preReformatVisualisationData(); 
+      }
+
       function errorFn(data, status, headers, config) {
         console.log("getting countries failed");
       }
@@ -72,7 +81,7 @@
 
     vm.preReformatVisualisationData = function(){
       vm.countCalls++;
-      if(vm.countCalls > 2){
+      if(vm.countCalls > 3){
         var data = vm.reformatVisualisationData();
         vm.visualisationData = angular.copy(data);
         vm.refreshVisualisation = true;
@@ -98,9 +107,12 @@
         '679': {'name': 'South Asia', 'color': '#EDFFC5', 'parent': '619'},
         '789': {'name': 'Far East Asia', 'color': '#EDFFC5', 'parent': '798'},
         '889': {'name': 'Oceania', 'color': '#EDFFC5'},
+        '998': {'name': 'Worldwide', 'color': '#e8e35b'}
       };
 
-      var regionHierarchy = {
+      var regionHierarchy = regionMapping;
+
+      regionHierarchy = {
        "name": "regions",
        "children": [
         {
@@ -185,11 +197,19 @@
          "name": "Oceania",
          "id": "889",
          "color": "#EDFFC5",
+        },
+        {
+         "name": "Worldwide",
+         "id": "998",
+         "color": "#e8e35b",
         }
        ],
       };
 
-      // create list of regions, create list of countries
+
+
+
+      // create list of countries
       var countries = {};
       for (var i = 0, len = vm.directCountryValues.length; i < len; i++) {
 
@@ -201,8 +221,6 @@
           'name': vm.directCountryValues[i].name,
           'value2': 0
         };
-
-        
       }
 
       for (var i = 0, len = vm.indirectCountryValues.length; i < len; i++) {
@@ -211,6 +229,7 @@
 
           countries[vm.indirectCountryValues[i].country_id] = {
             'id':   vm.indirectCountryValues[i].country_id,
+            'value': 0,
             'value2': vm.indirectCountryValues[i].total_value,
             'group': vm.indirectCountryValues[i].region_id,
             'color': regionMapping[vm.indirectCountryValues[i].region_id].color,
@@ -222,30 +241,65 @@
         }
       }
 
-      var regions = [];
-      for (var i = 0, len = vm.indirectRegionValues.length; i < len; i++) {
-        regions.push({
-          'id':   vm.indirectRegionValues[i].region_id,
-          'value': vm.indirectRegionValues[i].total_disbursements,
-          'name': vm.indirectRegionValues[i].name
-        });
-      }
-
-
-
       var country_arr = [];
+      var cindirect = 0;
 
       for (var country in countries) {
         if(country != 'undefined'){
+          cindirect += countries[country].value2;
           country_arr.push(countries[country]);
         }
       }
+
+      // create list of regions
+      var regions = {};
+      for (var i = 0, len = vm.directRegionValues.length; i < len; i++) {
+
+
+        regions[vm.directRegionValues[i].region_id] = {
+          'id':   vm.directRegionValues[i].region_id,
+          'value': vm.directRegionValues[i].total_disbursements,
+          'name': vm.directRegionValues[i].name,
+          'color': regionMapping[vm.directRegionValues[i].region_id].color,
+          'value2': 0,
+        };
+
+        
+      }
+
+      for (var i = 0, len = vm.indirectRegionValues.length; i < len; i++) {
+
+        if(regions[vm.indirectRegionValues[i].region_id] == undefined){
+
+          regions[vm.indirectRegionValues[i].region_id] = {
+            'id':   vm.indirectRegionValues[i].region_id,
+            'value': 0,
+            'name': vm.indirectRegionValues[i].name,
+            'value2': vm.indirectRegionValues[i].total_disbursements,
+          };
+
+        } else {
+          regions[vm.indirectRegionValues[i].region_id].value2 = vm.indirectRegionValues[i].total_disbursements;
+        }
+      }
+
+      var region_arr = [];
+      var rindirect = 0;
+      for (var region in regions) {
+        if(region != 'undefined'){
+          rindirect += regions[region].value2;
+          region_arr.push(regions[region]);
+        }
+      }
+
+      // console.log(rindirect);
+      // console.log(cindirect);
 
       var data = {
         'mapping': regionHierarchy,
         'data': {
           'countries': country_arr,
-          'regions': regions
+          'regions': region_arr
         }
       }
       

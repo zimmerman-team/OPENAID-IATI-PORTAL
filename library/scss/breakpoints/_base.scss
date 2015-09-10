@@ -14,6 +14,10 @@ body {
   font-size:16px;
 }
 
+.zeroopacity{
+  opacity: 0;
+}
+
 a {
   color:#222;
   text-decoration: underline;
@@ -108,7 +112,7 @@ html {
 }
 
 body{
-  /*background-color: #404040;*/
+  background-color: #F5F3F3;
   background-image: url('../../images/bg.jpg');
   background-size: cover;
   color: $textstd;
@@ -754,7 +758,7 @@ FILTER BAR
   }
   .fa-locations, .fa-sectors, .fa-regions-vis {
     &:before {
-      content: "\f0e4";
+      content: "\f080";
     }
   }
   .fa-locations-polygonmap {
@@ -1592,7 +1596,7 @@ Search suggest box
 /*********************
 Tab geo chart vis 
 *********************/
-#geovis-0 .clickme{
+#geovis-0 .clickme, #geovis-0 .node{
   cursor: pointer;
 }
 

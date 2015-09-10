@@ -28,7 +28,7 @@ ZzLocationVis = (function() {
     this.friction = 0.9;
     this.circles = [];
     this.nodes = [];
-    this.tooltip = CustomTooltip("sunburst_tooltip", 300);
+    this.tooltip = CustomTooltip("sunburst_tooltip", 340);
     this.mapping = d3.layout.tree();
     this.mappingData = null;
 
@@ -54,6 +54,22 @@ ZzLocationVis = (function() {
       "789": { x: 350, y: 600, 'color': '#EDFFC5'},
       "889": { x: 350, y: 1000, 'color': '#EDFFC5'},
       "998": { x: 650, y: 500, 'color': '#FF7373'},
+      "r89": { x: 350, y: 800, 'color': '#F6A000'},
+      "r298": { x: 640, y: 200, 'color': '#5598B5'},
+      "r189": { x: 640, y: 200, 'color': '#5598B5'},
+      "r289": { x: 640, y: 200, 'color': '#A6E4F4'},
+      "r498": { x: 640, y: 400, 'color': '#00BA96'},
+      "r380": { x: 640, y: 400, 'color': '#14EFC5'},
+      "r389": { x: 640, y: 400, 'color': '#C2FFF3'},
+      "r489": { x: 640, y: 400, 'color': '#C2FFF3'},
+      "r798": { x: 640, y: 600, 'color': '#4A671E'},
+      "r589": { x: 640, y: 600, 'color': '#8DB746'},
+      "r619": { x: 640, y: 600, 'color': '#C1F460'},
+      "r689": { x: 640, y: 600, 'color': '#ABDD1F'},
+      "r679": { x: 640, y: 600, 'color': '#EDFFC5'},
+      "r789": { x: 640, y: 600, 'color': '#EDFFC5'},
+      "r889": { x: 640, y: 1000, 'color': '#EDFFC5'},
+      "r998": { x: 860, y: 500, 'color': '#FF7373'},
     };
 
     // init vis
@@ -170,6 +186,7 @@ ZzLocationVis = (function() {
       if(d._children){
         for (var z = 0;z < d._children.length;z++){
           that.group_centers[d._children[z].id]['y'] = y;
+          that.group_centers['r' + d._children[z].id]['y'] = y;
           setHiddenChildrenPosition(d._children[z], i, y);
         }
       }
@@ -178,18 +195,23 @@ ZzLocationVis = (function() {
     // Compute the new tree layout.
     var nodes = that.mapping(that.mappingData).slice(1);
 
-    // Update the nodes…
+    // get the nodes…
     var node = this.regions_wrap.selectAll("g.region")
-        .data(nodes, function(d) { return d.id; });
+        .data(nodes.slice(0, nodes.length - 1), function(d) { return d.id; });
 
     
     // Enter any new nodes
     var nodeEnter = node.enter().insert('g', ':first-child')
-        .attr("class", "region");
+        .attr("class", "region")
+        .attr('transform', function(d){
+          return 'translate(0, ' + that.group_centers[d.id].y + ')';
+        });
 
     //white bg
     var nodeEnterBg = nodeEnter.append('g')
-      .attr("class", "background");
+      .attr("class", "background")
+      .attr('x', -15)
+        .attr('y', 1000);
 
     nodeEnterBg
       .insert('rect')
@@ -259,7 +281,7 @@ ZzLocationVis = (function() {
         .attr('ry', 10)
         .attr('fill', '#fff');
 
-      //legend stuff level 1
+      //legend stuff 'direct expenditure'
       var nodeEnterLegend = nodeEnter.append('g')
         .attr('class','legend');
 
@@ -287,7 +309,8 @@ ZzLocationVis = (function() {
         .attr('rx', 10)
         .attr('ry', 10)
         .attr('fill', '#fff');
-    //legend stuff level 2
+
+    //legend stuff 'indirect expenditure'
       nodeEnterLegend
         .append('circle')
         .attr('cx', function(d){ return 12 + ((d.depth - 1) * 15); })
@@ -334,7 +357,14 @@ ZzLocationVis = (function() {
           return "translate(15," + y + ")"; 
       })
       .each(function(d,i){ 
+
+
         that.group_centers[d.id]['y'] = d.groupHeight - 10;
+
+        if(d.id != '998'){
+          that.group_centers['r' + d.id]['y'] = that.group_centers[d.id]['y'];
+        }
+
         setHiddenChildrenPosition(d, i, d.groupHeight - 10);
       });
 
@@ -429,13 +459,13 @@ ZzLocationVis = (function() {
 
     var that = this;
     that.mappingData = data.mapping;
-    that.data = data.data.countries;
-    that.regionData = data.data.regions;
+    var countryData = data.data.countries;
+    var regionData = data.data.regions;
 
-    var maxvalue = d3.max(that.data, function(d) { return d.value + d.value2; });
+    var maxvalue = d3.max(countryData, function(d) { return d.value + d.value2; });
     this.radius_scale = d3.scale.pow().exponent(0.5).domain([0, maxvalue]).range([2, 20]);
 
-    that.data.forEach(function(d) {
+    countryData.forEach(function(d) {
       d.fill = d.color;
       d.x = that.group_centers[d.group]['x'] + ((Math.random() * 200) - 100);
       d.y = that.group_centers[d.group]['y'] + ((Math.random() * 120) - 60);
@@ -443,15 +473,30 @@ ZzLocationVis = (function() {
       d.stroke = shadeBlend(-0.6,d.color);
       d.stroke_width = that.radius_scale(d.value2);
       d._stroke_width = d.stroke_width; 
-      d._value2 = d.value2; 
+      d._value2 = d.value2;
+      d.geoType = 'country'; 
     });
 
-    that.nodes = that.data;
+    regionData.forEach(function(d) {
 
+      d.fill = shadeBlend(-0.6, d.color);
+      d.group = 'r' + d.id;
+      d.x = 500;
+      if(d.id == 998){
+        d.x = 860;
+      }
+      d.y = that.group_centers[d.group]['y'] + ((Math.random() * 120) - 60);
+      d.radius = that.radius_scale(d.value);
+      d.stroke = d.color;
+      d.stroke_width = 0;
+      d._value2 = d.value2;
+      d._stroke_width = that.radius_scale(d._value2); 
+      d.geoType = 'region';
+    });
+
+    that.nodes = countryData.concat(regionData);
     that.force = d3.layout.force().nodes(that.nodes);
 
-
-    
     // create / update bubbles, group them by region
     that.circles = that.countries.selectAll(".node")
       .data(that.nodes);
@@ -464,8 +509,8 @@ ZzLocationVis = (function() {
       .style("fill", function(d) { return d.fill; })
       .style("stroke", function(d) { return d.stroke; })
       .style("stroke-width", 0)
-      .on("mouseover", that.mouseOver)
-      .on('mouseout', that.mouseOut)
+      // .on("mouseover", that.mouseOver)
+      // .on('mouseout', that.mouseOut)
       .on('click', that.mouseClick);
       // .call(that.force.drag);
 
@@ -477,8 +522,8 @@ ZzLocationVis = (function() {
 
     that.circles.exit()
       .remove();
-    
 
+    // legend init
     function collapse(d) {
       if (d.children) {
         d._children = d.children;
@@ -488,63 +533,11 @@ ZzLocationVis = (function() {
     }
 
     this.mappingData.children.forEach(collapse);
+
+    // update cycle
     this.updateLegend(this.mappingData);
-    this.update(); 
-    this.updateRegionData();
+    this.update();
   }
-
-
-  ZzLocationVis.prototype.updateRegionData = function() {
-
-    var that = this;
-
-    var previousY = 0;
-
-    that.regionData.forEach(function(d) {
-      
-      d.fill = that.group_centers[d.id].color;
-      d.color = d.fill;
-      d.x = 640;
-      d.y = that.group_centers[d.id].y - 40;
-      // if(d.y == previousY){
-        // d.radius = 0;
-      // } else {
-        d.radius = that.radius_scale(d.value);
-      // }
-      
-      previousY = d.y;
-
-      if(d.id == 998){
-        d.x = 870;
-        d.y = 501;
-      }
-    });
-
-    var regionCircles = that.vis.selectAll(".regionNode")
-      .data(that.regionData, function(d) { return d.id; });
-
-    regionCircles.enter().append("circle")
-      .attr("class", "regionNode")
-      .attr("cx", function(d) { return d.x; })
-      .attr("cy", function(d) { return d.y; })
-      .attr("r", 0)
-      .attr('fill', function(d){return shadeBlend(-0.6,d.color); })
-      .style("stroke", function(d) { return d.stroke; })
-      .style("stroke-width", function(d) { return d.stroke_width; })
-      .on('click', that.mouseClick);
-
-    regionCircles.exit()
-      .attr("r", 0)
-      .remove();
-
-    regionCircles.transition()
-      .duration(750)
-      .attr("r", function(d) { return d.radius; })
-      .attr("cy", function(d) { return d.y; })
-      .style("stroke", function(d) { return d.stroke; })
-      .style("stroke-width", function(d) { return d.stroke_width; });
-  }
-
 
   ZzLocationVis.prototype.update = function() {
 
@@ -598,7 +591,7 @@ ZzLocationVis = (function() {
   ZzLocationVis.prototype.move_towards_group = function(alpha) {
     return (function(_this) {
       return function(d) {
-        var target = _this.group_centers[d.group];    
+        var target = _this.group_centers[d.group];
         d.x = d.x + (target.x - d.x) * _this.damper * alpha * 1.1;
         return d.y = d.y + (target.y - d.y) * _this.damper * alpha * 2;
       };
@@ -618,7 +611,6 @@ ZzLocationVis = (function() {
     }
     geoLocationVis.updateLegend(d);
     geoLocationVis.update();
-    geoLocationVis.updateRegionData();
   }
 
   ZzLocationVis.prototype.mouseOver = function(e){
@@ -647,14 +639,23 @@ ZzLocationVis = (function() {
 
   ZzLocationVis.prototype.mouseClick = function(d){
     // how details within the pop-up
-    console.log(geoLocationVis.group_centers[d.group]);
-    console.log('y: '+d.y);
-    console.log('x: '+d.x);
     geoLocationVis.tooltip.showTooltip(d);
     d3.event.stopPropagation();
   }
 
   ZzLocationVis.prototype.toggleIndirect = function() {
+
+    function endOfAnim(){
+      geoLocationVis.update();
+    }
+
+    function endOfTransition(transition, callback) {
+      var n = 0;
+      transition.each(function() { ++n; })
+      .each('end', function() {
+      if (!--n) callback.apply(this, arguments);
+      });
+    }
 
     if (geoLocationVis.indirect.select('circle').attr('fill') != '#000000') {
 
@@ -663,15 +664,20 @@ ZzLocationVis = (function() {
         .attr('fill', '#000000');
 
       // Update the nodes
-      var node = geoLocationVis.vis.selectAll(".node")
-        .data(geoLocationVis.data, function(d) { return d.id; });
+      var node = geoLocationVis.vis.selectAll(".node");
 
       // Transition nodes to their new position.
       var nodeUpdate = node.transition()
         .duration(750)
+        .call(endOfTransition, endOfAnim)
         .each(function(d){ 
-          d.value2 = 0;
-          d.radius = geoLocationVis.radius_scale(d.value + d.value2)
+          if(d.geoType == 'country'){
+            d.value2 = 0;
+            d.radius = geoLocationVis.radius_scale(d.value + d.value2);
+          } else {
+            d.value2 = geoLocationVis.radius_scale(d._value2);
+            d.radius = geoLocationVis.radius_scale(d.value + d.value2);
+          }
         })
         .style("r", function(d){
           return d.radius;
@@ -680,9 +686,7 @@ ZzLocationVis = (function() {
           return d.value2;
         });
 
-    }
-
-    else {
+    }else {
         geoLocationVis.indirect.select('circle')
         .attr('cx', 38)
         .attr('fill', '#00a99d');
@@ -692,16 +696,25 @@ ZzLocationVis = (function() {
         .attr('x', 40);
 
       // Update the nodes…
-      var node = geoLocationVis.vis.selectAll(".node")
-        .data(geoLocationVis.data, function(d) { return d.id; });
+      var node = geoLocationVis.vis.selectAll(".node");
 
       // Transition nodes to their new position.
       var nodeUpdate = node.transition()
         .duration(750)
+        .call(endOfTransition, endOfAnim)
         .each(function(d){ 
-          d.value2 = d._value2;
-          d.stroke_width = geoLocationVis.radius_scale(d.value2);
-          d.radius = geoLocationVis.radius_scale(d.value + d.value2)
+          
+
+          if(d.geoType == 'country'){
+            d.value2 = d._value2;
+            d.stroke_width = geoLocationVis.radius_scale(d.value2);
+            d.radius = geoLocationVis.radius_scale(d.value + d.value2);
+          } else {
+            d.value2 = 0;
+            d.radius = geoLocationVis.radius_scale(d.value + d.value2);
+            d.stroke_width = 0;
+          }
+
 
         })
         .style("r", function(d){
@@ -711,9 +724,6 @@ ZzLocationVis = (function() {
           return d.stroke_width;
         });
     }
-
-    
-
   }
 
   ZzLocationVis.prototype.toggleDirect = function() {
@@ -754,7 +764,7 @@ ZzLocationVis = (function() {
   // TOOPTIP
   function CustomTooltip(tooltipId, width){
     var tooltipId = tooltipId;
-    $("body").append("<div class='zz_tooltip geovis' id='"+tooltipId+"'></div>");
+    $("#openaid-main").append("<div class='zz_tooltip geovis' id='"+tooltipId+"'></div>");
     
     if(width){
       $("#"+tooltipId).css("width", width);
@@ -767,7 +777,7 @@ ZzLocationVis = (function() {
     
     function showTooltip(d){
       function abbreviatedValue(input){
-
+        
         var out = '';
         var addDot = false;
 
@@ -791,11 +801,16 @@ ZzLocationVis = (function() {
         return '€ ' + out;
       }
 
+      var frontColor = '#fff';
+      var bgColor = d3.rgb(d.color);
+      if((bgColor.r + bgColor.g + bgColor.b) > 650){
+        frontColor = '#444';
+      }
 
       if (d.id === parseInt(d.id, 10))
-          $("#"+tooltipId).html('<div class="tt-header" style="background-color:'+d.color+';">'+d.name+'</div><div class="tt-text">Non-country related expenditure: '+abbreviatedValue(d.value)+'</div>');
+          $("#"+tooltipId).html('<div class="tt-header" style="background-color:'+d.color+';color:'+frontColor+';font-weight: 400;">'+d.name+'</div><div class="tt-text">Regional expenditure: '+abbreviatedValue(d.value)+'<br>'+'Indirect country expenditure: ' + abbreviatedValue(d._value2)+'<br><a style="pointer-events: all" href="'+home_url+'/regions/'+d.id+'/">Go to region page</a></div>');
       else
-          $("#"+tooltipId).html('<div class="tt-header" style="background-color:'+d.color+';">'+d.name+'</div><div class="tt-text">Direct expenditure: '+abbreviatedValue(d.value)+'<br>Indirect expenditure: '+abbreviatedValue(d.value2)+'</div>');
+          $("#"+tooltipId).html('<div class="tt-header" style="background-color:'+d.color+';color:'+frontColor+';font-weight: 400;">'+d.name+'</div><div class="tt-text">Direct expenditure: '+abbreviatedValue(d.value)+'<br>Indirect expenditure: '+abbreviatedValue(d.value2)+'<br><a style="pointer-events: all" href="'+home_url+'/countries/'+d.id+'/">Go to country page</a></div>');
       
       $("#"+tooltipId).show(0);
       
@@ -826,8 +841,8 @@ ZzLocationVis = (function() {
         tttop = curY + yOffset;
       } 
 
-      tttop = tttop - 140;
-      ttleft = ttleft - 150;
+      tttop = tttop - 150;
+      ttleft = ttleft - 180;
       $(ttid).css('top', tttop + 'px').css('left', ttleft + 'px');
     }
     
