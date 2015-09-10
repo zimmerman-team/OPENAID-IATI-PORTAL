@@ -96,11 +96,11 @@
         return [total_disbursement, activity_count]
       }
 
-      function sortRegionChildren(region, i, reverse) {
+      function sortRegionChildren(region, i) {
         if (region.hasOwnProperty('children')) {
           region.children = _.sortBy(region.children, vm.order_by_final)
-          if (reverse) region.children = region.children.reverse();
-          _.each(region.children, sortRegionChildren);
+          if (this) region.children = region.children.reverse();
+          _.each(region.children, sortRegionChildren, this);
         }
       }
 

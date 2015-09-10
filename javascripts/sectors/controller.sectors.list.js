@@ -106,9 +106,9 @@
         // first level
         if (sector.hasOwnProperty('children')) {
           sector.children = _.sortBy(sector.children, vm.order_by_final)
-          if (reverse) sector.children = sector.children.reverse();
-          // console.log(sector.children)
-          _.each(sector.children, sortSectorChildren);
+          if (this) sector.children = sector.children.reverse();
+          console.log(this);
+          _.each(sector.children, sortSectorChildren, this);
         }
       }
 
