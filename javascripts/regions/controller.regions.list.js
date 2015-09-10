@@ -110,8 +110,6 @@
 
         _.each(regions.children, updateDisbursements)
 
-        console.log(vm.order_by)
-
         // first level
         if (vm.order_by.charAt(0) === "-") { //reverse
           vm.order_by_final = vm.order_by.substring(1);
@@ -125,9 +123,7 @@
 
       function succesFn(data, status, headers, config){
         vm.remoteRegions = data.data.results;
-        console.log(regionMapping)
         vm.regions = applyRegionHierarchy(regionMapping)
-        console.log(vm.regions)
         vm.totalRegions = data.data.count;
         $scope.count = vm.totalRegions;
       }
@@ -138,7 +134,6 @@
     }
 
     vm.toggleHideChildren = function($event) {
-      console.log($event)
       var parent = $($event.target).closest('.parent') 
       var children = parent.next();
 

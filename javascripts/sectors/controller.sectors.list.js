@@ -107,7 +107,6 @@
         if (sector.hasOwnProperty('children')) {
           sector.children = _.sortBy(sector.children, vm.order_by_final)
           if (this) sector.children = sector.children.reverse();
-          console.log(this);
           _.each(sector.children, sortSectorChildren, this);
         }
       }
@@ -143,7 +142,6 @@
     }
 
     vm.toggleHideChildren = function($event) {
-      console.log($event)
       var parent = $($event.target).closest('.parent') 
       var children = parent.next();
 
