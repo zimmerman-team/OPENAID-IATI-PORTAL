@@ -4,7 +4,7 @@
 		<div class="col-md-4">
 			<div class="search-box">
 			    <div class="form-group">
-			        <input ng-model="q" class="form-control" placeholder="Zoek een specifieke organisatie ..">
+			        <input ng-model="vm.q" class="form-control" placeholder="Search a specific implementing organisation ..">
 			        <button class="btn-search" type="button">
 			            <span class="glyphicon glyphicon-search"></span>
 			        </button>
@@ -15,7 +15,7 @@
 	</div>
 	<div class="row" ng-show="vm.implementingOrganisations.length == 0">
 		<div class="svg-loader">
-			<img src="{{templateBaseUrl}}/images/spinning-circles.svg" width="70" alt="">
+			There are no implementing organisations found within your current selection.
 		</div>
 	</div>
 	<div class="row" ng-show="vm.implementingOrganisations.length != 0">
@@ -29,12 +29,16 @@
 				</thead>
 				<tbody>
 
-				    <tr dir-paginate="item in vm.implementingOrganisations | filter:q | itemsPerPage: 4"  pagination-id="implementingOrganisations">
+				    <tr 
+				    	dir-paginate="item in vm.implementingOrganisations | itemsPerPage: 4"  
+				    	total-items="vm.totalCount" 
+				    	current-page="pagination.current" 
+				    	pagination-id="implementingOrganisations">
 				    	<td>
 				    		<div class="checkbox">
 					    		<label class="switch">
 					    			<input type="checkbox" checklist-model="vm.selectedImplementingOrganisations" checklist-value="item"><i></i>
-					    			<span>{{ item.name }}</span>
+					    			<span>{{ item.name | capitalize }}</span>
 					    		</label>
 					    	</div>
 				    	</td>
@@ -48,7 +52,9 @@
 		</div>
 		<div class="col-md-12 text-center">
 			<button class="btn btn-default btn-openaid btn-save" ng-click="vm.save()">Save</button>
-			<dir-pagination-controls pagination-id="implementingOrganisations"></dir-pagination-controls>
+			<dir-pagination-controls 
+				pagination-id="implementingOrganisations"
+				on-page-change="vm.pageChanged(newPageNumber)"></dir-pagination-controls>
 		</div>
 	</div>
 </div>

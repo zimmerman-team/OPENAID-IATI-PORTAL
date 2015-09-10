@@ -79,7 +79,14 @@ angular.module('oipa').filter('cut', function () {
       }
 
     }
+}).filter('capitalize', function() {
+  return function(input, scope) {
+    if (input!=null){
+      if(input.length < 6){ return input; }
+      input = input.toLowerCase();
+      return input.substring(0,1).toUpperCase()+input.substring(1);
+    }
+  }
 });
-
 
 

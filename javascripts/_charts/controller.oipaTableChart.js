@@ -19,8 +19,6 @@
     vm.extraFilters = '';
     vm.homeUrl = homeUrl;
 
-
-
     function activate() {
 
       $scope.$watch('refreshData', function(refreshData){
@@ -43,7 +41,6 @@
     }
 
     vm.loadData = function(){
-      console.log($scope);
       Aggregations.aggregation(vm.groupBy, vm.aggregationKey, vm.aggregationFilters + vm.extraFilters).then(succesFn, errorFn);
 
       function succesFn(data, status, headers, config){

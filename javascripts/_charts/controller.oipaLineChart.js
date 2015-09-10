@@ -266,7 +266,7 @@
     vm.historicalBarChartReformatData = function(data){
 
       var formattedData = [{
-          "key" : "Aantal projecten",
+          "key" : "Project count",
           "bar": true,
           "values" : []
       }];
@@ -313,7 +313,7 @@
         if(partnerlanden[data[i]['country_id']] != undefined){
           var partnerstatus = partnerlanden[data[i]['country_id']];
         } else {
-          var partnerstatus = 'Overige';
+          var partnerstatus = 'Other';
         }
 
         if(partnerData[partnerstatus] == undefined){

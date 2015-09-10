@@ -23,26 +23,26 @@
     vm.mapDropdown = ($scope.mapDropdown == 'true');
     vm.templateBaseUrl = templateBaseUrl;
     vm.countryRelation = [
-      {'id':1, 'name': 'Hulp relatie'}, 
-      {'id':2, 'name': 'Overgangsrelatie'}, 
-      {'id':3, 'name': 'EXIT relatie'}, 
-      {'id':4, 'name': 'Handelsrelatie'}, 
-      {'id':5, 'name': 'Overige'}];
+      {'id':1, 'name': 'Aid relation'}, 
+      {'id':2, 'name': 'Transition relation'}, 
+      {'id':3, 'name': 'EXIT relation'}, 
+      {'id':4, 'name': 'Trade relation'}, 
+      {'id':5, 'name': 'Other'}];
     vm.selectedCountryRelation = [
-      {'id':1, 'name': 'Hulp relatie'}, 
-      {'id':2, 'name': 'Overgangsrelatie'}, 
-      {'id':3, 'name': 'EXIT relatie'}, 
-      {'id':4, 'name': 'Handelsrelatie'}, 
-      {'id':5, 'name': 'Overige'}];
+      {'id':1, 'name': 'Aid relation'}, 
+      {'id':2, 'name': 'Transition relation'}, 
+      {'id':3, 'name': 'EXIT relation'}, 
+      {'id':4, 'name': 'Trade relation'}, 
+      {'id':5, 'name': 'Other'}];
 
     vm.currentHoverText = '';
-    vm.buttonTexts = {
-      'hover1': {'text': 'Hulp txt', hoverShow: false},
-      'hover2': {'text': 'Overgangsrelatie txt', hoverShow: false},
-      'hover3': {'text': 'Exit txt', hoverShow: false},
-      'hover4': {'text': 'Handelstxt', hoverShow: false},
-      'hover5': {'text': 'Overige txt', hoverShow: false},
-    };
+    // vm.buttonTexts = {
+    //   'hover1': {'text': 'Hulp txt', hoverShow: false},
+    //   'hover2': {'text': 'Transition relation txt', hoverShow: false},
+    //   'hover3': {'text': 'Exit txt', hoverShow: false},
+    //   'hover4': {'text': 'Handelstxt', hoverShow: false},
+    //   'hover5': {'text': 'Other txt', hoverShow: false},
+    // };
 
     vm.defaults = {
       tileLayer: 'https://{s}.tiles.mapbox.com/v3/zimmerman2014.088155ee/{z}/{x}/{y}.png',
@@ -60,11 +60,11 @@
     };
     vm.markers = {};
     vm.markerIcons = {
-      Hulprelatie: { html: '<div class="fa fa-map-marker fa-stack-1x fa-inverse marker-circle marker-circle-Hulprelatie"></div>',type: 'div',iconSize: [28, 35],iconAnchor: [14, 18],markerColor: 'blue',iconColor: 'white',},
-      Overgangsrelatie: { html: '<div class="fa fa-map-marker fa-stack-1x fa-inverse marker-circle marker-circle-Overgangsrelatie"></div>',type: 'div',iconSize: [28, 35],iconAnchor: [14, 18],markerColor: 'blue',iconColor: 'white',},
-      EXITrelatie: { html: '<div class="fa fa-map-marker fa-stack-1x fa-inverse marker-circle marker-circle-EXITrelatie"></div>',type: 'div',iconSize: [28, 35],iconAnchor: [14, 18],markerColor: 'blue',iconColor: 'white',},
-      Handelsrelatie: { html: '<div class="fa fa-map-marker fa-stack-1x fa-inverse marker-circle marker-circle-Handelsrelatie"></div>',type: 'div',iconSize: [28, 35],iconAnchor: [14, 18],markerColor: 'blue',iconColor: 'white',},
-      Overige: { html: '<div class="fa fa-map-marker fa-stack-1x fa-inverse marker-circle marker-circle-Overige"></div>',type: 'div',iconSize: [28, 35],iconAnchor: [14, 18],markerColor: 'blue',iconColor: 'white',},
+      Aidrelation: { html: '<div class="fa fa-map-marker fa-stack-1x fa-inverse marker-circle marker-circle-Aidrelation"></div>',type: 'div',iconSize: [28, 35],iconAnchor: [14, 18],markerColor: 'blue',iconColor: 'white',},
+      Transitionrelation: { html: '<div class="fa fa-map-marker fa-stack-1x fa-inverse marker-circle marker-circle-Transitionrelation"></div>',type: 'div',iconSize: [28, 35],iconAnchor: [14, 18],markerColor: 'blue',iconColor: 'white',},
+      EXITrelation: { html: '<div class="fa fa-map-marker fa-stack-1x fa-inverse marker-circle marker-circle-EXITrelation"></div>',type: 'div',iconSize: [28, 35],iconAnchor: [14, 18],markerColor: 'blue',iconColor: 'white',},
+      Traderelation: { html: '<div class="fa fa-map-marker fa-stack-1x fa-inverse marker-circle marker-circle-Traderelation"></div>',type: 'div',iconSize: [28, 35],iconAnchor: [14, 18],markerColor: 'blue',iconColor: 'white',},
+      Other: { html: '<div class="fa fa-map-marker fa-stack-1x fa-inverse marker-circle marker-circle-Other"></div>',type: 'div',iconSize: [28, 35],iconAnchor: [14, 18],markerColor: 'blue',iconColor: 'white',},
       Regiocirkel: { html: '<div class="region-marker-circle"></div>' ,type: 'div',iconSize: [200, 200],iconAnchor: [100, 100],markerColor: 'blue',iconColor: 'white',}
     };
 
@@ -151,7 +151,7 @@
 
       for (var i = 0; i < vm.countryMarkerData.length;i++){
        
-          var partnerType = 'Overige';
+          var partnerType = 'Other';
           if(partnerlanden[vm.countryMarkerData[i].country_id] !== undefined){
             partnerType = partnerlanden[vm.countryMarkerData[i].country_id].replace(/\s/g, ''); 
           }

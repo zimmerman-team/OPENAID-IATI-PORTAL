@@ -9,9 +9,9 @@
     .module('oipa.filters')
     .controller('FiltersSelectionController', FiltersSelectionController);
 
-  FiltersSelectionController.$inject = ['$scope', 'FilterSelection', 'Countries', 'Regions', 'Budget', 'Sectors', 'ImplementingOrganisations', 'ActivityStatus', 'Search'];
+  FiltersSelectionController.$inject = ['$scope', 'FilterSelection', 'Countries', 'Regions', 'Budget', 'Sectors', 'Transaction', 'ImplementingOrganisations', 'ActivityStatus', 'Search'];
 
-  function FiltersSelectionController($scope, FilterSelection, Countries, Regions, Budget, Sectors, ImplementingOrganisations, ActivityStatus, Search) {
+  function FiltersSelectionController($scope, FilterSelection, Countries, Regions, Budget, Sectors, Transaction, ImplementingOrganisations, ActivityStatus, Search) {
     var vm = this;
     vm.selectedCountries = Countries.selectedCountries;
     vm.selectedRegions = Regions.selectedRegions;
@@ -19,6 +19,7 @@
     vm.selectedImplementingOrganisations = ImplementingOrganisations.selectedImplementingOrganisations;
     vm.selectedActivityStatuses = ActivityStatus.selectedActivityStatuses;
     vm.selectedBudget = Budget.budget;
+    vm.selectedTransactionYear = Transaction.year;
     vm.filterSelection = FilterSelection;
     vm.search = Search;
 
@@ -38,6 +39,12 @@
 
     vm.removeBudgetFilter = function(){
       vm.selectedBudget.on = false;
+      FilterSelection.save();
+    }
+
+    vm.removeTransactionYearFilter = function(){
+      vm.selectedTransactionYear.on = false;
+      vm.selectedTransactionYear.year = 2015;
       FilterSelection.save();
     }
 

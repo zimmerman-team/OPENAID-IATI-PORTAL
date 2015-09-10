@@ -99,17 +99,32 @@
       
           <span
               class="fa-stack fa-lg"
-              ng-click="vm.toggleOpenPanel('year')" 
-              ng-class="{'active': vm.isOpenedHeader('year')}"
-              ng-mouseover="vm.hoverIn('recipient_year')" 
-              ng-mouseleave="vm.hoverOut('recipient_year')"
-              ng-show="vm.isIncludedFilter('recipient_year')">
+              ng-click="vm.toggleOpenPanel('transaction_year')" 
+              ng-class="{'active': vm.isOpenedHeader('transaction_year')}"
+              ng-mouseover="vm.hoverIn('transaction_year')" 
+              ng-mouseleave="vm.hoverOut('transaction_year')"
+              ng-show="vm.isIncludedFilter('transaction_year')">
             <div 
               class="glyphicon-popup"
-              ng-show="vm.buttonTexts['recipient_year'].hoverShow" 
+              ng-show="vm.buttonTexts['transaction_year'].hoverShow" 
               ng-bind-html="vm.currentHoverText"></div>
             <i class="fa fa-circle fa-stack-2x"></i>
             <i class="fa fa-calendar fa-stack-1x fa-inverse"></i>
+          </span>
+
+          <span
+              class="fa-stack fa-lg"
+              ng-click="vm.toggleOpenPanel('recipient_implementing_organisations')" 
+              ng-class="{'active': vm.isOpenedHeader('recipient_implementing_organisations')}"
+              ng-mouseover="vm.hoverIn('recipient_implementing_organisations')" 
+              ng-mouseleave="vm.hoverOut('recipient_implementing_organisations')"
+              ng-show="vm.isIncludedFilter('recipient_implementing_organisations')">
+            <div 
+              class="glyphicon-popup"
+              ng-show="vm.buttonTexts['recipient_implementing_organisations'].hoverShow" 
+              ng-bind-html="vm.currentHoverText"></div>
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-users fa-stack-1x fa-inverse"></i>
           </span>
 
           <span 
@@ -186,7 +201,6 @@
           <a target="_blank" ng-href="http://www.facebook.com/sharer/sharer.php?s=100&p[url]={{vm.pageUrl}}" class="fa fa-facebook fa-stack-1x fa-inverse"></a>
         </span>
       </div>
-
     </div>
 
     <tool-bar></tool-bar>
@@ -198,6 +212,8 @@
                 <filter-panel-recipient-regions ng-show="vm.isOpenedHeader('recipient_regions')"></filter-panel-recipient-regions>
                 <filter-panel-budget ng-show="vm.isOpenedHeader('budget')"></filter-panel-budget>
                 <filter-panel-sectors ng-show="vm.isOpenedHeader('sectors')"></filter-panel-sectors>
+                <filter-panel-transaction-year ng-show="vm.isOpenedHeader('transaction_year')"></filter-panel-transaction-year>
+                <filter-panel-implementing-organisations ng-show="vm.isOpenedHeader('recipient_implementing_organisations')"></filter-panel-implementing-organisations>
                 <filter-panel-activity-status ng-show="vm.isOpenedHeader('activity_status')"></filter-panel-activity-status>
                 <filter-panel-search ng-show="vm.isOpenedHeader('search')"></filter-panel-search>
             </div>

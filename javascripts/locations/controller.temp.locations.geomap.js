@@ -21,17 +21,17 @@
     vm.mapDropdown = $scope.mapDropdown;
     vm.templateBaseUrl = templateBaseUrl;
     vm.countryRelation = [
-      {'id':1, 'name': 'Hulp relatie'}, 
-      {'id':2, 'name': 'Overgangsrelatie'}, 
-      {'id':3, 'name': 'EXIT relatie'}, 
-      {'id':4, 'name': 'Handelsrelatie'}, 
-      {'id':5, 'name': 'Overige'}];
+      {'id':1, 'name': 'Aid relation'}, 
+      {'id':2, 'name': 'Transition relation'}, 
+      {'id':3, 'name': 'EXIT relation'}, 
+      {'id':4, 'name': 'Trade relation'}, 
+      {'id':5, 'name': 'Other'}];
     vm.selectedCountryRelation = [
-      {'id':1, 'name': 'Hulp relatie'}, 
-      {'id':2, 'name': 'Overgangsrelatie'}, 
-      {'id':3, 'name': 'EXIT relatie'}, 
-      {'id':4, 'name': 'Handelsrelatie'}, 
-      {'id':5, 'name': 'Overige'}];
+      {'id':1, 'name': 'Aid relation'}, 
+      {'id':2, 'name': 'Transition relation'}, 
+      {'id':3, 'name': 'EXIT relation'}, 
+      {'id':4, 'name': 'Trade relation'}, 
+      {'id':5, 'name': 'Other'}];
 
     vm.defaults = {
       tileLayer: 'https://{s}.tiles.mapbox.com/v3/zimmerman2014.088155ee/{z}/{x}/{y}.png',
@@ -50,7 +50,7 @@
     vm.markers = {};
     vm.markerIcons = {
       Delete: { html: '<div class="removed-marker" style="display: none"></div>',type: 'div',iconSize: [28, 35],iconAnchor: [14, 18],markerColor: 'blue',iconColor: 'white',},
-      Overige: { html: '<div class="fa fa-map-marker fa-stack-1x fa-inverse marker-circle marker-circle-Overige2"></div>',type: 'div',iconSize: [28, 35],iconAnchor: [14, 18],markerColor: 'blue',iconColor: 'white',},
+      Other: { html: '<div class="fa fa-map-marker fa-stack-1x fa-inverse marker-circle marker-circle-Other2"></div>',type: 'div',iconSize: [28, 35],iconAnchor: [14, 18],markerColor: 'blue',iconColor: 'white',},
       Regiocirkel: { html: '<div class="region-marker-circle"></div>' ,type: 'div',iconSize: [200, 200],iconAnchor: [100, 100],markerColor: 'blue',iconColor: 'white',}
     };
 
@@ -110,7 +110,7 @@
       if (vm.geoLocation.code === parseInt(vm.geoLocation.code, 10))
         vm.markers['location'].icon = { html: '<div class="region-marker-circle"></div>' ,type: 'div',iconSize: [200, 200],iconAnchor: [100, 100],markerColor: 'blue',iconColor: 'white',};
       else
-        vm.markers['location'].icon = { html: '<div class="fa fa-map-marker fa-stack-1x fa-inverse marker-circle marker-circle-Overige2"></div>',type: 'div',iconSize: [28, 35],iconAnchor: [14, 18],markerColor: 'blue',iconColor: 'white',};
+        vm.markers['location'].icon = { html: '<div class="fa fa-map-marker fa-stack-1x fa-inverse marker-circle marker-circle-Other2"></div>',type: 'div',iconSize: [28, 35],iconAnchor: [14, 18],markerColor: 'blue',iconColor: 'white',};
       
         
     };
@@ -167,7 +167,7 @@
 
         for (var i = 0; i < vm.countryMarkerData.length;i++){
          
-            var partnerType = 'Overige';
+            var partnerType = 'Other';
 
             if (selectedCountryRelationMap[partnerType] !== undefined){
               var message = '<span class="flag-icon flag-icon-'+flag_lc+'"></span>'+

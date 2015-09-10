@@ -3,7 +3,7 @@
 		<div class="col-md-4">
 			<div class="search-box">
 			    <div class="form-group">
-			        <input ng-model="q" class="form-control" placeholder="Zoek een specifieke regio ..">
+			        <input ng-model="q" class="form-control" placeholder="Search by region name..">
 			        <button class="btn-search" type="button">
 			            <span class="glyphicon glyphicon-search"></span>
 			        </button>
@@ -13,7 +13,7 @@
 	</div>
 	<div class="row" ng-show="vm.recipientRegions.length == 0">
 		<div class="svg-loader">
-			<img src="{{vm.templateBaseUrl}}/images/spinning-circles.svg" width="70" alt="">
+			There are no regions found within your current selection.
 		</div>
 	</div>
 	<div class="row" ng-show="vm.recipientRegions.length != 0">
@@ -27,7 +27,11 @@
 				</thead>
 				<tbody>
 
-				    <tr dir-paginate="item in vm.recipientRegions | filter:q | itemsPerPage: 4" pagination-id="recipientRegions">
+				    <tr 
+				    	dir-paginate="item in vm.recipientRegions | itemsPerPage: 4" 
+				    	total-items="vm.totalCount" 
+				    	current-page="pagination.current"  
+				    	pagination-id="recipientRegions">
 				    	<td>
 				    		<div class="checkbox">
 					    		<label class="switch">
@@ -46,7 +50,7 @@
 		</div>
 		<div class="col-md-12 text-center">
 			<button class="btn btn-default btn-save btn-openaid" ng-click="vm.save()">Save</button>
-			<dir-pagination-controls pagination-id="recipientRegions"></dir-pagination-controls>
+			<dir-pagination-controls pagination-id="recipientRegions" on-page-change="vm.pageChanged(newPageNumber)"></dir-pagination-controls>
 		</div>
 	</div>
 </div>

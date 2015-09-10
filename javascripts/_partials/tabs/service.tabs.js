@@ -56,7 +56,7 @@
 			        {
 			            "id": 3, 
 			            "header": "Partnerlanden", 
-			            "title": "Hulprelaties, overgangsrelaties en handelsrelaties",
+			            "title": "Aidrelations, transitionrelations en traderelations",
 			            "text": "Nederland heeft op het terrein van buitenlandse handel en ontwikkelingssamenwerking met bepaalde landen een bijzondere relatie. Op het gebied van ontwikkelingssamenwerking heten deze landen 'partnerlanden'. Op handelsgebied zijn dit 'focuslanden'.",
 			            "data_url": oipaUrl + "/aggregate/?group_by=recipient-country,transaction_date_year&aggregation_key=disbursement&reporting_organisation__in=NL-1",
 			            "color_map_url": templateBaseUrl + "/javascripts/countries/mapping.partnerlanden.js",

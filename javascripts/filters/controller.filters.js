@@ -31,19 +31,19 @@
     vm.views = $scope.views;
 
     vm.buttonTexts = {
-      'recipient_countries': {'text': 'Ontvangend land', hoverShow: false},
-      'recipient_regions': {'text': 'Ontvangende regio', hoverShow: false},
+      'recipient_countries': {'text': 'Recipient country', hoverShow: false},
+      'recipient_regions': {'text': 'Recipient region', hoverShow: false},
       'recipient_budget': {'text': 'Budget', hoverShow: false},
       'recipient_sectors': {'text': 'Sector', hoverShow: false},
-      'recipient_activity_status': {'text': 'Activiteit status', hoverShow: false},
-      'recipient_implementing_organisations': {'text': 'Ontvangende organisatie', hoverShow: false},
-      'recipient_year': {'text': 'Year', hoverShow: false},
-      'search': {'text': 'Zoek in text', hoverShow: false},
+      'transaction_year': {'text': 'Transaction date', 'hoverShow': false},
+      'recipient_activity_status': {'text': 'Activity status', hoverShow: false},
+      'recipient_implementing_organisations': {'text': 'Implementing organisation', hoverShow: false},
+      'search': {'text': 'Search in text', hoverShow: false},
       'reset': {'text': 'Reset filters', hoverShow: false},
-      'download': {'text': 'Download projecten', hoverShow: false},
-      'share_twitter': {'text': 'Deel via Twitter', hoverShow: false},
-      'share_linkedin': {'text': 'Deel via LinkedIn', hoverShow: false},
-      'share_facebook': {'text': 'Deel via Facebook', hoverShow: false},
+      'download': {'text': 'Download projects', hoverShow: false},
+      'share_twitter': {'text': 'Share on Twitter', hoverShow: false},
+      'share_linkedin': {'text': 'Share on LinkedIn', hoverShow: false},
+      'share_facebook': {'text': 'Share on Facebook', hoverShow: false},
     };
 
     vm.currentHoverText = '';
@@ -56,7 +56,7 @@
       }
 
       vm.pageUrl = encodeURIComponent(vm.pageUrlDecoded);
-      vm.shareDescription = encodeURIComponent('Bekijk de ontwikkelingshulpprojecten van de Rijksoverheid op ' + vm.pageUrlDecoded);
+      vm.shareDescription = encodeURIComponent('View the Aid projects of the Dutch Ministry of Foreign Affairs on ' + vm.pageUrlDecoded);
     }
 
     vm.changeView = function(){
@@ -98,9 +98,11 @@
     }
 
     vm.toggleOpenPanel = function(slug){
+      
       if(FilterSelection.openedPanel == slug){
         FilterSelection.save();
       } else {
+        FilterSelection.save();
         vm.setOpenedHeader(slug);
       }
     }

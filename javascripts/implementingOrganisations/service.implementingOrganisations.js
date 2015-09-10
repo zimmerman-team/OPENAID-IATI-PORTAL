@@ -21,27 +21,12 @@
 
 		var ImplementingOrganisations = {
 			selectedImplementingOrganisations: this.selectedImplementingOrganisations,
-			all: all,
 			get: get 
 		};
 
 		return ImplementingOrganisations;
 
 		////////////////////
-
-		/**
-         * @name all
-         * @desc Try to get all implementing organisations
-         * @returns {Promise}
-         * @memberOf oipa.implementingOrganisations
-         */
-        function all() {
-            var url = oipaUrl + '/aggregate/?format=json&group_by=participating-org&aggregation_key=iati-identifier';
-            if(reportingOrganisationId){
-                url += '&reporting_organisation__in=' + reportingOrganisationId;
-            }
-            return $http.get(url, { cache: true });    
-        }
 
 	    /**
 	     * @name get

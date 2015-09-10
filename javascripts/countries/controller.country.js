@@ -46,7 +46,7 @@
       if(partnerlanden[vm.country_id] !== undefined){
         vm.partnerType = partnerlanden[vm.country_id]; 
       } else {
-        vm.partnerType = 'Overige';
+        vm.partnerType = 'Other';
       }
 
       function successFn(data, status, headers, config) {

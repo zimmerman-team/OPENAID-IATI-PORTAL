@@ -9,13 +9,13 @@
 		.module('oipa.filters')
 		.factory('FilterSelection', FilterSelection);
 
-	FilterSelection.$inject = ['$http', 'reportingOrganisationId', 'Countries', 'Regions', 'Budget', 'Sectors', 'ImplementingOrganisations', 'ActivityStatus', 'Search'];
+	FilterSelection.$inject = ['$http', 'reportingOrganisationId', 'Countries', 'Regions', 'Budget', 'Sectors', 'Transaction', 'ImplementingOrganisations', 'ActivityStatus', 'Search'];
 
 	/**
 	* @namespace Filters
 	* @returns {Factory}
 	*/
-	function FilterSelection($http, reportingOrganisationId, Countries, Regions, Budget, Sectors, ImplementingOrganisations, ActivityStatus, Search) {
+	function FilterSelection($http, reportingOrganisationId, Countries, Regions, Budget, Sectors, Transaction, ImplementingOrganisations, ActivityStatus, Search) {
 		var m = this;
 	    m.selectedCountries = Countries.selectedCountries;
 	    m.selectedRegions = Regions.selectedRegions;
@@ -23,6 +23,7 @@
 	    m.selectedImplementingOrganisations = ImplementingOrganisations.selectedImplementingOrganisations;
 	    m.selectedActivityStatuses = ActivityStatus.selectedActivityStatuses;
 	    m.selectedBudget = Budget.budget;
+	    m.selectedTransactionYear = Transaction.year;
 	    m.search = Search;
 		
 		m.selectionString = '';
@@ -46,6 +47,10 @@
 
 	      if(m.selectedBudget.on){
 	        selectList.push('&total_budget__gt='+m.selectedBudget.value[0]+'&total_budget__lt='+m.selectedBudget.value[1]);
+	      }
+
+	      if(m.selectedTransactionYear.on){
+	        selectList.push('&transactions__transaction_date__gte='+m.selectedTransactionYear.value+'-01-01&transactions__transaction_date__lte='+m.selectedTransactionYear.value+'-01-01');
 	      }
 
 	      if(Search.searchString != ''){
@@ -86,6 +91,11 @@
 	      Budget.toReset = true;
 	      Budget.budget.budgetValue = [100000,300000];
 	      Budget.budget.on = false;
+
+	      Transaction.toReset = true;
+	      Transaction.year.value = 2015;
+	      Transaction.year.on = false;
+
 	      m.save();
 	    }
 		

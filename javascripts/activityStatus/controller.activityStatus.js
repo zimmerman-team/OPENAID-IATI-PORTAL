@@ -1,7 +1,3 @@
-/**
-* CountriesController
-* @namespace oipa.countries.controllers
-*/
 (function () {
   'use strict';
 
@@ -9,32 +5,41 @@
     .module('oipa.activityStatus')
     .controller('ActivityStatusController', ActivityStatusController);
 
-  ActivityStatusController.$inject = ['ActivityStatus', 'templateBaseUrl', 'FilterSelection', 'Filters'];
+  ActivityStatusController.$inject = ['$scope', 'Aggregations', 'ActivityStatus', 'FilterSelection', 'templateBaseUrl'];
 
-  /**
-  * @namespace ActivityStatusController
-  */
-  function ActivityStatusController(ActivityStatus, templateBaseUrl, FilterSelection, Filters) {
+  function ActivityStatusController($scope, Aggregations, ActivityStatus, FilterSelection, templateBaseUrl) {
     var vm = this;
     vm.templateBaseUrl = templateBaseUrl;
     vm.activityStatuses = [];
+    vm.statuses = ActivityStatus;
     vm.selectedActivityStatuses = ActivityStatus.selectedActivityStatuses;
-    activate();
+    vm.filterSelection = FilterSelection;
 
-    /**
-    * @name activate
-    * @desc Actions to be performed when this controller is instantiated
-    * @memberOf oipa.countries.controllers.CountriesController
-    */
     function activate() {
-      // for each active country, get the results
-      ActivityStatus.all().then(successFn, errorFn);
 
-      /**
-      * @name collectionsSuccessFn
-      * @desc Update collections array on view
-      */
+      vm.update();
+
+      $scope.$watch('vm.filterSelection.selectionString', function(valueNew, valueOld){
+        if (valueNew !== valueOld){
+          vm.update();
+        }
+      }, true);
+    }
+
+    vm.update = function(){
+      // for each active activity status, get the results
+      var filterString = FilterSelection.selectionString.split('&');
+      for(var i = 0;i < filterString.length;i++){
+        if (filterString[i].indexOf('activity_status__in') > -1){
+          delete filterString[i];
+        }
+      }
+      filterString = filterString.join('&');
+
+      Aggregations.aggregation('activity-status', 'iati-identifier', filterString, 'name', 10, 0, 'activity_count').then(successFn, errorFn);
+
       function successFn(data, status, headers, config) {
+        vm.totalCount = data.data.count;
         vm.activityStatuses = data.data.results;
       }
 
@@ -46,6 +51,8 @@
     vm.save = function(){
       FilterSelection.save();
     }
+
+    activate();
 
   }
 })();

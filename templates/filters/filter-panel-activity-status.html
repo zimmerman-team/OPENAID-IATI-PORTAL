@@ -1,17 +1,4 @@
 <div class="filter-panel">
-	<div class="row filter-panel-header-wrapper">
-
-		<div class="col-md-4">
-			<div class="search-box">
-			    <div class="form-group">
-			        <input ng-model="q" class="form-control" placeholder="Zoek een specifieke status ..">
-			        <button class="btn-search" type="button">
-			            <span class="glyphicon glyphicon-search"></span>
-			        </button>
-		        </div>
-			</div>
-		</div>
-	</div>
 	<div class="row" ng-show="vm.activityStatuses.length == 0">
 		<div class="svg-loader">
 			<img src="{{templateBaseUrl}}/images/spinning-circles.svg" width="70" alt="">
@@ -22,12 +9,12 @@
 			<table class="table">
 				<thead>
 					<tr>
-						<td class="th-first">Select one or more statusses</td>
+						<td class="th-first">Select one or more statuses</td>
 					</tr>
 				</thead>
 				<tbody>
 
-				    <tr dir-paginate="item in vm.activityStatuses | filter:q | itemsPerPage: 4"  pagination-id="activityStatuses">
+				    <tr dir-paginate="item in vm.activityStatuses | itemsPerPage: 4"  pagination-id="activityStatuses">
 				    	<td>
 				    		<div class="checkbox">
 					    		<label class="switch">
@@ -44,9 +31,5 @@
 				</tbody>
 			</table>
 		</div>
-		<div class="col-md-12 text-center">
-			<button class="btn btn-default btn-openaid btn-save" ng-click="vm.save()">Save</button>
-			<dir-pagination-controls pagination-id="activityStatuses"></dir-pagination-controls>
-		</div>	
 	</div>
 </div>

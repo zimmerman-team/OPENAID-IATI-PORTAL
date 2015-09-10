@@ -22,34 +22,38 @@ ZzLocationVis = (function() {
 
     this.vis = null;
     this.vis_id = id;
-    this.layout_gravity = 0;
-    this.charge = -40;
-    this.damper = 0.05;
-    this.friction = 0.8;
-    this.forces = d3.layout.force();
+    this.layout_gravity = -0.001;
+    this.damper = 0.04;
+    this.chargeDistance = 100;
+    this.friction = 0.9;
     this.circles = [];
     this.nodes = [];
     this.tooltip = CustomTooltip("sunburst_tooltip", 300);
     this.mapping = d3.layout.tree();
     this.mappingData = null;
 
+    ZzLocationVis.prototype.charge = function(d) {
+      return -Math.pow(d.radius + d.stroke_width, 2) / 16;
+    };
+
+
     this.group_centers = {
-      "89": { x: 350, y: 750, 'color': '#F6A000'},
-      "298": { x: 350, y: 150, 'color': '#5598B5'},
-      "189": { x: 350, y: 150, 'color': '#5598B5'},
-      "289": { x: 350, y: 150, 'color': '#A6E4F4'},
-      "498": { x: 350, y: 350, 'color': '#00BA96'},
-      "380": { x: 350, y: 350, 'color': '#14EFC5'},
-      "389": { x: 350, y: 350, 'color': '#C2FFF3'},
-      "489": { x: 350, y: 350, 'color': '#C2FFF3'},
-      "798": { x: 350, y: 550, 'color': '#4A671E'},
-      "589": { x: 350, y: 550, 'color': '#8DB746'},
-      "619": { x: 350, y: 550, 'color': '#C1F460'},
-      "689": { x: 350, y: 550, 'color': '#ABDD1F'},
-      "679": { x: 350, y: 550, 'color': '#EDFFC5'},
-      "789": { x: 350, y: 550, 'color': '#EDFFC5'},
-      "889": { x: 350, y: 950, 'color': '#EDFFC5'},
-      "998": { x: 350, y: 950, 'color': '#FF7373'},
+      "89": { x: 350, y: 800, 'color': '#F6A000'},
+      "298": { x: 350, y: 200, 'color': '#5598B5'},
+      "189": { x: 350, y: 200, 'color': '#5598B5'},
+      "289": { x: 350, y: 200, 'color': '#A6E4F4'},
+      "498": { x: 350, y: 400, 'color': '#00BA96'},
+      "380": { x: 350, y: 400, 'color': '#14EFC5'},
+      "389": { x: 350, y: 400, 'color': '#C2FFF3'},
+      "489": { x: 350, y: 400, 'color': '#C2FFF3'},
+      "798": { x: 350, y: 600, 'color': '#4A671E'},
+      "589": { x: 350, y: 600, 'color': '#8DB746'},
+      "619": { x: 350, y: 600, 'color': '#C1F460'},
+      "689": { x: 350, y: 600, 'color': '#ABDD1F'},
+      "679": { x: 350, y: 600, 'color': '#EDFFC5'},
+      "789": { x: 350, y: 600, 'color': '#EDFFC5'},
+      "889": { x: 350, y: 1000, 'color': '#EDFFC5'},
+      "998": { x: 650, y: 500, 'color': '#FF7373'},
     };
 
     // init vis
@@ -73,23 +77,6 @@ ZzLocationVis = (function() {
       .attr('y', 0)
       .attr('fill', '#fff')
       .attr('fill-opacity', 0.3);  
-
-    // var left = this.vis.append('rect')
-    //   .attr('width', 520)
-    //   .attr('height', 1900)
-    //   .attr('x', 0)
-    //   .attr('y', 50)
-    //   .attr('fill', '#fff')
-    //   .attr('fill-opacity', 0.3);
-
-    // // init mid
-    // var mid = this.vis.append('rect')
-    //   .attr('width', 210)
-    //   .attr('height', 1900)
-    //   .attr('x', 530)
-    //   .attr('y', 50)
-    //   .attr('fill', '#fff')
-    //   .attr('fill-opacity', 0.3);
 
     // init right
     var righthead = this.vis.append('rect')
@@ -132,38 +119,6 @@ ZzLocationVis = (function() {
       .attr('style', 'text-anchor: start;')
       .text('Worldwide unspecified');
 
-    // this.direct = this.vis.append('g')
-    //   .attr('class', 'direct')
-    //   .attr('transform', 'translate(10,0)');
-    // this.direct.append('text')
-    //   .attr('x', 55)
-    //   .attr('y', 25)
-    //   .attr('font-size', '14px')
-    //   .attr('fill', '#444')
-    //   .attr('style', 'text-anchor: start;')
-    //   .style('cursor', 'pointer')
-    //   .text('Direct expenditure')
-    //   .on('click', this.toggleDirect);
-    // this.direct.append('rect')
-    //   .attr('width', 30)
-    //   .attr('height', 17)
-    //   .attr('x', 15)
-    //   .attr('y', 13)
-    //   .attr('rx', 9)
-    //   .attr('ry', 9)
-    //   .attr('fill', '#fff')
-    //   .attr('fill-opacity', 1)
-    //   .attr('stroke', '#aaa')
-    //   .attr('stroke-width', 1);
-    // this.direct.append('circle')
-    //   .attr('class', 'directCircle')
-    //   .attr('cx', 23)
-    //   .attr('cy', 22)
-    //   .attr('r', 9)
-    //   .attr('fill', '#000')
-    //   .attr('fill-opacity', 1)
-    //   .attr('stroke-width', 0);
-
     this.indirect = this.vis.append('g')
       .attr('class', 'direct')
       .attr('transform', 'translate(0,0)')
@@ -200,7 +155,7 @@ ZzLocationVis = (function() {
       .attr('class', 'regions-wrap')
       .attr('transform', 'translate(0,-20)');
 
-    this.countries = this.vis.append('g')
+    this.countries = this.regions_wrap.append('g')
       .attr('class', 'countries')
       .attr('transform', 'translate(0,-30)');
   };
@@ -211,11 +166,11 @@ ZzLocationVis = (function() {
 
     var that = this;
 
-    function setHiddenChildrenPosition(d, i){
+    function setHiddenChildrenPosition(d, i, y){
       if(d._children){
-        for (var y = 0;y < d._children.length;y++){
-          that.group_centers[d._children[y].id]['y'] = 180 + (i * 190);
-          setHiddenChildrenPosition(d._children[y], i);
+        for (var z = 0;z < d._children.length;z++){
+          that.group_centers[d._children[z].id]['y'] = y;
+          setHiddenChildrenPosition(d._children[z], i, y);
         }
       }
     }
@@ -229,7 +184,7 @@ ZzLocationVis = (function() {
 
     
     // Enter any new nodes
-    var nodeEnter = node.enter().append("g")
+    var nodeEnter = node.enter().insert('g', ':first-child')
         .attr("class", "region");
 
     //white bg
@@ -363,27 +318,24 @@ ZzLocationVis = (function() {
     var y = 0;
 
 
-    // Transition nodes to their new position.
+    // Transition nodes to their new position. 
     var nodeUpdate = node.transition()
       .duration(750)
 
       .attr("transform", function(d, i) { 
-          
+          // y = .legend item height
           if( ( d.depth != 1 && lastDepth == 1 ) || ( d.depth == 3 && lastDepth == 2) ) {
             y += 60;
           } else {
             y += 200;
           }
-
           lastDepth = d.depth;
-
           d.groupHeight = y;
-          console.log(d.groupHeight);
-        return "translate(15," + y + ")"; 
+          return "translate(15," + y + ")"; 
       })
       .each(function(d,i){ 
-        that.group_centers[d.id]['y'] = d.groupHeight - 20;
-        setHiddenChildrenPosition(d, i);
+        that.group_centers[d.id]['y'] = d.groupHeight - 10;
+        setHiddenChildrenPosition(d, i, d.groupHeight - 10);
       });
 
     nodeUpdate.select(".arrow")
@@ -485,8 +437,8 @@ ZzLocationVis = (function() {
 
     that.data.forEach(function(d) {
       d.fill = d.color;
-      d.x = that.group_centers[d.group]['x'] + ((Math.random() * 40) - 20);
-      d.y = that.group_centers[d.group]['y'] + ((Math.random() * 40) - 20);
+      d.x = that.group_centers[d.group]['x'] + ((Math.random() * 200) - 100);
+      d.y = that.group_centers[d.group]['y'] + ((Math.random() * 120) - 60);
       d.radius = that.radius_scale(d.value + d.value2);
       d.stroke = shadeBlend(-0.6,d.color);
       d.stroke_width = that.radius_scale(d.value2);
@@ -514,8 +466,8 @@ ZzLocationVis = (function() {
       .style("stroke-width", 0)
       .on("mouseover", that.mouseOver)
       .on('mouseout', that.mouseOut)
-      .on('click', that.mouseClick)
-      .call(that.force.drag);
+      .on('click', that.mouseClick);
+      // .call(that.force.drag);
 
     that.circles.transition()
       .attr("r", function(d) { return d.radius; })
@@ -553,7 +505,7 @@ ZzLocationVis = (function() {
       d.fill = that.group_centers[d.id].color;
       d.color = d.fill;
       d.x = 640;
-      d.y = that.group_centers[d.id].y;
+      d.y = that.group_centers[d.id].y - 40;
       // if(d.y == previousY){
         // d.radius = 0;
       // } else {
@@ -576,7 +528,7 @@ ZzLocationVis = (function() {
       .attr("cx", function(d) { return d.x; })
       .attr("cy", function(d) { return d.y; })
       .attr("r", 0)
-      .style("fill", function(d) { return d.fill; })
+      .attr('fill', function(d){return shadeBlend(-0.6,d.color); })
       .style("stroke", function(d) { return d.stroke; })
       .style("stroke-width", function(d) { return d.stroke_width; })
       .on('click', that.mouseClick);
@@ -589,7 +541,6 @@ ZzLocationVis = (function() {
       .duration(750)
       .attr("r", function(d) { return d.radius; })
       .attr("cy", function(d) { return d.y; })
-      .style("fill", function(d) { return d.fill; })
       .style("stroke", function(d) { return d.stroke; })
       .style("stroke-width", function(d) { return d.stroke_width; });
   }
@@ -601,8 +552,9 @@ ZzLocationVis = (function() {
     that.force
       .gravity(this.layout_gravity)
       .charge(this.charge)
+      // .theta(0.3)
       .friction(this.friction)
-      .chargeDistance(0)
+      .chargeDistance(this.chargeDistance)
       .on("tick", (function(_this) {
       return function(e) {
         return _this.circles
@@ -614,28 +566,44 @@ ZzLocationVis = (function() {
       };
     })(this));
 
-    that.force.start();
-    
+
+    var iters = 600; // You can get decent results from 300 if you are pressed for time
+    var thresh = 0.001;
+    that.force.start(); // Defaults to alpha = 0.1
+    // for (var i = iters; i > 0; --i) {
+    //     that.force.tick();
+    //     if(that.force.alpha() < thresh) {
+    //         //console.log("Reached " + force.alpha() + " for " + data.nodes.length + " node chart after " + (iters - i) + " ticks.");
+    //         break;
+    //     }
+    // }
+    // that.force.stop();
+    setTimeout(function tick(){
+        that.force.tick();
+        if(that.force.alpha() >= .005);
+            setTimeout(tick, 0);
+    }, 0);
+
+
+    function forwardAlpha(layout, alpha, max) {
+      alpha = alpha || 0;
+      max = max || 1000;
+      var i = 0;
+      while(layout.alpha() > alpha && i++ < max) layout.tick();
+    }
+
   }
 
-  // HELPERS
-
-  ZzLocationVis.prototype.charge = function(d) {
-    return -Math.pow(d.radius + d.stroke_width, 2) / 12;
-  };
-
+  // HELPERS  
   ZzLocationVis.prototype.move_towards_group = function(alpha) {
     return (function(_this) {
       return function(d) {
         var target = _this.group_centers[d.group];    
         d.x = d.x + (target.x - d.x) * _this.damper * alpha * 1.1;
-        return d.y = d.y + (target.y - d.y) * _this.damper * alpha * 1.5;
+        return d.y = d.y + (target.y - d.y) * _this.damper * alpha * 2;
       };
     })(this);
   };
-
-
-
 
 
   // LISTENERS
@@ -679,6 +647,9 @@ ZzLocationVis = (function() {
 
   ZzLocationVis.prototype.mouseClick = function(d){
     // how details within the pop-up
+    console.log(geoLocationVis.group_centers[d.group]);
+    console.log('y: '+d.y);
+    console.log('x: '+d.x);
     geoLocationVis.tooltip.showTooltip(d);
     d3.event.stopPropagation();
   }

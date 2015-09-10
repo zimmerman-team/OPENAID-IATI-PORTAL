@@ -168,10 +168,10 @@
       
       return function(code){
         var colors =  {
-          'Hulprelatie': "#FFDFBF",
-          'Overgangsrelatie': "#FF7F00", 
-          'EXIT relatie': "#DDD", 
-          'Handelsrelatie': "#999"};
+          'Aid relation': "#FFDFBF",
+          'Transition relation': "#FF7F00", 
+          'EXIT relation': "#DDD", 
+          'Trade relation': "#999"};
         if($scope.colorData[code] != null){
           return colors[$scope.colorData[code]];
         } else{

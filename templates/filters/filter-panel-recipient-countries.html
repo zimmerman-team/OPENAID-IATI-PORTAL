@@ -3,7 +3,7 @@
 		<div class="col-md-4">
 			<div class="search-box">
 			    <div class="form-group">
-			        <input ng-model="q" class="form-control" placeholder="Zoek een specifiek land ..">
+			        <input ng-model="vm.q" class="form-control" placeholder="Search by country name..">
 			        <button class="btn-search" type="button">
 			            <span class="glyphicon glyphicon-search"></span>
 			        </button>
@@ -11,23 +11,27 @@
 			</div>
 		</div>
 	</div>
-	<div class="row" ng-show="vm.recipientCountries.length == 0">
+	<div class="row" ng-show="vm.loading">
 		<div class="svg-loader">
-			<img src="{{vm.templateBaseUrl}}/images/spinning-circles.svg" width="70" alt="">
+			There are no regions found within your current selection. 
 		</div>
 	</div>
-	<div class="row" ng-show="vm.recipientCountries.length != 0">
+	<div class="row" ng-show="!vm.loading">
 		<div class="col-md-12">
 			<table class="table">
 				<thead>
 					<tr>
-						<td class="th-first">Select one or more countrues</td>
+						<td class="th-first">Select one or more countries</td>
 						<td>Projects<span class="glyphicon glyphicon-resize-vertical"></span></td>
 					</tr>
 				</thead>
 				<tbody>
 
-				    <tr dir-paginate="item in vm.recipientCountries | filter:q | orderBy: 'name' | itemsPerPage: 4"  pagination-id="recipientCountries">
+				    <tr 
+				    	dir-paginate="item in vm.recipientCountries | itemsPerPage: 4" 
+				    	total-items="vm.totalCount" 
+				    	current-page="pagination.current"  
+				    	pagination-id="recipientCountries">
 				    	<td>
 				    		<div class="checkbox">
 					    		<label class="switch">
@@ -47,7 +51,9 @@
 		</div>
 		<div class="col-md-12 text-center">
 			<button class="btn btn-default btn-save btn-openaid" ng-click="vm.save()">Save</button>
-			<dir-pagination-controls pagination-id="recipientCountries"></dir-pagination-controls>
+			<dir-pagination-controls 
+				pagination-id="recipientCountries" 
+				on-page-change="vm.pageChanged(newPageNumber)"></dir-pagination-controls>
 		</div>
 	</div>
 </div>

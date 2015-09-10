@@ -16,13 +16,6 @@
     var vm = this;
     vm.region = null;
     vm.region_id = $stateParams.region_id;
-
-    vm.partnerType = '';
-    vm.activityCount = '';
-    vm.sectorCount = '';
-    vm.organisationCount = '';
-    vm.donorCount = '';
-    vm.totalBudget = '';
     vm.filterSelection = FilterSelection;
     vm.selectedTab = 'samenvatting';
 
