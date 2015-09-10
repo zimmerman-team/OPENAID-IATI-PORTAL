@@ -123,7 +123,8 @@
 
       function succesFn(data, status, headers, config){
         vm.remoteRegions = data.data.results;
-        vm.regions = applyRegionHierarchy(regionMapping)
+        vm.regionMapping = angular.copy(regionMapping)
+        vm.regions = applyRegionHierarchy(vm.regionMapping)
         vm.totalRegions = data.data.count;
         $scope.count = vm.totalRegions;
       }

@@ -131,7 +131,8 @@
       // TODO: called twice, fix
       function succesFn(data, status, headers, config){
           vm.remoteSectors = data.data.results;
-          vm.sectors = applySectorHierarchy(sectorMapping);
+          vm.sectorMapping = angular.copy(sectorMapping)
+          vm.sectors = applySectorHierarchy(vm.sectorMapping);
           vm.totalSectors = data.data.count;
           $scope.count = vm.totalSectors;
       }
