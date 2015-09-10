@@ -108,10 +108,9 @@ html {
 }
 
 body{
-  background-color: #F5F3F3;
-  /*background-image: url('../../images/bg.png');
-  background-size: auto;
-  background-repeat: repeat;*/
+  /*background-color: #404040;*/
+  background-image: url('../../images/bg.jpg');
+  background-size: cover;
   color: $textstd;
   font-family: $titillium;
 }
@@ -1909,26 +1908,30 @@ ACTIVITY LIST
     }
   }
   .children {
-    .wit {
-      background: darken(#fff,4%);
-    }
-    .left-pad {
-      padding-left:25px;
-    }
     h3 {
       font-size:22px;
     }
-    .children {
-      .wit {
-        background: darken(#fff,8%);
-      }
-      .left-pad {
-        padding-left:50px;
-      }
-      h3 {
-        font-size:20px;
-      }
-    }
+  }
+}
+
+.activity-list-item > .children {
+
+  .wit {
+    background: darken(#fff,4%);
+  }
+
+  .left-pad {
+    padding-left: 25px;
+  }
+}
+
+.activity-list-item .children .children {
+  .wit {
+    background: darken(#fff,8%);
+  }
+
+  .left-pad {
+    padding-left: 50px;
   }
 }
 
@@ -2117,26 +2120,26 @@ footer{
   color:rgba(146,127,186,1);
 }
 
-.marker-circle-Transitionrelation{
+.marker-circle-Overgangsrelatie{
   background-color: rgba(207,32,38,0.8);
 }
 
-.marker-circle-EXITrelation{
+.marker-circle-EXITrelatie{
   background-color: rgba(75,103,47,0.8);
 }
 
-.marker-circle-Aidrelation{
+.marker-circle-Hulprelatie{
   background-color: rgba(63,169,245,0.8);
 }
 
-.marker-circle-Traderelation{
+.marker-circle-Handelsrelatie{
   background-color: rgba(244,160,29,0.8);
 }
 
-.marker-circle-Other{
+.marker-circle-Overige{
   background-color: rgba(146,127,186,0.8);
 }
-.marker-circle-Other2{
+.marker-circle-Overige2{
   background-color: rgba(50,50,50,0.8);
 }
 

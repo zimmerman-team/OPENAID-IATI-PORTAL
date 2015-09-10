@@ -13,7 +13,7 @@
     */
     function config($stateProvider, $locationProvider, $routeProvider, templateBaseUrl){
 
-      $locationProvider.html5Mode(true);
+      $locationProvider.html5Mode(false);
       $routeProvider.otherwise('/');
 
       $stateProvider

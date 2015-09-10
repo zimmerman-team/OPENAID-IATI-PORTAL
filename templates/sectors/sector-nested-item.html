@@ -1,0 +1,36 @@
+<script type="text/ng-template" id="tree">
+    <div ng-if="item.children" class="hp-block wit parent collapsed">
+        <div class="row">
+            <div class="col-sm-4">
+                <h3 class="no-margin left-pad">
+                    <span class="expandme" ng-click="vm.toggleHideChildren($event)"></span>
+                    <a ui-sref="sector({ sector_id: item.sector_id })">{{ item.name }}</a>
+                    </h3>
+            </div>
+            <div class="col-sm-4">
+                <h3 class="no-margin">{{item.total_disbursements  | shortcurrency :'€'}}</h3>
+            </div>
+            <div class="col-sm-4">
+                <h3 class="no-margin">{{item.activity_count}} projects</h3>
+            </div>
+        </div>
+    </div>
+
+    <div ng-if="!item.children" class="hp-block wit">
+        <div class="row">
+            <div class="col-sm-4">
+                <h3 class="no-margin left-pad"><a ui-sref="sector({ sector_id: item.sector_id })">{{ item.name }}</a></h3>
+            </div>
+            <div class="col-sm-4">
+                <h3 class="no-margin">{{item.total_disbursements  | shortcurrency :'€'}}</h3>
+            </div>
+            <div class="col-sm-4">
+                <h3 class="no-margin">{{item.activity_count}} projects</h3>
+            </div>
+        </div>
+    </div>
+
+    <div ng-if="item.children" class="children" style="display: none;">
+        <div collapse="vm.isCollapsed" ng-repeat="item in item.children" ng-include="'tree'"></div>
+    </div>    
+</script>
