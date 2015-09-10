@@ -50,7 +50,7 @@
 	      }
 
 	      if(m.selectedTransactionYear.on){
-	        selectList.push('&transactions__transaction_date__gte='+m.selectedTransactionYear.value+'-01-01&transactions__transaction_date__lte='+m.selectedTransactionYear.value+'-01-01');
+	        selectList.push('&transactions__transaction_date__gte='+m.selectedTransactionYear.value+'-01-01&transactions__transaction_date__lte='+m.selectedTransactionYear.value+'-12-31');
 	      }
 
 	      if(Search.searchString != ''){
