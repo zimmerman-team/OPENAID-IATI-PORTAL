@@ -645,8 +645,10 @@ ZzLocationVis = (function() {
 
   ZzLocationVis.prototype.toggleIndirect = function() {
 
+    var that = geoLocationVis;
+
     function endOfAnim(){
-      geoLocationVis.update();
+      that.update();
     }
 
     function endOfTransition(transition, callback) {
@@ -657,14 +659,14 @@ ZzLocationVis = (function() {
       });
     }
 
-    if (geoLocationVis.indirect.select('circle').attr('fill') != '#000000') {
+    if (that.indirect.select('circle').attr('fill') != '#000000') {
 
-        geoLocationVis.indirect.select('circle')
+        that.indirect.select('circle')
         .attr('cx', 23)
         .attr('fill', '#000000');
 
       // Update the nodes
-      var node = geoLocationVis.vis.selectAll(".node");
+      var node = that.vis.selectAll(".node");
 
       // Transition nodes to their new position.
       var nodeUpdate = node.transition()
@@ -673,30 +675,32 @@ ZzLocationVis = (function() {
         .each(function(d){ 
           if(d.geoType == 'country'){
             d.value2 = 0;
-            d.radius = geoLocationVis.radius_scale(d.value + d.value2);
+            d.stroke_width = 0;
+            d.radius = that.radius_scale(d.value + d.value2);
           } else {
-            d.value2 = geoLocationVis.radius_scale(d._value2);
-            d.radius = geoLocationVis.radius_scale(d.value + d.value2);
+            d.value2 = d._value2;
+            d.stroke_width = that.radius_scale(d.value2);
+            d.radius = that.radius_scale(d.value + d.value2);
           }
         })
         .style("r", function(d){
           return d.radius;
         })
         .style("stroke-width", function(d){
-          return d.value2;
+          return d.stroke_width;
         });
 
     }else {
-        geoLocationVis.indirect.select('circle')
+        that.indirect.select('circle')
         .attr('cx', 38)
         .attr('fill', '#00a99d');
 
-      geoLocationVis.vis.selectAll('g.direct circle')
+      that.vis.selectAll('g.direct circle')
         .transition()
         .attr('x', 40);
 
       // Update the nodes…
-      var node = geoLocationVis.vis.selectAll(".node");
+      var node = that.vis.selectAll(".node");
 
       // Transition nodes to their new position.
       var nodeUpdate = node.transition()
@@ -707,12 +711,12 @@ ZzLocationVis = (function() {
 
           if(d.geoType == 'country'){
             d.value2 = d._value2;
-            d.stroke_width = geoLocationVis.radius_scale(d.value2);
-            d.radius = geoLocationVis.radius_scale(d.value + d.value2);
+            d.stroke_width = that.radius_scale(d.value2);
+            d.radius = that.radius_scale(d.value + d.value2);
           } else {
             d.value2 = 0;
-            d.radius = geoLocationVis.radius_scale(d.value + d.value2);
             d.stroke_width = 0;
+            d.radius = that.radius_scale(d.value + d.value2);
           }
 
 
@@ -778,9 +782,11 @@ ZzLocationVis = (function() {
     function showTooltip(d){
       function abbreviatedValue(input){
         
+        var curSymbol = '€ ';
         var out = '';
+        var minus = input < 0;
         var addDot = false;
-
+        input = Math.round(Math.abs(input));
         if(input > 999999999){
           out = (input / 1000000000).toFixed(2) + ' mld';
         } else if(input > 999999){
@@ -798,7 +804,11 @@ ZzLocationVis = (function() {
           out = input.substring(0, (input.length - 3)) + '.' + input.substring((input.length - 3), input.length);
         }
 
-        return '€ ' + out;
+        if(minus){
+          return "-" + curSymbol + out;
+        } else{
+          return curSymbol + out;
+        }
       }
 
       var frontColor = '#fff';
@@ -810,7 +820,7 @@ ZzLocationVis = (function() {
       if (d.id === parseInt(d.id, 10))
           $("#"+tooltipId).html('<div class="tt-header" style="background-color:'+d.color+';color:'+frontColor+';font-weight: 400;">'+d.name+'</div><div class="tt-text">Regional expenditure: '+abbreviatedValue(d.value)+'<br>'+'Indirect country expenditure: ' + abbreviatedValue(d._value2)+'<br><a style="pointer-events: all" href="'+home_url+'/regions/'+d.id+'/">Go to region page</a></div>');
       else
-          $("#"+tooltipId).html('<div class="tt-header" style="background-color:'+d.color+';color:'+frontColor+';font-weight: 400;">'+d.name+'</div><div class="tt-text">Direct expenditure: '+abbreviatedValue(d.value)+'<br>Indirect expenditure: '+abbreviatedValue(d.value2)+'<br><a style="pointer-events: all" href="'+home_url+'/countries/'+d.id+'/">Go to country page</a></div>');
+          $("#"+tooltipId).html('<div class="tt-header" style="background-color:'+d.color+';color:'+frontColor+';font-weight: 400;">'+d.name+'</div><div class="tt-text">Direct expenditure: '+abbreviatedValue(d.value)+'<br>Indirect expenditure: '+abbreviatedValue(d._value2)+'<br><a style="pointer-events: all" href="'+home_url+'/countries/'+d.id+'/">Go to country page</a></div>');
       
       $("#"+tooltipId).show(0);
       

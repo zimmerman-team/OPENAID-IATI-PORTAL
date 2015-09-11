@@ -111,6 +111,11 @@
 
       var regionHierarchy = regionMapping;
 
+
+      var icountries = 0;
+      var iregions = 0;
+
+
       // create list of countries
       var countries = {};
       for (var i = 0, len = vm.directCountryValues.length; i < len; i++) {
@@ -126,7 +131,7 @@
       }
 
       for (var i = 0, len = vm.indirectCountryValues.length; i < len; i++) {
-
+        icountries += vm.indirectCountryValues[i].total_value;
         if(countries[vm.indirectCountryValues[i].loc_country_id] == undefined){
 
           countries[vm.indirectCountryValues[i].country_id] = {
@@ -163,7 +168,7 @@
       }
 
       for (var i = 0, len = vm.directRegionValues.length; i < len; i++) {
-
+        iregions += vm.directRegionValues[i].total_disbursements;
         if(regions[vm.directRegionValues[i].region_id] == undefined){
 
           regions[vm.directRegionValues[i].region_id] = {
@@ -178,8 +183,8 @@
         }
       }
 
-      console.log(countries);
-      console.log(regions);
+      console.log(icountries);
+      console.log(iregions);
 
       
 

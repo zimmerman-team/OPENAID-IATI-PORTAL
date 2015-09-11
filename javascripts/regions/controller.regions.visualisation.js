@@ -206,9 +206,6 @@
        ],
       };
 
-
-
-
       // create list of countries
       var countries = {};
       for (var i = 0, len = vm.directCountryValues.length; i < len; i++) {
@@ -242,11 +239,8 @@
       }
 
       var country_arr = [];
-      var cindirect = 0;
-
       for (var country in countries) {
         if(country != 'undefined'){
-          cindirect += countries[country].value2;
           country_arr.push(countries[country]);
         }
       }
@@ -255,7 +249,6 @@
       var regions = {};
       for (var i = 0, len = vm.directRegionValues.length; i < len; i++) {
 
-
         regions[vm.directRegionValues[i].region_id] = {
           'id':   vm.directRegionValues[i].region_id,
           'value': vm.directRegionValues[i].total_disbursements,
@@ -263,8 +256,6 @@
           'color': regionMapping[vm.directRegionValues[i].region_id].color,
           'value2': 0,
         };
-
-        
       }
 
       for (var i = 0, len = vm.indirectRegionValues.length; i < len; i++) {
@@ -284,16 +275,11 @@
       }
 
       var region_arr = [];
-      var rindirect = 0;
       for (var region in regions) {
         if(region != 'undefined'){
-          rindirect += regions[region].value2;
           region_arr.push(regions[region]);
         }
       }
-
-      // console.log(rindirect);
-      // console.log(cindirect);
 
       var data = {
         'mapping': regionHierarchy,
