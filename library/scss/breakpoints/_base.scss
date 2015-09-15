@@ -81,6 +81,9 @@ oipa-table-chart .table tbody tr td.colour {
   .custom-select {
     margin-top: 0;
     width: 200px;
+    &.wide {
+      width: 310px;
+    }
     select {
       font-weight: 600;
       font-size:18px;
@@ -112,7 +115,7 @@ html {
 }
 
 body{
-  background-color: #F5F3F3;
+  background-color: #b6ccea;
   background-image: url('../../images/bg.jpg');
   background-size: cover;
   color: $textstd;

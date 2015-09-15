@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /******************************************************************
 Site Name:
 Author:
@@ -26,7 +27,7 @@ the whole project.
 /**
  * Correct `block` display not defined in IE 8/9.
  */
-/* line 23, ../scss/partials/_normalize.scss */
+/* line 12, ../scss/partials/_normalize.scss */
 article,
 aside,
 details,
@@ -45,7 +46,7 @@ summary {
 /**
  * Correct `inline-block` display not defined in IE 8/9.
  */
-/* line 33, ../scss/partials/_normalize.scss */
+/* line 31, ../scss/partials/_normalize.scss */
 audio,
 canvas,
 video {
@@ -66,7 +67,7 @@ audio:not([controls]) {
  * Address `[hidden]` styling not present in IE 8/9.
  * Hide the `template` element in IE, Safari, and Firefox < 22.
  */
-/* line 53, ../scss/partials/_normalize.scss */
+/* line 52, ../scss/partials/_normalize.scss */
 [hidden],
 template {
   display: none;
@@ -120,7 +121,7 @@ a:focus {
 /**
  * Improve readability when focused and also mouse hovered in all browsers.
  */
-/* line 106, ../scss/partials/_normalize.scss */
+/* line 105, ../scss/partials/_normalize.scss */
 a:active,
 a:hover {
   outline: 0;
@@ -150,7 +151,7 @@ abbr[title] {
 /**
  * Address style set to `bolder` in Firefox 4+, Safari 5, and Chrome.
  */
-/* line 138, ../scss/partials/_normalize.scss */
+/* line 136, ../scss/partials/_normalize.scss */
 b,
 strong,
 .strong {
@@ -160,7 +161,7 @@ strong,
 /**
  * Address styling not present in Safari 5 and Chrome.
  */
-/* line 148, ../scss/partials/_normalize.scss */
+/* line 146, ../scss/partials/_normalize.scss */
 dfn,
 em,
 .em {
@@ -199,7 +200,7 @@ pre {
 /**
  * Correct font family set oddly in Safari 5 and Chrome.
  */
-/* line 188, ../scss/partials/_normalize.scss */
+/* line 185, ../scss/partials/_normalize.scss */
 code,
 kbd,
 pre,
@@ -227,7 +228,7 @@ q {
 /**
  * Address inconsistent and variable font size in all browsers.
  */
-/* line 213, ../scss/partials/_normalize.scss */
+/* line 212, ../scss/partials/_normalize.scss */
 q:before,
 q:after {
   content: '';
@@ -242,7 +243,7 @@ small, .small {
 /**
  * Prevent `sub` and `sup` affecting `line-height` in all browsers.
  */
-/* line 227, ../scss/partials/_normalize.scss */
+/* line 226, ../scss/partials/_normalize.scss */
 sub,
 sup {
   font-size: 75%;
@@ -267,7 +268,7 @@ sub {
 /*
  * Addresses margins set differently in IE6/7.
  */
-/* line 253, ../scss/partials/_normalize.scss */
+/* line 250, ../scss/partials/_normalize.scss */
 dl,
 menu,
 ol,
@@ -288,7 +289,7 @@ menu {
   padding: 0 0 0 40px;
 }
 
-/* line 270, ../scss/partials/_normalize.scss */
+/* line 269, ../scss/partials/_normalize.scss */
 ol,
 ul {
   padding: 0;
@@ -298,7 +299,7 @@ ul {
 /*
  * Corrects list images handled incorrectly in IE7.
  */
-/* line 280, ../scss/partials/_normalize.scss */
+/* line 279, ../scss/partials/_normalize.scss */
 nav ul,
 nav ol {
   list-style: none;
@@ -365,7 +366,7 @@ legend {
  * 2. Correct font size not being inherited in all browsers.
  * 3. Address margins set differently in Firefox 4+, Safari 5, and Chrome.
  */
-/* line 350, ../scss/partials/_normalize.scss */
+/* line 347, ../scss/partials/_normalize.scss */
 button,
 input,
 select,
@@ -382,7 +383,7 @@ textarea {
  * Address Firefox 4+ setting `line-height` on `input` using `!important` in
  * the UA stylesheet.
  */
-/* line 362, ../scss/partials/_normalize.scss */
+/* line 361, ../scss/partials/_normalize.scss */
 button,
 input {
   line-height: normal;
@@ -394,7 +395,7 @@ input {
  * Correct `button` style inheritance in Chrome, Safari 5+, and IE 8+.
  * Correct `select` style inheritance in Firefox 4+ and Opera.
  */
-/* line 374, ../scss/partials/_normalize.scss */
+/* line 373, ../scss/partials/_normalize.scss */
 button,
 select {
   text-transform: none;
@@ -407,7 +408,7 @@ select {
  * 3. Improve usability and consistency of cursor style between image-type
  *    `input` and others.
  */
-/* line 389, ../scss/partials/_normalize.scss */
+/* line 386, ../scss/partials/_normalize.scss */
 button,
 html input[type="button"],
 input[type="reset"],
@@ -421,7 +422,7 @@ input[type="submit"] {
 /**
  * Re-set default cursor for disabled elements.
  */
-/* line 399, ../scss/partials/_normalize.scss */
+/* line 398, ../scss/partials/_normalize.scss */
 button[disabled],
 html input[disabled] {
   cursor: default;
@@ -431,7 +432,7 @@ html input[disabled] {
  * 1. Address box sizing set to `content-box` in IE 8/9/10.
  * 2. Remove excess padding in IE 8/9/10.
  */
-/* line 409, ../scss/partials/_normalize.scss */
+/* line 408, ../scss/partials/_normalize.scss */
 input[type="checkbox"],
 input[type="radio"] {
   box-sizing: border-box;
@@ -459,7 +460,7 @@ input[type="search"] {
  * Remove inner padding and search cancel button in Safari 5 and Chrome
  * on OS X.
  */
-/* line 433, ../scss/partials/_normalize.scss */
+/* line 432, ../scss/partials/_normalize.scss */
 input[type="search"]::-webkit-search-cancel-button,
 input[type="search"]::-webkit-search-decoration {
   -webkit-appearance: none;
@@ -468,7 +469,7 @@ input[type="search"]::-webkit-search-decoration {
 /**
  * Remove inner padding and border in Firefox 4+.
  */
-/* line 442, ../scss/partials/_normalize.scss */
+/* line 441, ../scss/partials/_normalize.scss */
 button::-moz-focus-inner,
 input::-moz-focus-inner {
   border: 0;
@@ -506,7 +507,7 @@ table {
   box-sizing: border-box;
 }
 
-/* line 480, ../scss/partials/_normalize.scss */
+/* line 479, ../scss/partials/_normalize.scss */
 .image-replacement,
 .ir {
   text-indent: 100%;
@@ -593,7 +594,6 @@ FONT FACE
   font-weight: normal;
   font-style: normal;
 }
-
 /*
 The following is based of Typebase:
 https://github.com/devinhunt/typebase.css
@@ -3129,7 +3129,7 @@ probably best not to use it. I mean, were you going to anyway? */
   height: 8px;
   top: 50%;
   right: .7em;
-  margin-top: -0.8em;
+  margin-top: -.8em;
   font-family: 'FontAwesome';
   z-index: 2;
   /* This hack make the select behind the arrow clickable in some browsers */
@@ -3197,7 +3197,6 @@ x:-o-prefocus, .custom-select::after {
     width: calc(100% + em);
   }
 }
-
 /* Firefox focus has odd artifacts around the text, this kills that. See https://developer.mozilla.org/en-US/docs/Web/CSS/:-moz-focusring */
 /* line 116, ../scss/partials/_select.scss */
 .custom-select select:-moz-focusring {
@@ -3307,18 +3306,22 @@ oipa-table-chart .table tbody tr td.colour {
   width: 200px;
 }
 /* line 84, ../scss/breakpoints/_base.scss */
+.table.top5-table .custom-select.wide {
+  width: 310px;
+}
+/* line 87, ../scss/breakpoints/_base.scss */
 .table.top5-table .custom-select select {
   font-weight: 600;
   font-size: 18px;
   padding-left: 10px;
 }
 
-/* line 94, ../scss/breakpoints/_base.scss */
+/* line 97, ../scss/breakpoints/_base.scss */
 .about-page .intro {
   margin-top: 16px;
   font-weight: 600;
 }
-/* line 98, ../scss/breakpoints/_base.scss */
+/* line 101, ../scss/breakpoints/_base.scss */
 .about-page h4 {
   margin-top: 22px;
   margin-bottom: 4px;
@@ -3328,36 +3331,36 @@ oipa-table-chart .table tbody tr td.colour {
 /*********************
 GLOBAL
 *********************/
-/* line 110, ../scss/breakpoints/_base.scss */
+/* line 113, ../scss/breakpoints/_base.scss */
 html {
   background: #333;
 }
 
-/* line 114, ../scss/breakpoints/_base.scss */
+/* line 117, ../scss/breakpoints/_base.scss */
 body {
-  background-color: #F5F3F3;
+  background-color: #b6ccea;
   background-image: url("../../images/bg.jpg");
   background-size: cover;
   color: #333333;
   font-family: "Titillium Web", sans-serif;
 }
 
-/* line 122, ../scss/breakpoints/_base.scss */
+/* line 125, ../scss/breakpoints/_base.scss */
 .description {
   font-size: 1.3em;
 }
 
-/* line 126, ../scss/breakpoints/_base.scss */
+/* line 129, ../scss/breakpoints/_base.scss */
 #openaid-main {
   min-height: 1000px;
 }
 
-/* line 130, ../scss/breakpoints/_base.scss */
+/* line 133, ../scss/breakpoints/_base.scss */
 .white-background {
   background-color: #fff;
 }
 
-/* line 134, ../scss/breakpoints/_base.scss */
+/* line 137, ../scss/breakpoints/_base.scss */
 .btn-openaid {
   background-color: #29abe2;
   padding: 5px 28px;
@@ -3367,31 +3370,31 @@ body {
   border-radius: 2px;
 }
 
-/* line 143, ../scss/breakpoints/_base.scss */
+/* line 146, ../scss/breakpoints/_base.scss */
 .btn-cancel {
   margin-left: 5px;
   background-color: #CBCCDA;
 }
 
-/* line 148, ../scss/breakpoints/_base.scss */
+/* line 151, ../scss/breakpoints/_base.scss */
 .align-right {
   text-align: right;
 }
 
-/* line 152, ../scss/breakpoints/_base.scss */
+/* line 155, ../scss/breakpoints/_base.scss */
 hr {
   border-top: 1px solid #fff;
   margin-top: 10px;
   margin-bottom: 10px;
 }
 
-/* line 158, ../scss/breakpoints/_base.scss */
+/* line 161, ../scss/breakpoints/_base.scss */
 .svg-loader {
   text-align: center;
   margin: 70px 0 60px;
 }
 
-/* line 164, ../scss/breakpoints/_base.scss */
+/* line 167, ../scss/breakpoints/_base.scss */
 .main-placeholder {
   margin: 20px 0 40px;
   padding: 100px 40px;
@@ -3400,81 +3403,81 @@ hr {
   font-size: 22px;
 }
 
-/* line 172, ../scss/breakpoints/_base.scss */
+/* line 175, ../scss/breakpoints/_base.scss */
 #main-grouped-page-wrapper {
   margin-bottom: 40px;
 }
 
-/* line 176, ../scss/breakpoints/_base.scss */
+/* line 179, ../scss/breakpoints/_base.scss */
 .no-padding-left {
   padding-left: 0;
 }
 
-/* line 180, ../scss/breakpoints/_base.scss */
+/* line 183, ../scss/breakpoints/_base.scss */
 .no-padding-right {
   padding-right: 0;
 }
 
-/* line 185, ../scss/breakpoints/_base.scss */
+/* line 188, ../scss/breakpoints/_base.scss */
 [ui-view].ng-enter {
   transition: 0.75s;
   opacity: 0;
 }
 
-/* line 190, ../scss/breakpoints/_base.scss */
+/* line 193, ../scss/breakpoints/_base.scss */
 [ui-view].ng-enter-active {
   opacity: 1;
 }
 
-/* line 194, ../scss/breakpoints/_base.scss */
+/* line 197, ../scss/breakpoints/_base.scss */
 [ui-view].ng-leave {
   transition: 0.75s;
   opacity: 0;
 }
 
-/* line 199, ../scss/breakpoints/_base.scss */
+/* line 202, ../scss/breakpoints/_base.scss */
 [ui-view].ng-leave-active {
   opacity: 1;
 }
 
-/* line 203, ../scss/breakpoints/_base.scss */
+/* line 206, ../scss/breakpoints/_base.scss */
 .title {
   display: inline-block;
 }
 
-/* line 207, ../scss/breakpoints/_base.scss */
+/* line 210, ../scss/breakpoints/_base.scss */
 .hp-block {
   padding: 15px;
   margin: 0 0 15px 0;
   font-size: 17px;
 }
-/* line 211, ../scss/breakpoints/_base.scss */
+/* line 214, ../scss/breakpoints/_base.scss */
 .hp-block.wit {
   background-color: #fff;
 }
-/* line 213, ../scss/breakpoints/_base.scss */
+/* line 216, ../scss/breakpoints/_base.scss */
 .hp-block.wit h4 {
   font-weight: 600;
 }
-/* line 218, ../scss/breakpoints/_base.scss */
+/* line 221, ../scss/breakpoints/_base.scss */
 .hp-block.hp-block-top {
   font-size: 17px;
   margin-bottom: 0;
 }
-/* line 221, ../scss/breakpoints/_base.scss */
+/* line 224, ../scss/breakpoints/_base.scss */
 .hp-block.hp-block-top h1 {
   margin-bottom: 10px;
 }
-/* line 226, ../scss/breakpoints/_base.scss */
+/* line 229, ../scss/breakpoints/_base.scss */
 .hp-block.hp-home {
   text-align: center;
 }
-/* line 228, ../scss/breakpoints/_base.scss */
+/* line 231, ../scss/breakpoints/_base.scss */
 .hp-block.hp-home small {
   display: block;
   color: #444;
 }
-/* line 232, ../scss/breakpoints/_base.scss */
+/* line 235, ../scss/breakpoints/_base.scss */
 .hp-block.hp-home #toggle-container {
   display: block;
   position: absolute;
@@ -3484,48 +3487,48 @@ hr {
   font-size: 15px;
   cursor: pointer;
 }
-/* line 243, ../scss/breakpoints/_base.scss */
+/* line 246, ../scss/breakpoints/_base.scss */
 .hp-block.spec {
   padding: 15px 0;
 }
-/* line 246, ../scss/breakpoints/_base.scss */
+/* line 249, ../scss/breakpoints/_base.scss */
 .hp-block.explore {
   padding: 0;
 }
-/* line 249, ../scss/breakpoints/_base.scss */
+/* line 252, ../scss/breakpoints/_base.scss */
 .hp-block h2.title {
   padding-bottom: 15px;
 }
-/* line 252, ../scss/breakpoints/_base.scss */
+/* line 255, ../scss/breakpoints/_base.scss */
 .hp-block.blauw {
   background-color: #29abe2;
   background-color: rgba(41, 171, 226, 0.35);
 }
-/* line 256, ../scss/breakpoints/_base.scss */
+/* line 259, ../scss/breakpoints/_base.scss */
 .hp-block.groen {
   background-color: #00a99d;
   background-color: rgba(0, 169, 157, 0.2);
 }
-/* line 260, ../scss/breakpoints/_base.scss */
+/* line 263, ../scss/breakpoints/_base.scss */
 .hp-block.roze {
   background-color: #ad7979;
   background-color: rgba(173, 121, 121, 0.35);
 }
-/* line 265, ../scss/breakpoints/_base.scss */
+/* line 268, ../scss/breakpoints/_base.scss */
 .hp-block h4, .hp-block h3, .hp-block h2, .hp-block h1 {
   margin-top: 0;
   margin-bottom: 10px;
 }
-/* line 270, ../scss/breakpoints/_base.scss */
+/* line 273, ../scss/breakpoints/_base.scss */
 .hp-block hr {
   border-top: 1px solid #333333;
 }
-/* line 274, ../scss/breakpoints/_base.scss */
+/* line 277, ../scss/breakpoints/_base.scss */
 .hp-block .number {
   font-size: 4rem;
   font-weight: bold;
 }
-/* line 279, ../scss/breakpoints/_base.scss */
+/* line 282, ../scss/breakpoints/_base.scss */
 .hp-block .number.large {
   font-size: 5rem;
   /*border-bottom: 2px solid $textstd;*/
@@ -3533,39 +3536,39 @@ hr {
   display: inline-block;
   margin-bottom: 15px;
 }
-/* line 287, ../scss/breakpoints/_base.scss */
+/* line 290, ../scss/breakpoints/_base.scss */
 .hp-block .glyphicon {
   color: rgba(55, 55, 55, 0.5);
   font-size: 18px;
   position: relative;
 }
-/* line 293, ../scss/breakpoints/_base.scss */
+/* line 296, ../scss/breakpoints/_base.scss */
 .hp-block .glyphicon:hover {
   text-decoration: none;
   color: #aaa;
   cursor: pointer;
 }
-/* line 298, ../scss/breakpoints/_base.scss */
+/* line 301, ../scss/breakpoints/_base.scss */
 .hp-block .expand {
   font-size: 1.5em;
   float: right;
   color: #fff;
 }
-/* line 302, ../scss/breakpoints/_base.scss */
+/* line 305, ../scss/breakpoints/_base.scss */
 .hp-block .expand .fa-circle {
   color: rgba(0, 0, 0, 0.2);
 }
-/* line 306, ../scss/breakpoints/_base.scss */
+/* line 309, ../scss/breakpoints/_base.scss */
 .hp-block.white {
   background: rgba(255, 255, 255, 0.3);
 }
-/* line 310, ../scss/breakpoints/_base.scss */
+/* line 313, ../scss/breakpoints/_base.scss */
 .hp-block#main-visualisation-wrapper h1 {
   font-size: 3em;
   text-align: center;
   margin-bottom: .4em;
 }
-/* line 316, ../scss/breakpoints/_base.scss */
+/* line 319, ../scss/breakpoints/_base.scss */
 .hp-block td {
   max-width: 250px;
   white-space: nowrap;
@@ -3573,18 +3576,18 @@ hr {
   text-overflow: ellipsis;
 }
 
-/* line 324, ../scss/breakpoints/_base.scss */
+/* line 327, ../scss/breakpoints/_base.scss */
 .search-box {
   float: none;
   margin-bottom: 15px;
   position: relative;
   padding: 0 15px;
 }
-/* line 329, ../scss/breakpoints/_base.scss */
+/* line 332, ../scss/breakpoints/_base.scss */
 .search-box form {
   height: 40px;
 }
-/* line 332, ../scss/breakpoints/_base.scss */
+/* line 335, ../scss/breakpoints/_base.scss */
 .search-box input {
   height: 40px;
   padding: 0 12px;
@@ -3598,7 +3601,7 @@ hr {
   border: 1px solid #ccc;
   font-size: 15px;
 }
-/* line 345, ../scss/breakpoints/_base.scss */
+/* line 348, ../scss/breakpoints/_base.scss */
 .search-box .btn-search {
   background: #f15a24;
   color: #fff;
@@ -3614,12 +3617,12 @@ hr {
   right: 15px;
   top: 0;
 }
-/* line 359, ../scss/breakpoints/_base.scss */
+/* line 362, ../scss/breakpoints/_base.scss */
 .search-box .btn-search .glyphicon-search {
   color: #fff;
 }
 
-/* line 365, ../scss/breakpoints/_base.scss */
+/* line 368, ../scss/breakpoints/_base.scss */
 .btn-default {
   padding: 3px 10px 5px;
   background-color: rgba(41, 171, 226, 0.4);
@@ -3635,7 +3638,7 @@ hr {
   30% { left: 80%; }
   100% { left: 0; }
 }*/
-/* line 381, ../scss/breakpoints/_base.scss */
+/* line 384, ../scss/breakpoints/_base.scss */
 .glyphicon-popup {
   position: absolute;
   left: 0;
@@ -3651,13 +3654,13 @@ hr {
   padding: 12px 16px 20px;
   z-index: 999999;
 }
-/* line 395, ../scss/breakpoints/_base.scss */
+/* line 398, ../scss/breakpoints/_base.scss */
 .glyphicon-popup h3 {
   margin-top: 0;
   margin-bottom: 6px;
 }
 
-/* line 402, ../scss/breakpoints/_base.scss */
+/* line 405, ../scss/breakpoints/_base.scss */
 .actions .glyphicon-popup {
   white-space: nowrap;
   top: 46px;
@@ -3670,7 +3673,7 @@ hr {
 /*********************
 NAVBAR
 *********************/
-/* line 415, ../scss/breakpoints/_base.scss */
+/* line 418, ../scss/breakpoints/_base.scss */
 .navbar {
   background-color: #333;
   border-radius: 0 !important;
@@ -3681,38 +3684,38 @@ NAVBAR
   width: 100%;
   z-index: 99999;
 }
-/* line 424, ../scss/breakpoints/_base.scss */
+/* line 427, ../scss/breakpoints/_base.scss */
 .navbar a {
   text-decoration: none;
 }
-/* line 427, ../scss/breakpoints/_base.scss */
+/* line 430, ../scss/breakpoints/_base.scss */
 .navbar .glyphicon {
   font-size: 18px;
 }
-/* line 431, ../scss/breakpoints/_base.scss */
+/* line 434, ../scss/breakpoints/_base.scss */
 .navbar button.navbar-toggle {
   color: #fff;
   padding: 2px 6px;
 }
-/* line 438, ../scss/breakpoints/_base.scss */
+/* line 441, ../scss/breakpoints/_base.scss */
 .navbar .navbar-collapse {
   border-color: #333;
 }
-/* line 441, ../scss/breakpoints/_base.scss */
+/* line 444, ../scss/breakpoints/_base.scss */
 .navbar .navbar-toggle {
   border: 0;
 }
-/* line 445, ../scss/breakpoints/_base.scss */
+/* line 448, ../scss/breakpoints/_base.scss */
 .navbar .nav.navbar-nav li {
   height: 50px;
   line-height: 50px;
   margin: 0 10px;
 }
-/* line 449, ../scss/breakpoints/_base.scss */
+/* line 452, ../scss/breakpoints/_base.scss */
 .navbar .nav.navbar-nav li.home {
   line-height: 60px;
 }
-/* line 453, ../scss/breakpoints/_base.scss */
+/* line 456, ../scss/breakpoints/_base.scss */
 .navbar .nav.navbar-nav a {
   background: none;
   color: #fff;
@@ -3720,71 +3723,71 @@ NAVBAR
   display: inline;
   padding: 0;
 }
-/* line 459, ../scss/breakpoints/_base.scss */
+/* line 462, ../scss/breakpoints/_base.scss */
 .navbar .nav.navbar-nav a:hover {
   color: #f15a24;
 }
-/* line 464, ../scss/breakpoints/_base.scss */
+/* line 467, ../scss/breakpoints/_base.scss */
 .navbar .nav.navbar-nav .active a {
   background: none;
   color: #f15a24;
 }
-/* line 467, ../scss/breakpoints/_base.scss */
+/* line 470, ../scss/breakpoints/_base.scss */
 .navbar .nav.navbar-nav .active a:hover {
   color: #f15a24;
 }
-/* line 473, ../scss/breakpoints/_base.scss */
+/* line 476, ../scss/breakpoints/_base.scss */
 .navbar .mobilenav {
   text-align: right;
   color: #fff;
   float: right;
   padding: 15px;
 }
-/* line 478, ../scss/breakpoints/_base.scss */
+/* line 481, ../scss/breakpoints/_base.scss */
 .navbar .mobilenav a {
   color: #fff;
 }
-/* line 480, ../scss/breakpoints/_base.scss */
+/* line 483, ../scss/breakpoints/_base.scss */
 .navbar .mobilenav a:hover {
   color: #f15a24;
 }
-/* line 485, ../scss/breakpoints/_base.scss */
+/* line 488, ../scss/breakpoints/_base.scss */
 .navbar .mobilenav.active a {
   color: #f15a24;
 }
 
-/* line 492, ../scss/breakpoints/_base.scss */
+/* line 495, ../scss/breakpoints/_base.scss */
 .nvd3 text {
   font-family: "Titillium Web", sans-serif;
 }
 
-/* line 496, ../scss/breakpoints/_base.scss */
+/* line 499, ../scss/breakpoints/_base.scss */
 .navbar-brand {
   margin-right: 20px;
   padding-top: 14px;
 }
-/* line 499, ../scss/breakpoints/_base.scss */
+/* line 502, ../scss/breakpoints/_base.scss */
 .navbar-brand img {
   max-width: 120px;
   height: auto;
 }
 
-/* line 505, ../scss/breakpoints/_base.scss */
+/* line 508, ../scss/breakpoints/_base.scss */
 .nav > li > a {
   padding: 10px 10px;
 }
 
-/* line 509, ../scss/breakpoints/_base.scss */
+/* line 512, ../scss/breakpoints/_base.scss */
 .glyphicon-user {
   margin-right: 5px;
 }
 
-/* line 513, ../scss/breakpoints/_base.scss */
+/* line 516, ../scss/breakpoints/_base.scss */
 .navbar-nav {
   margin: 0;
 }
 
-/* line 517, ../scss/breakpoints/_base.scss */
+/* line 520, ../scss/breakpoints/_base.scss */
 .subnav {
   background: #333;
   text-transform: uppercase;
@@ -3792,46 +3795,46 @@ NAVBAR
   margin-bottom: 15px;
   font-size: 14px;
 }
-/* line 523, ../scss/breakpoints/_base.scss */
+/* line 526, ../scss/breakpoints/_base.scss */
 .subnav ul {
   margin: 0;
 }
-/* line 525, ../scss/breakpoints/_base.scss */
+/* line 528, ../scss/breakpoints/_base.scss */
 .subnav ul li {
   list-style: none;
   display: inline-block;
   margin-right: 25px;
 }
-/* line 529, ../scss/breakpoints/_base.scss */
+/* line 532, ../scss/breakpoints/_base.scss */
 .subnav ul li a {
   text-decoration: none;
   color: #fff;
   cursor: pointer;
 }
-/* line 535, ../scss/breakpoints/_base.scss */
+/* line 538, ../scss/breakpoints/_base.scss */
 .subnav ul li.active a, .subnav ul li:hover a {
   color: #f15a24;
 }
-/* line 539, ../scss/breakpoints/_base.scss */
+/* line 542, ../scss/breakpoints/_base.scss */
 .subnav ul li:last-of-type {
   margin-right: 0;
 }
 
-/* line 547, ../scss/breakpoints/_base.scss */
+/* line 550, ../scss/breakpoints/_base.scss */
 .angular-leaflet-map {
   margin-bottom: 15px;
 }
 
-/* line 551, ../scss/breakpoints/_base.scss */
+/* line 554, ../scss/breakpoints/_base.scss */
 .breadcrumb {
   margin: 0 0 10px;
   background: rgba(255, 255, 255, 0.3);
 }
-/* line 555, ../scss/breakpoints/_base.scss */
+/* line 558, ../scss/breakpoints/_base.scss */
 .breadcrumb li:before {
   color: #fff !important;
 }
-/* line 558, ../scss/breakpoints/_base.scss */
+/* line 561, ../scss/breakpoints/_base.scss */
 .breadcrumb li a, .breadcrumb li span {
   color: #fff !important;
 }
@@ -3839,22 +3842,22 @@ NAVBAR
 /*********************
 SEARCH BAR
 *********************/
-/* line 568, ../scss/breakpoints/_base.scss */
+/* line 571, ../scss/breakpoints/_base.scss */
 .selectvis {
   margin-bottom: 10px;
 }
-/* line 570, ../scss/breakpoints/_base.scss */
+/* line 573, ../scss/breakpoints/_base.scss */
 .selectvis .vis-select {
   padding: 0 15px;
   text-align: left;
   margin: 10px 0;
 }
 
-/* line 577, ../scss/breakpoints/_base.scss */
+/* line 580, ../scss/breakpoints/_base.scss */
 .search-box {
   margin-top: 15px;
 }
-/* line 580, ../scss/breakpoints/_base.scss */
+/* line 583, ../scss/breakpoints/_base.scss */
 .search-box .search-wrap {
   border: 0;
   height: 24px;
@@ -3862,7 +3865,7 @@ SEARCH BAR
   background: #fff;
   position: relative;
 }
-/* line 602, ../scss/breakpoints/_base.scss */
+/* line 605, ../scss/breakpoints/_base.scss */
 .search-box .btn {
   padding: 2px 9px 0px;
   line-height: 18px;
@@ -3870,23 +3873,23 @@ SEARCH BAR
   width: auto;
   background: none;
 }
-/* line 609, ../scss/breakpoints/_base.scss */
+/* line 612, ../scss/breakpoints/_base.scss */
 .search-box .glyphicon-search {
   font-size: 1.3em;
   color: #ccc;
 }
 
-/* line 616, ../scss/breakpoints/_base.scss */
+/* line 619, ../scss/breakpoints/_base.scss */
 .activity .search-box {
   margin-bottom: 15px;
 }
 
-/* line 622, ../scss/breakpoints/_base.scss */
+/* line 625, ../scss/breakpoints/_base.scss */
 .filter-panel-header-wrapper .search-box {
   width: 100%;
 }
 
-/* line 627, ../scss/breakpoints/_base.scss */
+/* line 630, ../scss/breakpoints/_base.scss */
 #filter-panel-background {
   position: fixed;
   left: 0;
@@ -3899,7 +3902,7 @@ SEARCH BAR
 /*********************
 Dashboard buttons
 *********************/
-/* line 640, ../scss/breakpoints/_base.scss */
+/* line 643, ../scss/breakpoints/_base.scss */
 .dashboard-button {
   background-color: rgba(255, 255, 255, 0.3);
   display: block;
@@ -3910,7 +3913,7 @@ Dashboard buttons
   cursor: pointer;
   font-size: 1.3em;
 }
-/* line 650, ../scss/breakpoints/_base.scss */
+/* line 653, ../scss/breakpoints/_base.scss */
 .dashboard-button .fa, .dashboard-button .ic {
   position: relative;
   display: inline-block;
@@ -3926,21 +3929,21 @@ Dashboard buttons
 /*********************
 FILTER BAR
 *********************/
-/* line 670, ../scss/breakpoints/_base.scss */
+/* line 673, ../scss/breakpoints/_base.scss */
 .filters-fixed {
   top: 0;
   transition: top .2s;
 }
-/* line 671, ../scss/breakpoints/_base.scss */
+/* line 674, ../scss/breakpoints/_base.scss */
 .filters-fixed .container {
   padding: 0;
   width: 481px;
 }
-/* line 677, ../scss/breakpoints/_base.scss */
+/* line 680, ../scss/breakpoints/_base.scss */
 .filters-fixed .actions {
   margin-bottom: 10px;
 }
-/* line 680, ../scss/breakpoints/_base.scss */
+/* line 683, ../scss/breakpoints/_base.scss */
 .filters-fixed.fixed {
   top: 58px;
   position: fixed;
@@ -3951,21 +3954,21 @@ FILTER BAR
   padding-top: 10px;
   transition: top .2s;
 }
-/* line 689, ../scss/breakpoints/_base.scss */
+/* line 692, ../scss/breakpoints/_base.scss */
 .filters-fixed.fixed #tool-bar {
   margin-bottom: 0;
   background: transparent;
   color: #fff;
 }
 
-/* line 697, ../scss/breakpoints/_base.scss */
+/* line 700, ../scss/breakpoints/_base.scss */
 .dash-wrap {
   float: left;
   margin-right: 20px;
   position: relative;
   width: 210px;
 }
-/* line 702, ../scss/breakpoints/_base.scss */
+/* line 705, ../scss/breakpoints/_base.scss */
 .dash-wrap .select-wrap {
   background: #738191;
   border-radius: 0 0 20px 20px;
@@ -3976,13 +3979,13 @@ FILTER BAR
   transition: all .1s;
   visibility: hidden;
 }
-/* line 714, ../scss/breakpoints/_base.scss */
+/* line 717, ../scss/breakpoints/_base.scss */
 .dash-wrap:hover .title {
   background: #738191;
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
 }
-/* line 719, ../scss/breakpoints/_base.scss */
+/* line 722, ../scss/breakpoints/_base.scss */
 .dash-wrap:hover .select-wrap {
   visibility: visible;
   max-height: 400px;
@@ -3990,12 +3993,12 @@ FILTER BAR
   transition: all .3s;
   visibility: visible;
 }
-/* line 728, ../scss/breakpoints/_base.scss */
+/* line 731, ../scss/breakpoints/_base.scss */
 .dash-wrap a, .dash-wrap a:hover {
   color: #fff;
   text-decoration: none;
 }
-/* line 732, ../scss/breakpoints/_base.scss */
+/* line 735, ../scss/breakpoints/_base.scss */
 .dash-wrap .title {
   line-height: 42px;
   padding: 0 20px;
@@ -4005,60 +4008,60 @@ FILTER BAR
   width: 100%;
   transition: all .1s;
 }
-/* line 741, ../scss/breakpoints/_base.scss */
+/* line 744, ../scss/breakpoints/_base.scss */
 .dash-wrap i {
   margin-right: 10px;
 }
-/* line 744, ../scss/breakpoints/_base.scss */
+/* line 747, ../scss/breakpoints/_base.scss */
 .dash-wrap .vis-type {
   line-height: 42px;
   padding: 0 20px;
   height: 42px;
   white-space: nowrap;
 }
-/* line 749, ../scss/breakpoints/_base.scss */
+/* line 752, ../scss/breakpoints/_base.scss */
 .dash-wrap .vis-type a {
   cursor: pointer;
 }
-/* line 751, ../scss/breakpoints/_base.scss */
+/* line 754, ../scss/breakpoints/_base.scss */
 .dash-wrap .vis-type a:hover {
   color: #f15a24;
 }
-/* line 753, ../scss/breakpoints/_base.scss */
+/* line 756, ../scss/breakpoints/_base.scss */
 .dash-wrap .vis-type a:hover .fa-inverse {
   color: #f15a24;
 }
-/* line 760, ../scss/breakpoints/_base.scss */
+/* line 763, ../scss/breakpoints/_base.scss */
 .dash-wrap .fa-locations:before, .dash-wrap .fa-sectors:before, .dash-wrap .fa-regions-vis:before {
   content: "\f080";
 }
-/* line 765, ../scss/breakpoints/_base.scss */
+/* line 768, ../scss/breakpoints/_base.scss */
 .dash-wrap .fa-locations-polygonmap:before {
   content: "\f0ac";
 }
-/* line 770, ../scss/breakpoints/_base.scss */
+/* line 773, ../scss/breakpoints/_base.scss */
 .dash-wrap .fa-activities:before, .dash-wrap .fa-locations-map:before {
   content: "\f279";
 }
-/* line 775, ../scss/breakpoints/_base.scss */
+/* line 778, ../scss/breakpoints/_base.scss */
 .dash-wrap .fa-activities-list:before, .dash-wrap .fa-sector-list:before, .dash-wrap .fa-organisations:before, .dash-wrap .fa-locations-list:before, .dash-wrap .fa-regions-list:before {
   content: "\f03a";
 }
 
-/* line 781, ../scss/breakpoints/_base.scss */
+/* line 784, ../scss/breakpoints/_base.scss */
 .download-button {
   position: relative;
   cursor: pointer;
   transition: all .5s;
 }
-/* line 786, ../scss/breakpoints/_base.scss */
+/* line 789, ../scss/breakpoints/_base.scss */
 .download-button:hover .download-wrap {
   max-width: 300px;
   max-height: 300px;
   opacity: 1;
   visibility: visible;
 }
-/* line 794, ../scss/breakpoints/_base.scss */
+/* line 797, ../scss/breakpoints/_base.scss */
 .download-button .download-wrap {
   opacity: 0;
   transition: all .5s;
@@ -4075,116 +4078,116 @@ FILTER BAR
   padding: 0 0 0 15px;
   border-radius: 20px;
 }
-/* line 810, ../scss/breakpoints/_base.scss */
+/* line 813, ../scss/breakpoints/_base.scss */
 .download-button .download-wrap a {
   display: block;
   white-space: nowrap;
   text-decoration: none;
 }
-/* line 814, ../scss/breakpoints/_base.scss */
+/* line 817, ../scss/breakpoints/_base.scss */
 .download-button .download-wrap a:hover {
   color: #f15a24;
 }
-/* line 816, ../scss/breakpoints/_base.scss */
+/* line 819, ../scss/breakpoints/_base.scss */
 .download-button .download-wrap a:hover .fa-inverse {
   color: #f15a24;
 }
 
-/* line 824, ../scss/breakpoints/_base.scss */
+/* line 827, ../scss/breakpoints/_base.scss */
 .makeblock {
   display: block;
   margin-top: 5px;
 }
 
-/* line 830, ../scss/breakpoints/_base.scss */
+/* line 833, ../scss/breakpoints/_base.scss */
 .about-page .social {
   text-align: center !important;
   margin-bottom: 0 !important;
 }
-/* line 834, ../scss/breakpoints/_base.scss */
+/* line 837, ../scss/breakpoints/_base.scss */
 .about-page .hp-block {
   padding: 0;
 }
 
-/* line 839, ../scss/breakpoints/_base.scss */
+/* line 842, ../scss/breakpoints/_base.scss */
 .detailbar {
   margin-bottom: 10px;
 }
-/* line 841, ../scss/breakpoints/_base.scss */
+/* line 844, ../scss/breakpoints/_base.scss */
 .detailbar .fa-circle {
   color: rgba(115, 129, 145, 0.5);
   transition: all .3s;
 }
-/* line 846, ../scss/breakpoints/_base.scss */
+/* line 849, ../scss/breakpoints/_base.scss */
 .detailbar .fa-stack a {
   color: #fff;
 }
-/* line 850, ../scss/breakpoints/_base.scss */
+/* line 853, ../scss/breakpoints/_base.scss */
 .detailbar .social {
   text-align: right;
 }
-/* line 853, ../scss/breakpoints/_base.scss */
+/* line 856, ../scss/breakpoints/_base.scss */
 .detailbar .social .fa-stack:hover .fa-circle {
   color: #738191;
 }
 
-/* line 860, ../scss/breakpoints/_base.scss */
+/* line 863, ../scss/breakpoints/_base.scss */
 .actions {
   color: #fff;
   font-size: 16px;
   z-index: 9999;
   position: relative;
 }
-/* line 866, ../scss/breakpoints/_base.scss */
+/* line 869, ../scss/breakpoints/_base.scss */
 .actions span {
   cursor: pointer;
 }
-/* line 871, ../scss/breakpoints/_base.scss */
+/* line 874, ../scss/breakpoints/_base.scss */
 .actions .filters a, .actions .social a {
   color: #fff;
 }
-/* line 873, ../scss/breakpoints/_base.scss */
+/* line 876, ../scss/breakpoints/_base.scss */
 .actions .filters a:hover, .actions .social a:hover {
   text-decoration: none;
 }
-/* line 877, ../scss/breakpoints/_base.scss */
+/* line 880, ../scss/breakpoints/_base.scss */
 .actions .filters .fa-circle, .actions .social .fa-circle {
   color: rgba(115, 129, 145, 0.5);
   transition: all .3s;
 }
-/* line 882, ../scss/breakpoints/_base.scss */
+/* line 885, ../scss/breakpoints/_base.scss */
 .actions .filters .active .fa-circle, .actions .social .active .fa-circle {
   color: #738191;
 }
-/* line 887, ../scss/breakpoints/_base.scss */
+/* line 890, ../scss/breakpoints/_base.scss */
 .actions .social {
   text-align: right;
 }
-/* line 890, ../scss/breakpoints/_base.scss */
+/* line 893, ../scss/breakpoints/_base.scss */
 .actions .social .fa-stack:hover .fa-circle {
   color: #738191;
 }
-/* line 895, ../scss/breakpoints/_base.scss */
+/* line 898, ../scss/breakpoints/_base.scss */
 .actions .reset {
   text-align: right;
 }
-/* line 897, ../scss/breakpoints/_base.scss */
+/* line 900, ../scss/breakpoints/_base.scss */
 .actions .reset .fa-circle {
   color: #999;
 }
 
-/* line 904, ../scss/breakpoints/_base.scss */
+/* line 907, ../scss/breakpoints/_base.scss */
 h4.filter-panel-header {
   margin-top: 0;
   font-size: 1.4em;
 }
 
-/* line 910, ../scss/breakpoints/_base.scss */
+/* line 913, ../scss/breakpoints/_base.scss */
 .rel {
   position: relative;
 }
 
-/* line 914, ../scss/breakpoints/_base.scss */
+/* line 917, ../scss/breakpoints/_base.scss */
 .filter-panel {
   z-index: 999;
   background-color: #fff;
@@ -4193,52 +4196,52 @@ h4.filter-panel-header {
   padding: 15px;
   left: 0;
 }
-/* line 921, ../scss/breakpoints/_base.scss */
+/* line 924, ../scss/breakpoints/_base.scss */
 .filter-panel .search-box {
   padding-left: 0;
   margin-top: 0;
   margin-bottom: 0;
 }
-/* line 927, ../scss/breakpoints/_base.scss */
+/* line 930, ../scss/breakpoints/_base.scss */
 .filter-panel.budget .checkbox {
   margin-top: 0;
 }
-/* line 930, ../scss/breakpoints/_base.scss */
+/* line 933, ../scss/breakpoints/_base.scss */
 .filter-panel.budget .switch {
   padding-left: 0;
 }
-/* line 934, ../scss/breakpoints/_base.scss */
+/* line 937, ../scss/breakpoints/_base.scss */
 .filter-panel.budget label span {
   font-size: 1.4em;
 }
-/* line 939, ../scss/breakpoints/_base.scss */
+/* line 942, ../scss/breakpoints/_base.scss */
 .filter-panel .btn-save {
   background: #8cc63f;
   float: left;
   font-size: 16px;
   padding: 6px 12px;
 }
-/* line 946, ../scss/breakpoints/_base.scss */
+/* line 949, ../scss/breakpoints/_base.scss */
 .filter-panel .table .checkbox {
   margin: 0;
   margin-left: -15px;
 }
 
-/* line 998, ../scss/breakpoints/_base.scss */
+/* line 1001, ../scss/breakpoints/_base.scss */
 thead {
   font-size: 1.4em;
 }
 
-/* line 1002, ../scss/breakpoints/_base.scss */
+/* line 1005, ../scss/breakpoints/_base.scss */
 tr td {
   line-height: 1em;
 }
 
-/* line 1010, ../scss/breakpoints/_base.scss */
+/* line 1013, ../scss/breakpoints/_base.scss */
 .switch input {
   display: none;
 }
-/* line 1013, ../scss/breakpoints/_base.scss */
+/* line 1016, ../scss/breakpoints/_base.scss */
 .switch i {
   background-color: #fff;
   display: inline-block;
@@ -4250,7 +4253,7 @@ tr td {
   box-shadow: inset 0 0 1px rgba(0, 0, 0, 0.8);
   margin-right: 10px;
 }
-/* line 1024, ../scss/breakpoints/_base.scss */
+/* line 1027, ../scss/breakpoints/_base.scss */
 .switch i:before {
   display: block;
   content: '';
@@ -4260,11 +4263,11 @@ tr td {
   background: #333333;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
 }
-/* line 1033, ../scss/breakpoints/_base.scss */
+/* line 1036, ../scss/breakpoints/_base.scss */
 .switch :checked + i:before {
   background: #00a99d;
 }
-/* line 1036, ../scss/breakpoints/_base.scss */
+/* line 1039, ../scss/breakpoints/_base.scss */
 .switch :checked + i {
   padding-right: 0;
   padding-left: 15px;
@@ -4272,60 +4275,60 @@ tr td {
   box-shadow: inset 0 0 1px #666, inset 0 0 40px #fff;
   -webkit-box-shadow: inset 0 0 1px #666, inset 0 0 40px #fff;
 }
-/* line 1043, ../scss/breakpoints/_base.scss */
+/* line 1046, ../scss/breakpoints/_base.scss */
 .switch .ng-binding {
   margin-top: 0;
   display: block;
   float: right;
 }
 
-/* line 1051, ../scss/breakpoints/_base.scss */
+/* line 1054, ../scss/breakpoints/_base.scss */
 .legend .ng-binding {
   display: inline;
   float: none;
 }
 
-/* line 1057, ../scss/breakpoints/_base.scss */
+/* line 1060, ../scss/breakpoints/_base.scss */
 .filter-box {
   padding: 15px 11px 11px 15px;
 }
-/* line 1059, ../scss/breakpoints/_base.scss */
+/* line 1062, ../scss/breakpoints/_base.scss */
 .filter-box .btn {
   color: #222;
   border-radius: 4px;
   margin-right: 4px;
   margin-bottom: 4px;
 }
-/* line 1064, ../scss/breakpoints/_base.scss */
+/* line 1067, ../scss/breakpoints/_base.scss */
 .filter-box .btn.selectedCountries {
   background: #fff;
 }
-/* line 1067, ../scss/breakpoints/_base.scss */
+/* line 1070, ../scss/breakpoints/_base.scss */
 .filter-box .btn.selectedRegions {
   background: #fff;
 }
-/* line 1070, ../scss/breakpoints/_base.scss */
+/* line 1073, ../scss/breakpoints/_base.scss */
 .filter-box .btn.selectedSectors {
   background: #fff;
 }
-/* line 1073, ../scss/breakpoints/_base.scss */
+/* line 1076, ../scss/breakpoints/_base.scss */
 .filter-box .btn.selectedImplementingOrganisations {
   background: #fff;
 }
-/* line 1076, ../scss/breakpoints/_base.scss */
+/* line 1079, ../scss/breakpoints/_base.scss */
 .filter-box .btn.selectedActivityStatuses {
   background: #fff;
 }
 
-/* line 1085, ../scss/breakpoints/_base.scss */
+/* line 1088, ../scss/breakpoints/_base.scss */
 .pagination {
   margin: 0;
 }
-/* line 1087, ../scss/breakpoints/_base.scss */
+/* line 1090, ../scss/breakpoints/_base.scss */
 .pagination ul {
   margin: 0;
 }
-/* line 1091, ../scss/breakpoints/_base.scss */
+/* line 1094, ../scss/breakpoints/_base.scss */
 .pagination li a {
   border: 0;
   border-radius: 3px;
@@ -4333,27 +4336,27 @@ tr td {
   background-color: #333;
   margin-left: 2px;
 }
-/* line 1099, ../scss/breakpoints/_base.scss */
+/* line 1102, ../scss/breakpoints/_base.scss */
 .pagination li.active a {
   background-color: #f15a24;
 }
-/* line 1104, ../scss/breakpoints/_base.scss */
+/* line 1107, ../scss/breakpoints/_base.scss */
 .pagination li:first-of-type a, .pagination li:last-of-type a {
   background: none;
   font-weight: bold;
   color: #333;
   font-family: 'FontAwesome';
 }
-/* line 1112, ../scss/breakpoints/_base.scss */
+/* line 1115, ../scss/breakpoints/_base.scss */
 .pagination li:first-of-type a:before {
   content: "\f053";
 }
-/* line 1117, ../scss/breakpoints/_base.scss */
+/* line 1120, ../scss/breakpoints/_base.scss */
 .pagination li:last-of-type a:before {
   content: "\f054";
 }
 
-/* line 1129, ../scss/breakpoints/_base.scss */
+/* line 1132, ../scss/breakpoints/_base.scss */
 .nvtooltip {
   border-radius: 8px;
   box-shadow: 3px 3px 6px 0px rgba(0, 0, 0, 0.35);
@@ -4361,7 +4364,7 @@ tr td {
   color: #fff;
   background-color: rgba(64, 64, 64, 0.95);
 }
-/* line 1135, ../scss/breakpoints/_base.scss */
+/* line 1138, ../scss/breakpoints/_base.scss */
 .nvtooltip h3 {
   font-size: 1em;
   background: none;
@@ -4374,19 +4377,19 @@ tr td {
   overflow: hidden;
   text-overflow: ellipsis;
 }
-/* line 1147, ../scss/breakpoints/_base.scss */
+/* line 1150, ../scss/breakpoints/_base.scss */
 .nvtooltip p {
   text-align: left;
   padding: 0;
 }
 
-/* line 1334, ../scss/breakpoints/_base.scss */
+/* line 1337, ../scss/breakpoints/_base.scss */
 .checkboxes {
   background: rgba(255, 255, 255, 0.3);
   overflow: hidden;
   margin-bottom: 10px;
 }
-/* line 1335, ../scss/breakpoints/_base.scss */
+/* line 1338, ../scss/breakpoints/_base.scss */
 .checkboxes .checkbox {
   float: left;
   margin: 15px 15px 15px 0;
@@ -4395,14 +4398,14 @@ tr td {
 /*********************
 Activiteitenkaart
 *********************/
-/* line 1349, ../scss/breakpoints/_base.scss */
+/* line 1352, ../scss/breakpoints/_base.scss */
 .explore-block-header {
   background-color: rgba(41, 171, 226, 0.5);
   padding: 6px 10px;
   font-size: 1.2em;
   color: #333333;
 }
-/* line 1354, ../scss/breakpoints/_base.scss */
+/* line 1357, ../scss/breakpoints/_base.scss */
 .explore-block-header .explore-block-count {
   font-weight: 700;
   font-size: 2em;
@@ -4410,7 +4413,7 @@ Activiteitenkaart
   line-height: 1em;
 }
 
-/* line 1362, ../scss/breakpoints/_base.scss */
+/* line 1365, ../scss/breakpoints/_base.scss */
 .clickable {
   cursor: pointer;
 }
@@ -4418,18 +4421,18 @@ Activiteitenkaart
 /*********************
 Countries
 *********************/
-/* line 1372, ../scss/breakpoints/_base.scss */
+/* line 1375, ../scss/breakpoints/_base.scss */
 #main-grouped-page-wrapper .filter-panel-header-wrapper {
   margin-top: 20px;
   margin-bottom: 20px;
 }
-/* line 1377, ../scss/breakpoints/_base.scss */
+/* line 1380, ../scss/breakpoints/_base.scss */
 #main-grouped-page-wrapper .country-list {
   padding-left: 0;
   padding-right: 0;
   border-top: 1px solid #ccc;
 }
-/* line 1383, ../scss/breakpoints/_base.scss */
+/* line 1386, ../scss/breakpoints/_base.scss */
 #main-grouped-page-wrapper .country-list a {
   display: block;
   padding: 6px 0px 6px 20px;
@@ -4438,7 +4441,7 @@ Countries
 }
 
 /* TEMP */
-/* line 1394, ../scss/breakpoints/_base.scss */
+/* line 1397, ../scss/breakpoints/_base.scss */
 .countries-vis-wrapper .checkbox {
   display: inline-block;
 }
@@ -4446,38 +4449,38 @@ Countries
 /*********************
 TOOL BAR
 *********************/
-/* line 1402, ../scss/breakpoints/_base.scss */
+/* line 1405, ../scss/breakpoints/_base.scss */
 #tool-bar {
   background-color: rgba(115, 129, 145, 0.5);
   margin-bottom: 10px;
   position: relative;
 }
-/* line 1409, ../scss/breakpoints/_base.scss */
+/* line 1412, ../scss/breakpoints/_base.scss */
 #tool-bar a {
   cursor: pointer;
   text-decoration: none;
 }
-/* line 1412, ../scss/breakpoints/_base.scss */
+/* line 1415, ../scss/breakpoints/_base.scss */
 #tool-bar a:hover {
   text-decoration: none;
 }
-/* line 1417, ../scss/breakpoints/_base.scss */
+/* line 1420, ../scss/breakpoints/_base.scss */
 #tool-bar .fa-circle {
   color: rgba(115, 129, 145, 0.5);
 }
-/* line 1421, ../scss/breakpoints/_base.scss */
+/* line 1424, ../scss/breakpoints/_base.scss */
 #tool-bar .active .fa-circle {
   color: #738191;
 }
-/* line 1425, ../scss/breakpoints/_base.scss */
+/* line 1428, ../scss/breakpoints/_base.scss */
 #tool-bar .right {
   text-align: right;
 }
-/* line 1428, ../scss/breakpoints/_base.scss */
+/* line 1431, ../scss/breakpoints/_base.scss */
 #tool-bar .center {
   text-align: center;
 }
-/* line 1431, ../scss/breakpoints/_base.scss */
+/* line 1434, ../scss/breakpoints/_base.scss */
 #tool-bar .tool-text {
   color: #fff;
   white-space: nowrap;
@@ -4486,7 +4489,7 @@ TOOL BAR
   font-size: 1.2em;
   vertical-align: middle;
 }
-/* line 1440, ../scss/breakpoints/_base.scss */
+/* line 1443, ../scss/breakpoints/_base.scss */
 #tool-bar .right .tool-text {
   display: none;
 }
@@ -4494,7 +4497,7 @@ TOOL BAR
 /*********************
 ACTIVITY DETAIL
 *********************/
-/* line 1450, ../scss/breakpoints/_base.scss */
+/* line 1453, ../scss/breakpoints/_base.scss */
 .project-circle {
   text-align: center;
   float: right;
@@ -4504,22 +4507,22 @@ ACTIVITY DETAIL
   width: 250px;
   height: 250px;
 }
-/* line 1458, ../scss/breakpoints/_base.scss */
+/* line 1461, ../scss/breakpoints/_base.scss */
 .project-circle p {
   margin-bottom: 0;
 }
-/* line 1461, ../scss/breakpoints/_base.scss */
+/* line 1464, ../scss/breakpoints/_base.scss */
 .project-circle .flag-icon {
   font-size: 2.5em;
   border-radius: 4px;
   margin-top: 15px;
 }
-/* line 1466, ../scss/breakpoints/_base.scss */
+/* line 1469, ../scss/breakpoints/_base.scss */
 .project-circle .btn {
   margin-top: 10px;
 }
 
-/* line 1473, ../scss/breakpoints/_base.scss */
+/* line 1476, ../scss/breakpoints/_base.scss */
 .flag-icon.big {
   display: inline-block;
   font-size: 2.5em;
@@ -4527,11 +4530,11 @@ ACTIVITY DETAIL
   margin-right: 10px;
 }
 
-/* line 1484, ../scss/breakpoints/_base.scss */
+/* line 1487, ../scss/breakpoints/_base.scss */
 .documents.table tr td {
   padding: 3px 0;
 }
-/* line 1486, ../scss/breakpoints/_base.scss */
+/* line 1489, ../scss/breakpoints/_base.scss */
 .documents.table tr td .glyphicon {
   margin-right: 8px;
 }
@@ -4539,13 +4542,13 @@ ACTIVITY DETAIL
 /*********************
 TABS
 *********************/
-/* line 1500, ../scss/breakpoints/_base.scss */
+/* line 1503, ../scss/breakpoints/_base.scss */
 .tabs-wrapper .tab-headers {
   margin-top: 20px;
   padding-left: 80px;
   padding-right: 30px;
 }
-/* line 1506, ../scss/breakpoints/_base.scss */
+/* line 1509, ../scss/breakpoints/_base.scss */
 .tabs-wrapper .tab-header {
   display: inline-block;
   background-color: #EEE;
@@ -4558,26 +4561,26 @@ TABS
   padding-top: 10px;
   padding-bottom: 10px;
 }
-/* line 1519, ../scss/breakpoints/_base.scss */
+/* line 1522, ../scss/breakpoints/_base.scss */
 .tabs-wrapper .tab-header:last-child {
   border-right: 0;
 }
-/* line 1523, ../scss/breakpoints/_base.scss */
+/* line 1526, ../scss/breakpoints/_base.scss */
 .tabs-wrapper .tab-header:hover, .tabs-wrapper .tab-header.active {
   background-color: #444;
   color: #fff;
   text-decoration: none;
 }
-/* line 1529, ../scss/breakpoints/_base.scss */
+/* line 1532, ../scss/breakpoints/_base.scss */
 .tabs-wrapper .col-xs-4 {
   padding-left: 80px;
 }
-/* line 1533, ../scss/breakpoints/_base.scss */
+/* line 1536, ../scss/breakpoints/_base.scss */
 .tabs-wrapper .chart-container {
   padding-top: 80px;
   padding-bottom: 50px;
 }
-/* line 1538, ../scss/breakpoints/_base.scss */
+/* line 1541, ../scss/breakpoints/_base.scss */
 .tabs-wrapper .tab-item {
   -webkit-transition-duration: 5s;
   /* Safari */
@@ -4587,7 +4590,7 @@ TABS
 /*********************
 Search suggest box
 *********************/
-/* line 1549, ../scss/breakpoints/_base.scss */
+/* line 1552, ../scss/breakpoints/_base.scss */
 .search-suggest-box {
   z-index: 99999;
   position: absolute;
@@ -4598,35 +4601,35 @@ Search suggest box
   background-color: #fff;
   text-align: left;
 }
-/* line 1559, ../scss/breakpoints/_base.scss */
+/* line 1562, ../scss/breakpoints/_base.scss */
 .search-suggest-box .header {
   background-color: #333;
   color: #fff;
   padding: 5px 10px;
 }
-/* line 1563, ../scss/breakpoints/_base.scss */
+/* line 1566, ../scss/breakpoints/_base.scss */
 .search-suggest-box .header a {
   color: #fff;
 }
-/* line 1565, ../scss/breakpoints/_base.scss */
+/* line 1568, ../scss/breakpoints/_base.scss */
 .search-suggest-box .header a:hover {
   color: #f15a24;
 }
-/* line 1570, ../scss/breakpoints/_base.scss */
+/* line 1573, ../scss/breakpoints/_base.scss */
 .search-suggest-box .results {
   padding: 5px 10px;
 }
-/* line 1572, ../scss/breakpoints/_base.scss */
+/* line 1575, ../scss/breakpoints/_base.scss */
 .search-suggest-box .results a {
   color: #f15a24;
   text-decoration: none;
 }
-/* line 1575, ../scss/breakpoints/_base.scss */
+/* line 1578, ../scss/breakpoints/_base.scss */
 .search-suggest-box .results a:hover {
   text-decoration: underline;
 }
 
-/* line 1582, ../scss/breakpoints/_base.scss */
+/* line 1585, ../scss/breakpoints/_base.scss */
 .leaflet-container svg {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -4642,7 +4645,7 @@ Search suggest box
 /*********************
 Tab geo chart vis 
 *********************/
-/* line 1599, ../scss/breakpoints/_base.scss */
+/* line 1602, ../scss/breakpoints/_base.scss */
 #geovis-0 .clickme, #geovis-0 .node {
   cursor: pointer;
 }
@@ -4650,17 +4653,17 @@ Tab geo chart vis
 /*********************
 Tab bubble chart vis 
 *********************/
-/* line 1609, ../scss/breakpoints/_base.scss */
+/* line 1612, ../scss/breakpoints/_base.scss */
 .bubble-chart-wrapper {
   padding-top: 40px;
 }
 
-/* line 1613, ../scss/breakpoints/_base.scss */
+/* line 1616, ../scss/breakpoints/_base.scss */
 .bubble-chart-wrapper .time-slider-wrapper {
   margin-top: 30px;
 }
 
-/* line 1620, ../scss/breakpoints/_base.scss */
+/* line 1623, ../scss/breakpoints/_base.scss */
 .dropdown.closed:after {
   content: 'Down';
 }
@@ -4709,17 +4712,17 @@ Sunburst vis
   }
 
 }*/
-/* line 1674, ../scss/breakpoints/_base.scss */
+/* line 1677, ../scss/breakpoints/_base.scss */
 .sector-vis-sunburst {
   background: rgba(255, 255, 255, 0.3);
   margin-bottom: 15px;
 }
-/* line 1679, ../scss/breakpoints/_base.scss */
+/* line 1682, ../scss/breakpoints/_base.scss */
 .sector-vis-sunburst .legendItem, .sector-vis-sunburst path {
   cursor: pointer;
 }
 
-/* line 1684, ../scss/breakpoints/_base.scss */
+/* line 1687, ../scss/breakpoints/_base.scss */
 .zz_tooltip {
   position: absolute;
   background-color: #fff;
@@ -4729,20 +4732,20 @@ Sunburst vis
   -webkit-filter: drop-shadow(rgba(0, 0, 0, 0.5) 0 2px 10px);
   pointer-events: none;
 }
-/* line 1693, ../scss/breakpoints/_base.scss */
+/* line 1696, ../scss/breakpoints/_base.scss */
 .zz_tooltip .tt-header {
   font-size: 16px;
   color: #fff;
   padding: 4px 6px;
   word-wrap: break-word;
 }
-/* line 1700, ../scss/breakpoints/_base.scss */
+/* line 1703, ../scss/breakpoints/_base.scss */
 .zz_tooltip .tt-text {
   padding: 9px 16px;
   font-weight: 400;
   text-align: left;
 }
-/* line 1706, ../scss/breakpoints/_base.scss */
+/* line 1709, ../scss/breakpoints/_base.scss */
 .zz_tooltip:after {
   top: 100%;
   left: 50%;
@@ -4752,7 +4755,7 @@ Sunburst vis
   width: 0;
   position: absolute;
   pointer-events: none;
-  border-color: rgba(0, 0, 0, 0);
+  border-color: transparent;
   border-top-color: #fff;
   border-width: 10px;
   margin-left: -10px;
@@ -4761,7 +4764,7 @@ Sunburst vis
 /*********************
 MAIN AREA
 *********************/
-/* line 1728, ../scss/breakpoints/_base.scss */
+/* line 1731, ../scss/breakpoints/_base.scss */
 #main-content {
   min-height: 600px;
 }
@@ -4769,46 +4772,46 @@ MAIN AREA
 /*********************
 SLIDER TOOLTIP 
 *********************/
-/* line 1736, ../scss/breakpoints/_base.scss */
+/* line 1739, ../scss/breakpoints/_base.scss */
 .slide {
   padding: 34px 0 0 0;
   margin-bottom: 15px;
 }
-/* line 1739, ../scss/breakpoints/_base.scss */
+/* line 1742, ../scss/breakpoints/_base.scss */
 .slide .slider-selection {
   background: #cccccc;
 }
-/* line 1743, ../scss/breakpoints/_base.scss */
+/* line 1746, ../scss/breakpoints/_base.scss */
 .slide.active .slider-selection {
   background: #8cc63f;
 }
-/* line 1746, ../scss/breakpoints/_base.scss */
+/* line 1749, ../scss/breakpoints/_base.scss */
 .slide.active .slider-handle {
   background: #00a99d;
 }
-/* line 1750, ../scss/breakpoints/_base.scss */
+/* line 1753, ../scss/breakpoints/_base.scss */
 .slide.active .tooltip .tooltip-inner {
   background: #00a99d;
 }
-/* line 1754, ../scss/breakpoints/_base.scss */
+/* line 1757, ../scss/breakpoints/_base.scss */
 .slide.active .tooltip.top .tooltip-arrow {
   border-top-color: #00a99d;
 }
-/* line 1759, ../scss/breakpoints/_base.scss */
+/* line 1762, ../scss/breakpoints/_base.scss */
 .slide.active .tooltip.bottom .tooltip-arrow {
   border-bottom-color: #00a99d;
 }
-/* line 1765, ../scss/breakpoints/_base.scss */
+/* line 1768, ../scss/breakpoints/_base.scss */
 .slide.active .slider-track .slider-handle {
   background: #666666;
 }
-/* line 1770, ../scss/breakpoints/_base.scss */
+/* line 1773, ../scss/breakpoints/_base.scss */
 .slide .slider-track {
   background: #fff;
   border: 1px solid #ccc;
   border-radius: 5px;
 }
-/* line 1774, ../scss/breakpoints/_base.scss */
+/* line 1777, ../scss/breakpoints/_base.scss */
 .slide .slider-track .slider-handle {
   background: #cccccc;
   border: 1px solid #fff;
@@ -4818,37 +4821,37 @@ SLIDER TOOLTIP
   margin-top: -9px;
   outline: none;
 }
-/* line 1784, ../scss/breakpoints/_base.scss */
+/* line 1787, ../scss/breakpoints/_base.scss */
 .slide #tooltip {
   display: none;
 }
-/* line 1787, ../scss/breakpoints/_base.scss */
+/* line 1790, ../scss/breakpoints/_base.scss */
 .slide .tooltip {
   font-weight: 300;
   opacity: 1;
   font-size: 16px;
 }
-/* line 1791, ../scss/breakpoints/_base.scss */
+/* line 1794, ../scss/breakpoints/_base.scss */
 .slide .tooltip .tooltip-inner {
   background: #cccccc;
 }
-/* line 1793, ../scss/breakpoints/_base.scss */
+/* line 1796, ../scss/breakpoints/_base.scss */
 .slide .tooltip .tooltip-inner:before {
-  content: '\20AC\2008';
+  content: "€ ";
 }
-/* line 1797, ../scss/breakpoints/_base.scss */
+/* line 1800, ../scss/breakpoints/_base.scss */
 .slide .tooltip.top {
   top: -42px !important;
 }
-/* line 1799, ../scss/breakpoints/_base.scss */
+/* line 1802, ../scss/breakpoints/_base.scss */
 .slide .tooltip.top .tooltip-arrow {
   border-top-color: #cccccc;
 }
-/* line 1803, ../scss/breakpoints/_base.scss */
+/* line 1806, ../scss/breakpoints/_base.scss */
 .slide .tooltip.bottom {
   top: 26px !important;
 }
-/* line 1805, ../scss/breakpoints/_base.scss */
+/* line 1808, ../scss/breakpoints/_base.scss */
 .slide .tooltip.bottom .tooltip-arrow {
   border-bottom-color: #cccccc;
 }
@@ -4856,7 +4859,7 @@ SLIDER TOOLTIP
 /*********************
 ACTIVITY LIST
 *********************/
-/* line 1817, ../scss/breakpoints/_base.scss */
+/* line 1820, ../scss/breakpoints/_base.scss */
 .sort {
   font-size: 20px;
   color: #222;
@@ -4864,82 +4867,82 @@ ACTIVITY LIST
   white-space: nowrap;
   margin-bottom: 15px;
 }
-/* line 1823, ../scss/breakpoints/_base.scss */
+/* line 1826, ../scss/breakpoints/_base.scss */
 .sort .sort-item {
   margin-right: 15px;
   cursor: pointer;
 }
-/* line 1827, ../scss/breakpoints/_base.scss */
+/* line 1830, ../scss/breakpoints/_base.scss */
 .sort .ng-binding {
   line-height: 41px;
 }
-/* line 1830, ../scss/breakpoints/_base.scss */
+/* line 1833, ../scss/breakpoints/_base.scss */
 .sort .custom-select {
   margin-top: 0;
 }
-/* line 1832, ../scss/breakpoints/_base.scss */
+/* line 1835, ../scss/breakpoints/_base.scss */
 .sort .custom-select select {
   font-size: 18px;
   font-weight: 600;
   padding-left: 10px;
 }
 
-/* line 1840, ../scss/breakpoints/_base.scss */
+/* line 1843, ../scss/breakpoints/_base.scss */
 .activity-list-item {
   margin-bottom: 13px;
   overflow: hidden;
 }
-/* line 1843, ../scss/breakpoints/_base.scss */
+/* line 1846, ../scss/breakpoints/_base.scss */
 .activity-list-item a {
   color: #f15a24;
   text-decoration: none;
 }
-/* line 1846, ../scss/breakpoints/_base.scss */
+/* line 1849, ../scss/breakpoints/_base.scss */
 .activity-list-item a:hover {
   text-decoration: underline;
 }
-/* line 1850, ../scss/breakpoints/_base.scss */
+/* line 1853, ../scss/breakpoints/_base.scss */
 .activity-list-item ul {
   margin: 0 0 0 20px;
 }
-/* line 1852, ../scss/breakpoints/_base.scss */
+/* line 1855, ../scss/breakpoints/_base.scss */
 .activity-list-item ul li {
   list-style: disc;
 }
-/* line 1856, ../scss/breakpoints/_base.scss */
+/* line 1859, ../scss/breakpoints/_base.scss */
 .activity-list-item .flag-icon {
   margin-right: 10px;
 }
-/* line 1859, ../scss/breakpoints/_base.scss */
+/* line 1862, ../scss/breakpoints/_base.scss */
 .activity-list-item .hp-block {
   margin-bottom: 2px;
 }
-/* line 1862, ../scss/breakpoints/_base.scss */
+/* line 1865, ../scss/breakpoints/_base.scss */
 .activity-list-item .hp-block.financial p:last-of-type {
   margin-bottom: 15px !important;
 }
-/* line 1866, ../scss/breakpoints/_base.scss */
+/* line 1869, ../scss/breakpoints/_base.scss */
 .activity-list-item .hp-block.financial td:first-of-type {
   font-weight: 600;
   border-right: 1px solid #ddd;
 }
-/* line 1872, ../scss/breakpoints/_base.scss */
+/* line 1875, ../scss/breakpoints/_base.scss */
 .activity-list-item .hp-block p {
   margin-bottom: 15px;
 }
-/* line 1874, ../scss/breakpoints/_base.scss */
+/* line 1877, ../scss/breakpoints/_base.scss */
 .activity-list-item .hp-block p:last-of-type {
   margin-bottom: 0;
 }
-/* line 1877, ../scss/breakpoints/_base.scss */
+/* line 1880, ../scss/breakpoints/_base.scss */
 .activity-list-item .hp-block p b {
   font-weight: 600;
 }
-/* line 1882, ../scss/breakpoints/_base.scss */
+/* line 1885, ../scss/breakpoints/_base.scss */
 .activity-list-item .hp-block.header p {
   margin-bottom: 0;
 }
-/* line 1888, ../scss/breakpoints/_base.scss */
+/* line 1891, ../scss/breakpoints/_base.scss */
 .activity-list-item .expandme {
   width: 25px;
   display: inline-block;
@@ -4947,49 +4950,49 @@ ACTIVITY LIST
   color: #f15a24;
   transition: all .3s;
 }
-/* line 1894, ../scss/breakpoints/_base.scss */
+/* line 1897, ../scss/breakpoints/_base.scss */
 .activity-list-item .expandme:hover {
   color: #bc3b0c;
 }
-/* line 1900, ../scss/breakpoints/_base.scss */
+/* line 1903, ../scss/breakpoints/_base.scss */
 .activity-list-item .collapsed .expandme:before {
   font-family: FontAwesome;
   content: "\f0da";
 }
-/* line 1908, ../scss/breakpoints/_base.scss */
+/* line 1911, ../scss/breakpoints/_base.scss */
 .activity-list-item .expanded .expandme:before {
   font-family: FontAwesome;
   content: "\f0d7";
 }
-/* line 1915, ../scss/breakpoints/_base.scss */
+/* line 1918, ../scss/breakpoints/_base.scss */
 .activity-list-item .children h3 {
   font-size: 22px;
 }
 
-/* line 1923, ../scss/breakpoints/_base.scss */
+/* line 1926, ../scss/breakpoints/_base.scss */
 .activity-list-item > .children .wit {
   background: whitesmoke;
 }
-/* line 1927, ../scss/breakpoints/_base.scss */
+/* line 1930, ../scss/breakpoints/_base.scss */
 .activity-list-item > .children .left-pad {
   padding-left: 25px;
 }
 
-/* line 1933, ../scss/breakpoints/_base.scss */
+/* line 1936, ../scss/breakpoints/_base.scss */
 .activity-list-item .children .children .wit {
   background: #ebebeb;
 }
-/* line 1937, ../scss/breakpoints/_base.scss */
+/* line 1940, ../scss/breakpoints/_base.scss */
 .activity-list-item .children .children .left-pad {
   padding-left: 50px;
 }
 
-/* line 1942, ../scss/breakpoints/_base.scss */
+/* line 1945, ../scss/breakpoints/_base.scss */
 .pag {
   padding-bottom: 1em;
 }
 
-/* line 1977, ../scss/breakpoints/_base.scss */
+/* line 1980, ../scss/breakpoints/_base.scss */
 .finance thead {
   border-top: 1px solid #666666;
   border-bottom: 1px solid #666666;
@@ -4998,7 +5001,7 @@ ACTIVITY LIST
 /*********************
 FOOTER
 *********************/
-/* line 1989, ../scss/breakpoints/_base.scss */
+/* line 1992, ../scss/breakpoints/_base.scss */
 footer {
   background-color: #333;
   color: #fff;
@@ -5006,25 +5009,25 @@ footer {
   padding-bottom: 35px;
   margin-top: 50px;
 }
-/* line 1996, ../scss/breakpoints/_base.scss */
+/* line 1999, ../scss/breakpoints/_base.scss */
 footer a {
   color: #fff;
   text-decoration: underline;
 }
-/* line 2001, ../scss/breakpoints/_base.scss */
+/* line 2004, ../scss/breakpoints/_base.scss */
 footer .row {
   text-align: center;
 }
-/* line 2004, ../scss/breakpoints/_base.scss */
+/* line 2007, ../scss/breakpoints/_base.scss */
 footer h1 {
   margin-bottom: 6px;
 }
-/* line 2007, ../scss/breakpoints/_base.scss */
+/* line 2010, ../scss/breakpoints/_base.scss */
 footer img {
   max-width: 100%;
 }
 
-/* line 2014, ../scss/breakpoints/_base.scss */
+/* line 2017, ../scss/breakpoints/_base.scss */
 .ic {
   display: inline-block;
   font-family: 'iconscustom';
@@ -5036,28 +5039,28 @@ footer img {
   -moz-osx-font-smoothing: grayscale;
   transform: translate(0, 0);
 }
-/* line 2024, ../scss/breakpoints/_base.scss */
+/* line 2027, ../scss/breakpoints/_base.scss */
 .ic.ic-globe:before {
   content: "A";
 }
-/* line 2027, ../scss/breakpoints/_base.scss */
+/* line 2030, ../scss/breakpoints/_base.scss */
 .ic.ic-map:before {
   content: "@";
 }
 
-/* line 2033, ../scss/breakpoints/_base.scss */
+/* line 2036, ../scss/breakpoints/_base.scss */
 .map-holder {
   background-color: rgba(41, 171, 226, 0.3);
   position: relative;
   padding: 15px;
   margin-bottom: 15px;
 }
-/* line 2038, ../scss/breakpoints/_base.scss */
+/* line 2041, ../scss/breakpoints/_base.scss */
 .map-holder h3 {
   margin-top: 0;
 }
 
-/* line 2046, ../scss/breakpoints/_base.scss */
+/* line 2049, ../scss/breakpoints/_base.scss */
 .map-switch {
   position: absolute;
   top: 3px;
@@ -5065,68 +5068,68 @@ footer img {
   width: 220px;
   z-index: 99;
 }
-/* line 2052, ../scss/breakpoints/_base.scss */
+/* line 2055, ../scss/breakpoints/_base.scss */
 .map-switch .custom-select {
   border-color: #ccc;
 }
-/* line 2056, ../scss/breakpoints/_base.scss */
+/* line 2059, ../scss/breakpoints/_base.scss */
 .map-switch select {
   font-size: 16px;
   font-weight: 600;
   padding-left: 10px;
 }
 
-/* line 2063, ../scss/breakpoints/_base.scss */
+/* line 2066, ../scss/breakpoints/_base.scss */
 .no-padding {
   padding: 0;
 }
 
-/* line 2066, ../scss/breakpoints/_base.scss */
+/* line 2069, ../scss/breakpoints/_base.scss */
 .no-top {
   margin-top: 0;
 }
 
-/* line 2070, ../scss/breakpoints/_base.scss */
+/* line 2073, ../scss/breakpoints/_base.scss */
 .top5 {
   margin-bottom: 15px;
 }
-/* line 2072, ../scss/breakpoints/_base.scss */
+/* line 2075, ../scss/breakpoints/_base.scss */
 .top5 a {
   color: #222;
 }
-/* line 2074, ../scss/breakpoints/_base.scss */
+/* line 2077, ../scss/breakpoints/_base.scss */
 .top5 a:hover {
   color: #f15a24;
 }
-/* line 2078, ../scss/breakpoints/_base.scss */
+/* line 2081, ../scss/breakpoints/_base.scss */
 .top5 .flag-icon {
   margin: 0 8px 0px 10px;
 }
-/* line 2081, ../scss/breakpoints/_base.scss */
+/* line 2084, ../scss/breakpoints/_base.scss */
 .top5 .no {
   width: 17px;
   display: inline-block;
 }
-/* line 2085, ../scss/breakpoints/_base.scss */
+/* line 2088, ../scss/breakpoints/_base.scss */
 .top5 .nvd3-svg {
   background-color: #fff;
   padding-top: 10px;
 }
-/* line 2089, ../scss/breakpoints/_base.scss */
+/* line 2092, ../scss/breakpoints/_base.scss */
 .top5 table {
   margin-bottom: 0;
 }
-/* line 2091, ../scss/breakpoints/_base.scss */
+/* line 2094, ../scss/breakpoints/_base.scss */
 .top5 table th {
   font-weight: 600;
 }
-/* line 2096, ../scss/breakpoints/_base.scss */
+/* line 2099, ../scss/breakpoints/_base.scss */
 .top5 table tbody tr td {
   padding-left: 10px;
   padding-right: 10px;
 }
 
-/* line 2105, ../scss/breakpoints/_base.scss */
+/* line 2108, ../scss/breakpoints/_base.scss */
 .marker-circle {
   border-radius: 22px;
   font-size: 15px;
@@ -5134,57 +5137,57 @@ footer img {
   height: 22px;
 }
 
-/* line 2114, ../scss/breakpoints/_base.scss */
+/* line 2117, ../scss/breakpoints/_base.scss */
 .legend .kleur-2 .fa.kleur {
   color: #cf2026;
 }
 
-/* line 2117, ../scss/breakpoints/_base.scss */
+/* line 2120, ../scss/breakpoints/_base.scss */
 .legend .kleur-3 .fa.kleur {
   color: #4b672f;
 }
 
-/* line 2120, ../scss/breakpoints/_base.scss */
+/* line 2123, ../scss/breakpoints/_base.scss */
 .legend .kleur-4 .fa.kleur {
   color: #f4a01d;
 }
 
-/* line 2123, ../scss/breakpoints/_base.scss */
+/* line 2126, ../scss/breakpoints/_base.scss */
 .legend .kleur-5 .fa.kleur {
   color: #927fba;
 }
 
-/* line 2127, ../scss/breakpoints/_base.scss */
+/* line 2130, ../scss/breakpoints/_base.scss */
 .marker-circle-Transitionrelation {
   background-color: rgba(207, 32, 38, 0.8);
 }
 
-/* line 2131, ../scss/breakpoints/_base.scss */
+/* line 2134, ../scss/breakpoints/_base.scss */
 .marker-circle-EXITrelation {
   background-color: rgba(75, 103, 47, 0.8);
 }
 
-/* line 2135, ../scss/breakpoints/_base.scss */
+/* line 2138, ../scss/breakpoints/_base.scss */
 .marker-circle-Aidrelation {
   background-color: rgba(63, 169, 245, 0.8);
 }
 
-/* line 2139, ../scss/breakpoints/_base.scss */
+/* line 2142, ../scss/breakpoints/_base.scss */
 .marker-circle-Traderelation {
   background-color: rgba(244, 160, 29, 0.8);
 }
 
-/* line 2143, ../scss/breakpoints/_base.scss */
+/* line 2146, ../scss/breakpoints/_base.scss */
 .marker-circle-Other {
   background-color: rgba(146, 127, 186, 0.8);
 }
 
-/* line 2146, ../scss/breakpoints/_base.scss */
+/* line 2149, ../scss/breakpoints/_base.scss */
 .marker-circle-Other2 {
   background-color: rgba(50, 50, 50, 0.8);
 }
 
-/* line 2150, ../scss/breakpoints/_base.scss */
+/* line 2153, ../scss/breakpoints/_base.scss */
 .tab {
   font-size: 24px;
   text-align: center;
@@ -5193,16 +5196,16 @@ footer img {
   cursor: pointer;
   transition: all .2s;
 }
-/* line 2157, ../scss/breakpoints/_base.scss */
+/* line 2160, ../scss/breakpoints/_base.scss */
 .tab.active, .tab:hover {
   background: rgba(41, 171, 226, 0.3);
 }
-/* line 2160, ../scss/breakpoints/_base.scss */
+/* line 2163, ../scss/breakpoints/_base.scss */
 .tab.active {
   cursor: auto;
 }
 
-/* line 2165, ../scss/breakpoints/_base.scss */
+/* line 2168, ../scss/breakpoints/_base.scss */
 .info {
   text-align: left;
   float: right;
@@ -5211,86 +5214,86 @@ footer img {
   padding: 10px;
   margin-bottom: 15px;
 }
-/* line 2172, ../scss/breakpoints/_base.scss */
+/* line 2175, ../scss/breakpoints/_base.scss */
 .info p {
   margin-bottom: 0;
 }
-/* line 2175, ../scss/breakpoints/_base.scss */
+/* line 2178, ../scss/breakpoints/_base.scss */
 .info .flag-icon {
   font-size: 2.5em;
   border-radius: 4px;
 }
-/* line 2179, ../scss/breakpoints/_base.scss */
+/* line 2182, ../scss/breakpoints/_base.scss */
 .info .btn {
   margin-top: 10px;
 }
 
-/* line 2184, ../scss/breakpoints/_base.scss */
+/* line 2187, ../scss/breakpoints/_base.scss */
 .legend {
   text-align: center;
   margin-top: 10px;
   /*** custom checkboxes ***/
 }
-/* line 2187, ../scss/breakpoints/_base.scss */
+/* line 2190, ../scss/breakpoints/_base.scss */
 .legend .check {
   position: relative;
   display: inline-block;
 }
-/* line 2191, ../scss/breakpoints/_base.scss */
+/* line 2194, ../scss/breakpoints/_base.scss */
 .legend label {
   font-weight: normal;
   cursor: pointer;
 }
-/* line 2195, ../scss/breakpoints/_base.scss */
+/* line 2198, ../scss/breakpoints/_base.scss */
 .legend .labels {
   margin-left: 38px;
 }
-/* line 2198, ../scss/breakpoints/_base.scss */
+/* line 2201, ../scss/breakpoints/_base.scss */
 .legend h3 {
   font-size: 1.2em;
 }
-/* line 2201, ../scss/breakpoints/_base.scss */
+/* line 2204, ../scss/breakpoints/_base.scss */
 .legend .check {
   margin-right: 20px;
 }
-/* line 2203, ../scss/breakpoints/_base.scss */
+/* line 2206, ../scss/breakpoints/_base.scss */
 .legend .check:last-of-type {
   margin-right: 0;
 }
-/* line 2235, ../scss/breakpoints/_base.scss */
+/* line 2238, ../scss/breakpoints/_base.scss */
 .legend .faker {
   position: absolute;
   top: 4px;
 }
-/* line 2239, ../scss/breakpoints/_base.scss */
+/* line 2242, ../scss/breakpoints/_base.scss */
 .legend .fa.kleur {
   color: #29abe2;
 }
 
-/* line 2245, ../scss/breakpoints/_base.scss */
+/* line 2248, ../scss/breakpoints/_base.scss */
 .overlay {
   background: white;
   z-index: 99999;
   padding: 10px 10px;
   text-align: center;
 }
-/* line 2250, ../scss/breakpoints/_base.scss */
+/* line 2253, ../scss/breakpoints/_base.scss */
 .overlay table {
   margin: 0 auto;
 }
-/* line 2252, ../scss/breakpoints/_base.scss */
+/* line 2255, ../scss/breakpoints/_base.scss */
 .overlay table th {
   padding: 0 15px;
   font-size: 18px;
   font-weight: 600;
 }
-/* line 2257, ../scss/breakpoints/_base.scss */
+/* line 2260, ../scss/breakpoints/_base.scss */
 .overlay table td {
   padding: 5px 15px 0 15px;
   font-size: 18px;
 }
 
-/* line 2264, ../scss/breakpoints/_base.scss */
+/* line 2267, ../scss/breakpoints/_base.scss */
 .region-marker-circle {
   width: 200px;
   height: 200px;
@@ -5299,17 +5302,17 @@ footer img {
   background: rgba(40, 40, 40, 0.5);
 }
 
-/* line 2272, ../scss/breakpoints/_base.scss */
+/* line 2275, ../scss/breakpoints/_base.scss */
 .region-marker-circle:hover {
   background: rgba(241, 90, 36, 0.5);
 }
 
-/* line 2277, ../scss/breakpoints/_base.scss */
+/* line 2280, ../scss/breakpoints/_base.scss */
 .map .leaflet-div-icon {
   background: none;
   border: 0;
 }
-/* line 2281, ../scss/breakpoints/_base.scss */
+/* line 2284, ../scss/breakpoints/_base.scss */
 .map .leaflet-popup-content-wrapper {
   width: 280px;
   height: 280px;
@@ -5318,21 +5321,21 @@ footer img {
   padding: 20px;
   background-color: rgba(255, 255, 255, 0.9);
 }
-/* line 2290, ../scss/breakpoints/_base.scss */
+/* line 2293, ../scss/breakpoints/_base.scss */
 .map .leaflet-container a.btn {
   color: #fff;
   text-decoration: none;
   background: #333;
 }
-/* line 2294, ../scss/breakpoints/_base.scss */
+/* line 2297, ../scss/breakpoints/_base.scss */
 .map .leaflet-container a.btn:hover {
   background: #f15a24;
 }
-/* line 2299, ../scss/breakpoints/_base.scss */
+/* line 2302, ../scss/breakpoints/_base.scss */
 .map .leaflet-top, .map .leaflet-bottom {
   z-index: 9;
 }
-/* line 2302, ../scss/breakpoints/_base.scss */
+/* line 2305, ../scss/breakpoints/_base.scss */
 .map a.leaflet-popup-close-button {
   display: block;
   background: #fff;
@@ -5346,27 +5349,27 @@ footer img {
   font-weight: 700;
   box-shadow: 0 3px 15px rgba(0, 0, 0, 0.4);
 }
-/* line 2315, ../scss/breakpoints/_base.scss */
+/* line 2318, ../scss/breakpoints/_base.scss */
 .map p {
   margin: 0 0 2px;
   font-size: 1em;
 }
-/* line 2319, ../scss/breakpoints/_base.scss */
+/* line 2322, ../scss/breakpoints/_base.scss */
 .map .flag-icon {
   font-size: 2.5em;
   border-radius: 4px;
 }
-/* line 2323, ../scss/breakpoints/_base.scss */
+/* line 2326, ../scss/breakpoints/_base.scss */
 .map .btn {
   margin-top: 10px;
 }
 
-/* line 2328, ../scss/breakpoints/_base.scss */
+/* line 2331, ../scss/breakpoints/_base.scss */
 .no-margin {
   margin-bottom: 0 !important;
 }
 
-/* line 2332, ../scss/breakpoints/_base.scss */
+/* line 2335, ../scss/breakpoints/_base.scss */
 #toTop {
   display: none;
   position: fixed;
@@ -5378,56 +5381,56 @@ footer img {
 }
 
 @media (max-width: 1000px) {
-  /* line 2351, ../scss/breakpoints/_base.scss */
+  /* line 2354, ../scss/breakpoints/_base.scss */
   .navbar-header {
     float: none;
   }
 
-  /* line 2354, ../scss/breakpoints/_base.scss */
+  /* line 2357, ../scss/breakpoints/_base.scss */
   .navbar-left, .navbar-right {
     float: none !important;
   }
 
-  /* line 2357, ../scss/breakpoints/_base.scss */
+  /* line 2360, ../scss/breakpoints/_base.scss */
   .navbar-toggle {
     display: block;
   }
 
-  /* line 2360, ../scss/breakpoints/_base.scss */
+  /* line 2363, ../scss/breakpoints/_base.scss */
   .navbar-collapse {
     border-top: 1px solid transparent;
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
   }
 
-  /* line 2364, ../scss/breakpoints/_base.scss */
+  /* line 2367, ../scss/breakpoints/_base.scss */
   .navbar-fixed-top {
     top: 0;
     border-width: 0 0 1px;
   }
 
-  /* line 2368, ../scss/breakpoints/_base.scss */
+  /* line 2371, ../scss/breakpoints/_base.scss */
   .navbar-collapse.collapse {
-    display: none!important;
+    display: none !important;
   }
 
-  /* line 2371, ../scss/breakpoints/_base.scss */
+  /* line 2374, ../scss/breakpoints/_base.scss */
   .navbar-nav {
-    float: none!important;
+    float: none !important;
     margin-top: 7.5px;
   }
 
-  /* line 2375, ../scss/breakpoints/_base.scss */
+  /* line 2378, ../scss/breakpoints/_base.scss */
   .navbar-nav > li {
     float: none;
   }
 
-  /* line 2378, ../scss/breakpoints/_base.scss */
+  /* line 2381, ../scss/breakpoints/_base.scss */
   .navbar-nav > li > a {
     padding-top: 10px;
     padding-bottom: 10px;
   }
 
-  /* line 2382, ../scss/breakpoints/_base.scss */
+  /* line 2385, ../scss/breakpoints/_base.scss */
   .collapse.in {
     display: block !important;
   }
