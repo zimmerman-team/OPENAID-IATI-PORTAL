@@ -1998,7 +1998,7 @@ footer{
 
   a{
     color: #fff;
-    text-decoration: underline;
+    text-decoration: none;
   }
 
   .row{
@@ -2074,6 +2074,7 @@ footer{
   margin-bottom: 15px;
   a {
     color:#222;
+    text-decoration: none;
     &:hover {
       color:$oranje;
     }

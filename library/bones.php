@@ -94,6 +94,9 @@ function bones_scripts_and_styles() {
 
 		wp_register_script( 'jquery-scripts', get_stylesheet_directory_uri() . '/library/js/scripts.js', array('jquery'), '', true );
 
+		wp_register_script( 'angulartics', get_stylesheet_directory_uri() . '/bower_components/angulartics/dist/angulartics.min.js', array('jquery'), '', true );
+		wp_register_script( 'angulartics-ga', get_stylesheet_directory_uri() . '/bower_components/angulartics-google-analytics/dist/angulartics-google-analytics.min.js', array('jquery'), '', true );
+		
 
 		wp_register_script( 'bootstrap', get_stylesheet_directory_uri() . '/bower_components/bootstrap/dist/js/bootstrap.min.js', array('jquery'), '', true );
 		wp_register_script( 'leaflet.js', get_stylesheet_directory_uri() . '/bower_components/leafletjs/dist/leaflet.js', array('jquery'), '', true );
@@ -319,6 +322,9 @@ function bones_scripts_and_styles() {
 		wp_enqueue_script( 'bootstrap-slider' );
 		wp_enqueue_script( 'angular-slider' );
 		wp_enqueue_script( 'angular-breadcrumb' );
+
+		wp_enqueue_script( 'angulartics' );
+		wp_enqueue_script( 'angulartics-ga' );
 
 		wp_enqueue_script( 'underscore' );
 		wp_enqueue_script( 'd3.js' );
