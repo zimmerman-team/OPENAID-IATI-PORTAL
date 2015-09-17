@@ -12,4 +12,5 @@ Transparency of development aid enhances the effectiveness and quality of develo
 
 The value of open data is greatly increased if it can be compared and added up internationally. The International Aid Transparancy Initiative (IATI) aims to do just that – to develop an international standard for the publication of aid data.
 
-Initiated back in 2011 by Akvo.org.
+Initiated back in 2011 by Akvo.org and maintained by Zimmerman & Zimmerman ever since.
+			
