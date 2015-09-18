@@ -4,6 +4,8 @@
     angular
         .module('oipa', [
             // 'ngAnimate',
+            'angulartics',
+            'angulartics.google.analytics',
             'checklist-model',
             'ui.bootstrap-slider',
             'ncy-angular-breadcrumb',
