@@ -53,6 +53,7 @@
         clipVoronoi: false,
         showControls: false,
         interpolate: 'monotone',
+        noData: 'loading...',
         xAxis: {
             axisLabel: vm.xAxis,
             tickFormat: function(d) {

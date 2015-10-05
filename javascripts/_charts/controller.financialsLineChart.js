@@ -28,6 +28,7 @@
         y: function(d){ return d[1]; },
         color: d3.scale.category10().range(),
         transitionDuration: 300,
+        noData: 'loading...',
         // useInteractiveGuideline: true,
         // clipVoronoi: false,
         // interpolate: 'step',
@@ -89,6 +90,7 @@
     vm.startReformatTransactionData = function(){
         loadedCount++;
         if(loadedCount > 2){
+            vm.transactionChartOptions.chart.noData = 'No data available';
             vm.transactionData = vm.reformatTransactionData();
             loadedCount = 0;
         }

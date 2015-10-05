@@ -24,25 +24,20 @@
     vm.hasToContain = $scope.hasToContain;
     vm.busy = false;
     vm.extraSelectionString = '';
-
     vm.isCollapsed = false;
-
 
     function activate() {
       // use predefined filters or the filter selection
       $scope.$watch("vm.filterSelection.selectionString", function (selectionString, oldString) {
         if(selectionString !== oldString){
-          vm.update(selectionString);
+          vm.update();
         }
       }, true);
 
       $scope.$watch("searchValue", function (searchValue, oldSearchValue) {
-        if(searchValue == undefined) return false;
-        if(searchValue !== oldSearchValue){
-          searchValue == '' ? vm.extraSelectionString = '' : vm.extraSelectionString = '&name_query='+searchValue;
-          vm.update();
-        }
-        
+        if(searchValue == undefined) { vm.update(); return false; }
+        searchValue == '' ? vm.extraSelectionString = '' : vm.extraSelectionString = '&name_query='+searchValue;
+        vm.update(vm.filterSelection.selectionString);
       }, true);
 
       // do not prefetch when the list is hidden
@@ -51,8 +46,6 @@
           vm.busy = !shown ? true : false;
         }, true);
       }
-
-      vm.update(vm.filterSelection.selectionString);
     }
 
     vm.hasContains = function(){
@@ -158,25 +151,7 @@
     vm.toggleOrder = function(){
       vm.update(vm.filterSelection.selectionString);
     }
-
-    vm.nextPage = function(){
-      if (!vm.hasContains() || vm.busy || (vm.totalSectors < (vm.offset + 15))) return;
-
-      vm.busy = true;
-      vm.offset = vm.offset + 15;
-      Aggregations.aggregation('sector', 'disbursement', vm.filterSelection.selectionString + vm.extraSelectionString, vm.order_by, 15, vm.offset, 'activity_count').then(succesFn, errorFn);
-
-      function succesFn(data, status, headers, config){
-        for (var i = 0; i < data.data.results.length; i++) {
-          vm.sectors.push(data.data.results[i]);
-        }
-        vm.busy = false;
-      }
-
-      function errorFn(data, status, headers, config){
-        console.warn('error getting data on lazy loading');
-      }
-    }
+    
 
     activate();
   }

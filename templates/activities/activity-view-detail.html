@@ -255,6 +255,37 @@
         </div>
     </div>
 
+    <div class="row" ng-show="vm.selectedTab == 'documents'">
+        <div class="col-md-12">
+            <div class="hp-block wit">
+                <h3>IATI references</h3>
+
+                <div ng-show="vm.activity.related_projects.length == 0">
+                    No references.
+                </div>
+                <br>
+                <table class="table">
+                    <tbody>
+                        <tr ng-repeat="project in vm.related_projects">
+                            {{project.title.narratives[0]}}      
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="hp-block wit">
+                <h3>RSR references</h3>
+
+                <div>
+                    To do?
+                </div>
+                <br>
+            </div>
+        </div>
+    </div>
+
+
+
 
     <!-- <div class="row">
         <div class="col-md-12">

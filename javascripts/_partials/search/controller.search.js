@@ -68,7 +68,7 @@
         vm.searchData[item].data = [];
         vm.searchData[item].total = 0;
       }
-
+      
       vm.showResults = true;
 
       // get results from activities

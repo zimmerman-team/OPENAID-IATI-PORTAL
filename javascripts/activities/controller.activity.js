@@ -25,6 +25,7 @@
       {'id': 'summary', 'name': 'Summary', 'count': -1},
       {'id': 'transactions', 'name': 'Transactions', 'count': -1},
       {'id': 'documents', 'name': 'Documents', 'count': -1},
+      {'id': 'thirdparty', 'name': 'Third-party data', 'count': -1},
     ]
 
     activate();
@@ -41,6 +42,15 @@
       function errorFn(data, status, headers, config) {
         console.log("getting activity failed");
       }
+
+
+      Activities.getRelated(vm.activityId).then(successRelatedFn, errorFn);
+
+      function successRelatedFn(data, status, headers, config) {
+        vm.related_projects = data.data;
+        vm.tabs[3].count = vm.related_projects.length;
+      }
+
     }
 
     vm.reformatTransactionData = function(){

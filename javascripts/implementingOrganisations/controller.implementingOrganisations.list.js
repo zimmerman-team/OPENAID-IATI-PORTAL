@@ -30,16 +30,14 @@
       // use predefined filters or the filter selection
       $scope.$watch("vm.filterSelection.selectionString", function (selectionString, oldString) {
         if(selectionString !== oldString){
-          vm.update(selectionString);
+          vm.update();
         }
       }, true);
 
       $scope.$watch("searchValue", function (searchValue, oldSearchValue) {
-        if(searchValue == undefined) return;
-        if(searchValue !== oldSearchValue){
-          searchValue == '' ? vm.extraSelectionString = '' : vm.extraSelectionString = '&name_query='+searchValue;
-          vm.update();
-        }
+        if(searchValue == undefined) {vm.update(); return false;}
+        searchValue == '' ? vm.extraSelectionString = '' : vm.extraSelectionString = '&name_query='+searchValue;
+        vm.update();
       }, true);
 
       // do not prefetch when the list is hidden
@@ -48,8 +46,6 @@
           vm.busy = !shown ? true : false;
         }, true);
       }
-
-      vm.update(vm.filterSelection.selectionString);
     }
 
     vm.toggleOrder = function(){
