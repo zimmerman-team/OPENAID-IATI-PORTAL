@@ -9,12 +9,12 @@
     .module('oipa.charts')
     .controller('OipaLineChartController', OipaLineChartController);
 
-  OipaLineChartController.$inject = ['$scope', 'Aggregations'];
+  OipaLineChartController.$inject = ['$scope', 'Aggregations', '$filter'];
 
   /**
   * @namespace ActivitiesController
   */
-  function OipaLineChartController($scope, Aggregations) {
+  function OipaLineChartController($scope, Aggregations, $filter) {
     
     var vm = this;
     vm.groupBy = $scope.groupBy;
@@ -61,7 +61,7 @@
             showMaxMin: false
         },
         yAxis: {
-            axisLabel: vm.yAxis,
+            axisLabel: false,
             tickFormat: function(d){
                 return d3.format(",.0f")(d);
             },
@@ -102,7 +102,7 @@
 
       if(vm.yAxisEuroFormat !== undefined){
         vm.chartOptions.chart.yAxis.tickFormat = function(d){
-          return d3.format(",.0f")(d/1000000) + 'M';
+          return $filter('shortcurrency')(d,'€');
         }
       }
 
