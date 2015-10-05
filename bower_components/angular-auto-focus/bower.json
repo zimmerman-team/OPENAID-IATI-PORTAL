@@ -1,0 +1,19 @@
+{
+  "name": "angular-auto-focus",
+  "main": "angular-auto-focus.js",
+  "homepage": "https://github.com/myplanet/angular-auto-focus",
+  "authors": [
+    "Ates Goral <ates.g@myplanet.com>"
+  ],
+  "description": "Bullet-proof auto-focusing for Angular",
+  "moduleType": [
+    "amd",
+    "globals",
+    "node"
+  ],
+  "keywords": [
+    "autofocus",
+    "focus"
+  ],
+  "license": "MIT"
+}

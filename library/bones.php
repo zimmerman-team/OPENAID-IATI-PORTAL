@@ -122,6 +122,7 @@ function bones_scripts_and_styles() {
 		
 		wp_register_script( 'infinite-scroll', get_stylesheet_directory_uri() . '/bower_components/ngInfiniteScroll/build/ng-infinite-scroll.min.js', array('angular'), '' );
 		
+		wp_register_script( 'angular-auto-focus', get_stylesheet_directory_uri() . '/bower_components/angular-auto-focus/angular-auto-focus.js', array(), '', true );
 
 		wp_register_script( 'bones-modernizr', get_stylesheet_directory_uri() . '/library/js/libs/modernizr.custom.min.js', array('angular'), '2.5.3', true );
 		
@@ -343,6 +344,8 @@ function bones_scripts_and_styles() {
 
 		wp_enqueue_script( 'angular-leaflet-directive' );
 		wp_enqueue_script( 'infinite-scroll' );
+
+		wp_enqueue_script( 'angular-auto-focus' );
 
 		wp_enqueue_script( 'oipa' );
 		wp_enqueue_script( 'oipa.constants' );
