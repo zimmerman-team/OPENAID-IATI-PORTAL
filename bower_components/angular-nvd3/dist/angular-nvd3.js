@@ -154,11 +154,10 @@
 
                                 // Select the current element to add <svg> element and to render the chart in
                                 d3.select(element[0]).append('svg')
-                                    .attr('height', scope.options.chart.height)
-                                    .attr('width', scope.options.chart.width  || '100%')
-                                    .datum(data)
-                                    .transition().duration(scope.options.chart['transitionDuration'])
-                                    .call(scope.chart);
+                                   .style({height: scope.options.chart.height+'px', width: scope.options.chart.width || '100%'})
+                                   .datum(data)
+                                   .transition().duration(scope.options.chart.transitionDuration)
+                                   .call(scope.chart);
                             }
                         },
 
