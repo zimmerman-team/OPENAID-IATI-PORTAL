@@ -65,6 +65,8 @@
 
     vm.geoLocation = null;
 
+    vm.firstLoad = false;
+
     /**
     * @name activate
     * @desc Actions to be performed when this controller is instantiated
@@ -142,6 +144,17 @@
 
         function errorFn(data, status, headers, config) {
             console.log("getting countries failed");
+        }
+
+        if(vm.firstLoad){
+          vm.firstLoad = false;
+          var div = L.DomUtil.get('map-switch');
+          if (!L.Browser.touch) {
+              L.DomEvent.disableClickPropagation(div);
+              L.DomEvent.on(div, 'mousewheel', L.DomEvent.stopPropagation);
+          } else {
+              L.DomEvent.on(div, 'click', L.DomEvent.stopPropagation);
+          }
         }
     }
 

@@ -1,7 +1,8 @@
 <div class="map hidden-xs">
   <div class="geomap-mask">
     <leaflet defaults="vm.defaults" center="vm.center" markers="vm.markers" height="{{vm.mapHeight}}" width="100%">
-      <div ng-show="vm.mapDropdown" class="map-switch">
+
+      <div id="map-switch" ng-show="vm.mapDropdown" class="map-switch">
         <label class="wrapper">
           <div class="button custom-select ff-hack">
             <select ng-model="vm.geoView" ng-change="vm.changeView()">

@@ -58,6 +58,37 @@
         lng: 18.00,
         zoom: 3
     };
+    
+    // vm.controls = {
+    //   custom: [];
+    // };
+
+
+
+    // var MyControl = new L.control();
+    // MyControl.setPosition('bottomleft');
+    // MyControl.onAdd = function () {
+    // var className = 'leaflet-custom-control', 
+    // container = L.DomUtil.create('div', className + ' leaflet-bar');
+    // //angular.element(container).append(' Something' ); to see it
+
+    // // L.DomEvent.addListener(container, 'click', function(e){alert('My button first Click')});
+    // // Search a lot for this click also.
+    // return container;
+    // }
+    // var directives = getMyDirectives(); //Get center controls markers layers etc...
+    // directives.controls.custom.push(MyControl);
+    // angular.extend(vm, directives); // My directives include controls.custom = []
+
+
+
+
+
+
+
+
+
+
     vm.markers = {};
     vm.markerIcons = {
       Aidrelation: { html: '<div class="fa fa-map-marker fa-stack-1x fa-inverse marker-circle marker-circle-Aidrelation"></div>',type: 'div',iconSize: [28, 35],iconAnchor: [14, 18],markerColor: 'blue',iconColor: 'white',},
@@ -77,6 +108,8 @@
     vm.geoView = 'countries';
     vm.resultCounter = 0;
 
+    vm.firstLoad = true;
+
     /**
     * @name activate
     * @desc Actions to be performed when this controller is instantiated
@@ -88,6 +121,8 @@
         vm.selectionString = selectionString;
         vm.updateMap();
       }, true);
+
+
     }
 
     vm.changeSelectedCountryRelations = function(){
@@ -117,6 +152,17 @@
 
         function errorFn(data, status, headers, config) {
             console.log("getting countries failed");
+        }
+
+        if(vm.firstLoad){
+          vm.firstLoad = false;
+          var div = L.DomUtil.get('map-switch');
+          if (!L.Browser.touch) {
+              L.DomEvent.disableClickPropagation(div);
+              L.DomEvent.on(div, 'mousewheel', L.DomEvent.stopPropagation);
+          } else {
+              L.DomEvent.on(div, 'click', L.DomEvent.stopPropagation);
+          }
         }
     }
 
