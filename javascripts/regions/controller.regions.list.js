@@ -64,9 +64,13 @@
       Aggregations.aggregation('recipient-region', 'disbursement', vm.filterSelection.selectionString + vm.extraSelectionString, vm.order_by, 9999, 0, 'activity_count').then(succesFn, errorFn);
 
       function replaceDac5(arr){
-        for (var i = 0;i < arr.length;i++){
+        var i = arr.length;
+        while(i--){
           if(arr[i].hasOwnProperty('children')){
             replaceDac5(arr[i].children);
+            if(!arr[i].children.length){
+              arr.splice(i, 1);
+            }
           } else {
             var match =_.find(vm.remoteRegions, function(region) {
               return region.region_id === parseInt(arr[i].region_id);
@@ -75,7 +79,7 @@
             if (match) {
               arr[i] = match;
             } else {
-              arr[i].total_disbursements = null;
+              arr.splice(i, 1);
             }
           }
         }

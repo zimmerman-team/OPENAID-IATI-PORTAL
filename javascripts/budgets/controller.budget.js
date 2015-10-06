@@ -40,7 +40,7 @@
       $scope.$watch("vm.budget.toReset", function (toReset) {
         
         if(toReset == true){
-          vm.budgetValue = [100000,300000];
+          vm.budgetValue = [0,3000000];
           vm.on = false;
         }
       }, true);

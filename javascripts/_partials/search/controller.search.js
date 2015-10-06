@@ -16,7 +16,7 @@
   */
   function SearchController($scope, $state, Aggregations, Activities, templateBaseUrl) {
     var vm = this;
-    vm.templateBaseUrl = templateBaseUrl;
+    $scope.templateBaseUrl = template_url;
     vm.searchString = '';
     vm.showResults = false;
     vm.currentPage = $scope.currentPage;

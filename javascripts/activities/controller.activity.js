@@ -44,7 +44,7 @@
       }
 
 
-      Activities.getRelated(vm.activityId).then(successRelatedFn, errorFn);
+      // Activities.getRelated(vm.activityId).then(successRelatedFn, errorFn);
 
       function successRelatedFn(data, status, headers, config) {
         vm.related_projects = data.data;
