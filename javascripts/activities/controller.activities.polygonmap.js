@@ -28,7 +28,7 @@
 
     function getColor(d) {
       return d > 40  ? '#E27724' :
-             d > 10   ? '#F27730' :
+             d > 10  ? '#F27730' :
              d > 0   ? '#FF872B' :
                       'transparent';
     }

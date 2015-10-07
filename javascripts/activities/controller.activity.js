@@ -9,15 +9,18 @@
     .module('oipa.activities')
     .controller('ActivityController', ActivityController);
 
-  ActivityController.$inject = ['Activities', '$stateParams', 'FilterSelection', '$filter'];
+  ActivityController.$inject = ['Activities', '$stateParams', 'FilterSelection', '$filter', 'homeUrl', '$http', 'templateBaseUrl'];
 
   /**
   * @namespace ActivitiesController
   */
-  function ActivityController(Activities, $stateParams, FilterSelection, $filter) {
+  function ActivityController(Activities, $stateParams, FilterSelection, $filter, homeUrl, $http, templateBaseUrl) {
     var vm = this;
     vm.activity = null;
     vm.activityId = $stateParams.activity_id;
+    vm.rsrProjects = [];
+    vm.rsrLoading = true;
+    vm.templateBaseUrl = templateBaseUrl;
 
     vm.selectedTab = 'summary';
 
@@ -43,13 +46,16 @@
         console.log("getting activity failed");
       }
 
-
-      // Activities.getRelated(vm.activityId).then(successRelatedFn, errorFn);
-
-      function successRelatedFn(data, status, headers, config) {
-        vm.related_projects = data.data;
-        vm.tabs[3].count = vm.related_projects.length;
-      }
+      var url = homeUrl + '/wp-admin/admin-ajax.php?action=rsr_call&iati_id=' + vm.activityId;
+      
+      return $http.get(url, {}).then(function(data, status, headers, config){
+        vm.rsrProjects = data.data.objects;
+        vm.rsrLoading = false;
+        vm.tabs[3].count = vm.rsrProjects.length;
+        console.log(vm.rsrProjects);
+      },function(data, status, headers, config){
+        console.log(data);
+      });
 
     }
 
@@ -57,7 +63,7 @@
 
       var data = [
         {
-            values: [],      //values - represents the array of {x,y} data points
+            values: [],
             key: 'Commitment', 
             color: '#2077B4'  
         },
@@ -100,7 +106,6 @@
       return data;
     }
 
-
     vm.transactionData = [];
     vm.transactionChartOptions = {
       chart: {
@@ -118,12 +123,11 @@
         transitionDuration: 300,
         useInteractiveGuideline: true,
         clipVoronoi: false,
-        interpolate: 'monotone',
+        interpolate: 'step',
         xAxis: {
             axisLabel: '',
             tickFormat: function(d) {
-              
-                return d3.time.format('%Y-%m-%d')(new Date(d))
+              return d3.time.format('%Y-%m-%d')(new Date(d))
             },
             showMaxMin: false,
             staggerLabels: true
@@ -131,7 +135,7 @@
         yAxis: {
             axisLabel: '',
             tickFormat: function(d){
-                return $filter('shortcurrency')(d,'€');
+              return $filter('shortcurrency')(d,'€');
             },
             axisLabelDistance: 20
         }

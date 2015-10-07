@@ -26,9 +26,9 @@ a {
   }
 }
 
-  a.fa {
-      text-decoration: none;
-  }
+a.fa {
+    text-decoration: none;
+}
 
 .col-centered{
   float: none;
@@ -36,7 +36,7 @@ a {
 }
 
 #openaid-main {
-  padding-top:65px;
+  padding-top:51px;
 }
 
 .faux-pad {
@@ -75,7 +75,7 @@ oipa-table-chart .table tbody tr td.colour {
   }
   tr:nth-child(odd) {
     td {
-      background: rgba($groen, 0.3);
+      background: rgba(190, 190, 190, 0.2);
     }
   }
   .custom-select {
@@ -112,6 +112,10 @@ GLOBAL
 *********************/
 html {
   background: #333;
+}
+
+.hp-block-top.hp-home{
+  background-color: rgba(150,150,150,0.2);
 }
 
 body{
@@ -207,6 +211,8 @@ hr{
   display: inline-block;
 }
 
+
+
 .hp-block{
   padding: 15px;
   margin: 0 0 15px 0;
@@ -216,6 +222,11 @@ hr{
     h4 {
       font-weight: 600;
     }
+  }
+
+  &.hp-line-chart-wrapper{
+    margin-top: -15px;
+    padding-top: 45px;
   }
 
   &.hp-block-top{

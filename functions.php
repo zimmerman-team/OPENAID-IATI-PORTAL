@@ -93,3 +93,21 @@ function add_rewrite_rules( $wp_rewrite )
   $wp_rewrite->rules = $new_rules + $wp_rewrite->rules;
 }
 add_action('generate_rewrite_rules', 'add_rewrite_rules');
+
+
+function rsr_call() {
+  $iati_id = "";
+  if (isset($_REQUEST['iati_id'])){
+    $iati_id = $_REQUEST['iati_id'];
+  }
+
+  $search_url = "http://rsr.akvo.org/api/v1/project/?format=json&partnerships__iati_activity_id=" . $iati_id . "&distinct=True&limit=100&depth=1";
+  $content = file_get_contents($search_url);
+  echo $content;
+  die();
+}
+add_action('wp_ajax_projects_list', 'projects_list');
+add_action('wp_ajax_nopriv_projects_list', 'projects_list');
+add_action('wp_ajax_rsr_call', 'rsr_call');
+add_action('wp_ajax_nopriv_rsr_call', 'rsr_call');
+

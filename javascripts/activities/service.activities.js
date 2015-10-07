@@ -73,7 +73,7 @@
          * @memberOf oipa.filters.services.Filters
          */
         function get(code) {
-            return $http.get(oipaUrl + '/activity-list/' + code + '/?format=json', { cache: true });
+            return $http.get(oipaUrl + '/activities/' + code + '/?format=json', { cache: true });
         }
     }
 })();

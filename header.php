@@ -53,6 +53,28 @@
 			var customFields = <?php echo json_encode($customFields); ?>;
 			var partnerlanden = {"AF":"Aidrelation","BI":"Aidrelation","ML":"Aidrelation","PS":"Aidrelation","RW":"Aidrelation","SS":"Aidrelation","YE":"Aidrelation","BD":"Transitionrelation","BJ":"Transitionrelation","ET":"Transitionrelation","GH":"Transitionrelation","ID":"Transitionrelation","KE":"Transitionrelation","MZ":"Transitionrelation","UG":"Transitionrelation","BO":"EXIT relation","BF":"EXIT relation","CO":"EXIT relation","CD":"EXIT relation","EG":"EXIT relation","GE":"EXIT relation","GT":"EXIT relation","XK":"EXIT relation","MD":"EXIT relation","MN":"EXIT relation","NI":"EXIT relation","PK":"EXIT relation","SN":"EXIT relation","ZA":"EXIT relation","SR":"EXIT relation","TZ":"EXIT relation","VN":"EXIT relation","ZM":"EXIT relation","BR":"Traderelation","CN":"Traderelation","IN":"Traderelation","IQ":"Traderelation","MX":"Traderelation","NG":"Traderelation","TR":"Traderelation","UA":"Traderelation"}
 		</script>
+		<!-- Begin Inspectlet Embed Code -->
+<script type="text/javascript" id="inspectletjs">
+window.__insp = window.__insp || [];
+__insp.push(['wid', 1494660393]);
+(function() {
+function ldinsp(){var insp = document.createElement('script'); insp.type = 'text/javascript'; insp.async = true; insp.id = "inspsync"; insp.src = ('https:' == document.location.protocol ? 'https' : 'http') + '://cdn.inspectlet.com/inspectlet.js'; var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(insp, x); };
+document.readyState != "complete" ? (window.attachEvent ? window.attachEvent('onload', ldinsp) : window.addEventListener('load', ldinsp, false)) : ldinsp();
+
+})();
+</script>
+<!-- End Inspectlet Embed Code -->      
+        <!-- Start Visual Website Optimizer Asynchronous Code -->
+                <script type='text/javascript'>
+                var _vwo_code=(function(){
+                var account_id=198044,
+                settings_tolerance=2000,
+                library_tolerance=2500,
+                use_existing_jquery=false,
+                // DO NOT EDIT BELOW THIS LINE
+                f=false,d=document;return{use_existing_jquery:function(){return use_existing_jquery;},library_tolerance:function(){return library_tolerance;},finish:function(){if(!f){f=true;var a=d.getElementById('_vis_opt_path_hides');if(a)a.parentNode.removeChild(a);}},finished:function(){return f;},load:function(a){var b=d.createElement('script');b.src=a;b.type='text/javascript';b.innerText;b.onerror=function(){_vwo_code.finish();};d.getElementsByTagName('head')[0].appendChild(b);},init:function(){settings_timer=setTimeout('_vwo_code.finish()',settings_tolerance);var a=d.createElement('style'),b='body{opacity:0 !important;filter:alpha(opacity=0) !important;background:none !important;}',h=d.getElementsByTagName('head')[0];a.setAttribute('id','_vis_opt_path_hides');a.setAttribute('type','text/css');if(a.styleSheet)a.styleSheet.cssText=b;else a.appendChild(d.createTextNode(b));h.appendChild(a);this.load('//dev.visualwebsiteoptimizer.com/j.php?a='+account_id+'&u='+encodeURIComponent(d.URL)+'&r='+Math.random());return settings_timer;}};}());_vwo_settings_timer=_vwo_code.init();
+                </script>
+                <!-- End Visual Website Optimizer Asynchronous Code -->
 	</head>
 
 	<body <?php body_class(); ?> itemscope itemtype="http://schema.org/WebPage" ng-app="oipa">

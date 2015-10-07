@@ -36,13 +36,30 @@
                     </div>
                 </div>
                 <!-- eind van een wit blokje -->
+
                 <!--start van een wit blokje -->
                 <div class="row">
                     <div class="col-sm-12 activity-list-item">
                         <div class="hp-block wit">
-                            <p><b>Last update</b><br>{{vm.activity.last_updated_datetime | date : 'd MMM yyyy'}}</p>
-                            <p><b>Starting date</b><br>{{vm.activity.start_actual.length ? vm.activity.start_actual : 'No data available' | date : 'd MMM yyyy'}}</p>
-                            <p><b>Ending date</b><br>{{vm.activity.end_actual.length ? vm.activity.end_actual : 'No data available' | date : 'd MMM yyyy'}}</p>
+                            <p><b>Reporting organisations</b><br>{{vm.activity.reporting_organisation.name}}</p>
+                            <p><b>Participating organisations</b><br><span ng-repeat='org in vm.activity.participating_organisations'>{{org.name}}, </span></p>
+                        </div>
+                    </div>
+                </div>
+                <!-- eind van een wit blokje -->
+
+                <!--start van een wit blokje -->
+                <div class="row">
+                    <div class="col-sm-12 activity-list-item">
+                        <div class="hp-block wit">
+                            <p><b>Last update</b><br>{{vm.activity.last_updated_datetime | date : 'dd MMM yyyy'}}</p>
+                            <p><b>Start date planned</b><br>{{vm.activity.start_planned.length ? vm.activity.start_planned : 'No data available' | date : 'dd MMM yyyy'}}</p>
+
+                            <p><b>Start date actual</b><br>{{vm.activity.start_actual.length ? vm.activity.start_actual : 'No data available' | date : 'dd MMM yyyy'}}</p>
+
+                            <p><b>End date planned</b><br>{{vm.activity.end_planned.length ? vm.activity.end_planned : 'No data available' | date : 'dd MMM yyyy'}}</p>
+
+                            <p><b>End date actual</b><br>{{vm.activity.end_actual.length ? vm.activity.end_actual : 'No data available' | date : 'dd MMM yyyy'}}</p>
                         </div>
                     </div>
                 </div>
@@ -51,27 +68,47 @@
                 <div class="row">
                     <div class="col-sm-12 activity-list-item">
                         <div class="hp-block wit">
-                            <p><b>Collaboration type</b><br>
-                                <span ng-if='vm.activity.collaboration_type.name.length'>{{vm.activity.collaboration_type.name}}</span>
-                                <span ng-if='!vm.activity.collaboration_type.name.length'>No data available</span>
+                            <p><b>Activity scope</b><br>
+                                <span ng-if='vm.activity.activity_scope.name.length'>{{vm.activity.activity_scope.name}}</span>
+                                <span ng-if='!vm.activity.activity_scope.name.length'>No data available</span>
                             </p>
-                            <p><b>Aid type</b><br>
-                                <span ng-if='vm.activity.default_aid_type.name.length'>{{vm.activity.default_aid_type.name}}</span>
-                                <span ng-if='!vm.activity.default_aid_type.name.length'>No data available</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- eind van een wit blokje -->
+
+                <div class="row">
+                    <div class="col-sm-12 activity-list-item">
+                        <div class="hp-block wit">
+
+                            <p>
+                                <b>Other identifiers</b><br>
+                                <a ng-repeat="other_identifier in vm.activity.other_identifier">
+                                    {{other_identifier.name}}
+                                </a>
+                                <span ng-if='vm.activity.related_activities.length == 0'>No data available</span>
                             </p>
                         </div>
                     </div>
                 </div>
-                <!-- eind van een wit blokje -->
-                <!--start van een wit blokje -->
+
                 <div class="row">
                     <div class="col-sm-12 activity-list-item">
                         <div class="hp-block wit">
-                            <p><b>Website</b><br>{{vm.activity.websites.length ? vm.activity.websites[0].url : 'No data available'}}</p>
+                            <p>
+                                <b>Related activities</b><br>
+                                <a ng-repeat="act in vm.activity.related_activities">
+                                    {{act.id}}
+                                </a>
+                                <span ng-if='vm.activity.related_activities.length == 0'>No data available</span>
+                            </p>
+
                         </div>
                     </div>
                 </div>
-                <!-- eind van een wit blokje -->
+
+                
+
 
             </div>
             <!-- eind linker kolom -->
@@ -92,9 +129,21 @@
                 <div class="row">
                     <div class="col-sm-12 activity-list-item">
                         <div class="hp-block wit">
-                            <p><b>Budget</b><br>
+                            <p><b>Estimated budget</b><br>
                                 <span ng-if='vm.activity.total_budget.length'>{{vm.activity.total_budget | shortcurrency :'€'}}</span>
                                 <span ng-if='!vm.activity.total_budget.length'>No data available</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- eind van een wit blokje -->
+                <!--start van een wit blokje -->
+                <div class="row">
+                    <div class="col-sm-12 activity-list-item">
+                        <div class="hp-block wit">
+                            <p><b>Capital spend</b><br>
+                                <span ng-if='vm.activity.activity_scope.name.length'>{{vm.activity.capital_spend.percentage}}</span>
+                                <span ng-if='!vm.activity.activity_scope.name.length'>No data available</span>
                             </p>
                         </div>
                     </div>
@@ -140,8 +189,66 @@
                 <div class="row">
                     <div class="col-sm-12 activity-list-item">
                         <div class="hp-block wit">
-                            <p><b>Reporting organisations</b><br>{{vm.activity.reporting_organisation.name}}</p>
-                            <p><b>Participating organisations</b><br><span ng-repeat='org in vm.activity.participating_organisations'>{{org.name}}, </span></p>
+                            <p><b>Collaboration type</b><br>
+                                <span ng-if='vm.activity.collaboration_type.name.length'>{{vm.activity.collaboration_type.name}}</span>
+                                <span ng-if='!vm.activity.collaboration_type.name.length'>No data available</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- eind van een wit blokje -->
+                <!--start van een wit blokje -->
+                <div class="row">
+                    <div class="col-sm-12 activity-list-item">
+                        <div class="hp-block wit">
+                            <p><b>Aid type</b><br>
+                                <span ng-if='vm.activity.default_aid_type.name.length'>{{vm.activity.default_aid_type.name}}</span>
+                                <span ng-if='!vm.activity.default_aid_type.name.length'>No data available</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- eind van een wit blokje -->
+
+
+                <div class="row">
+                    <div class="col-sm-12 activity-list-item">
+                        <div class="hp-block wit">
+
+                            <p>
+                                <b>Websites</b><br>
+                                <a ng-repeat="website in vm.activity.websites">
+                                    {{website.name}}
+                                </a>
+                                <span ng-if='vm.activity.websites.length == 0'>No data available</span>
+                            </p>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!--start van een wit blokje -->
+                <div class="row">
+                    <div class="col-sm-12 activity-list-item">
+                        <div class="hp-block wit">
+                            <p><b>Linked data URI</b><br>
+                                <span ng-if='vm.activity.linked_data_uri.length'>{{vm.activity.linked_data_uri}}</span>
+                                <span ng-if='!vm.activity.linked_data_uri.length'>No data available</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- eind van een wit blokje -->
+                
+
+                <!--start van een wit blokje -->
+                <div class="row">
+                    <div class="col-sm-12 activity-list-item">
+                        <div class="hp-block wit">
+                            <p><b>Hierarchy</b><br>
+                                <span ng-if='vm.activity.hierarchy'>{{vm.activity.hierarchy}}</span>
+                                <span ng-if='!vm.activity.hierarchy'>No data available</span>
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -184,6 +291,7 @@
                     </div>
                 </div>
                 <!-- eind van een wit blokje -->
+
                 <!--start van een wit blokje -->
                 <div class="row">
                     <div class="col-sm-12 activity-list-item">
@@ -210,6 +318,22 @@
                     </div>
                 </div>
                 <!-- eind van een wit blokje -->
+
+                <div class="row">
+                    <div class="col-sm-12 activity-list-item">
+                        <div class="hp-block wit">
+
+                            <p>
+                                <b>Results</b><br>
+                                <a ng-repeat="result in vm.activity.results">
+                                    {{result.name}}
+                                </a>
+                                <span ng-if='vm.activity.results.length == 0'>No data available</span>
+                            </p>
+
+                        </div>
+                    </div>
+                </div>
 
             </div>
             <!-- eind rechter kolom -->
@@ -255,13 +379,13 @@
         </div>
     </div>
 
-    <div class="row" ng-show="vm.selectedTab == 'documents'">
+    <div class="row" ng-show="vm.selectedTab == 'thirdparty'">
         <div class="col-md-12">
-            <div class="hp-block wit">
+            <div class="hp-block wit" style="display: none">
                 <h3>IATI references</h3>
 
-                <div ng-show="vm.activity.related_projects.length == 0">
-                    No references.
+                <div>
+                    To do
                 </div>
                 <br>
                 <table class="table">
@@ -273,78 +397,51 @@
                 </table>
             </div>
 
-            <div class="hp-block wit">
-                <h3>RSR references</h3>
+            <div class="hp-block wit" ng-show="!vm.rsrLoading && !vm.rsrProjects.length">
+                <h3>No third-party data available.</h3>
+            </div>
 
-                <div>
-                    To do?
+            <div class="hp-block wit" ng-show="vm.rsrLoading || vm.rsrProjects.length">
+                <h3>Akvo Really Simple Reporting (RSR)</h3>
+                <h4 style="font-weight: normal;">The following RSR projects are funded by this OpenaidNL activity.</h4>
+
+                <div class="row" ng-show="vm.rsrLoading">
+                    <div class="svg-loader">
+                        <img ng-src="{{vm.templateBaseUrl}}/images/spinning-circles.svg" width="50" alt="">
+                    </div>
                 </div>
-                <br>
+            </div>
+
+        </div>
+
+        <div 
+            class="activity-list-item col-sm-12" 
+            ng-show="vm.rsrProjects.length != 0"
+            ng-repeat="item in vm.rsrProjects">
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="hp-block wit header">
+                        <div class="row">
+                            <div class="col-sm-2">
+
+                                <img ng-src="http://rsr.akvo.org{{item.current_image.thumbnails.map_thumb}}">
+                            </div>
+                            <div class="col-sm-10">
+                                <h2>
+                                    <a target="_blank" ng-href="http://rsr.akvo.org/en/project/{{item.id}}/">
+                                        {{ item.title }}
+                                    </a>
+                                </h2>
+                                <p>{{item.project_plan_summary}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
-
-
-
-    <!-- <div class="row">
-        <div class="col-md-12">
-            <div class="hp-block finance">
-                <h3>Financieel overzicht</h3>
-
-                <nvd3 options="vm.transactionChartOptions" data="vm.transactionData" class="with-3d-shadow with-transitions"></nvd3>
-
-                <table class="table">
-                    <thead>
-                        <td>Transactie type</td>
-                        <td>Verstrekkende organisatie</td>
-                        <td>Ontvangende organisatie</td>
-                        <td>Bedrag</td>
-                        <td>Datum</td>
-                    </thead>
-                    <tbody>
-                        <tr ng-repeat="transaction in vm.activity.transactions">
-                            <td>
-                                {{transaction.transaction_type}}
-                            </td>
-                            <td>
-                                {{transaction.provider_organisation_name}}
-                            </td>
-                            <td>
-                                {{transaction.receiver_organisation_name}}
-                            </td>
-                            <td>
-                                {{transaction.value | openaidcurrency :'€':0:".":"."}}
-                            </td>
-                            <td>
-                                {{transaction.transaction_date}}
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div> -->
-
-
-   <!--  <div class="row" ng-show="vm.showDetails == true">
-        <div class="col-md-12">
-            <div class="hp-block">
-                <table class="table">
-                    <tbody>
-                        <tr ng-repeat="(key, value) in vm.activity">
-                            <td>
-                                {{key}}
-                            </td>
-                            <td>
-                                {{value}}
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div> -->
 </div>
 
 
