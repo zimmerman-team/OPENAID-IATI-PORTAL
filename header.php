@@ -38,7 +38,6 @@
 		<meta name="theme-color" content="#444">
 
 		<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>">
-		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 		
 		<?php // wordpress head functions ?>
 		<?php wp_head(); ?>
@@ -57,6 +56,13 @@
 	</head>
 
 	<body <?php body_class(); ?> itemscope itemtype="http://schema.org/WebPage" ng-app="oipa">
+
+		<div ng-if="false">
+		    <h3 style="text-align:center;padding-top:100px;">Loading OpenaidNL, please wait...</h3>
+			<div class="svg-loader">
+                <img src="<?php echo get_template_directory_uri(); ?>/images/spinning-circles.svg" width="50">
+            </div>
+		</div>
 
 
 
