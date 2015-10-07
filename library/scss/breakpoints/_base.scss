@@ -2014,23 +2014,23 @@ footer{
 
 
 //custom icons shiz
-.ic {
-  display: inline-block;
-  font-family: 'iconscustom';
-  font-style: normal;
-  font-weight: normal;
-  font-size: inherit;
-  text-rendering: auto;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  transform: translate(0, 0);
-  &.ic-globe:before {
-    content: "A";
-  }
-  &.ic-map:before {
-    content: "@";
-  }
-}
+// .ic {
+//   display: inline-block;
+//   font-family: 'iconscustom';
+//   font-style: normal;
+//   font-weight: normal;
+//   font-size: inherit;
+//   text-rendering: auto;
+//   -webkit-font-smoothing: antialiased;
+//   -moz-osx-font-smoothing: grayscale;
+//   transform: translate(0, 0);
+//   &.ic-globe:before {
+//     content: "A";
+//   }
+//   &.ic-map:before {
+//     content: "@";
+//   }
+// }
 
 //map page
 .map-holder {

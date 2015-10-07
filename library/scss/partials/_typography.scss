@@ -15,7 +15,7 @@ http://alistapart.com/column/responsive-typography-is-a-physical-discipline
 
 ******************************************************************/
 
-@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css);
+@import "font-awesome";
 
 /*********************
 FONT FACE
@@ -29,18 +29,18 @@ FONT FACE
   Be sure to remove the comment brackets.
 */
 
-@font-face {
-  font-family: 'iconscustom';
-  src: url('../fonts/icons-custom-webfont.eot');
-  src: url('../fonts/icons-custom-webfont.eot?#iefix') format('embedded-opentype'),
-    url('../fonts/icons-custom-webfont.woff2') format('woff2'),
-    url('../fonts/icons-custom-webfont.woff') format('woff'),
-    url('../fonts/icons-custom-webfont.ttf') format('truetype'),
-    url('../fonts/icons-custom-webfont.svg#iconscustom') format('svg');
-  font-weight: normal;
-  font-style: normal;
+// @font-face {
+//   font-family: 'iconscustom';
+//   src: url('../fonts/icons-custom-webfont.eot');
+//   src: url('../fonts/icons-custom-webfont.eot?#iefix') format('embedded-opentype'),
+//     url('../fonts/icons-custom-webfont.woff2') format('woff2'),
+//     url('../fonts/icons-custom-webfont.woff') format('woff'),
+//     url('../fonts/icons-custom-webfont.ttf') format('truetype'),
+//     url('../fonts/icons-custom-webfont.svg#iconscustom') format('svg');
+//   font-weight: normal;
+//   font-style: normal;
 
-}
+// }
 
 
 
