@@ -82,6 +82,15 @@ oipa-table-chart .table tbody tr td.colour {
   display: none;
 }
 .table.top5-table {
+
+  .custom-select::after {
+
+    left: .05em;
+    right: auto;
+    color:#444;
+  }
+
+
   th {
     font-size:18px;
     font-weight: 600;
@@ -699,12 +708,14 @@ Dashboard buttons
 FILTER BAR
 *********************/
 .filters-fixed {
+  top: 0;
+  margin-top: 10px;
+  transition:top .2s;
+
   .container {
     padding:0;
     width: 481px;
   }
-  top:0;
-  transition:top .2s;
   .actions {
     margin-bottom: 10px;
   }
@@ -868,6 +879,7 @@ FILTER BAR
 }
 
 .detailbar {
+  margin-top: 10px;
   margin-bottom: 10px;
   .fa-circle {
     color:rgba(#738191,.5);
@@ -1620,6 +1632,10 @@ Search suggest box
   display: block; 
   width: auto; 
   height: auto; 
+}
+
+.leaflet-top, .leaflet-bottom{
+  z-index: 50;
 }
 
 
