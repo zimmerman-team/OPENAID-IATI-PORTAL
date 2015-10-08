@@ -43,6 +43,21 @@ a.fa {
   padding-top:50px;
 }
 
+.homepage{
+
+  .hp-block{
+    .custom-select{
+      border: 0;
+      background-color: transparent;
+    }
+
+    &.wit{
+      background-color: transparent;
+    }
+    
+  }
+}
+
 
 /****
 TEMP
@@ -80,14 +95,12 @@ oipa-table-chart .table tbody tr td.colour {
   }
   .custom-select {
     margin-top: 0;
-    width: 200px;
-    &.wide {
-      width: 310px;
-    }
+    width: auto;
+    
     select {
       font-weight: 600;
       font-size:18px;
-      padding-left:10px;
+      padding-left:17px;
     }
   }
 }
@@ -115,7 +128,11 @@ html {
 }
 
 .hp-block-top.hp-home{
-  background-color: rgba(150,150,150,0.2);
+  /*background-color: rgba(150,150,150,0.2);*/
+}
+
+.top5header{
+  text-align: center;
 }
 
 body{

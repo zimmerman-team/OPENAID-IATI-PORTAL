@@ -36,19 +36,19 @@
 
 /* Custom arrow sits on top of the select - could be an image, SVG, icon font, etc. or the arrow could just baked into the bg image on the select. Note this si a 2x image so it will look bad in browsers that don't support background-size. In production, you'd handle this resolution switch via media query but this is a demo. */
     
-.custom-select::after {
+.custom-select::before {
   content: "\f0dd";
   position: absolute;
   width: 9px;
   height: 8px;
   top: 50%;
-  right: .7em;
+  left: .05em;
   margin-top:-.8em;
   font-family: 'FontAwesome';
   z-index: 2;
   /* This hack make the select behind the arrow clickable in some browsers */
   pointer-events:none;
-  color:#ccc;
+  color:#444;
 }
 
 

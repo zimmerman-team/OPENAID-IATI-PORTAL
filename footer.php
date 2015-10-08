@@ -7,6 +7,7 @@
 				    <img src="<?php echo get_template_directory_uri(); ?>/images/openaidnl-logo.png" />
 			    </div>
 		    </div>
+		     
 		  	<div class="row">
 		  		<div class="col-sm-12">
 			  		<h3>Credits:</h3>
