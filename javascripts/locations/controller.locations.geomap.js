@@ -209,6 +209,8 @@
             }
 
           } else {
+            var flag = vm.countryMarkerData[i].country_id;
+            var flag_lc = flag.toLowerCase();
             var message = '<span class="flag-icon flag-icon-'+flag_lc+'"></span>'+
                   '<h4>'+vm.countryMarkerData[i].name+'</h4>'+
                   '<p><b>Activities:</b> '+vm.countryMarkerData[i]['activity_count']+'</p>'+
@@ -220,8 +222,6 @@
               if(vm.countryMarkerData[i].location != null){
                 var location = vm.countryMarkerData[i].location.substr(6, (vm.countryMarkerData[i].location.length - 7));
                 location = location.split(' ');
-                var flag = vm.countryMarkerData[i].country_id;
-                var flag_lc = flag.toLowerCase();
                 vm.markers[vm.countryMarkerData[i].country_id] = {
                   lat: parseInt(location[1]),
                   lng: parseInt(location[0]),
