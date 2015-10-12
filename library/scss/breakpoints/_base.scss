@@ -724,16 +724,52 @@ FILTER BAR
     top:58px;
     position:fixed;
     z-index:999;
-    background:rgba(30,30,30,.7);
+    background:rgba(115,129,145,0.5);
     width: 100%;
     left:0;
     padding-top:10px;
     transition:top .2s;
+    .filters {
+      .wrap {
+        background:none;
+        padding:5px 15px;
+      }
+    }
     #tool-bar {
-      margin-bottom: 0;
-      background:transparent;
+      display: none;
+    }
+    .filter-panel {
+      top:11px;
+    }
+  }
+  .filters {
+    .wrap {
+      background:rgba(115,129,145,0.5);
+      padding:15px;
       color:#fff;
     }
+    font-size:90%;
+  }
+  .filter {
+    margin-right: 15px;
+    i {
+      font-size: 80%;
+    }
+    &.reset {
+      float: right;
+      margin-right: 0;
+      a:before {
+        margin-right: 5px;
+      }
+    }
+  }
+}
+
+.dash-bar {
+  margin-top:10px;
+  z-index: 99999;
+  .wrap {
+    border-bottom:1px solid #fff;
   }
 }
 
@@ -741,7 +777,6 @@ FILTER BAR
   float: left;
   margin-right: 20px;
   position: relative;
-  width: 210px;
   .select-wrap {
     background:rgba(#738191,1);
     border-radius:0 0 20px 20px;
@@ -785,17 +820,17 @@ FILTER BAR
     margin-right: 10px;
   }
   .vis-type {
-    line-height: 42px;
-    padding:0 20px;
-    height: 42px;
     white-space: nowrap;
+    float: left;
+    text-align: center;
     a {
+      display: block;
       cursor: pointer;
+      padding:8px 15px;
+      margin-right: 10px;
+      min-width: 150px;
+      background:rgba(115,129,145,0.5);
       &:hover {
-        color:$oranje;
-        .fa-inverse {
-          color:$oranje;
-        }
       }
     }
   }
@@ -842,15 +877,16 @@ FILTER BAR
     visibility: hidden;
     max-height: 0;
     //display: none;
-    background:#738191;
+    //background:#738191;
     position: absolute;
-    top:0;
-    right:0;
+    top:1px;
+    right:3px;
     font-size:16px;
-    z-index: 99;
-    padding:0 0 0 15px;
-    border-radius:20px;
+    z-index: 99999;
+    padding:0;
+    //border-radius:20px;
     a {
+      color:#fff;
       display: block;
       white-space: nowrap;
       text-decoration:none;
@@ -888,18 +924,22 @@ FILTER BAR
       color:#fff;
     }
   }
-  .social {
-    text-align: right;
-    .fa-stack:hover {
-      .fa-circle {
-        color:rgba(#738191,1);
-      }
+}
+
+.social {
+  text-align: right;
+  margin-top:5px;
+  span {
+    margin-left: 10px;
+  }
+  .fa-stack:hover {
+    .fa-circle {
+      color:rgba(#738191,1);
     }
   }
 }
 
 .actions {
-  color:#fff;
   font-size: 16px;
   z-index: 9999;
   position: relative;
@@ -1096,9 +1136,11 @@ tr {
 }
 
 .filter-box {
-  padding:15px 11px 11px 15px;
+  padding:10px 11px 6px 15px;
   .btn {
-    color:#222;
+    opacity: .7;
+    font-size: 80%;
+    color:#222 !important;
     border-radius: 4px;
     margin-right: 4px;
     margin-bottom: 4px;
@@ -1441,12 +1483,15 @@ Countries
 TOOL BAR
 *********************/
 #tool-bar{
-  background-color: rgba(#738191, .5);
   //padding:6px 10px;
-  margin-bottom: 10px;
+  //margin-top: 10px;
+  //margin-bottom: 10px;
   position:relative;
   //margin-top: 10px;
-
+  .filter-box {
+    background-color: rgba(#738191, .5);
+    margin-top:10px;
+  }
   a {
     cursor: pointer;
     text-decoration: none;
@@ -1865,6 +1910,8 @@ ACTIVITY LIST
   overflow: hidden;
   white-space: nowrap;
   margin-bottom:15px;
+  background-color:#fff;
+  padding:0 15px;
   .sort-item {
     margin-right: 15px;
     cursor:pointer;
@@ -1874,10 +1921,18 @@ ACTIVITY LIST
   }
   .custom-select {
     margin-top:0;
+    border:0;
+    float: right;
+    &:after {
+      left: .05em;
+      right: auto;
+      color:#444;
+    }
     select {
       font-size:18px;
       font-weight: 600;
-      padding-left:10px;
+      padding-left:20px;
+      padding-right:0;
     }
   }
 }

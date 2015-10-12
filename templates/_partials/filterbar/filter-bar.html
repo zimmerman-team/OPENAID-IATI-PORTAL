@@ -1,223 +1,180 @@
 <div class="pad-helper hidden-xs"></div>
 
+<div class="row dash-bar">
+  <div class="col-md-12">
+    <div class="wrap clearfix">
+      <div class="row">
+        <div class="col-md-9">
+          <div class="dash-wrap">
+              <div class="vis-type" ng-repeat="view in vm.views">
+                <a ui-sref="{{view.id}}">
+                  {{view.name}}
+                </a>
+              </div>
+          </div>
+        </div>
+        <div class="col-md-3 social text-right">
+            
+          <span 
+            class="download-button" 
+            ng-if="vm.currentPage == 'activity' || vm.currentPage == 'activities'">
+              <i class="fa fa-download fa-inverse"></i>
+              <div class="download-wrap">
+                  <a ng-click="vm.download('csv')">
+                      Download CSV
+                      <span class="download-button">
+                          <i class="fa fa-download fa-inverse"></i>
+                      </span>
+                  </a>
+                  <a ng-click="vm.download('xml')">
+                      Download XML
+                      <span class="download-button">
+                          <i class="fa fa-download fa-inverse"></i>
+                      </span>
+                  </a>
+                  <a ng-click="vm.download('json')">
+                      Download JSON
+                      <span class="download-button">
+                          <i class="fa fa-download fa-inverse"></i>
+                      </span>
+                  </a>
+              </div>
+          </span>
+
+          <span class="">
+            <a target="_blank" ng-href="http://twitter.com/home?status={{vm.shareDescription}}" class="fa fa-twitter fa-inverse"></a>
+          </span>
+          <span class="">
+            <a target="_blank" ng-href="http://www.linkedin.com/shareArticle?mini=true&url={{vm.pageUrl}}&title={{vm.shareDescription}}" class="fa fa-linkedin fa-inverse"></a>
+          </span>
+          <span class="">
+            <a target="_blank" ng-href="http://www.facebook.com/sharer/sharer.php?s=100&p[url]={{vm.pageUrl}}" class="fa fa-facebook fa-inverse"></a>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="filters-fixed hidden-xs">
   <div class="container">
     <div class="row actions">
 
-      <div class="col-md-9 filters">
+      <div class="col-md-12 filters">
 
-            <div class="dash-wrap">
-              <div class="title" ng-class="{ zeroopacity : !vm.views.length }">
-                <i class="fa fa-desktop fa-inverse"></i>
-                Select dashboard
-              </div>
-              <div class="select-wrap">
-                <div class="vis-type" ng-repeat="view in vm.views">
-                  <a ui-sref="{{view.id}}">
-                    <i class="fa fa-{{view.id}} fa-inverse"></i>
-                    {{view.name}}
-                  </a>
-                </div>
-              </div>
-            </div>
+        <div class="wrap">
 
-        Filters: 
           <span 
-              class="fa-stack fa-lg" 
+              class="filter" 
               ng-click="vm.toggleOpenPanel('recipient_countries')" 
               ng-class="{'active': vm.isOpenedHeader('recipient_countries')}"
               ng-mouseover="vm.hoverIn('recipient_countries')" 
               ng-mouseleave="vm.hoverOut('recipient_countries')"
               ng-show="vm.isIncludedFilter('recipient_countries')">
-            <div 
-              class="glyphicon-popup" 
-              ng-show="vm.buttonTexts['recipient_countries'].hoverShow" 
-              ng-bind-html="vm.currentHoverText"></div>
-            <i class="fa fa-circle fa-stack-2x"></i>
-            <i class="fa fa-map-signs fa-stack-1x fa-inverse"></i>
+            <i class="fa fa-chevron-down"></i>
+            Countries
           </span>
 
           <span 
-              class="fa-stack fa-lg" 
+              class="filter" 
               ng-click="vm.toggleOpenPanel('recipient_regions')" 
               ng-class="{'active': vm.isOpenedHeader('recipient_regions')}"
               ng-mouseover="vm.hoverIn('recipient_regions')" 
               ng-mouseleave="vm.hoverOut('recipient_regions')"
               ng-show="vm.isIncludedFilter('recipient_regions')">
-              <div 
-                  class="glyphicon-popup" 
-                  ng-show="vm.buttonTexts['recipient_regions'].hoverShow" 
-                  ng-bind-html="vm.currentHoverText"></div>
-
-            <i class="fa fa-circle fa-stack-2x"></i>
-            <i class="fa fa-map-marker fa-stack-1x fa-inverse"></i>
+            <i class="fa fa-chevron-down"></i>
+            Regions
           </span>
           <span 
-              class="fa-stack fa-lg" 
+              class="filter" 
               ng-click="vm.toggleOpenPanel('budget')" 
               ng-class="{'active': vm.isOpenedHeader('budget')}"
               ng-mouseover="vm.hoverIn('recipient_budget')" 
               ng-mouseleave="vm.hoverOut('recipient_budget')"
               ng-show="vm.isIncludedFilter('recipient_budget')">
-              <div 
-              class="glyphicon-popup" 
-              ng-show="vm.buttonTexts['recipient_budget'].hoverShow" 
-              ng-bind-html="vm.currentHoverText"></div>
-
-            <i class="fa fa-circle fa-stack-2x"></i>
-            <i class="fa fa-eur fa-stack-1x fa-inverse"></i>
+            <i class="fa fa-chevron-down"></i>
+            Budget
           </span>
           <span 
-              class="fa-stack fa-lg" 
+              class="filter" 
               ng-click="vm.toggleOpenPanel('sectors')" 
               ng-class="{'active': vm.isOpenedHeader('sectors')}"
               ng-mouseover="vm.hoverIn('recipient_sectors')" 
               ng-mouseleave="vm.hoverOut('recipient_sectors')"
               ng-show="vm.isIncludedFilter('recipient_sectors')">
-              <div 
-              class="glyphicon-popup" 
-              ng-show="vm.buttonTexts['recipient_sectors'].hoverShow" 
-              ng-bind-html="vm.currentHoverText"></div>
-
-            <i class="fa fa-circle fa-stack-2x"></i>
-            <i class="fa fa-university fa-stack-1x fa-inverse"></i>
+            <i class="fa fa-chevron-down"></i>
+            Sectors
           </span>
           <span 
-              class="fa-stack fa-lg" 
+              class="filter" 
               ng-click="vm.toggleOpenPanel('activity_status')" 
               ng-class="{'active': vm.isOpenedHeader('activity_status')}"
               ng-mouseover="vm.hoverIn('recipient_activity_status')" 
               ng-mouseleave="vm.hoverOut('recipient_activity_status')"
               ng-show="vm.isIncludedFilter('recipient_activity_status')">
-            <div 
-              class="glyphicon-popup" 
-              ng-show="vm.buttonTexts['recipient_activity_status'].hoverShow" 
-              ng-bind-html="vm.currentHoverText"></div>
-            <i class="fa fa-circle fa-stack-2x"></i>
-            <i class="fa fa-line-chart fa-stack-1x fa-inverse"></i>
+            <i class="fa fa-chevron-down"></i>
+            Acivity status
           </span>
       
           <span
-              class="fa-stack fa-lg"
+              class="filter"
               ng-click="vm.toggleOpenPanel('transaction_year')" 
               ng-class="{'active': vm.isOpenedHeader('transaction_year')}"
               ng-mouseover="vm.hoverIn('transaction_year')" 
               ng-mouseleave="vm.hoverOut('transaction_year')"
               ng-show="vm.isIncludedFilter('transaction_year')">
-            <div 
-              class="glyphicon-popup"
-              ng-show="vm.buttonTexts['transaction_year'].hoverShow" 
-              ng-bind-html="vm.currentHoverText"></div>
-            <i class="fa fa-circle fa-stack-2x"></i>
-            <i class="fa fa-calendar fa-stack-1x fa-inverse"></i>
+            <i class="fa fa-chevron-down"></i>
+            Transaction year
           </span>
 
           <span
-              class="fa-stack fa-lg"
+              class="filter"
               ng-click="vm.toggleOpenPanel('recipient_implementing_organisations')" 
               ng-class="{'active': vm.isOpenedHeader('recipient_implementing_organisations')}"
               ng-mouseover="vm.hoverIn('recipient_implementing_organisations')" 
               ng-mouseleave="vm.hoverOut('recipient_implementing_organisations')"
               ng-show="vm.isIncludedFilter('recipient_implementing_organisations')">
-            <div 
-              class="glyphicon-popup"
-              ng-show="vm.buttonTexts['recipient_implementing_organisations'].hoverShow" 
-              ng-bind-html="vm.currentHoverText"></div>
-            <i class="fa fa-circle fa-stack-2x"></i>
-            <i class="fa fa-users fa-stack-1x fa-inverse"></i>
+            <i class="fa fa-chevron-down"></i>
+            Implementing organisations
           </span>
 
           <span 
-              class="fa-stack fa-lg" 
+              class="filter" 
               ng-click="vm.toggleOpenPanel('search')" 
               ng-class="{'active': vm.isOpenedHeader('search')}"
               ng-mouseover="vm.hoverIn('search')" 
               ng-mouseleave="vm.hoverOut('search')"
               ng-show="vm.isIncludedFilter('search')">
-            <div 
-              class="glyphicon-popup" 
-              ng-show="vm.buttonTexts['search'].hoverShow" 
-              ng-bind-html="vm.currentHoverText"></div>
-            <i class="fa fa-circle fa-stack-2x"></i>
-            <i class="fa fa-search fa-stack-1x fa-inverse"></i>
+            <i class="fa fa-chevron-down"></i>
+            Search
           </span>
 
           <span
-            class="fa-stack fa-lg"
+            class="filter reset"
             ng-mouseover="vm.hoverIn('reset')" 
             ng-mouseleave="vm.hoverOut('reset')">
-            <div 
-              class="glyphicon-popup" 
-              ng-show="vm.buttonTexts['reset'].hoverShow" 
-              ng-bind-html="vm.currentHoverText"></div>
-            <i class="fa fa-circle fa-stack-2x"></i>
-            <a ng-click="vm.resetFilters()" class="fa fa-refresh fa-stack-1x fa-inverse"></a>
+            <a ng-click="vm.resetFilters()" class="fa fa-refresh fa-inverse">Reset filters</a>
           </span>
 
-      </div>
+        </div>
 
-      <div class="col-md-3 social">
-      
-        <span 
-          class="fa-stack fa-lg download-button" 
-          ng-if="vm.currentPage == 'activity' || vm.currentPage == 'activities'">
-            <i class="fa fa-circle fa-stack-2x"></i>
-            <i class="fa fa-download fa-stack-1x fa-inverse"></i>
-            <div class="download-wrap">
-                <a ng-click="vm.download('csv')">
-                    Download CSV
-                    <span class="fa-stack fa-lg download-button">
-                        <i class="fa fa-circle fa-stack-2x"></i>
-                        <i class="fa fa-download fa-stack-1x fa-inverse"></i>
-                    </span>
-                </a>
-                <a ng-click="vm.download('xml')">
-                    Download XML
-                    <span class="fa-stack fa-lg download-button">
-                        <i class="fa fa-circle fa-stack-2x"></i>
-                        <i class="fa fa-download fa-stack-1x fa-inverse"></i>
-                    </span>
-                </a>
-                <a ng-click="vm.download('json')">
-                    Download JSON
-                    <span class="fa-stack fa-lg download-button">
-                        <i class="fa fa-circle fa-stack-2x"></i>
-                        <i class="fa fa-download fa-stack-1x fa-inverse"></i>
-                    </span>
-                </a>
-            </div>
-        </span>
+        <tool-bar></tool-bar>
 
-        <span class="fa-stack fa-lg">
-          <i class="fa fa-circle fa-stack-2x"></i>
-          <a target="_blank" ng-href="http://twitter.com/home?status={{vm.shareDescription}}" class="fa fa-twitter fa-stack-1x fa-inverse"></a>
-        </span>
-        <span class="fa-stack fa-lg">
-          <i class="fa fa-circle fa-stack-2x"></i>
-          <a target="_blank" ng-href="http://www.linkedin.com/shareArticle?mini=true&url={{vm.pageUrl}}&title={{vm.shareDescription}}" class="fa fa-linkedin fa-stack-1x fa-inverse"></a>
-        </span>
-        <span class="fa-stack fa-lg">
-          <i class="fa fa-circle fa-stack-2x"></i>
-          <a target="_blank" ng-href="http://www.facebook.com/sharer/sharer.php?s=100&p[url]={{vm.pageUrl}}" class="fa fa-facebook fa-stack-1x fa-inverse"></a>
-        </span>
-      </div>
-    </div>
-
-    <tool-bar></tool-bar>
-
-    <div class="row">
-        <div class="col-xs-12">
-            <div class="rel">
-                <filter-panel-recipient-countries ng-show="vm.isOpenedHeader('recipient_countries')"></filter-panel-recipient-countries>
-                <filter-panel-recipient-regions ng-show="vm.isOpenedHeader('recipient_regions')"></filter-panel-recipient-regions>
-                <filter-panel-budget ng-show="vm.isOpenedHeader('budget')"></filter-panel-budget>
-                <filter-panel-sectors ng-show="vm.isOpenedHeader('sectors')"></filter-panel-sectors>
-                <filter-panel-transaction-year ng-show="vm.isOpenedHeader('transaction_year')"></filter-panel-transaction-year>
-                <filter-panel-implementing-organisations ng-show="vm.isOpenedHeader('recipient_implementing_organisations')"></filter-panel-implementing-organisations>
-                <filter-panel-activity-status ng-show="vm.isOpenedHeader('activity_status')"></filter-panel-activity-status>
-                <filter-panel-search ng-show="vm.isOpenedHeader('search')"></filter-panel-search>
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="rel">
+                    <filter-panel-recipient-countries ng-show="vm.isOpenedHeader('recipient_countries')"></filter-panel-recipient-countries>
+                    <filter-panel-recipient-regions ng-show="vm.isOpenedHeader('recipient_regions')"></filter-panel-recipient-regions>
+                    <filter-panel-budget ng-show="vm.isOpenedHeader('budget')"></filter-panel-budget>
+                    <filter-panel-sectors ng-show="vm.isOpenedHeader('sectors')"></filter-panel-sectors>
+                    <filter-panel-transaction-year ng-show="vm.isOpenedHeader('transaction_year')"></filter-panel-transaction-year>
+                    <filter-panel-implementing-organisations ng-show="vm.isOpenedHeader('recipient_implementing_organisations')"></filter-panel-implementing-organisations>
+                    <filter-panel-activity-status ng-show="vm.isOpenedHeader('activity_status')"></filter-panel-activity-status>
+                    <filter-panel-search ng-show="vm.isOpenedHeader('search')"></filter-panel-search>
+                </div>
             </div>
         </div>
+      </div>
     </div>
   </div>
 </div>
