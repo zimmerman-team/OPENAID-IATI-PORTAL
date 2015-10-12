@@ -720,6 +720,7 @@ FILTER BAR
     margin-bottom: 10px;
   }
   &.fixed {
+    margin-top: 0;
     top:58px;
     position:fixed;
     z-index:999;
