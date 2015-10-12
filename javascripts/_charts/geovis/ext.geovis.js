@@ -847,8 +847,9 @@ ZzLocationVis = (function() {
       var wscrY = $(window).scrollTop();
       var wscrX = $(window).scrollLeft();
       var curX = (document.all) ? event.clientX + wscrX : event.pageX;
+      console.log(wscrX);
       var curY = (document.all) ? event.clientY + wscrY : event.pageY;
-      var ttleft = ((curX - wscrX + xOffset*2 + ttw) > $(window).width()) ? curX - ttw - xOffset*2 : curX + xOffset;
+      var ttleft = ((curX - wscrX + xOffset*2 + ttw/2) > $(window).width()) ? curX - ttw/4 : curX + xOffset;
       if (ttleft < wscrX + xOffset){
         ttleft = wscrX + xOffset;
       } 
