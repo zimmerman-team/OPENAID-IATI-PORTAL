@@ -5,9 +5,9 @@
     <div class="wrap clearfix">
       <div class="row">
         <div class="col-md-9">
-          <div class="dash-wrap">
+          <div class="dash-wrap hidden-xs">
               <div class="vis-type" ng-repeat="view in vm.views">
-                <a ui-sref="{{view.id}}">
+                <a ui-sref="{{view.id}}" class="{{view.class}}">
                   {{view.name}}
                 </a>
               </div>
@@ -16,39 +16,43 @@
         <div class="col-md-3 social text-right">
             
           <span 
-            class="download-button" 
+            class="download-button fa-stack fa-lg" 
             ng-if="vm.currentPage == 'activity' || vm.currentPage == 'activities'">
-              <i class="fa fa-download fa-inverse"></i>
+              <i class="fa fa-circle fa-stack-2x"></i>
+              <i class="fa fa-download fa-stack-1x fa-inverse"></i>
               <div class="download-wrap">
                   <a ng-click="vm.download('csv')">
                       Download CSV
                       <span class="download-button">
-                          <i class="fa fa-download fa-inverse"></i>
+                          <i class="fa fa-download"></i>
                       </span>
                   </a>
                   <a ng-click="vm.download('xml')">
                       Download XML
                       <span class="download-button">
-                          <i class="fa fa-download fa-inverse"></i>
+                          <i class="fa fa-download"></i>
                       </span>
                   </a>
                   <a ng-click="vm.download('json')">
                       Download JSON
                       <span class="download-button">
-                          <i class="fa fa-download fa-inverse"></i>
+                          <i class="fa fa-download"></i>
                       </span>
                   </a>
               </div>
           </span>
 
-          <span class="">
-            <a target="_blank" ng-href="http://twitter.com/home?status={{vm.shareDescription}}" class="fa fa-twitter fa-inverse"></a>
+          <span class="fa-stack fa-lg">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <a target="_blank" ng-href="http://twitter.com/home?status={{vm.shareDescription}}" class="fa fa-twitter fa-stack-1x fa-inverse"></a>
           </span>
-          <span class="">
-            <a target="_blank" ng-href="http://www.linkedin.com/shareArticle?mini=true&url={{vm.pageUrl}}&title={{vm.shareDescription}}" class="fa fa-linkedin fa-inverse"></a>
+          <span class="fa-stack fa-lg">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <a target="_blank" ng-href="http://www.linkedin.com/shareArticle?mini=true&url={{vm.pageUrl}}&title={{vm.shareDescription}}" class="fa fa-linkedin fa-stack-1x fa-inverse"></a>
           </span>
-          <span class="">
-            <a target="_blank" ng-href="http://www.facebook.com/sharer/sharer.php?s=100&p[url]={{vm.pageUrl}}" class="fa fa-facebook fa-inverse"></a>
+          <span class="fa-stack fa-lg">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <a target="_blank" ng-href="http://www.facebook.com/sharer/sharer.php?s=100&p[url]={{vm.pageUrl}}" class="fa fa-facebook fa-stack-1x fa-inverse"></a>
           </span>
         </div>
       </div>
@@ -72,7 +76,7 @@
               ng-mouseleave="vm.hoverOut('recipient_countries')"
               ng-show="vm.isIncludedFilter('recipient_countries')">
             <i class="fa fa-chevron-down"></i>
-            Countries
+            <span>Countries</span>
           </span>
 
           <span 
@@ -83,7 +87,7 @@
               ng-mouseleave="vm.hoverOut('recipient_regions')"
               ng-show="vm.isIncludedFilter('recipient_regions')">
             <i class="fa fa-chevron-down"></i>
-            Regions
+            <span>Regions</span>
           </span>
           <span 
               class="filter" 
@@ -93,7 +97,7 @@
               ng-mouseleave="vm.hoverOut('recipient_budget')"
               ng-show="vm.isIncludedFilter('recipient_budget')">
             <i class="fa fa-chevron-down"></i>
-            Budget
+            <span>Budget</span>
           </span>
           <span 
               class="filter" 
@@ -103,7 +107,7 @@
               ng-mouseleave="vm.hoverOut('recipient_sectors')"
               ng-show="vm.isIncludedFilter('recipient_sectors')">
             <i class="fa fa-chevron-down"></i>
-            Sectors
+            <span>Sectors</span>
           </span>
           <span 
               class="filter" 
@@ -113,7 +117,7 @@
               ng-mouseleave="vm.hoverOut('recipient_activity_status')"
               ng-show="vm.isIncludedFilter('recipient_activity_status')">
             <i class="fa fa-chevron-down"></i>
-            Acivity status
+            <span>Acivity status</span>
           </span>
       
           <span
@@ -124,7 +128,7 @@
               ng-mouseleave="vm.hoverOut('transaction_year')"
               ng-show="vm.isIncludedFilter('transaction_year')">
             <i class="fa fa-chevron-down"></i>
-            Transaction year
+            <span>Transaction year</span>
           </span>
 
           <span
@@ -135,10 +139,10 @@
               ng-mouseleave="vm.hoverOut('recipient_implementing_organisations')"
               ng-show="vm.isIncludedFilter('recipient_implementing_organisations')">
             <i class="fa fa-chevron-down"></i>
-            Implementing organisations
+            <span>Implementing organisations</span>
           </span>
 
-          <span 
+<!--           <span 
               class="filter" 
               ng-click="vm.toggleOpenPanel('search')" 
               ng-class="{'active': vm.isOpenedHeader('search')}"
@@ -147,13 +151,16 @@
               ng-show="vm.isIncludedFilter('search')">
             <i class="fa fa-chevron-down"></i>
             Search
-          </span>
+          </span> -->
 
           <span
             class="filter reset"
             ng-mouseover="vm.hoverIn('reset')" 
             ng-mouseleave="vm.hoverOut('reset')">
-            <a ng-click="vm.resetFilters()" class="fa fa-refresh fa-inverse">Reset filters</a>
+            <a ng-click="vm.resetFilters()">
+              <i class="fa fa-refresh fa-inverse"></i> 
+              <span>Reset filters</span>
+            </a>
           </span>
 
         </div>

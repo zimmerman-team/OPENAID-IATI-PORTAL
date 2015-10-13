@@ -585,7 +585,7 @@ NAVBAR
 //Breadcrumbs
 
 .angular-leaflet-map  {
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 
 .breadcrumb {
@@ -709,7 +709,7 @@ FILTER BAR
 *********************/
 .filters-fixed {
   top: 0;
-  margin-top: 10px;
+  margin-top: 5px;
   transition:top .2s;
 
   .container {
@@ -717,7 +717,7 @@ FILTER BAR
     width: 481px;
   }
   .actions {
-    margin-bottom: 10px;
+    margin-bottom: 5px;
   }
   &.fixed {
     margin-top: 0;
@@ -745,31 +745,57 @@ FILTER BAR
   .filters {
     .wrap {
       background:rgba(115,129,145,0.5);
-      padding:15px;
+      padding:10px 15px;
       color:#fff;
+      @extend .clearfix;
     }
-    font-size:90%;
+    font-size:14px;
   }
   .filter {
-    margin-right: 15px;
+    margin-right: 35px;
+    float: left;
+    display: block;
+    opacity: .7;
+    transition: all .2s ease-in-out;
+    &:hover,&.active {
+      opacity: 1;
+    }
+    @extend .clearfix;
     i {
-      font-size: 80%;
+      font-size: 8px;
+      margin-top: 6px;
+      display: block;
+      float: left;
+      margin-right: 4px;
+    }
+    span {
+      display: block;
+      float: left;
+      letter-spacing: .4px;
+      font-weight: 200;
     }
     &.reset {
       float: right;
       margin-right: 0;
-      a:before {
+      display: inline-block;
+      i {
         margin-right: 5px;
+        font-size:14px;
+        display: inline-block;
+        margin-top:3px;
+      }
+      a {
+        text-decoration: none;
       }
     }
   }
 }
 
 .dash-bar {
-  margin-top:10px;
+  margin-top:5px;
   z-index: 99999;
   .wrap {
-    border-bottom:1px solid #fff;
+    border-bottom:1px solid rgba(255,255,255,.4);
   }
 }
 
@@ -777,6 +803,7 @@ FILTER BAR
   float: left;
   margin-right: 20px;
   position: relative;
+  font-size: 14px;
   .select-wrap {
     background:rgba(#738191,1);
     border-radius:0 0 20px 20px;
@@ -824,13 +851,18 @@ FILTER BAR
     float: left;
     text-align: center;
     a {
+      font-weight: 200;
+      color:rgba(255,255,255,.7);
       display: block;
       cursor: pointer;
       padding:8px 15px;
-      margin-right: 10px;
-      min-width: 150px;
+      margin-right: 5px;
+      min-width: 120px;
       background:rgba(115,129,145,0.5);
-      &:hover {
+      transition:all .2s ease-in-out;
+      &:hover, &.active {
+        color:rgba(255,255,255,1);
+        background:rgba(115,129,145,1);
       }
     }
   }
@@ -877,14 +909,17 @@ FILTER BAR
     visibility: hidden;
     max-height: 0;
     //display: none;
-    //background:#738191;
+    background:rgba(115,129,145,1);
     position: absolute;
-    top:1px;
-    right:3px;
-    font-size:16px;
+    top:0;
+    right:0;
+    font-size:14px;
     z-index: 99999;
-    padding:0;
-    //border-radius:20px;
+    padding:5px 10px;
+    border-radius:13px;
+    .download-button {
+      margin-left:4px;
+    }
     a {
       color:#fff;
       display: block;
@@ -892,7 +927,7 @@ FILTER BAR
       text-decoration:none;
       &:hover {
         color:$oranje;
-        .fa-inverse {
+        .fa {
           color: $oranje;
         }
       }
@@ -909,6 +944,9 @@ FILTER BAR
   .social {
     text-align: center !important;
     margin-bottom: 0 !important;
+  }
+  .hp-block {
+    padding-bottom: 0;
   }
 }
 
@@ -929,13 +967,24 @@ FILTER BAR
 .social {
   text-align: right;
   margin-top:5px;
-  span {
-    margin-left: 10px;
+  margin-bottom: 10px;
+  a {
+    color:#fff;
+  }
+  .fa-stack {
+    font-size: 80%;
+    &:hover {
+      .fa-circle {
+        color:rgba(115,129,145,1);
+      }
+    }
+  }
+  .fa-circle {
+    transition:all .2s ease-in-out;
+    color:rgba(115,129,145,0.5);
   }
   .fa-stack:hover {
-    .fa-circle {
-      color:rgba(#738191,1);
-    }
+    opacity: 1;
   }
 }
 
@@ -1136,14 +1185,15 @@ tr {
 }
 
 .filter-box {
-  padding:10px 11px 6px 15px;
+  padding:8px 11px 4px 15px;
   .btn {
-    opacity: .7;
-    font-size: 80%;
+    opacity: .6;
+    font-size: 10px;
     color:#222 !important;
     border-radius: 4px;
     margin-right: 4px;
     margin-bottom: 4px;
+    padding:4px 8px;
     &.selectedCountries {
       background: #fff;
     }
@@ -1490,7 +1540,7 @@ TOOL BAR
   //margin-top: 10px;
   .filter-box {
     background-color: rgba(#738191, .5);
-    margin-top:10px;
+    margin-top:5px;
   }
   a {
     cursor: pointer;
@@ -1909,7 +1959,7 @@ ACTIVITY LIST
   color:#222;
   overflow: hidden;
   white-space: nowrap;
-  margin-bottom:15px;
+  margin-bottom:10px;
   background-color:#fff;
   padding:0 15px;
   .sort-item {
@@ -1938,7 +1988,7 @@ ACTIVITY LIST
 }
 
 .activity-list-item {
-  margin-bottom: 13px;
+  margin-bottom: 8px;
   overflow: hidden;
   a {
     color:$oranje;
