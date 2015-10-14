@@ -3,14 +3,14 @@
 
   angular
     .module('oipa.locations')
-    .controller('LocationsPolygonGeoMapController', LocationsPolygonGeoMapController);
+    .controller('ActivitiesPolygonGeoMapController', ActivitiesPolygonGeoMapController);
 
-  LocationsPolygonGeoMapController.$inject = ['$scope', '$http', 'leafletData', 'Aggregations', 'templateBaseUrl', 'homeUrl', 'FilterSelection'];
+  ActivitiesPolygonGeoMapController.$inject = ['$scope', '$http', 'leafletData', 'Aggregations', 'templateBaseUrl', 'homeUrl', 'FilterSelection'];
 
   /**
-  * @namespace LocationsPolygonGeoMapController
+  * @namespace ActivitiesPolygonGeoMapController
   */
-  function LocationsPolygonGeoMapController($scope, $http, leafletData, Aggregations, templateBaseUrl, homeUrl, FilterSelection) {
+  function ActivitiesPolygonGeoMapController($scope, $http, leafletData, Aggregations, templateBaseUrl, homeUrl, FilterSelection) {
     var vm = this;
     vm.templateBaseUrl = templateBaseUrl;
     vm.filterSelection = FilterSelection;

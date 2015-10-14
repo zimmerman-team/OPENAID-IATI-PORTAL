@@ -23,7 +23,6 @@
 			selectedCountries: m.selectedCountries,
 			all: all,
 			getCountry: getCountry,
-			getActivities: getActivities
 		};
 
 		return Countries;
@@ -47,15 +46,8 @@
         }
 
 	    function getCountry(code) {
-	     	return $http.get(oipaUrl + '/countries/' + code + '?format=json&fields=code,name&fields[aggregations]=count,disbursement,commitment', { cache: true });
+	     	return $http.get(oipaUrl + '/countries/' + code + '/?format=json&fields=code,name&fields[aggregations]=count,disbursement,commitment', { cache: true });
 	    }
 
-	    function getActivities(code){
-            var url = oipaUrl + '/country-activities/?format=json&countries__in='+code+'&page_size=999&fields=code,name,location&fields[aggregations]=count';
-            if(reportingOrganisationId){
-                url += '&reporting_organisation__in=' + reportingOrganisationId;
-            }
-            return $http.get(url, { cache: true });
-	    }
 	}
 })();

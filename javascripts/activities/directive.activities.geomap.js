@@ -10,13 +10,13 @@
   function activitiesGeomap(templateBaseUrl) {
 
     var directive = {
-      controller: 'TempLocationsGeoMapController',
+      controller: 'ActivitiesPolygonGeoMapController',
       controllerAs: 'vm',
       restrict: 'E',
       scope: {
         activity: '='
       },
-      templateUrl: templateBaseUrl + '/templates/activities/activities-temp-geomap.html'
+      templateUrl: templateBaseUrl + '/templates/activities/activities-geomap.html'
     };
 
     return directive;
