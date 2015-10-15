@@ -18,7 +18,7 @@
     var vm = this;
 
     vm.defaults = {
-      tileLayer: 'https://{s}.tiles.mapbox.com/v3/zimmerman2014.088155ee/{z}/{x}/{y}.png',
+      tileLayer: 'https://{s}.tiles.mapbox.com/v3/zimmerman2014.483b5b1a/{z}/{x}/{y}.png',
       maxZoom: 4,
       minZoom: 2,
       attributionControl: false,

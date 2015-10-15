@@ -92,12 +92,14 @@ function bones_scripts_and_styles() {
 		wp_deregister_script("jquery");
 		wp_register_script( 'jquery', get_stylesheet_directory_uri() . '/bower_components/jquery/dist/jquery.min.js', array(), '', true );
 
+		wp_register_script( 'countrydata', get_stylesheet_directory_uri() . '/javascripts/data/country_data.js', array(), '', true );
+
+
 		wp_register_script( 'jquery-scripts', get_stylesheet_directory_uri() . '/library/js/scripts.js', array(), '', true );
 
 		wp_register_script( 'angulartics', get_stylesheet_directory_uri() . '/bower_components/angulartics/dist/angulartics.min.js', array(), '', true );
 		wp_register_script( 'angulartics-ga', get_stylesheet_directory_uri() . '/bower_components/angulartics-google-analytics/dist/angulartics-google-analytics.min.js', array(), '', true );
 		
-
 		wp_register_script( 'bootstrap', get_stylesheet_directory_uri() . '/bower_components/bootstrap/dist/js/bootstrap.min.js', array(), '', true );
 		wp_register_script( 'leaflet.js', get_stylesheet_directory_uri() . '/bower_components/leafletjs/dist/leaflet.js', array(), '', true );
 		wp_register_script( 'd3.js', get_stylesheet_directory_uri() . '/library/js/d3.min.js', array(), '', true );
@@ -114,7 +116,7 @@ function bones_scripts_and_styles() {
 		wp_register_script( 'checklist-module', get_stylesheet_directory_uri() . '/javascripts/_helpers/angularUtils/checklist-model.js', array(), '', true );
 		
 		wp_register_script( 'angular-nvd3', get_stylesheet_directory_uri() . '/bower_components/angular-nvd3/dist/angular-nvd3.min.js', array(), '', true);
-		wp_register_script( 'angular-leaflet-directive', get_stylesheet_directory_uri() . '/bower_components/angular-leaflet-directive/dist/angular-leaflet-directive.min.js', array(), '', true);
+		wp_register_script( 'angular-leaflet-directive', get_stylesheet_directory_uri() . '/javascripts/ext/angular-leaflet-directive.js', array(), '', true);
 		
 		wp_register_script( 'bootstrap-slider', get_stylesheet_directory_uri() . '/bower_components/bootstrap-slider/dist/bootstrap-slider.min.js', array(), '' );
 		wp_register_script( 'angular-slider', get_stylesheet_directory_uri() . '/bower_components/angular-bootstrap-slider/slider.js', array('angular', 'bootstrap-slider', 'jquery'), '' );
@@ -314,6 +316,8 @@ function bones_scripts_and_styles() {
 		wp_register_script( 'controller.financialsLineChart', get_stylesheet_directory_uri() . '/javascripts/_charts/controller.financialsLineChart.js', array(), '', true );
 
 		wp_register_script( 'directive.chartWrapper', get_stylesheet_directory_uri() . '/javascripts/_charts/directive.chartWrapper.js', array(), '', true );
+
+		wp_enqueue_script( 'countrydata' );
 
 		wp_enqueue_script( 'bones-modernizr' );
 		wp_enqueue_script( 'jquery' );

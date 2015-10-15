@@ -36,16 +36,8 @@
       {'id':5, 'name': 'Other'}];
 
     vm.currentHoverText = '';
-    // vm.buttonTexts = {
-    //   'hover1': {'text': 'Hulp txt', hoverShow: false},
-    //   'hover2': {'text': 'Transition relation txt', hoverShow: false},
-    //   'hover3': {'text': 'Exit txt', hoverShow: false},
-    //   'hover4': {'text': 'Handelstxt', hoverShow: false},
-    //   'hover5': {'text': 'Other txt', hoverShow: false},
-    // };
-
     vm.defaults = {
-      tileLayer: 'https://{s}.tiles.mapbox.com/v3/zimmerman2014.088155ee/{z}/{x}/{y}.png',
+      tileLayer: 'https://{s}.tiles.mapbox.com/v3/zimmerman2014.483b5b1a/{z}/{x}/{y}.png',
       maxZoom: 12,
       minZoom: 2,
       attributionControl: false,
@@ -53,42 +45,13 @@
       continuousWorld: false,
       zoomControlPosition: 'topright'
     };
+
     vm.center = {
         lat: 14.505,
         lng: 18.00,
         zoom: 3
     };
     
-    // vm.controls = {
-    //   custom: [];
-    // };
-
-
-
-    // var MyControl = new L.control();
-    // MyControl.setPosition('bottomleft');
-    // MyControl.onAdd = function () {
-    // var className = 'leaflet-custom-control', 
-    // container = L.DomUtil.create('div', className + ' leaflet-bar');
-    // //angular.element(container).append(' Something' ); to see it
-
-    // // L.DomEvent.addListener(container, 'click', function(e){alert('My button first Click')});
-    // // Search a lot for this click also.
-    // return container;
-    // }
-    // var directives = getMyDirectives(); //Get center controls markers layers etc...
-    // directives.controls.custom.push(MyControl);
-    // angular.extend(vm, directives); // My directives include controls.custom = []
-
-
-
-
-
-
-
-
-
-
     vm.markers = {};
     vm.markerIcons = {
       Aidrelation: { html: '<div class="fa fa-map-marker fa-stack-1x fa-inverse marker-circle marker-circle-Aidrelation"></div>',type: 'div',iconSize: [28, 35],iconAnchor: [14, 18],markerColor: 'blue',iconColor: 'white',},
@@ -121,8 +84,6 @@
         vm.selectionString = selectionString;
         vm.updateMap();
       }, true);
-
-
     }
 
     vm.changeSelectedCountryRelations = function(){
