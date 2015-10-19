@@ -1014,6 +1014,13 @@ FILTER BAR
       }
     }
   }
+  .pagination {
+    .disabled {
+      a {
+        color:#777;
+      }
+    }
+  }
   .social {
     text-align: right;
     .fa-stack:hover {
