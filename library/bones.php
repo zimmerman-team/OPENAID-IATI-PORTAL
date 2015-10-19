@@ -315,10 +315,12 @@ function bones_scripts_and_styles() {
 
 		wp_register_script( 'directive.chartWrapper', get_stylesheet_directory_uri() . '/javascripts/_charts/directive.chartWrapper.js', array(), '', true );
 
-		wp_enqueue_script( 'countrydata' );
-
 		wp_enqueue_script( 'bones-modernizr' );
 		wp_enqueue_script( 'jquery' );
+		wp_enqueue_script( 'angular' );
+
+		wp_enqueue_script( 'countrydata' );
+
 		wp_enqueue_script( 'jquery-scripts' );
 		wp_enqueue_script( 'bootstrap' );
 		wp_enqueue_script( 'leaflet.js' );
@@ -333,7 +335,6 @@ function bones_scripts_and_styles() {
 		wp_enqueue_script( 'd3.js' );
 		wp_enqueue_script( 'nvd3.js' );
 
-		wp_enqueue_script( 'angular' );
 		wp_enqueue_script( 'angular-route' );
 		wp_enqueue_script( 'angular-cookies' );
 		wp_enqueue_script( 'angular-animate' );
