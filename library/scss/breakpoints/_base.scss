@@ -1906,8 +1906,10 @@ SLIDER TOOLTIP
 *********************/
 
 .slide {
-  padding:28px 0 0 0;
-  margin-bottom: 15px;
+  padding:12px 14px 9px 14px;
+  border-radius:5px;
+  margin: 22px 0 15px 0;
+  background:#f1f1f1;
   &.active {
     .slider {
       .slider-selection {
@@ -1943,7 +1945,7 @@ SLIDER TOOLTIP
     .slider-track {
       height: 3px;
       box-shadow:none;
-      background: rgba(0, 0, 0, 0.4);
+      background: rgba(0, 0, 0, 0.2);
       .slider-handle {
         background: #222;
         border:none;
@@ -1963,7 +1965,7 @@ SLIDER TOOLTIP
       }
     }
     .slider-selection {
-      background: rgba(0, 0, 0, 0.4);
+      background: rgba(0, 0, 0, 0.3);
     }
   }
   #tooltip {
