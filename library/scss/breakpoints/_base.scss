@@ -990,7 +990,6 @@ FILTER BAR
 
 .actions {
   font-size: 16px;
-  z-index: 9999;
   position: relative;
 
   span {
@@ -1861,6 +1860,7 @@ Sunburst vis
   filter: drop-shadow(rgba(0, 0, 0, 0.5) 0 2px 10px);
   -webkit-filter: drop-shadow(rgba(0,0,0,0.5) 0 2px 10px);
   pointer-events: none;
+  transform: translateZ(0); 
 
   .tt-header{
     font-size: 16px;

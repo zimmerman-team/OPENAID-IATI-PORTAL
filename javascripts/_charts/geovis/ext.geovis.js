@@ -853,7 +853,7 @@ ZzLocationVis = (function() {
       if (ttleft < wscrX + xOffset){
         ttleft = wscrX + xOffset;
       } 
-      var tttop = ((curY - wscrY + yOffset*2 + tth) > $(window).height()) ? curY - tth - yOffset*2 : curY + yOffset;
+      var tttop = ((curY - wscrY + yOffset*2 + tth) > $(window).height()) ? curY + yOffset : curY + yOffset;
       if (tttop < wscrY + yOffset){
         tttop = curY + yOffset;
       } 
