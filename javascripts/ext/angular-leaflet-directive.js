@@ -2878,16 +2878,32 @@ angular.module("leaflet-directive").factory('leafletPathsHelpers', ["$rootScope"
 angular.module("leaflet-directive")
 .service('leafletWatchHelpers', function (){
 
+    // var _maybe = function(scope, watchFunctionName, thingToWatchStr, watchOptions, initCb){
+    //     //watchOptions.isDeep is/should be ignored in $watchCollection
+    //     var unWatch = scope[watchFunctionName](thingToWatchStr, function(newValue, oldValue) {
+    //         initCb(newValue, oldValue);
+    //         if(!watchOptions.doWatch)
+    //             unWatch();
+    //     }, watchOptions.isDeep);
+
+    //     return unWatch;
+    // };
+
     var _maybe = function(scope, watchFunctionName, thingToWatchStr, watchOptions, initCb){
         //watchOptions.isDeep is/should be ignored in $watchCollection
-        var unWatch = scope[watchFunctionName](thingToWatchStr, function(newValue, oldValue) {
-            initCb(newValue, oldValue);
-            if(!watchOptions.doWatch)
-                unWatch();
-        }, watchOptions.isDeep);
+        
+        var test = '';
+        var unWatch = scope[watchFunctionName]('geojson.data', function(newValue, oldValue) {
+            if (newValue != oldValue){
+                initCb(newValue, oldValue);
+            }
+            // if(!watchOptions.doWatch)
+                // unWatch();
+        }, false);
 
         return unWatch;
     };
+
 
   /*
   @name: maybeWatch
@@ -3381,9 +3397,9 @@ angular.module("leaflet-directive").directive('eventBroadcast', ["$log", "$rootS
 }]);
 
 angular.module("leaflet-directive")
-.directive('geojson', ["$log", "$rootScope", "leafletData", "leafletHelpers", "leafletWatchHelpers", "leafletDirectiveControlsHelpers", "leafletIterators", "leafletGeoJsonEvents", function ($log, $rootScope, leafletData, leafletHelpers,
+.directive('geojson', ["$log", "$rootScope", "leafletData", "leafletHelpers", "leafletWatchHelpers", "leafletDirectiveControlsHelpers", "leafletIterators", "leafletGeoJsonEvents", '$filter', function ($log, $rootScope, leafletData, leafletHelpers,
     leafletWatchHelpers, leafletDirectiveControlsHelpers,leafletIterators,
-    leafletGeoJsonEvents) {
+    leafletGeoJsonEvents, $filter) {
 
     var _maybeWatch = leafletWatchHelpers.maybeWatch,
         _watchOptions = leafletHelpers.watchOptions,
@@ -3447,25 +3463,59 @@ angular.module("leaflet-directive")
                 };
 
                 var _addGeojson = function(model, maybeName){
-                    var geojson = angular.copy(model);
-                    if (!(isDefined(geojson) && isDefined(geojson.data))) {
+                    var geojson = model;
+                    if (!(isDefined(geojson))) {
                         return;
                     }
-                    var onEachFeature = _hookUpEvents(geojson, maybeName);
+                    var onEachFeature = function (feature, layer) {
 
-                    if (!isDefined(geojson.options)) {
-                        //right here is why we use a clone / copy (we modify and thus)
-                        //would kick of a watcher.. we need to be more careful everywhere
-                        //for stuff like this
-                        geojson.options = {
-                            style: geojson.style,
-                            filter: geojson.filter,
-                            onEachFeature: onEachFeature,
-                            pointToLayer: geojson.pointToLayer
-                        };
+                        var flag_lc = feature.id.toLowerCase();
+
+                        var partnerType = 'Other';
+                        if(partnerlanden[feature.id] !== undefined){
+                          partnerType = partnerlanden[feature.id].replace(/\s/g, ''); 
+                        }
+
+                        var message = '<span class="flag-icon flag-icon-'+flag_lc+'"></span>'+
+                                  '<h4>'+feature.properties.name+'</h4>'+
+                                  '<p><b>Activities:</b> '+feature.properties.project_amount+'</p>'+
+                                  '<p><b>Total disbursements:</b> '+ $filter('shortcurrency')(feature.properties.total_disbursements,'€') +'</p>'+
+                                  '<p><b>Relationship type:</b> '+partnerType+'</p>'+
+                                  '<a class="btn btn-default" href="/countries/'+feature.id+'/">Go to country overview</a>';
+
+                        layer.bindPopup(message);
                     }
 
-                    var lObject = L.geoJson(geojson.data, geojson.options);
+                    function getColor(d) {
+                      return d > 100000000 ? '#fb6a00' :
+                             d > 25000000  ? '#fd7f23' :
+                             d > 5000000  ? '#ffa35f' :
+                             d > 0   ? '#ffc8a0' :
+                                      'transparent';
+                    }
+
+                    function getWeight(d) {
+                        return d > 0  ? 1 : 0;
+                    }
+
+
+                     var style = function(feature) {
+                      return {
+                          fillColor: getColor(feature.properties.total_disbursements),
+                          weight: getWeight(feature.properties.total_disbursements),
+                          opacity: 1,
+                          color: '#FFF',
+                          dashArray: '',
+                          fillOpacity: 0.7
+                      };
+                    }
+
+                    var options = {
+                        style: style,
+                        onEachFeature: onEachFeature
+                    };
+
+                    var lObject = L.geoJson(geojson, options);
 
                     if(maybeName && hlp.isString(maybeName)){
                         leafletGeoJSON[maybeName] = lObject;
@@ -3483,6 +3533,7 @@ angular.module("leaflet-directive")
                 };
 
                 var _create = function(model){
+
                     _clean();
                     if(isNested) {
                         if(!model || !Object.keys(model).length)
