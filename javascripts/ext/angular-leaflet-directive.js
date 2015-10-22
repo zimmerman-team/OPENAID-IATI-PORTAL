@@ -2891,15 +2891,20 @@ angular.module("leaflet-directive")
 
     var _maybe = function(scope, watchFunctionName, thingToWatchStr, watchOptions, initCb){
         //watchOptions.isDeep is/should be ignored in $watchCollection
-        
-        var test = '';
-        var unWatch = scope[watchFunctionName]('geojson.data', function(newValue, oldValue) {
-            if (newValue != oldValue){
+
+        if(thingToWatchStr != 'geojson'){
+            var unWatch = scope[watchFunctionName](thingToWatchStr, function(newValue, oldValue) {
                 initCb(newValue, oldValue);
-            }
-            // if(!watchOptions.doWatch)
-                // unWatch();
-        }, false);
+                if(!watchOptions.doWatch)
+                    unWatch();
+            }, watchOptions.isDeep);
+        } else {
+            var unWatch = scope[watchFunctionName]('geojson.data', function(newValue, oldValue) {
+               
+                    initCb(newValue, oldValue);
+                
+            }, false);
+        }
 
         return unWatch;
     };
