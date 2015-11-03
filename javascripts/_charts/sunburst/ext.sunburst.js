@@ -51,7 +51,8 @@ ZzSunburst = (function() {
     this.middleAmount = that.vis.append("text")
         .attr("x", 0)
         .attr("y", 10)
-        .attr("font-size", "32px")
+        .attr("font-size", "22px")
+        .attr("font-weight", 'bold')
         .attr('fill', '#ccc')
         .attr('style', 'text-anchor: middle;');
 
@@ -474,7 +475,7 @@ ZzSunburst = (function() {
       .append('text')
       .attr('x', 25)
       .attr('y', 0)
-      .attr('font-size', '16px')
+      .attr('font-size', '14px')
       .attr('fill', '#444')
       .attr('style', 'text-anchor: start;')
       .text(function(d){ return d.name; })
@@ -493,7 +494,8 @@ ZzSunburst = (function() {
     // Transition nodes to their new position.
     var nodeUpdate = legendItem.transition()
       .duration(750)
-      .attr("transform", function(d, i) { return "translate(" + (d.depth * 15) + "," + (10 + (i * 30)) + ")"; });
+      .attr("transform", function(d, i) { return "translate(" + (d.depth * 15) + "," + (10 + (i * 30)) + ")"; })
+      .attr("font-weight", function(d, i) { return d.depth == 0 ? 'bold' : 'normal'; });
 
     nodeUpdate.select("circle")
         .attr('r', 6)
@@ -579,6 +581,8 @@ ZzSunburst = (function() {
         .attr("dy", "0.35em")
         .attr("text-anchor", "left")
         .attr("fill", "#fff")
+        .attr("font-size", '14px')
+        .attr("font-weight", 'bold')
         .text(function(d) { return d.name; })
         .each(function(d){ d.textWidth = this.getBBox().width; });
 

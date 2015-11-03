@@ -107,7 +107,7 @@
         '679': {'name': 'South Asia', 'color': '#EDFFC5', 'parent': '619'},
         '789': {'name': 'Far East Asia', 'color': '#EDFFC5', 'parent': '798'},
         '889': {'name': 'Oceania', 'color': '#EDFFC5'},
-        '998': {'name': 'Worldwide', 'color': '#e8e35b'}
+        '998': {'name': 'Worldwide', 'color': '#fffb8c'}
       };
 
       var regionHierarchy = regionMapping;

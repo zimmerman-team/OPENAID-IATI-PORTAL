@@ -39,7 +39,7 @@
         })
         .state({
             name:         'activities-list',
-            url:          '/projects/lijst/',
+            url:          '/projects/list/',
             controller:   'ActivitiesExploreController',
             controllerAs: 'vm',
             templateUrl:  templateBaseUrl + '/templates/activities/activities-view-list.html',
@@ -142,7 +142,7 @@
         })
         .state({
             name:        'sector-list',
-            url:         '/sectors/lijst/',
+            url:         '/sectors/list/',
             controller:  'SectorsExploreController',
             controllerAs: 'vm',
             templateUrl: templateBaseUrl + '/templates/sectors/sectors-view-list.html'

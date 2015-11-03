@@ -115,6 +115,7 @@ ZzLocationVis = (function() {
       .attr('x', 260)
       .attr('y', 27)
       .attr('font-size', '19px')
+      .attr('font-weight', 'bold')
       .attr('fill', '#444')
       .attr('style', 'text-anchor: start;')
       .text('Expenditure per region');
@@ -123,6 +124,7 @@ ZzLocationVis = (function() {
       .attr('x', 545)
       .attr('y', 27)
       .attr('font-size', '19px')
+      .attr('font-weight', 'bold')
       .attr('fill', '#444')
       .attr('style', 'text-anchor: start;')
       .text('Unspecified per region');
@@ -131,6 +133,7 @@ ZzLocationVis = (function() {
       .attr('x', 780)
       .attr('y', 27)
       .attr('font-size', '19px')
+      .attr('font-weight', 'bold')
       .attr('fill', '#444')
       .attr('style', 'text-anchor: start;')
       .text('Worldwide unspecified');
@@ -143,10 +146,10 @@ ZzLocationVis = (function() {
     this.indirect.append('text')
       .attr('x', 55)
       .attr('y', 25)
-      .attr('font-size', '14px')
+      .attr('font-size', '12px')
       .attr('fill', '#444')
       .attr('style', 'text-anchor: start;')
-      .text('Indirect expenditure');
+      .text('deactivate indirect expenditure');
     this.indirect.append('rect')
       .attr('width', 30)
       .attr('height', 17)
@@ -246,6 +249,7 @@ ZzLocationVis = (function() {
         .attr('x', function(d){ return 10 + ((d.depth - 1) * 15); })
         .attr('y', -54)
         .attr('font-size', '17px')
+        .attr('font-weight', 'bold')
         .attr('fill', '#444')
         .attr('style', 'text-anchor: start;')
         .text(function(d){ return d.name; })
@@ -253,6 +257,7 @@ ZzLocationVis = (function() {
 
       var nodeEnterTriangle = nodeEnterClick.append('g')
         .attr('class','triangle')
+        .attr('height', '10px')
         .attr('transform', function(d) { return "translate(" +  (((d.depth - 1) * 15) + d.textWidth + 24) + ","+ -59 + ")"; } )
 
       nodeEnterTriangle
@@ -301,7 +306,7 @@ ZzLocationVis = (function() {
         .append('text')
         .attr('x', function(d){ return 25 + ((d.depth - 1) * 15); })
         .attr('y', -24)
-        .attr('font-size', '15px')
+        .attr('font-size', '13px')
         .attr('fill', '#444')
         .attr('style', 'text-anchor: start;')
         .text('Direct expenditure')
@@ -327,7 +332,7 @@ ZzLocationVis = (function() {
         .append('text')
         .attr('x', function(d){ return 25 + ((d.depth - 1) * 15); })
         .attr('y', 1)
-        .attr('font-size', '15px')
+        .attr('font-size', '13px')
         .attr('fill', '#444')
         .attr('style', 'text-anchor: start;')
         .text('Indirect expenditure')
@@ -671,6 +676,9 @@ ZzLocationVis = (function() {
         .attr('cx', 23)
         .attr('fill', '#000000');
 
+        that.indirect.select('text')
+        .text('activate indirect expenditure');
+
       // Update the nodes
       var node = that.vis.selectAll(".node");
 
@@ -681,10 +689,12 @@ ZzLocationVis = (function() {
         .each(function(d){ 
           if(d.geoType == 'country'){
             d.value2 = 0;
-            d.stroke_width = 0;
+            d.stroke_color = '#aaa';
+            d.stroke_width = 1;
             d.radius = that.radius_scale(d.value + d.value2);
           } else {
             d.value2 = d._value2;
+            d.stroke_color = d.stroke;
             d.stroke_width = that.radius_scale(d.value2);
             d.radius = that.radius_scale(d.value + d.value2);
           }
@@ -694,12 +704,18 @@ ZzLocationVis = (function() {
         })
         .style("stroke-width", function(d){
           return d.stroke_width;
+        })
+        .style("stroke", function(d){
+          return d.stroke_color;
         });
 
     }else {
         that.indirect.select('circle')
         .attr('cx', 38)
         .attr('fill', '#00a99d');
+
+        that.indirect.select('text')
+        .text('deactivate indirect expenditure');
 
       that.vis.selectAll('g.direct circle')
         .transition()
@@ -718,10 +734,12 @@ ZzLocationVis = (function() {
           if(d.geoType == 'country'){
             d.value2 = d._value2;
             d.stroke_width = that.radius_scale(d.value2);
+            d.stroke_color = d.stroke;
             d.radius = that.radius_scale(d.value + d.value2);
           } else {
             d.value2 = 0;
-            d.stroke_width = 0;
+            d.stroke_width = 1;
+            d.stroke_color = '#000';
             d.radius = that.radius_scale(d.value + d.value2);
           }
 
@@ -732,6 +750,9 @@ ZzLocationVis = (function() {
         })
         .style("stroke-width", function(d){
           return d.stroke_width;
+        })
+        .style("stroke", function(d){
+          return d.stroke_color;
         });
     }
   }
@@ -824,9 +845,9 @@ ZzLocationVis = (function() {
       }
 
       if (d.id === parseInt(d.id, 10))
-          $("#"+tooltipId).html('<div class="tt-header" style="background-color:'+d.color+';color:'+frontColor+';font-weight: 400;">'+d.name+'</div><div class="tt-text">Regional expenditure: '+abbreviatedValue(d.value)+'<br>'+'Indirect country expenditure: ' + abbreviatedValue(d._value2)+'<br><a style="pointer-events: all" href="'+home_url+'/regions/'+d.id+'/">Go to region page</a></div>');
+          $("#"+tooltipId).html('<div class="tt-header" style="background-color:'+d.color+';color:'+frontColor+';">'+d.name+'</div><div class="tt-text">Regional expenditure: '+abbreviatedValue(d.value)+'<br>'+'Indirect country expenditure: ' + abbreviatedValue(d._value2)+'<br><a style="pointer-events: all" href="'+home_url+'/regions/'+d.id+'/">Go to region page</a></div>');
       else
-          $("#"+tooltipId).html('<div class="tt-header" style="background-color:'+d.color+';color:'+frontColor+';font-weight: 400;">'+d.name+'</div><div class="tt-text">Direct expenditure: '+abbreviatedValue(d.value)+'<br>Indirect expenditure: '+abbreviatedValue(d._value2)+'<br><a style="pointer-events: all" href="'+home_url+'/countries/'+d.id+'/">Go to country page</a></div>');
+          $("#"+tooltipId).html('<div class="tt-header" style="background-color:'+d.color+';color:'+frontColor+';">'+d.name+'</div><div class="tt-text">Direct expenditure: '+abbreviatedValue(d.value)+'<br>Indirect expenditure: '+abbreviatedValue(d._value2)+'<br><a style="pointer-events: all" href="'+home_url+'/countries/'+d.id+'/">Go to country page</a></div>');
       
       $("#"+tooltipId).show(0);
       
