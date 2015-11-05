@@ -160,3 +160,18 @@ be set to display none.
 		}
 	}
 }
+
+@media only screen and (min-width: 768px) {
+	.organisations, .countries, .sectors, .regions {
+		.col-xs-1 {
+			width:4%;
+		}
+		.col-xs-11 {
+			width:96%;
+		}
+		.col-xs-offset-1 {
+			margin-left:4%;
+		}
+	}
+
+}

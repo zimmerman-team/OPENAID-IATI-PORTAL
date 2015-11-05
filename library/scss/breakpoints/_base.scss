@@ -2107,8 +2107,12 @@ ACTIVITY LIST
     cursor: pointer;
     color:$oranje;
     transition: all .3s;
+    float: left;
     &:hover {
       color:darken($oranje, 15%);
+    }
+    &.no-expand {
+      visibility: hidden;
     }
   }
   .collapsed {
