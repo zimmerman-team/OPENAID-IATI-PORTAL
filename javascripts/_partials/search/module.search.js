@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('oipa.search', [ 'mp.autoFocus' ]);
+        .module('oipa.search', [  ]);
 
 })();
 

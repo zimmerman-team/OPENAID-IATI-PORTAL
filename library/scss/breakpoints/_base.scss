@@ -2086,7 +2086,9 @@ ACTIVITY LIST
     p {
       margin-bottom: 15px;
       &:last-of-type {
-        margin-bottom: 0;
+        //@media only screen and (min-width: 992px) {
+          margin-bottom: 0;
+        //}
       }
       b {
         font-weight: 600;
@@ -2138,8 +2140,8 @@ ACTIVITY LIST
     background: darken(#fff,4%);
   }
 
-  .left-pad {
-    padding-left: 25px;
+  .expandme {
+    padding-left: 15px;
   }
 }
 
@@ -2148,8 +2150,8 @@ ACTIVITY LIST
     background: darken(#fff,8%);
   }
 
-  .left-pad {
-    padding-left: 50px;
+  .expandme {
+    padding-left: 20px;
   }
 }
 

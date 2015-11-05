@@ -54,13 +54,13 @@
                                     </a>
                                     <span ng-show='!item.countries.length'>No data available</span>
                                 </p>
-                                <p><b>Region</b><br>
+                                <p class="hidden-xs"><b>Region</b><br>
                                     <a ui-sref="region({'region_id': region.code})" ng-repeat="region in item.regions">
                                         {{ region.name }}
                                     </a>
                                     <span ng-show='!item.regions.length'>No data available</span>
                                 </p>
-                                <p><b>Sector</b><br>
+                                <p class="hidden-xs"><b>Sector</b><br>
                                     <a ui-sref="sector({'sector_id': sector.code})" ng-repeat="sector in item.sectors">
                                         {{ sector.name }}
                                     </a>
@@ -68,15 +68,15 @@
                                 </p>
                             </div>
                             <div class="col-md-4">
-                                <p><b>Status</b><br>{{item.activity_status.name}}</p> 
+                                <p class="hidden-xs"><b>Status</b><br>{{item.activity_status.name}}</p> 
                                 <p><b>Starting date</b><br>
                                     {{item.start_actual.length ? item.start_actual : 'No data available'}}
                                 </p>
-                                <p><b>Ending date</b><br>
+                                <p class="hidden-xs"><b>Ending date</b><br>
                                     {{item.end_actual.length ? item.end_actual : 'No data available'}}
                                 </p> 
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-4 hidden-xs">
                                 <p><b>Reporting organisation</b><br>{{item.reporting_organisation.name}}</p> 
                                 <p><b>IATI identifier</b><br>{{item.iati_identifier}}</p> 
                             </div>

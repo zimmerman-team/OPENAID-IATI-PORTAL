@@ -36,7 +36,7 @@
             ng-show="vm.countries.length != 0"
             ng-repeat="item in vm.countries">
             <div class="hp-block wit">
-                <div class="row">
+                <div class="row countries">
                     <div class="col-sm-4">
                         <h3 class="no-margin"><a ui-sref="country({ country_id: item.country_id })"><span class="flag-icon flag-icon-{{item.country_id | lowercase }} "></span>{{ item.name }}</a></h3>
                     </div>

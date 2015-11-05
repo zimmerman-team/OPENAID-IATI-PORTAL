@@ -59,6 +59,9 @@ This is for devices like the Galaxy Note or something that's
 larger than an iPhone but smaller than a tablet. Let's call them
 tweeners.
 *********************/
+
+
+
 @media only screen and (min-width: 481px) {
 
 	// styles in 481up.scss
@@ -129,4 +132,31 @@ be set to display none.
 	// styles in print.scss
 	/*@import "partials/print";*/
 
+}
+
+
+@media only screen and (max-width: 768px) {
+	h1 {
+		font-size:28px;
+		line-height: 1;
+		small {
+			margin-top:5px;
+		}
+	}
+	h2, .hp-block h2 {
+		font-size:20px;
+		line-height: 1;
+		margin-bottom: 6px;
+	}
+	.organisations, .countries, .sectors, .regions {
+		h3 {
+			font-size: 20px;
+		}
+		.col-sm-4:nth-of-type(2),.col-sm-4:nth-of-type(3) {
+			h3 {
+				font-size: 17px;
+				margin-top:4px;
+			}
+		}
+	}
 }

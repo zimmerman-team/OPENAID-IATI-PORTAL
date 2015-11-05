@@ -1,31 +1,41 @@
 <script type="text/ng-template" id="tree">
     <div ng-if="item.children" class="hp-block wit parent collapsed">
-        <div class="row">
-            <div class="col-sm-4">
-                <h3 class="no-margin left-pad">
-                    <span class="expandme" ng-click="vm.toggleHideChildren($event)"></span>
-                    <a ui-sref="region({ region_id: item.region_id })">{{ item.name }}</a>
-                    </h3>
+        <div class="row regions">
+            <div class="col-xs-1">
+                <span class="expandme" ng-click="vm.toggleHideChildren($event)"></span>
             </div>
-            <div class="col-sm-4">
-                <h3 class="no-margin">{{item.total_disbursements  | shortcurrency :'€'}}</h3>
-            </div>
-            <div class="col-sm-4">
-                <h3 class="no-margin">{{item.activity_count || 0}} projects</h3>
+            <div class="col-xs-11">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <h3 class="no-margin">
+                            <a ui-sref="region({ region_id: item.region_id })">{{ item.name }}</a>
+                            </h3>
+                    </div>
+                    <div class="col-sm-4">
+                        <h3 class="no-margin">{{item.total_disbursements  | shortcurrency :'€'}}</h3>
+                    </div>
+                    <div class="col-sm-4">
+                        <h3 class="no-margin">{{item.activity_count || 0}} projects</h3>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
     <div ng-if="!item.children" class="hp-block wit">
-        <div class="row">
-            <div class="col-sm-4">
-                <h3 class="no-margin left-pad"><a ui-sref="region({ region_id: item.region_id })">{{ item.name }}</a></h3>
-            </div>
-            <div class="col-sm-4">
-                <h3 class="no-margin">{{item.total_disbursements  | shortcurrency :'€'}}</h3>
-            </div>
-            <div class="col-sm-4">
-                <h3 class="no-margin">{{item.activity_count || 0}} projects</h3>
+        <div class="row regions">
+            <div class="col-xs-11 col-xs-offset-1">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <h3 class="no-margin"><a ui-sref="region({ region_id: item.region_id })">{{ item.name }}</a></h3>
+                    </div>
+                    <div class="col-sm-4">
+                        <h3 class="no-margin">{{item.total_disbursements  | shortcurrency :'€'}}</h3>
+                    </div>
+                    <div class="col-sm-4">
+                        <h3 class="no-margin">{{item.activity_count || 0}} projects</h3>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
