@@ -755,8 +755,7 @@ FILTER BAR
     margin-right: 35px;
     float: left;
     display: block;
-    opacity: .9;
-    transition: all .2s ease-in-out;
+
     &:hover,&.active {
       opacity: 1;
     }
@@ -772,7 +771,7 @@ FILTER BAR
       display: block;
       float: left;
       font-size: 16px;
-      font-weight: bold;
+      font-weight: normal;
       letter-spacing: .4px;
     }
     &.reset {
@@ -853,7 +852,7 @@ FILTER BAR
     text-align: center;
     a {
       font-size: 16px;
-      font-weight: bold;
+      font-weight: normal;
       color:rgba(255,255,255,.9);
       display: block;
       cursor: pointer;
@@ -861,7 +860,7 @@ FILTER BAR
       margin-right: 5px;
       min-width: 120px;
       background:rgba(115,129,145,0.5);
-      transition:all .2s ease-in-out;
+      
       &:hover, &.active {
         color:rgba(255,255,255,1);
         background:rgba(115,129,145,1);
