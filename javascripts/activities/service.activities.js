@@ -9,18 +9,19 @@
         .module('oipa.activities')
         .factory('Activities', Activities);
 
-    Activities.$inject = ['$http', 'oipaUrl', 'reportingOrganisationId'];
+    Activities.$inject = ['$http', 'oipaUrl', 'newOipaUrl', 'reportingOrganisationId'];
 
     /**
     * @namespace Activities
     * @returns {Factory}
     */
-    function Activities($http, oipaUrl, reportingOrganisationId) {
+    function Activities($http, oipaUrl, newOipaUrl, reportingOrganisationId) {
         var m = this;
 
         var Activities = {
             all: all,
             get: get,
+            getTransactions: getTransactions,
             list: list
         };
 
@@ -73,7 +74,20 @@
          * @memberOf oipa.filters.services.Filters
          */
         function get(code) {
-            return $http.get(oipaUrl + '/activities/' + code + '/?format=json', { cache: true });
+            return $http.get(newOipaUrl + '/activities/' + code + '?format=json', { cache: true });
         }
+
+        /**
+         * @name get
+         * @desc Get the Collections of a given user
+         * @param {string} filter_type The type to get filter options for
+         * @returns {Promise}
+         * @memberOf oipa.filters.services.Filters
+         */
+        function getTransactions(code) {
+            return $http.get(newOipaUrl + '/activities/' + code + '/transactions?format=json', { cache: true });
+        }
+
+
     }
 })();

@@ -9,12 +9,12 @@
     .module('oipa.activities')
     .controller('ActivityGeoMapController', ActivityGeoMapController);
 
-  ActivityGeoMapController.$inject = ['$scope', 'leafletData', 'homeUrl'];
+  ActivityGeoMapController.$inject = ['$scope', 'leafletData', 'homeUrl', 'countryLocations'];
 
   /**
   * @namespace ActivityGeoMapController
   */
-  function ActivityGeoMapController($scope, leafletData, homeUrl) {
+  function ActivityGeoMapController($scope, leafletData, homeUrl, countryLocations) {
     var vm = this;
 
     vm.defaults = {
@@ -104,26 +104,25 @@
 
     vm.updateCountryMarkers = function() {
 
-      for (var i = 0; i < vm.activity.countries.length;i++){
+      for (var i = 0; i < vm.activity.recipient_countries.length;i++){
          
-        var country = vm.activity.countries[i];
+        var recipient_country = vm.activity.recipient_countries[i];
 
         var partnerType = 'Other';
-        if(partnerlanden[country.code] !== undefined){
-          partnerType = partnerlanden[country.code].replace(/\s/g, ''); 
+        if(partnerlanden[recipient_country.country.code] !== undefined){
+          partnerType = partnerlanden[recipient_country.country.code].replace(/\s/g, ''); 
         }
 
-        var location = country.center_longlat.replace('POINT (', '').replace(')', '');
-        location = location.split(' ');
-        var flag = country.code;
+        var location = countryLocations[recipient_country.country.code].location.coordinates;
+        var flag = recipient_country.country.code;
         var flag_lc = flag.toLowerCase();
-        vm.markers[country.code] = {
+        vm.markers[recipient_country.country.code] = {
             lat: parseInt(location[1]),
             lng: parseInt(location[0]),
             message: '<span class="flag-icon flag-icon-'+flag_lc+'"></span>'+
-                '<h4>'+country.name+'</h4>'+
+                '<h4>'+recipient_country.country.name+'</h4>'+
                 '<p><b>Relationship type:</b> '+partnerType+'</p>'+
-                '<a class="btn btn-default" href="'+homeUrl+'/countries/'+country.code+'/">Go to country overview</a>',
+                '<a class="btn btn-default" href="'+homeUrl+'/countries/'+recipient_country.country.code+'/">Go to country overview</a>',
             icon: vm.markerIcons[partnerType],
         }
       }
@@ -131,12 +130,11 @@
 
     vm.updateRegionMarkers = function() {
 
-      for (var i = 0; i < vm.activity.regions.length;i++){
+      for (var i = 0; i < vm.activity.recipient_regions.length;i++){
          
         var region = vm.activity.regions[i];
         if (!region.center_longlat) return;
-        var location = region.center_longlat.replace('POINT (', '').replace(')', '');
-        location = location.split(' ');
+        var location = countryLocations[recipient_country.country.code].location.coordinates;
 
         var message = '<h4>'+region.name+'</h4>'+
               '<a class="btn btn-default" href="'+homeUrl+'/regions/'+region.code+'/">Ga naar regio overzicht</a>';

@@ -35,11 +35,15 @@
 
     function activate() {      
       Activities.get(vm.activityId).then(successFn, errorFn);
+      Activities.getTransactions(vm.activityId).then(procesTransactions, errorFn);
 
       function successFn(data, status, headers, config) {
         vm.activity = data.data;
-        vm.transactionData = vm.reformatTransactionData();
-        vm.tabs[2].count = vm.activity.documents.length;
+        vm.tabs[2].count = vm.activity.document_links.length;
+      }
+
+      function procesTransactions(data, status, headers, config){
+        vm.transactionData = vm.reformatTransactionData(data.data.results);
       }
 
       function errorFn(data, status, headers, config) {
@@ -52,14 +56,13 @@
         vm.rsrProjects = data.data.objects;
         vm.rsrLoading = false;
         vm.tabs[3].count = vm.rsrProjects.length;
-        console.log(vm.rsrProjects);
       },function(data, status, headers, config){
         console.log(data);
       });
 
     }
 
-    vm.reformatTransactionData = function(){
+    vm.reformatTransactionData = function(transactions){
 
       var data = [
         {
@@ -73,13 +76,12 @@
             color: '#FF7F0E'
         },
       ];
+      for (var i =0; i < transactions.length;i++){
 
-      for (var i =0; i < vm.activity.transactions.length;i++){
-
-        if(vm.activity.transactions[i]['transaction_type'] == 'C'){
-          data[0]['values'].push([(new Date(vm.activity.transactions[i]['transaction_date']).getTime()), parseInt(vm.activity.transactions[i]['value'])]);
-        } else if(vm.activity.transactions[i]['transaction_type'] == 'D'){
-          data[1]['values'].push([(new Date(vm.activity.transactions[i]['transaction_date']).getTime()), parseInt(vm.activity.transactions[i]['value'])]);
+        if(transactions[i].transaction_type.code == '2'){
+          data[0]['values'].push([(new Date(transactions[i].transaction_date).getTime()), parseInt(transactions[i]['value'])]);
+        } else if(transactions[i]['transaction_type'] == '3'){
+          data[1]['values'].push([(new Date(transactions[i].transaction_date).getTime()), parseInt(transactions[i]['value'])]);
         }
       }
 
@@ -102,7 +104,6 @@
       for (var i = 1; i < data[1]['values'].length;i++){
         data[1]['values'][i][1] += data[1].values[(i-1)][1];
       }
-
       return data;
     }
 

@@ -41,8 +41,8 @@
                 <div class="row">
                     <div class="col-sm-12 activity-list-item">
                         <div class="hp-block wit">
-                            <p><b>Reporting organisations</b><br>{{vm.activity.reporting_organisation.name}}</p>
-                            <p><b>Participating organisations</b><br><span ng-repeat='org in vm.activity.participating_organisations'>{{org.name}}, </span></p>
+                            <p><b>Reporting organisations</b><br>{{vm.activity.reporting_organisations[0].narratives[0].text}}</p>
+                            <p><b>Participating organisations</b><br><span ng-repeat='org in vm.activity.participating_organisations'>{{org.narratives[0].text}}{{$last ? '' : ', '}}</span></p>
                         </div>
                     </div>
                 </div>
@@ -211,22 +211,6 @@
                 <!-- eind van een wit blokje -->
 
 
-                <div class="row">
-                    <div class="col-sm-12 activity-list-item">
-                        <div class="hp-block wit">
-
-                            <p>
-                                <b>Websites</b><br>
-                                <a ng-repeat="website in vm.activity.websites">
-                                    {{website.name}}
-                                </a>
-                                <span ng-if='vm.activity.websites.length == 0'>No data available</span>
-                            </p>
-
-                        </div>
-                    </div>
-                </div>
-
                 <!--start van een wit blokje -->
                 <div class="row">
                     <div class="col-sm-12 activity-list-item">
@@ -266,24 +250,24 @@
                         <div class="hp-block wit">
                             <p>
                                 <b>Country</b><br>
-                                <a ng-repeat="country in vm.activity.countries" ui-sref="country({ country_id: country.code })">
-                                    {{country.name}}
+                                <a ng-repeat="recipient_country in vm.activity.recipient_countries" ui-sref="country({ country_id: recipient_country.country.code })">
+                                    {{recipient_country.country.name}}
                                 </a>
-                                <span ng-if='vm.activity.countries.length == 0'>No data available</span>
+                                <span ng-if='vm.activity.recipient_countries.length == 0'>No data available</span>
                             </p>
 
                             <p>
                                 <b>Region</b><br>
-                                <a ng-repeat="region in vm.activity.regions" ui-sref="region({ region_id: region.code })">
-                                    {{region.name}}
+                                <a ng-repeat="recipient_region in vm.activity.recipient_regions" ui-sref="region({ region_id: recipient_region.region.code })">
+                                    {{recipient_region.region.name}}
                                 </a>
-                                <span ng-if='vm.activity.regions.length == 0'>No data available</span>
+                                <span ng-if='vm.activity.recipient_regions.length == 0'>No data available</span>
                             </p>
 
                             <p>
                                 <b>Locations</b><br>
                                 <span ng-repeat="location in vm.activity.locations" >
-                                    {{location.name}},
+                                    {{location.name[0].narratives[0].text}}{{$last ? '' : ', '}}
                                 </span>
                                 <span ng-if='vm.activity.locations.length == 0'>No data available</span>
                             </p>
@@ -295,9 +279,19 @@
                 <!--start van een wit blokje -->
                 <div class="row">
                     <div class="col-sm-12 activity-list-item">
-                        <div class="hp-block wit" ng-click="vm.dashboard = 'list'">
-                            <p><b>Sector</b><br><a ui-sref="sector({ sector_id: vm.activity.sectors[0].code })">{{vm.activity.sectors[0].name}}</a></p>
-                            <p><b>Sector code</b><br><a ui-sref="sector({ sector_id: vm.activity.sectors[0].code })">{{vm.activity.sectors[0].code}}</a></p>
+                        <div class="hp-block wit">
+                            <p>
+                                <b>Sector</b><br>
+                                <a ui-sref="sector({ sector_id: vm.activity.sectors[0].sector.code })">
+                                    {{vm.activity.sectors[0].sector.name}}
+                                </a>
+                            </p>
+                            <p>
+                                <b>Sector code</b><br>
+                                <a ui-sref="sector({ sector_id: vm.activity.sectors[0].sector.code })">
+                                    {{vm.activity.sectors[0].sector.code}}
+                                </a>
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -305,13 +299,12 @@
                 <!--start van een wit blokje -->
                 <div class="row">
                     <div class="col-sm-12 activity-list-item">
-                        <div class="hp-block wit" ng-click="vm.dashboard = 'list'">
+                        <div class="hp-block wit">
                             <b>Policy Markers</b>
-                            <ul ng-if='vm.activity.policy_markers.length != 0'>
-                                <li ng-repeat="marker in vm.activity.policy_markers">
-                                {{marker.name}}
-                                </li>
-                            </ul>
+
+                            <p ng-repeat="marker in vm.activity.policy_markers">
+                                {{marker.narratives[0].text}} : {{marker.significance.name}}
+                            </p>
                             <span ng-if='vm.activity.policy_markers.length == 0'>No data available</span>
                             
                         </div>
@@ -358,17 +351,17 @@
             <div class="hp-block wit">
                 <h3>Documents</h3>
 
-                <div ng-show="vm.activity.documents.length == 0">
+                <div ng-show="vm.activity.document_links.length == 0">
                     No documents available.
                 </div>
                 <br>
                 <table class="table documents">
                     <tbody>
-                        <tr ng-repeat="document in vm.activity.documents">
+                        <tr ng-repeat="document in vm.activity.document_links">
                             
                             <td>
                                 <a target="_blank" href="{{document.url}}">
-                                    <i class="glyphicon glyphicon-download-alt"></i>{{document.title}}
+                                    <i class="glyphicon glyphicon-download-alt"></i>{{document.title[0].narratives[0].text}}
                                 </a>
                             </td>
                             
