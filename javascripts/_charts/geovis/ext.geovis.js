@@ -481,6 +481,7 @@ ZzLocationVis = (function() {
       d.x = that.group_centers[d.group]['x'] + ((Math.random() * 200) - 100);
       d.y = that.group_centers[d.group]['y'] + ((Math.random() * 120) - 60);
       d.radius = that.radius_scale(d.value + d.value2);
+
       d.stroke = shadeBlend(-0.6,d.color);
       d.stroke_width = that.radius_scale(d.value2);
       d._stroke_width = d.stroke_width; 
@@ -489,7 +490,6 @@ ZzLocationVis = (function() {
     });
 
     regionData.forEach(function(d) {
-
       d.fill = shadeBlend(-0.6, d.color);
       d.group = 'r' + d.id;
       d.x = 500;
@@ -868,7 +868,6 @@ ZzLocationVis = (function() {
       var wscrY = $(window).scrollTop();
       var wscrX = $(window).scrollLeft();
       var curX = (document.all) ? event.clientX + wscrX : event.pageX;
-      console.log(wscrX);
       var curY = (document.all) ? event.clientY + wscrY : event.pageY;
       var ttleft = ((curX - wscrX + xOffset*2 + ttw/2) > $(window).width()) ? curX - ttw/4 : curX + xOffset;
       if (ttleft < wscrX + xOffset){

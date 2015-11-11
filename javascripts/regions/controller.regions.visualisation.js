@@ -266,6 +266,7 @@
             'id':   vm.indirectRegionValues[i].region_id,
             'value': 0,
             'name': vm.indirectRegionValues[i].name,
+            'color': regionMapping[vm.indirectRegionValues[i].region_id].color,
             'value2': vm.indirectRegionValues[i].total_disbursements,
           };
 

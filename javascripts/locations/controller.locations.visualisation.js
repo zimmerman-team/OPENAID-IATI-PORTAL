@@ -99,7 +99,7 @@
         '498': {'name': 'America', 'color': '#00BA96'},
         '380': {'name': 'West Indies', 'color': '#14EFC5', 'parent': '498'},
         '389': {'name': 'North and Central America', 'color': '#C2FFF3', 'parent': '498'},
-        '489': {'name': 'South America', 'color': '#C2FFF3', 'parent': '498'},
+        '489': {'name': 'South America', 'color': '#C2FFF3', 'parent': '489'},
         '798': {'name': 'Asia', 'color': '#4A671E'},
         '589': {'name': 'Middle East', 'color': '#8DB746', 'parent': '798'},
         '619': {'name': 'South and Central Asia', 'color': '#C1F460', 'parent': '798'},
@@ -170,7 +170,6 @@
       for (var i = 0, len = vm.directRegionValues.length; i < len; i++) {
         iregions += vm.directRegionValues[i].total_disbursements;
         if(regions[vm.directRegionValues[i].region_id] == undefined){
-
           regions[vm.directRegionValues[i].region_id] = {
             'id':   vm.directRegionValues[i].region_id,
             'value': 0,
