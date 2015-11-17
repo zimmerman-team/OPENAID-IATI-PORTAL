@@ -19,27 +19,45 @@
         <li  
           ng-class="{'active': vm.stateName == 'activities'}" 
           class="hidden-xs">
-          <a class="" ui-sref="activities">Projects</a></li>
+          <a class="hidden-sm" ui-sref="activities">Projects</a>
+          <a class="visible-sm" ui-sref="activities" data-toggle="collapse" data-target="#navbar-collapse">Projects</a>
+        </li>
         <li 
           ng-class="{'active': vm.stateName == 'locations'}" 
           class="hidden-xs">
-          <a class="" ui-sref="locations-map">Countries</a></li>
+          <a class="hidden-sm" ui-sref="locations-map">Countries</a>
+          <a class="visible-sm" ui-sref="locations-map" data-toggle="collapse" data-target="#navbar-collapse">Countries</a>
+        </li>
         <li 
           ng-class="{'active': vm.stateName == 'regions'}" 
           class="hidden-xs">
-          <a class="" ui-sref="regions-vis">Regions</a></li>
+          <a class="hidden-sm" ui-sref="regions-vis">Regions</a>
+          <a class="visible-sm" ui-sref="regions-vis" data-toggle="collapse" data-target="#navbar-collapse">Regions</a>
+        </li>
         <li 
           ng-class="{'active': vm.stateName == 'sectors'}" 
-          class="hidden-xs"><a class="" ui-sref="sectors">Sectors</a></li>
+          class="hidden-xs">
+          <a class="hidden-sm" ui-sref="sectors">Sectors</a>
+          <a class="visible-sm" ui-sref="sectors" data-toggle="collapse" data-target="#navbar-collapse">Sectors</a>
+        </li>
         <li 
           ng-class="{'active': vm.stateName == 'organisations'}" 
-          class="hidden-xs"><a class="" ui-sref="organisations">Organisations</a></li>
+          class="hidden-xs">
+          <a class="hidden-sm" ui-sref="organisations">Organisations</a>
+          <a class="visible-sm" ui-sref="organisations" data-toggle="collapse" data-target="#navbar-collapse">Organisations</a>
+        </li>
         <li 
           ng-class="{'active': vm.stateName == 'search'}" 
-          class="hidden-xs"><a class="" ui-sref="search">Search</a></li>
+          class="hidden-xs">
+          <a class="hidden-sm" ui-sref="search">Search</a>
+          <a class="visible-sm" ui-sref="search" data-toggle="collapse" data-target="#navbar-collapse">Search</a>
+        </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li ui-sref-active="active"><a class="" ui-sref="about">About Openaid</a></li>
+        <li ui-sref-active="active">
+          <a class="hidden-sm" ui-sref="about">About Openaid</a>
+          <a class="visible-sm" ui-sref="about" data-toggle="collapse" data-target="#navbar-collapse">About Openaid</a>
+        </li>
       </ul>
     </div>
   </div>

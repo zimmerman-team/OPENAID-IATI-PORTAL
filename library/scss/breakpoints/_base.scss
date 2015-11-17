@@ -487,7 +487,7 @@ NAVBAR
       line-height: 50px;
       margin:0 10px;
       &.home {
-        line-height: 60px;
+        line-height: 40px;
       }
     }
     a {
@@ -2567,7 +2567,7 @@ footer{
 
 /// Navbar collapse override!
 
-@media (max-width: 1000px) {
+@media (max-width: 991px) {
     .navbar-header {
         float: none;
     }

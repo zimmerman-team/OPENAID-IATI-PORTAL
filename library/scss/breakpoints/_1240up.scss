@@ -42,3 +42,11 @@ on larger screens.
 #openaid-main {
   padding-top:59px;
 }
+
+.navbar .nav.navbar-nav {
+    li {
+      &.home {
+        line-height: 60px;
+      }
+    }
+}

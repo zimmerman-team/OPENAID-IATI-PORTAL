@@ -37,3 +37,11 @@ be seen on the Desktop.
 #openaid-main {
   padding-top:51px;
 }
+
+.navbar .nav.navbar-nav {
+    li {
+      &.home {
+        line-height: 55px;
+      }
+    }
+}
