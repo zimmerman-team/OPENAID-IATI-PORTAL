@@ -18,8 +18,8 @@
 	function Budget($http) {
 		var m = this;
 		m.budget = {
-          on: false,
-	      value: []
+          on: true,
+	      value: [0, 1500000000]
 	    };
         m.toReset = false;
 		

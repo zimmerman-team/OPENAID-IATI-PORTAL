@@ -1,17 +1,17 @@
 <div class="filter-panel budget">
-	<div class="checkbox">
+	<!-- <div class="checkbox">
 		<label class="switch">
 			<input type="checkbox" ng-model="vm.on"><i></i>
 			<span>Select budget</span>
 		</label>
-	</div>
+	</div> -->
 
 	<div class="slide" ng-class="{ 'active' : vm.on }">	
 		<slider slider-id="time-slider"
 	        ng-model="vm.budgetValue"
-	        value="[0, 3000000]"
+	        value="[0, 1500000000]"
 	        min="0"
-	        max="3000000"
+	        max="1500000000"
 	        step="1"
 	        range="true"
 	        precision="2"

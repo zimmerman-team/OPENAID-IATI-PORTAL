@@ -1,5 +1,5 @@
 /**************************************************************************
-* AngularJS-nvD3, v1.0.0-beta; MIT License; 25/02/2015 22:27
+* AngularJS-nvD3, v1.0.3; MIT License; 06/11/2015 13:30
 * http://krispo.github.io/angular-nvd3
 **************************************************************************/
 (function(){
@@ -8,7 +8,7 @@
 
     angular.module('nvd3', [])
 
-        .directive('nvd3', ['utils', function(utils){
+        .directive('nvd3', ['nvd3Utils', function(nvd3Utils){
             return {
                 restrict: 'AE',
                 scope: {
@@ -24,8 +24,10 @@
                         visible: true,
                         disabled: false,
                         autorefresh: true,
-                        refreshDataOnly: false,
-                        deepWatchData: true,
+                        refreshDataOnly: true,
+                        deepWatchOptions: true,
+                        deepWatchData: false, // to increase performance by default
+                        deepWatchConfig: true,
                         debounce: 10 // default 10ms, time silence to prevent refresh while multiple options changes at a time
                     };
 
@@ -41,7 +43,7 @@
 
                         // Update chart layout (for example if container is resized)
                         update: function() {
-                            scope.chart.update();
+                            if (scope.chart) scope.chart.update();
                         },
 
                         // Update chart with new options
@@ -62,15 +64,18 @@
                             scope.chart.id = Math.random().toString(36).substr(2, 15);
 
                             angular.forEach(scope.chart, function(value, key){
-                                if ([
-                                    'options',
-                                    '_options',
-                                    '_inherited',
-                                    '_d3options',
-                                    'state',
-                                    'id',
-                                    'resizeHandler'
-                                ].indexOf(key) >= 0);
+                                if (key[0] === '_');
+                                else if ([
+                                        'clearHighlights',
+                                        'highlightPoint',
+                                        'id',
+                                        'options',
+                                        'resizeHandler',
+                                        'state',
+                                        'open',
+                                        'close',
+                                        'tooltipContent'
+                                    ].indexOf(key) >= 0);
 
                                 else if (key === 'dispatch') {
                                     if (options.chart[key] === undefined || options.chart[key] === null) {
@@ -80,36 +85,40 @@
                                 }
 
                                 else if ([
-                                    'lines',
-                                    'lines1',
-                                    'lines2',
-                                    'bars',
-                                    'bars1',
-                                    'bars2',
-                                    'stack1',
-                                    'stack2',
-                                    'stacked',
-                                    'multibar',
-                                    'discretebar',
-                                    'pie',
-                                    'scatter',
-                                    'bullet',
-                                    'sparkline',
-                                    'legend',
-                                    'distX',
-                                    'distY',
-                                    'xAxis',
-                                    'x2Axis',
-                                    'yAxis',
-                                    'yAxis1',
-                                    'yAxis2',
-                                    'y1Axis',
-                                    'y2Axis',
-                                    'y3Axis',
-                                    'y4Axis',
-                                    'interactiveLayer',
-                                    'controls'
-                                ].indexOf(key) >= 0){
+                                        'bars',
+                                        'bars1',
+                                        'bars2',
+                                        'boxplot',
+                                        'bullet',
+                                        'controls',
+                                        'discretebar',
+                                        'distX',
+                                        'distY',
+                                        'interactiveLayer',
+                                        'legend',
+                                        'lines',
+                                        'lines1',
+                                        'lines2',
+                                        'multibar',
+                                        'pie',
+                                        'scatter',
+                                        'sparkline',
+                                        'stack1',
+                                        'stack2',
+                                        'sunburst',
+                                        'tooltip',
+                                        'x2Axis',
+                                        'xAxis',
+                                        'y1Axis',
+                                        'y2Axis',
+                                        'y3Axis',
+                                        'y4Axis',
+                                        'yAxis',
+                                        'yAxis1',
+                                        'yAxis2'
+                                    ].indexOf(key) >= 0 ||
+                                        // stacked is a component for stackedAreaChart, but a boolean for multiBarChart and multiBarHorizontalChart
+                                    (key === 'stacked' && options.chart.type === 'stackedAreaChart')) {
                                     if (options.chart[key] === undefined || options.chart[key] === null) {
                                         if (scope._config.extended) options.chart[key] = {};
                                     }
@@ -118,6 +127,8 @@
 
                                 //TODO: need to fix bug in nvd3
                                 else if ((key === 'xTickFormat' || key === 'yTickFormat') && options.chart.type === 'lineWithFocusChart');
+                                else if ((key === 'tooltips') && options.chart.type === 'boxPlotChart');
+                                else if ((key === 'tooltipXContent' || key === 'tooltipYContent') && options.chart.type === 'scatterChart');
 
                                 else if (options.chart[key] === undefined || options.chart[key] === null){
                                     if (scope._config.extended) options.chart[key] = value();
@@ -127,7 +138,11 @@
                             });
 
                             // Update with data
-                            scope.api.updateWithData(scope.data);
+                            if (options.chart.type === 'sunburstChart') {
+                                scope.api.updateWithData(angular.copy(scope.data));
+                            } else {
+                                scope.api.updateWithData(scope.data);
+                            }
 
                             // Configure wrappers
                             if (options['title'] || scope._config.extended) configureWrapper('title');
@@ -139,8 +154,29 @@
                             if (options['styles'] || scope._config.extended) configureStyles();
 
                             nv.addGraph(function() {
+                                if (!scope.chart) return;
+
+                                // Remove resize handler. Due to async execution should be placed here, not in the clearElement
+                                if (scope.chart.resizeHandler) scope.chart.resizeHandler.clear();
+
                                 // Update the chart when window resizes
-                                scope.chart.resizeHandler = nv.utils.windowResize(function() { scope.chart.update(); });
+                                scope.chart.resizeHandler = nv.utils.windowResize(function() {
+                                    scope.chart && scope.chart.update && scope.chart.update();
+                                });
+
+                                /// Zoom feature
+                                if (options.chart.zoom !== undefined && [
+                                        'scatterChart',
+                                        'lineChart',
+                                        'candlestickBarChart',
+                                        'cumulativeLineChart',
+                                        'historicalBarChart',
+                                        'ohlcBarChart',
+                                        'stackedAreaChart'
+                                    ].indexOf(options.chart.type) > -1) {
+                                    nvd3Utils.zoom(scope, options);
+                                }
+
                                 return scope.chart;
                             }, options.chart['callback']);
                         },
@@ -148,16 +184,25 @@
                         // Update chart with new data
                         updateWithData: function (data){
                             if (data) {
-                                scope.options.chart['transitionDuration'] = +scope.options.chart['transitionDuration'] || 250;
                                 // remove whole svg element with old data
                                 d3.select(element[0]).select('svg').remove();
 
+                                var h, w;
+
                                 // Select the current element to add <svg> element and to render the chart in
-                                d3.select(element[0]).append('svg')
-                                   .style({height: scope.options.chart.height+'px', width: scope.options.chart.width || '100%'})
-                                   .datum(data)
-                                   .transition().duration(scope.options.chart.transitionDuration)
-                                   .call(scope.chart);
+                                scope.svg = d3.select(element[0]).append('svg');
+                                if (h = scope.options.chart.height) {
+                                    if (!isNaN(+h)) h += 'px'; //check if height is number
+                                    scope.svg.attr('height', h).style({height: h});
+                                }
+                                if (w = scope.options.chart.width) {
+                                    if (!isNaN(+w)) w += 'px'; //check if width is number
+                                    scope.svg.attr('width', w).style({width: w});
+                                } else {
+                                    scope.svg.attr('width', '100%').style({width: '100%'});
+                                }
+
+                                scope.svg.datum(data).call(scope.chart);
                             }
                         },
 
@@ -167,18 +212,25 @@
                             element.find('.subtitle').remove();
                             element.find('.caption').remove();
                             element.empty();
-                            if (scope.chart) {
-                                // clear window resize event handler
-                                if (scope.chart.resizeHandler) scope.chart.resizeHandler.clear();
 
-                                // remove chart from nv.graph list
-                                for (var i = 0; i < nv.graphs.length; i++)
-                                    if (nv.graphs[i].id === scope.chart.id) {
+                            // remove tooltip if exists
+                            if (scope.chart && scope.chart.tooltip && scope.chart.tooltip.id) {
+                                d3.select('#' + scope.chart.tooltip.id()).remove();
+                            }
+
+                            // To be compatible with old nvd3 (v1.7.1)
+                            if (nv.graphs && scope.chart) {
+                                for (var i = nv.graphs.length - 1; i >= 0; i--) {
+                                    if (nv.graphs[i] && (nv.graphs[i].id === scope.chart.id)) {
                                         nv.graphs.splice(i, 1);
                                     }
+                                }
                             }
+                            if (nv.tooltip && nv.tooltip.cleanup) {
+                                nv.tooltip.cleanup();
+                            }
+                            if (scope.chart && scope.chart.resizeHandler) scope.chart.resizeHandler.clear();
                             scope.chart = null;
-                            nv.tooltip.cleanup();
                         },
 
                         // Get full directive scope
@@ -189,24 +241,35 @@
                     function configure(chart, options, chartType){
                         if (chart && options){
                             angular.forEach(chart, function(value, key){
-                                if (key === 'dispatch') {
+                                if (key[0] === '_');
+                                else if (key === 'dispatch') {
                                     if (options[key] === undefined || options[key] === null) {
                                         if (scope._config.extended) options[key] = {};
                                     }
                                     configureEvents(value, options[key]);
                                 }
+                                else if (key === 'tooltip') {
+                                    if (options[key] === undefined || options[key] === null) {
+                                        if (scope._config.extended) options[key] = {};
+                                    }
+                                    configure(chart[key], options[key], chartType);
+                                }
+                                else if (key === 'contentGenerator') {
+                                    if (options[key]) chart[key](options[key]);
+                                }
                                 else if ([
-                                    'scatter',
-                                    'defined',
-                                    'options',
-                                    'axis',
-                                    'rangeBand',
-                                    'rangeBands',
-                                    '_options',
-                                    '_inherited',
-                                    '_d3options',
-                                    '_calls'
-                                ].indexOf(key) < 0){
+                                        'axis',
+                                        'clearHighlights',
+                                        'defined',
+                                        'highlightPoint',
+                                        'nvPointerEventsClass',
+                                        'options',
+                                        'rangeBand',
+                                        'rangeBands',
+                                        'scatter',
+                                        'open',
+                                        'close'
+                                    ].indexOf(key) === -1) {
                                     if (options[key] === undefined || options[key] === null){
                                         if (scope._config.extended) options[key] = value();
                                     }
@@ -232,12 +295,12 @@
                     // Configure 'title', 'subtitle', 'caption'.
                     // nvd3 has no sufficient models for it yet.
                     function configureWrapper(name){
-                        var _ = utils.deepExtend(defaultWrapper(name), scope.options[name] || {});
+                        var _ = nvd3Utils.deepExtend(defaultWrapper(name), scope.options[name] || {});
 
                         if (scope._config.extended) scope.options[name] = _;
 
                         var wrapElement = angular.element('<div></div>').html(_['html'] || '')
-                            .addClass(name).addClass(_.class)
+                            .addClass(name).addClass(_.className)
                             .removeAttr('style')
                             .css(_.css);
 
@@ -245,14 +308,14 @@
 
                         if (_.enable) {
                             if (name === 'title') element.prepend(wrapElement);
-                            else if (name === 'subtitle') element.find('.title').after(wrapElement);
+                            else if (name === 'subtitle') angular.element(element[0].querySelector('.title')).after(wrapElement);
                             else if (name === 'caption') element.append(wrapElement);
                         }
                     }
 
                     // Add some styles to the whole directive element
                     function configureStyles(){
-                        var _ = utils.deepExtend(defaultStyles(), scope.options['styles'] || {});
+                        var _ = nvd3Utils.deepExtend(defaultStyles(), scope.options['styles'] || {});
 
                         if (scope._config.extended) scope.options['styles'] = _;
 
@@ -269,7 +332,7 @@
                             case 'title': return {
                                 enable: false,
                                 text: 'Write Your Title',
-                                class: 'h4',
+                                className: 'h4',
                                 css: {
                                     width: scope.options.chart.width + 'px',
                                     textAlign: 'center'
@@ -308,15 +371,15 @@
 
                     /* Event Handling */
                     // Watching on options changing
-                    scope.$watch('options', utils.debounce(function(newOptions){
+                    scope.$watch('options', nvd3Utils.debounce(function(newOptions){
                         if (!scope._config.disabled && scope._config.autorefresh) scope.api.refresh();
-                    }, scope._config.debounce, true), true);
+                    }, scope._config.debounce, true), scope._config.deepWatchOptions);
 
                     // Watching on data changing
                     scope.$watch('data', function(newData, oldData){
                         if (newData !== oldData && scope.chart){
                             if (!scope._config.disabled && scope._config.autorefresh) {
-                                scope._config.refreshDataOnly ? scope.chart.update() : scope.api.refresh(); // if wanted to refresh data only, use chart.update method, otherwise use full refresh.
+                                scope._config.refreshDataOnly && scope.chart.update ? scope.chart.update() : scope.api.refresh(); // if wanted to refresh data only, use chart.update method, otherwise use full refresh.
                             }
                         }
                     }, scope._config.deepWatchData);
@@ -327,7 +390,7 @@
                             scope._config = angular.extend(defaultConfig, newConfig);
                             scope.api.refresh();
                         }
-                    }, true);
+                    }, scope._config.deepWatchConfig);
 
                     //subscribe on global events
                     angular.forEach(scope.events, function(eventHandler, event){
@@ -344,7 +407,7 @@
             };
         }])
 
-        .factory('utils', function(){
+        .factory('nvd3Utils', function(){
             return {
                 debounce: function(func, wait, immediate) {
                     var timeout;
@@ -374,6 +437,90 @@
                         }
                     });
                     return dst;
+                },
+                zoom: function(scope, options) {
+                    var zoom = options.chart.zoom;
+
+                    // check if zoom enabled
+                    var enabled = (typeof zoom.enabled === 'undefined' || zoom.enabled === null) ? true : zoom.enabled;
+                    if (!enabled) return;
+
+                    var xScale = scope.chart.xAxis.scale()
+                        , yScale = scope.chart.yAxis.scale()
+                        , xDomain = scope.chart.xDomain || xScale.domain
+                        , yDomain = scope.chart.yDomain || yScale.domain
+                        , x_boundary = xScale.domain().slice()
+                        , y_boundary = yScale.domain().slice()
+
+                    // initialize zoom options
+                        , scale = zoom.scale || 1
+                        , translate = zoom.translate || [0, 0]
+                        , scaleExtent = zoom.scaleExtent || [1, 10]
+                        , useFixedDomain = zoom.useFixedDomain || false
+                        , useNiceScale = zoom.useNiceScale || false
+                        , horizontalOff = zoom.horizontalOff || false
+                        , verticalOff = zoom.verticalOff || false
+                        , unzoomEventType = zoom.unzoomEventType || 'dblclick.zoom'
+
+                    // auxiliary functions
+                        , fixDomain
+                        , d3zoom
+                        , zoomed
+                        , unzoomed
+                        ;
+
+                    // ensure nice axis
+                    if (useNiceScale) {
+                        xScale.nice();
+                        yScale.nice();
+                    }
+
+                    // fix domain
+                    fixDomain = function (domain, boundary) {
+                        domain[0] = Math.min(Math.max(domain[0], boundary[0]), boundary[1] - boundary[1] / scaleExtent[1]);
+                        domain[1] = Math.max(boundary[0] + boundary[1] / scaleExtent[1], Math.min(domain[1], boundary[1]));
+                        return domain;
+                    };
+
+                    // zoom event handler
+                    zoomed = function () {
+                        if (zoom.zoomed !== undefined) {
+                            var domains = zoom.zoomed(xScale.domain(), yScale.domain());
+                            if (!horizontalOff) xDomain([domains.x1, domains.x2]);
+                            if (!verticalOff) yDomain([domains.y1, domains.y2]);
+                        } else {
+                            if (!horizontalOff) xDomain(useFixedDomain ? fixDomain(xScale.domain(), x_boundary) : xScale.domain());
+                            if (!verticalOff) yDomain(useFixedDomain ? fixDomain(yScale.domain(), y_boundary) : yScale.domain());
+                        }
+                        scope.chart.update();
+                    };
+
+                    // unzoomed event handler
+                    unzoomed = function () {
+                        if (zoom.unzoomed !== undefined) {
+                            var domains = zoom.unzoomed(xScale.domain(), yScale.domain());
+                            if (!horizontalOff) xDomain([domains.x1, domains.x2]);
+                            if (!verticalOff) yDomain([domains.y1, domains.y2]);
+                        } else {
+                            if (!horizontalOff) xDomain(x_boundary);
+                            if (!verticalOff) yDomain(y_boundary);
+                        }
+                        d3zoom.scale(scale).translate(translate);
+                        scope.chart.update();
+                    };
+
+                    // create d3 zoom handler
+                    d3zoom = d3.behavior.zoom()
+                        .x(xScale)
+                        .y(yScale)
+                        .scaleExtent(scaleExtent)
+                        .on('zoom', zoomed);
+
+                    scope.svg.call(d3zoom);
+
+                    d3zoom.scale(scale).translate(translate).event(scope.svg);
+
+                    if (unzoomEventType !== 'none') scope.svg.on(unzoomEventType, unzoomed);
                 }
             };
         });

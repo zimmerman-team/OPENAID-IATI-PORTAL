@@ -69,7 +69,7 @@
         },
         {
             values: [],
-            key: 'Expenditure',
+            key: 'Disbursement',
             color: '#FF7F0E'
         },
       ];

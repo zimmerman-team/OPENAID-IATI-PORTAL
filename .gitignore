@@ -57,3 +57,6 @@ temp/
 
 *.codekit
 *.scssc
+
+node_modules
+bower_components

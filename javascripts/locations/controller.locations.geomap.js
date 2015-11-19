@@ -175,7 +175,7 @@
             var message = '<span class="flag-icon flag-icon-'+flag_lc+'"></span>'+
                   '<h4>'+vm.countryMarkerData[i].name+'</h4>'+
                   '<p><b>Activities:</b> '+vm.countryMarkerData[i]['activity_count']+'</p>'+
-                  '<p><b>Total expenditure:</b> '+ $filter('shortcurrency')(vm.countryMarkerData[i]['total_disbursements'],'€') +'</p>'+
+                  '<p><b>Total disbursement:</b> '+ $filter('shortcurrency')(vm.countryMarkerData[i]['total_disbursements'],'€') +'</p>'+
                   '<p><b>Relationship type:</b> '+partnerType+'</p>'+
                   '<a class="btn btn-default" href="'+homeUrl+'/countries/'+vm.countryMarkerData[i].country_id+'/">Go to country overview</a>';
 
@@ -210,7 +210,7 @@
           var message = '<span class="flag-icon flag-icon-'+vm.regionMarkerData[i].region_id+'"></span>'+
               '<h4>'+vm.regionMarkerData[i].name+'</h4>'+
               '<p><b>Activities:</b> '+vm.regionMarkerData[i]['activity_count']+'</p>'+
-              '<p><b>Total expenditure:</b> '+ $filter('shortcurrency')(vm.regionMarkerData[i]['total_disbursements'],'€') + '</p>'+
+              '<p><b>Total disbursement:</b> '+ $filter('shortcurrency')(vm.regionMarkerData[i]['total_disbursements'],'€') + '</p>'+
               '<a class="btn btn-default" href="'+homeUrl+'/regions/'+vm.regionMarkerData[i].region_id+'/">Ga naar regio overzicht</a>';
 
           if(vm.markers[vm.regionMarkerData[i].region_id] == undefined){
