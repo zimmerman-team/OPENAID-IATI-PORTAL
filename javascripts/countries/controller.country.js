@@ -21,6 +21,7 @@
     vm.partnerType = '';
     vm.filterSelection = FilterSelection;
     vm.selectedTab = 'samenvatting';
+    vm.indirectDisbursements = '';
 
     vm.tabs = [
       {'id': 'samenvatting', 'name': 'Samenvatting', 'count': -1},
@@ -39,6 +40,8 @@
       $scope.$watch('vm.filterSelection.selectionString', function (selectionString) {
         vm.update(selectionString);
       }, true);
+
+
 
       // for each active country, get the results
       Countries.getCountry(vm.country_id).then(successFn, errorFn);
@@ -63,6 +66,15 @@
     vm.update = function(selectionString){
       if (selectionString.indexOf("countries__in") < 0){ return false;}
       
+      Aggregations.aggregation('location_countries', 'location_disbursement', FilterSelection.selectionString).then(indirectCountrySuccessFn, errorFn);
+
+      function indirectCountrySuccessFn(data, status, headers, config){
+
+        if(data.data.results.length > 0){
+          vm.indirectDisbursements = data.data.results[0].total_value;
+        }
+      }
+
       Aggregations.aggregation('transaction__transaction-date_year', 'disbursement', selectionString).then(function(data, status, headers, config){
         vm.disbursements_by_year = data.data.results;
         

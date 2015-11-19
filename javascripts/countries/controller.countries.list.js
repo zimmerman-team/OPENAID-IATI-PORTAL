@@ -65,6 +65,14 @@
     vm.update = function(){
       if (!vm.hasContains()) return false;
 
+      // indirect country disbursements
+      Aggregations.aggregation('location_countries', 'location_disbursement', vm.selectionString).then(indirectCountrySuccessFn, errorFn);
+
+      function indirectCountrySuccessFn(data, status, headers, config){
+        console.log(data.data.results);
+      }
+
+
       vm.offset = 0;
       Aggregations.aggregation('recipient-country', 'disbursement', vm.filterSelection.selectionString + vm.extraSelectionString, vm.order_by, 15, vm.offset, 'activity_count').then(succesFn, errorFn);
 

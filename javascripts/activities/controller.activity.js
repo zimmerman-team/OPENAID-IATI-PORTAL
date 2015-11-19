@@ -52,7 +52,6 @@
         vm.rsrProjects = data.data.objects;
         vm.rsrLoading = false;
         vm.tabs[3].count = vm.rsrProjects.length;
-        console.log(vm.rsrProjects);
       },function(data, status, headers, config){
         console.log(data);
       });

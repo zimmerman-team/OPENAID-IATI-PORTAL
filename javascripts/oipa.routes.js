@@ -89,6 +89,16 @@
             }
         })
         .state({
+            name:        'regions-list',
+            url:         '/regions/list/',
+            controller:  'RegionListController',
+            controllerAs: 'vm',
+            templateUrl: templateBaseUrl + '/templates/regions/region-view-list.html',
+            ncyBreadcrumb: {
+                label: 'Regio\'s'
+            }
+        })
+        .state({
             name:        'region',
             url:         '/regions/:region_id/',
             controller:  'RegionController',
@@ -97,16 +107,6 @@
             ncyBreadcrumb: {
                 parent: 'regio\'s',
                 label: '{{vm.region.name}}'
-            }
-        })
-        .state({
-            name:        'regions-list',
-            url:         '/regions/list/',
-            controller:  'RegionListController',
-            controllerAs: 'vm',
-            templateUrl: templateBaseUrl + '/templates/regions/region-view-list.html',
-            ncyBreadcrumb: {
-                label: 'Regio\'s'
             }
         })
         .state({
