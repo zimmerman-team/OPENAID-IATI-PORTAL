@@ -1,27 +1,27 @@
 <div class="filter-selected row" ng-show="vm.filterSelection.selectionString.length">
 	<div class="col-md-12">
 		<div class="filter-box">
-			<a class="btn filter-selected-button selectedCountries" ng-repeat="item in vm.selectedCountries" ng-click="vm.removeFilter(vm.selectedCountries, item.code)">
+			<a class="btn filter-selected-button selectedCountries" ng-repeat="item in vm.selectedCountries" ng-click="vm.removeFilter(vm.selectedCountries, 'country_id', item.country_id)">
 				{{item.name}}
 				<span class="fa fa-remove"></span>
 			</a>
 
-			<a class="btn filter-selected-button selectedRegions" ng-repeat="item in vm.selectedRegions" ng-click="vm.removeFilter(vm.selectedRegions, item.code)">
+			<a class="btn filter-selected-button selectedRegions" ng-repeat="item in vm.selectedRegions" ng-click="vm.removeFilter(vm.selectedRegions, 'region_id', item.region_id)">
 				{{item.name}}
 				<span class="fa fa-remove"></span>
 			</a>
 
-			<a class="btn filter-selected-button selectedSectors" ng-repeat="item in vm.selectedSectors" ng-click="vm.removeFilter(vm.selectedSectors, item.code)">
+			<a class="btn filter-selected-button selectedSectors" ng-repeat="item in vm.selectedSectors" ng-click="vm.removeFilter(vm.selectedSectors, 'sector_id', item.sector_id)">
 				{{item.name}}
 				<span class="fa fa-remove"></span>
 			</a>
 
-			<a class="btn filter-selected-button selectedImplementingOrganisations" ng-repeat="item in vm.selectedImplementingOrganisations" ng-click="vm.removeFilter(vm.selectedImplementingOrganisations, item.code)">
+			<a class="btn filter-selected-button selectedImplementingOrganisations" ng-repeat="item in vm.selectedImplementingOrganisations" ng-click="vm.removeFilter(vm.selectedImplementingOrganisations, 'organisation_id', item.organisation_id)">
 				{{item.name}}
 				<span class="fa fa-remove"></span>
 			</a>
 
-			<a class="btn filter-selected-button selectedActivityStatuses" ng-repeat="item in vm.selectedActivityStatuses" ng-click="vm.removeFilter(vm.selectedActivityStatuses, item.code)">
+			<a class="btn filter-selected-button selectedActivityStatuses" ng-repeat="item in vm.selectedActivityStatuses" ng-click="vm.removeFilter(vm.selectedActivityStatuses, 'code', item.code)">
 				{{item.name}}
 				<span class="fa fa-remove"></span>
 			</a>
@@ -36,7 +36,7 @@
 
 			<a 
 				class="btn filter-selected-button selectedActivityStatuses" 
-				ng-show="vm.selectedBudget.on" 
+				ng-show="vm.selectedBudget.on && vm.selectedBudget.value[1] == 1500000000" 
 				ng-click="vm.removeBudgetFilter()">
 				Budget: {{vm.selectedBudget.value[0] | shortcurrency :'€'}} - {{vm.selectedBudget.value[1] | shortcurrency :'€'}}
 				<span class="fa fa-remove"></span>

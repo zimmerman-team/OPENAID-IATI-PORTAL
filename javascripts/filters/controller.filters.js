@@ -54,7 +54,7 @@
       if($scope.views != undefined && $scope.views.length > 0){
         vm.selectedView = $scope.views[0]['id'];
       }
-
+      
       vm.pageUrl = encodeURIComponent(vm.pageUrlDecoded);
       vm.shareDescription = encodeURIComponent('View the Aid projects of the Dutch Ministry of Foreign Affairs on ' + vm.pageUrlDecoded);
     }

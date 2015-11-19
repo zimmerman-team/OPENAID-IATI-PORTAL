@@ -23,9 +23,11 @@
     vm.filterSelection = FilterSelection;
     vm.search = Search;
 
-    vm.removeFilter = function(selectedArr, item_id) {
+    vm.removeFilter = function(selectedArr, item_name, item_id) {
+      console.log(selectedArr);
+      console.log(item_id);
       for (var i = 0; i < selectedArr.length;i++){
-        if(selectedArr[i].code == item_id){
+        if(selectedArr[i][item_name] == item_id){
           selectedArr.splice(i, 1);
           break;
         }
@@ -38,7 +40,8 @@
     }
 
     vm.removeBudgetFilter = function(){
-      vm.selectedBudget.on = false;
+      vm.selectedBudget.on = true;
+      vm.selectedBudget.value = [0,1500000000];
       FilterSelection.save();
     }
 
