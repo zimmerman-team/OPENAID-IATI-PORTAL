@@ -1,7 +1,7 @@
 {
-  "name": "thinkster_django_angular_boilerplate",
+  "name": "openaidNL",
   "version": "0.0.0",
-  "homepage": "https://github.com/brwr/thinkster-django-angular-boilerplate",
+  "homepage": "https://github.com/zimmerman-zimmerman/openaidNL",
   "license": "MIT",
   "ignore": [
     "**/.*",
