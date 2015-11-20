@@ -21,6 +21,7 @@
         var Activities = {
             all: all,
             get: get,
+            getProvidedActivities: getProvidedActivities,
             list: list
         };
 
@@ -61,6 +62,13 @@
             if(limit !== undefined){
                 url += '&limit=' + limit;
             }
+
+            return $http.get(url, { cache: true });
+        }
+
+        function getProvidedActivities(id){
+            var url = 'http://dev.oipa.nl/api/activities?format=json&transaction_provider_activity=' + id
+            url += '&fields=title,iati_identifier,id,descriptions,reporting_organisations&ordering=id&page_size=600'
 
             return $http.get(url, { cache: true });
         }

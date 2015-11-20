@@ -109,10 +109,10 @@ ZzSunburst = (function() {
 
       d3.transition().duration(250).each(function() {
         curpath.exit().transition()
-            .style("fill-opacity", 0.3)
+            .attr("fill-opacity", 0.3)
             .style('fill', '#fff');
         curpath.transition()
-            .style("fill-opacity", 1)
+            .attr("fill-opacity", 1)
             .style('fill', d.fill);
       });
     }
@@ -139,7 +139,7 @@ ZzSunburst = (function() {
       
       path.transition()
         .style('fill', function(d) { return d.color; })
-        .style("fill-opacity", fillOpacity);
+        .attr("fill-opacity", fillOpacity);
     });
   }
 
@@ -333,7 +333,7 @@ ZzSunburst = (function() {
             .remove();
 
           that.path.enter().insert("path", ":first-child")
-              .style("fill-opacity", function(d) { return 1; })
+              .attr("fill-opacity", function(d) { return 1; })
               .style("fill", function(d) { return d.color; })
               .on("click", that.zoom)
               .on("mouseover", that.mouseOverPath)
@@ -341,19 +341,19 @@ ZzSunburst = (function() {
               .each(function(d) { this._current = enterArc(d); });
 
           that.path.transition()
-              .style("fill-opacity", 1)
+              .attr("fill-opacity", 1)
               .style("fill", function(d) { return d.color; })
               .attrTween("d", function(d) { return that.arcTween.call(this, that.updateArc(d)); });
 
         } else {
 
           that.path.exit().transition()
-            .style("fill-opacity", function(d) { return d.depth === 2; })
+            .attr("fill-opacity", function(d) { return d.depth === 2; })
             .attrTween("d", function(d) { return that.arcTween.call(this, exitArc(d)); })
             .remove();
 
           that.path.enter().append("path")
-              .style("fill-opacity", function(d) { return d.depth === 1; })
+              .attr("fill-opacity", function(d) { return d.depth === 1; })
               .style("fill", function(d) { return d.fill; })
               .on("click", that.zoom)
               .on("mouseover", that.mouseOverPath)
@@ -361,7 +361,7 @@ ZzSunburst = (function() {
               .each(function(d) { this._current = enterArc(d); });
 
           that.path.transition()
-              .style("fill-opacity", 1)
+              .attr("fill-opacity", 1)
               .attrTween("d", function(d) { return that.arcTween.call(this, that.updateArc(d)); });
         }
 
@@ -416,7 +416,7 @@ ZzSunburst = (function() {
             .remove();
 
           that.path.enter().append("path")
-              .style("fill-opacity", function(d) { return d.depth === 1; })
+              .attr("fill-opacity", function(d) { return d.depth === 1; })
               .style("fill", function(d) { return d.fill; })
               .on("click", that.zoom)
               .on("mouseover", that.mouseOverPath)
@@ -424,7 +424,7 @@ ZzSunburst = (function() {
               .each(function(d) { this._current = enterArc(d); });
 
           that.path.transition()
-              .style("fill-opacity", 0.3)
+              .attr("fill-opacity", 0.3)
               .attrTween("d", function(d) { return that.arcTween.call(this, that.updateArc(d)); });
       });
 
@@ -502,7 +502,7 @@ ZzSunburst = (function() {
         .attr('fill', function(d){return d.color; });
 
     nodeUpdate.select("text")
-        .style("fill-opacity", 1);
+        .attr("fill-opacity", 1);
 
 
     // Transition exiting nodes to the parent's new position.
@@ -515,7 +515,7 @@ ZzSunburst = (function() {
         .attr("r", 1e-6);
 
     nodeExit.select("text")
-        .style("fill-opacity", 1e-6);
+        .attr("fill-opacity", 1e-6);
 
   }
 

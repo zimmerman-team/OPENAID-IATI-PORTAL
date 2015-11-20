@@ -69,7 +69,7 @@
       Aggregations.aggregation('location_countries', 'location_disbursement', vm.selectionString).then(indirectCountrySuccessFn, errorFn);
 
       function indirectCountrySuccessFn(data, status, headers, config){
-        console.log(data.data.results);
+        // console.log(data.data.results);
       }
 
 

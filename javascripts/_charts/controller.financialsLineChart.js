@@ -92,6 +92,7 @@
         if(loadedCount > 2){
             vm.transactionChartOptions.chart.noData = 'No data available';
             vm.transactionData = vm.reformatTransactionData();
+            $scope.api.updateWithData(vm.transactionData);
             loadedCount = 0;
         }
     }

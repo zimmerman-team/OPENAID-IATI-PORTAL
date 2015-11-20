@@ -24,8 +24,6 @@
     vm.search = Search;
 
     vm.removeFilter = function(selectedArr, item_name, item_id) {
-      console.log(selectedArr);
-      console.log(item_id);
       for (var i = 0; i < selectedArr.length;i++){
         if(selectedArr[i][item_name] == item_id){
           selectedArr.splice(i, 1);

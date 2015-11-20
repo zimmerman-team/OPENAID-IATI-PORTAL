@@ -77,11 +77,11 @@
       Aggregations.aggregation(vm.groupBy, vm.aggregationKey, vm.aggregationFilters).then(succesFn, errorFn);
 
       function succesFn(data, status, headers, config){
-        
         if(vm.mapping != undefined){
           data.data.results = vm[vm.mapping + 'ReMap'](data.data.results);
         }
         vm.chartData = vm.reformatData(data.data.results);
+        $scope.api.updateWithData(vm.chartData);
       }
 
       function errorFn(data, status, headers, config){

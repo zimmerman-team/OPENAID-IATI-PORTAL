@@ -303,20 +303,41 @@
                 </div>
                 <!-- eind van een wit blokje -->
                 <!--start van een wit blokje -->
+
                 <div class="row">
                     <div class="col-sm-12 activity-list-item">
                         <div class="hp-block wit" ng-click="vm.dashboard = 'list'">
-                            <b>Policy Markers</b>
-                            <ul ng-if='vm.activity.policy_markers.length != 0'>
-                                <li ng-repeat="marker in vm.activity.policy_markers">
-                                {{marker.name}}
-                                </li>
-                            </ul>
-                            <span ng-if='vm.activity.policy_markers.length == 0'>No data available</span>
-                            
+                            <b>Policy Markers</b>&nbsp;<br>&nbsp;<br>
+
+                            <p>
+                                <b>Principal objectives</b>
+                                <ul ng-if='vm.activity.policy_markers.length != 0'>
+                                    <li ng-if="marker.significance.code == 2" ng-repeat="marker in vm.activity.policy_markers">
+                                    {{marker.policy_marker.name}}
+                                    </li>
+                                </ul>
+                            </p>
+                            <p>
+                                <b>Significant objectives</b>
+                                <ul ng-if='vm.activity.policy_markers.length != 0'>
+                                    <li ng-if="marker.significance.code == 1" ng-repeat="marker in vm.activity.policy_markers">
+                                    {{marker.policy_marker.name}}
+                                    </li>
+                                </ul>
+                            </p>
+                            <p>
+                                <b>Not targeted</b>
+                                <ul ng-if='vm.activity.policy_markers.length != 0'>
+                                    <li ng-if="marker.significance.code == 0" ng-repeat="marker in vm.activity.policy_markers">
+                                    {{marker.policy_marker.name}}
+                                    </li>
+                                </ul>
+                                <span ng-if='vm.activity.policy_markers.length == 0'>No data available</span>
+                            </p> 
                         </div>
                     </div>
                 </div>
+
                 <!-- eind van een wit blokje -->
 
                 <div class="row">
@@ -381,24 +402,40 @@
 
     <div class="row" ng-show="vm.selectedTab == 'thirdparty'">
         <div class="col-md-12">
-            <div class="hp-block wit" style="display: none">
-                <h3>IATI references</h3>
+            <div class="hp-block wit">
+                <h3>Funded projects in IATI</h3>
 
-                <div>
-                    To do
-                </div>
                 <br>
-                <table class="table">
+
+                <div ng-show="!vm.providedActivities.length">
+                    No IATI references found.
+                </div>
+                <table class="table table-striped provided-activities-table" ng-show="vm.providedActivities.length">
+                    <thead>
+                        <th class="col-sm-6">
+                            Title
+                        </th>
+                        <th class="col-sm-3">
+                            Reporting organisation
+                        </th>
+                        <th class="col-sm-3">
+                            IATI identifier
+                        </th>
+                    </thead>
                     <tbody>
-                        <tr ng-repeat="project in vm.related_projects">
-                            {{project.title.narratives[0]}}      
+                        <tr ng-repeat="providerActivity in vm.providedActivities">
+                            <td class="col-sm-6">
+                                {{providerActivity.title.narratives[0].text}}
+                            </td>
+                            <td class="col-sm-3">
+                                {{providerActivity.reporting_organisations[0].narratives[0].text}}
+                            </td>
+                            <td class="col-sm-3">
+                                {{providerActivity.iati_identifier}}
+                            </td>
                         </tr>
                     </tbody>
                 </table>
-            </div>
-
-            <div class="hp-block wit" ng-show="!vm.rsrLoading && !vm.rsrProjects.length">
-                <h3>No third-party data available.</h3>
             </div>
 
             <div class="hp-block wit" ng-show="vm.rsrLoading || vm.rsrProjects.length">
@@ -411,6 +448,8 @@
                     </div>
                 </div>
             </div>
+
+
 
         </div>
 

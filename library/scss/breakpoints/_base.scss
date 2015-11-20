@@ -1590,6 +1590,10 @@ TOOL BAR
 ACTIVITY DETAIL
 *********************/
 
+#openaid-main table.provided-activities-table th{
+  font-size: 18px;
+}
+
 .project-circle {
   text-align: center;
   float: right;
@@ -1730,8 +1734,12 @@ Search suggest box
   -ms-user-select: none;
   user-select: none;
   display: block; 
-  width: auto; 
-  height: auto; 
+/*  width: auto; 
+  height: auto; */
+}
+
+.leaflet-container svg g{
+  z-index: 9999;
 }
 
 .legend-header{

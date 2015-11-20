@@ -35,11 +35,16 @@
 
     function activate() {      
       Activities.get(vm.activityId).then(successFn, errorFn);
+      Activities.getProvidedActivities(vm.activityId).then(providedSuccessFn, errorFn);
 
       function successFn(data, status, headers, config) {
         vm.activity = data.data;
         vm.transactionData = vm.reformatTransactionData();
         vm.tabs[2].count = vm.activity.documents.length;
+      }
+      function providedSuccessFn(data, status, headers, config){
+        vm.providedActivities = data.data.results;
+        vm.tabs[3].count = data.data.count;
       }
 
       function errorFn(data, status, headers, config) {
@@ -51,7 +56,7 @@
       return $http.get(url, {}).then(function(data, status, headers, config){
         vm.rsrProjects = data.data.objects;
         vm.rsrLoading = false;
-        vm.tabs[3].count = vm.rsrProjects.length;
+        // vm.tabs[3].count = vm.rsrProjects.length;
       },function(data, status, headers, config){
         console.log(data);
       });
