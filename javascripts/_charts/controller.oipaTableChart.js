@@ -24,8 +24,6 @@
       $scope.$watch('refreshData', function(refreshData){
 
         if(refreshData == true){
-
-          vm.extraFilters = '&activity_status__in=' + $scope.activityStatus;
           vm.extraFilters += '&transaction_date__year__in=' + $scope.transactionYear;
 
           vm.groupBy = $scope.groupBy;
@@ -60,7 +58,7 @@
           }
 
           vm.aggregationExtraSelect = 'iati-identifier-add';
-          Aggregations.aggregation(vm.groupBy, 'iati-identifier', '&activity_status__in=' + $scope.activityStatus +'&' + vm.aggregationExtraSelectIn + '=' + filter__in).then(succesFn, errorFn);
+          Aggregations.aggregation(vm.groupBy, 'iati-identifier', '&' + vm.aggregationExtraSelectIn + '=' + filter__in).then(succesFn, errorFn);
           
           
         } else if(vm.aggregationExtraSelect == 'iati-identifier-add'){
@@ -96,7 +94,7 @@
         }
 
         if(_in.length > 1){
-          $scope.shownIds = '&' + vm.aggregationExtraSelectIn + '=' + _in.join() + '&activity_status__in=' + $scope.activityStatus;
+          $scope.shownIds = '&' + vm.aggregationExtraSelectIn + '=' + _in.join();
         }
 
       }

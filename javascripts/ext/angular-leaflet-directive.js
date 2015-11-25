@@ -1903,7 +1903,7 @@ angular.module("leaflet-directive").factory('leafletLegendHelpers', function () 
         return function(/*map*/) {
             var div = L.DomUtil.create('div', legendClass);
 
-            div.innerHTML += '<div class="legend-header">Disbursement</div>';
+            div.innerHTML += '<div class="legend-header">Expenditure</div>';
 
             for (var i = 0; i < legend.colors.length; i++) {
                 div.innerHTML +=
@@ -3484,7 +3484,7 @@ angular.module("leaflet-directive")
                         var message = '<span class="flag-icon flag-icon-'+flag_lc+'"></span>'+
                                   '<h4>'+feature.properties.name+'</h4>'+
                                   '<p><b>Activities:</b> '+feature.properties.project_amount+'</p>'+
-                                  '<p><b>Total disbursements:</b> '+ $filter('shortcurrency')(feature.properties.total_disbursements,'€') +'</p>'+
+                                  '<p><b>Total expenditure:</b> '+ $filter('shortcurrency')(feature.properties.total_disbursements,'€') +'</p>'+
                                   '<p><b>Relationship type:</b> '+partnerType+'</p>'+
                                   '<a class="btn btn-default" href="/countries/'+feature.id+'/">Go to country overview</a>';
 

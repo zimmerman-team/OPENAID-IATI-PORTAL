@@ -1,5 +1,4 @@
 <div class="container homepage">
-    
     <div class="row">
         <div class="col-sm-12">
             <div class="hp-block hp-block-top hp-home">
@@ -9,12 +8,11 @@
                         <search-box current-page="homepage"></search-box>
                     </div>
                 </div>
-               <div class="row">
-                <div class="col-sm-12 col-md-8 col-lg-6 col-md-offset-2 col-lg-offset-3">
-                    <p>At this transparency portal you can find every development aid project financed by the <a href="https://www.rijksoverheid.nl/opendata/ontwikkelingssamenwerking" target="_blank">Dutch Ministry of Foreign Affairs</a> and reported as open data to the IATI registry. <i class="fa fa-file-code-o"></i> &nbsp;<a href="http://www.iatiregistry.org/publisher/minbuza_nl" target="_blank">IATI data source</a> updated: 2015-11-19 16:52 <br>No. of <a ui-sref="activities">projects: 5728.</a></p>
+                <div class="row">
+                    <div class="col-sm-12 col-md-8 col-lg-6 col-md-offset-2 col-lg-offset-3">
+                        <p>At this transparency portal you can find every development aid project financed by the <a href="https://www.rijksoverheid.nl/opendata/ontwikkelingssamenwerking" target="_blank">Dutch Ministry of Foreign Affairs</a> and reported as open data to the IATI registry. <i class="fa fa-file-code-o"></i> &nbsp;<a href="http://www.iatiregistry.org/publisher/minbuza_nl" target="_blank">IATI data source</a> updated: 2015-11-19 16:52 <br>No. of <a ui-sref="activities">projects: 5728.</a></p>
+                    </div>
                 </div>
-            </div>
-
             </div>
         </div>
     </div>
@@ -42,9 +40,7 @@
                     shown-ids='vm.shownIds' 
                     top-five='vm.top5' 
                     activity-status='vm.activityStatus' 
-                    transaction-year='vm.transactionYear' 
-                ></oipa-table-chart>
-
+                    transaction-year='vm.transactionYear' ></oipa-table-chart>
             </div>
         </div>
     </div>
@@ -53,7 +49,7 @@
             <div class="hp-block wit hp-line-chart-wrapper">
              <oipa-line-chart 
                 aggregation-filters='vm.shownIds' 
-                has-to-contain='activity_status' 
+                has-to-contain='' 
                 group-by='vm.lineChartOptions.groupBy' 
                 group-by-id='vm.lineChartOptions.groupById' 
                 aggregation-key='disbursement' 

@@ -46,7 +46,7 @@
 	      ];
 
 	      if(m.selectedBudget.on){
-	        selectList.push('&total_budget__gt='+m.selectedBudget.value[0]+'&total_budget__lt='+m.selectedBudget.value[1]);
+	        selectList.push('&total_budget__gte='+m.selectedBudget.value[0]+'&total_budget__lte='+m.selectedBudget.value[1]);
 	      }
 
 	      if(m.selectedTransactionYear.on){

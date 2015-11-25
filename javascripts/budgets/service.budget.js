@@ -19,7 +19,7 @@
 		var m = this;
 		m.budget = {
           on: true,
-	      value: [0,1500000000]
+	      value: [0,2000000000]
 	    };
         m.toReset = false;
 		

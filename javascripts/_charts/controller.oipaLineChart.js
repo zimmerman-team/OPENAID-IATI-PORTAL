@@ -114,7 +114,11 @@
       }
       
       $scope.$watch('aggregationFilters', function (aggregationFilters) {
-
+        if (vm.hasToContain == ''){
+          if (aggregationFilters == ''){
+            return false;
+          }
+        }
         if(vm.hasToContain != undefined){
           if(aggregationFilters.indexOf(vm.hasToContain) < 0){
             return false;
