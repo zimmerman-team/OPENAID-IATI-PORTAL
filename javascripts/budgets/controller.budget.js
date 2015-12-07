@@ -16,7 +16,7 @@
   */
   function BudgetController($scope, Budget, FilterSelection) {
     var vm = this;
-    vm.on = true;
+    vm.on = false;
     vm.budgetValue = [0,2000000000];
     vm.budget = Budget;
 
@@ -41,7 +41,7 @@
         
         if(toReset == true){
           vm.budgetValue = [0,2000000000];
-          vm.on = true;
+          vm.on = false;
         }
       }, true);
     }

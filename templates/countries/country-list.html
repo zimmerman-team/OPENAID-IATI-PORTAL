@@ -31,7 +31,20 @@
         </div>
     </div>
 
-    <div class="col-md-12" infinite-scroll='vm.nextPage()' infinite-scroll-disabled='vm.busy' infinite-scroll-distance='1'>
+    <div class="col-md-12" infinite-scroll='vm.nextPage()' infinite-scroll-disabled='vm.busy' infinite-scroll-distance='1' ng-if='vm.totalCountries != 0'>
+        <div class="sort headers">
+            <div class="row">
+                <div class="col-sm-4">
+                    <small>Country</small>
+                </div>
+                <div class="col-sm-4">
+                    <small>Total disbursement</small>
+                </div>
+                <div class="col-sm-4">
+                    <small>Projects</small>
+                </div>
+            </div>
+        </div>
         <div class="activity-list-item" 
             ng-show="vm.countries.length != 0"
             ng-repeat="item in vm.countries">
@@ -44,7 +57,7 @@
                         <h3 class="no-margin">{{item.total_disbursements  | shortcurrency :'€'}}</h3>
                     </div>
                     <div class="col-sm-4">
-                        <h3 class="no-margin">{{item.activity_count}} projecten</h3>
+                        <h3 class="no-margin">{{item.activity_count}}</h3>
                     </div>
                 </div>
             </div>

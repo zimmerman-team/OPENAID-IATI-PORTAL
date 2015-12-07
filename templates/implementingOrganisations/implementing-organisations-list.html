@@ -32,7 +32,21 @@
         </div>
     </div>
 
-    <div class="col-md-12" infinite-scroll='vm.nextPage()' infinite-scroll-disabled='vm.busy' infinite-scroll-distance='1'>
+    <div class="col-md-12" infinite-scroll='vm.nextPage()' infinite-scroll-disabled='vm.busy' infinite-scroll-distance='1' ng-if='vm.totalOrganisations != 0' >
+
+        <div class="sort headers">
+            <div class="row">
+                <div class="col-sm-4">
+                    <small>Organisation</small>
+                </div>
+                <div class="col-sm-4">
+                    <small>Total disbursement</small>
+                </div>
+                <div class="col-sm-4">
+                    <small>Projects</small>
+                </div>
+            </div>
+        </div>
 
         <div class="activity-list-item" 
             ng-show="vm.organisations.length != 0"

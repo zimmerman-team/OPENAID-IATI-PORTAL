@@ -28,15 +28,15 @@
         </div>
         <div class="results">
             <div class="row" ng-repeat="activity in vm.searchData.activities.data">
-                <div class="col-md-9">
+                <div class="col-md-8">
                     <a ui-sref='activiteit({"activity_id": activity.id})'>{{activity.titles[0].title}}</a>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-4">
                     {{activity.iati_identifier}}
                 </div>
             </div>
              <div class="row" ng-show="!vm.searchData.activities.data.length">
-                <div class="col-md-9">
+                <div class="col-md-8">
                     0 results
                 </div>
             </div>
@@ -59,16 +59,16 @@
         </div>
         <div class="results">
             <div class="row" ng-repeat="country in vm.searchData.countries.data">
-                <div class="col-md-9">
+                <div class="col-md-8">
                     <a ui-sref='country({"country_id": country.country_id})'>{{country.name}}</a>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-4">
                     {{country.activity_count}} projects
                 </div>
             </div>
 
             <div class="row" ng-show="!vm.searchData.countries.data.length">
-                <div class="col-md-9">
+                <div class="col-md-8">
                     0 results
                 </div>
             </div>
@@ -91,16 +91,16 @@
         </div>
         <div class="results">
             <div class="row" ng-repeat="region in vm.searchData.regions.data">
-                <div class="col-md-9">
+                <div class="col-md-8">
                     <a ui-sref='region({"country_id": region.region_id})'>{{region.name}}</a>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-4">
                     {{region.activity_count}} projects
                 </div>
             </div>
 
             <div class="row" ng-show="!vm.searchData.regions.data.length">
-                <div class="col-md-9">
+                <div class="col-md-8">
                     0 results
                 </div>
             </div>
@@ -124,16 +124,16 @@
         </div>
         <div class="results">
             <div class="row" ng-repeat="sector in vm.searchData.sectors.data">
-                <div class="col-md-9">
+                <div class="col-md-8">
                     <a ui-sref='sector({"sector_id": sector.sector_id})'>{{sector.name}}</a>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-4">
                     {{sector.activity_count}} projects
                 </div>
             </div>
 
             <div class="row" ng-show="!vm.searchData.sectors.data.length">
-                <div class="col-md-9">
+                <div class="col-md-8">
                     0 results
                 </div>
             </div>
@@ -156,16 +156,16 @@
         </div>
         <div class="results">
             <div class="row" ng-repeat="organisation in vm.searchData.organisations.data">
-                <div class="col-md-9">
+                <div class="col-md-8">
                     <a ui-sref='organisation({"organisation_id": organisation.receiver_organisation_id})'>{{organisation.name}}</a>
                 </div>
-                <div class="col-md-3">
+                <!-- <div class="col-md-4">
                     {{organisation.activity_count}} transactions
-                </div>
+                </div> -->
             </div>
 
             <div class="row" ng-show="!vm.searchData.organisations.data.length">
-                <div class="col-md-9">
+                <div class="col-md-8">
                     0 results
                 </div>
             </div>

@@ -1481,8 +1481,6 @@ tr {
   margin-bottom: 10px;
 }
 
-
-
 /*********************
 Activiteitenkaart
 *********************/
@@ -2060,9 +2058,17 @@ ACTIVITY LIST
   }
 }
 
+.sort.headers {
+  padding-top:3px;
+  padding-bottom:3px;
+}
+
 .activity-list-item {
   margin-bottom: 8px;
   overflow: hidden;
+  small {
+    display: block;
+  }
   a {
     color:$oranje;
     text-decoration: none;
@@ -2089,6 +2095,19 @@ ACTIVITY LIST
         &:first-of-type {
           font-weight: 600;
           border-right:1px solid #ddd;
+        }
+      }
+      th {
+        font-size: 14px;
+      }
+      &.extra {
+        td {
+          &:first-of-type {
+            font-weight: 400;
+          }
+          &:last-of-type {
+            border-left:1px solid #ddd;
+          }
         }
       }
     }

@@ -370,6 +370,51 @@
                 <nvd3 options="vm.transactionChartOptions" data="vm.transactionData" class="with-3d-shadow with-transitions"></nvd3>
             </div>
         </div>
+
+        <div class="col-md-6 activity-list-item">
+            <div class="hp-block wit financial extra">
+                <p><b>Disbursements</b></p>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Receiving organisation</th>
+                            <th>Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="transaction in vm.activity.transactions | orderBy:'-transaction_date'" ng-if="transaction.transaction_type == 'D'">
+                            <td>{{transaction.transaction_date | date : 'dd MMM yyyy'}}</td>
+                            <td>{{transaction.receiver_organisation_name}}</td>
+                            <td>{{transaction.value | shortcurrency :'€'}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="col-md-6 activity-list-item">
+            <div class="hp-block wit financial extra">
+                <p><b>Commitments</b></p>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Receiving organisation</th>
+                            <th>Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="transaction in vm.activity.transactions | orderBy:'-transaction_date'" ng-if="transaction.transaction_type == 'C'">
+                            <td>{{transaction.transaction_date | date : 'dd MMM yyyy'}}</td>
+                            <td>{{transaction.receiver_organisation_name}}</td>
+                            <td>{{transaction.value | shortcurrency :'€'}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    
     </div>
 
 
