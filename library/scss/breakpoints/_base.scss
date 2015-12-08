@@ -76,6 +76,7 @@ a.fa {
       background: linear-gradient(transparent, rgba(50,50,50,.4)); /* Standard syntax */
       z-index: 99;
       font-size: 14px;
+      overflow: hidden;
      // background:rgba(50,50,50,.6);
     }
     .overlay {
@@ -2149,6 +2150,7 @@ ACTIVITY LIST
   font-weight: bold;
   display: inline-block;
   &.sortby {
+    float:right;
     margin-top:6px;
     margin-right: 8px;
   }
@@ -2170,9 +2172,10 @@ ACTIVITY LIST
     line-height: 41px;
   }
   .custom-select {
-    margin-top:0;
+    margin-top:5px;
     border:0;
     float: right;
+    line-height: 1.6;
     &:after {
       left: .05em;
       right: auto;
@@ -2183,6 +2186,8 @@ ACTIVITY LIST
       font-weight: 400;
       padding-left:20px;
       padding-right:0;
+      padding-top:0;
+      padding-bottom:0;
     }
   }
 }
