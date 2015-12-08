@@ -6,9 +6,7 @@
         
     <div class="row">
         <div class="col-md-12">
-            <div class="hp-block wit">
-                <h1>{{vm.organisation.name}}</h1>
-            </div>
+            <h1 class="title">{{vm.organisation.name}}</h1>
         </div>
     </div>
 
@@ -22,7 +20,7 @@
         <div class="col-md-12">
 
             <div class="hp-block wit">
-                <h3>Transactions</h3>
+                <h3>Transactions for organisation identifier {{vm.organisation.original_ref}}</h3>
                 <financials-line-chart 
                     has-to-contain="participating_organisations__organisation__code__in">
                 </financials-line-chart>
@@ -31,13 +29,6 @@
         </div>
 
         <div class="col-md-4">
-            <div class="row">
-                <div class="col-sm-12 activity-list-item">
-                    <div class="hp-block wit">
-                        <p><b>Organisation identifier</b><br>{{vm.organisation.original_ref}}</p>
-                    </div>
-                </div>
-            </div>
             <div class="row">
                 <div class="col-sm-12 activity-list-item">
                     <div class="hp-block wit financial">

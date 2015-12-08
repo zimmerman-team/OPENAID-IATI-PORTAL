@@ -17,7 +17,7 @@
     vm.transactionChartOptions = {
       chart: {
         type: 'multiBarChart',
-        height: 450,
+        height: 350,
         margin : {
             top: 20,
             right: 20,

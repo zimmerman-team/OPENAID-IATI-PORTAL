@@ -235,6 +235,17 @@ hr{
 
 .title {
   display: inline-block;
+  margin:5px 0 10px;
+}
+.subtitle {
+  font-weight: 400;
+  font-size:16px;
+  line-height: 1;
+  display: block;
+  margin-top:-2px;
+}
+.no-margin-bottom {
+  margin-bottom: 0;
 }
 
 
@@ -244,7 +255,7 @@ hr{
   margin: 0 0 15px 0;
   font-size: 17px;
   &.wit {
-    background-color:#fff;
+    background-color:rgba(255,255,255,.6);
     h4 {
       font-weight: 600;
     }
@@ -1636,6 +1647,14 @@ ACTIVITY DETAIL
   }
 }
 
+.map-overlay {
+  position:absolute;
+  background:rgba(255,255,255,.6);
+  bottom:20px;
+  left:25px;
+  padding:5px 10px;
+}
+
 
 /*********************
 TABS
@@ -2031,7 +2050,7 @@ ACTIVITY LIST
   overflow: hidden;
   white-space: nowrap;
   margin-bottom:10px;
-  background-color:#fff;
+  background-color:rgba(255,255,255,.6);
   padding:0 15px;
   .sort-item {
     margin-right: 15px;
@@ -2061,6 +2080,7 @@ ACTIVITY LIST
 .sort.headers {
   padding-top:3px;
   padding-bottom:3px;
+  font-weight: 700;
 }
 
 .activity-list-item {
@@ -2099,6 +2119,9 @@ ACTIVITY LIST
       }
       th {
         font-size: 14px;
+      }
+      table {
+        margin-bottom: 0;
       }
       &.extra {
         td {

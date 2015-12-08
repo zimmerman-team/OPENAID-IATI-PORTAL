@@ -5,10 +5,8 @@
     
     <div class="row">
         <div class="col-md-12">
-            <div class="hp-block wit">
-                <h1>{{vm.activity.titles[0].title}}</h1>
-                <p>{{vm.activity.descriptions[0].description}}</p>
-            </div>
+            <h1 class="title no-margin-bottom">{{vm.activity.titles[0].title}}</h1>
+            <p>{{vm.activity.descriptions[0].description}}</p>
         </div>
     </div>
 
@@ -383,7 +381,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="transaction in vm.activity.transactions | orderBy:'-transaction_date'" ng-if="transaction.transaction_type == 'D'">
+                        <tr ng-repeat="transaction in vm.activity.transactions | orderBy:'transaction_date'" ng-if="transaction.transaction_type == 'D'">
                             <td>{{transaction.transaction_date | date : 'dd MMM yyyy'}}</td>
                             <td>{{transaction.receiver_organisation_name}}</td>
                             <td>{{transaction.value | shortcurrency :'€'}}</td>
@@ -405,7 +403,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="transaction in vm.activity.transactions | orderBy:'-transaction_date'" ng-if="transaction.transaction_type == 'C'">
+                        <tr ng-repeat="transaction in vm.activity.transactions | orderBy:'transaction_date'" ng-if="transaction.transaction_type == 'C'">
                             <td>{{transaction.transaction_date | date : 'dd MMM yyyy'}}</td>
                             <td>{{transaction.receiver_organisation_name}}</td>
                             <td>{{transaction.value | shortcurrency :'€'}}</td>
@@ -427,7 +425,6 @@
                 <div ng-show="vm.activity.documents.length == 0">
                     No documents available.
                 </div>
-                <br>
                 <table class="table documents">
                     <tbody>
                         <tr ng-repeat="document in vm.activity.documents">
@@ -449,9 +446,6 @@
         <div class="col-md-12">
             <div class="hp-block wit">
                 <h3>Funded projects in IATI</h3>
-
-                <br>
-
                 <div ng-show="!vm.providedActivities.length">
                     No IATI references found.
                 </div>

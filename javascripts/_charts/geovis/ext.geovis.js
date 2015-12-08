@@ -157,18 +157,19 @@ ZzLocationVis = (function() {
       .attr('y', 12)
       .attr('rx', 9)
       .attr('ry', 9)
-      .attr('fill', '#fff')
+      .attr('fill', '#8cc63f')
       .attr('fill-opacity', 1)
-      .attr('stroke', '#aaa')
+      .attr('stroke', '#ccc')
       .attr('stroke-width', 1);
     this.indirect.append('circle')
       .attr('class', 'indirectCircle')
       .attr('cx', 38)
       .attr('cy', 21)
       .attr('r', 9)
-      .attr('fill', '#00a99d')
+      .attr('fill', '#ffffff')
       .attr('fill-opacity', 1)
-      .attr('stroke-width', 0);
+      .attr('stroke', '#cccccc')
+      .attr('stroke-width', 1);
 
     this.regions_wrap = this.vis.append('g')
       .attr('class', 'regions-wrap')
@@ -670,11 +671,13 @@ ZzLocationVis = (function() {
       });
     }
 
-    if (that.indirect.select('circle').attr('fill') != '#000000') {
+    if (that.indirect.select('rect').attr('fill') != '#f7f7f7') {
 
         that.indirect.select('circle')
-        .attr('cx', 23)
-        .attr('fill', '#000000');
+        .attr('cx', 23);
+        
+        that.indirect.select('rect')
+        .attr('fill', '#f7f7f7');
 
         that.indirect.select('text')
         .text('activate indirect expenditure');
@@ -711,8 +714,10 @@ ZzLocationVis = (function() {
 
     }else {
         that.indirect.select('circle')
-        .attr('cx', 38)
-        .attr('fill', '#00a99d');
+        .attr('cx', 38);
+
+        that.indirect.select('rect')
+        .attr('fill', '#8cc63f');
 
         that.indirect.select('text')
         .text('deactivate indirect expenditure');

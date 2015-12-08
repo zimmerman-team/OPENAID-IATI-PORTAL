@@ -1,48 +1,52 @@
 <!-- needed to make filtering work -->
 <filter-selection-box ng-show="false"></filter-selection-box>
 
-<div class="row detailbar">
-    <div class="col-sm-12 social text-right">
-        <span 
-          class="fa-stack fa-lg download-button hidden-xs" 
-          ng-if="vm.currentPage == 'activity' || vm.currentPage == 'activities'">
-            <i class="fa fa-circle fa-stack-2x"></i>
-            <i class="fa fa-download fa-stack-1x fa-inverse"></i>
-            <div class="download-wrap">
-                <a ng-click="vm.download('csv')">
-                    Download CSV
-                    <span class="fa-stack fa-lg download-button">
-                        <i class="fa fa-circle fa-stack-2x"></i>
-                        <i class="fa fa-download fa-stack-1x fa-inverse"></i>
-                    </span>
-                </a>
-                <a ng-click="vm.download('xml')">
-                    Download XML
-                    <span class="fa-stack fa-lg download-button">
-                        <i class="fa fa-circle fa-stack-2x"></i>
-                        <i class="fa fa-download fa-stack-1x fa-inverse"></i>
-                    </span>
-                </a>
-                <a ng-click="vm.download('json')">
-                    Download JSON
-                    <span class="fa-stack fa-lg download-button">
-                        <i class="fa fa-circle fa-stack-2x"></i>
-                        <i class="fa fa-download fa-stack-1x fa-inverse"></i>
-                    </span>
-                </a>
+<div class="row dash-bar">
+    <div class="col-sm-12 ">
+        <div class="wrap clearfix">
+            <div class="social text-right">
+                <span 
+                  class="fa-stack fa-lg download-button hidden-xs" 
+                  ng-if="vm.currentPage == 'activity' || vm.currentPage == 'activities'">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-download fa-stack-1x fa-inverse"></i>
+                    <div class="download-wrap">
+                        <a ng-click="vm.download('csv')">
+                            Download CSV
+                            <span class="fa-stack fa-lg download-button">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-download fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                        <a ng-click="vm.download('xml')">
+                            Download XML
+                            <span class="fa-stack fa-lg download-button">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-download fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                        <a ng-click="vm.download('json')">
+                            Download JSON
+                            <span class="fa-stack fa-lg download-button">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-download fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </div>
+                </span>
+                <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <a ng-href="http://twitter.com/home?status={{vm.shareDescription}}" class="fa fa-twitter fa-stack-1x fa-inverse"></a>
+                </span>
+                <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <a ng-href="http://www.linkedin.com/shareArticle?mini=true&url={{vm.pageUrl}}&title={{vm.shareDescription}}" class="fa fa-linkedin fa-stack-1x fa-inverse"></a>
+                </span>
+                <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <a ng-href="http://www.facebook.com/sharer/sharer.php?s=100&p[url]={{vm.pageUrl}}" class="fa fa-facebook fa-stack-1x fa-inverse"></a>
+                </span>
             </div>
-        </span>
-        <span class="fa-stack fa-lg">
-            <i class="fa fa-circle fa-stack-2x"></i>
-            <a ng-href="http://twitter.com/home?status={{vm.shareDescription}}" class="fa fa-twitter fa-stack-1x fa-inverse"></a>
-        </span>
-        <span class="fa-stack fa-lg">
-            <i class="fa fa-circle fa-stack-2x"></i>
-            <a ng-href="http://www.linkedin.com/shareArticle?mini=true&url={{vm.pageUrl}}&title={{vm.shareDescription}}" class="fa fa-linkedin fa-stack-1x fa-inverse"></a>
-        </span>
-        <span class="fa-stack fa-lg">
-            <i class="fa fa-circle fa-stack-2x"></i>
-            <a ng-href="http://www.facebook.com/sharer/sharer.php?s=100&p[url]={{vm.pageUrl}}" class="fa fa-facebook fa-stack-1x fa-inverse"></a>
-        </span>
+        </div>
     </div>
 </div>
