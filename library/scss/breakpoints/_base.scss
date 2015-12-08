@@ -45,10 +45,107 @@ a.fa {
 
 .homepage{
 
+  a.callout {
+    display: table;
+    border:1px solid #fff;
+    height:150px;
+    background-size:120%;
+    background-position:center;
+    background-repeat:none;
+    position:relative;
+    width: 100%;
+    text-decoration: none;
+    overflow: hidden;
+    transition: all 1s ease-in-out;
+    h4 {
+      font-weight: 400;
+      font-size: 16px;
+    }
+    .text {
+      position:absolute;
+      bottom:0;
+      max-height: 70px;
+      text-align:center;
+      width: 100%;
+      transition:all .4s ease-in-out;
+      color:#fff !important;
+      padding:30px 10px 0 10px;
+      background: -webkit-linear-gradient(transparent, rgba(50,50,50,.4)); /* For Safari 5.1 to 6.0 */
+      background: -o-linear-gradient(transparent, rgba(50,50,50,.4)); /* For Opera 11.1 to 12.0 */
+      background: -moz-linear-gradient(transparent, rgba(50,50,50,.4)); /* For Firefox 3.6 to 15 */
+      background: linear-gradient(transparent, rgba(50,50,50,.4)); /* Standard syntax */
+      z-index: 99;
+      font-size: 14px;
+     // background:rgba(50,50,50,.6);
+    }
+    .overlay {
+      opacity: 0;
+      transition: all .4s ease-in-out;
+      background: rgba(50,50,50,.6);
+      position:absolute;
+      top:0;
+      left:0;
+      right: 0;
+      bottom:0;
+      z-index: 0;
+    }
+    &:hover {
+      background-size:100%;
+      box-shadow: 0px 0px 5px 0px rgba($oranje,0.5);
+      .overlay {
+        opacity: 1;
+      }
+      .text {
+        max-height: 150px;
+        //background: transparent;
+      }
+      border-color:$oranje;
+    }
+  }
+  .plaatjes {
+    .col-md-3 {
+      &:nth-of-type(1) {
+        .callout {
+          background-image: url('../../images/projects-map.png');
+        }
+      }
+      &:nth-of-type(2) {
+        .callout {
+          background-image: url('../../images/countries-map.png');
+        }
+      }
+      &:nth-of-type(3) {
+        .callout {
+          background-image: url('../../images/regions.png');
+        }
+      }
+      &:nth-of-type(4) {
+        .callout {
+          background-image: url('../../images/sectors.png');
+        }
+      }
+    }
+  }
+
+  .table {
+    th:first-of-type {
+      padding-left:0;
+    }
+  }
+
   .hp-block{
     .custom-select{
-      border: 0;
-      background-color: transparent;
+      float: left;
+      border: 1px solid #ddd;
+      padding-left:12px;
+      background-color: rgba(255,255,255,0.6);
+      transition: all .2s ease-in-out;
+      &::after {
+        left:10px !important;
+      }
+      &:hover {
+        box-shadow: 0px 0px 5px 0px rgba($oranje,0.5);
+      }
     }
 
     &.wit{
