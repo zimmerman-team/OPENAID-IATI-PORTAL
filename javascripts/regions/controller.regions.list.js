@@ -133,7 +133,6 @@
         vm.regions = applyRegionHierarchy(vm.regionMapping)
         vm.totalRegions = data.data.count;
         $scope.count = vm.totalRegions;
-        console.log(vm.regions);
       }
 
       function errorFn(data, status, headers, config){
