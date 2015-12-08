@@ -9,14 +9,16 @@
     .module('oipa.pages')
     .controller('PagesController', PagesController);
 
-  PagesController.$inject = ['templateBaseUrl', 'wpAPIResource'];
+  PagesController.$inject = ['templateBaseUrl', 'wpAPIResource', 'homeUrl', '$location'];
 
   /**
   * @namespace PagesController
   */
-  function PagesController(templateBaseUrl, wpAPIResource) {
+  function PagesController(templateBaseUrl, wpAPIResource, homeUrl, $location) {
     var vm = this;
     vm.post = '';
+    vm.pageUrl = '';
+    vm.pageUrlDecoded = $location.absUrl();
 
     activate();
 
@@ -31,6 +33,9 @@
       //     param2: 3
       // } ).then(succesFn, errorFn);
       // console.log(test);
+
+      vm.pageUrl = encodeURIComponent(vm.pageUrlDecoded);
+      vm.shareDescription = encodeURIComponent('View the Aid projects of the Dutch Ministry of Foreign Affairs on ' + vm.pageUrlDecoded);
 
       function succesFn(){
 
