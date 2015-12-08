@@ -2050,6 +2050,11 @@ ACTIVITY LIST
 
 .result-count{
   font-weight: bold;
+  display: inline-block;
+  &.sortby {
+    margin-top:6px;
+    margin-right: 8px;
+  }
 }
 
 .sort {

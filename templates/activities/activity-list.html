@@ -7,12 +7,12 @@
                     <span class="result-count">Results:</span> {{vm.totalActivities}}
                 </div>
                 <div class="col-xs-8 text-right-not-xs">
+                    <span class="result-count sortby">Sort by:</span>
                     <label class="wrapper">
                       <div class="custom-select ff-hack">
                         <select
                           ng-model="vm.order_by"
                           ng-change="vm.toggleOrder()">
-                          <option value="">Sort by...</option>
                           <option value="start_actual">Starting date (increasing)</option>
                           <option value="-start_actual">Starting date (decreasing)</option>
                           <option value="total_budget">Budget (increasing)</option>

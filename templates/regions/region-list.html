@@ -54,12 +54,12 @@
                     <span class="result-count">Results:</span> {{vm.totalRegions}}
                 </div>
                 <div class="col-xs-8 text-right-not-xs">
+                    <span class="result-count sortby">Sort by:</span>
                     <label class="wrapper">
                       <div class="custom-select ff-hack">
                         <select
                           ng-model="vm.order_by"
                           ng-change="vm.toggleOrder()">
-                          <option value="">Sort by...</option>
                           <option value="name">Name (A - Z)</option>
                           <option value="-name">Name (Z - A)</option>
                           <option value="total_disbursements">Expenditure (increasing)</option>

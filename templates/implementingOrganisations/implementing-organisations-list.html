@@ -7,12 +7,12 @@
                     <span class="result-count">Results:</span> {{vm.totalOrganisations}}
                 </div>
                 <div class="col-xs-8 text-right-not-xs">
+                    <span class="result-count sortby">Sort by:</span>
                     <label class="wrapper">
                       <div class="custom-select ff-hack">
                         <select
                           ng-model="vm.order_by"
                           ng-change="vm.toggleOrder()">
-                          <option value="">Sort by...</option>
                           <option value="name">Name (A - Z)</option>
                           <option value="-name">Name (Z - A)</option>
                           <option value="total_disbursements">Expenditure (increasing)</option>
@@ -36,13 +36,13 @@
 
         <div class="sort headers">
             <div class="row">
-                <div class="col-sm-4">
+                <div class="col-sm-6">
                     <small>Organisation</small>
                 </div>
-                <div class="col-sm-4">
+                <div class="col-sm-3">
                     <small>Total disbursement</small>
                 </div>
-                <div class="col-sm-4">
+                <div class="col-sm-3">
                     <small>Total projects</small>
                 </div>
             </div>
@@ -53,14 +53,14 @@
             ng-repeat="item in vm.organisations">
             <div class="hp-block wit">
                 <div class="row organisations">
-                    <div class="col-sm-4">
+                    <div class="col-sm-6">
                         <h3 class="no-margin"><a ui-sref="organisation({ organisation_id: item.receiver_organisation_id })">{{ item.name }}</a></h3>
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-3">
                         <h3 class="no-margin">{{item.total_disbursements  | shortcurrency :'€'}}</h3>
                     </div>
-                    <div class="col-sm-4">
-                        <h3 class="no-margin">{{item.activity_count}} projects</h3>
+                    <div class="col-sm-3">
+                        <h3 class="no-margin">{{item.activity_count}}</h3>
                     </div>
                 </div>
             </div>
