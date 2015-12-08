@@ -24,10 +24,10 @@
     vm.indirectDisbursements = '';
 
     vm.tabs = [
-      {'id': 'samenvatting', 'name': 'Samenvatting', 'count': -1},
-      {'id': 'activities', 'name': 'Projecten', 'count': -1},
-      {'id': 'sectors', 'name': 'Sectoren', 'count': -1},
-      {'id': 'implementing-organisations', 'name': 'Organisaties', 'count': -1},
+      {'id': 'samenvatting', 'name': 'Summary', 'count': -1},
+      {'id': 'activities', 'name': 'Projects', 'count': -1},
+      {'id': 'sectors', 'name': 'Sectors', 'count': -1},
+      {'id': 'implementing-organisations', 'name': 'Organisations', 'count': -1},
     ]
 
     /**

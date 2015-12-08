@@ -1,4 +1,4 @@
-<script type="text/ng-template" id="tree">
+<script type="text/ng-template" id="sector-tree">
     <div ng-if="item.children" class="hp-block wit parent collapsed">
         <div class="row sectors">
             <div class="col-xs-1">
@@ -41,7 +41,7 @@
     </div>
 
     <div ng-if="item.children" class="children" style="display: none;">
-        <div collapse="vm.isCollapsed" ng-repeat="item in item.children" ng-include="'tree'"></div>
+        <div collapse="vm.isCollapsed" ng-repeat="item in item.children" ng-include="'sector-tree'"></div>
     </div>    
 </script>
 
@@ -99,7 +99,7 @@
         <div class="activity-list-item" 
             ng-show="vm.sectors.length != 0"
             ng-repeat="item in vm.sectors"
-            ng-include="'tree'">
+            ng-include="'sector-tree'">
         </div>
     </div>
 </div>
