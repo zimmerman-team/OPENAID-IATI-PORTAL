@@ -1984,11 +1984,16 @@ SLIDER TOOLTIP
         border:none;
         width: 14px;
         height: 14px;
-        margin-left: -10px;
         margin-top: -6px;
         outline: none;
         box-shadow: 0px 0px 0px 4px rgba(0,0,0, 0);
         transition:box-shadow .2s ease-in-out;
+        &.max-slider-handle {
+          margin-right: 10px;
+        }
+        &.min-slider-handle {
+          margin-left: 0;
+        }
         &:nth-of-type(2) {
           margin-left:0;
         }
@@ -2014,6 +2019,9 @@ SLIDER TOOLTIP
     font-weight: 300;
     opacity: 1;
     font-size: 14px;
+    &.tooltip-max {
+      margin-left:-56px !important;
+    }
     .tooltip-inner {
       background: rgba(0,0,0, 0.3);
       &:before {
@@ -2021,13 +2029,13 @@ SLIDER TOOLTIP
       }
     }
     &.top {
-      top:-48px !important;
+      top:-15px !important;
       .tooltip-arrow {
         border-top-color: rgba(0,0,0, 0.3);
       }
     }
     &.bottom {
-      top:32px !important;
+      top:8px !important;
       .tooltip-arrow {
         border-bottom-color: rgba(0,0,0, 0.3);
       }

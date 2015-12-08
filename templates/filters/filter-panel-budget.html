@@ -15,7 +15,7 @@
 	        max="2000000000"
 	        step="1"
 	        range="true"
-	        precision="2"
+	        precision="0"
 	        reversed="false"
 	        orientation="horizontal"
 	        handle="round"
@@ -23,7 +23,9 @@
 	        ng-disabled="false"
 	        naturalarrowkeys="false"
 	        selection="before"
-	        tooltip="always">
+	        tooltip="always"
+	        tooltipsplit="true"
+	        tooltipposition="top">
 		</slider>
 	</div>
 	<button class="btn btn-default btn-openaid btn-save" ng-click="vm.save()">Save</button>
