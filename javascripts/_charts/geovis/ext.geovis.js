@@ -674,9 +674,13 @@ ZzLocationVis = (function() {
     if (that.indirect.select('rect').attr('fill') != '#f7f7f7') {
 
         that.indirect.select('circle')
+        .transition()
+        .duration(200)
         .attr('cx', 23);
         
         that.indirect.select('rect')
+        .transition()
+        .duration(200)
         .attr('fill', '#f7f7f7');
 
         that.indirect.select('text')
@@ -714,17 +718,17 @@ ZzLocationVis = (function() {
 
     }else {
         that.indirect.select('circle')
+        .transition()
+        .duration(200)
         .attr('cx', 38);
 
         that.indirect.select('rect')
+        .transition()
+        .duration(200)
         .attr('fill', '#8cc63f');
 
         that.indirect.select('text')
         .text('deactivate indirect expenditure');
-
-      that.vis.selectAll('g.direct circle')
-        .transition()
-        .attr('x', 40);
 
       // Update the nodes…
       var node = that.vis.selectAll(".node");
