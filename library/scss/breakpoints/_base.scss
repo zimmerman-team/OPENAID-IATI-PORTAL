@@ -953,7 +953,9 @@ FILTER BAR
   }
 }
 .sector-page {
-
+  .sector-filter {
+    display: none;
+  }
 }
 
 .dash-bar {
