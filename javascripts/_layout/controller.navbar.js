@@ -40,15 +40,16 @@
       $(window).scroll(function() {
         var height = $(window).scrollTop();
         var $fixedbar = $('.filters-fixed');
+        var barHeight = $('.filters-fixed').height();
 
-        if(height  > 86 ) {
+        if(height  > barHeight ) {
             $fixedbar.addClass('fixed');
-            $('.pad-helper').addClass('faux-pad');
+            $('.pad-helper').css('height',barHeight);
             $("#toTop").fadeIn();
         }
-        if (height < 86 ) {
+        if (height < barHeight ) {
            $fixedbar.removeClass('fixed');
-           $('.pad-helper').removeClass('faux-pad');
+           $('.pad-helper').css('height',0);
            $("#toTop").fadeOut();
         }
       });

@@ -7,7 +7,7 @@
         <div class="col-md-9">
           <div class="dash-wrap hidden-xs">
               <div class="vis-type" ng-repeat="view in vm.views">
-                <a ui-sref="{{view.id}}" class="{{view.class}}">
+                <a ui-sref="{{view.id}}" class="{{view.class}} btn">
                   {{view.name}}
                 </a>
               </div>
@@ -158,7 +158,7 @@
             ng-mouseover="vm.hoverIn('reset')" 
             ng-mouseleave="vm.hoverOut('reset')">
             <a ng-click="vm.resetFilters()">
-              <i class="fa fa-refresh fa-inverse"></i> 
+              <!-- <i class="fa fa-refresh fa-inverse"></i>  -->
               <span>Reset filters</span>
             </a>
           </span>

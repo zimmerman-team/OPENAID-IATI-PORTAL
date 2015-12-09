@@ -87,7 +87,7 @@ ZzLocationVis = (function() {
 
     // init top
     var tophead = this.vis.append('rect')
-      .attr('width', 740)
+      .attr('width', 745)
       .attr('height', 40)
       .attr('x', 0)
       .attr('y', 0)
@@ -96,17 +96,17 @@ ZzLocationVis = (function() {
 
     // init right
     var righthead = this.vis.append('rect')
-      .attr('width', 250)
+      .attr('width', 254)
       .attr('height', 40)
-      .attr('x', 750)
+      .attr('x', 747)
       .attr('y', 0)
       .attr('fill', '#fff')
       .attr('fill-opacity', 0.3);
     var right = this.vis.append('rect')
-      .attr('width', 250)
-      .attr('height', 990)
-      .attr('x', 750)
-      .attr('y', 50)
+      .attr('width', 254)
+      .attr('height', 999)
+      .attr('x', 747)
+      .attr('y', 41)
       .attr('fill', '#fff')
       .attr('fill-opacity', 0.3);
 
@@ -173,7 +173,7 @@ ZzLocationVis = (function() {
 
     this.regions_wrap = this.vis.append('g')
       .attr('class', 'regions-wrap')
-      .attr('transform', 'translate(0,-20)');
+      .attr('transform', 'translate(0,-29)');
 
     this.countries = this.regions_wrap.append('g')
       .attr('class', 'countries')
@@ -220,7 +220,7 @@ ZzLocationVis = (function() {
     nodeEnterBg
       .insert('rect')
       .attr('class','bg')
-      .attr('width', 740)
+      .attr('width', 745)
       .attr('height', 200)
       .attr('x', -15)
       .attr('y', -130)
@@ -409,9 +409,11 @@ ZzLocationVis = (function() {
           else if ( 
             d.id == 189 ||
             d.id == 380 ||
-            d.id == 589 ||
-            d.id == 689 ) {
+            d.id == 589  ) {
             return "170";
+          }
+          else if ( d.id == 689) {
+            return "161";
           }
           else if ((d.id == 619 && d._children) || d.id == 489) {
             return "200";
@@ -420,19 +422,21 @@ ZzLocationVis = (function() {
             return "100";
           }
           else {
-            return "190";
+            return "199";
           }
         })
         .attr('y', function(d,i){
           if ( 
             d.id == 189 ||
             d.id == 380 ||
-            d.id == 589 ||
-            d.id == 689 ) {
+            d.id == 589 ) {
             return "-100";
           }
+          else if ( d.id == 689) {
+            return "-91";
+          }
           else if (d.id == 619 || d.id == 489 ) {
-            return "-140";
+            return "-131";
           }
           else {
             return "-130";

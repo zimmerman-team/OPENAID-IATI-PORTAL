@@ -51,11 +51,11 @@
         <div class="sort">
             <div class="row">
                 <div class="col-xs-4">
-                    <span class="result-count">Results:</span> {{vm.totalRegions}}
+                    <span class="result-count">Results <span class="badge">{{vm.totalRegions}}</span></span>
                 </div>
-                <div class="col-xs-8 text-right-not-xs">
-                    <label class="wrapper">
-                      <div class="custom-select ff-hack">
+                <div class="col-xs-8 text-right">
+<!--                     <label class="wrapper">
+                      <div class="custom-select ff-hack"> -->
                         <select
                           ng-model="vm.order_by"
                           ng-change="vm.toggleOrder()">
@@ -64,9 +64,9 @@
                           <option value="total_disbursements">Expenditure (increasing)</option>
                           <option value="-total_disbursements">Expenditure (decreasing)</option>
                         </select>
-                      </div>
+<!--                       </div>
                     </label>
-                    <span class="result-count sortby">Sort by:</span>
+                    <span class="result-count sortby">Sort by:</span> -->
                 </div>
             </div>
         </div>

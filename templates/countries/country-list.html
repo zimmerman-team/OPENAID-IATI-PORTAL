@@ -3,10 +3,23 @@
         <div class="sort">
             <div class="row">
                 <div class="col-xs-4">
-                    <span class="result-count">Results:</span> {{vm.totalCountries}} 
+                    <span class="result-count">Results <span class="badge"> {{vm.totalCountries}} </span></span>
                 </div>
-                <div class="col-xs-8 text-right-not-xs">
-                    <label class="wrapper">
+                <div class="col-xs-8 text-right">
+
+<!--                     <div class="styled-select insort">
+ -->                        <select
+                            ng-model="vm.order_by"
+                            ng-change="vm.toggleOrder()">
+                            <option value="name">Name (A - Z)</option>
+                            <option value="-name">Name (Z - A)</option>
+                            <option value="total_disbursements">Expenditure (increasing)</option>
+                            <option value="-total_disbursements">Expenditure (decreasing)</option>
+                        </select>
+<!--                     </div>
+ -->                    <!-- <div class="result-count sortby">Sort by:</div> -->
+
+                    <!-- <label class="wrapper">
                       <div class="custom-select ff-hack">
                         <select
                           ng-model="vm.order_by"
@@ -17,8 +30,8 @@
                           <option value="-total_disbursements">Expenditure (decreasing)</option>
                         </select>
                       </div>
-                    </label>
-                    <span class="result-count sortby">Sort by:</span>
+                    </label> -->
+                    
                 </div>
             </div>
         </div>
