@@ -1,7 +1,3 @@
-/**
-* BudgetController
-* @namespace oipa.budget.controllers
-*/
 (function () {
   'use strict';
 
@@ -11,9 +7,6 @@
 
   BudgetController.$inject = ['$scope', 'Budget', 'FilterSelection'];
 
-  /**
-  * @namespace BudgetController
-  */
   function BudgetController($scope, Budget, FilterSelection) {
     var vm = this;
     vm.on = false;
@@ -22,11 +15,6 @@
 
     activate();
 
-    /**
-    * @name activate
-    * @desc Actions to be performed when this controller is instantiated
-    * @memberOf oipa.budget.controllers.BudgetController
-    */
     function activate() {
 
       $scope.$watch("vm.budgetValue", function (budgetValue) {
@@ -38,10 +26,10 @@
       }, true);
 
       $scope.$watch("vm.budget.toReset", function (toReset) {
-        
         if(toReset == true){
           vm.budgetValue = [0,2000000000];
           vm.on = false;
+          vm.budget.toReset = false;
         }
       }, true);
     }
@@ -49,7 +37,6 @@
     vm.save = function(){
       FilterSelection.save();
     }
-
 
   }
 })();

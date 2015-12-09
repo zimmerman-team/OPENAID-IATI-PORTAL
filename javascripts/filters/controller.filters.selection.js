@@ -41,12 +41,14 @@
       vm.selectedBudget.on = true;
       vm.selectedBudget.value = [0,2000000000];
       FilterSelection.save();
+      Budget.toReset = true;
     }
 
     vm.removeTransactionYearFilter = function(){
       vm.selectedTransactionYear.on = false;
       vm.selectedTransactionYear.year = 2015;
       FilterSelection.save();
+      Transaction.toReset = true;
     }
 
     

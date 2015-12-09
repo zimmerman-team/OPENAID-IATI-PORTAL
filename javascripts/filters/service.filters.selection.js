@@ -89,7 +89,7 @@
 
 	      Search.searchString = '';
 	      Budget.toReset = true;
-	      Budget.budget.budgetValue = [100000,300000];
+	      Budget.budget.value = [100000,2000000000];
 	      Budget.budget.on = false;
 
 	      Transaction.toReset = true;
