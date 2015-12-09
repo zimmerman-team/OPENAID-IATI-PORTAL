@@ -1123,7 +1123,7 @@ FILTER BAR
 
 .social {
   text-align: right;
-  margin-top:3px;
+  margin-top:5px;
   margin-bottom: 6px;
   span:last-of-type{
     margin-right:10px;
@@ -2499,6 +2499,7 @@ footer{
 }
 
 .geomap-mask {
+  position:relative;
 }
 
 .map-switch {
@@ -2641,30 +2642,51 @@ footer{
 }
 
 .legend {
-  text-align: center;
+  text-align: left;
   margin-top:1px;
   margin-bottom:1px;
-  background:rgba(255,255,255,.6);
-  padding-top:5px;
+  padding:5px;
+  position:absolute;
+  background: rgba(255,255,255,0.9);
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  bottom:15px;
+  left:15px;
+  border-radius:4px;
   .check {
     position: relative;
-    display: inline-block;
   }
   label {
     font-weight: normal;
     cursor: pointer;
   }
   .labels {
-    margin-left: 38px;
+    margin-left: 3px;
   }
   h3 {
-    font-size: 1.2em;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 4px;
+    margin-top:0;
   }
   .check {
-    margin-right: 20px;
+    margin-right: 2px;
     &:last-of-type {
       margin-right: 0;
     }
+  }
+  .fa-stack {
+    height:20px;
+    width: 20px;
+    line-height: 20px;
+  }
+  .fa-stack-1x {
+    font-size: 10px;
+  }
+  .fa-stack-2x {
+    font-size: 20px;
+  }
+  .item-name {
+    font-size: 14px;
   }
   /*** custom checkboxes ***/
   // input[type=checkbox] { 

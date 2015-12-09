@@ -14,8 +14,9 @@
       </div>
     </leaflet>
     <div class="legend" ng-show="mapLegend && vm.geoView == 'countries'">
+        <h3>Relationship type</h3>
         <div class="check kleur-{{item.id}}" ng-repeat="item in vm.countryRelation">
-            <label class="switch" for="id{{item.id}}">
+            <label for="id{{item.id}}">
                 
                 <input 
                   id="id{{item.id}}" 
@@ -24,13 +25,13 @@
                   type="checkbox"
                   checklist-change="vm.changeSelectedCountryRelations()">
 
-                <i class="faker"></i>
+                
                 <span class="labels">
                     <span class="fa-stack">
                         <span class="fa fa-circle fa-stack-2x kleur"></span>
                         <span class="fa fa-map-marker fa-stack-1x fa-inverse"></span>
                     </span>
-                    <span>{{item.name}}</span>
+                    <span class="item-name">{{item.name}}</span>
                 </span>
             </label>
         </div>
