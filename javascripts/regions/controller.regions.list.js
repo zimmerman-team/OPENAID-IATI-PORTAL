@@ -131,7 +131,7 @@
         vm.remoteRegions = data.data.results;
         vm.regionMapping = angular.copy(regionMapping)
         vm.regions = applyRegionHierarchy(vm.regionMapping)
-        console.log(vm.regions);
+//        console.log(vm.regions);
         vm.totalRegions = data.data.count;
         $scope.count = vm.totalRegions;
       }

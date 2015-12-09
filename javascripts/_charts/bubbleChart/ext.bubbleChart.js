@@ -269,8 +269,8 @@ ZzBubbleChart = (function() {
   };
 
   ZzBubbleChart.prototype.go_to_detail_link = function(data, i, element) {
-    console.log(data);
-    console.log(home_url + "/"+data.detail_url+"/" + data.code + "/");
+    // console.log(data);
+    // console.log(home_url + "/"+data.detail_url+"/" + data.code + "/");
     return window.location.href = home_url + "/"+data.detail_url+"/" + data.code + "/";
   };
 

@@ -58,7 +58,7 @@
         vm.rsrLoading = false;
         // vm.tabs[3].count = vm.rsrProjects.length;
       },function(data, status, headers, config){
-        console.log(data);
+        //console.log(data);
       });
 
     }
