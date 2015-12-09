@@ -24,12 +24,37 @@
     vm.search = Search;
     vm.currentPage = null;
     vm.state = $state;
+    vm.filterCount = 0;
+
+    vm.updateFilterCount = function(){
+      var count = 0;
+      if(vm.currentPage != 'country'){ count += vm.selectedCountries.length; }
+      if(vm.currentPage != 'region'){ count += vm.selectedRegions.length; }
+      if(vm.currentPage != 'sector'){ count += vm.selectedSectors.length; }
+      if(vm.currentPage != 'organisation'){ count += vm.selectedImplementingOrganisations.length; }
+      count += vm.selectedActivityStatuses.length;
+      count += vm.search.searchString.length;
+      if(vm.selectedBudget.on){ count += 1; }
+      if(vm.selectedTransactionYear.on){ count += 1; }
+      if(count != vm.filterCount){ vm.filterCount = count; }
+    }
 
     function activate(){
       $scope.$watch('vm.state.current.name', function(name){
         if(name){
           vm.currentPage = name;
         }
+      }, true);
+
+      $scope.$watch('vm.filterSelection.selectionString', function(selectionString){
+        if(!selectionString.length){
+          if(vm.filterCount != 0){
+            vm.filterCount = 0;
+          }
+        } else {
+          vm.updateFilterCount();
+        }
+
       }, true);
     }
     activate();

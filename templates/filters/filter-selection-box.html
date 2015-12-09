@@ -1,4 +1,4 @@
-<div class="filter-selected row" ng-show="vm.filterSelection.selectionString.length">
+<div class="filter-selected row" ng-show="vm.filterCount">
 	<div class="col-md-12">
 		<div class="filter-box">
 			<a class="btn filter-selected-button selectedCountries" ng-repeat="item in vm.selectedCountries" ng-click="vm.removeFilter(vm.selectedCountries, 'country_id', item.country_id)" ng-if="vm.currentPage != 'country'">
@@ -50,13 +50,7 @@
 				<span class="fa fa-remove"></span>
 			</a>
 
-			<div style="margin-bottom:4px;" ng-show="!(
-			vm.selectedCountries.length + 
-			vm.selectedRegions.length + 
-			vm.selectedSectors.length + 
-			vm.selectedImplementingOrganisations.length + 
-			vm.selectedActivityStatuses.length +
-			vm.search.searchString.length) && !vm.selectedBudget.on && !vm.selectedTransactionYear.on">
+			<div style="margin-bottom:4px;" ng-show="!vm.filterCount">
 				No filters selected
 			</div>
 		</div>
