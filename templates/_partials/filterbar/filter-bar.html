@@ -69,7 +69,7 @@
         <div class="wrap">
 
           <span 
-              class="filter" 
+              class="filter country-filter" 
               ng-click="vm.toggleOpenPanel('recipient_countries')" 
               ng-class="{'active': vm.isOpenedHeader('recipient_countries')}"
               ng-mouseover="vm.hoverIn('recipient_countries')" 
@@ -80,7 +80,7 @@
           </span>
 
           <span 
-              class="filter" 
+              class="filter region-filter" 
               ng-click="vm.toggleOpenPanel('recipient_regions')" 
               ng-class="{'active': vm.isOpenedHeader('recipient_regions')}"
               ng-mouseover="vm.hoverIn('recipient_regions')" 
@@ -100,7 +100,7 @@
             <span>Budget</span>
           </span>
           <span 
-              class="filter" 
+              class="filter sector-filter" 
               ng-click="vm.toggleOpenPanel('sectors')" 
               ng-class="{'active': vm.isOpenedHeader('sectors')}"
               ng-mouseover="vm.hoverIn('recipient_sectors')" 
@@ -132,7 +132,7 @@
           </span>
 
           <span
-              class="filter"
+              class="filter organisation-filter"
               ng-click="vm.toggleOpenPanel('recipient_implementing_organisations')" 
               ng-class="{'active': vm.isOpenedHeader('recipient_implementing_organisations')}"
               ng-mouseover="vm.hoverIn('recipient_implementing_organisations')" 

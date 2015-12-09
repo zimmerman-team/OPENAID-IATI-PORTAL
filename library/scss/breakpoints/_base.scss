@@ -937,6 +937,25 @@ FILTER BAR
   }
 }
 
+.region-page {
+  .region-filter, .country-filter {
+    display: none;
+  }
+}
+.country-page {
+  .region-filter, .country-filter {
+    display: none;
+  }
+}
+.organisation-page {
+  .organisation-filter {
+    display: none;
+  }
+}
+.sector-page {
+
+}
+
 .dash-bar {
   margin-top:1px;
   z-index: 99999;
@@ -1369,14 +1388,13 @@ tr {
 }
 
 .filter-box {
-  padding:8px 11px 4px 15px;
+  padding:4px 10px;
   .btn {
     opacity: 1;
     font-size: 12px;
     color:#fff !important;
     border-radius: 4px;
-    margin-right: 4px;
-    margin-bottom: 4px;
+    margin: 2px;
     padding:2px 8px;
     background:#5cb85c;
     border:1px solid #3e8f3e;

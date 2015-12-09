@@ -9,9 +9,9 @@
     .module('oipa.filters')
     .controller('FiltersSelectionController', FiltersSelectionController);
 
-  FiltersSelectionController.$inject = ['$scope', 'FilterSelection', 'Countries', 'Regions', 'Budget', 'Sectors', 'Transaction', 'ImplementingOrganisations', 'ActivityStatus', 'Search'];
+  FiltersSelectionController.$inject = ['$scope', '$state', 'FilterSelection', 'Countries', 'Regions', 'Budget', 'Sectors', 'Transaction', 'ImplementingOrganisations', 'ActivityStatus', 'Search'];
 
-  function FiltersSelectionController($scope, FilterSelection, Countries, Regions, Budget, Sectors, Transaction, ImplementingOrganisations, ActivityStatus, Search) {
+  function FiltersSelectionController($scope, $state, FilterSelection, Countries, Regions, Budget, Sectors, Transaction, ImplementingOrganisations, ActivityStatus, Search) {
     var vm = this;
     vm.selectedCountries = Countries.selectedCountries;
     vm.selectedRegions = Regions.selectedRegions;
@@ -22,6 +22,17 @@
     vm.selectedTransactionYear = Transaction.year;
     vm.filterSelection = FilterSelection;
     vm.search = Search;
+    vm.currentPage = null;
+    vm.state = $state;
+
+    function activate(){
+      $scope.$watch('vm.state.current.name', function(name){
+        if(name){
+          vm.currentPage = name;
+        }
+      }, true);
+    }
+    activate();
 
     vm.removeFilter = function(selectedArr, item_name, item_id) {
       for (var i = 0; i < selectedArr.length;i++){
@@ -49,9 +60,7 @@
       vm.selectedTransactionYear.year = 2015;
       FilterSelection.save();
       Transaction.toReset = true;
-    }
-
-    
+    }  
 
     vm.removeSearch = function(){
       Search.searchString = '';
