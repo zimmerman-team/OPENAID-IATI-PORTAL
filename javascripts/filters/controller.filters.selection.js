@@ -38,7 +38,7 @@
     }
 
     vm.removeBudgetFilter = function(){
-      vm.selectedBudget.on = true;
+      vm.selectedBudget.on = false;
       vm.selectedBudget.value = [0,2000000000];
       FilterSelection.save();
       Budget.toReset = true;
