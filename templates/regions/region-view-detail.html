@@ -18,11 +18,11 @@
     <div ng-show="vm.selectedTab == 'samenvatting'">
 
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-6 collapsed-right">
                 <temp-locations-geo-map exact-location="vm.region" map-height="416px"></temp-locations-geo-map>
                 <div class="map-overlay"><b>Region code:</b> {{vm.region.code}}</div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6 collapsed-left">
                 <div class="hp-block wit" ng-click="vm.dashboard = 'list'">
                     <h3>Transactions</h3>
                     <financials-line-chart 
