@@ -573,6 +573,8 @@ NAVBAR
   z-index: 99999;
   a {
     text-decoration: none;
+    outline: none;
+    transition: all .2s ease-in-out;
   }
   .glyphicon {
     font-size:18px;
@@ -668,7 +670,7 @@ NAVBAR
   background:#333;
   text-transform: uppercase;
   padding:5px 10px;
-  margin-bottom:15px;
+  margin-bottom:1px;
   font-size:14px;
   ul {
     margin:0;
@@ -759,6 +761,10 @@ SEARCH BAR
   .glyphicon-search{
     font-size: 1.3em;
     color: #ccc;
+  }
+  .form-control:focus {
+    border-color:$oranje;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba($oranje, .6);
   }
 }
 
@@ -903,10 +909,10 @@ FILTER BAR
       span {
         font-size:12px;
       }
-      transition:all .2s ease-in-out;
+      transition:background .2s ease-in-out;
       margin-top:1px;
       color: #fff;
-      background-color: #d9534f;
+      background: #d9534f;
       border-color: #b92c28;
       text-shadow: 0 -1px 0 rgba(0,0,0,.2);
       box-shadow: inset 0 1px 0 rgba(255,255,255,.15),0 1px 1px rgba(0,0,0,.075);
@@ -919,7 +925,7 @@ FILTER BAR
       //border: 1px solid transparent;
       border-radius: 4px;
       &:hover {
-        background-color: darken(#d9534f,10%);
+        background: darken(#d9534f,10%);
       }
       &:active {
         box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
@@ -932,7 +938,7 @@ FILTER BAR
   margin-top:1px;
   z-index: 99999;
   .wrap {
-     background:rgba(255,255,255,.6);
+     //background:rgba(255,255,255,.6);
   }
 }
 
@@ -987,7 +993,7 @@ FILTER BAR
     white-space: nowrap;
     float: left;
     text-align: center;
-    margin:5px 0px 5px 10px;
+    margin:5px 10px 5px 0;
     a {
       // font-size: 16px;
       // font-weight: normal;
@@ -998,7 +1004,7 @@ FILTER BAR
       // margin-right: 5px;
       // min-width: 120px;
       // background:rgba(115,129,145,0.2);
-      transition:all .2s ease-in-out;
+      transition:background .2s ease-in-out;
       background:#777;
       padding:2px 8px;
       font-size: 12px;
@@ -1012,11 +1018,14 @@ FILTER BAR
       &:hover {
        background:darken(#777,10%);
       }
+      &:focus {
+        color:#fff;
+      }
       &.active {
         // color:rgba(255,255,255,1);
         // background:rgba(115,129,145,0.5);
-        background:#5cb85c;
-        border:1px solid darken(#5cb85c,5%);
+        background:#337ab7;
+        border:1px solid darken(#337ab7,5%);
       }
     }
   }
@@ -1126,7 +1135,7 @@ FILTER BAR
   margin-top:5px;
   margin-bottom: 6px;
   span:last-of-type{
-    margin-right:10px;
+    //margin-right:10px;
   }
   a {
     color:#fff;
@@ -1207,6 +1216,10 @@ h4 {
   position: relative;
 }
 
+.negative {
+  margin-top:-1px;
+}
+
 .filter-panel {
   z-index: 999;
   background-color: #fff;
@@ -1214,6 +1227,7 @@ h4 {
   width: 100%;
   padding:15px;
   left:0;
+  margin-top:1px;
   .search-box {
     padding-left:0;
     margin-top: 0;
@@ -2643,14 +2657,13 @@ footer{
 
 .legend {
   text-align: left;
-  margin-top:1px;
-  margin-bottom:1px;
+  margin:0 !important;
   padding:5px;
   position:absolute;
   background: rgba(255,255,255,0.9);
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
-  bottom:15px;
-  left:15px;
+  bottom:20px;
+  left:20px;
   border-radius:4px;
   .check {
     position: relative;

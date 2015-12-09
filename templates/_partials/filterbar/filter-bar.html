@@ -5,7 +5,7 @@
     <div class="wrap clearfix">
       <div class="row">
         <div class="col-md-9">
-          <div class="dash-wrap hidden-xs">
+          <div class="dash-wrap hidden-xs" ng-if="vm.views.length > 1">
               <div class="vis-type" ng-repeat="view in vm.views">
                 <a ui-sref="{{view.id}}" class="{{view.class}} btn">
                   {{view.name}}
@@ -167,7 +167,7 @@
 
         <tool-bar></tool-bar>
 
-        <div class="row">
+        <div class="row negative">
             <div class="col-xs-12">
                 <div class="rel">
                     <filter-panel-recipient-countries ng-show="vm.isOpenedHeader('recipient_countries')"></filter-panel-recipient-countries>

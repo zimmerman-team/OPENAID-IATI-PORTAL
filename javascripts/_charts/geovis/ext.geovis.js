@@ -112,27 +112,27 @@ ZzLocationVis = (function() {
 
     // top labels
     var leftText = this.vis.append('text')
-      .attr('x', 260)
+      .attr('x', 280)
       .attr('y', 27)
-      .attr('font-size', '19px')
+      .attr('font-size', '16px')
       .attr('font-weight', 'bold')
       .attr('fill', '#444')
       .attr('style', 'text-anchor: start;')
       .text('Expenditure per region');
 
     var midText = this.vis.append('text')
-      .attr('x', 545)
+      .attr('x', 560)
       .attr('y', 27)
-      .attr('font-size', '19px')
+      .attr('font-size', '16px')
       .attr('font-weight', 'bold')
       .attr('fill', '#444')
       .attr('style', 'text-anchor: start;')
       .text('Unspecified per region');
 
     var rightText = this.vis.append('text')
-      .attr('x', 780)
+      .attr('x', 791)
       .attr('y', 27)
-      .attr('font-size', '19px')
+      .attr('font-size', '16px')
       .attr('font-weight', 'bold')
       .attr('fill', '#444')
       .attr('style', 'text-anchor: start;')
@@ -158,9 +158,7 @@ ZzLocationVis = (function() {
       .attr('rx', 9)
       .attr('ry', 9)
       .attr('fill', '#8cc63f')
-      .attr('fill-opacity', 1)
-      .attr('stroke', '#ccc')
-      .attr('stroke-width', 1);
+      .attr('fill-opacity', 1);
     this.indirect.append('circle')
       .attr('class', 'indirectCircle')
       .attr('cx', 38)
@@ -675,7 +673,7 @@ ZzLocationVis = (function() {
       });
     }
 
-    if (that.indirect.select('rect').attr('fill') != '#f7f7f7') {
+    if (that.indirect.select('rect').attr('fill') != '#eeeeee') {
 
         that.indirect.select('circle')
         .transition()
@@ -685,7 +683,7 @@ ZzLocationVis = (function() {
         that.indirect.select('rect')
         .transition()
         .duration(200)
-        .attr('fill', '#f7f7f7');
+        .attr('fill', '#eeeeee');
 
         that.indirect.select('text')
         .text('activate indirect expenditure');
