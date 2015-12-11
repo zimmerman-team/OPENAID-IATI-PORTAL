@@ -1,16 +1,33 @@
-#openaidNL
 
-In September 2011 the Dutch Ministry of Foreign Affairs started publishing data on all the development aid projects it finances. The data is published in the international IATI standard which is easy for computers to read, but very hard for humans. On openaid.nl the information is made accessible through a web interface.
-
-Zimmerman & Zimmerman is a dutch open-data visualisation company based in Amsterdam that develops opensource IATI tools, such as transparency portals for open UNESCO, open UN-Habitat and the Urban data portal for UN-Habitat. All these tools run on an Open IATI Parser and API called OIPA, which was developed by Zimmerman & Zimmerman. They where responsible for developing the concept, the design and the technical development of openaidNL.
-
-What data can I find on openaidNL?
-This platform extracts all the raw IATI data published by the organisations publishing IATI from the IATI registry, and presents it on the platform by providing an easy-to-use web interface. It does not alter or interpret the data in any way.
-
-Why is open data important?
-Transparency of development aid enhances the effectiveness and quality of development aid. Governments of developing countries are able to plan better when they have access to accurate and up-to-date information about aid flows into their countries. Citizens in developing countries can hold their governments accountable for the spending of aid. The Dutch public gets a better picture of how public money is spent.
-
-The value of open data is greatly increased if it can be compared and added up internationally. The International Aid Transparancy Initiative (IATI) aims to do just that – to develop an international standard for the publication of aid data.
-
-Initiated back in 2011 by Akvo.org and maintained by Zimmerman & Zimmerman ever since.
 			
+<div align="center">
+  <a href="https://www.government.nl/ministries/ministry-of-foreign-affairs">
+    <img src="https://www.government.nl/binaries/svg/content/gallery/government/channel-afbeeldingen/logos/logo-government-of-the-netherlands.svg"/>
+  </a>
+</div>
+
+
+#### IATI data Portal for the Dutch Ministry of Foreign Affairs.
+--------
+This is the Angular.JS User Interface the Dutch Ministry of Foreign Affairs. The http://www.openaid.nl portal has visualized the open data on official development aid projects and programmes executed by the Dutch Ministry of Foreign Affairs. 
+
+This platform extracts the raw IATI data published by the Dutch Ministry of Foreign Affairs from the IATI registry, and presents it in an easy-to-use web interface. It does not alter or interpret the data in any way.
+
+This Angular.JS User Interface makes use of the data-engine [OIPA] (http://www.oipa.nl),  enabling IATI XML compliant data to be parsed and interfaced using the OIPA JSON API.
+
+IATI is a global aid transparency standard and it makes information about aid spending easier to access, re-use and understand the underlying data using a unified open standard. You can find more about the IATA XML standard at: www.iatistandard.org
+
+
+#### About the project
+--------
+
+* Web Site:         http://www.openaid.nl
+* IATI data:  	    http://www.iatiregistry.org/publisher/minbuza_nl
+* Data license:    [open license] (http://opendefinition.org/od/2.0/en/)
+* OIPA:             [OIPA] (https://github.com/zimmerman-zimmerman/OIPA)
+* Authors:          [Zimmerman & Zimmerman ](https://www.zimmermanzimmerman.nl/)
+* License UI:       [CC04] (http://creativecommons.org/licenses/by-nc-sa/4.0/)
+* Github Repo:      https://github.com/zimmerman-zimmerman/openaidNL/
+* Bug Tracker:      https://github.com/zimmerman-zimmerman/openaidNL/issues
+* Documentation:    https://github.com/zimmerman-zimmerman/openaidNL/wiki
+
