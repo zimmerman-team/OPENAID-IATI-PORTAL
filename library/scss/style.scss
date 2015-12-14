@@ -161,6 +161,18 @@ be set to display none.
 	}
 }
 
+.organisations, .countries, .sectors, .regions {
+	.col-xs-1 {
+		width:12%;
+	}
+	.col-xs-11 {
+		width:88%;
+	}
+	.col-xs-offset-1 {
+		margin-left:12%;
+	}
+}
+
 @media only screen and (min-width: 768px) {
 	.organisations, .countries, .sectors, .regions {
 		.col-xs-1 {
@@ -173,5 +185,18 @@ be set to display none.
 			margin-left:4%;
 		}
 	}
+}
 
+@media only screen and (min-width: 481px) {
+	.organisations, .countries, .sectors, .regions {
+		.col-xs-1 {
+			width:8%;
+		}
+		.col-xs-11 {
+			width:92%;
+		}
+		.col-xs-offset-1 {
+			margin-left:8%;
+		}
+	}
 }
