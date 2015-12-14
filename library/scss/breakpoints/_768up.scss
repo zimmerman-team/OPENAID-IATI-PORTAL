@@ -151,6 +151,18 @@ come into play. Have fun!
   margin-top:0;
 }
 
+.homepage {
+	a.callout {
+		.text {
+			max-height: 67px;
+			background: -webkit-linear-gradient(transparent, rgba(50,50,50,.4)); /* For Safari 5.1 to 6.0 */
+			background: -o-linear-gradient(transparent, rgba(50,50,50,.4)); /* For Opera 11.1 to 12.0 */
+			background: -moz-linear-gradient(transparent, rgba(50,50,50,.4)); /* For Firefox 3.6 to 15 */
+			background: linear-gradient(transparent, rgba(50,50,50,.4)); /* Standard syntax */
+		}
+	}
+}
+
 //map viz
 // .legend {
 //   label {
@@ -222,24 +234,6 @@ come into play. Have fun!
 
 .navbar .btn.btn-default, .navbar .btn-group .btn {
 	margin-right: 10px;
-}
-
-.navbar{
-  .nav.navbar-nav {
-    &.navbar-right {
-      .active {
-        a {
-          color:#fff;
-        }
-      }
-      a {
-        color:#808080;
-        &:hover {
-          color: #fff;
-        }
-      }
-    }
-  }
 }
 
 #openaid-main {

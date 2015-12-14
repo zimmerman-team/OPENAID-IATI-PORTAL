@@ -3,11 +3,11 @@
   <div class="container">
     <div class="navbar-header">
 
-      <button type="button" class="navbar-toggle collapsed hidden-xs" data-toggle="collapse" data-target="#navbar-collapse">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
         <i class="fa fa-bars fa-2x"></i>
       </button>
       
-      <span class="visible-xs-inline-block mobilenav" ui-sref-active="active"><a class="" ui-sref="about">About Openaid</a></span>
+      <!-- <span class="visible-xs-inline-block mobilenav" ui-sref-active="active"><a class="" ui-sref="about">About Openaid</a></span> -->
 
       <a class="navbar-brand" href="{{ homeUrl }}">
         <img ng-src="{{templateBaseUrl}}/images/openaidnl-logo.png" />
@@ -17,38 +17,32 @@
       <ul class="nav navbar-nav">
         <li class="home hidden-xs" ui-sref-active="active"><a class="" ui-sref="home"><i class="glyphicon glyphicon-home"></i></a></li>
         <li  
-          ng-class="{'active': vm.stateName == 'activities'}" 
-          class="hidden-xs">
+          ng-class="{'active': vm.stateName == 'activities'}">
           <a class="hidden-sm" ui-sref="activities">Projects</a>
           <a class="visible-sm" ui-sref="activities" data-toggle="collapse" data-target="#navbar-collapse">Projects</a>
         </li>
         <li 
-          ng-class="{'active': vm.stateName == 'locations'}" 
-          class="hidden-xs">
+          ng-class="{'active': vm.stateName == 'locations'}">
           <a class="hidden-sm" ui-sref="locations-map">Countries</a>
           <a class="visible-sm" ui-sref="locations-map" data-toggle="collapse" data-target="#navbar-collapse">Countries</a>
         </li>
         <li 
-          ng-class="{'active': vm.stateName == 'regions'}" 
-          class="hidden-xs">
+          ng-class="{'active': vm.stateName == 'regions'}">
           <a class="hidden-sm" ui-sref="regions-vis">Regions</a>
           <a class="visible-sm" ui-sref="regions-vis" data-toggle="collapse" data-target="#navbar-collapse">Regions</a>
         </li>
         <li 
-          ng-class="{'active': vm.stateName == 'sectors'}" 
-          class="hidden-xs">
+          ng-class="{'active': vm.stateName == 'sectors'}">
           <a class="hidden-sm" ui-sref="sectors">Sectors</a>
           <a class="visible-sm" ui-sref="sectors" data-toggle="collapse" data-target="#navbar-collapse">Sectors</a>
         </li>
         <li 
-          ng-class="{'active': vm.stateName == 'organisations'}" 
-          class="hidden-xs">
+          ng-class="{'active': vm.stateName == 'organisations'}">
           <a class="hidden-sm" ui-sref="organisations">Organisations</a>
           <a class="visible-sm" ui-sref="organisations" data-toggle="collapse" data-target="#navbar-collapse">Organisations</a>
         </li>
         <li 
-          ng-class="{'active': vm.stateName == 'search'}" 
-          class="hidden-xs">
+          ng-class="{'active': vm.stateName == 'search'}">
           <a class="hidden-sm" ui-sref="search">Search</a>
           <a class="visible-sm" ui-sref="search" data-toggle="collapse" data-target="#navbar-collapse">Search</a>
         </li>

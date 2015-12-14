@@ -4,8 +4,8 @@
   <div class="col-md-12">
     <div class="wrap clearfix">
       <div class="row">
-        <div class="col-md-9">
-          <div class="dash-wrap hidden-xs" ng-if="vm.views.length > 1">
+        <div class="col-xs-7">
+          <div class="dash-wrap" ng-if="vm.views.length > 1">
               <div class="vis-type" ng-repeat="view in vm.views">
                 <a ui-sref="{{view.id}}" class="{{view.class}} btn">
                   {{view.name}}
@@ -13,7 +13,7 @@
               </div>
           </div>
         </div>
-        <div class="col-md-3 social text-right">
+        <div class="col-xs-5 social text-right">
             
           <span 
             class="download-button fa-stack fa-lg" 
@@ -60,7 +60,7 @@
   </div>
 </div>
 
-<div class="filters-fixed hidden-xs">
+<div class="filters-fixed">
   <div class="container">
     <div class="row actions">
 

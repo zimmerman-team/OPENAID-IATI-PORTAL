@@ -52,3 +52,21 @@ be seen on the Desktop.
 .collapsed-right {
   padding-right:0;
 }
+
+.navbar{
+  .nav.navbar-nav {
+    &.navbar-right {
+      .active {
+        a {
+          color:#fff;
+        }
+      }
+      a {
+        color:#808080;
+        &:hover {
+          color: #fff;
+        }
+      }
+    }
+  }
+}
