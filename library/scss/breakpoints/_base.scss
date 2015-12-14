@@ -842,32 +842,6 @@ FILTER BAR
   .actions {
     margin-bottom: 1px;
   }
-  &.fixed {
-    margin-top: 0;
-    top:58px;
-    position:fixed;
-    z-index:999;
-    background:rgba(115,129,145,0.5);
-    width: 100%;
-    left:0;
-    padding-top:10px;
-    transition:top .2s;
-    .filters {
-      .wrap {
-        background:none;
-        padding:5px 15px;
-      }
-    }
-    #tool-bar {
-      //display: none;
-      .filter-box {
-        background:none;
-      }
-    }
-    .filter-panel {
-      top:6px;
-    }
-  }
   .filters {
     .wrap {
       background:rgba(115,129,145,0.5);
@@ -1349,7 +1323,7 @@ tr {
     display: none;
   }
   white-space: nowrap;
-  
+
   i {
     background-color: #eee;
     display: inline-block;

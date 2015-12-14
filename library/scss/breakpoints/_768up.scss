@@ -258,9 +258,35 @@ come into play. Have fun!
 	&.fixed {
 		top:47px;
 	}
-  .container {
-    width: 720px;
-  }
+	&.fixed {
+	    margin-top: 0;
+	    top:58px;
+	    position:fixed;
+	    z-index:999;
+	    background:rgba(115,129,145,0.5);
+	    width: 100%;
+	    left:0;
+	    padding-top:10px;
+	    transition:top .2s;
+	    .filters {
+	      .wrap {
+	        background:none;
+	        padding:5px 15px;
+	      }
+	    }
+	    #tool-bar {
+	      //display: none;
+	      .filter-box {
+	        background:none;
+	      }
+	    }
+	    .filter-panel {
+	      top:6px;
+	    }
+	  }
+	.container {
+		width: 720px;
+	}
 }
 .social {
 	margin-top:4px;
