@@ -602,12 +602,12 @@ NAVBAR
       height: 50px;
       line-height: 50px;
       margin:0 10px;
-      &.home {
-        line-height: 40px;
-      }
     }
     &.navbar-right {
       margin-top:0;
+      li {
+        margin:0;
+      }
     }
     a {
       background:none;

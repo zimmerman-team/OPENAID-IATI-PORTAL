@@ -11,9 +11,8 @@ on larger screens.
 
 //navbar centreren, pas bij hoge res, anders gaat het springen
 .navbar {
-	padding-bottom:3px;
 	.navbar-nav {
-		//width:56%;
+		width:56%;
 		text-align: center;
 		li {
 			display: inline-block;
@@ -22,7 +21,6 @@ on larger screens.
 	}
 	.navbar-header,.navbar-right {
 		width:22%;
-		padding-top:4px;
 	}
 
 	.navbar-right {
@@ -46,7 +44,7 @@ on larger screens.
 .navbar .nav.navbar-nav {
     li {
       &.home {
-        line-height: 60px;
+        line-height: 51px;
       }
     }
 }

@@ -15,42 +15,37 @@
     </div>
     <div class="collapse navbar-collapse" id="navbar-collapse">
       <ul class="nav navbar-nav">
-        <li class="home hidden-xs" ui-sref-active="active"><a class="" ui-sref="home"><i class="glyphicon glyphicon-home"></i></a></li>
+        <li class="home" ui-sref-active="active">
+          <a class="" ui-sref="home"><i class="glyphicon glyphicon-home"></i></a>
+        </li>
         <li  
           ng-class="{'active': vm.stateName == 'activities'}">
-          <a class="hidden-sm" ui-sref="activities">Projects</a>
-          <a class="visible-sm" ui-sref="activities" data-toggle="collapse" data-target="#navbar-collapse">Projects</a>
+          <a class="" ui-sref="activities">Projects</a>
         </li>
         <li 
           ng-class="{'active': vm.stateName == 'locations'}">
-          <a class="hidden-sm" ui-sref="locations-map">Countries</a>
-          <a class="visible-sm" ui-sref="locations-map" data-toggle="collapse" data-target="#navbar-collapse">Countries</a>
+          <a class="" ui-sref="locations-map">Countries</a>
         </li>
         <li 
           ng-class="{'active': vm.stateName == 'regions'}">
-          <a class="hidden-sm" ui-sref="regions-vis">Regions</a>
-          <a class="visible-sm" ui-sref="regions-vis" data-toggle="collapse" data-target="#navbar-collapse">Regions</a>
+          <a class="" ui-sref="regions-vis">Regions</a>
         </li>
         <li 
           ng-class="{'active': vm.stateName == 'sectors'}">
-          <a class="hidden-sm" ui-sref="sectors">Sectors</a>
-          <a class="visible-sm" ui-sref="sectors" data-toggle="collapse" data-target="#navbar-collapse">Sectors</a>
+          <a class="" ui-sref="sectors">Sectors</a>
         </li>
         <li 
           ng-class="{'active': vm.stateName == 'organisations'}">
-          <a class="hidden-sm" ui-sref="organisations">Organisations</a>
-          <a class="visible-sm" ui-sref="organisations" data-toggle="collapse" data-target="#navbar-collapse">Organisations</a>
+          <a class="" ui-sref="organisations">Organisations</a>
         </li>
         <li 
           ng-class="{'active': vm.stateName == 'search'}">
-          <a class="hidden-sm" ui-sref="search">Search</a>
-          <a class="visible-sm" ui-sref="search" data-toggle="collapse" data-target="#navbar-collapse">Search</a>
+          <a class="" ui-sref="search">Search</a>
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li ui-sref-active="active">
-          <a class="hidden-sm" ui-sref="about">About Openaid</a>
-          <a class="visible-sm" ui-sref="about" data-toggle="collapse" data-target="#navbar-collapse">About Openaid</a>
+          <a class="" ui-sref="about">About Openaid</a>
         </li>
       </ul>
     </div>
