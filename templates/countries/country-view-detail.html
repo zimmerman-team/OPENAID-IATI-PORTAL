@@ -50,6 +50,10 @@
                                 <td>{{disbursement.transaction_date_year}}</td>
                                 <td>{{disbursement.total_disbursements | shortcurrency :'€'}}</td>
                             </tr>
+                            <tr class="total-calc">
+                                <td>Total</td>
+                                <td>{{vm.disbursements_total | shortcurrency :'€'}}</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -64,6 +68,10 @@
                                 <td>{{budget.budget__period_start_year}}</td>
                                 <td>{{budget.budget__value | shortcurrency :'€'}}</td>
                             </tr>
+                            <tr class="total-calc">
+                                <td>Total</td>
+                                <td>{{vm.budget_total | shortcurrency :'€'}}</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -77,6 +85,10 @@
                             <tr ng-repeat="commitment in vm.commitments_by_year">
                                 <td>{{commitment.transaction_date_year}}</td>
                                 <td>{{commitment.total_commitments | shortcurrency :'€'}}</td>
+                            </tr>
+                            <tr class="total-calc">
+                                <td>Total</td>
+                                <td>{{vm.commitments_total | shortcurrency :'€'}}</td>
                             </tr>
                         </tbody>
                     </table>

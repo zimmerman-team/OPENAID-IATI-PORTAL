@@ -77,15 +77,26 @@
 
       Aggregations.aggregation('transaction__transaction-date_year', 'disbursement', selectionString).then(function(data, status, headers, config){
         vm.disbursements_by_year = data.data.results;
-        
+        vm.disbursements_total = 0;
+        for (var i = vm.disbursements_by_year.length - 1; i >= 0; i--) {
+          vm.disbursements_total += vm.disbursements_by_year[i].total_disbursements;
+        };
       }, errorFn);
 
       Aggregations.aggregation('transaction__transaction-date_year', 'commitment', selectionString).then(function(data, status, headers, config){
         vm.commitments_by_year = data.data.results;
+        vm.commitments_total = 0;
+        for (var i = vm.commitments_by_year.length - 1; i >= 0; i--) {
+          vm.commitments_total += vm.commitments_by_year[i].total_commitments;
+        };
       }, errorFn);
 
       Aggregations.aggregation('budget__period_start_year', 'budget__value', selectionString).then(function(data, status, headers, config){
         vm.budget_by_year = data.data.results;
+        vm.budget_total = 0;
+        for (var i = vm.budget_by_year.length - 1; i >= 0; i--) {
+          vm.budget_total += vm.budget_by_year[i].budget__value;
+        };
       }, errorFn);
 
     }

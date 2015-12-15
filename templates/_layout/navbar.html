@@ -16,31 +16,38 @@
     <div class="collapse navbar-collapse" id="navbar-collapse">
       <ul class="nav navbar-nav">
         <li class="home" ui-sref-active="active">
-          <a class="" ui-sref="home"><i class="glyphicon glyphicon-home"></i></a>
+          <a class="hidden-sm" ui-sref="home"><i class="glyphicon glyphicon-home"></i></a>
+          <a class="visible-sm collapse" ui-sref="home"><i class="glyphicon glyphicon-home"></i></a>
         </li>
         <li  
           ng-class="{'active': vm.stateName == 'activities'}">
-          <a class="" ui-sref="activities">Projects</a>
+          <a class="hidden-sm" ui-sref="activities">Projects</a>
+          <a class="visible-sm collapse" ui-sref="activities">Projects</a>
         </li>
         <li 
           ng-class="{'active': vm.stateName == 'locations'}">
-          <a class="" ui-sref="locations-map">Countries</a>
+          <a class="hidden-sm" ui-sref="locations-map">Countries</a>
+          <a class="visible-sm collapse" ui-sref="locations-map">Countries</a>
         </li>
         <li 
           ng-class="{'active': vm.stateName == 'regions'}">
-          <a class="" ui-sref="regions-vis">Regions</a>
+          <a class="hidden-sm" ui-sref="regions-vis">Regions</a>
+          <a class="visible-sm collapse" ui-sref="regions-vis">Regions</a>
         </li>
         <li 
           ng-class="{'active': vm.stateName == 'sectors'}">
-          <a class="" ui-sref="sectors">Sectors</a>
+          <a class="hidden-sm" ui-sref="sectors">Sectors</a>
+          <a class="visible-sm collapse" ui-sref="sectors">Sectors</a>
         </li>
         <li 
           ng-class="{'active': vm.stateName == 'organisations'}">
-          <a class="" ui-sref="organisations">Organisations</a>
+          <a class="hidden-sm" ui-sref="organisations">Organisations</a>
+          <a class="visible-sm collapse" ui-sref="organisations"Organisations</a>
         </li>
         <li 
           ng-class="{'active': vm.stateName == 'search'}">
-          <a class="" ui-sref="search">Search</a>
+          <a class="hidden-sm" ui-sref="search">Search</a>
+          <a class="visible-sm collapse" ui-sref="search">Search</a>
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">

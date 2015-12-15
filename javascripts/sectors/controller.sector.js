@@ -98,14 +98,32 @@ var sectorLayoutTest = null;
 
       Aggregations.aggregation('transaction__transaction-date_year', 'disbursement', selectionString).then(function(data, status, headers, config){
         vm.disbursements_by_year = data.data.results;
+        vm.disbursements_total = 0;
+        for (var key in vm.disbursements_by_year) {
+          if (vm.disbursements_by_year.hasOwnProperty(key)) {
+            vm.disbursements_total += vm.disbursements_by_year[key].total_disbursements;
+          }
+        };
       }, errorFn);
 
       Aggregations.aggregation('transaction__transaction-date_year', 'commitment', selectionString).then(function(data, status, headers, config){
         vm.commitments_by_year = data.data.results;
+        vm.commitments_total = 0;
+        for (var key in vm.commitments_by_year) {
+          if (vm.commitments_by_year.hasOwnProperty(key)) {
+            vm.commitments_total += vm.commitments_by_year[key].total_commitments;
+          }
+        };
       }, errorFn);
 
       Aggregations.aggregation('budget__period_start_year', 'budget__value', selectionString).then(function(data, status, headers, config){
         vm.budget_by_year = data.data.results;
+        vm.budget_total = 0;
+        for (var key in vm.budget_by_year) {
+          if (vm.budget_by_year.hasOwnProperty(key)) {
+            vm.budget_total += vm.budget_by_year[key].budget__value;
+          }
+        };
       }, errorFn);
 
     }

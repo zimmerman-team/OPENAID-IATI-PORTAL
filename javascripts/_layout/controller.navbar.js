@@ -56,7 +56,7 @@
         }
       });
 
-      $('.nav a').on('click', function(){
+      $('.nav a.collapse').on('click', function(){
         $('.navbar-toggle').click();
       });
       
