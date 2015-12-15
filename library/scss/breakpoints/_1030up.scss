@@ -38,12 +38,19 @@ be seen on the Desktop.
   padding-top:50px;
 }
 
-.navbar .nav.navbar-nav {
+.navbar {
+  .nav.navbar-nav {
     li {
       &.home {
         line-height: 52px;
       }
     }
+    &.navbar-right {
+      li {
+        margin:0;
+      }
+    }
+  }
 }
 
 .collapsed-left {
