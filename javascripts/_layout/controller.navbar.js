@@ -38,16 +38,18 @@
       }, true);
 
       $(window).scroll(function() {
-        var height = $(window).scrollTop();
+        var scrollHeight = $(window).scrollTop();
         var $fixedbar = $('.filters-fixed');
-        var barHeight = $('.filters-fixed').height();
+        var filterBarHeight = $('.filters-fixed').height();
+        var dashBarHeight = $('.dash-bar').height();
+        var totalHeight = filterBarHeight + dashBarHeight;
 
-        if(height  > barHeight ) {
+        if(scrollHeight  > (totalHeight)) {
             $fixedbar.addClass('fixed');
-            $('.pad-helper').css('height',barHeight);
+            $('.pad-helper').css('height',filterBarHeight);
             $("#toTop").fadeIn();
         }
-        if (height < barHeight ) {
+        else {
            $fixedbar.removeClass('fixed');
            $('.pad-helper').css('height',0);
            $("#toTop").fadeOut();
