@@ -425,7 +425,7 @@
                 <div ng-show="vm.activity.documents.length == 0">
                     No documents available.
                 </div>
-                <table class="table documents">
+                <table class="table documents" ng-if="vm.activity.documents.length != 0">
                     <tbody>
                         <tr ng-repeat="document in vm.activity.documents">
                             
