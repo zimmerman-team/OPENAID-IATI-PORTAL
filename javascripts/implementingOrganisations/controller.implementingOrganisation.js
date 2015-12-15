@@ -47,7 +47,7 @@
         vm.organisation = data.data;
         ImplementingOrganisations.selectedImplementingOrganisations[0] = {'organisation_id':vm.organisation.code,'name':vm.organisation.name};
         vm.filterSelection.save();
-        setTimeout(function(){ vm.update(vm.filterSelection.selectionString); }, 3000);
+        // setTimeout(function(){ vm.update(vm.filterSelection.selectionString); }, 3000);
       }
 
     }
