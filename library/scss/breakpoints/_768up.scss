@@ -254,6 +254,14 @@ come into play. Have fun!
 	padding:0;
 }
 
+.admin-bar {
+	.filters-fixed {
+		&.fixed {
+			top:82px;
+		}
+	}
+}
+
 .filters-fixed {
 	&.fixed {
 		top:50px;
