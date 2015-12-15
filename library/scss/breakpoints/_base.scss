@@ -36,7 +36,7 @@ a.fa {
 }
 
 #openaid-main {
-  padding-top:52px;
+  padding-top:50px;
 }
 
 .faux-pad {
@@ -596,6 +596,9 @@ NAVBAR
   }
   .navbar-toggle {
     border:0;
+    .fa-2x {
+      font-size: 28px;
+    }
   }
   .nav.navbar-nav {
     li {
