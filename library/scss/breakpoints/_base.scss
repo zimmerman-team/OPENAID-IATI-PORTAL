@@ -2873,10 +2873,10 @@ footer{
     border-width: 0 0 1px;
   }
   .navbar-collapse.collapse {
-      display: none!important;
+      display: none !important;
   }
   .navbar-nav {
-    float: none!important;
+    float: none !important;
     margin-top: 7.5px;
   }
   .navbar-nav>li {
@@ -2888,6 +2888,18 @@ footer{
   }
   .collapse.in{
     display:block !important;
+  }
+  .navbar .nav.navbar-nav a.show-on-big {
+    display: none;
+  }
+}
+
+@media (min-width: 991px) {
+  .navbar .nav.navbar-nav a.show-on-big {
+    display: inline;
+  }
+  .navbar .nav.navbar-nav a.show-on-small {
+    display: none;
   }
 }
 
