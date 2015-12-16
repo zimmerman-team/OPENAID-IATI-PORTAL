@@ -1028,6 +1028,10 @@ FILTER BAR
         // background:rgba(115,129,145,0.5);
         background:#337ab7;
         border:1px solid darken(#337ab7,5%);
+        cursor:default;
+        &:active {
+          box-shadow:none;
+        }
       }
     }
   }
