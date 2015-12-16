@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('oipa.filters', []);
+        .module('oipa.filters', ['ngAnimate']);
 
 })();
 

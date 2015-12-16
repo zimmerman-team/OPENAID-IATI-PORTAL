@@ -318,7 +318,7 @@ hr{
 
 
 [ui-view].ng-enter{
-  transition: 0.75s;
+  transition: all 0s linear;
   opacity: 0;
 }
 
@@ -327,12 +327,30 @@ hr{
 }
 
 [ui-view].ng-leave{
-  transition: 0.75s;
-  opacity: 0;
+  -webkit-animation:0s fadeout;
+  -moz-animation:0s fadeout;
+  -o-animation:0s fadeout;
+  animation:0s fadeout;
 }
 
-[ui-view].ng-leave-active{
-  opacity: 1;
+@keyframes fadeout {
+  from { opacity:1; }
+  to { opacity:0; }
+}
+
+@-webkit-keyframes fadeout {
+  from { opacity:1; }
+  to { opacity:0; }
+}
+
+@-moz-keyframes fadeout {
+  from { opacity:1; }
+  to { opacity:0; }
+}
+
+@-o-keyframes fadeout {
+  from { opacity:1; }
+  to { opacity:0; }
 }
 
 .title {
@@ -1307,6 +1325,34 @@ h4 {
       //     -webkit-box-shadow: inset 0 0 1px #dedede, inset 0 0 40px #eee;
       // }
 
+    }
+  }
+}
+
+.filter-panel-wrap {
+  .ng-hide-add, .ng-hide-remove {
+    /* ensure visibility during the transition */
+    display: block !important; /* yes, important */
+  }
+  .slideDown {
+    transition: all .5s ease-in-out;
+    .filter-panel {
+      transition: max-height .5s ease-in-out, opacity .2s ease-in-out;
+      max-height: 500px;
+      opacity: 1;
+    }
+    &.ng-animate {
+      .filter-panel {
+        overflow:hidden;
+      }
+    }
+  }
+  .slideDown.ng-hide {
+    .filter-panel {
+      transition: max-height .5s ease-in-out, opacity .2s ease-in-out .3s;
+      max-height:0;
+      opacity: 0;
+      overflow: hidden;
     }
   }
 }
