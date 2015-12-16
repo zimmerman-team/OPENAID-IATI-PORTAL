@@ -2435,6 +2435,7 @@ ACTIVITY LIST
   .collapsed {
     .expandme {
       &:before {
+        display: inline-block;
         font-family: FontAwesome;
         content: "\f0da";
       }
@@ -2445,6 +2446,28 @@ ACTIVITY LIST
       &:before {
         font-family: FontAwesome;
         content: "\f0d7";
+      }
+    }
+  }
+  .parent {
+    &.collapsed {
+      + .children {
+        opacity: 0;
+        max-height: 0;
+        visibility: hidden;
+        transition:all .5s ease-in-out;
+        overflow: hidden;
+        @extend .clearfix;
+      }
+    }
+    &.expanded {
+      + .children {
+        opacity: 1;
+        max-height:2000px;
+        visibility: visible;
+        transition:all .5s ease-in-out;
+        overflow: hidden;
+        @extend .clearfix;
       }
     }
   }

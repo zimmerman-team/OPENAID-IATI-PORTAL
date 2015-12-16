@@ -40,7 +40,7 @@
         </div>
     </div>
 
-    <div ng-if="item.children" class="children" style="display: none;">
+    <div ng-if="item.children" class="children">
         <div collapse="vm.isCollapsed" ng-repeat="item in item.children" ng-include="'sector-tree'"></div>
     </div>    
 </script>

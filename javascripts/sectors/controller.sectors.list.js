@@ -147,7 +147,7 @@
       var parent = $($event.target).closest('.parent') 
       var children = parent.next();
 
-      children.toggle()
+      //children.toggle()
       parent.toggleClass('expanded').toggleClass('collapsed')
 
     }
