@@ -11,7 +11,7 @@
 		<?php // force Internet Explorer to use the latest rendering engine available ?>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-		<title>OpenaidNL beta</title>
+		<title>OpenaidNL IATI Transparency Portal</title>
 
 		<?php // mobile meta (hooray!) ?>
 		<meta name="HandheldFriendly" content="True">
@@ -50,7 +50,7 @@
 			var home_url = '<?php echo home_url(); ?>';
 			var template_url = '<?php echo get_template_directory_uri(); ?>';
 			// var oipa_url = 'http://localhost:8000/api/v3';
-			var oipa_url = 'http://149.210.176.175/api/v3';
+			var oipa_url = 'https://v1.oipa.nl/api/v3';
 			var reporting_organisation_id = 'NL-1';
 			<?php $customFields = get_post_custom(); ?>
 			var customFields = <?php echo json_encode($customFields); ?>;
