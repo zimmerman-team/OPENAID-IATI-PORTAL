@@ -36,7 +36,7 @@
 
 			<a 
 				class="btn filter-selected-button selectedActivityStatuses" 
-				ng-show="vm.selectedBudget.on && vm.selectedBudget.value[1] == 2000000000" 
+				ng-show="vm.selectedBudget.on" 
 				ng-click="vm.removeBudgetFilter()">
 				Budget: {{vm.selectedBudget.value[0] | shortcurrency :'€'}} - {{vm.selectedBudget.value[1] | shortcurrency :'€'}}
 				<span class="fa fa-remove"></span>
