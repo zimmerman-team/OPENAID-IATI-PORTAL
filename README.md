@@ -21,7 +21,7 @@ IATI is a global aid transparency standard and it makes information about aid sp
 #### About the project
 --------
 
-* Web Site:         http://www.openaid.nl
+* Web Site:         https://www.openaid.nl
 * IATI data:  	    http://www.iatiregistry.org/publisher/minbuza_nl
 * Data license:    [open license] (http://opendefinition.org/od/2.0/en/)
 * OIPA:             [OIPA] (https://github.com/zimmerman-zimmerman/OIPA)
