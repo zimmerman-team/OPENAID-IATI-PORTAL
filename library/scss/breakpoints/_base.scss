@@ -2180,7 +2180,7 @@ SLIDER TOOLTIP
         background: $oranje;
       }
       .tooltip {
-        .tooltip-inner {
+        .currency {
           background: rgba($oranje, 0.7);
         }
         &.top {
@@ -2254,10 +2254,15 @@ SLIDER TOOLTIP
       margin-left:-56px !important;
     }
     .tooltip-inner {
+      display: none;
+    }
+    .currency {
       background: rgba(0,0,0, 0.3);
-      &:before {
-        content: '\20AC\2008' ;
-      }
+      white-space: nowrap;
+      text-align: center;
+      color:$white;
+      border-radius:3px;
+      padding:3px 8px;
     }
     &.top {
       top:-15px !important;

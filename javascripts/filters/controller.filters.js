@@ -9,12 +9,12 @@
     .module('oipa.filters')
     .controller('FiltersController', FiltersController);
 
-  FiltersController.$inject = ['$state', '$location', '$document', '$scope', 'Filters', 'FilterSelection', '$sce', 'homeUrl'];
+  FiltersController.$inject = ['$state', '$location', '$document', '$scope', 'Filters', 'FilterSelection', '$sce', 'homeUrl', '$filter'];
 
   /**
   * @namespace FiltersController
   */
-  function FiltersController($state, $location, $document, $scope, Filters, FilterSelection, $sce, homeUrl) {
+  function FiltersController($state, $location, $document, $scope, Filters, FilterSelection, $sce, homeUrl, $filter) {
     var vm = this;
     vm.showSelection = false;
     vm.filterSelection = FilterSelection;
@@ -105,6 +105,15 @@
         FilterSelection.save();
         vm.setOpenedHeader(slug);
       }
+
+      //for modifying tooltip
+      if( $('.tooltip-max > .currency').length == 0 ) {
+        $('.tooltip-max').append('<div class="currency">'+$filter('shortcurrency')($('.tooltip-max .tooltip-inner').text(),'€')+'</div>');
+      }
+      if( $('.tooltip-min > .currency').length == 0 ) {
+        $('.tooltip-min').append('<div class="currency">'+$filter('shortcurrency')($('.tooltip-min .tooltip-inner').text(),'€')+'</div>');
+      }
+      
     }
 
     vm.toggleSelection = function(){
