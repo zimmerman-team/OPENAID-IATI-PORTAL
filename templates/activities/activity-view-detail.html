@@ -477,10 +477,14 @@
                 </table>
             </div>
 
-            <div class="hp-block wit rsr" ng-show="vm.rsrLoading || vm.rsrProjects.length">
+            <div class="hp-block wit rsr">
                 <h3>Akvo Really Simple Reporting (RSR)</h3>
-                <p>The following RSR projects are funded by this OpenaidNL activity.</p>
-
+                <p ng-if="vm.rsrProjects.length">
+                    The following RSR projects are funded by this OpenaidNL activity.
+                </p>
+                <p ng-if="!vm.rsrProjects.length && !vm.rsrLoading">
+                    No related RSR projects found.
+                </p>
                 <div class="row" ng-show="vm.rsrLoading">
                     <div class="svg-loader">
                         <img ng-src="{{vm.templateBaseUrl}}/images/spinning-circles.svg" width="50" alt="">
