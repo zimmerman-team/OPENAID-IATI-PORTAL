@@ -101,7 +101,7 @@ function rsr_call() {
     $iati_id = $_REQUEST['iati_id'];
   }
 
-  $search_url = "http://rsr.akvo.org/api/v1/project/?format=json&partnerships__iati_activity_id=" . $iati_id . "&distinct=True&limit=100&depth=1";
+  $search_url = "http://rsr.akvo.org/api/v1/project/?format=json&partnerships__iati_activity_id=" . $iati_id . "&distinct=True&limit=100";
   $content = file_get_contents($search_url);
   echo $content;
   die();

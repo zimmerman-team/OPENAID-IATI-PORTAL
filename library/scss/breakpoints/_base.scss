@@ -499,6 +499,12 @@ hr{
       }
     }
   }
+  &.rsr {
+    margin-bottom: 1px !important;
+    p:last-of-type {
+      margin-bottom: 0;
+    }
+  }
 }
 
 .search-box {
