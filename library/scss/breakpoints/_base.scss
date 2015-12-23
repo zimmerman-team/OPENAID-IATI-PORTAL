@@ -490,6 +490,15 @@ hr{
     overflow: hidden;
     text-overflow: ellipsis;
   }
+  &.info-box {
+    margin-bottom: 1px !important;
+    p {
+      font-size: 14px;
+      &:last-of-type {
+        margin-bottom: 0;
+      }
+    }
+  }
 }
 
 .search-box {
