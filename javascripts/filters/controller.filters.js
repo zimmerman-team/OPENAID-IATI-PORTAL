@@ -107,11 +107,11 @@
       }
 
       //for modifying tooltip
-      if( $('.tooltip-max > .currency').length == 0 ) {
-        $('.tooltip-max').append('<div class="currency">'+$filter('shortcurrency')($('.tooltip-max .tooltip-inner').text(),'€')+'</div>');
+      if(angular.element('.tooltip-max > .currency').length == 0) {
+        angular.element('.tooltip-max').append('<div class="currency">'+$filter('shortcurrency')(angular.element('.tooltip-max .tooltip-inner').text(),'€')+'</div>');
       }
-      if( $('.tooltip-min > .currency').length == 0 ) {
-        $('.tooltip-min').append('<div class="currency">'+$filter('shortcurrency')($('.tooltip-min .tooltip-inner').text(),'€')+'</div>');
+      if(angular.element('.tooltip-min > .currency').length == 0) {
+        angular.element('.tooltip-min').append('<div class="currency">'+$filter('shortcurrency')(angular.element('.tooltip-min .tooltip-inner').text(),'€')+'</div>');
       }
       
     }

@@ -20,13 +20,8 @@
       $scope.$watch("vm.budgetValue", function (budgetValue) {
         Budget.budget.value = budgetValue;
 
-        //tooltip mods
-        $('.tooltip-max .currency').html(function(){
-          return $filter('shortcurrency')($('.tooltip-max .tooltip-inner').text(),'€');
-        });
-        $('.tooltip-min .currency').html(function(){
-          return $filter('shortcurrency')($('.tooltip-min .tooltip-inner').text(),'€');
-        });
+        angular.element('.tooltip-min .currency').html( $filter('shortcurrency')(vm.budgetValue[0],'€') );
+        angular.element('.tooltip-max .currency').html( $filter('shortcurrency')(vm.budgetValue[1],'€') );
 
       }, true);
 
