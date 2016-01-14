@@ -134,7 +134,7 @@ function angular_form() {
   $txt .= "phone: " . $phone . "\n";
   $txt .= "message: " . $message . "\n";
 
-  mail("daan@zimmermanzimmerman.nl","OpenaidNL Contact form message",$txt);
+  mail("info@zimmermanzimmerman.nl","OpenaidNL contact form message",$txt);
 
   return 'Mail sent';
   exit();
