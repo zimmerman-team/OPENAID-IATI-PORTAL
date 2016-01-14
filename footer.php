@@ -1,6 +1,6 @@
 
 		
-		<footer>
+		<!-- <footer>
 		  <div class="container">
 		  	<div class="row">
 		  		<div class="col-sm-6 col-md-4 col-lg-2 col-sm-offset-3 col-md-offset-4 col-lg-offset-5">
@@ -18,7 +18,7 @@
 		    
 		    
 		  </div>
-		</footer>
+		</footer> -->
 		
 		<script>
 		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
