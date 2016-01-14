@@ -111,3 +111,36 @@ add_action('wp_ajax_nopriv_projects_list', 'projects_list');
 add_action('wp_ajax_rsr_call', 'rsr_call');
 add_action('wp_ajax_nopriv_rsr_call', 'rsr_call');
 
+
+
+
+
+function angular_form() {
+
+  $json = file_get_contents('php://input');
+  $obj = json_decode($json, true);
+
+  $fname = $obj['first_name'];
+  $lname = $obj['last_name'];
+  $org = $obj['organisation'];
+  $phone = $obj['phone'];
+  $email = $obj['email'];
+  $message = $obj['message'];
+
+  $txt = "Mail sent from Openaid.nl \n";
+  $txt .= "name: " . $fname . " " . $lname . "\n";
+  $txt .= "organisation: " . $org . "\n";
+  $txt .= "email: " . $email . "\n";
+  $txt .= "phone: " . $phone . "\n";
+  $txt .= "message: " . $message . "\n";
+
+  mail("daan@zimmermanzimmerman.nl","OpenaidNL Contact form message",$txt);
+
+  return 'Mail sent';
+  exit();
+
+}
+
+add_action('wp_ajax_angular_form', 'angular_form');
+add_action('wp_ajax_nopriv_angular_form', 'angular_form');
+

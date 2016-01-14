@@ -39,6 +39,7 @@
             'oipa.policyMarkers',
             'oipa.stackedBarChart',
             'oipa.searchPage',
+            'oipa.contact'
         ]);
 
     angular

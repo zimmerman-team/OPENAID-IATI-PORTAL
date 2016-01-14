@@ -3042,6 +3042,33 @@ footer{
   }
 }
 
+//contact form
+.form {
+  @media only screen and (min-width: 768px) {
+    label {
+      width: 20%;
+      float: left;
+      clear:left;
+    }
+    input,textarea {
+      width: 80%;
+      float: left;
+      clear:right;
+      margin-bottom:10px;
+    }
+  }
+  button {
+    float: right;
+    clear:both;
+    margin-bottom: 15px;
+  }
+  p {
+    clear:both;
+    margin-top: 15px;
+    text-align: center;
+  }
+}
+
 //mobile only
 @media only screen and (max-width: 768px) {
   .activity-list-item {

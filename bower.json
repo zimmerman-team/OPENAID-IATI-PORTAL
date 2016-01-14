@@ -25,6 +25,10 @@
     "angular-resource": "~1.4.7",
     "angular-auto-focus": "~1.0.4",
     "angular-breadcrumb": "~0.4.1",
-    "angular-cors-ie9": "*"
+    "angular-cors-ie9": "*",
+    "angular": "~1.4.8",
+    "api-check": "~7.5.5",
+    "angular-formly": "~7.3.9",
+    "angular-formly-templates-bootstrap": "~6.2.0"
   }
 }

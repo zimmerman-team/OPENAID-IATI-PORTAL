@@ -41,6 +41,9 @@ be seen on the Desktop.
     &.navbar-right {
       li {
         margin:0;
+        &:first-of-type {
+          margin-right:20px;
+        }
       }
     }
   }

@@ -1,0 +1,30 @@
+<div id="main-content" class="container about-page">
+
+    <div class="row">
+        <div class="col-sm-12 ">
+            <div class="hp-block hp-block-top hp-home">
+                <div class="row">
+                    <div class="col-sm-12 col-md-8 col-lg-6 col-md-offset-2 col-lg-offset-3">
+                        <h1>Contact us</h1>
+                        <p>Got any questions, comments or complaints about openaidNL? Don't hesitate to contact us by filling out the form below. You will receive a response within two working days.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-8 col-md-10 col-md-offset-1 col-lg-offset-2 form">
+            <hr>
+            <form ng-submit="vm.onSubmit()" name="vm.form" novalidate ng-if="vm.submitted == false">
+                <formly-form model="vm.model" fields="vm.fields" options="vm.options" form="vm.form">
+                    <button type="submit" class="btn btn-primary submit-button" ng-disabled="vm.form.$invalid">Submit</button>
+                </formly-form>
+            </form>
+            <div ng-if="vm.submitted == true"><p><b>Thank you for your message. We will be in touch shortly.</b></p></div>
+            <div ng-if="vm.error == true"><p><b style="color:#b30000;">Something seems to have gone wrong. Send us a note on info@zimmermanzimmerman.nl if the problem persists.</b></p></div>
+            <p>The openaidNL team, run by Zimmerman & Zimmerman, will process your contact form. Your personal details will only be used to respond to your message and will not be kept any longer than necessary.</p>
+        </div>
+    </div>
+
+</div>

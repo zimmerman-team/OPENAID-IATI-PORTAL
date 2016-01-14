@@ -185,6 +185,16 @@
             controller:  'SearchPageController',
             controllerAs: 'vm',
             templateUrl: templateBaseUrl + '/templates/search/search-page.html'
+        })
+        .state({
+            name:        'contact',
+            url:         '/contact/',
+            controller:  'ContactController',
+            controllerAs: 'vm',
+            templateUrl: templateBaseUrl + '/templates/pages/contact.html',
+            ncyBreadcrumb: {
+                label: '{{vm.title}}'
+            }
         });
 
      
