@@ -9,12 +9,12 @@
     .module('oipa.search')
     .controller('SearchController', SearchController);
 
-  SearchController.$inject = ['$scope', '$state', 'Aggregations', 'Activities', 'templateBaseUrl'];
+  SearchController.$inject = ['$scope', '$state', 'Aggregations', 'Activities', 'templateBaseUrl', '$timeout'];
 
   /**
   * @namespace SearchController
   */
-  function SearchController($scope, $state, Aggregations, Activities, templateBaseUrl) {
+  function SearchController($scope, $state, Aggregations, Activities, templateBaseUrl, $timeout) {
     var vm = this;
     $scope.templateBaseUrl = template_url;
     vm.searchString = '';
@@ -61,7 +61,10 @@
     }
 
     vm.blur = function(){
-      vm.showResults = false;
+      //setTimeout(function(){ alert("Hello"); }, 3000);
+      $timeout(function(){
+          vm.showResults = false;
+        }, 500);
     }
 
     vm.search = function(){
