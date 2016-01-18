@@ -182,6 +182,10 @@ a.fa {
     position:relative;
     z-index: 5;
   }
+  .hp-block {
+    z-index: 20;
+    position: relative;
+  }
   .item {
     min-height: 400px;
     background-size:cover;
@@ -1114,7 +1118,7 @@ FILTER BAR
       // margin-right: 5px;
       // min-width: 120px;
       // background:rgba(115,129,145,0.2);
-      background:rgba(115,129,145,0.15);
+      background:rgba(115,129,145,0.2);
       transition:background .2s ease-in-out;
       display: block;
       //background:lighten(#333,45%);
