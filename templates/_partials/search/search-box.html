@@ -6,8 +6,9 @@
 	            type="text" 
 	            class="form-control" 
                 ng-change="vm.search()"
-	            placeholder="Search on location, projects, sector, organisatie, IATI ID, or keyword"
-                auto-focus>
+                ng-focus="vm.focus()"
+                ng-blur="vm.blur()"
+	            placeholder="Search on location, projects, sector, organisatie, IATI ID, or keyword">
 	        <button class="btn-search" type="submit">
 	            <span class="glyphicon glyphicon-search"></span>
 	        </button>

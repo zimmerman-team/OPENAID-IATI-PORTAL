@@ -51,6 +51,19 @@
       }
     }
 
+    vm.focus = function(){
+      if(typeof vm.searchString == 'undefined' || vm.searchString.length < 2){
+        vm.showResults = false;
+      }
+      else {
+        vm.showResults = true;
+      }
+    }
+
+    vm.blur = function(){
+      vm.showResults = false;
+    }
+
     vm.search = function(){
 
       if(vm.searchString.length < 2){
