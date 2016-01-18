@@ -22,6 +22,7 @@
     vm.refreshSunburst = false;
     vm.searchValue = '';
     vm.submitSearch = false;
+    vm.totalSectors = 0;
 
     activate();
 
@@ -47,6 +48,7 @@
 
       function successFn(data, status, headers, config) {
         vm.reformatSunburstData(data.data.results);
+        vm.totalSectors = data.data.count;
       }
 
       function errorFn(data, status, headers, config) {

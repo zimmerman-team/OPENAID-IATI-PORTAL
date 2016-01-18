@@ -38,6 +38,11 @@
       $scope.$watch('vm.activityStatus', function(){
         vm.refreshTableChart = true;
       });
+
+      //reactivate carousel
+      $('.carousel').carousel({
+        pause: "hover"
+      });
     }
 
     vm.customFields = customFields;

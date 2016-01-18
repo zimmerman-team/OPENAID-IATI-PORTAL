@@ -44,7 +44,7 @@
         var dashBarHeight = $('.dash-bar').height();
         var totalHeight = filterBarHeight + dashBarHeight;
 
-        if(scrollHeight  > (totalHeight)) {
+        if(scrollHeight  > (totalHeight+15)) {
             $fixedbar.addClass('fixed');
             $('.pad-helper').css('height',filterBarHeight);
             $("#toTop").fadeIn();

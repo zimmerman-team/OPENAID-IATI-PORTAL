@@ -1,24 +1,123 @@
-<div class="container homepage">
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="hp-block hp-block-top hp-home">
-                <h1>Insight into Dutch development aid<small>open data of the Ministry of Foreign Affairs</small></h1>
-                <div class="row">
-                    <div class="col-sm-12 col-md-8 col-lg-6 col-md-offset-2 col-lg-offset-3">
-                        <search-box current-page="homepage"></search-box>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-12 col-md-8 col-md-offset-2">
-                        <p>At this transparency portal you can find every development cooperation activity supported by the <a href="https://www.rijksoverheid.nl/opendata/ontwikkelingssamenwerking" target="_blank">Dutch Ministry of Foreign Affairs</a> since 2010. The portal enables you to find the activities in specific countries or regions, in sectors or by implementing organisation.</p>
-                        <p>The data are reported as <a href="http://www.iatiregistry.org/publisher/minbuza_nl" target="_blank">open data to the IATI registry</a> and were last updated on 2015-12-09 10:00. The total number of projects is <a ui-sref="activities">5819</a>.</p>
+
+    <div id="front-carousel" class="carousel slide" data-ride="carousel" data-pause="hover">
+      <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#front-carousel" data-slide-to="0" class="active"></li>
+            <li data-target="#front-carousel" data-slide-to="1"></li>
+            <li data-target="#front-carousel" data-slide-to="2"></li>
+            <li data-target="#front-carousel" data-slide-to="3"></li>
+            <li data-target="#front-carousel" data-slide-to="4"></li>
+        </ol>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+
+        <div class="item active" id="item1">
+            <div class="inner-wrap">
+                <div class="middle">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="hp-block hp-block-top hp-home">
+                                    <h1>Insight into Dutch development aid<small>open data of the Ministry of Foreign Affairs</small></h1>
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-8 col-lg-6 col-md-offset-2 col-lg-offset-3">
+                                            <search-box current-page="homepage"></search-box>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+
+        <div class="item" id="item2">
+            <div class="inner-wrap">
+                <div class="middle">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-12 text-center">
+                                <h1>Project map</h1>
+                                <a class="callout" ui-sref="activities">
+                                    View an overview of all projects on a map
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="item" id="item2">
+            <div class="inner-wrap">
+                <div class="middle">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-12 text-center">
+                                <h1>Country map</h1>
+                                <a class="callout" ui-sref="locations-map">
+                                    View the countries we support on a map
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="item" id="item2">
+            <div class="inner-wrap">
+                <div class="middle">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-12 text-center">
+                                <h1>Region visualisation</h1>
+                                <a class="callout" ui-sref="regions-vis">
+                                    Interact with a visual overview of the regions we support
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="item" id="item2">
+            <div class="inner-wrap">
+                <div class="middle">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-12 text-center">
+                                <h1>Sector visualisation</h1>
+                                <a class="callout" ui-sref="sectors">
+                                    Interact with a visual overview of the sectors we support
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 
-   <hr class="hidden-xs" style="margin-bottom:30px;">
+    <!-- Controls -->
+    <!-- <a class="left carousel-control" href="#front-carousel" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#front-carousel" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a> -->
+
+</div>
+
+<div class="container homepage">
+
+   <!-- <hr class="hidden-xs" style="margin-bottom:30px;">
 
     <div class="row plaatjes">
         <div class="col-md-3 col-sm-6">
@@ -60,7 +159,7 @@
 
     </div>
 
-    <hr class="hidden-xs" style="margin-top:15px;">
+    <hr class="hidden-xs" style="margin-top:15px;"> -->
 
      <div class="row hidden-xs">
         <div class="col-md-12 top5header">

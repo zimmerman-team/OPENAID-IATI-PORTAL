@@ -26,6 +26,7 @@
     vm.directCountryValues = null;
     vm.indirectCountryValues = null;
     vm.indirectRegionValues = null;
+    vm.totalRegions = 0;
 
     activate();
 
@@ -72,6 +73,7 @@
       function directRegionSuccessFn(data, status, headers, config){
         vm.directRegionValues = data.data.results;
         vm.preReformatVisualisationData(); 
+        vm.totalRegions = data.data.count;
       }
 
       function errorFn(data, status, headers, config) {

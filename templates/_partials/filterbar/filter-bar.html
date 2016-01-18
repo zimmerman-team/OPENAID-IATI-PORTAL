@@ -2,18 +2,12 @@
 
 <div class="row dash-bar">
   <div class="col-md-12">
-    <div class="wrap clearfix">
-      <div class="row">
-        <div class="col-xs-8">
-          <div class="dash-wrap" ng-if="vm.views.length > 1">
-              <div class="vis-type" ng-repeat="view in vm.views">
-                <a ui-sref="{{view.id}}" class="{{view.class}} btn">
-                  {{view.name}}
-                </a>
-              </div>
-          </div>
-        </div>
-        <div class="col-xs-4 social text-right">
+    <div class="dash-wrap" ng-if="vm.views.length > 1">
+        <div class="vis-type" ng-repeat="view in vm.views">
+          <a ui-sref="{{view.id}}" class="{{view.class}}">
+            {{view.name}}
+          </a>
+        <!-- <div class="col-xs-4 social text-right">
             
           <span 
             class="download-button fa-stack fa-lg hidden-xs" 
@@ -54,7 +48,7 @@
             <i class="fa fa-circle fa-stack-2x"></i>
             <a target="_blank" ng-href="http://www.facebook.com/sharer/sharer.php?s=100&p[url]={{vm.pageUrl}}" class="fa fa-facebook fa-stack-1x fa-inverse"></a>
           </span>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>

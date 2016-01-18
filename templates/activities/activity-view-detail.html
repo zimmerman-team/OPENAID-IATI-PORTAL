@@ -1,11 +1,14 @@
 <div id="main-content" class="container activity">
-    <detail-filter-bar 
-        activity-id="vm.activityId" 
-        current-page="activity"></detail-filter-bar>
-    
+   
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-xs-9">
             <h1 class="title no-margin-bottom">{{vm.activity.titles[0].title}}</h1>
+        </div>
+         <detail-filter-bar 
+            activity-id="vm.activityId" 
+            current-page="activity">
+        </detail-filter-bar>
+        <div class="col-xs-12">
             <p>{{vm.activity.descriptions[0].description}}</p>
         </div>
     </div>
@@ -444,12 +447,10 @@
 
     <div class="row" ng-show="vm.selectedTab == 'thirdparty'">
         <div class="col-md-12">
-            <div class="hp-block wit">
+
+            <div class="hp-block wit" ng-if="vm.providedActivities.length">
                 <h3>Funded projects in IATI</h3>
-                <div ng-show="!vm.providedActivities.length">
-                    No IATI references found.
-                </div>
-                <table class="table table-striped provided-activities-table" ng-show="vm.providedActivities.length">
+                <table class="table table-striped provided-activities-table">
                     <thead>
                         <th class="col-sm-6">
                             Title
@@ -477,19 +478,21 @@
                 </table>
             </div>
 
-            <div class="hp-block wit rsr">
+            <div class="hp-block wit rsr" ng-if="vm.rsrLoading || vm.rsrProjects.length">
                 <h3>Akvo Really Simple Reporting (RSR)</h3>
-                <p ng-if="vm.rsrProjects.length">
+                <p>
                     The following RSR projects are funded by this OpenaidNL activity.
                 </p>
-                <p ng-if="!vm.rsrProjects.length && !vm.rsrLoading">
-                    No related RSR projects found.
-                </p>
-                <div class="row" ng-show="vm.rsrLoading">
+                <div class="row" ng-if="vm.rsrLoading">
                     <div class="svg-loader">
                         <img ng-src="{{vm.templateBaseUrl}}/images/spinning-circles.svg" width="50" alt="">
                     </div>
                 </div>
+            </div>
+
+            <div class="hp-block wit" ng-if="!vm.providedActivities.length && !vm.rsrLoading && !vm.rsrProjects.length">
+                <h3>Third-party data</h3>
+                No third-party data available.
             </div>
 
 
