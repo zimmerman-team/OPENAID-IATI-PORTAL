@@ -177,7 +177,7 @@ a.fa {
     margin: 0;
   }
   .carousel-inner {
-    min-height: 400px;
+    min-height: 500px;
     overflow:visible;
     position:relative;
     z-index: 5;
@@ -187,14 +187,14 @@ a.fa {
     position: relative;
   }
   .item {
-    min-height: 400px;
+    min-height: 500px;
     background-size:cover;
     background-position:center;
   }
   .inner-wrap {
     display: table;
     width: 100%;
-    min-height: 400px;
+    min-height: 500px;
     background: rgba(0,0,0,0.4);
     background: -moz-linear-gradient(top, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.2) 100%);
     background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(0,0,0,0.4)), color-stop(100%, rgba(0,0,0,0.2)));
@@ -213,16 +213,16 @@ a.fa {
     background-image:url('../../images/slides/slide1.jpg');
   }
   #item2 {
-    background-image:url('../../images/slide2.jpg');
+    background-image:url('../../images/slides/openaidNL-projects.jpg');
   }
   #item3 {
-    background-image:url('../../images/slide3.jpg');
+    background-image:url('../../images/slides/openaidNL-countries.jpg');
   }
   #item4 {
-    background-image:url('../../images/slide4.jpg');
+    background-image:url('../../images/slides/openaidNL-regions.jpg');
   }
   #item5 {
-    background-image:url('../../images/slide5.jpg');
+    background-image:url('../../images/slides/openaidNL-sectors.jpg');
   }
   .carousel-indicators {
     bottom:0;
