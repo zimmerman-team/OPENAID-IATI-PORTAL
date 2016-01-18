@@ -194,7 +194,7 @@ a.fa {
   .inner-wrap {
     display: table;
     width: 100%;
-    min-height: 500px;
+    height: 500px;
     background: rgba(0,0,0,0.4);
     background: -moz-linear-gradient(top, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.2) 100%);
     background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(0,0,0,0.4)), color-stop(100%, rgba(0,0,0,0.2)));
@@ -208,6 +208,7 @@ a.fa {
     display: table-cell;
     vertical-align: middle;
     padding-bottom:40px;
+    height: 500px;
   }
   #item1 {
     background-image:url('../../images/slides/slide1.jpg');
@@ -228,9 +229,19 @@ a.fa {
     bottom:0;
   }
   .callout {
-    @extend .btn;
-    @extend .btn-default;
+    padding: 12px 30px;
+    background-color: rgba(41,171,226,1);
+    border: 0;
+    color: #fff;
+    margin-top: 20px;
+    display: inline-block;
+    font-size: 18px;
     text-decoration: none;
+    transition: background .2s ease;
+    border-radius:3px;
+    &:hover {
+      background:darken(rgba(41,171,226,1),15%);
+    }
   }
 }
 
