@@ -55,11 +55,18 @@
         .module('oipa')
         .run(run);
 
-    run.$inject = ['$http'];
+    run.$inject = ['$http', '$rootScope', '$state'];
 
-    function run($http) {
+    function run($http, $rootScope, $state) {
         $http.defaults.xsrfHeaderName = 'X-CSRFToken';
         $http.defaults.xsrfCookieName = 'csrftoken';
+
+        $rootScope.$on('$stateChangeStart', function(evt, to, params) {
+          if (to.redirectTo) {
+            evt.preventDefault();
+            $state.go(to.redirectTo, params)
+          }
+        });
     }
 
 })();
