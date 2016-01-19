@@ -168,6 +168,7 @@ a.fa {
   }
   h1 {
     font-weight: 400;
+    font-size: 50px;
   }
   small {
     font-size: 45%;
@@ -207,7 +208,7 @@ a.fa {
   .middle {
     display: table-cell;
     vertical-align: middle;
-    padding-bottom:40px;
+    padding-bottom:100px;
     height: 500px;
   }
   #item1 {
@@ -241,6 +242,23 @@ a.fa {
     border-radius:3px;
     &:hover {
       background:darken(rgba(41,171,226,1),15%);
+    }
+  }
+  .credits {
+    background:rgba(0,0,0,.3);
+    color:$white;
+    width: 300px;
+    position:absolute;
+    bottom:20px;
+    right:20px;
+    font-size: 12px;
+    padding:8px 12px;
+    p {
+      margin-bottom: 0;
+    }
+    a {
+      font-style: italic;
+      color:$white;
     }
   }
 }
@@ -2485,6 +2503,14 @@ ACTIVITY LIST
         td:first-of-type {
           font-weight: 600;
         }
+        &.vertical-border {
+          td {
+            border-right:1px solid #ddd;
+            &:last-of-type {
+              border-right:0;
+            }
+          }
+        }
       }
       &.triple {
         .table {
@@ -2569,6 +2595,7 @@ ACTIVITY LIST
     font-size:14px;
     &.financial {
       padding:0;
+      margin-bottom: 30px;
        h3 {
         padding:12px 15px 2px 15px;
       }

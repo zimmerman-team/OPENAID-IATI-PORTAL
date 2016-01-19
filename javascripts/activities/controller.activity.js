@@ -43,6 +43,24 @@
         vm.transactionData = vm.reformatTransactionData();
         vm.tabs[3].count = vm.activity.documents.length;
         console.log(vm.activity.policy_markers);
+        $("table.reverse").each(function () {
+          var $this = $(this);
+          var newrows = [];
+          $this.find("tr").each(function () {
+              var i = 0;
+              $(this).find("td,th").each(function () {
+                  i++;
+                  if (newrows[i] === undefined) {
+                      newrows[i] = $("<tr></tr>");
+                  }
+                  newrows[i].append($(this));
+              });
+          });
+          $this.find("tr").remove();
+          $.each(newrows, function () {
+              $this.append(this);
+          });
+        });
       }
       function providedSuccessFn(data, status, headers, config){
         vm.providedActivities = data.data.results;

@@ -390,24 +390,26 @@
 
             <div class="hp-block wit with-table triple">
                 <h3>Policy markers</h3>
-                <table class="table table-striped">
+                <table class="table table-striped vertical-border">
                     <thead>
                         <tr>
-                            <th>Principal objectives</th>
-                            <th>Significant objectives</th>
-                            <th>Not targeted</th>
+                            <th>Marker</th>
+                            <th width="160" class="text-center">Principal objective</th>
+                            <th width="160" class="text-center">Significant objective</th>
+                            <th width="160" class="text-center">Not targeted</th>
                         </tr>
                     </thead>
                      <tbody>
                         <tr ng-repeat="marker in vm.activity.policy_markers">
-                            <td width="33%">
-                                <span ng-if="marker.significance.code == 2">{{marker.policy_marker.name}}</span>
+                            <td>{{marker.policy_marker.name}}</td>
+                            <td class="text-center">
+                                <span ng-if="marker.significance.code == 2"><i class="fa fa-check"></i></span>
                             </td>
-                            <td width="33%">
-                                <span ng-if="marker.significance.code == 1">{{marker.policy_marker.name}}</span>
+                            <td class="text-center">
+                                <span ng-if="marker.significance.code == 1"><i class="fa fa-check"></i></span>
                             </td>
-                            <td>
-                                <span ng-if="marker.significance.code == 0">{{marker.policy_marker.name}}</span>
+                            <td class="text-center">
+                                <span ng-if="marker.significance.code == 0"><i class="fa fa-check"></i></span>
                             </td>
                         </tr>
                     </tbody>
