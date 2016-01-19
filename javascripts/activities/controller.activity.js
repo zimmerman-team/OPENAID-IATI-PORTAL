@@ -30,6 +30,7 @@
       {'id': 'fullreport', 'name': 'Detailed report', 'count': -1},
       {'id': 'documents', 'name': 'Documents', 'count': -1},
       {'id': 'thirdparty', 'name': 'Third-party data', 'count': -1},
+      //{'id': 'form', 'name': 'Ask a question about this project', 'count': -1},
     ]
 
     activate();
@@ -42,25 +43,6 @@
         vm.activity = data.data;
         vm.transactionData = vm.reformatTransactionData();
         vm.tabs[3].count = vm.activity.documents.length;
-        console.log(vm.activity.policy_markers);
-        $("table.reverse").each(function () {
-          var $this = $(this);
-          var newrows = [];
-          $this.find("tr").each(function () {
-              var i = 0;
-              $(this).find("td,th").each(function () {
-                  i++;
-                  if (newrows[i] === undefined) {
-                      newrows[i] = $("<tr></tr>");
-                  }
-                  newrows[i].append($(this));
-              });
-          });
-          $this.find("tr").remove();
-          $.each(newrows, function () {
-              $this.append(this);
-          });
-        });
       }
       function providedSuccessFn(data, status, headers, config){
         vm.providedActivities = data.data.results;
