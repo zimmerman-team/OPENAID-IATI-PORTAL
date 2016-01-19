@@ -476,12 +476,15 @@ hr{
 .hp-block{
   padding: 15px;
   margin: 0 0 15px 0;
-  font-size: 17px;
+  font-size: 14px;
   &.wit {
     background-color:rgba(255,255,255,.6);
     h4 {
       font-weight: 600;
     }
+  }
+  h3 {
+    font-size:18px;
   }
 
   &.hp-line-chart-wrapper{
@@ -815,6 +818,7 @@ NAVBAR
   padding:5px 10px;
   margin-bottom:1px;
   font-size:14px;
+  @extend .clearfix;
   ul {
     margin:0;
     li {
@@ -833,6 +837,23 @@ NAVBAR
       }
       &:last-of-type {
         margin-right:0;
+      }
+    }
+  }
+  #form {
+    @media only screen and (min-width: 992px) {
+      float: right;
+    }
+    font-size:12px;
+    background:$oranje;
+    text-transform: none;
+    padding:2px 10px;
+    border-radius:3px;
+    transition: all .2s ease;
+    &.active, &:hover {
+      background:darken($oranje,10%);
+      a {
+        color:$white;
       }
     }
   }
@@ -2524,7 +2545,22 @@ ACTIVITY LIST
 }
 
 .full-report {
-  margin-top:1px;
+  margin-top:0px;
+}
+
+.form-wrap {
+  .form {
+    text-align: left;
+  }
+  .hp-block {
+    margin-bottom: 1px;
+    @extend .clearfix;
+    p {
+      margin-bottom:0;
+      text-align: left;
+      margin-top:0;
+    }
+  }
 }
 
 .share {
@@ -3291,7 +3327,7 @@ footer{
   .activity-list-item {
     .col-sm-3 {
       h3 {
-        font-size:16px;
+        font-size:18px;
         margin-top:3px;
       }
     }

@@ -2,6 +2,6 @@
     'use strict';
 
     angular
-        .module('oipa.activities', []);
+        .module('oipa.activities', ['formly','formlyBootstrap']);
 
 })();

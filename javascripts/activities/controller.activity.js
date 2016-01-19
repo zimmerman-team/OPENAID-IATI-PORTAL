@@ -9,12 +9,12 @@
     .module('oipa.activities')
     .controller('ActivityController', ActivityController);
 
-  ActivityController.$inject = ['Activities', '$stateParams', 'FilterSelection', '$filter', 'homeUrl', '$http', 'templateBaseUrl'];
+  ActivityController.$inject = ['Activities', '$stateParams', 'FilterSelection', '$filter', 'homeUrl', '$http', '$location', 'templateBaseUrl'];
 
   /**
   * @namespace ActivitiesController
   */
-  function ActivityController(Activities, $stateParams, FilterSelection, $filter, homeUrl, $http, templateBaseUrl) {
+  function ActivityController(Activities, $stateParams, FilterSelection, $filter, homeUrl, $http, $location, templateBaseUrl) {
     var vm = this;
     vm.activity = null;
     vm.activityId = $stateParams.activity_id;
@@ -30,7 +30,7 @@
       {'id': 'fullreport', 'name': 'Detailed report', 'count': -1},
       {'id': 'documents', 'name': 'Documents', 'count': -1},
       {'id': 'thirdparty', 'name': 'Third-party data', 'count': -1},
-      //{'id': 'form', 'name': 'Ask a question about this project', 'count': -1},
+      {'id': 'form', 'name': 'Ask a question about this project', 'count': -1},
     ]
 
     activate();
@@ -43,6 +43,7 @@
         vm.activity = data.data;
         vm.transactionData = vm.reformatTransactionData();
         vm.tabs[3].count = vm.activity.documents.length;
+        vm.makeForm();
       }
       function providedSuccessFn(data, status, headers, config){
         vm.providedActivities = data.data.results;
@@ -148,6 +149,101 @@
       }
     };
 
+    //form gebeuren
+    vm.onSubmit = onSubmit;
+    vm.errored = false;
+    vm.submitted = false;
+    vm.model = {};
+    vm.fields = '';
+
+    vm.makeForm = function(){
+      // funcation assignment      
+      vm.fields = [
+        {
+          key: 'iati_id',
+          type: 'input',
+          defaultValue: vm.activity.iati_identifier,
+          templateOptions: {
+            label: 'IATI Identifier',
+            required: true,
+            disabled: true
+          }
+        },
+        {
+          key: 'first_name',
+          type: 'input',
+          templateOptions: {
+            label: 'First name',
+            placeholder: 'Enter your first name...',
+            required: true
+          }
+        },
+        {
+          key: 'last_name',
+          type: 'input',
+          templateOptions: {
+            label: 'Surname',
+            placeholder: 'Enter your surname...',
+            required: true
+          }
+        },
+        {
+          key: 'organisation',
+          type: 'input',
+          templateOptions: {
+            label: 'Organisation',
+            placeholder: 'Enter your organisation\'s name...'
+          }
+        },
+              {
+          key: 'email',
+          type: 'input',
+          templateOptions: {
+            label: 'Email',
+            placeholder: 'Enter your email address...',
+            type: 'email',
+            required: true
+          }
+        },
+        {
+          key: 'phone',
+          type: 'input',
+          templateOptions: {
+            label: 'Phone',
+            placeholder: 'Enter your phone number...'
+          }
+        },
+        {
+          key: 'message',
+          type: 'textarea',
+          templateOptions: {
+            label: 'Message',
+            placeholder: 'Enter your questions, comments or complaints...',
+            required: true,
+            rows: 10
+          }
+        },
+      ];
+
+    };
+
+    // function definition
+    function onSubmit() {
+
+      $http.post(homeUrl + '/wp-admin/admin-ajax.php?action=angular_form', JSON.stringify(vm.model)).then(successCallback, errorCallback);
+      function successCallback(data, status, headers, config){
+          if (data.statusText == "OK") {
+            vm.submitted = true;
+            vm.errored = false;
+          }
+          else {
+            vm.errored = true;
+          }
+      }
+      function errorCallback(data, status, headers, config){
+          vm.errored = true;
+      }
+    }
 
 
   }

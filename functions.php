@@ -120,6 +120,7 @@ function angular_form() {
   $json = file_get_contents('php://input');
   $obj = json_decode($json, true);
 
+  $iati = $obj['iati_id'];
   $fname = $obj['first_name'];
   $lname = $obj['last_name'];
   $org = $obj['organisation'];
@@ -127,14 +128,22 @@ function angular_form() {
   $email = $obj['email'];
   $message = $obj['message'];
 
-  $txt = "Mail sent from Openaid.nl \n";
+  if (!empty($iati)) {
+    $subject = 'project mail form';
+  }
+  else {
+    $subject = 'general mail form';
+  }
+
+  $txt = "Openaid.nl: ".$subject." \n\n";
+  if (!empty($iati)) { $txt .= "iati id: " . $iati . "\n\n"; }
   $txt .= "name: " . $fname . " " . $lname . "\n";
   $txt .= "organisation: " . $org . "\n";
   $txt .= "email: " . $email . "\n";
   $txt .= "phone: " . $phone . "\n";
   $txt .= "message: " . $message . "\n";
 
-  mail("info@zimmermanzimmerman.nl","OpenaidNL contact form message",$txt);
+  mail("info@zimmermanzimmerman.nl","OpenaidNL: $subject",$txt);
 
   return 'Mail sent';
   exit();

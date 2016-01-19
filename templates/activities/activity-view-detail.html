@@ -543,6 +543,35 @@
         </div>
     </div>
 
+    <div class="row" ng-show="vm.selectedTab == 'form'">
+        <div class="col-md-12 form-wrap">
+            <div class="hp-block wit">
+                <h3>Questions about this project?</h3>
+                <p>If you have a question or complaint about this project or would like to report fraud please contact the openaidNL team, they will handle your questions or reports with the highest confidentiality. Don't hesitate to contact us by filling out the form below. Your data will be transmitted using a secure connection. We aim to respond within two working days.</p>
+            </div>
+            
+            <div class="hp-block wit form">
+                <div class="row" ng-if="vm.submitted == false">
+                    <div class="col-md-10 col-md-offset-1">
+                        <form ng-submit="vm.onSubmit()" name="vm.form" novalidate>
+                            <formly-form model="vm.model" fields="vm.fields" options="vm.options" form="vm.form">
+                                <button type="submit" class="btn btn-primary submit-button" ng-disabled="vm.form.$invalid">Submit</button>
+                            </formly-form>
+                        </form>
+                    </div>
+                </div>
+                <p ng-if="vm.submitted == true"><b>Thank you for your message. We will be in touch shortly.</b></p>
+                <p ng-if="vm.error == true"><b style="color:#b30000;">Something seems to have gone wrong. Send us a note on info@zimmermanzimmerman.nl if the problem persists.</b></p>
+            </div>
+
+            <div class="hp-block wit">
+                <p>The openaidNL team, run by Zimmerman & Zimmerman, will process your contact form. Your personal details will only be used to respond to your message and will not be kept any longer than necessary.</p>
+            </div>
+
+                
+        </div>
+    </div>
+
 </div>
 
 
