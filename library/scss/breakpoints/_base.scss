@@ -2455,6 +2455,89 @@ ACTIVITY LIST
   }
 }
 
+.summary-report, .full-report {
+  margin-top:15px;
+  a {
+    color:$oranje;
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  .hp-block {
+    //margin-bottom: 0;
+    padding:12px 15px;
+    font-size:14px;
+    h3 {
+      font-size: 18px;
+    }
+    &.with-table {
+      padding:0;
+      h3 {
+        padding:12px 15px 2px 15px;
+      }
+      .table {
+        td,th {
+          font-size:14px;
+          padding:8px 15px;
+          white-space: normal;
+        }
+        td:first-of-type {
+          font-weight: 600;
+        }
+      }
+      &.triple {
+        .table {
+          td:first-of-type {
+            font-weight: 400;
+          } 
+        }
+      }
+    }
+  }
+}
+
+.full-report {
+  margin-top:1px;
+}
+
+.share {
+  .fa-stack {
+    font-size: 80%;
+    &:hover {
+      .fa-circle {
+        color:rgba(115,129,145,1);
+      }
+    }
+  }
+  .fa-circle {
+    color:rgba(115,129,145,0.5);
+    transition: all .2s ease;
+  }
+  .fa-inverse {
+    color:$white;
+  }
+  a {
+    cursor: pointer;
+    &:hover {
+      text-decoration: none;
+      .fa-circle {
+        color:rgba(115,129,145,1);
+      }
+    }
+    &.dld {
+      margin-right: 8px;
+      &:hover {
+        text-decoration: underline;
+      }
+      i {
+        margin-right: 4px;
+        color:#333;
+      }
+    }
+  }
+}
+
 .activity-list-item {
   margin-bottom: 1px;
   overflow: hidden;
@@ -2485,6 +2568,15 @@ ACTIVITY LIST
     padding:12px 15px;
     font-size:14px;
     &.financial {
+      padding:0;
+       h3 {
+        padding:12px 15px 2px 15px;
+      }
+      .table {
+        td,th {
+          padding:8px 15px;
+        }
+      }
       p:last-of-type {
         margin-bottom: 15px !important;
       }

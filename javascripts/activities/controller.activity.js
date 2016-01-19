@@ -27,6 +27,7 @@
     vm.tabs = [
       {'id': 'summary', 'name': 'Summary', 'count': -1},
       {'id': 'transactions', 'name': 'Transactions', 'count': -1},
+      {'id': 'fullreport', 'name': 'Detailed report', 'count': -1},
       {'id': 'documents', 'name': 'Documents', 'count': -1},
       {'id': 'thirdparty', 'name': 'Third-party data', 'count': -1},
     ]
@@ -40,11 +41,12 @@
       function successFn(data, status, headers, config) {
         vm.activity = data.data;
         vm.transactionData = vm.reformatTransactionData();
-        vm.tabs[2].count = vm.activity.documents.length;
+        vm.tabs[3].count = vm.activity.documents.length;
+        console.log(vm.activity.policy_markers);
       }
       function providedSuccessFn(data, status, headers, config){
         vm.providedActivities = data.data.results;
-        vm.tabs[3].count = data.data.count;
+        vm.tabs[4].count = data.data.count;
       }
 
       function errorFn(data, status, headers, config) {

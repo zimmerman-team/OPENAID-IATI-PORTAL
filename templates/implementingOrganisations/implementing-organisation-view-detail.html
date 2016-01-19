@@ -33,7 +33,7 @@
             <div class="row">
                 <div class="col-sm-12 activity-list-item">
                     <div class="hp-block wit financial">
-                        <p><b>Expenditure per year</b></p>
+                        <h3>Expenditure per year</h3>
                         <table class="table table-striped">
                             <tbody>
                                 <tr ng-repeat="disbursement in vm.disbursements_by_year">
@@ -52,7 +52,7 @@
         </div>
         <div class="col-md-4 activity-list-item">
             <div class="hp-block wit financial">
-                <p><b>Budget per year</b></p>
+                <h3>Budget per year</h3>
                 <table class="table table-striped" ng-if="budget_by_year.budget__period_start_year != 0" >
                     <tbody>
                         <tr ng-repeat="budget in vm.budget_by_year">
@@ -70,7 +70,7 @@
 
         <div class="col-md-4 activity-list-item">
             <div class="hp-block wit financial">
-                <p><b>Commitment per year</b></p>
+                <h3>Commitment per year</h3>
                 <table class="table table-striped">
                     <tbody>
                         <tr ng-repeat="commitment in vm.commitments_by_year">

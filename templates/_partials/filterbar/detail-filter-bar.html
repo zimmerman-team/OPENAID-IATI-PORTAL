@@ -1,48 +1,38 @@
 <!-- needed to make filtering work -->
     <filter-selection-box ng-show="false"></filter-selection-box>
 
-    <div class="col-xs-3">
-        <div class="social detailview text-right-lg text-right">
-            <span 
-              class="fa-stack fa-lg download-button hidden-xs" 
-              ng-if="vm.currentPage == 'activity' || vm.currentPage == 'activities'">
-                <i class="fa fa-circle fa-stack-2x"></i>
-                <i class="fa fa-download fa-stack-1x fa-inverse"></i>
-                <div class="download-wrap">
-                    <a ng-click="vm.download('csv')">
-                        Download CSV
-                        <span class="fa-stack fa-lg download-button">
-                            <i class="fa fa-circle fa-stack-2x"></i>
-                            <i class="fa fa-download fa-stack-1x fa-inverse"></i>
-                        </span>
+    <table class="table table-striped share">
+        <tbody>
+            <tr>
+                <td width="120">Download:</td>
+                <td>
+                    <a ng-click="vm.download('csv')" class="dld">
+                        <i class="fa fa-file-excel-o"></i>CSV
                     </a>
-                    <a ng-click="vm.download('xml')">
-                        Download XML
-                        <span class="fa-stack fa-lg download-button">
-                            <i class="fa fa-circle fa-stack-2x"></i>
-                            <i class="fa fa-download fa-stack-1x fa-inverse"></i>
-                        </span>
+                    <a ng-click="vm.download('xml')" class="dld">                  
+                        <i class="fa fa-file-text-o"></i>XML
                     </a>
-                    <a ng-click="vm.download('json')">
-                        Download JSON
-                        <span class="fa-stack fa-lg download-button">
-                            <i class="fa fa-circle fa-stack-2x"></i>
-                            <i class="fa fa-download fa-stack-1x fa-inverse"></i>
-                        </span>
+                    <a ng-click="vm.download('json')" class="dld">
+                        <i class="fa fa-file-code-o"></i>JSON
                     </a>
-                </div>
-            </span>
-            <span class="fa-stack fa-lg">
-                <i class="fa fa-circle fa-stack-2x"></i>
-                <a ng-href="http://twitter.com/home?status={{vm.shareDescription}}" class="fa fa-twitter fa-stack-1x fa-inverse"></a>
-            </span>
-            <span class="fa-stack fa-lg">
-                <i class="fa fa-circle fa-stack-2x"></i>
-                <a ng-href="http://www.linkedin.com/shareArticle?mini=true&url={{vm.pageUrl}}&title={{vm.shareDescription}}" class="fa fa-linkedin fa-stack-1x fa-inverse"></a>
-            </span>
-            <span class="fa-stack fa-lg">
-                <i class="fa fa-circle fa-stack-2x"></i>
-                <a ng-href="http://www.facebook.com/sharer/sharer.php?s=100&p[url]={{vm.pageUrl}}" class="fa fa-facebook fa-stack-1x fa-inverse"></a>
-            </span>
-        </div>
-    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>Share:</td>
+                <td>
+                    <span class="fa-stack fa-lg">
+                        <i class="fa fa-circle fa-stack-2x"></i>
+                        <a ng-href="http://twitter.com/home?status={{vm.shareDescription}}" class="fa fa-twitter fa-stack-1x fa-inverse"></a>
+                    </span>
+                    <span class="fa-stack fa-lg">
+                        <i class="fa fa-circle fa-stack-2x"></i>
+                        <a ng-href="http://www.linkedin.com/shareArticle?mini=true&url={{vm.pageUrl}}&title={{vm.shareDescription}}" class="fa fa-linkedin fa-stack-1x fa-inverse"></a>
+                    </span>
+                    <span class="fa-stack fa-lg">
+                        <i class="fa fa-circle fa-stack-2x"></i>
+                        <a ng-href="http://www.facebook.com/sharer/sharer.php?s=100&p[url]={{vm.pageUrl}}" class="fa fa-facebook fa-stack-1x fa-inverse"></a>
+                    </span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
