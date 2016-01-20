@@ -72,7 +72,7 @@
                             </tr>
                             <tr>
                                 <td>Participating organisations:</td>
-                                <td><span ng-repeat='org in vm.activity.participating_organisations'>{{org.name}}, </span></td>
+                                <td><span ng-repeat='org in vm.activity.participating_organisations'><a ui-sref="organisation({ organisation_id: org.code })">{{org.name}}</a>{{$last ? '' : ', '}}</span></td>
                             </tr>
                             <tr>
                                 <td>Status:</td>
@@ -231,7 +231,7 @@
                         </tr>
                         <tr>
                             <td>Participating organisations:</td>
-                            <td><span ng-repeat='org in vm.activity.participating_organisations'>{{org.name}}, </span></td>
+                            <td><span ng-repeat='org in vm.activity.participating_organisations'><a ui-sref="organisation({ organisation_id: org.code })">{{org.name}}</a>{{$last ? '' : ', '}}</span></td>
                         </tr>
                         <tr>
                             <td>Tied status:</td>
