@@ -808,6 +808,15 @@ NAVBAR
   img {
     max-width: 120px;
     height: auto;
+    float: left;
+  }
+  .version {
+    color:$white;
+    font-size: 12px;
+    float: left;
+    display: block;
+    line-height: 27px;
+    margin-left: 5px;
   }
 }
 
