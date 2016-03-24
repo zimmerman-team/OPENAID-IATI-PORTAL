@@ -18,8 +18,6 @@
         groupBy: '=',
         groupById: '=',
         aggregationKey: '=',
-        aggregationExtraSelect: '=',
-        aggregationExtraSelectIn: '=',
         refreshData: '=',
         shownIds: '=',
         topFive: '=',

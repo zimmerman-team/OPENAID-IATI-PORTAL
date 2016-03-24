@@ -77,6 +77,7 @@
       Aggregations.aggregation(vm.groupBy, vm.aggregationKey, vm.aggregationFilters).then(succesFn, errorFn);
 
       function succesFn(data, status, headers, config){
+
         if(vm.mapping != undefined){
           data.data.results = vm[vm.mapping + 'ReMap'](data.data.results);
         }
@@ -114,11 +115,15 @@
       }
       
       $scope.$watch('aggregationFilters', function (aggregationFilters) {
+
+        vm.hasToContain = $scope.hasToContain;
+        console.log(aggregationFilters);
         if (vm.hasToContain == ''){
           if (aggregationFilters == ''){
             return false;
           }
         }
+        console.log(vm.hasToContain);
         if(vm.hasToContain != undefined){
           if(aggregationFilters.indexOf(vm.hasToContain) < 0){
             return false;
@@ -128,6 +133,7 @@
         vm.groupBy = $scope.groupBy;
         vm.groupById = $scope.groupById;
         vm.aggregationFilters = aggregationFilters;
+
         vm.loadData();
       }, true);
     }
@@ -149,7 +155,7 @@
           }
         }
 
-        mappedData[data[i][vm.groupById]].values.push([data[i]['transaction_date_year'], data[i]['total_disbursements']]);
+        mappedData[data[i][vm.groupById]].values.push([data[i]['year'], data[i]['disbursement']]);
       }
 
       var formattedData = [];
@@ -161,19 +167,22 @@
     }
 
     vm.multiBarChartReformatData = function(data){
-
+      console.log(data);
       var mappedData = {};
 
+      var firstGroupBy = vm.groupBy.split(',')[0];
       for (var i = 0; i < data.length;i++){
-        if(mappedData[data[i][vm.groupById]] === undefined){
-          mappedData[data[i][vm.groupById]] = {
-            key: data[i]['name'],
+        if(mappedData[data[i][firstGroupBy][vm.groupById]] === undefined){
+          mappedData[data[i][firstGroupBy][vm.groupById]] = {
+            key: data[i][firstGroupBy]['name'],
             values: {},
           }
         }
 
-        mappedData[data[i][vm.groupById]].values[data[i]['transaction_date_year']] = data[i]['total_disbursements'];
+        mappedData[data[i][firstGroupBy][vm.groupById]].values[data[i]['year']] = data[i]['disbursement'];
       }
+
+      console.log(firstGroupBy);
 
       var min = 2100;
       var max = 1900;
@@ -215,7 +224,7 @@
 
 
       for (var i = 0; i < data.length;i++){
-        years[data[i]['transaction_date_year']] = data[i]['transaction_date_year'];
+        years[data[i]['year']] = data[i]['year'];
       }
 
       for (var i = 0; i < data.length;i++){
@@ -228,7 +237,7 @@
             mappedData[data[i][vm.groupById]].values[year] = 0;
           }
         }
-        mappedData[data[i][vm.groupById]].values[data[i]['transaction_date_year']] = data[i]['total_disbursements'];
+        mappedData[data[i][vm.groupById]].values[data[i]['year']] = data[i]['disbursement'];
       }
 
       var formattedData = [];
@@ -261,7 +270,7 @@
       for (var i = 0; i < data.length;i++){
         mappedData.values.push({
           "label": data[i]['name'],
-          "value": data[i]['total_disbursements']});
+          "value": data[i]['disbursement']});
       }
 
       formattedData.push(mappedData);      
@@ -315,8 +324,8 @@
       var partnerData = {};
 
       for (var i = 0; i < data.length;i++){
-        if(partnerlanden[data[i]['country_id']] != undefined){
-          var partnerstatus = partnerlanden[data[i]['country_id']];
+        if(partnerlanden[data[i]['recipient_country']['code']] != undefined){
+          var partnerstatus = partnerlanden[data[i]['recipient_country']['code']];
         } else {
           var partnerstatus = 'Other';
         }
@@ -332,7 +341,7 @@
 
       for (var key in partnerData){
         var item = {
-          'country_id': key,
+          'recipient_country': key,
           'name': key
         }
         item[vm.aggregationKeyId] = partnerData[key];

@@ -54,7 +54,7 @@
         vm.customFields[id].hoverShow = false;
     };
 
-    vm.top5 = 'recipient-country';
+    vm.top5 = 'recipient_country';
     vm.tableChartOptions = null;
     vm.lineChartOptions = {};
     vm.shownIds = '';
@@ -65,45 +65,42 @@
     vm.top5Options = {
       'recipient_country': {
         aggregationFilters: '&amp;order_by=-disbursement&amp;limit=5',
-        groupBy: 'recipient-country',
-        groupById: 'country_id',
-        groupSref: 'countries',
-        aggregationKey: 'disbursement',
-        aggregationExtraSelect: 'iati-identifier',
-        aggregationExtraSelectIn: 'recipient_country'
+        groupBy: 'recipient_country',
+        groupById: 'code',
+        groupSref: 'country',
+        aggregationKey: 'count,disbursement',
       },
-      'transaction__receiver-org': {
+      'participating_organisation': {
         aggregationFilters: '&amp;order_by=-disbursement&amp;limit=5',
-        groupBy: 'transaction__receiver-org',
-        groupById: 'receiver_organisation_id',
-        groupSref: 'organisations',
+        groupBy: 'participating_organisation',
+        groupById: 'ref',
+        groupSref: 'organisation',
         aggregationKey: 'disbursement',
-        aggregationExtraSelect: 'iati-identifier',
-        aggregationExtraSelectIn: 'participating_organisation__in'
       },
       'sector': {
         aggregationFilters: '&amp;order_by=-disbursement&amp;limit=5',
         groupBy: 'sector',
-        groupById: 'sector_id',
-        groupSref: 'sectors',
+        groupById: 'code',
+        groupSref: 'sector',
         aggregationKey: 'disbursement',
-        aggregationExtraSelect: '',
-        aggregationExtraSelectIn: 'sector'
       }
     };
 
-    vm.top5ListOptions = {
-      'recipient-country': {
+    vm.top5ListOptions = {  
+      'recipient_country': {
         groupBy: 'recipient_country,transaction_date_year',
-        groupById: 'recipient_country'
+        groupById: 'code',
+        hasToContain: 'recipient_country'
       },
-      'transaction__receiver-org': {
-        groupBy: 'transaction__receiver-org,transaction__transaction-date_year',
-        groupById: 'receiver_organisation_id',
+      'participating_organisation': {
+        groupBy: 'participating_organisation,transaction_date_year',
+        groupById: 'ref',
+        hasToContain: 'participating_organisation'
       },
       'sector': {
         groupBy: 'sector,transaction_date_year',
-        groupById: 'sector',
+        groupById: 'code',
+        hasToContain: 'sector'
       }
     };
   }

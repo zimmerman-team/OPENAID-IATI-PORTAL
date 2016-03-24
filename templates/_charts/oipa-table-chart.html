@@ -4,44 +4,39 @@
             <th>
                 <label class="wrapper">
                     <div class="custom-select ff-hack wide first">
-
                         <select ng-model="topFive">
-                            <option value='recipient-country'>Top 5 countries</option>
-                            <option value='transaction__receiver-org'>Top 5 implementing organisations</option>
+                            <option value='recipient_country'>Top 5 countries</option>
+                            <option value='participating_organisation'>Top 5 implementing organisations</option>
                             <option value='sector'>Top 5 sectors</option>
                         </select>
-
                     </div>
                 </label>
             </th>
             <th>
                 <div class="custom-select ff-hack second">
-
                     <select ng-model="transactionYear">
-                        <option value='2015'>Expenditure in 2015</option>
-                        <option value='2014'>Expenditure in 2014</option>
-                        <option value='2013'>Expenditure in 2013</option>
-                        <option value='2012'>Expenditure in 2012</option>
-                        <option value='2011'>Expenditure in 2011</option>
-                        <option value='2010'>Expenditure in 2010</option>
-                        <option value='2009'>Expenditure in 2009</option>
-                        <option value='2008'>Expenditure in 2008</option>
-                        <option value='2007'>Expenditure in 2007</option>
-                        <option value='2006'>Expenditure in 2006</option>
-                        <option value='2005'>Expenditure in 2005</option>
-                        <option value='2004'>Expenditure in 2004</option>
-                        <option value='2003'>Expenditure in 2003</option>
-                        <option value='2002'>Expenditure in 2002</option>
+                        <option value='2016'>Disbursement in 2016</option>
+                        <option value='2015'>Disbursement in 2015</option>
+                        <option value='2014'>Disbursement in 2014</option>
+                        <option value='2013'>Disbursement in 2013</option>
+                        <option value='2012'>Disbursement in 2012</option>
+                        <option value='2011'>Disbursement in 2011</option>
+                        <option value='2010'>Disbursement in 2010</option>
+                        <option value='2009'>Disbursement in 2009</option>
+                        <option value='2008'>Disbursement in 2008</option>
+                        <option value='2007'>Disbursement in 2007</option>
+                        <option value='2006'>Disbursement in 2006</option>
+                        <option value='2005'>Disbursement in 2005</option>
+                        <option value='2004'>Disbursement in 2004</option>
+                        <option value='2003'>Disbursement in 2003</option>
+                        <option value='2002'>Disbursement in 2002</option>
                     </select>
-
                 </div>
             </th>
             <th>
                 <label class="wrapper">
                     <div class="third" style="font-weight: 600;">
                         Total projects
-                        
-
                     </div>
                 </label>
             </th>
@@ -49,17 +44,15 @@
     </thead>
     <tbody>
         <tr ng-repeat="item in vm.chartData">
-<!--         	<td class="colour"><div></div></td>
- -->        <td>
+            <td>
             	<span class="no">{{$index + 1}}.</span>
-
-            	<!-- <a ui-sref="country({ country_id: item.country_id })"> -->
-                <a ng-href="{{vm.homeUrl+'/'+groupSref+'/'+item.id+'/'}}">
-	            	<span ng-if="item.country_id" class="flag-icon flag-icon-{{item.country_id | lowercase }}"></span><span>{{item.name}}</span>
+                <a ng-href="{{vm.homeUrl+'/'+groupSref+'/'+item.code+'/'}}">
+	            	<span ng-if="vm.groupBy == 'recipient_country'" class="flag-icon flag-icon-{{item.code | lowercase }}"></span>
+                    <span>{{item.name}}</span>
             	</a>
             </td>
-            <td>{{item.total_disbursements | shortcurrency :'€'}}</td>
-            <td><span>{{item.activity_count}} projects</span></td>
+            <td>{{item.disbursement | shortcurrency :'€'}}</td>
+            <td><span>{{item.count}} projects</span></td>
         </tr>
     </tbody>
 </table>

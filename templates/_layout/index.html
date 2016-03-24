@@ -167,7 +167,7 @@
 
     <hr class="hidden-xs" style="margin-top:15px;"> -->
 
-     <div class="row hidden-xs">
+    <div class="row hidden-xs">
         <div class="col-md-12 top5header">
             <h2>Top 5 IATI visualisations</h2>
         </div>
@@ -182,13 +182,11 @@
                     group-by-id='vm.tableChartOptions.groupById' 
                     group-sref='vm.tableChartOptions.groupSref' 
                     aggregation-key='vm.tableChartOptions.aggregationKey' 
-                    aggregation-extra-select='vm.tableChartOptions.aggregationExtraSelect' 
-                    aggregation-extra-select-in='vm.tableChartOptions.aggregationExtraSelectIn' 
                     refresh-data='vm.refreshTableChart' 
                     shown-ids='vm.shownIds' 
                     top-five='vm.top5' 
                     activity-status='vm.activityStatus' 
-                    transaction-year='vm.transactionYear' ></oipa-table-chart>
+                    transaction-year='vm.transactionYear'></oipa-table-chart>
             </div>
         </div>
     </div>
@@ -197,7 +195,7 @@
             <div class="hp-block wit hp-line-chart-wrapper">
              <oipa-line-chart 
                 aggregation-filters='vm.shownIds' 
-                has-to-contain='' 
+                has-to-contain='vm.lineChartOptions.hasToContain' 
                 group-by='vm.lineChartOptions.groupBy' 
                 group-by-id='vm.lineChartOptions.groupById' 
                 aggregation-key='disbursement' 
