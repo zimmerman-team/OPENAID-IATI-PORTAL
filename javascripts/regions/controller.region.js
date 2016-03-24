@@ -31,52 +31,43 @@
         vm.update(selectionString);
       }, true);
 
-      Regions.get(vm.region_id).then(successFn, errorFn);
-      
+      Regions.getRegion(vm.region_id).then(successFn, errorFn);
+
       function successFn(data, status, headers, config) {
         vm.region = data.data;
-        Regions.selectedRegions.push({'region_id':vm.region.code,'name':vm.region.name});
+        Regions.selectedRegions.push({'count': 0, 'recipient_region': {'code':vm.region.code,'name':vm.region.name}});
         FilterSelection.save();
       }
     }
 
-    function errorFn(data, status, headers, config) {
-      console.log("getting region failed");
-    }
-
     vm.update = function(selectionString){
-      if (selectionString.indexOf("regions__in") < 0){ return false;}
+      if (selectionString.indexOf("recipient_region") < 0){ return false;}
 
-      Aggregations.aggregation('transaction__transaction-date_year', 'disbursement', selectionString).then(function(data, status, headers, config){
+      Aggregations.aggregation('transaction_date_year', 'disbursement', selectionString, 'year').then(function(data, status, headers, config){
         vm.disbursements_by_year = data.data.results;
         vm.disbursements_total = 0;
-        for (var key in vm.disbursements_by_year) {
-          if (vm.disbursements_by_year.hasOwnProperty(key)) {
-            vm.disbursements_total += vm.disbursements_by_year[key].total_disbursements;
-          }
+        for (var i = vm.disbursements_by_year.length - 1; i >= 0; i--) {
+          vm.disbursements_total += vm.disbursements_by_year[i].disbursement;
         };
       }, errorFn);
 
-      Aggregations.aggregation('transaction__transaction-date_year', 'commitment', selectionString).then(function(data, status, headers, config){
+      Aggregations.aggregation('transaction_date_year', 'commitment', selectionString, 'year').then(function(data, status, headers, config){
         vm.commitments_by_year = data.data.results;
         vm.commitments_total = 0;
-        for (var key in vm.commitments_by_year) {
-          if (vm.commitments_by_year.hasOwnProperty(key)) {
-            vm.commitments_total += vm.commitments_by_year[key].total_commitments;
-          }
+        for (var i = vm.commitments_by_year.length - 1; i >= 0; i--) {
+          vm.commitments_total += vm.commitments_by_year[i].commitment;
         };
       }, errorFn);
 
-      Aggregations.aggregation('budget__period_start_year', 'budget__value', selectionString).then(function(data, status, headers, config){
+      Aggregations.aggregation('budget_per_year', 'budget', selectionString, 'year').then(function(data, status, headers, config){
         vm.budget_by_year = data.data.results;
         vm.budget_total = 0;
-        for (var key in vm.budget_by_year) {
-          if (vm.budget_by_year.hasOwnProperty(key)) {
-            vm.budget_total += vm.budget_by_year[key].budget__value;
-          }
+        for (var i = vm.budget_by_year.length - 1; i >= 0; i--) {
+          vm.budget_total += vm.budget_by_year[i].budget;
         };
       }, errorFn);
     }
+
 
     activate();
 

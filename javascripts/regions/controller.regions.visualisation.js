@@ -43,16 +43,16 @@
     vm.activateGeovis = function(){
 
       // direct country disbursements
-      Aggregations.aggregation('recipient-country', 'disbursement', vm.selectionString + '&extra_select=country_region_id').then(countrySuccessFn, errorFn);
+      Aggregations.aggregation('recipient_country', 'disbursement', vm.selectionString, '', 400, 1).then(countrySuccessFn, errorFn);
 
-      // indirect country disbursements
-      Aggregations.aggregation('location_countries', 'location_disbursement', vm.selectionString + '&not_in_recipientcountries=true').then(indirectCountrySuccessFn, errorFn);
+      // // indirect country disbursements
+      // Aggregations.aggregation('location_countries', 'location_disbursement', vm.selectionString + '&not_in_recipientcountries=true').then(indirectCountrySuccessFn, errorFn);
 
-      // indirect region disbursements
-      Aggregations.aggregation('recipient-region', 'disbursement', vm.selectionString + '&in_locations=true').then(indirectRegionSuccessFn, errorFn);
+      // // indirect region disbursements
+      // Aggregations.aggregation('recipient-region', 'disbursement', vm.selectionString + '&in_locations=true').then(indirectRegionSuccessFn, errorFn);
 
       // direct region disbursements
-      Aggregations.aggregation('recipient-region', 'disbursement', vm.selectionString + '&not_in_locations=true').then(directRegionSuccessFn, errorFn);
+      Aggregations.aggregation('recipient_region', 'disbursement', vm.selectionString, '', 400, 1).then(directRegionSuccessFn, errorFn);
 
 
       function countrySuccessFn(data, status, headers, config){
@@ -83,7 +83,7 @@
 
     vm.preReformatVisualisationData = function(){
       vm.countCalls++;
-      if(vm.countCalls > 3){
+      if(vm.countCalls > 1){
         var data = vm.reformatVisualisationData();
         vm.visualisationData = angular.copy(data);
         vm.refreshVisualisation = true;
@@ -212,33 +212,33 @@
       var countries = {};
       for (var i = 0, len = vm.directCountryValues.length; i < len; i++) {
 
-        countries[vm.directCountryValues[i].country_id] = {
-          'id':   vm.directCountryValues[i].country_id,
+        countries[vm.directCountryValues[i].recipient_country.code] = {
+          'id':   vm.directCountryValues[i].recipient_country.code,
           'value': vm.directCountryValues[i].total_disbursements,
-          'group': vm.directCountryValues[i].region_id,
-          'color': regionMapping[vm.directCountryValues[i].region_id].color,
+          'group': vm.directCountryValues[i].recipient_region.code,
+          'color': regionMapping[vm.directCountryValues[i].recipient_region.code].color,
           'name': vm.directCountryValues[i].name,
           'value2': 0
         };
       }
 
-      for (var i = 0, len = vm.indirectCountryValues.length; i < len; i++) {
+      // for (var i = 0, len = vm.indirectCountryValues.length; i < len; i++) {
 
-        if(countries[vm.indirectCountryValues[i].loc_country_id] == undefined){
+      //   if(countries[vm.indirectCountryValues[i].loc_recipient_country.code] == undefined){
 
-          countries[vm.indirectCountryValues[i].country_id] = {
-            'id':   vm.indirectCountryValues[i].country_id,
-            'value': 0,
-            'value2': vm.indirectCountryValues[i].total_value,
-            'group': vm.indirectCountryValues[i].region_id,
-            'color': regionMapping[vm.indirectCountryValues[i].region_id].color,
-            'name': vm.indirectCountryValues[i].name
-          };
+      //     countries[vm.indirectCountryValues[i].recipient_country.code] = {
+      //       'id':   vm.indirectCountryValues[i].recipient_country.code,
+      //       'value': 0,
+      //       'value2': vm.indirectCountryValues[i].disbursement,
+      //       'group': vm.indirectCountryValues[i].recipient_region.code,
+      //       'color': regionMapping[vm.indirectCountryValues[i].recipient_region.code].color,
+      //       'name': vm.indirectCountryValues[i].name
+      //     };
 
-        } else {
-          countries[vm.indirectCountryValues[i].loc_country_id].value2 = vm.indirectCountryValues[i].total_value;
-        }
-      }
+      //   } else {
+      //     countries[vm.indirectCountryValues[i].loc_recipient_country.code].value2 = vm.indirectCountryValues[i].total_value;
+      //   }
+      // }
 
       var country_arr = [];
       for (var country in countries) {
@@ -251,31 +251,31 @@
       var regions = {};
       for (var i = 0, len = vm.directRegionValues.length; i < len; i++) {
 
-        regions[vm.directRegionValues[i].region_id] = {
-          'id':   vm.directRegionValues[i].region_id,
+        regions[vm.directRegionValues[i].recipient_region.code] = {
+          'id':   vm.directRegionValues[i].recipient_region.code,
           'value': vm.directRegionValues[i].total_disbursements,
-          'name': vm.directRegionValues[i].name,
-          'color': regionMapping[vm.directRegionValues[i].region_id].color,
+          'name': vm.directRegionValues[i].recipient_region.name,
+          'color': regionMapping[vm.directRegionValues[i].recipient_region.code].color,
           'value2': 0,
         };
       }
 
-      for (var i = 0, len = vm.indirectRegionValues.length; i < len; i++) {
+      // for (var i = 0, len = vm.indirectRegionValues.length; i < len; i++) {
 
-        if(regions[vm.indirectRegionValues[i].region_id] == undefined){
+      //   if(regions[vm.indirectRegionValues[i].recipient_region.code] == undefined){
 
-          regions[vm.indirectRegionValues[i].region_id] = {
-            'id':   vm.indirectRegionValues[i].region_id,
-            'value': 0,
-            'name': vm.indirectRegionValues[i].name,
-            'color': regionMapping[vm.indirectRegionValues[i].region_id].color,
-            'value2': vm.indirectRegionValues[i].total_disbursements,
-          };
+      //     regions[vm.indirectRegionValues[i].recipient_region.code] = {
+      //       'id':   vm.indirectRegionValues[i].recipient_region.code,
+      //       'value': 0,
+      //       'name': vm.indirectRegionValues[i].name,
+      //       'color': regionMapping[vm.indirectRegionValues[i].recipient_region.code].color,
+      //       'value2': vm.indirectRegionValues[i].total_disbursements,
+      //     };
 
-        } else {
-          regions[vm.indirectRegionValues[i].region_id].value2 = vm.indirectRegionValues[i].total_disbursements;
-        }
-      }
+      //   } else {
+      //     regions[vm.indirectRegionValues[i].recipient_region.code].value2 = vm.indirectRegionValues[i].total_disbursements;
+      //   }
+      // }
 
       var region_arr = [];
       for (var region in regions) {

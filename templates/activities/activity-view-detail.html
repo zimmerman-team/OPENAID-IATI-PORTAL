@@ -2,7 +2,7 @@
    
     <div class="row">
         <div class="col-xs-9">
-            <h1 class="title">{{vm.activity.titles[0].title}}</h1>
+            <h1 class="title">{{vm.activity.title.narratives[0].text}}</h1>
         </div>
          <!-- <detail-filter-bar 
             activity-id="vm.activityId" 
@@ -26,7 +26,7 @@
 
                 <div class="hp-block wit">
                     <h3>Description</h3>
-                    <p>{{vm.activity.descriptions[0].description}}</p>
+                    <p>{{vm.activity.descriptions[0].narratives[0].text}}</p>
                 </div>
 
                 <div class="hp-block wit with-table">
@@ -35,44 +35,44 @@
                         <tbody>
                             <tr>
                                 <td width="200">Planned start date:</td>
-                                <td>{{vm.activity.start_planned.length ? vm.activity.start_planned : 'No data available' | date : 'dd MMM yyyy'}}</td>
+                                <td>{{vm.start_planned.length ? vm.start_planned : 'No data available' | date : 'dd MMM yyyy'}}</td>
                             </tr>
                             <tr>
                                 <td>Planned end date:</td>
-                                <td>{{vm.activity.end_planned.length ? vm.activity.end_planned : 'No data available' | date : 'dd MMM yyyy'}}</td>
+                                <td>{{vm.end_planned.length ? vm.end_planned : 'No data available' | date : 'dd MMM yyyy'}}</td>
                             </tr>
                             <tr>
                                 <td>Countries:</td>
                                 <td>
-                                    <a ng-repeat="country in vm.activity.countries" ui-sref="country({ country_id: country.code })">
-                                        {{country.name}}
-                                    </a>
-                                    <span ng-if='vm.activity.countries.length == 0'>No data available</span>
+                                    <a ng-repeat="recipient_country in vm.activity.recipient_countries" ui-sref="country({ country_id: recipient_country.country.code })">{{recipient_country.country.name}}{{$last ? '' : ', '}}</a>
+                                    <span ng-if='vm.activity.recipient_countries.length == 0'>No data available</span>
                                 </td>
                             </tr>
                             <tr>
                                 <td>Regions:</td>
                                 <td>
-                                    <a ng-repeat="region in vm.activity.regions" ui-sref="region({ region_id: region.code })">
-                                        {{region.name}}
-                                    </a>
+                                    <a ng-repeat="recipient_region in vm.activity.recipient_regions" ui-sref="region({ region_id: recipient_region.region.code })">{{recipient_region.region.name}}{{$last ? '' : ', '}}</a><span ng-if='vm.activity.recipient_regions.length == 0'>No data available</span>
                                     <span ng-if='vm.activity.regions.length == 0'>No data available</span>
                                 </td>
                             </tr>
                             <tr>
                                 <td>Sectors:</td>
-                                <td><a ui-sref="sector({ sector_id: vm.activity.sectors[0].code })">{{vm.activity.sectors[0].name}}</a></td>
+                                <td>
+                                    <a ng-repeat="recipient_sector in vm.activity.sectors" ui-sref="sector({ sector_id: recipient_sector.sector.code })">
+                                        {{recipient_sector.sector.name}}{{$last ? '' : ', '}}
+                                    </a>
+                                </td>
                             </tr>
                             <tr>
                                 <td>Estimated budget:</td>
                                 <td>
-                                    <span ng-if='vm.activity.total_budget.length'>{{vm.activity.total_budget | shortcurrency :'€'}}</span>
-                                    <span ng-if='!vm.activity.total_budget.length'>No data available</span>
+                                    <span ng-if='vm.activity.aggregations.activity.budget_value'>{{vm.activity.aggregations.activity.budget_value | shortcurrency :'€'}}</span>
+                                    <span ng-if='!vm.activity.aggregations.activity.budget_value'>No data available</span>
                                 </td>
                             </tr>
                             <tr>
-                                <td>Participating organisations:</td>
-                                <td><span ng-repeat='org in vm.activity.participating_organisations'><a ui-sref="organisation({ organisation_id: org.code })">{{org.name}}</a>{{$last ? '' : ', '}}</span></td>
+                                <td>Implementing organisation(s):</td>
+                                <td><span ng-repeat='org in vm.implementing_organisations'><a ui-sref="organisation({ organisation_id: org.ref })">{{org.narratives[0].text}}</a>{{$last ? '' : ', '}}</span></td>
                             </tr>
                             <tr>
                                 <td>Status:</td>
@@ -81,7 +81,6 @@
                         </tbody>
                     </table>
                 </div>
-
             </div>
 
             <div class="col-md-4">
@@ -119,13 +118,16 @@
         <div class="col-sm-12">
             <div class="hp-block wit">
                 <h3>Transactions</h3>
-                <nvd3 options="vm.transactionChartOptions" data="vm.transactionData" class="with-3d-shadow with-transitions"></nvd3>
-            </div>
+                <nvd3 
+                    options="vm.transactionChartOptions" 
+                    data="vm.transactionChartData" 
+                    class="with-3d-shadow with-transitions"></nvd3>
+            </div>  
         </div>
 
         <div class="col-md-6 activity-list-item">
             <div class="hp-block wit financial extra">
-                <h3>Expenditure</h3>
+                <h3>Disbursements</h3>
                 <table class="table table-striped">
                     <thead>
                         <tr>
@@ -135,9 +137,9 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="transaction in vm.activity.transactions | orderBy:'transaction_date'" ng-if="transaction.transaction_type == 'D'">
+                        <tr ng-repeat="transaction in vm.transactionData | orderBy:'transaction_date'" ng-if="transaction.transaction_type.code == '3'">
                             <td>{{transaction.transaction_date | date : 'dd MMM yyyy'}}</td>
-                            <td>{{transaction.receiver_organisation_name}}</td>
+                            <td>{{transaction.receiver_organisation.narratives[0].text}}</td>
                             <td>{{transaction.value | shortcurrency :'€'}}</td>
                         </tr>
                     </tbody>
@@ -157,9 +159,9 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="transaction in vm.activity.transactions | orderBy:'transaction_date'" ng-if="transaction.transaction_type == 'C'">
+                        <tr ng-repeat="transaction in vm.transactionData | orderBy:'transaction_date'" ng-if="transaction.transaction_type.code == '2'">
                             <td>{{transaction.transaction_date | date : 'dd MMM yyyy'}}</td>
-                            <td>{{transaction.receiver_organisation_name}}</td>
+                            <td>{{transaction.receiver_organisation.narratives[0].text}}</td>
                             <td>{{transaction.value | shortcurrency :'€'}}</td>
                         </tr>
                     </tbody>
@@ -191,11 +193,11 @@
                         </tr>
                         <tr>
                             <td>Title:</td>
-                            <td>{{vm.activity.titles[0].title}}</td>
+                            <td>{{vm.activity.title.narratives[0].text}}</td>
                         </tr>
                         <tr>
                             <td>Description:</td>
-                            <td>{{vm.activity.descriptions[0].description}}</td>
+                            <td>{{vm.activity.descriptions[0].narratives[0].text}}</td>
                         </tr>
                         <tr>
                             <td>Last update:</td>
@@ -203,19 +205,19 @@
                         </tr>
                         <tr>
                             <td>Start date planned:</td>
-                            <td>{{vm.activity.start_planned.length ? vm.activity.start_planned : 'No data available' | date : 'dd MMM yyyy'}}</td>
+                            <td>{{vm.start_planned.length ? vm.start_planned : 'No data available' | date : 'dd MMM yyyy'}}</td>
                         </tr>
                         <tr>
                             <td>Start date actual:</td>
-                            <td>{{vm.activity.start_actual.length ? vm.activity.start_actual : 'No data available' | date : 'dd MMM yyyy'}}</td>
+                            <td>{{vm.start_actual.length ? vm.start_actual : 'No data available' | date : 'dd MMM yyyy'}}</td>
                         </tr>
                         <tr>
                             <td>End date planned:</td>
-                            <td>{{vm.activity.end_planned.length ? vm.activity.end_planned : 'No data available' | date : 'dd MMM yyyy'}}</td>
+                            <td>{{vm.end_planned.length ? vm.end_planned : 'No data available' | date : 'dd MMM yyyy'}}</td>
                         </tr>
                         <tr>
                             <td>End date actual:</td>
-                            <td>{{vm.activity.end_actual.length ? vm.activity.end_actual : 'No data available' | date : 'dd MMM yyyy'}}</td>
+                            <td>{{vm.end_actual.length ? vm.end_actual : 'No data available' | date : 'dd MMM yyyy'}}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -227,11 +229,23 @@
                      <tbody>
                         <tr>
                             <td width="250">Reporting organisations:</td>
-                            <td>{{vm.activity.reporting_organisation.name}}</td>
+                            <td>{{vm.activity.reporting_organisations[0].narratives[0].text}}</td>
                         </tr>
                         <tr>
-                            <td>Participating organisations:</td>
-                            <td><span ng-repeat='org in vm.activity.participating_organisations'><a ui-sref="organisation({ organisation_id: org.code })">{{org.name}}</a>{{$last ? '' : ', '}}</span></td>
+                            <td>Funding organisations:</td>
+                            <td><span ng-repeat='org in vm.funding_organisations'><a ui-sref="organisation({ organisation_id: org.ref })">{{org.narratives[0].text}}</a>{{$last ? '' : ', '}}</span></td>
+                        </tr>
+                        <tr>
+                            <td>Accountable organisations:</td>
+                            <td><span ng-repeat='org in vm.accountable_organisations'><a ui-sref="organisation({ organisation_id: org.ref })">{{org.narratives[0].text}}</a>{{$last ? '' : ', '}}</span></td>
+                        </tr>
+                        <tr>
+                            <td>Extending organisations:</td>
+                            <td><span ng-repeat='org in vm.extending_organisations'><a ui-sref="organisation({ organisation_id: org.ref })">{{org.narratives[0].text}}</a>{{$last ? '' : ', '}}</span></td>
+                        </tr>
+                        <tr>
+                            <td>Implementing organisations:</td>
+                            <td><span ng-repeat='org in vm.implementing_organisations'><a ui-sref="organisation({ organisation_id: org.ref })">{{org.narratives[0].text}}</a>{{$last ? '' : ', '}}</span></td>
                         </tr>
                         <tr>
                             <td>Tied status:</td>
@@ -290,15 +304,6 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>Websites:</td>
-                            <td>
-                                <a ng-repeat="website in vm.activity.websites">
-                                    {{website.name}}
-                                </a>
-                                <span ng-if='vm.activity.websites.length == 0'>No data available</span>
-                            </td>
-                        </tr>
-                        <tr>
                             <td>Linked data URI:</td>
                             <td>
                                 <span ng-if='vm.activity.linked_data_uri.length'>{{vm.activity.linked_data_uri}}</span>
@@ -315,38 +320,29 @@
                      <tbody>
                         <tr>
                             <td width="250">Countries:</td>
-                            <td>
-                                <a ng-repeat="country in vm.activity.countries" ui-sref="country({ country_id: country.code })">
-                                    {{country.name}}
-                                </a>
-                                <span ng-if='vm.activity.countries.length == 0'>No data available</span>
+                            <td><a ng-repeat="recipient_country in vm.activity.recipient_countries" ui-sref="country({ country_id: recipient_country.country.code })">{{recipient_country.country.name}}{{$last ? '' : ', '}}</a><span ng-if='vm.activity.recipient_countries.length == 0'>No data available</span>
                             </td>
                         </tr>
                         <tr>
                             <td>Regions:</td>
                             <td>
-                                <a ng-repeat="region in vm.activity.regions" ui-sref="region({ region_id: region.code })">
-                                    {{region.name}}
-                                </a>
-                                <span ng-if='vm.activity.regions.length == 0'>No data available</span>
+                                <a ng-repeat="recipient_region in vm.activity.recipient_regions" ui-sref="region({ region_id: recipient_region.region.code })">{{recipient_region.region.name}}{{$last ? '' : ', '}}</a><span ng-if='vm.activity.recipient_regions.length == 0'>No data available</span>
                             </td>
                         </tr>
                         <tr>
                             <td>Locations:</td>
                             <td>
                                 <span ng-repeat="location in vm.activity.locations" >
-                                    {{location.name}},
+                                    {{location.name[0].narratives[0].text}},
                                 </span>
                                 <span ng-if='vm.activity.locations.length == 0'>No data available</span>
                             </td>
                         </tr>
                         <tr>
-                            <td>Sector:</td>
-                            <td><a ui-sref="sector({ sector_id: vm.activity.sectors[0].code })">{{vm.activity.sectors[0].name}}</a></td>
-                        </tr>
-                        <tr>
-                            <td>Sector code:</td>
-                            <td><a ui-sref="sector({ sector_id: vm.activity.sectors[0].code })">{{vm.activity.sectors[0].code}}</a></td>
+                            <td>Sectors:</td>
+                            <td><a ng-repeat="recipient_sector in vm.activity.sectors" ui-sref="sector({ sector_id: recipient_sector.sector.code })">
+                                        {{recipient_sector.sector.name}}{{$last ? '' : ', '}}
+                                    </a></td>
                         </tr>
                     </tbody>
                 </table>
@@ -359,15 +355,15 @@
                         <tr>
                             <td width="250">Estimated budget:</td>
                             <td>
-                                <span ng-if='vm.activity.total_budget.length'>{{vm.activity.total_budget | shortcurrency :'€'}}</span>
-                                <span ng-if='!vm.activity.total_budget.length'>No data available</span>
+                                <span ng-if='vm.activity.aggregations.activity.budget_value'> {{vm.activity.aggregations.activity.budget_value | shortcurrency :'€'}}</span>
+                                <span ng-if='!vm.activity.aggregations.activity.budget_value'>No data available</span>
                             </td>
                         </tr>
                         <tr>
                             <td>Capital spent:</td>
                             <td>
-                                <span ng-if='vm.activity.activity_scope.name.length'>{{vm.activity.capital_spend.percentage}}</span>
-                                <span ng-if='!vm.activity.activity_scope.name.length'>No data available</span>
+                                <span ng-if='vm.activity.capital_spend.name.length'>{{vm.activity.capital_spend.percentage}}</span>
+                                <span ng-if='!vm.activity.capital_spend.name.length'>No data available</span>
                             </td>
                         </tr>
                         <tr>
@@ -415,7 +411,6 @@
                     </tbody>
                 </table>
             </div>
-
             <div class="hp-block wit with-table triple">
                 <h3>Results</h3>
                 <table class="table table-striped">
@@ -431,7 +426,6 @@
                     </tbody>
                 </table>
             </div>
-
         </div>
     </div>
 
@@ -439,18 +433,18 @@
     <div class="row" ng-show="vm.selectedTab == 'documents'">
         <div class="col-md-12">
             <div class="hp-block wit">
-                <h3>Documents</h3>
+                <h3>Document links</h3>
 
-                <div ng-show="vm.activity.documents.length == 0">
+                <div ng-show="vm.activity.document_links.length == 0">
                     No documents available.
                 </div>
                 <table class="table documents" ng-if="vm.activity.documents.length != 0">
                     <tbody>
-                        <tr ng-repeat="document in vm.activity.documents">
+                        <tr ng-repeat="document in vm.activity.document_links">
                             
                             <td>
                                 <a target="_blank" href="{{document.url}}">
-                                    <i class="glyphicon glyphicon-download-alt"></i>{{document.title}}
+                                    <i class="glyphicon glyphicon-download-alt"></i>{{document.title[0].narratives[0].text}}
                                 </a>
                             </td>
                             
@@ -510,11 +504,7 @@
                 <h3>Third-party data</h3>
                 No third-party data available.
             </div>
-
-
-
         </div>
-
         <div 
             class="activity-list-item col-sm-12" 
             ng-show="vm.rsrProjects.length != 0"

@@ -32,7 +32,6 @@
     };
 
     vm.legend = {
-        title: 'qwert',
         position: 'bottomleft',
         colors: [ '#fb6a00', '#fd7f23', '#ffa35f', '#ffc8a0' ],
         labels: [ '> € 100 mln', '€ 25-100 mln', '€ 5-25 mln', '€ 0-5 mln' ]
@@ -54,7 +53,7 @@
 
     vm.updateMap = function(){
 
-        Aggregations.aggregation('recipient-country', 'disbursement', vm.selectionString, 'name', 1000, 0, 'activity_count').then(countrySuccessFn, errorFn);
+        Aggregations.aggregation('recipient_country', 'count,disbursement', vm.selectionString).then(countrySuccessFn, errorFn);
 
         function countrySuccessFn(data, status, headers, config) {
             vm.updateCountryPolygons(data.data.results);
@@ -72,9 +71,9 @@
           features: []
         };
         for(var i = 0;i < data.length;i++){
-          var country = namedGeoJson[data[i].country_id];
-          country.properties.project_amount = data[i].activity_count;
-          country.properties.total_disbursements = data[i].total_disbursements;
+          var country = namedGeoJson[data[i].recipient_country.code];
+          country.properties.project_amount = data[i].count;
+          country.properties.total_disbursements = data[i].disbursement;
           formattedCD.features.push(country);
         }
         vm.geojson.data = formattedCD;

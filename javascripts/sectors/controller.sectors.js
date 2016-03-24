@@ -21,10 +21,9 @@
     vm.sectors = Sectors;
     vm.selectedSectors = Sectors.selectedSectors;
     vm.currentPage = 1;
-    vm.q = '';
-    vm.offset = 0;
-    vm.limit = 4;
+    vm.pageSize = 4;
     vm.totalCount = 0;
+    vm.q = '';
     vm.filterSelection = FilterSelection;
 
     /**
@@ -56,7 +55,6 @@
 
     vm.pageChanged = function(newPageNumber){
       vm.currentPage = newPageNumber;
-      vm.offset = (newPageNumber * vm.limit) - vm.limit;
       vm.update();
     }
 
@@ -64,25 +62,21 @@
       // for each active sector, get the results
       var filterString = FilterSelection.selectionString.split('&');
       for(var i = 0;i < filterString.length;i++){
-        if (filterString[i].indexOf('sectors__in') > -1){
+        if (filterString[i].indexOf('sector') > -1){
           delete filterString[i];
         }
       }
       filterString = filterString.join('&');
-      
-      if(vm.q != ''){
-        filterString += '&name_query=' + vm.q;
-      }
 
-      Aggregations.aggregation('sector', 'iati-identifier', filterString, 'name', vm.limit, vm.offset, 'activity_count').then(successFn, errorFn);
+      if(vm.q != ''){
+        filterString += '&q=' + vm.q;
+      }
+      
+      Aggregations.aggregation('sector', 'count', filterString, 'sector', vm.pageSize, vm.currentPage).then(successFn, errorFn);
 
       function successFn(data, status, headers, config) {
         vm.totalCount = data.data.count;
         vm.recipientSectors = data.data.results;
-      }
-
-      function errorFn(data, status, headers, config) {
-        console.log("getting sectors failed");
       }
     }
 

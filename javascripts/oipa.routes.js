@@ -34,13 +34,10 @@
         })
         .state({
             name:         'activities',
-            url:          '/projects',
+            url:          '/projects?filters',
             controller:   'ActivitiesExploreController',
             controllerAs: 'vm',
             templateUrl:  templateBaseUrl + '/templates/activities/activities-view-list-map.html',
-            ncyBreadcrumb: {
-                label: 'IATI Explorer'
-            }
         })
         .state({
             name:         'activities-with-slash-redirect',
@@ -49,136 +46,110 @@
         })
         .state({
             name:         'activities-list',
-            url:          '/projects/list',
+            url:          '/projects/list?filters',
             controller:   'ActivitiesExploreController',
             controllerAs: 'vm',
             templateUrl:  templateBaseUrl + '/templates/activities/activities-view-list.html',
-            ncyBreadcrumb: {
-                label: 'IATI Explorer'
-            }
         })
         .state({
             name:         'activities-list-with-slash-redirect',
-            url:          '/projects/list/',
+            url:          '/projects/list/?filters',
             redirectTo:   'activities-list',
         })
         .state({
-            name:        'activiteit',
+            name:        'activity',
             url:         '/projects/:activity_id',
             controller:  'ActivityController',
             controllerAs: 'vm',
             templateUrl: templateBaseUrl + '/templates/activities/activity-view-detail.html',
-            ncyBreadcrumb: {
-                label: 'IATI Activiteit detail pagina'
-            }
         })
         .state({
             name:         'activity-with-slash-redirect',
             url:          '/projects/:activity_id/',
-            redirectTo:   'activiteit',
+            redirectTo:   'activity',
         })
         .state({
             name:        'locations-map',
-            url:         '/locations/list',
+            url:         '/locations/list?filters',
             controller:  'LocationsMapListController',
             controllerAs: 'vm',
             templateUrl: templateBaseUrl + '/templates/locations/locations-view-map-list.html',
-            ncyBreadcrumb: {
-                label: 'Locaties'
-            }
         })
         .state({
             name:         'locations-list-with-slash-redirect',
-            url:          '/locations/list/',
+            url:          '/locations/list/?filters',
             redirectTo:   'locations-map',
         })
         .state({
             name:        'locations-polygonmap',
-            url:         '/locations/map',
+            url:         '/locations/map?filters',
             controller:  'LocationsPolygonGeoMapController',
             controllerAs: 'vm',
             templateUrl: templateBaseUrl + '/templates/locations/locations-view-map-polygons.html',
-            ncyBreadcrumb: {
-                label: 'Locaties'
-            }
         })
         .state({
             name:         'locations-polygonmap-with-slash-redirect',
-            url:          '/locations/map/',
+            url:          '/locations/map/?filters',
             redirectTo:   'locations-polygonmap',
         })
         .state({
             name:        'country',
-            url:         '/countries/:country_id',
+            url:         '/countries/:country_id?filters',
             controller:  'CountryController',
             controllerAs: 'vm',
             templateUrl: templateBaseUrl + '/templates/countries/country-view-detail.html',
-            ncyBreadcrumb: {
-                parent: 'countries',
-                label: '{{vm.country.name}}'
-            }
         })
         .state({
             name:         'country-with-slash-redirect',
-            url:          '/countries/:country_id/',
+            url:          '/countries/:country_id/?filters',
             redirectTo:   'country',
         })
         .state({
             name:        'regions-list',
-            url:         '/regions/list',
+            url:         '/regions/list?filters',
             controller:  'RegionListController',
             controllerAs: 'vm',
             templateUrl: templateBaseUrl + '/templates/regions/region-view-list.html',
-            ncyBreadcrumb: {
-                label: 'Regio\'s'
-            }
         })
         .state({
             name:         'region-list-with-slash-redirect',
-            url:          '/regions/list/',
+            url:          '/regions/list/?filters',
             redirectTo:   'regions-list',
         })
         .state({
             name:        'region',
-            url:         '/regions/:region_id',
+            url:         '/regions/:region_id?filters',
             controller:  'RegionController',
             controllerAs: 'vm',
             templateUrl: templateBaseUrl + '/templates/regions/region-view-detail.html',
-            ncyBreadcrumb: {
-                parent: 'regio\'s',
-                label: '{{vm.region.name}}'
-            }
         })
         .state({
             name:         'region-with-slash-redirect',
-            url:          '/regions/:region_id/',
+            url:          '/regions/:region_id/?filters',
             redirectTo:   'region',
         })
         .state({
             name:        'regions-vis',
-            url:         '/regions',
+            url:         '/regions?filters',
             controller:  'RegionsVisualisationController',
             controllerAs: 'vm',
             templateUrl: templateBaseUrl + '/templates/regions/region-view-visualisation.html',
-            ncyBreadcrumb: {
-                label: 'Regio\'s'
-            }
         })
         .state({
             name:         'region-vis-with-slash-redirect',
-            url:          '/regions/',
+            url:          '/regions/?filters',
             redirectTo:   'regions-vis',
         })
         .state({
             name:        'organisations',
-            url:         '/organisations',
+            url:         '/organisations?filters',
             controller:  'ImplementingOrganisationsExploreController',
             controllerAs: 'vm',
             templateUrl: templateBaseUrl + '/templates/implementingOrganisations/implementing-organisations-view-list.html'
         })
         .state({
             name:         'organisations-with-slash-redirect',
-            url:          '/organisations/',
+            url:          '/organisations/?filters',
             redirectTo:   'organisations',
         })
         // .state({
@@ -190,50 +161,50 @@
         // })
         .state({
             name:        'organisation',
-            url:         '/organisations/:organisation_id',
+            url:         '/organisations/:organisation_id?filters',
             controller:  'ImplementingOrganisationController',
             controllerAs: 'vm',
             templateUrl: templateBaseUrl + '/templates/implementingOrganisations/implementing-organisation-view-detail.html'
         })
         .state({
             name:         'organisation-with-slash-redirect',
-            url:          '/organisations/:organisation_id/',
+            url:          '/organisations/:organisation_id/?filters',
             redirectTo:   'organisation',
         })
         .state({
             name:        'sector-list',
-            url:         '/sectors/list',
+            url:         '/sectors/list?filters',
             controller:  'SectorsExploreController',
             controllerAs: 'vm',
             templateUrl: templateBaseUrl + '/templates/sectors/sectors-view-list.html'
         })
         .state({
             name:         'sector-list-with-slash-redirect',
-            url:          '/sectors/list/',
+            url:          '/sectors/list/?filters',
             redirectTo:   'sector-list',
         })
         .state({
             name:        'sectors',
-            url:         '/sectors',
+            url:         '/sectors?filters',
             controller:  'SectorsVisualisationController',
             controllerAs: 'vm',
             templateUrl: templateBaseUrl + '/templates/sectors/sectors-view-visualisation.html'
         })
         .state({
             name:         'sectors-with-slash-redirect',
-            url:          '/sectors/',
+            url:          '/sectors/?filters',
             redirectTo:   'sectors',
         })
         .state({
             name:        'sector',
-            url:         '/sectors/:sector_id',
+            url:         '/sectors/:sector_id?filters',
             controller:  'SectorController',
             controllerAs: 'vm',
             templateUrl: templateBaseUrl + '/templates/sectors/sector-view-detail.html'
         })
         .state({
             name:         'sector-with-slash-redirect',
-            url:          '/sectors/:sector_id/',
+            url:          '/sectors/:sector_id/?filters',
             redirectTo:   'sector',
         })
         .state({
@@ -242,9 +213,6 @@
             controller:  'PagesController',
             controllerAs: 'vm',
             templateUrl: templateBaseUrl + '/templates/pages/pages.html',
-            ncyBreadcrumb: {
-                label: '{{vm.title}}'
-            }
         })
         .state({
             name:         'about-with-slash-redirect',
@@ -281,9 +249,6 @@
             controller:  'ContactController',
             controllerAs: 'vm',
             templateUrl: templateBaseUrl + '/templates/pages/contact.html',
-            ncyBreadcrumb: {
-                label: '{{vm.title}}'
-            }
         })
         .state({
             name:         'contact-with-slash-redirect',

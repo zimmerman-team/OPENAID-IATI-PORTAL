@@ -1,38 +1,39 @@
 /**
 * Posts
-* @namespace ncs.collections.services
+* @namespace oipa.budget.services
 */
 (function () {
-	'use strict';
+    'use strict';
 
-	angular
-		.module('oipa.budget')
-		.factory('Budget', Budget);
+    angular
+        .module('oipa.budget')
+        .factory('Budget', Budget);
 
-	Budget.$inject = ['$http'];
+    Budget.$inject = ['$http'];
 
-	/**
-	* @namespace Filters
-	* @returns {Factory}
-	*/
-	function Budget($http) {
-		var m = this;
-		m.budget = {
-          on: true,
-	      value: [0,2000000000]
-	    };
+    /**
+    * @namespace Filters
+    * @returns {Factory}
+    */
+    function Budget($http) {
+        var m = this;
+        m.budget = {
+          on: false,
+          value: []
+        };
         m.toReset = false;
-		
-		var Budget = {
+        
+
+        var Budget = {
             budget: m.budget,
             toReset: m.toReset,
-			all: all 
-		};
+            all: all 
+        };
 
-		return Budget;
+        return Budget;
 
         function all() {
-        	return m.budget;
+            return m.budget;
         }
-	}
+    }
 })();

@@ -1,60 +1,61 @@
 <div class="filter-panel">
-	<div class="row filter-panel-header-wrapper">
+	<div class="extra-padding">
+		<div class="row filter-panel-header-wrapper">
+			<div class="col-md-4">
+				<div class="search-box">
+				    <div class="form-group">
+				        <input ng-model="vm.q" class="form-control" placeholder="Search for a specific project partner...">
+				        <button class="btn-search" type="button">
+				            <span class="fa fa-search"></span>
+				        </button>
+			        </div>
+				</div>
+			</div>
 
-		<div class="col-md-4">
-			<div class="search-box">
-			    <div class="form-group">
-			        <input ng-model="vm.q" class="form-control" placeholder="Search a specific implementing organisation ..">
-			        <button class="btn-search" type="button">
-			            <span class="glyphicon glyphicon-search"></span>
-			        </button>
-		        </div>
+		</div>
+		<div class="row" ng-show="vm.implementingOrganisations.length == 0">
+			<div class="svg-loader">
+				There are no project partners found within your current selection.
 			</div>
 		</div>
+		<div class="row" ng-show="vm.implementingOrganisations.length != 0">
+			<div class="col-md-12">
+				<table class="table">
+					<thead>
+						<tr>
+							<td class="th-first">Select one or more project partners</td>
+							<td>Projects</td>
+						</tr>
+					</thead>
+					<tbody>
 
-	</div>
-	<div class="row" ng-show="vm.implementingOrganisations.length == 0">
-		<div class="svg-loader">
-			There are no implementing organisations found within your current selection.
-		</div>
-	</div>
-	<div class="row" ng-show="vm.implementingOrganisations.length != 0">
-		<div class="col-md-12">
-			<table class="table">
-				<thead>
-					<tr>
-						<td class="th-first">Select one or more organisations</td>
-						<td>Total projects</td>
-					</tr>
-				</thead>
-				<tbody>
+					    <tr 
+					    	dir-paginate="item in vm.implementingOrganisations | itemsPerPage: 4"  
+					    	total-items="vm.totalCount" 
+					    	current-page="pagination.current" 
+					    	pagination-id="implementingOrganisations">
+					    	<td>
+					    		<div class="checkbox">
+						    		<label class="switch">
+						    			<input type="checkbox" checklist-model="vm.selectedImplementingOrganisations" checklist-value="item"><i></i>
+						    			<span>{{ item.name | capitalize }}</span>
+						    		</label>
+						    	</div>
+					    	</td>
+					    	<td>
+					    		{{ item.count }}
+					    	</td>
+					    </tr>
 
-				    <tr 
-				    	dir-paginate="item in vm.implementingOrganisations | itemsPerPage: 4"  
-				    	total-items="vm.totalCount" 
-				    	current-page="pagination.current" 
-				    	pagination-id="implementingOrganisations">
-				    	<td>
-				    		<div class="checkbox">
-					    		<label class="switch">
-					    			<input type="checkbox" checklist-model="vm.selectedImplementingOrganisations" checklist-value="item"><i></i>
-					    			<span>{{ item.name | capitalize }}</span>
-					    		</label>
-					    	</div>
-				    	</td>
-				    	<td>
-				    		{{ item.activity_count }}
-				    	</td>
-				    </tr>
-
-				</tbody>
-			</table>
-		</div>
-		<div class="col-md-12 text-center">
-			<button class="btn btn-default btn-openaid btn-save" ng-click="vm.save()">Save</button>
-			<dir-pagination-controls 
-				pagination-id="implementingOrganisations"
-				on-page-change="vm.pageChanged(newPageNumber)"></dir-pagination-controls>
+					</tbody>
+				</table>
+			</div>
+			<div class="col-md-12 text-center">
+				<button class="btn btn-default btn-openaid btn-save" ng-click="vm.save()">Save</button>
+				<dir-pagination-controls 
+					pagination-id="implementingOrganisations"
+					on-page-change="vm.pageChanged(newPageNumber)"></dir-pagination-controls>
+			</div>
 		</div>
 	</div>
 </div>

@@ -35,7 +35,7 @@
     
     vm.update = function(selectionString){
 
-      Aggregations.aggregation('recipient-country', 'disbursement', selectionString).then(succesFn, errorFn);
+      Aggregations.aggregation('recipient_country', 'disbursement', selectionString).then(succesFn, errorFn);
 
       function succesFn(data, status, headers, config){
         vm.reformatData(data.data.results);

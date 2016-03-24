@@ -21,19 +21,17 @@
     vm.selectedImplementingOrganisations = ImplementingOrganisations.selectedImplementingOrganisations;
     vm.currentPage = 1;
     vm.q = '';
-    vm.offset = 0;
-    vm.limit = 4;
+    vm.perPage = 4;
     vm.totalCount = 0;
     vm.filterSelection = FilterSelection;
 
     function activate() {
 
-      vm.offset = 0;
+      vm.page = 1;
       vm.update();
 
       $scope.$watch('vm.q', function(valueNew, valueOld){
         if (valueNew !== valueOld){
-          vm.offset = 0;
           vm.currentPage = 1;
           vm.update();
         }
@@ -41,7 +39,6 @@
 
       $scope.$watch('vm.filterSelection.selectionString', function(valueNew, valueOld){
         if (valueNew !== valueOld){
-          vm.offset = 0;
           vm.currentPage = 1;
           vm.update();
         }
@@ -50,7 +47,6 @@
 
     vm.pageChanged = function(newPageNumber){
       vm.currentPage = newPageNumber;
-      vm.offset = (newPageNumber * vm.limit) - vm.limit;
       vm.update();
     }
 
@@ -58,17 +54,17 @@
       // for each active country, get the results
       var filterString = FilterSelection.selectionString.split('&');
       for(var i = 0;i < filterString.length;i++){
-        if (filterString[i].indexOf('participating_organisations__organisation__code__in') > -1){
+        if (filterString[i].indexOf('participating_organisation') > -1){
           delete filterString[i];
         }
       }
       filterString = filterString.join('&');
       
       if(vm.q != ''){
-        filterString += '&name_query=' + vm.q;
+        filterString += '&q_fields=participating_organisation&q=' + vm.q;
       }
 
-      Aggregations.aggregation('participating-org', 'iati-identifier', filterString, 'name', vm.limit, vm.offset, 'activity_count').then(successFn, errorFn);
+      Aggregations.aggregation('participating_organisation', 'count', filterString + '&participating_organisation_role=4', 'participating_organisation', vm.perPage, vm.currentPage).then(successFn, errorFn);
 
       function successFn(data, status, headers, config) {
         vm.totalCount = data.data.count;

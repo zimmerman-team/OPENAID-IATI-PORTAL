@@ -3,57 +3,42 @@
 * @namespace ncs.collections.services
 */
 (function () {
-	'use strict';
+    'use strict';
 
-	angular
-		.module('oipa.regions')
-		.factory('Regions', Regions);
+    angular
+        .module('oipa.regions')
+        .factory('Regions', Regions);
 
-	Regions.$inject = ['$http', 'oipaUrl', 'reportingOrganisationId'];
+    Regions.$inject = ['$http', 'oipaUrl', 'reportingOrganisationId'];
 
-	/**
-	* @namespace Filters
-	* @returns {Factory}
-	*/
-	function Regions($http, oipaUrl, reportingOrganisationId) {
-		var m = this;
-		m.selectedRegions = [];
-		
-		var Regions = {
-			selectedRegions: m.selectedRegions,
-			all: all,
-			get: get,
-		};
+    /**
+    * @namespace Filters
+    * @returns {Factory}
+    */
+    function Regions($http, oipaUrl, reportingOrganisationId) {
+        var m = this;
+        m.selectedRegions = [];
 
-		return Regions;
+        var Regions = {
+            selectedRegions: m.selectedRegions,
+            getRegion: getRegion,
+            getRegions: getRegions
+        };
 
+        return Regions;
 
-		////////////////////
-
-		/**
-         * @name all
-         * @desc Try to get all countries
-         * @returns {Promise}
-         * @memberOf oipa.countries.services.Countries
-         */
-        function all() {
-
-        	var url = oipaUrl + '/aggregate/?format=json&group_by=recipient-region&aggregation_key=iati-identifier';
-	        if(reportingOrganisationId){
-	            url += '&reporting_organisation__in=' + reportingOrganisationId;
-	        }
-            return $http.get(url, { cache: true });
+        function getRegion(code) {
+            return $http.get(oipaUrl + '/regions/' + code + '/?format=json', { cache: true });
         }
 
-	    /**
-	     * @name get
-	     * @desc Get the Collections of a given user
-	     * @param {string} filter_type The type to get filter options for
-	     * @returns {Promise}
-	     * @memberOf oipa.filters.services.Filters
-	     */
-	     function get(id) {
-	     	return $http.get(oipaUrl + '/regions/' + id + '/?format=json', { cache: true });
-	     }
-	}
+        function getRegions(countries) {
+
+            var url = oipaUrl + '/activities/aggregations/?format=json&group_by=recipient_region&aggregations=count';
+            if(reportingOrganisationId){
+                url += '&reporting_organisation__in=' + reportingOrganisationId;
+            }
+            url += '&recipient_region=' + countries;
+            return $http.get(url, { cache: true });
+        }
+    }
 })();

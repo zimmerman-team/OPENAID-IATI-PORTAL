@@ -8,13 +8,19 @@
   TransactionYearController.$inject = ['$scope', 'FilterSelection', 'Transaction'];
 
   function TransactionYearController($scope, FilterSelection, Transaction) {
+
     var vm = this;
     vm.on = false;
-    vm.transactionYear = '';
+    vm.transactionYear = 2015;
     vm.transaction = Transaction;
 
     activate();
 
+    /**
+    * @name activate
+    * @desc Actions to be performed when this controller is instantiated
+    * @memberOf oipa.budget.controllers.BudgetController
+    */
     function activate() {
 
       $scope.$watch("vm.transactionYear", function (year) {
@@ -26,10 +32,10 @@
       }, true);
 
       $scope.$watch("vm.transaction.toReset", function (toReset) {
+        
         if(toReset == true){
-          vm.transactionYear = '';
+          vm.transactionYear = 2015;
           vm.on = false;
-          vm.transaction.toReset = false;
         }
       }, true);
     }

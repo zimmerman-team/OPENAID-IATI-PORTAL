@@ -22,7 +22,6 @@
     vm.refreshSunburst = false;
     vm.searchValue = '';
     vm.submitSearch = false;
-    vm.totalSectors = 0;
 
     activate();
 
@@ -38,17 +37,15 @@
       $scope.$watch('vm.filterSelection.selectionString', function (selectionString) {
           vm.selectionString = selectionString;
           vm.activateSunburst();
-
       }, true);
 
     }
 
     vm.activateSunburst = function(){
-      Aggregations.aggregation('sector', 'disbursement', vm.selectionString).then(successFn, errorFn);
+      Aggregations.aggregation('sector', 'count,disbursement', vm.selectionString).then(successFn, errorFn);
 
       function successFn(data, status, headers, config) {
         vm.reformatSunburstData(data.data.results);
-        vm.totalSectors = data.data.count;
       }
 
       function errorFn(data, status, headers, config) {
@@ -60,7 +57,7 @@
 
       var sector5 = {};
       for(var i = 0;i < data.length;i++){
-        sector5[data[i].sector_id] = data[i].total_disbursements;
+        sector5[data[i].sector.code] = {'disbursement':data[i].disbursement, 'count': data[i].count};
       }
 
       var mapping = angular.copy(sectorMapping);
@@ -71,20 +68,20 @@
             loopChildren(arr[i].children);
           } else{
             if(sector5[arr[i].sector_id] != undefined){
-              arr[i].total_disbursements = sector5[arr[i].sector_id];
+              arr[i].disbursement = sector5[arr[i].sector_id].disbursement;
+              arr[i].count = sector5[arr[i].sector_id].count;
             } else {
-              arr[i].total_disbursements = 0;
+              arr[i].disbursement = 0;
+              arr[i].count = 0;
             }
           }
         }
       }
 
       loopChildren(mapping.children);
-
       vm.sunburstData = angular.copy(mapping);
       vm.refreshSunburst = true;
     }
-
 
   }
 })();

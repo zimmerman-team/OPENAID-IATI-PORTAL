@@ -20,7 +20,7 @@
                 <div class="hp-block wit">
                     <h3>Transactions for sector code {{vm.sector.sector_id}}</h3>
                     <financials-line-chart 
-                        has-to-contain="sectors__in">
+                        has-to-contain="sector">
                     </financials-line-chart>
                 </div>
 
@@ -37,8 +37,8 @@
                             <table class="table table-striped">
                                 <tbody>
                                     <tr ng-repeat="disbursement in vm.disbursements_by_year">
-                                        <td>{{disbursement.transaction_date_year}}</td>
-                                        <td>{{disbursement.total_disbursements | shortcurrency :'€'}}</td>
+                                        <td>{{disbursement.year}}</td>
+                                        <td>{{disbursement.disbursement | shortcurrency :'€'}}</td>
                                     </tr>
                                     <tr class="total-calc">
                                         <td>Total</td>
@@ -57,8 +57,8 @@
                     <table class="table table-striped" ng-if="budget_by_year.budget__period_start_year != 0" >
                         <tbody>
                             <tr ng-repeat="budget in vm.budget_by_year">
-                                <td>{{budget.budget__period_start_year}}</td>
-                                <td>{{budget.budget__value | shortcurrency :'€'}}</td>
+                                <td>{{budget.year}}</td>
+                                <td>{{budget.budget | shortcurrency :'€'}}</td>
                             </tr>
                             <tr class="total-calc">
                                 <td>Total</td>
@@ -75,8 +75,8 @@
                     <table class="table table-striped">
                         <tbody>
                             <tr ng-repeat="commitment in vm.commitments_by_year">
-                                <td>{{commitment.transaction_date_year}}</td>
-                                <td>{{commitment.total_commitments | shortcurrency :'€'}}</td>
+                                <td>{{commitment.year}}</td>
+                                <td>{{commitment.commitment | shortcurrency :'€'}}</td>
                             </tr>
                             <tr class="total-calc">
                                 <td>Total</td>
@@ -93,35 +93,35 @@
 
     <div ng-show="vm.selectedTab == 'activities'">
         <activity-list 
-            has-to-contain="sectors__in"  
+            has-to-contain="sector"  
             count="vm.tabs[1].count"
             shown="vm.selectedTab == 'activities'"></activity-list>
     </div>
 
     <div ng-show="vm.selectedTab == 'countries'">
         <country-list 
-            has-to-contain="sectors__in" 
+            has-to-contain="sector" 
             count="vm.tabs[2].count"
             shown="vm.selectedTab == 'countries'"></country-list>
     </div>
 
     <div ng-show="vm.selectedTab == 'regions'">
         <region-list 
-            has-to-contain="sectors__in" 
+            has-to-contain="sector" 
             count="vm.tabs[3].count"
             shown="vm.selectedTab == 'regions'"></region-list>
     </div>
 
     <div ng-show="vm.selectedTab == 'implementing-organisations'">
         <implementing-organisations-list 
-            has-to-contain="sectors__in" 
+            has-to-contain="sector" 
             count="vm.tabs[4].count"
             shown="vm.selectedTab == 'implementing-organisations'"></implementing-organisations-list>
     </div>
 
     <div ng-show="vm.selectedTab == 'sectors' && vm.sector_digit != 5">
         <sector-list 
-            has-to-contain="sectors__in" 
+            has-to-contain="sector" 
             count="vm.tabs[5].count"
             shown="vm.selectedTab == 'sectors'"></sector-list>
     </div>

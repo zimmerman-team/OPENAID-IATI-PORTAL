@@ -12,10 +12,7 @@ Let's get everything up and running.
 
 function openaid_init() {
 
-  add_theme_support( 'angular-wp-api',
-    array(
-      'oipa'
-    ));
+  add_theme_support( 'angular-wp-api', array('oipa'));
   
   //Allow editor style.
   add_editor_style( get_stylesheet_directory_uri() . '/library/css/editor-style.css' );
@@ -81,8 +78,7 @@ function bones_custom_image_sizes( $sizes ) {
 }
 
 
-function add_rewrite_rules( $wp_rewrite ) 
-{
+function add_rewrite_rules( $wp_rewrite ) {
   $new_rules = array(
     'project/([^/]+)/?$' => 'index.php?pagename=project&iati_id='.$wp_rewrite->preg_index(1),
     'landen/([^/]+)/?$' => 'index.php?pagename=landen&country_id='.$wp_rewrite->preg_index(1),
@@ -110,9 +106,6 @@ add_action('wp_ajax_projects_list', 'projects_list');
 add_action('wp_ajax_nopriv_projects_list', 'projects_list');
 add_action('wp_ajax_rsr_call', 'rsr_call');
 add_action('wp_ajax_nopriv_rsr_call', 'rsr_call');
-
-
-
 
 
 function angular_form() {

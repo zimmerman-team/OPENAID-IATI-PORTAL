@@ -20,7 +20,8 @@
     vm.sectors = [];
     vm.totalSectors = 0;
     vm.order_by = 'name';
-    vm.offset = 0;
+    vm.page = 1;
+    vm.pageSize = 9999;
     vm.hasToContain = $scope.hasToContain;
     vm.busy = false;
     vm.extraSelectionString = '';
@@ -30,14 +31,16 @@
       // use predefined filters or the filter selection
       $scope.$watch("vm.filterSelection.selectionString", function (selectionString, oldString) {
         if(selectionString !== oldString){
-          vm.update();
+          vm.update(selectionString);
         }
       }, true);
 
       $scope.$watch("searchValue", function (searchValue, oldSearchValue) {
-        if(searchValue == undefined) { vm.update(); return false; }
-        searchValue == '' ? vm.extraSelectionString = '' : vm.extraSelectionString = '&name_query='+searchValue;
-        vm.update(vm.filterSelection.selectionString);
+        if(searchValue == undefined) return false;
+        if(searchValue !== oldSearchValue){
+          searchValue == '' ? vm.extraSelectionString = '' : vm.extraSelectionString = '&q_fields=sector&q='+searchValue;
+          vm.update();
+        }
       }, true);
 
       // do not prefetch when the list is hidden
@@ -46,6 +49,8 @@
           vm.busy = !shown ? true : false;
         }, true);
       }
+
+      vm.update(vm.filterSelection.selectionString);
     }
 
     vm.hasContains = function(){
@@ -61,46 +66,42 @@
     vm.update = function(){
       if (!vm.hasContains()) return false;
 
-      vm.offset = 0;
-      Aggregations.aggregation('sector', 'disbursement', vm.filterSelection.selectionString + vm.extraSelectionString, vm.order_by, 9999, 0, 'activity_count').then(succesFn, errorFn);
+      vm.page = 1;
+      Aggregations.aggregation('sector', 'disbursement,count', vm.filterSelection.selectionString + vm.extraSelectionString, 'sector').then(succesFn, errorFn);
 
       function replaceDac5(arr){
-        var i = arr.length;
-        while(i--){
+        for (var i = 0;i < arr.length;i++){
           if(arr[i].hasOwnProperty('children')){
             replaceDac5(arr[i].children);
-            if(!arr[i].children.length){
-              arr.splice(i, 1);
-            }
           } else {
+
             var match =_.find(vm.remoteSectors, function(sector) {
-              return sector.sector_id === arr[i].sector_id;
+              return sector.sector.code == arr[i].sector_id;
             })
 
             if (match) {
               arr[i] = match;
             } else {
-              arr.splice(i, 1);
+              arr[i].disbursement = null;
             }
           }
         }
       }
 
-      function updateDisbursements(sector) { 
+      function updateTransactions(sector) { 
         if(!sector.hasOwnProperty('children')) {
-          return [sector.total_disbursements, sector.activity_count];
+          return [sector.disbursement, sector.count];
         }
-        var total_disbursement = 0;
-        var activity_count = 0;
+        var disbursement = 0;
+        var count = 0;
         for (var i = 0; i < sector.children.length; i++) {
-          var values = updateDisbursements(sector.children[i])
-          if (values[0]) total_disbursement += values[0];
-          if (values[1]) activity_count += values[1];
-          // total_disbursement += updateDisbursements(sector.children[i]) 
+          var values = updateTransactions(sector.children[i])
+          if (values[0]) disbursement += values[0];
+          if (values[1]) count += values[1];
         }
-        sector.total_disbursements = total_disbursement;
-        sector.activity_count = activity_count;
-        return [total_disbursement, activity_count]
+        sector.disbursement = disbursement;
+        sector.count = count;
+        return [disbursement, count];
       }
 
       function sortSectorChildren(sector, i, reverse) {
@@ -115,9 +116,8 @@
       function applySectorHierarchy(sectors) {
 
         // replace lowest level DAC5 in sectormapping with sectors
-        replaceDac5(sectors.children);
-
-        _.each(sectors.children, updateDisbursements)
+        replaceDac5(sectors.children)
+        _.each(sectors.children, updateTransactions)
 
         if (vm.order_by.charAt(0) === "-") { //reverse
           vm.order_by_final = vm.order_by.substring(1);
@@ -129,13 +129,12 @@
         return sectors;
       }
 
-      // TODO: called twice, fix
       function succesFn(data, status, headers, config){
-          vm.remoteSectors = data.data.results;
+          vm.remoteSectors = data.data.results
           vm.sectorMapping = angular.copy(sectorMapping)
-          vm.sectors = applySectorHierarchy(vm.sectorMapping);
-          vm.totalSectors = data.data.count;
-          $scope.count = vm.totalSectors;
+          vm.sectors = applySectorHierarchy(vm.sectorMapping)
+          vm.totalSectors = data.data.count
+          $scope.count = vm.totalSectors
       }
 
       function errorFn(data, status, headers, config){
@@ -147,15 +146,12 @@
       var parent = $($event.target).closest('.parent') 
       var children = parent.next();
 
-      //children.toggle()
       parent.toggleClass('expanded').toggleClass('collapsed')
-
     }
 
     vm.toggleOrder = function(){
       vm.update(vm.filterSelection.selectionString);
     }
-    
 
     activate();
   }

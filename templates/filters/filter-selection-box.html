@@ -1,57 +1,83 @@
+<div class="filter-selected" ng-show="vm.filterCount">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="filter-box">
+
 <div class="filter-selected row" ng-show="vm.filterCount">
 	<div class="col-md-12">
 		<div class="filter-box">
-			<a class="btn filter-selected-button selectedCountries" ng-repeat="item in vm.selectedCountries" ng-click="vm.removeFilter(vm.selectedCountries, 'country_id', item.country_id)" ng-if="vm.currentPage != 'country'">
-				{{item.name}}
-				<span class="fa fa-remove"></span>
-			</a>
+					<a 
+						class="btn selected filter-selected-button selectedCountries" 
+						ng-repeat="item in vm.selectedCountries" 
+						ng-click="vm.removeFilter(vm.selectedCountries, 'recipient_country', item.recipient_country.code)" 
+						ng-if="vm.currentPage != 'country'">
+						{{item.recipient_country.name}}
+						<span class="fa fa-remove"></span>
+					</a>
 
-			<a class="btn filter-selected-button selectedRegions" ng-repeat="item in vm.selectedRegions" ng-click="vm.removeFilter(vm.selectedRegions, 'region_id', item.region_id)" ng-if="vm.currentPage != 'region'">
-				{{item.name}}
-				<span class="fa fa-remove"></span>
-			</a>
+					<a 
+						class="btn selected filter-selected-button selectedRegions" 
+						ng-repeat="item in vm.selectedRegions" 
+						ng-click="vm.removeFilter(vm.selectedRegions, 'recipient_region', item.recipient_region.code)" 
+						ng-if="vm.currentPage != 'region'">
+						{{item.recipient_region.name}}
+						<span class="fa fa-remove"></span>
+					</a>
 
-			<a class="btn filter-selected-button selectedSectors" ng-repeat="item in vm.selectedSectors" ng-click="vm.removeFilter(vm.selectedSectors, 'sector_id', item.sector_id)" ng-if="vm.currentPage != 'sector'">
-				{{item.name}}
-				<span class="fa fa-remove"></span>
-			</a>
+					<a 
+						class="btn selected filter-selected-button selectedSectors" 
+						ng-repeat="item in vm.selectedSectors" 
+						ng-click="vm.removeFilter(vm.selectedSectors, 'sector', item.sector.code)" 
+						ng-if="vm.currentPage != 'sector'">
+						{{item.sector.name}}
+						<span class="fa fa-remove"></span>
+					</a>
 
-			<a class="btn filter-selected-button selectedImplementingOrganisations" ng-repeat="item in vm.selectedImplementingOrganisations" ng-click="vm.removeFilter(vm.selectedImplementingOrganisations, 'organisation_id', item.organisation_id)" ng-if="vm.currentPage != 'organisation'">
-				{{item.name}}
-				<span class="fa fa-remove"></span>
-			</a>
+					<a 
+						class="btn selected filter-selected-button selectedImplementingOrganisations" 
+						ng-repeat="item in vm.selectedImplementingOrganisations" 
+						ng-click="vm.removeFilter(vm.selectedImplementingOrganisations, '', item.name)" 
+						ng-if="vm.currentPage != 'organisation'">
+						{{item.name}}
+						<span class="fa fa-remove"></span>
+					</a>
 
-			<a class="btn filter-selected-button selectedActivityStatuses" ng-repeat="item in vm.selectedActivityStatuses" ng-click="vm.removeFilter(vm.selectedActivityStatuses, 'code', item.code)">
-				{{item.name}}
-				<span class="fa fa-remove"></span>
-			</a>
+					<a 
+						class="btn selected filter-selected-button selectedActivityStatuses" 
+						ng-repeat="item in vm.selectedActivityStatuses" 
+						ng-click="vm.removeFilter(vm.selectedActivityStatuses, 'activity_status', item.activity_status.code)">
+						{{item.activity_status.name}}
+						<span class="fa fa-remove"></span>
+					</a>
 
-			<a 
-				ng-if="vm.search.searchString.length > 0" 
-				class="btn filter-selected-button selectedRegions" 
-				ng-click="vm.removeSearch()">
-				'{{vm.search.searchString}}'
-				<span class="fa fa-remove"></span>
-			</a>
+					<a 
+						ng-if="vm.search.searchString.length > 0" 
+						class="btn selected filter-selected-button selectedRegions" 
+						ng-click="vm.removeSearch()">
+						'{{vm.search.searchString}}'
+						<span class="fa fa-remove"></span>
+					</a>
 
-			<a 
-				class="btn filter-selected-button selectedActivityStatuses" 
-				ng-show="vm.selectedBudget.on" 
-				ng-click="vm.removeBudgetFilter()">
-				Budget: {{vm.selectedBudget.value[0] | shortcurrency :'€'}} - {{vm.selectedBudget.value[1] | shortcurrency :'€'}}
-				<span class="fa fa-remove"></span>
-			</a>
+					<a 
+						class="btn selected filter-selected-button selectedActivityStatuses" 
+						ng-show="vm.selectedBudget.on" 
+						ng-click="vm.removeBudgetFilter()">
+						Budget: {{vm.selectedBudget.value[0] | shortcurrency :'€'}} - {{vm.selectedBudget.value[1] | shortcurrency :'€'}}
+						<span class="fa fa-remove"></span>
+					</a>
 
-			<a 
-				class="btn filter-selected-button selectedActivityStatuses" 
-				ng-show="vm.selectedTransactionYear.on" 
-				ng-click="vm.removeTransactionYearFilter()">
-				Transaction date year: {{vm.selectedTransactionYear.value}}
-				<span class="fa fa-remove"></span>
-			</a>
+					<a 
+						class="btn selected filter-selected-button selectedActivityStatuses" 
+						ng-show="vm.selectedTransactionYear.on" 
+						ng-click="vm.removeTransactionYearFilter()">
+						Transaction date year: {{vm.selectedTransactionYear.value}}
+						<span class="fa fa-remove"></span>
+					</a>
 
-			<div style="margin-bottom:4px;" ng-show="!vm.filterCount">
-				No filters selected
+					<div style="margin-bottom:4px;" ng-show="!vm.filterCount">
+						No filters selected
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>

@@ -63,17 +63,17 @@
 
     vm.refreshTableChart = false;
     vm.top5Options = {
-      'recipient-country': {
-        aggregationFilters: '&amp;order_by=-total_disbursements&amp;limit=5',
+      'recipient_country': {
+        aggregationFilters: '&amp;order_by=-disbursement&amp;limit=5',
         groupBy: 'recipient-country',
         groupById: 'country_id',
         groupSref: 'countries',
         aggregationKey: 'disbursement',
         aggregationExtraSelect: 'iati-identifier',
-        aggregationExtraSelectIn: 'countries__in'
+        aggregationExtraSelectIn: 'recipient_country'
       },
       'transaction__receiver-org': {
-        aggregationFilters: '&amp;order_by=-total_disbursements&amp;limit=5',
+        aggregationFilters: '&amp;order_by=-disbursement&amp;limit=5',
         groupBy: 'transaction__receiver-org',
         groupById: 'receiver_organisation_id',
         groupSref: 'organisations',
@@ -82,28 +82,28 @@
         aggregationExtraSelectIn: 'participating_organisation__in'
       },
       'sector': {
-        aggregationFilters: '&amp;order_by=-total_disbursements&amp;limit=5',
+        aggregationFilters: '&amp;order_by=-disbursement&amp;limit=5',
         groupBy: 'sector',
         groupById: 'sector_id',
         groupSref: 'sectors',
         aggregationKey: 'disbursement',
-        aggregationExtraSelect: 'iati-identifier',
-        aggregationExtraSelectIn: 'sectors__in'
+        aggregationExtraSelect: '',
+        aggregationExtraSelectIn: 'sector'
       }
     };
 
     vm.top5ListOptions = {
       'recipient-country': {
-        groupBy: 'recipient-country,transaction__transaction-date_year',
-        groupById: 'country_id'
+        groupBy: 'recipient_country,transaction_date_year',
+        groupById: 'recipient_country'
       },
       'transaction__receiver-org': {
         groupBy: 'transaction__receiver-org,transaction__transaction-date_year',
         groupById: 'receiver_organisation_id',
       },
       'sector': {
-        groupBy: 'sector,transaction__transaction-date_year',
-        groupById: 'sector_id',
+        groupBy: 'sector,transaction_date_year',
+        groupById: 'sector',
       }
     };
   }

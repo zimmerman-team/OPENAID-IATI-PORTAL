@@ -19,25 +19,27 @@
     vm.filterSelection = FilterSelection;
     vm.countries = [];
     vm.totalCountries = 0;
-    vm.order_by = 'name';
-    vm.offset = 0;
+    vm.order_by = 'recipient_country';
     vm.hasToContain = $scope.hasToContain;
+    vm.page = 1;
     vm.busy = false;
+    vm.perPage = 15;
     vm.extraSelectionString = '';
-
 
     function activate() {
       // use predefined filters or the filter selection
       $scope.$watch("vm.filterSelection.selectionString", function (selectionString, oldString) {
         if(selectionString !== oldString){
-          vm.update();
+          vm.update(selectionString);
         }
       }, true);
 
       $scope.$watch("searchValue", function (searchValue, oldSearchValue) {
-        if(searchValue == undefined) { vm.update(); return false; }
-        searchValue == '' ? vm.extraSelectionString = '' : vm.extraSelectionString = '&name_query='+searchValue;
-        vm.update(vm.filterSelection.selectionString);
+        if(searchValue == undefined) return;
+        if(searchValue !== oldSearchValue){
+          searchValue == '' ? vm.extraSelectionString = '' : vm.extraSelectionString = '&q_field=recipient_country&q='+searchValue;
+          vm.update();
+        }
       }, true);
 
       // do not prefetch when the list is hidden
@@ -46,6 +48,8 @@
           vm.busy = !shown ? true : false;
         }, true);
       }
+
+      vm.update(vm.filterSelection.selectionString);
     }
 
     vm.toggleOrder = function(){
@@ -53,6 +57,7 @@
     }
 
     vm.hasContains = function(){
+
       if(vm.hasToContain !== undefined){
         var totalString = vm.filterSelection.selectionString + vm.extraSelectionString;
         if(totalString.indexOf(vm.hasToContain) < 0){
@@ -65,16 +70,8 @@
     vm.update = function(){
       if (!vm.hasContains()) return false;
 
-      // indirect country disbursements
-      Aggregations.aggregation('location_countries', 'location_disbursement', vm.selectionString).then(indirectCountrySuccessFn, errorFn);
-
-      function indirectCountrySuccessFn(data, status, headers, config){
-        // console.log(data.data.results);
-      }
-
-
-      vm.offset = 0;
-      Aggregations.aggregation('recipient-country', 'disbursement', vm.filterSelection.selectionString + vm.extraSelectionString, vm.order_by, 15, vm.offset, 'activity_count').then(succesFn, errorFn);
+      vm.page = 1;
+      Aggregations.aggregation('recipient_country', 'count,disbursement', vm.filterSelection.selectionString + vm.extraSelectionString, vm.order_by, vm.perPage, vm.page).then(succesFn, errorFn);
 
       function succesFn(data, status, headers, config){
         vm.countries = data.data.results;
@@ -88,16 +85,14 @@
     }
 
     vm.nextPage = function(){
-      if (!vm.hasContains() || vm.busy || (vm.totalCountries < (vm.offset + 15))) return;
+      if (!vm.hasContains() || vm.busy || (vm.totalCountries <= (vm.page * vm.perPage))) return;
 
       vm.busy = true;
-      vm.offset = vm.offset + 15;
-      Aggregations.aggregation('recipient-country', 'disbursement', vm.filterSelection.selectionString + vm.extraSelectionString, vm.order_by, 15, vm.offset, 'activity_count').then(succesFn, errorFn);
+      vm.page += 1;
+      Aggregations.aggregation('recipient_country', 'count,disbursement', vm.filterSelection.selectionString + vm.extraSelectionString, vm.order_by, vm.perPage, vm.page).then(succesFn, errorFn);
 
       function succesFn(data, status, headers, config){
-        for (var i = 0; i < data.data.results.length; i++) {
-          vm.countries.push(data.data.results[i]);
-        }
+        vm.countries = vm.countries.concat(data.data.results);
         vm.busy = false;
       }
 

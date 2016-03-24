@@ -61,7 +61,6 @@ var sectorLayoutTest = null;
 
     function activate() {
 
-
       if(vm.sector_id < 100){
         vm.sector_digit = 2;
       } else if(100 < vm.sector_id && vm.sector_id < 9999){
@@ -70,59 +69,46 @@ var sectorLayoutTest = null;
         vm.sector_digit = 5;
       }
       findSector(vm.sector_id, sectorMapping.children);
-      var sectors = listChildren([],vm.sector);
 
-      if(vm.sector_digit == 5){
-        Sectors.selectedSectors.push({"sector_id":vm.sector.sector_id,"name":vm.sector.name});
+      if (vm.sector) { 
+        
+        Sectors.selectedSectors.push({'sector': {"code":vm.sector.sector_id,"name":vm.sector.name}});
+  
+        FilterSelection.save();
+
+        $scope.$watch('vm.filterSelection.selectionString', function (selectionString) {
+          vm.update(selectionString);
+        }, true);
+        vm.pageUrl = encodeURIComponent(vm.pageUrlDecoded);
+        vm.shareDescription = encodeURIComponent('View the aid projects of the RVO on ' + vm.pageUrlDecoded);
       }
-
-      for (var i = 0;i < sectors.length;i++){
-        Sectors.selectedSectors.push({"sector_id":sectors[i].sector_id,"name":sectors[i].name});
-      }
-      FilterSelection.save();
-
-
-
-      $scope.$watch('vm.filterSelection.selectionString', function (selectionString) {
-        vm.update(selectionString);
-      }, true);
-    }
-
-    function errorFn(data, status, headers, config) {
-      console.log("getting sectors failed");
     }
 
     vm.update = function(selectionString){
 
-      if (selectionString.indexOf("sectors__in") < 0){ return false;}
+      if (selectionString.indexOf("sector") < 0){ return false;}
 
-      Aggregations.aggregation('transaction__transaction-date_year', 'disbursement', selectionString).then(function(data, status, headers, config){
+      Aggregations.aggregation('transaction_date_year', 'disbursement', selectionString, 'year').then(function(data, status, headers, config){
         vm.disbursements_by_year = data.data.results;
         vm.disbursements_total = 0;
-        for (var key in vm.disbursements_by_year) {
-          if (vm.disbursements_by_year.hasOwnProperty(key)) {
-            vm.disbursements_total += vm.disbursements_by_year[key].total_disbursements;
-          }
+        for (var i = vm.disbursements_by_year.length - 1; i >= 0; i--) {
+          vm.disbursements_total += vm.disbursements_by_year[i].disbursement;
         };
       }, errorFn);
 
-      Aggregations.aggregation('transaction__transaction-date_year', 'commitment', selectionString).then(function(data, status, headers, config){
+      Aggregations.aggregation('transaction_date_year', 'commitment', selectionString, 'year').then(function(data, status, headers, config){
         vm.commitments_by_year = data.data.results;
         vm.commitments_total = 0;
-        for (var key in vm.commitments_by_year) {
-          if (vm.commitments_by_year.hasOwnProperty(key)) {
-            vm.commitments_total += vm.commitments_by_year[key].total_commitments;
-          }
+        for (var i = vm.commitments_by_year.length - 1; i >= 0; i--) {
+          vm.commitments_total += vm.commitments_by_year[i].commitment;
         };
       }, errorFn);
 
-      Aggregations.aggregation('budget__period_start_year', 'budget__value', selectionString).then(function(data, status, headers, config){
+      Aggregations.aggregation('budget_per_year', 'budget', selectionString, 'year').then(function(data, status, headers, config){
         vm.budget_by_year = data.data.results;
         vm.budget_total = 0;
-        for (var key in vm.budget_by_year) {
-          if (vm.budget_by_year.hasOwnProperty(key)) {
-            vm.budget_total += vm.budget_by_year[key].budget__value;
-          }
+        for (var i = vm.budget_by_year.length - 1; i >= 0; i--) {
+          vm.budget_total += vm.budget_by_year[i].budget;
         };
       }, errorFn);
 

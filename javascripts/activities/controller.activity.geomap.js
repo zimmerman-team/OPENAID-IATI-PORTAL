@@ -9,12 +9,12 @@
     .module('oipa.activities')
     .controller('ActivityGeoMapController', ActivityGeoMapController);
 
-  ActivityGeoMapController.$inject = ['$scope', 'leafletData', 'homeUrl'];
+  ActivityGeoMapController.$inject = ['$scope', 'leafletData', 'homeUrl', 'Countries', 'Regions'];
 
   /**
   * @namespace ActivityGeoMapController
   */
-  function ActivityGeoMapController($scope, leafletData, homeUrl) {
+  function ActivityGeoMapController($scope, leafletData, homeUrl, Countries, Regions) {
     var vm = this;
 
     vm.defaults = {
@@ -26,9 +26,9 @@
       continuousWorld: false
     };
     vm.center = {
-        lat: 14.505,
-        lng: 18.00,
-        zoom: 2
+        lat: -59.204,
+        lng: -131.484,
+        zoom: 8
     };
     vm.markers = {};
     vm.markerIcons = {
@@ -56,11 +56,16 @@
     vm.updateGeo = function(){
         vm.updateCountryMarkers();
         vm.updateRegionMarkers();
+        vm.setPosition(7);
+    }
 
-        leafletData.getMap().then(function(map) {
-            map.fitBounds(vm.getBounds());
-        });
-
+    vm.setPosition = function(max_zoom){
+      leafletData.getMap().then(function(map) {
+          map.fitBounds(vm.getBounds());
+          if(map._zoom > max_zoom){
+            map.setZoom(max_zoom);
+          }
+      });
     }
 
     vm.getBounds = function(){
@@ -104,48 +109,50 @@
 
     vm.updateCountryMarkers = function() {
 
-      for (var i = 0; i < vm.activity.countries.length;i++){
-         
-        var country = vm.activity.countries[i];
-
-        var partnerType = 'Other';
-        if(partnerlanden[country.code] !== undefined){
-          partnerType = partnerlanden[country.code].replace(/\s/g, ''); 
+      if (vm.activity.recipient_countries.length != 0) {
+        for (var i = 0; i < vm.activity.recipient_countries.length;i++){
+          Countries.getCountry(vm.activity.recipient_countries[i].country.code).then(successFn, errorFn);
         }
+      }
 
-        var location = country.center_longlat.replace('POINT (', '').replace(')', '');
-        location = location.split(' ');
-        var flag = country.code;
+      function successFn(data, status, headers, config) {
+        var partnerType = 'Other';
+        if(partnerlanden[data.data.code] !== undefined){
+          partnerType = partnerlanden[data.data.code].replace(/\s/g, ''); 
+        }
+        var flag = data.data.code;
         var flag_lc = flag.toLowerCase();
-        vm.markers[country.code] = {
-            lat: parseInt(location[1]),
-            lng: parseInt(location[0]),
+
+        vm.markers[data.data.code] = {
+            lat: parseFloat(data.data.location.coordinates[1]),
+            lng: parseFloat(data.data.location.coordinates[0]),
             message: '<span class="flag-icon flag-icon-'+flag_lc+'"></span>'+
-                '<h4>'+country.name+'</h4>'+
+                '<h4>'+data.data.name+'</h4>'+
                 '<p><b>Relationship type:</b> '+partnerType+'</p>'+
-                '<a class="btn btn-default" href="'+homeUrl+'/countries/'+country.code+'/">Go to country overview</a>',
+                '<a class="btn btn-default" href="'+homeUrl+'/countries/'+data.data.code+'/">Go to country overview</a>',
             icon: vm.markerIcons[partnerType],
         }
+        vm.setPosition(5);
       }
     }
 
     vm.updateRegionMarkers = function() {
 
-      for (var i = 0; i < vm.activity.regions.length;i++){
-         
-        var region = vm.activity.regions[i];
-        if (!region.center_longlat) return;
-        var location = region.center_longlat.replace('POINT (', '').replace(')', '');
-        location = location.split(' ');
+      if (vm.activity.recipient_regions.length != 0) {
+        for (var i = 0; i < vm.activity.recipient_regions.length;i++){
+          Regions.getRegion(vm.activity.recipient_regions[i].region.code).then(successFn, errorFn);
+        }
+      }
 
-        var message = '<h4>'+region.name+'</h4>'+
-              '<a class="btn btn-default" href="'+homeUrl+'/regions/'+region.code+'/">Ga naar regio overzicht</a>';
-
-            vm.markers[region.code] = {
-              lat: parseInt(location[1]),
-              lng: parseInt(location[0]),
-              icon: vm.markerIcons['Regiocirkel'],
-            }
+      function successFn(data, status, headers, config) {
+        vm.markers[data.data.code] = {
+            lat: parseFloat(data.data.location.coordinates[1]),
+            lng: parseFloat(data.data.location.coordinates[0]),
+            message: '<h4>'+data.data.name+'</h4>'+
+              '<a class="btn btn-default" href="'+homeUrl+'/regions/'+data.data.code+'/">Ga naar regio overzicht</a>',
+            icon: vm.markerIcons['Regiocirkel'],
+        }
+        vm.setPosition(5);
       }
     }
 

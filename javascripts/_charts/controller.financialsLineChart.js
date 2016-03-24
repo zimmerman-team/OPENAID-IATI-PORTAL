@@ -71,17 +71,19 @@
         console.log(data);
       }
 
-      Aggregations.aggregation('transaction__transaction-date_year', 'disbursement', selectionString, 'transaction_date_year').then(function(data, status, headers, config){
+      var order_by = 'year';
+
+      Aggregations.aggregation('transaction_date_year', 'disbursement', selectionString, order_by).then(function(data, status, headers, config){
         vm.disbursements_by_year = data.data.results;
         vm.startReformatTransactionData();
       }, errorFn);
 
-      Aggregations.aggregation('transaction__transaction-date_year', 'commitment', selectionString, 'transaction_date_year').then(function(data, status, headers, config){
+      Aggregations.aggregation('transaction_date_year', 'commitment', selectionString, order_by).then(function(data, status, headers, config){
         vm.commitments_by_year = data.data.results;
         vm.startReformatTransactionData();
       }, errorFn);
 
-      Aggregations.aggregation('budget__period_start_year', 'budget__value', selectionString, 'budget__period_start_year').then(function(data, status, headers, config){
+      Aggregations.aggregation('budget_per_year', 'budget', selectionString, order_by).then(function(data, status, headers, config){
         vm.budget_by_year = data.data.results;
         vm.startReformatTransactionData();
       }, errorFn);
@@ -89,6 +91,7 @@
 
     vm.startReformatTransactionData = function(){
         loadedCount++;
+        
         if(loadedCount > 2){
             vm.transactionChartOptions.chart.noData = 'No data available';
             vm.transactionData = vm.reformatTransactionData();
@@ -121,25 +124,25 @@
       var max = 0;
 
       if(vm.commitments_by_year.length){
-        min = vm.commitments_by_year[0]['transaction_date_year'];
-        max = vm.commitments_by_year[(vm.commitments_by_year.length - 1)]['transaction_date_year'];
+        min = vm.commitments_by_year[0]['year'];
+        max = vm.commitments_by_year[(vm.commitments_by_year.length - 1)]['year'];
       }
 
       if(vm.disbursements_by_year.length){
-        if(vm.disbursements_by_year[0]['transaction_date_year'] < min){
-          min = vm.disbursements_by_year[0]['transaction_date_year'];
+        if(vm.disbursements_by_year[0]['year'] < min){
+          min = vm.disbursements_by_year[0]['year'];
         }
-        if(vm.disbursements_by_year[(vm.disbursements_by_year.length - 1)]['transaction_date_year'] > max){
-          max = vm.disbursements_by_year[(vm.disbursements_by_year.length - 1)]['transaction_date_year'];
+        if(vm.disbursements_by_year[(vm.disbursements_by_year.length - 1)]['year'] > max){
+          max = vm.disbursements_by_year[(vm.disbursements_by_year.length - 1)]['year'];
         }
       }
 
       if(vm.budget_by_year.length){
-        if(vm.budget_by_year[0]['budget__period_start_year'] < min){
-          min = vm.budget_by_year[0]['budget__period_start_year'];
+        if(vm.budget_by_year[0]['year'] < min){
+          min = vm.budget_by_year[0]['year'];
         }
-        if(vm.budget_by_year[(vm.budget_by_year.length - 1)]['budget__period_start_year'] > max){
-          max = vm.budget_by_year[(vm.budget_by_year.length - 1)]['budget__period_start_year'];
+        if(vm.budget_by_year[(vm.budget_by_year.length - 1)]['year'] > max){
+          max = vm.budget_by_year[(vm.budget_by_year.length - 1)]['year'];
         }
       }
 
@@ -166,9 +169,9 @@
         return values;
       }
 
-      data[0].values = valuesObjToArr(min, max, 'commitments_by_year', 'transaction_date_year', 'total_commitments');
-      data[1].values = valuesObjToArr(min, max, 'disbursements_by_year', 'transaction_date_year', 'total_disbursements');
-      data[2].values = valuesObjToArr(min, max, 'budget_by_year', 'budget__period_start_year', 'budget__value');
+      data[0].values = valuesObjToArr(min, max, 'commitments_by_year', 'year', 'commitment');
+      data[1].values = valuesObjToArr(min, max, 'disbursements_by_year', 'year', 'disbursement');
+      data[2].values = valuesObjToArr(min, max, 'budget_by_year', 'year', 'budget');
       
       return data;
     }

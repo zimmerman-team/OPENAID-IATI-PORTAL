@@ -17,10 +17,10 @@
                         <select
                           ng-model="vm.order_by"
                           ng-change="vm.toggleOrder()">
-                          <option value="start_actual">Starting date (increasing)</option>
-                          <option value="-start_actual">Starting date (decreasing)</option>
-                          <option value="total_budget">Budget (increasing)</option>
-                          <option value="-total_budget">Budget (decreasing)</option>
+                          <option value="planned_start_date">Planned start date (increasing)</option>
+                          <option value="-planned_start_date">Planned end date (decreasing)</option>
+                          <option value="activity_budget_value">Budget (increasing)</option>
+                          <option value="-activity_budget_value">Budget (decreasing)</option>
                         </select>
 <!--                       </div>
                     </label>
@@ -43,46 +43,57 @@
             ng-repeat="item in vm.activities">
                 <div class="col-md-12">
                     <div class="hp-block wit header">
-                        <h2><a ui-sref="activiteit({ activity_id: item.id })">{{ item.titles[0].title }}</a></h2>
-                        <p>{{item.descriptions[0].description}}</p>
+                        <h2><a ui-sref="activity({ activity_id: item.id })">{{ item.title.narratives[0].text }}</a></h2>
+                        <p>{{item.descriptions[0].narratives[0].text}}</p>
                     </div>
                     <div class="hp-block wit">
                         <div class="row">
                             <div class="col-md-4">
                                 <p><b>Estimated budget</b><br>
-                                    <span ng-if='item.total_budget.length'>{{item.total_budget | shortcurrency :'€'}}</span>
-                                    <span ng-if='!item.total_budget.length'>No data available</span>
+                                    <span ng-if='item.aggregations.activity.budget_value'>
+                                        {{item.aggregations.activity.budget_value | shortcurrency :'€'}}
+                                    </span>
+                                    <span ng-if='!item.aggregations.activity.budget_value'>No data available</span>
                                 </p>
                                 <p><b>Country</b><br>
-                                    <a ui-sref="country({'country_id': country.code})" ng-repeat="country in item.countries">
-                                        {{ country.name }}
+                                    <a ng-repeat="recipient_country in item.recipient_countries" ui-sref="country({ country_id: recipient_country.country.code })">
+                                        {{recipient_country.country.name}}{{$last ? '' : ', '}}
                                     </a>
-                                    <span ng-show='!item.countries.length'>No data available</span>
+                                    <span ng-show='!item.recipient_countries.length'>No data available</span>
                                 </p>
                                 <p class="hidden-xs"><b>Region</b><br>
-                                    <a ui-sref="region({'region_id': region.code})" ng-repeat="region in item.regions">
-                                        {{ region.name }}
+                                    <a ng-repeat="recipient_region in item.recipient_regions" ui-sref="region({ region_id: recipient_region.region.code })">
+                                        {{recipient_region.region.name}}{{$last ? '' : ', '}}
                                     </a>
-                                    <span ng-show='!item.regions.length'>No data available</span>
+                                    <span ng-show='!item.recipient_regions.length'>No data available</span>
                                 </p>
                                 <p class="hidden-xs"><b>Sector</b><br>
-                                    <a ui-sref="sector({'sector_id': sector.code})" ng-repeat="sector in item.sectors">
-                                        {{ sector.name }}
+                                    <a ng-repeat="recipient_sector in item.sectors" ui-sref="sector({ sector_id: recipient_sector.sector.code })">
+                                        {{recipient_sector.sector.name}}{{$last ? '' : ', '}}
                                     </a>
+
                                     <span ng-show='!item.sectors.length'>No data available</span>
                                 </p>
                             </div>
                             <div class="col-md-4">
                                 <p class="hidden-xs"><b>Status</b><br>{{item.activity_status.name}}</p> 
-                                <p><b>Starting date</b><br>
-                                    {{item.start_actual.length ? item.start_actual : 'No data available'}}
+                                <p><b>Planned start</b><br>
+                                    <span 
+                                        ng-repeat="activity_date in item.activity_dates" 
+                                        ng-if="activity_date.type.code == '1'">
+                                        {{activity_date.iso_date | date : 'dd-MM-yyyy'}}
+                                    </span>
                                 </p>
-                                <p class="hidden-xs"><b>Ending date</b><br>
-                                    {{item.end_actual.length ? item.end_actual : 'No data available'}}
-                                </p> 
+                                <p class="hidden-xs"><b>End date planned</b><br>
+                                    <span 
+                                        ng-repeat="activity_date in item.activity_dates" 
+                                        ng-if="activity_date.type.code == '3'">
+                                        {{activity_date.iso_date | date : 'dd-MM-yyyy'}}
+                                    </span>
+                                </p>
                             </div>
                             <div class="col-md-4 hidden-xs">
-                                <p><b>Reporting organisation</b><br>{{item.reporting_organisation.name}}</p> 
+                                <p><b>Reporting organisation</b><br>{{item.reporting_organisations[0].narratives[0].text}}</p> 
                                 <p><b>IATI identifier</b><br>{{item.iati_identifier}}</p> 
                             </div>
                         </div>

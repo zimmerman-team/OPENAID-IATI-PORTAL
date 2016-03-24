@@ -23,11 +23,11 @@
 
         return Aggregations;
 
-        function aggregation(group_by, aggregation_key, filters, order_by, limit, offset, extra_select){
+        function aggregation(group_by, aggregations, filters, order_by, page_size, page){
 
-            var url = oipaUrl + '/aggregate/?format=json&group_by='+group_by+'&aggregation_key='+aggregation_key
+            var url = oipaUrl + '/activities/aggregations/?format=json&group_by='+group_by+'&aggregations='+aggregations
             if(reportingOrganisationId){
-                url += '&reporting_organisation__in=' + reportingOrganisationId
+                url += '&reporting_organisation=' + reportingOrganisationId
             }
             if(filters !== undefined){
                 url += filters;
@@ -35,16 +35,12 @@
             if(order_by !== undefined){
                 url += '&order_by=' + order_by;
             }
-            if(limit !== undefined){
-                url += '&limit=' + limit;
+            if(page_size !== undefined){
+                url += '&page_size=' + page_size;
             }
             
-            if(offset !== undefined){
-                url += '&offset=' + offset;
-            }
-
-            if(extra_select != undefined){
-                url += '&extra_select=' + extra_select
+            if(page !== undefined){
+                url += '&page=' + page;
             }
 
             return $http.get(url, { cache: true });

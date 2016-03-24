@@ -65,7 +65,6 @@
     vm.filterSelection = FilterSelection;
     vm.selectionString = '';
 
-    vm.countryMarkerData = [];
     vm.regionMarkerData = [];
 
     vm.geoView = 'countries';
@@ -97,13 +96,12 @@
 
     vm.updateMap = function(){
 
-        Aggregations.aggregation('recipient-country', 'disbursement', vm.selectionString, 'name', 1000, 0, 'activity_count').then(countrySuccessFn, errorFn);
+        Aggregations.aggregation('recipient_country', 'count,disbursement', vm.filterSelection.selectionString, 'recipient_country', 400, 1).then(countrySuccessFn, errorFn);
         
-        Aggregations.aggregation('recipient-region', 'disbursement', vm.selectionString, 'name', 1000, 0, 'activity_count').then(regionSuccessFn, errorFn);
-
+        // Aggregations.aggregation('recipient_region', 'count,disbursement', vm.filterSelection.selectionString, 'recipient_country', 400, 1).then(countrySuccessFn, errorFn);
+        
         function countrySuccessFn(data, status, headers, config) {
-            vm.countryMarkerData = data.data.results;
-            vm.updateCountryMarkers();
+            vm.updateCountryMarkers(data.data.results);
         }
 
         function regionSuccessFn(data, status, headers, config){
@@ -145,9 +143,7 @@
 
     vm.updateCountryMarkers = function(markerData) {
       
-      if(vm.geoView != 'countries'){
-        return false;
-      }
+      if(vm.geoView != 'countries'){ return false; }
 
       vm.deleteAllMarkers();
 
@@ -156,41 +152,40 @@
           selectedCountryRelationMap[vm.selectedCountryRelation[i]['name'].replace(/\s/g, '')] = true;
       }
 
-      for (var i = 0; i < vm.countryMarkerData.length;i++){
+      for (var i = 0; i < markerData.length;i++){
        
           var partnerType = 'Other';
-          if(partnerlanden[vm.countryMarkerData[i].country_id] !== undefined){
-            partnerType = partnerlanden[vm.countryMarkerData[i].country_id].replace(/\s/g, ''); 
+          if(partnerlanden[markerData[i].recipient_country.code] !== undefined){
+            partnerType = partnerlanden[markerData[i].recipient_country.code].replace(/\s/g, ''); 
           }
 
           if (selectedCountryRelationMap[partnerType] === undefined){
 
-            if(vm.markers[vm.countryMarkerData[i].country_id] != undefined){
-              delete vm.markers[vm.countryMarkerData[i].country_id];
+            if(vm.markers[markerData[i].recipient_country.code] != undefined){
+              delete vm.markers[markerData[i].recipient_country.code];
             }
 
           } else {
-            var flag = vm.countryMarkerData[i].country_id;
+            var flag = markerData[i].recipient_country.code;
             var flag_lc = flag.toLowerCase();
             var message = '<span class="flag-icon flag-icon-'+flag_lc+'"></span>'+
-                  '<h4>'+vm.countryMarkerData[i].name+'</h4>'+
-                  '<p><b>Activities:</b> '+vm.countryMarkerData[i]['activity_count']+'</p>'+
-                  '<p><b>Total expenditure:</b> '+ $filter('shortcurrency')(vm.countryMarkerData[i]['total_disbursements'],'€') +'</p>'+
+                  '<h4>'+markerData[i].recipient_country.name+'</h4>'+
+                  '<p><b>Activities:</b> '+markerData[i]['count']+'</p>'+
+                  '<p><b>Total expenditure:</b> '+ $filter('shortcurrency')(markerData[i]['disbursement'],'€') +'</p>'+
                   '<p><b>Relationship type:</b> '+partnerType+'</p>'+
-                  '<a class="btn btn-default" href="'+homeUrl+'/countries/'+vm.countryMarkerData[i].country_id+'/">Go to country overview</a>';
+                  '<a class="btn btn-default" href="'+homeUrl+'/countries/'+markerData[i].recipient_country.code+'/">Go to country overview</a>';
 
-            if(vm.markers[vm.countryMarkerData[i].country_id] === undefined){
-              if(vm.countryMarkerData[i].location != null){
-                var location = vm.countryMarkerData[i].location.substr(6, (vm.countryMarkerData[i].location.length - 7));
-                location = location.split(' ');
-                vm.markers[vm.countryMarkerData[i].country_id] = {
-                  lat: parseInt(location[1]),
-                  lng: parseInt(location[0]),
+            if(vm.markers[markerData[i].recipient_country.code] === undefined){
+              if(markerData[i].recipient_country.location != null){
+
+                vm.markers[markerData[i].recipient_country.code] = {
+                  lat: parseInt(markerData[i].recipient_country.location.coordinates[1]),
+                  lng: parseInt(markerData[i].recipient_country.location.coordinates[0]),
                   icon: vm.markerIcons[partnerType],
                 }
               }
             }
-            vm.markers[vm.countryMarkerData[i].country_id].message = message;
+            vm.markers[markerData[i].recipient_country.code].message = message;
           }
       }
     }

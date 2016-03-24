@@ -21,7 +21,8 @@
 
 		var ImplementingOrganisations = {
 			selectedImplementingOrganisations: this.selectedImplementingOrganisations,
-			get: get 
+			get: get,
+			getActivities: getActivities
 		};
 
 		return ImplementingOrganisations;
@@ -38,5 +39,10 @@
 	     function get(id) {
 	     	return $http.get(oipaUrl + '/organisations/' + id + '/?format=json', { cache: true });
 	     }
+
+		 function getActivities(id) {
+	     	return $http.get(oipaUrl + '/activities/?format=json&participating_organisation_name=' + id , { cache: true });
+
+		 }
 	}
 })();

@@ -1,34 +1,41 @@
 <div class="filter-panel">
-	<div class="row" ng-show="vm.activityStatuses.length != 0">
-		<div class="col-md-12">
-			<table class="table">
-				<thead>
-					<tr>
-						<td class="th-first">Select a status</td>
-						<td>Total projects</td>
-					</tr>
-				</thead>
-				<tbody>
-
-				    <tr dir-paginate="item in vm.activityStatuses | itemsPerPage: 4"  pagination-id="activityStatuses">
-				    	<td>
-				    		<div class="checkbox">
-					    		<label class="switch">
-					    			<input type="checkbox" checklist-model="vm.selectedActivityStatuses" checklist-value="item"><i></i>
-					    			<span>{{ item.name }}</span>
-					    		</label>
-					    	</div>
-				    	</td>
-				    	<td>
-				    		{{ item.activity_count }}
-				    	</td>
-				    </tr>
-
-				</tbody>
-			</table>
+	<div class="extra-padding">
+		<div class="row" ng-show="vm.activityStatuses.length == 0">
+			<div class="svg-loader">
+				<img ng-src="{{templateBaseUrl}}/images/spinning-circles.svg" width="70" alt="">
+			</div>
 		</div>
-		<div class="col-md-12 text-center">
-			<button class="btn btn-default btn-openaid btn-save" ng-click="vm.save()">Save</button>
+		<div class="row" ng-show="vm.activityStatuses.length != 0">
+			<div class="col-md-12">
+				<table class="table">
+					<thead>
+						<tr>
+							<td class="th-first">Select one or more statuses</td>
+							<td>Projects</td>
+						</tr>
+					</thead>
+					<tbody>
+
+					    <tr dir-paginate="item in vm.activityStatuses | itemsPerPage: 4"  pagination-id="activityStatuses">
+					    	<td>
+					    		<div class="checkbox">
+						    		<label class="switch">
+						    			<input type="checkbox" checklist-model="vm.selectedActivityStatuses" checklist-value="item"><i></i>
+						    			<span>{{ item.activity_status.name }}</span>
+						    		</label>
+						    	</div>
+					    	</td>
+					    	<td>
+					    		{{ item.count }}
+					    	</td>
+					    </tr>
+
+					</tbody>
+				</table>
+			</div>
+			<div class="col-md-12 text-center">
+				<button class="btn btn-default btn-save btn-openaid" ng-click="vm.save()">Save</button>
+			</div>
 		</div>
 	</div>
 </div>

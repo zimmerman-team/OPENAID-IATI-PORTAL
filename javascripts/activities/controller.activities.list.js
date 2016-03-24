@@ -2,6 +2,11 @@
 * CountriesController
 * @namespace oipa.countries
 */
+
+function errorFn(data, status, headers, config){
+  console.warn('error');
+}
+
 (function () {
   'use strict';
 
@@ -18,7 +23,7 @@
     var vm = this;
     vm.filterSelection = FilterSelection;
     vm.activities = [];
-    vm.order_by = 'start_actual';
+    vm.order_by = '-planned_start_date';
     vm.page_size = 5;
     vm.offset = 0;
     vm.totalActivities = 0;
@@ -33,7 +38,7 @@
 
       $scope.$watch("searchValue", function (searchValue) {
         if (searchValue == undefined) return false; 
-        searchValue == '' ? vm.extraSelectionString = '' : vm.extraSelectionString = '&query='+searchValue;
+        searchValue == '' ? vm.extraSelectionString = '' : vm.extraSelectionString = '&q='+searchValue;
         vm.update();
       }, true);
 
@@ -62,37 +67,26 @@
     vm.update = function(){
       if (!vm.hasContains()) return false;
 
-      vm.offset = 0;
-
-      Activities.list(vm.filterSelection.selectionString + vm.extraSelectionString, vm.page_size, vm.order_by, vm.offset).then(succesFn, errorFn);
+      vm.page = 1;
+      Activities.list(vm.filterSelection.selectionString + vm.extraSelectionString, vm.pageSize, vm.order_by, vm.page).then(succesFn, errorFn);
 
       function succesFn(data, status, headers, config){
-        vm.activities = data.data.objects;
-        vm.totalActivities = data.data.meta.total_count;
+        vm.activities = data.data.results;
+        vm.totalActivities = data.data.count;
         $scope.count = vm.totalActivities;        
-      }
-
-      function errorFn(data, status, headers, config){
-        console.warn('error getting data for activity.list.block');
       }
     }
 
     vm.nextPage = function(){
-      if (!vm.hasContains() || vm.busy || (vm.totalActivities < (vm.offset + 5))) return;
+      if (!vm.hasContains() || vm.busy || (vm.totalActivities <= (vm.page * vm.pageSize))) return;
 
       vm.busy = true;
-      vm.offset = vm.offset + 5;
-      Activities.list(vm.filterSelection.selectionString + vm.extraSelectionString, vm.page_size, vm.order_by, vm.offset).then(succesFn, errorFn);
+      vm.page += 1;
+      Activities.list(vm.filterSelection.selectionString + vm.extraSelectionString, vm.pageSize, vm.order_by, vm.page).then(succesFn, errorFn);
 
       function succesFn(data, status, headers, config){
-        for (var i = 0; i < data.data.objects.length; i++) {
-          vm.activities.push(data.data.objects[i]);
-        }
+        vm.activities = vm.activities.concat(data.data.results);
         vm.busy = false;   
-      }
-
-      function errorFn(data, status, headers, config){
-        console.warn('error getting data on lazy loading');
       }
     };
 

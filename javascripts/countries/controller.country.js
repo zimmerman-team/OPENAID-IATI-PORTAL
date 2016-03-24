@@ -11,9 +11,6 @@
 
   CountryController.$inject = ['$scope', 'Countries', 'templateBaseUrl', '$stateParams', 'FilterSelection', 'Aggregations'];
 
-  /**
-  * @namespace CountryController
-  */
   function CountryController($scope, Countries, templateBaseUrl, $stateParams, FilterSelection, Aggregations) {
     var vm = this;
     vm.country = null;
@@ -30,78 +27,73 @@
       {'id': 'implementing-organisations', 'name': 'Organisations', 'count': -1},
     ]
 
-    /**
-    * @name activate
-    * @desc Actions to be performed when this controller is instantiated
-    * @memberOf oipa.countries.controllers.CountryController
-    */
     function activate() {
 
       $scope.$watch('vm.filterSelection.selectionString', function (selectionString) {
         vm.update(selectionString);
       }, true);
 
-
-
       // for each active country, get the results
       Countries.getCountry(vm.country_id).then(successFn, errorFn);
       
       if(partnerlanden[vm.country_id] !== undefined){
-        vm.partnerType = partnerlanden[vm.country_id]; 
+        vm.partnerType = partnerlanden[vm.country_id];
       } else {
         vm.partnerType = 'Other';
       }
 
       function successFn(data, status, headers, config) {
         vm.country = data.data;
-        Countries.selectedCountries.push({'country_id':vm.country.code,'name':vm.country.name});
+        Countries.selectedCountries.push({'count': 0, 'recipient_country': {'code':vm.country.code,'name':vm.country.name}});
         FilterSelection.save();
+        vm.loading = false;
       }
     }
 
     function errorFn(data, status, headers, config) {
       console.log("getting country failed");
+      vm.loading = false;
     }
 
     vm.update = function(selectionString){
-      if (selectionString.indexOf("countries__in") < 0){ return false;}
+      if (selectionString.indexOf("recipient_country") < 0){ return false;}
       
-      Aggregations.aggregation('location_countries', 'location_disbursement', FilterSelection.selectionString).then(indirectCountrySuccessFn, errorFn);
+      Aggregations.aggregation('recipient_country', 'disbursement,expenditure,incoming_fund', selectionString).then(function(data, status, headers, config){
 
-      function indirectCountrySuccessFn(data, status, headers, config){
-
-        if(data.data.results.length > 0){
-          vm.indirectDisbursements = data.data.results[0].total_value;
+        for(var i = 0;i < data.data.results.length;i++){
+          if(data.data.results[i].recipient_country.code == vm.country_id){
+            vm.aggregated_transactions = data.data.results[i];
+          }
         }
-      }
+      }, errorFn);
 
-      Aggregations.aggregation('transaction__transaction-date_year', 'disbursement', selectionString).then(function(data, status, headers, config){
+      Aggregations.aggregation('transaction_date_year', 'disbursement', selectionString, 'year').then(function(data, status, headers, config){
         vm.disbursements_by_year = data.data.results;
+        console.log(vm.disbursements_by_year);
         vm.disbursements_total = 0;
         for (var i = vm.disbursements_by_year.length - 1; i >= 0; i--) {
-          vm.disbursements_total += vm.disbursements_by_year[i].total_disbursements;
+          vm.disbursements_total += vm.disbursements_by_year[i].disbursement;
         };
       }, errorFn);
 
-      Aggregations.aggregation('transaction__transaction-date_year', 'commitment', selectionString).then(function(data, status, headers, config){
+      Aggregations.aggregation('transaction_date_year', 'commitment', selectionString, 'year').then(function(data, status, headers, config){
         vm.commitments_by_year = data.data.results;
         vm.commitments_total = 0;
         for (var i = vm.commitments_by_year.length - 1; i >= 0; i--) {
-          vm.commitments_total += vm.commitments_by_year[i].total_commitments;
+          vm.commitments_total += vm.commitments_by_year[i].commitment;
         };
       }, errorFn);
 
-      Aggregations.aggregation('budget__period_start_year', 'budget__value', selectionString).then(function(data, status, headers, config){
+      Aggregations.aggregation('budget_per_year', 'budget', selectionString, 'year').then(function(data, status, headers, config){
         vm.budget_by_year = data.data.results;
         vm.budget_total = 0;
         for (var i = vm.budget_by_year.length - 1; i >= 0; i--) {
-          vm.budget_total += vm.budget_by_year[i].budget__value;
+          vm.budget_total += vm.budget_by_year[i].budget;
         };
       }, errorFn);
 
     }
 
     activate();
-
   }
 })();

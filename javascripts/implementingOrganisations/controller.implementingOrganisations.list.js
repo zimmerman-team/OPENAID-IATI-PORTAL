@@ -20,24 +20,26 @@
     vm.organisations = [];
     vm.totalOrganisations = 0;
     vm.order_by = 'name';
-    vm.offset = 0;
-    vm.hasToContain = $scope.hasToContain;
+    vm.page = 1;
+    vm.pageSize = 15;
     vm.busy = false;
-    vm.extraSelectionString = '';
-
+    vm.extraSelectionString = '&';
+    vm.hasToContain = $scope.hasToContain;
 
     function activate() {
       // use predefined filters or the filter selection
       $scope.$watch("vm.filterSelection.selectionString", function (selectionString, oldString) {
         if(selectionString !== oldString){
-          vm.update();
+          vm.update(selectionString);
         }
       }, true);
 
       $scope.$watch("searchValue", function (searchValue, oldSearchValue) {
-        if(searchValue == undefined) {vm.update(); return false;}
-        searchValue == '' ? vm.extraSelectionString = '' : vm.extraSelectionString = '&name_query='+searchValue;
-        vm.update();
+        if(searchValue == undefined) return;
+        if(searchValue !== oldSearchValue){
+          searchValue == '' ? vm.extraSelectionString = '' : vm.extraSelectionString = '&name_query='+searchValue;
+          vm.update();
+        }
       }, true);
 
       // do not prefetch when the list is hidden
@@ -46,6 +48,8 @@
           vm.busy = !shown ? true : false;
         }, true);
       }
+
+      vm.update(vm.filterSelection.selectionString);
     }
 
     vm.toggleOrder = function(){
@@ -65,8 +69,8 @@
     vm.update = function(){
       if (!vm.hasContains()) return false;
 
-      vm.offset = 0;
-      Aggregations.aggregation('transaction__receiver-org', 'disbursement', vm.filterSelection.selectionString + vm.extraSelectionString, vm.order_by, 15, vm.offset, 'activity_count').then(succesFn, errorFn);
+      vm.page = 1;
+      Aggregations.aggregation('participating_organisation', 'count,disbursement', vm.filterSelection.selectionString + '&participating_organisation_role=4' + vm.extraSelectionString, vm.order_by, vm.pageSize, vm.page).then(succesFn, errorFn);
 
       function succesFn(data, status, headers, config){
         vm.organisations = data.data.results;
@@ -80,16 +84,14 @@
     }
 
     vm.nextPage = function(){
-      if (!vm.hasContains() || vm.busy || (vm.totalOrganisations < (vm.offset + 15))) return;
+      if (!vm.hasContains() || vm.busy || (vm.totalOrganisations <= (vm.page * vm.pageSize))) return;
 
       vm.busy = true;
-      vm.offset = vm.offset + 15;
-      Aggregations.aggregation('transaction__receiver-org', 'disbursement', vm.filterSelection.selectionString + vm.extraSelectionString, vm.order_by, 15, vm.offset, 'activity_count').then(succesFn, errorFn);
+      vm.page += 1;
+      Aggregations.aggregation('participating_organisation', 'count,disbursement', vm.filterSelection.selectionString + '&participating_organisation_role=4' + vm.extraSelectionString, vm.order_by, vm.pageSize, vm.page).then(succesFn, errorFn);
 
       function succesFn(data, status, headers, config){
-        for (var i = 0; i < data.data.results.length; i++) {
-          vm.organisations.push(data.data.results[i]);
-        }
+        vm.organisations = vm.organisations.concat(data.data.results);
         vm.busy = false;
       }
 

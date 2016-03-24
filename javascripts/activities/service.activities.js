@@ -11,77 +11,78 @@
 
     Activities.$inject = ['$http', 'oipaUrl', 'reportingOrganisationId'];
 
-    /**
-    * @namespace Activities
-    * @returns {Factory}
-    */
     function Activities($http, oipaUrl, reportingOrganisationId) {
         var m = this;
 
         var Activities = {
             all: all,
-            get: get,
+            list: list,
             getProvidedActivities: getProvidedActivities,
-            list: list
+            get: get,
+            getTransactions: getTransactions,
+            locations: locations
         };
 
         return Activities;
 
-        ////////////////////
-
-        /**
-         * @name all
-         * @desc Try to get all countries
-         * @returns {Promise}
-         * @memberOf oipa.countries.services.Countries
-         */ 
         function all() {
-            var url = oipaUrl + '/activities?format=json&page_size=10&fields=iati-identifier,name'
+            var url = oipaUrl + '/activities/?format=json&page_size=1&fields=iati_identifier,title'
             if(reportingOrganisationId){
-                url += '&reporting_organisation__in=' + reportingOrganisationId
+                url += '&reporting_organisation=' + reportingOrganisationId
             }
             return $http.get(url, { cache: true });
         }
 
-        function list(filters, limit, order_by, offset){
-            var url = oipaUrl + '/activity-list/?format=json'
-            url += '&select_fields=titles,countries,regions,iati_identifier,id,descriptions,start_actual,end_actual,activity_status,total_budget,sectors,reporting_organisation'
+        function list(filters, page_size, order_by, page){
+            var url = oipaUrl + '/activities/?format=json'
+            url += '&fields=title,recipient_countries,recipient_regions,iati_identifier,id,descriptions,activity_dates,activity_status,aggregations,sectors,reporting_organisations'
 
             if(reportingOrganisationId){
-                url += '&reporting_organisation__in=' + reportingOrganisationId
+                url += '&reporting_organisation=' + reportingOrganisationId
             }
             if(filters !== undefined){
                 url += filters;
             }
             if(order_by !== undefined){
-                url += '&order_by=' + order_by;
+                url += '&ordering=' + order_by;
             }
-            if(offset !== undefined){
-                url += '&offset=' + offset;
+            if(page !== undefined){ 
+                url += '&page=' + page;
             }
-            if(limit !== undefined){
-                url += '&limit=' + limit;
+            if(page_size !== undefined){
+                url += '&page_size=' + page_size;
             }
 
             return $http.get(url, { cache: true });
         }
 
         function getProvidedActivities(id){
-            var url = 'http://dev.oipa.nl/api/activities?format=json&transaction_provider_activity=' + id
+            var url = oipaUrl + '/activities?format=json&transaction_provider_activity=' + id
             url += '&fields=title,iati_identifier,id,descriptions,reporting_organisations&ordering=id&page_size=600'
 
             return $http.get(url, { cache: true });
         }
 
-        /**
-         * @name get
-         * @desc Get the Collections of a given user
-         * @param {string} filter_type The type to get filter options for
-         * @returns {Promise}
-         * @memberOf oipa.filters.services.Filters
-         */
         function get(code) {
             return $http.get(oipaUrl + '/activities/' + code + '/?format=json', { cache: true });
         }
+
+        function getTransactions(code) {
+            return $http.get(oipaUrl + '/activities/' + code + '/transactions/?format=json&page_size=999', { cache: true });
+        }
+
+        function locations(filters, limit){
+            var url = oipaUrl + '/activities/?format=json'
+            url += '&fields=id,title,locations&page=1&page_size=1000'
+
+            if(reportingOrganisationId){
+                url += '&reporting_organisation=' + reportingOrganisationId
+            }
+            if(filters !== undefined){
+                url += filters;
+            }
+            return $http.get(url, { cache: true });
+        }
+
     }
 })();

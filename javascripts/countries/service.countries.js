@@ -21,33 +21,27 @@
 
 		var Countries = {
 			selectedCountries: m.selectedCountries,
-			all: all,
 			getCountry: getCountry,
+			getCountries: getCountries
 		};
 
 		return Countries;
 
+	    function getCountry(code) {
+	     	return $http.get(oipaUrl + '/countries/' + code + '/?format=json', { cache: true });
+	    }
 
-		////////////////////
+	    function getCountries(countries) {
 
-
-		/**
-         * @name all
-         * @desc Try to get all countries
-         * @returns {Promise}
-         * @memberOf oipa.countries.services.Countries
-         */
-        function all() {
-            var url = oipaUrl + '/aggregate/?format=json&group_by=recipient-country&aggregation_key=iati-identifier';
+            var url = oipaUrl + '/activities/aggregations/?format=json&group_by=recipient_country&aggregations=count';
             if(reportingOrganisationId){
                 url += '&reporting_organisation__in=' + reportingOrganisationId;
             }
+            url += '&recipient_country=' + countries;
             return $http.get(url, { cache: true });
         }
 
-	    function getCountry(code) {
-	     	return $http.get(oipaUrl + '/countries/' + code + '/?format=json&fields=code,name&fields[aggregations]=count,disbursement,commitment', { cache: true });
-	    }
 
 	}
+
 })();

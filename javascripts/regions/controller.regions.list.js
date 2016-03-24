@@ -17,26 +17,31 @@
   function RegionListController($scope, Aggregations, FilterSelection, regionMapping) {
     var vm = this;
     vm.filterSelection = FilterSelection;
-    vm.regions = [];
-    vm.totalRegions = 0;
-    vm.order_by = 'name';
-    vm.offset = 0;
+    vm.sectors = [];
+    vm.totalSectors = 0;
+    vm.order_by = 'recipient_region';
+    vm.page = 1;
+    vm.pageSize = 9999;
     vm.hasToContain = $scope.hasToContain;
     vm.busy = false;
     vm.extraSelectionString = '';
+    vm.isCollapsed = false;
 
     function activate() {
       // use predefined filters or the filter selection
       $scope.$watch("vm.filterSelection.selectionString", function (selectionString, oldString) {
         if(selectionString !== oldString){
-          vm.update();
+          vm.update(selectionString);
         }
       }, true);
 
       $scope.$watch("searchValue", function (searchValue, oldSearchValue) {
-        if(searchValue == undefined) { vm.update(); return false; }
-        searchValue == '' ? vm.extraSelectionString = '' : vm.extraSelectionString = '&name_query='+searchValue;
-        vm.update();
+        if(searchValue == undefined) return false;
+        if(searchValue !== oldSearchValue){
+          searchValue == '' ? vm.extraSelectionString = '' : vm.extraSelectionString = '&q_fields=recipient_region&q='+searchValue;
+          vm.update();
+        }
+        
       }, true);
 
       // do not prefetch when the list is hidden
@@ -45,6 +50,8 @@
           vm.busy = !shown ? true : false;
         }, true);
       }
+
+      vm.update(vm.filterSelection.selectionString);
     }
 
     vm.hasContains = function(){
@@ -57,11 +64,12 @@
       return true;
     }
 
+
     vm.update = function(){
       if (!vm.hasContains()) return false;
 
-      vm.offset = 0;
-      Aggregations.aggregation('recipient-region', 'disbursement', vm.filterSelection.selectionString + vm.extraSelectionString, vm.order_by, 9999, 0, 'activity_count').then(succesFn, errorFn);
+      vm.page = 1;
+      Aggregations.aggregation('recipient_region', 'count,disbursement', vm.filterSelection.selectionString + vm.extraSelectionString, vm.order_by, 400, 1).then(succesFn, errorFn);
 
       function replaceDac5(arr){
         var i = arr.length;
@@ -72,10 +80,9 @@
               arr.splice(i, 1);
             }
           } else {
-            var match =_.find(vm.remoteRegions, function(region) {
-              return region.region_id === parseInt(arr[i].region_id);
+            var match = _.find(vm.remoteRegions, function(region) {
+              return region.recipient_region.code === arr[i].region_id;
             })
-
             if (match) {
               arr[i] = match;
             } else {
@@ -85,21 +92,21 @@
         }
       }
 
-      function updateDisbursements(region) { 
+      function updateDisbursements(region) {
         if(!region.hasOwnProperty('children')) {
-          return [region.total_disbursements, region.activity_count];
+          return [region.disbursement, region.count];
         }
-        var total_disbursement = 0;
-        var activity_count = 0;
+        var disbursement = 0;
+        var count = 0;
         for (var i = 0; i < region.children.length; i++) {
           var values = updateDisbursements(region.children[i])
-          if (values[0]) total_disbursement += values[0];
-          if (values[1]) activity_count += values[1];
-          // total_disbursement += updateDisbursements(region.children[i]) 
+          if (values[0]) disbursement += values[0];
+          if (values[1]) count += values[1];
+          // disbursement += updateDisbursements(region.children[i]) 
         }
-        region.total_disbursements = total_disbursement;
-        region.activity_count = activity_count;
-        return [total_disbursement, activity_count]
+        region.disbursement = disbursement;
+        region.count = count;
+        return [disbursement, count]
       }
 
       function sortRegionChildren(region, i) {
@@ -113,7 +120,6 @@
       function applyRegionHierarchy(regions) {
         // replace lowest level DAC5 in regionmapping with regions
         replaceDac5(regions.children);
-
         _.each(regions.children, updateDisbursements)
 
         // first level
@@ -129,11 +135,10 @@
 
       function succesFn(data, status, headers, config){
         vm.remoteRegions = data.data.results;
-        vm.regionMapping = angular.copy(regionMapping)
-        vm.regions = applyRegionHierarchy(vm.regionMapping)
-//        console.log(vm.regions);
+        vm.regionMapping = angular.copy(regionMapping);
+        vm.regions = applyRegionHierarchy(vm.regionMapping);
         vm.totalRegions = data.data.count;
-        $scope.count = vm.totalRegions;
+        $scope.count = vm.totalRegions; 
       }
 
       function errorFn(data, status, headers, config){
@@ -153,25 +158,6 @@
     vm.toggleOrder = function(){
       vm.update(vm.filterSelection.selectionString);
     }
-
-    vm.nextPage = function(){
-      if (!vm.hasContains() || vm.busy || (vm.totalRegions < (vm.offset + 15))) return;
-
-      vm.busy = true;
-      vm.offset = vm.offset + 15;
-      Aggregations.aggregation('recipient-region', 'disbursement', vm.filterSelection.selectionString + vm.extraSelectionString, vm.order_by, 15, vm.offset, 'activity_count').then(succesFn, errorFn);
-
-      function succesFn(data, status, headers, config){
-        for (var i = 0; i < data.data.results.length; i++) {
-          vm.regions.push(data.data.results[i]);
-        }
-        vm.busy = false;
-      }
-
-      function errorFn(data, status, headers, config){
-        console.warn('error getting data on lazy loading');
-      }
-    };
 
     activate();
   }

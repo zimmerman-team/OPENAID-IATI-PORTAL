@@ -1,12 +1,13 @@
 <div class="filter-panel">
+<div class="extra-padding">
 	<div class="row filter-panel-header-wrapper">
 
 		<div class="col-md-4">
 			<div class="search-box">
 			    <div class="form-group">
-			        <input ng-model="vm.q" class="form-control" placeholder="Search by sector name..">
+			        <input ng-model="vm.q" class="form-control" placeholder="Search by sector name...">
 			        <button class="btn-search" type="button">
-			            <span class="glyphicon glyphicon-search"></span>
+			            <span class="fa fa-search"></span>
 			        </button>
 		        </div>
 			</div>
@@ -24,7 +25,7 @@
 				<thead>
 					<tr>
 						<td class="th-first">Select one or more sectors</td>
-						<td>Total projects</td>
+						<td>Projects</td>
 					</tr>
 				</thead>
 				<tbody>
@@ -32,18 +33,17 @@
 				    <tr 
 				    	dir-paginate="item in vm.recipientSectors | orderBy: 'name' | itemsPerPage: 4"
 				    	total-items="vm.totalCount" 
-				    	current-page="vm.currentPage"
 				    	pagination-id="sectors">
 				    	<td>
 				    		<div class="checkbox">
 					    		<label class="switch">
 					    			<input type="checkbox" checklist-model="vm.selectedSectors" checklist-value="item"><i></i>
-					    			<span>{{ item.name }}</span>
+					    			<span>{{ item.sector.name }}</span>
 					    		</label>
 					    	</div>
 				    	</td>
 				    	<td>
-				    		{{ item.activity_count }}
+				    		{{ item.count }}
 				    	</td>
 				    </tr>
 
@@ -57,4 +57,5 @@
 				on-page-change="vm.pageChanged(newPageNumber)"></dir-pagination-controls>
 		</div>
 	</div>
+</div>
 </div>

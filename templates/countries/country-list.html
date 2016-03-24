@@ -7,32 +7,14 @@
                     <social></social>
                 </div>
                 <div class="col-xs-6 text-right">
-
-<!--                     <div class="styled-select insort">
- -->                        <select
-                            ng-model="vm.order_by"
-                            ng-change="vm.toggleOrder()">
-                            <option value="name">Name (A - Z)</option>
-                            <option value="-name">Name (Z - A)</option>
-                            <option value="total_disbursements">Expenditure (increasing)</option>
-                            <option value="-total_disbursements">Expenditure (decreasing)</option>
-                        </select>
-<!--                     </div>
- -->                    <!-- <div class="result-count sortby">Sort by:</div> -->
-
-                    <!-- <label class="wrapper">
-                      <div class="custom-select ff-hack">
-                        <select
-                          ng-model="vm.order_by"
-                          ng-change="vm.toggleOrder()">
-                          <option value="name">Name (A - Z)</option>
-                          <option value="-name">Name (Z - A)</option>
-                          <option value="total_disbursements">Expenditure (increasing)</option>
-                          <option value="-total_disbursements">Expenditure (decreasing)</option>
-                        </select>
-                      </div>
-                    </label> -->
-                    
+                    <select
+                        ng-model="vm.order_by"
+                        ng-change="vm.toggleOrder()">
+                        <option value="recipient_country">Name (A - Z)</option>
+                        <option value="-recipient_country">Name (Z - A)</option>
+                        <option value="disbursement">Disbursement (increasing)</option>
+                        <option value="-disbursement">Disbursement (decreasing)</option>
+                    </select>
                 </div>
             </div>
         </div>
@@ -65,13 +47,18 @@
             <div class="hp-block wit">
                 <div class="row countries">
                     <div class="col-sm-6">
-                        <h3 class="no-margin"><a ui-sref="country({ country_id: item.country_id })"><span class="flag-icon flag-icon-{{item.country_id | lowercase }} "></span>{{ item.name }}</a></h3>
+                        <h3 class="no-margin">
+                            <a ui-sref="country({ country_id: item.recipient_country.code })">
+                                <span class="flag-icon flag-icon-{{item.recipient_country.code | lowercase }} "></span>
+                                {{item.recipient_country.name}}
+                            </a>
+                        </h3>
                     </div>
                     <div class="col-sm-3">
-                        <h3 class="no-margin">{{item.total_disbursements  | shortcurrency :'€'}} <span class="visible-xs-inline">disbursement</span></h3>
+                        <h3 class="no-margin">{{item.disbursement  | shortcurrency :'€'}} <span class="visible-xs-inline">disbursement</span></h3>
                     </div>
                     <div class="col-sm-3">
-                        <h3 class="no-margin">{{item.activity_count}} <span class="visible-xs-inline">projects</span></h3>
+                        <h3 class="no-margin">{{item.count}} <span class="visible-xs-inline">projects</span></h3>
                     </div>
                 </div>
             </div>

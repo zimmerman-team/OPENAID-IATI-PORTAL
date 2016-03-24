@@ -9,18 +9,31 @@
     .module('oipa.activities')
     .controller('ActivityController', ActivityController);
 
-  ActivityController.$inject = ['Activities', '$stateParams', 'FilterSelection', '$filter', 'homeUrl', '$http', '$location', 'templateBaseUrl'];
+  ActivityController.$inject = ['Activities', '$stateParams', 'FilterSelection', '$filter', 'homeUrl', '$http', '$location', 'templateBaseUrl', '$sce'];
 
   /**
   * @namespace ActivitiesController
   */
-  function ActivityController(Activities, $stateParams, FilterSelection, $filter, homeUrl, $http, $location, templateBaseUrl) {
+  function ActivityController(Activities, $stateParams, FilterSelection, $filter, homeUrl, $http, $location, templateBaseUrl, $sce) {
     var vm = this;
     vm.activity = null;
     vm.activityId = $stateParams.activity_id;
     vm.rsrProjects = [];
     vm.rsrLoading = true;
     vm.templateBaseUrl = templateBaseUrl;
+    vm.start_date = null;
+    vm.end_date = null;
+    vm.start_planned = null;
+    vm.start_actual = null;
+    vm.end_planned = null;
+    vm.end_actual = null;
+    vm.pageUrlDecoded = $location.absUrl();
+    vm.loading = true;
+    vm.implementing_organisations = [];
+    vm.accountable_organisations = [];
+    vm.funding_organisations = [];
+    vm.extending_organisations = [];
+    vm.transactionData = [];
 
     vm.selectedTab = 'summary';
 
@@ -37,21 +50,82 @@
 
     function activate() {      
       Activities.get(vm.activityId).then(successFn, errorFn);
+      Activities.getTransactions(vm.activityId).then(procesTransactions, errorFn);
       Activities.getProvidedActivities(vm.activityId).then(providedSuccessFn, errorFn);
 
       function successFn(data, status, headers, config) {
         vm.activity = data.data;
-        vm.transactionData = vm.reformatTransactionData();
-        vm.tabs[3].count = vm.activity.documents.length;
+        vm.tabs[3].count = vm.activity.document_links.length;
         vm.makeForm();
+        vm.loading = false;
+        vm.description = null;
+        var desc = '';
+        if(vm.activity.descriptions.length){
+
+          for (var i = 0; i < vm.activity.descriptions[0].narratives.length;i++){
+            desc += vm.activity.descriptions[0].narratives[i].text + '<br>&nbsp<br>';
+          }
+
+          vm.description = $sce.trustAsHtml(desc.replace(/\\n/g, '<br>'));
+        }
+
+        for(var i = 0;i < vm.activity.activity_dates.length;i++){
+          if(vm.activity.activity_dates[i].type.code == 1){ 
+            vm.start_planned = vm.activity.activity_dates[i].iso_date;
+          } else if(vm.activity.activity_dates[i].type.code == 2){
+            vm.start_actual = vm.activity.activity_dates[i].iso_date;
+          } else if(vm.activity.activity_dates[i].type.code == 3){
+            vm.end_planned = vm.activity.activity_dates[i].iso_date;
+          } else if(vm.activity.activity_dates[i].type.code == 4){
+            vm.end_actual = vm.activity.activity_dates[i].iso_date;
+          }
+        }
+
+        for (var i = 0; i < vm.activity.related_activities.length;i++){
+          vm.activity.related_activities[i].name = programmesMapping[vm.activity.related_activities[i].ref];
+        }
+
+        for (var i = 0; i < vm.activity.participating_organisations.length;i++){
+          if(vm.activity.participating_organisations[i].role.code == '1'){
+            vm.funding_organisations.push(vm.activity.participating_organisations[i]);
+          }
+          if(vm.activity.participating_organisations[i].role.code == '2'){
+            vm.accountable_organisations.push(vm.activity.participating_organisations[i]);
+          }
+          if(vm.activity.participating_organisations[i].role.code == '3'){
+            vm.extending_organisations.push(vm.activity.participating_organisations[i]);
+          }
+          if(vm.activity.participating_organisations[i].role.code == '4'){
+            vm.implementing_organisations.push(vm.activity.participating_organisations[i]);
+          }
+        }
+
+        if(vm.end_actual != null){
+          vm.end_date = vm.end_actual;
+        } else if(vm.end_planned != null){
+          vm.end_date = vm.end_planned;
+        } else {
+          vm.end_date = 'Data to be added';
+        }
+
+        if(vm.start_actual != null){
+          vm.start_date = vm.start_actual;
+        } else if(vm.start_planned != null){
+          vm.start_date = vm.start_planned;
+        } else {
+          vm.start_date = 'Data to be added';
+        }
       }
+
       function providedSuccessFn(data, status, headers, config){
         vm.providedActivities = data.data.results;
         vm.tabs[4].count = data.data.count;
       }
 
-      function errorFn(data, status, headers, config) {
-        console.log("getting activity failed");
+      function procesTransactions(data, status, headers, config){
+        vm.transactionData = angular.copy(data.data.results);
+        console.log(vm.transactionData);
+        vm.reformatTransactionData(data.data.results);
       }
 
       var url = homeUrl + '/wp-admin/admin-ajax.php?action=rsr_call&iati_id=' + vm.activityId;
@@ -66,38 +140,45 @@
 
     }
 
-    vm.reformatTransactionData = function(){
+    vm.reformatTransactionData = function(transactions){
 
       var data = [
         {
             values: [],
             key: 'Commitment', 
-            color: '#2077B4'  
+            color: '#2077B4'
         },
         {
             values: [],
-            key: 'Expenditure',
+            key: 'Disbursements',
             color: '#FF7F0E'
         },
       ];
 
-      for (var i =0; i < vm.activity.transactions.length;i++){
+      vm.disbursements = 0;
+      vm.budget = 0;
 
-        if(vm.activity.transactions[i]['transaction_type'] == 'C'){
-          data[0]['values'].push([(new Date(vm.activity.transactions[i]['transaction_date']).getTime()), parseInt(vm.activity.transactions[i]['value'])]);
-        } else if(vm.activity.transactions[i]['transaction_type'] == 'D'){
-          data[1]['values'].push([(new Date(vm.activity.transactions[i]['transaction_date']).getTime()), parseInt(vm.activity.transactions[i]['value'])]);
+      for (var i =0; i < transactions.length;i++){
+
+        var date = transactions[i].transaction_date;
+        var value = transactions[i].value;
+
+        if(transactions[i].transaction_type.code == 2){
+          data[0]['values'].push([(new Date(date).getTime()), parseInt(value)]);
+          vm.budget += parseInt(value);
+        } else if(transactions[i].transaction_type.code == 3 || transactions[i].transaction_type.code == 4){
+          data[1]['values'].push([(new Date(date).getTime()), parseInt(value)]);
+          vm.disbursements += parseInt(value);
         }
       }
 
       function sortFunction(a, b) {
           if (a[0] === b[0]) {
               return 0;
-          }
-          else {
+          } else {
               return (a[0] < b[0]) ? -1 : 1;
           }
-      }
+      }      
 
       data[0]['values'].sort(sortFunction);
       data[1]['values'].sort(sortFunction);
@@ -110,10 +191,10 @@
         data[1]['values'][i][1] += data[1].values[(i-1)][1];
       }
 
-      return data;
+      vm.transactionChartData = data;
     }
 
-    vm.transactionData = [];
+    
     vm.transactionChartOptions = {
       chart: {
         type: 'lineChart',
