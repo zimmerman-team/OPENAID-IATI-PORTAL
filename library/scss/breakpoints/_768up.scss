@@ -267,10 +267,9 @@ come into play. Have fun!
 }
 
 .filters-fixed {
+	transition:top .2s;
 	&.fixed {
 		top:50px;
-	}
-	&.fixed {
 	    margin-top: 0;
 	    position:fixed;
 	    z-index:999;
@@ -278,7 +277,6 @@ come into play. Have fun!
 	    width: 100%;
 	    left:0;
 	    //padding-top:10px;
-	    transition:top .2s;
 	    .filters {
 	      .wrap {
 	        background:none;
