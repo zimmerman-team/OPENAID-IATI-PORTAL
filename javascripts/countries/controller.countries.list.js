@@ -9,12 +9,12 @@
     .module('oipa.countries')
     .controller('CountriesListController', CountriesListController);
 
-  CountriesListController.$inject = ['$scope', 'Aggregations', 'FilterSelection'];
+  CountriesListController.$inject = ['$scope', 'Aggregations', 'FilterSelection', 'templateBaseUrl'];
 
   /**
   * @namespace CountriesExploreController
   */
-  function CountriesListController($scope, Aggregations, FilterSelection) {
+  function CountriesListController($scope, Aggregations, FilterSelection, templateBaseUrl) {
     var vm = this;
     vm.filterSelection = FilterSelection;
     vm.countries = [];
@@ -25,6 +25,9 @@
     vm.busy = false;
     vm.perPage = 15;
     vm.extraSelectionString = '';
+    vm.templateBaseUrl = templateBaseUrl;
+    vm.loading = true;
+    vm.searchPage = false;
 
     function activate() {
       // use predefined filters or the filter selection
@@ -35,10 +38,14 @@
       }, true);
 
       $scope.$watch("searchValue", function (searchValue, oldSearchValue) {
-        if(searchValue == undefined) return;
+        if(searchValue == undefined) {
+          return;
+        }
         if(searchValue !== oldSearchValue){
           searchValue == '' ? vm.extraSelectionString = '' : vm.extraSelectionString = '&q_field=recipient_country&q='+searchValue;
           vm.update();
+          vm.loading = false;
+          vm.searchPage = true;
         }
       }, true);
 
@@ -77,10 +84,12 @@
         vm.countries = data.data.results;
         vm.totalCountries = data.data.count;
         $scope.count = vm.totalCountries;
+        vm.loading = false;
       }
 
       function errorFn(data, status, headers, config){
         console.warn('error getting data for country.block');
+        vm.loading = false;
       }
     }
 

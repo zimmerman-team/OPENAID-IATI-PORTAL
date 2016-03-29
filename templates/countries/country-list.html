@@ -20,10 +20,17 @@
         </div>
     </div>
 
-    <div ng-if='vm.totalCountries == 0' class="col-sm-12">
+    <div ng-if='vm.loading == true' class="col-sm-12">
+        <div class="hp-block wit">
+            <h3 class="loader"><img ng-src="{{vm.templateBaseUrl}}/images/spinning-circles.svg" width="25"> Fetching data, please wait...</h3>
+        </div>
+    </div>
+
+    <div ng-if='vm.totalCountries == 0 && vm.loading == false' class="col-sm-12">
         <div class="hp-block wit">
             <h2>Nothing found</h2>
-            <p>Please select some different filters.</p>
+            <p ng-if="vm.searchPage == false">Please select some different filters.</p>
+            <p ng-if="vm.searchPage == true">Please try some different keywords.</p>
         </div>
     </div>
 
@@ -64,4 +71,11 @@
             </div>
         </div>
     </div>
+
+    <div ng-if='vm.busy == true && vm.loading == false' class="col-sm-12">
+        <div class="hp-block wit">
+            <h3 class="loader"><img ng-src="{{vm.templateBaseUrl}}/images/spinning-circles.svg" width="25"> Fetching more data, please wait...</h3>
+        </div>
+    </div>
+
 </div>

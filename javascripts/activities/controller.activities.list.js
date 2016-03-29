@@ -14,12 +14,12 @@ function errorFn(data, status, headers, config){
     .module('oipa.activities')
     .controller('ActivityListController', ActivityListController);
 
-  ActivityListController.$inject = ['$scope', 'Activities', 'FilterSelection'];
+  ActivityListController.$inject = ['$scope', 'Activities', 'FilterSelection', 'templateBaseUrl'];
 
   /**
   * @namespace CountriesExploreController
   */
-  function ActivityListController($scope, Activities, FilterSelection) {
+  function ActivityListController($scope, Activities, FilterSelection, templateBaseUrl) {
     var vm = this;
     vm.filterSelection = FilterSelection;
     vm.activities = [];
@@ -30,6 +30,9 @@ function errorFn(data, status, headers, config){
     vm.hasToContain = $scope.hasToContain;
     vm.busy = false;
     vm.extraSelectionString = '';
+    vm.loading = true;
+    vm.templateBaseUrl = templateBaseUrl;
+    vm.searchPage = false;
 
     function activate() {
       $scope.$watch("vm.filterSelection.selectionString", function (selectionString) {
@@ -40,6 +43,8 @@ function errorFn(data, status, headers, config){
         if (searchValue == undefined) return false; 
         searchValue == '' ? vm.extraSelectionString = '' : vm.extraSelectionString = '&q='+searchValue;
         vm.update();
+        vm.searchPage = true;
+        vm.loading = false;
       }, true);
 
       // do not prefetch when the list is hidden
@@ -73,7 +78,11 @@ function errorFn(data, status, headers, config){
       function succesFn(data, status, headers, config){
         vm.activities = data.data.results;
         vm.totalActivities = data.data.count;
-        $scope.count = vm.totalActivities;        
+        $scope.count = vm.totalActivities;   
+        vm.loading = false;     
+      }
+      function errorFn() {
+        vm.loading = false;
       }
     }
 

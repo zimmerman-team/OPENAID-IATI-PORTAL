@@ -9,12 +9,12 @@
     .module('oipa.implementingOrganisations')
     .controller('ImplementingOrganisationsListController', ImplementingOrganisationsListController);
 
-  ImplementingOrganisationsListController.$inject = ['$scope', 'Aggregations', 'FilterSelection'];
+  ImplementingOrganisationsListController.$inject = ['$scope', 'Aggregations', 'FilterSelection', 'templateBaseUrl'];
 
   /**
   * @namespace CountriesExploreController
   */
-  function ImplementingOrganisationsListController($scope, Aggregations, FilterSelection) {
+  function ImplementingOrganisationsListController($scope, Aggregations, FilterSelection, templateBaseUrl) {
     var vm = this;
     vm.filterSelection = FilterSelection;
     vm.organisations = [];
@@ -25,6 +25,9 @@
     vm.busy = false;
     vm.extraSelectionString = '&';
     vm.hasToContain = $scope.hasToContain;
+    vm.templateBaseUrl = templateBaseUrl;
+    vm.loading = true;
+    vm.searchPage = false;
 
     function activate() {
       // use predefined filters or the filter selection
@@ -39,6 +42,8 @@
         if(searchValue !== oldSearchValue){
           searchValue == '' ? vm.extraSelectionString = '' : vm.extraSelectionString = '&name_query='+searchValue;
           vm.update();
+          vm.loading = false;
+          vm.searchPage = true;
         }
       }, true);
 
@@ -76,10 +81,12 @@
         vm.organisations = data.data.results;
         vm.totalOrganisations = data.data.count;
         $scope.count = vm.totalOrganisations;
+        vm.loading = false;
       }
 
       function errorFn(data, status, headers, config){
         console.warn('error getting data for implementing.orgs.block');
+        vm.loading = false;
       }
     }
 

@@ -9,16 +9,16 @@
     .module('oipa.regions')
     .controller('RegionListController', RegionListController);
 
-  RegionListController.$inject = ['$scope', 'Aggregations', 'FilterSelection', 'regionMapping'];
+  RegionListController.$inject = ['$scope', 'Aggregations', 'FilterSelection', 'regionMapping', 'templateBaseUrl'];
 
   /**
   * @namespace regionsExploreController
   */
-  function RegionListController($scope, Aggregations, FilterSelection, regionMapping) {
+  function RegionListController($scope, Aggregations, FilterSelection, regionMapping, templateBaseUrl) {
     var vm = this;
     vm.filterSelection = FilterSelection;
-    vm.sectors = [];
-    vm.totalSectors = 0;
+    vm.regions = [];
+    vm.totalRegions = 0;
     vm.order_by = 'recipient_region';
     vm.page = 1;
     vm.pageSize = 9999;
@@ -26,6 +26,9 @@
     vm.busy = false;
     vm.extraSelectionString = '';
     vm.isCollapsed = false;
+    vm.templateBaseUrl = templateBaseUrl;
+    vm.loading = true;
+    vm.searchPage = false;
 
     function activate() {
       // use predefined filters or the filter selection
@@ -40,6 +43,10 @@
         if(searchValue !== oldSearchValue){
           searchValue == '' ? vm.extraSelectionString = '' : vm.extraSelectionString = '&q_fields=recipient_region&q='+searchValue;
           vm.update();
+          vm.loading = false;
+          vm.searchPage = true;
+          console.log('called')
+          console.log(vm)
         }
         
       }, true);
@@ -139,10 +146,12 @@
         vm.regions = applyRegionHierarchy(vm.regionMapping);
         vm.totalRegions = data.data.count;
         $scope.count = vm.totalRegions; 
+        vm.loading = false;
       }
 
       function errorFn(data, status, headers, config){
         console.warn('error getting data for region.block');
+        vm.loading = false;
       }
     }
 

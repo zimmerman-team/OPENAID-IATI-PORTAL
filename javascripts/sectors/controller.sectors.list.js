@@ -9,12 +9,12 @@
     .module('oipa.sectors')
     .controller('SectorListController', SectorListController);
 
-  SectorListController.$inject = ['$scope', 'Aggregations', 'FilterSelection', 'sectorMapping'];
+  SectorListController.$inject = ['$scope', 'Aggregations', 'FilterSelection', 'sectorMapping', 'templateBaseUrl'];
 
   /**
   * @namespace SectorListController
   */
-  function SectorListController($scope, Aggregations, FilterSelection, sectorMapping) {
+  function SectorListController($scope, Aggregations, FilterSelection, sectorMapping, templateBaseUrl) {
     var vm = this;
     vm.filterSelection = FilterSelection;
     vm.sectors = [];
@@ -26,6 +26,9 @@
     vm.busy = false;
     vm.extraSelectionString = '';
     vm.isCollapsed = false;
+    vm.templateBaseUrl = templateBaseUrl;
+    vm.loading = true;
+    vm.searchPage = false;
 
     function activate() {
       // use predefined filters or the filter selection
@@ -40,6 +43,8 @@
         if(searchValue !== oldSearchValue){
           searchValue == '' ? vm.extraSelectionString = '' : vm.extraSelectionString = '&q_fields=sector&q='+searchValue;
           vm.update();
+          vm.loading = false;
+          vm.searchPage = true;
         }
       }, true);
 
@@ -135,10 +140,12 @@
           vm.sectors = applySectorHierarchy(vm.sectorMapping)
           vm.totalSectors = data.data.count
           $scope.count = vm.totalSectors
+          vm.loading = false;
       }
 
       function errorFn(data, status, headers, config){
         console.warn('error getting data for sector.block');
+        vm.loading = false;
       }
     }
 
