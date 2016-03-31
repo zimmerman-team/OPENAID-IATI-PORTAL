@@ -23,9 +23,8 @@
     vm.templateBaseUrl = templateBaseUrl;
     vm.submitSearch = '';
     vm.countCalls = 0;
-    vm.directCountryValues = null;
-    vm.indirectCountryValues = null;
-    vm.indirectRegionValues = null;
+    vm.countryValues = null;
+    vm.regionValues = null;
     vm.totalRegions = 0;
 
     activate();
@@ -42,42 +41,18 @@
 
     vm.activateGeovis = function(){
 
-      // direct country disbursements
       Aggregations.aggregation('recipient_country', 'disbursement', vm.selectionString, '', 400, 1).then(countrySuccessFn, errorFn);
-
-      // // indirect country disbursements
-      // Aggregations.aggregation('location_countries', 'location_disbursement', vm.selectionString + '&not_in_recipientcountries=true').then(indirectCountrySuccessFn, errorFn);
-
-      // // indirect region disbursements
-      // Aggregations.aggregation('recipient-region', 'disbursement', vm.selectionString + '&in_locations=true').then(indirectRegionSuccessFn, errorFn);
-
-      // direct region disbursements
-      Aggregations.aggregation('recipient_region', 'disbursement', vm.selectionString, '', 400, 1).then(directRegionSuccessFn, errorFn);
+      Aggregations.aggregation('recipient_region', 'disbursement', vm.selectionString, '', 400, 1).then(regionSuccessFn, errorFn);
 
 
       function countrySuccessFn(data, status, headers, config){
-        vm.directCountryValues = data.data.results;
+        vm.countryValues = data.data.results;
         vm.preReformatVisualisationData(); 
       }
 
-      function indirectCountrySuccessFn(data, status, headers, config){
-        vm.indirectCountryValues = data.data.results;
+      function regionSuccessFn(data, status, headers, config){
+        vm.regionValues = data.data.results;
         vm.preReformatVisualisationData(); 
-      }
-
-      function indirectRegionSuccessFn(data, status, headers, config){
-        vm.indirectRegionValues = data.data.results;
-        vm.preReformatVisualisationData(); 
-      }
-
-      function directRegionSuccessFn(data, status, headers, config){
-        vm.directRegionValues = data.data.results;
-        vm.preReformatVisualisationData(); 
-        vm.totalRegions = data.data.count;
-      }
-
-      function errorFn(data, status, headers, config) {
-        console.log("getting countries failed");
       }
     }
 
@@ -113,7 +88,8 @@
       };
 
       var regionHierarchy = regionMapping;
-
+      var countryRegionMapping = {"AR":"489","BB":"389","BR":"489","CN":"789","CO":"489","KM":"289","AX":"889","IN":"689","ID":"789","KZ":"689","KI":"889","LS":"289","AD":"89","AQ":"998","AS":"889","AU":"889","AW":"389","BH":"589","BN":"789","BQ":"389","BV":"998","CA":"389","CC":"889","CW":"389","CX":"889","FO":"89","GF":"489","GG":"89","GI":"89","GL":"389","GP":"389","GU":"889","HK":"789","HM":"998","IE":"89","IM":"89","IO":"998","JE":"89","KY":"389","PF":"889","TF":"998","VA":"89","MV":"689","MH":"889","MU":"289","MX":"389","MS":"389","NR":"889","NU":"889","PW":"889","PS":"589","WS":"889","ST":"289","SC":"289","SH":"289","VC":"389","TL":"789","TO":"889","TV":"889","UA":"89","WF":"889","AN":"389","BL":"389","LI":"89","MC":"89","MF":"389","MO":"789","MP":"889","MQ":"389","MT":"89","NF":"889","NL":"89","PM":"389","PN":"889","PR":"389","RE":"289","RU":"998","SG":"789","SM":"89","SX":"389","TC":"389","TW":"789","UM":"998","US":"389","VG":"389","VI":"389","YT":"289","AI":"389","AG":"389","BI":"289","GN":"289","LB":"589","AL":"89","AZ":"689","KN":"389","LC":"389","AT":"89","BD":"689","BY":"89","BZ":"389","BJ":"289","BA":"89","BF":"289","TK":"889","BE":"89","BS":"389","BG":"89","GS":"489","BT":"689","FJ":"889","GA":"289","MN":"789","FK":"489","FR":"89","BW":"289","CL":"489","GE":"689","GH":"289","JO":"589","NG":"289","RS":"89","SR":"489","CH":"89","CR":"389","CU":"389","DO":"389","CZ":"89","DK":"89","EC":"489","ER":"289","ET":"289","AE":"589","ES":"89","FI":"89","AO":"289","AM":"689","BM":"389","LT":"89","LU":"89","EG":"189","SV":"389","GM":"289","GD":"389","PG":"889","VE":"489","SJ":"89","GQ":"289","GT":"389","GW":"289","GY":"489","GR":"89","LV":"89","BO":"489","CI":"289","HR":"89","HT":"389","HU":"89","IR":"589","IQ":"589","JM":"389","IL":"589","IS":"89","KG":"689","LA":"789","LR":"289","LY":"189","LK":"689","KR":"789","KW":"589","XK":"89","DZ":"189","CV":"289","DJ":"289","HN":"389","CY":"89","MK":"89","ML":"289","MD":"89","MM":"689","MG":"289","FM":"889","RO":"89","ME":"89","NI":"389","MW":"289","MY":"789","MR":"289","NA":"289","PE":"489","NP":"689","NE":"289","EH":"189","SK":"89","OM":"589","PK":"689","PA":"389","TM":"689","SI":"89","VU":"889","PY":"489","RW":"289","DE":"89","PT":"89","PL":"89","EE":"89","GB":"89","SN":"289","SB":"889","SD":"289","TD":"289","SY":"589","TJ":"689","TG":"289","TT":"389","TZ":"289","TN":"189","UG":"289","VN":"789","IT":"89","UY":"489","CM":"289","CG":"289","CK":"889","SO":"289","NZ":"889","KP":"789","MA":"189","JP":"789","ZW":"289","NO":"89","ZA":"289","ZM":"289","KH":"789","CF":"289","DM":"389","KE":"289","SL":"289","CD":"289","PH":"789","NC":"889","AF":"689","YE":"589","QA":"589","TR":"89","SA":"589","SZ":"289","TH":"789","UZ":"689","SE":"89","SS":"289","MZ":"289"}
+      
       regionHierarchy = {
        "name": "regions",
        "children": [
@@ -209,86 +185,35 @@
       };
 
       // create list of countries
-      var countries = {};
-      for (var i = 0, len = vm.directCountryValues.length; i < len; i++) {
-
-        countries[vm.directCountryValues[i].recipient_country.code] = {
-          'id':   vm.directCountryValues[i].recipient_country.code,
-          'value': vm.directCountryValues[i].total_disbursements,
-          'group': vm.directCountryValues[i].recipient_region.code,
-          'color': regionMapping[vm.directCountryValues[i].recipient_region.code].color,
-          'name': vm.directCountryValues[i].name,
+      var countries = [];
+      for (var i = 0, len = vm.countryValues.length; i < len; i++) {
+        countries.push({
+          'id':   vm.countryValues[i].recipient_country.code,
+          'value': vm.countryValues[i].disbursement,
+          'group': countryRegionMapping[vm.countryValues[i].recipient_country.code],
+          'color': regionMapping[countryRegionMapping[vm.countryValues[i].recipient_country.code]].color,
+          'name': vm.countryValues[i].recipient_country.name,
           'value2': 0
-        };
-      }
-
-      // for (var i = 0, len = vm.indirectCountryValues.length; i < len; i++) {
-
-      //   if(countries[vm.indirectCountryValues[i].loc_recipient_country.code] == undefined){
-
-      //     countries[vm.indirectCountryValues[i].recipient_country.code] = {
-      //       'id':   vm.indirectCountryValues[i].recipient_country.code,
-      //       'value': 0,
-      //       'value2': vm.indirectCountryValues[i].disbursement,
-      //       'group': vm.indirectCountryValues[i].recipient_region.code,
-      //       'color': regionMapping[vm.indirectCountryValues[i].recipient_region.code].color,
-      //       'name': vm.indirectCountryValues[i].name
-      //     };
-
-      //   } else {
-      //     countries[vm.indirectCountryValues[i].loc_recipient_country.code].value2 = vm.indirectCountryValues[i].total_value;
-      //   }
-      // }
-
-      var country_arr = [];
-      for (var country in countries) {
-        if(country != 'undefined'){
-          country_arr.push(countries[country]);
-        }
+        });
       }
 
       // create list of regions
-      var regions = {};
-      for (var i = 0, len = vm.directRegionValues.length; i < len; i++) {
-
-        regions[vm.directRegionValues[i].recipient_region.code] = {
-          'id':   vm.directRegionValues[i].recipient_region.code,
-          'value': vm.directRegionValues[i].total_disbursements,
-          'name': vm.directRegionValues[i].recipient_region.name,
-          'color': regionMapping[vm.directRegionValues[i].recipient_region.code].color,
-          'value2': 0,
-        };
-      }
-
-      // for (var i = 0, len = vm.indirectRegionValues.length; i < len; i++) {
-
-      //   if(regions[vm.indirectRegionValues[i].recipient_region.code] == undefined){
-
-      //     regions[vm.indirectRegionValues[i].recipient_region.code] = {
-      //       'id':   vm.indirectRegionValues[i].recipient_region.code,
-      //       'value': 0,
-      //       'name': vm.indirectRegionValues[i].name,
-      //       'color': regionMapping[vm.indirectRegionValues[i].recipient_region.code].color,
-      //       'value2': vm.indirectRegionValues[i].total_disbursements,
-      //     };
-
-      //   } else {
-      //     regions[vm.indirectRegionValues[i].recipient_region.code].value2 = vm.indirectRegionValues[i].total_disbursements;
-      //   }
-      // }
-
-      var region_arr = [];
-      for (var region in regions) {
-        if(region != 'undefined'){
-          region_arr.push(regions[region]);
-        }
+      var regions = [];
+      for (var i = 0, len = vm.regionValues.length; i < len; i++) {
+        regions.push({
+          'id':   vm.regionValues[i].recipient_region.code,
+          'value': vm.regionValues[i].disbursement,
+          'name': vm.regionValues[i].recipient_region.name,
+          'color': regionMapping[vm.regionValues[i].recipient_region.code].color,
+          'value2': 0
+        });
       }
 
       var data = {
         'mapping': regionHierarchy,
         'data': {
-          'countries': country_arr,
-          'regions': region_arr
+          'countries': countries,
+          'regions': regions
         }
       }
       

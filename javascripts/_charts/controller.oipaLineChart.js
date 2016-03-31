@@ -117,13 +117,13 @@
       $scope.$watch('aggregationFilters', function (aggregationFilters) {
 
         vm.hasToContain = $scope.hasToContain;
-        console.log(aggregationFilters);
+
         if (vm.hasToContain == ''){
           if (aggregationFilters == ''){
             return false;
           }
         }
-        console.log(vm.hasToContain);
+
         if(vm.hasToContain != undefined){
           if(aggregationFilters.indexOf(vm.hasToContain) < 0){
             return false;
@@ -167,7 +167,6 @@
     }
 
     vm.multiBarChartReformatData = function(data){
-      console.log(data);
       var mappedData = {};
 
       var firstGroupBy = vm.groupBy.split(',')[0];
@@ -181,8 +180,6 @@
 
         mappedData[data[i][firstGroupBy][vm.groupById]].values[data[i]['year']] = data[i]['disbursement'];
       }
-
-      console.log(firstGroupBy);
 
       var min = 2100;
       var max = 1900;

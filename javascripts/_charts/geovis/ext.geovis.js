@@ -142,13 +142,14 @@ ZzLocationVis = (function() {
       .attr('class', 'direct')
       .attr('transform', 'translate(0,0)')
       .style('cursor', 'pointer')
+      .style('display', 'none') // temp display none
       .on('click', this.toggleIndirect);
     this.indirect.append('text')
       .attr('x', 55)
       .attr('y', 25)
       .attr('font-size', '12px')
       .attr('fill', '#444')
-      .attr('style', 'text-anchor: start;')
+      .attr('style', 'text-anchor: start;display: none;') // temp display none
       .text('deactivate indirect expenditure');
     this.indirect.append('rect')
       .attr('width', 30)
