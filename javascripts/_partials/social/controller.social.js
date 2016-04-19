@@ -37,7 +37,6 @@
     function activate() {      
       vm.pageUrl = encodeURIComponent(vm.pageUrlDecoded);
       vm.shareDescription = encodeURIComponent('View the Aid projects of the Dutch Ministry of Foreign Affairs on ' + vm.pageUrlDecoded);
-      console.log($scope);
     }
   
     vm.hoverIn = function(id){

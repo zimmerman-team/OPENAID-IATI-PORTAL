@@ -216,6 +216,8 @@
           'regions': regions
         }
       }
+
+      vm.totalRegions = countries.length + regions.length;
       
       return data;
     }

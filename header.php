@@ -45,13 +45,13 @@
         <script src="<?php echo get_template_directory_uri(); ?>/xhr-xdr-adapter.js" type="text/javascript"></script>
         <![endif]-->
 		<?php wp_head(); ?>
-		<?php // end of wordpress head ?>
+        <?php include( 'constants.php' ); ?> 
+        <?php // end of wordpress head ?>
 		<base href="<?php echo home_url() . '/'; ?>" />
 		<script>
 			var home_url = '<?php echo home_url(); ?>';
 			var template_url = '<?php echo get_template_directory_uri(); ?>';
-			// var oipa_url = 'http://localhost:8000/api/v3';
-			var oipa_url = 'https://dev.oipa.nl/api';
+            var oipa_url = '<?php echo OIPA_URL; ?>';
 			var reporting_organisation_id = 'XM-DAC-7';
 			<?php $customFields = get_post_custom(); ?>
 			var customFields = <?php echo json_encode($customFields); ?>;

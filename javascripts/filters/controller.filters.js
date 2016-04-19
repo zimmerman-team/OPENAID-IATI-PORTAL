@@ -135,12 +135,8 @@
 
     vm.download = function(format){
       var url = homeUrl + '/export/?format='+format+'&filters='+encodeURIComponent(FilterSelection.selectionString);
-      if(vm.currentPage == 'activity'){
-        url = homeUrl + '/export/?format='+format+'&detail='+$scope.activityId+'&filters=';
-      }
       window.open(url);
     }
-
     
   }
 })();

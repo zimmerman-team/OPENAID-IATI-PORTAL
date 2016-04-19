@@ -326,6 +326,10 @@
       }
     }
 
+    vm.download = function(format){
+      var url = homeUrl + '/export/?type=activity-detail&format='+format+'&detail='+vm.activityId;
+      window.open(url);
+    }
 
   }
 })();

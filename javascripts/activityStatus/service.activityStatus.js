@@ -21,8 +21,19 @@
         m.selectedActivityStatuses = [];
 
 		var ActivityStatus = {
-            selectedActivityStatuses: m.selectedActivityStatuses
+            selectedActivityStatuses: m.selectedActivityStatuses,
+            getStatuses: getStatuses
 		};
+
+		function getStatuses(statuses) {
+
+            var url = oipaUrl + '/activities/aggregations/?format=json&group_by=activity_status&aggregations=count';
+            if(reportingOrganisationId){
+                url += '&reporting_organisation__in=' + reportingOrganisationId;
+            }
+            url += '&activity_status=' + statuses;
+            return $http.get(url, { cache: true });
+        }
 
 		return ActivityStatus;
 	}

@@ -105,6 +105,18 @@
             redirectTo:   'country',
         })
         .state({
+            name:        'regions-vis',
+            url:         '/regions?filters',
+            controller:  'RegionsVisualisationController',
+            controllerAs: 'vm',
+            templateUrl: templateBaseUrl + '/templates/regions/region-view-visualisation.html',
+        })
+        .state({
+            name:         'region-vis-with-slash-redirect',
+            url:          '/regions/?filters',
+            redirectTo:   'regions-vis',
+        })
+        .state({
             name:        'regions-list',
             url:         '/regions/list?filters',
             controller:  'RegionListController',
@@ -127,18 +139,6 @@
             name:         'region-with-slash-redirect',
             url:          '/regions/:region_id/?filters',
             redirectTo:   'region',
-        })
-        .state({
-            name:        'regions-vis',
-            url:         '/regions?filters',
-            controller:  'RegionsVisualisationController',
-            controllerAs: 'vm',
-            templateUrl: templateBaseUrl + '/templates/regions/region-view-visualisation.html',
-        })
-        .state({
-            name:         'region-vis-with-slash-redirect',
-            url:          '/regions/?filters',
-            redirectTo:   'regions-vis',
         })
         .state({
             name:        'organisations',
