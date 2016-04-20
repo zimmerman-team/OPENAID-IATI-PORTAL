@@ -134,7 +134,7 @@
     }
 
     vm.download = function(format){
-      var url = homeUrl + '/export/?format='+format+'&filters='+encodeURIComponent(FilterSelection.selectionString);
+      var url = homeUrl + '/export/?type=activity-list&format='+format+'&filters='+encodeURIComponent(FilterSelection.selectionString);
       window.open(url);
     }
     

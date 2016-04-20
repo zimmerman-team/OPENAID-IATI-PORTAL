@@ -69,7 +69,6 @@
 
       Aggregations.aggregation('transaction_date_year', 'disbursement', selectionString, 'year').then(function(data, status, headers, config){
         vm.disbursements_by_year = data.data.results;
-        console.log(vm.disbursements_by_year);
         vm.disbursements_total = 0;
         for (var i = vm.disbursements_by_year.length - 1; i >= 0; i--) {
           vm.disbursements_total += vm.disbursements_by_year[i].disbursement;

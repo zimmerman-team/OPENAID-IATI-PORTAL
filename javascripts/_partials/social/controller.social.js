@@ -34,28 +34,24 @@
 
     activate();
 
-    function activate() {      
+    function activate() { 
       vm.pageUrl = encodeURIComponent(vm.pageUrlDecoded);
       vm.shareDescription = encodeURIComponent('View the Aid projects of the Dutch Ministry of Foreign Affairs on ' + vm.pageUrlDecoded);
     }
-  
+
     vm.hoverIn = function(id){
       vm.buttonTexts[id].hoverShow = true;
       vm.currentHoverText =  $sce.trustAsHtml(vm.buttonTexts[id].text);
     };
 
     vm.hoverOut = function(id){
-        vm.buttonTexts[id].hoverShow = false;
+      vm.buttonTexts[id].hoverShow = false;
     };
 
     vm.download = function(format){
       var url = homeUrl + '/export/?format='+format+'&filters='+encodeURIComponent(FilterSelection.selectionString);
-      if(vm.currentPage == 'activity'){
-        url = homeUrl + '/export/?format='+format+'&detail='+$scope.activityId+'&filters=';
-      }
       window.open(url);
     }
 
-    
   }
 })();
