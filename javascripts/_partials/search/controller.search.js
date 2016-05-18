@@ -9,12 +9,12 @@
     .module('oipa.search')
     .controller('SearchController', SearchController);
 
-  SearchController.$inject = ['$scope', '$state', 'Aggregations', 'Activities', 'templateBaseUrl', '$timeout'];
+  SearchController.$inject = ['$scope', '$state', 'Aggregations', 'TransactionAggregations', 'Activities', 'templateBaseUrl', '$timeout'];
 
   /**
   * @namespace SearchController
   */
-  function SearchController($scope, $state, Aggregations, Activities, templateBaseUrl, $timeout) {
+  function SearchController($scope, $state, Aggregations, TransactionAggregations, Activities, templateBaseUrl, $timeout) {
     var vm = this;
     $scope.templateBaseUrl = template_url;
     vm.searchString = '';
@@ -47,7 +47,8 @@
         $scope.searchValue = vm.searchString;
         vm.showResults = false;
       } else {
-        $state.go('search', { search: vm.searchString });
+        vm.search();
+        // $state.go('search', { search: vm.searchString });
       }
     }
 
@@ -88,39 +89,39 @@
       vm.showResults = true;
 
       // get results from activities
-      Activities.list('&query='+vm.searchString, 3, 'total_budget', 0).then(function(data, status, headers, config){
-        vm.searchData.activities.data = data.data.objects;
-        vm.searchData.activities.total = data.data.meta.total_count;
+      Activities.searchList('&q_fields=iati_identifier,title,description&q='+vm.searchString).then(function(data, status, headers, config){
+        vm.searchData.activities.data = data.data.results;
+        vm.searchData.activities.total = data.data.count;
         vm.searchData.activities.loaded = true;
       }, errorFn);
 
       // get results from countries aggregation
-      Aggregations.aggregation('recipient-country', 'iati-identifier', '&name_query=' + vm.searchString).then(function(data, status, headers, config){
-        vm.searchData.countries.data = data.data.results.slice(0,3);
+      Aggregations.aggregation('recipient_country', 'count', '&q_fields=recipient_country&q=' + vm.searchString, '-count', 3).then(function(data, status, headers, config){
+        vm.searchData.countries.data = data.data.results;
         vm.searchData.countries.total = data.data.count;
         vm.searchData.countries.loaded = true;
       }, errorFn);
 
       // get results from regions aggregation
-      Aggregations.aggregation('recipient-region', 'iati-identifier', '&name_query=' + vm.searchString).then(function(data, status, headers, config){
-        vm.searchData.regions.data = data.data.results.slice(0,3);
+      Aggregations.aggregation('recipient_region', 'count', '&q_fields=recipient_region&q=' + vm.searchString, '-count', 3).then(function(data, status, headers, config){
+        vm.searchData.regions.data = data.data.results;
         vm.searchData.regions.total = data.data.count;
         vm.searchData.regions.loaded = true;
       }, errorFn);
 
       // get results from sectors aggregation
-      Aggregations.aggregation('sector', 'iati-identifier', '&name_query=' + vm.searchString).then(function(data, status, headers, config){
-        vm.searchData.sectors.data = data.data.results.slice(0,3);
+      Aggregations.aggregation('sector', 'count', '&q_fields=sector&q=' + vm.searchString, '-count', 3).then(function(data, status, headers, config){
+        vm.searchData.sectors.data = data.data.results;
         vm.searchData.sectors.total = data.data.count;
         vm.searchData.sectors.loaded = true;
       }, errorFn);
 
-      // get results from organisations aggregation
-      Aggregations.aggregation('transaction__receiver-org', 'iati-identifier', '&name_query=' + vm.searchString).then(function(data, status, headers, config){
-        vm.searchData.organisations.data = data.data.results.slice(0,3);
-        vm.searchData.organisations.total = data.data.count;
-        vm.searchData.organisations.loaded = true;
-      }, errorFn);
+      // // get results from organisations aggregation
+      // TransactionAggregations.aggregation('receiver_org', 'activity_count', '&q=' + vm.searchString, '-count', 3).then(function(data, status, headers, config){
+      //   vm.searchData.organisations.data = data.data.results;
+      //   vm.searchData.organisations.total = data.data.count;
+      //   vm.searchData.organisations.loaded = true;
+      // }, errorFn);
     }
 
   }

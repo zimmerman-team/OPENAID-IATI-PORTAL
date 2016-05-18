@@ -26,16 +26,16 @@
                 </div>
 
                 <div ng-show="vm.selectedTab == 'organisations'">
-                    <implementing-organisations-list
-                        has-to-contain="name_query" 
+                    <receiver-organisations-list
+                        has-to-contain="q" 
                         count="vm.tabs[1].count"
                         shown="vm.selectedTab == 'organisations'"
-                        search-value="vm.searchValue"></implementing-organisations-list>
+                        search-value="vm.searchValue"></receiver-organisations-list>
                 </div>
 
                 <div ng-show="vm.selectedTab == 'sectors'">
                     <sector-list 
-                        has-to-contain="name_query" 
+                        has-to-contain="q" 
                         count="vm.tabs[2].count"
                         shown="vm.selectedTab == 'sectors'"
                         search-value="vm.searchValue"></sector-list>
@@ -43,7 +43,7 @@
 
                 <div ng-show="vm.selectedTab == 'countries'">
                     <country-list
-                        has-to-contain="name_query" 
+                        has-to-contain="q" 
                         count="vm.tabs[3].count"
                         shown="vm.selectedTab == 'countries'"
                         search-value="vm.searchValue"></country-list>
@@ -51,7 +51,7 @@
 
                 <div ng-show="vm.selectedTab == 'regions'">
                     <region-list
-                        has-to-contain="name_query" 
+                        has-to-contain="q" 
                         count="vm.tabs[4].count"
                         shown="vm.selectedTab == 'regions'"
                         search-value="vm.searchValue"></region-list>

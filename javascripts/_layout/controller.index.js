@@ -68,21 +68,21 @@
         groupBy: 'recipient_country',
         groupById: 'code',
         groupSref: 'country',
-        aggregationKey: 'count,disbursement',
+        aggregationKey: 'activity_count,disbursement',
       },
-      'participating_organisation': {
+      'receiver_org': {
         aggregationFilters: '&amp;order_by=-disbursement&amp;limit=5',
-        groupBy: 'participating_organisation',
-        groupById: 'ref',
-        groupSref: 'organisation',
-        aggregationKey: 'disbursement',
+        groupBy: 'receiver_org',
+        groupById: 'receiver_org',
+        groupSref: 'receiver_org',
+        aggregationKey: 'activity_count,disbursement',
       },
       'sector': {
         aggregationFilters: '&amp;order_by=-disbursement&amp;limit=5',
         groupBy: 'sector',
         groupById: 'code',
         groupSref: 'sector',
-        aggregationKey: 'disbursement',
+        aggregationKey: 'activity_count,disbursement',
       }
     };
 
@@ -92,10 +92,10 @@
         groupById: 'code',
         hasToContain: 'recipient_country'
       },
-      'participating_organisation': {
-        groupBy: 'participating_organisation,transaction_date_year',
-        groupById: 'ref',
-        hasToContain: 'participating_organisation'
+      'receiver_org': {
+        groupBy: 'receiver_org,transaction_date_year',
+        groupById: 'receiver_org',
+        hasToContain: 'receiver_organisation_primary_name'
       },
       'sector': {
         groupBy: 'sector,transaction_date_year',

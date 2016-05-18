@@ -9,12 +9,12 @@
     .module('oipa.charts')
     .controller('OipaLineChartController', OipaLineChartController);
 
-  OipaLineChartController.$inject = ['$scope', 'Aggregations', '$filter'];
+  OipaLineChartController.$inject = ['$scope', 'TransactionAggregations', '$filter'];
 
   /**
   * @namespace ActivitiesController
   */
-  function OipaLineChartController($scope, Aggregations, $filter) {
+  function OipaLineChartController($scope, TransactionAggregations, $filter) {
     
     var vm = this;
     vm.groupBy = $scope.groupBy;
@@ -72,9 +72,9 @@
       }
     };
 
-
     vm.loadData = function(){
-      Aggregations.aggregation(vm.groupBy, vm.aggregationKey, vm.aggregationFilters).then(succesFn, errorFn);
+
+      TransactionAggregations.aggregation(vm.groupBy, vm.aggregationKey, vm.aggregationFilters).then(succesFn, errorFn);
 
       function succesFn(data, status, headers, config){
 
@@ -168,7 +168,7 @@
 
     vm.multiBarChartReformatData = function(data){
       var mappedData = {};
-
+      
       var firstGroupBy = vm.groupBy.split(',')[0];
       for (var i = 0; i < data.length;i++){
         if(mappedData[data[i][firstGroupBy][vm.groupById]] === undefined){
@@ -178,7 +178,7 @@
           }
         }
 
-        mappedData[data[i][firstGroupBy][vm.groupById]].values[data[i]['year']] = data[i]['disbursement'];
+        mappedData[data[i][firstGroupBy][vm.groupById]].values[data[i]['transaction_date_year']] = data[i]['disbursement'];
       }
 
       var min = 2100;

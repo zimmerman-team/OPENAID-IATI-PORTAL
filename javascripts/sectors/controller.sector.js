@@ -10,12 +10,12 @@ var sectorLayoutTest = null;
     .module('oipa.sectors')
     .controller('SectorController', SectorController);
 
-  SectorController.$inject = ['$scope', 'Sectors', 'templateBaseUrl', '$stateParams', 'FilterSelection', 'Aggregations', 'sectorMapping'];
+  SectorController.$inject = ['$scope', 'Sectors', 'templateBaseUrl', '$stateParams', 'FilterSelection', 'Aggregations', 'TransactionAggregations', 'sectorMapping'];
 
   /**
   * @namespace CountriesController
   */
-  function SectorController($scope, Sectors, templateBaseUrl, $stateParams, FilterSelection, Aggregations, sectorMapping) {
+  function SectorController($scope, Sectors, templateBaseUrl, $stateParams, FilterSelection, Aggregations, TransactionAggregations, sectorMapping) {
     var vm = this;
     vm.sector = null;
     vm.sector_id = parseInt($stateParams.sector_id);
@@ -28,7 +28,7 @@ var sectorLayoutTest = null;
       {'id': 'activities', 'name': 'Projects', 'count': -1},
       {'id': 'countries', 'name': 'Countries', 'count': -1},
       {'id': 'regions', 'name': 'Regions', 'count': -1},
-      {'id': 'implementing-organisations', 'name': 'Organisations', 'count': -1},
+      {'id': 'receiver-organisations', 'name': 'Organisations', 'count': -1},
       {'id': 'sectors', 'name': 'Sectors', 'count': -1},
     ]
 
@@ -88,7 +88,7 @@ var sectorLayoutTest = null;
 
       if (selectionString.indexOf("sector") < 0){ return false;}
 
-      Aggregations.aggregation('transaction_date_year', 'disbursement', selectionString, 'year').then(function(data, status, headers, config){
+      TransactionAggregations.aggregation('transaction_date_year', 'disbursement', selectionString, 'transaction_date_year').then(function(data, status, headers, config){
         vm.disbursements_by_year = data.data.results;
         vm.disbursements_total = 0;
         for (var i = vm.disbursements_by_year.length - 1; i >= 0; i--) {
@@ -96,15 +96,16 @@ var sectorLayoutTest = null;
         };
       }, errorFn);
 
-      Aggregations.aggregation('transaction_date_year', 'commitment', selectionString, 'year').then(function(data, status, headers, config){
+      TransactionAggregations.aggregation('transaction_date_year', 'commitment', selectionString, 'transaction_date_year').then(function(data, status, headers, config){
         vm.commitments_by_year = data.data.results;
+        console.log(vm.commitments_by_year)
         vm.commitments_total = 0;
         for (var i = vm.commitments_by_year.length - 1; i >= 0; i--) {
           vm.commitments_total += vm.commitments_by_year[i].commitment;
         };
       }, errorFn);
 
-      Aggregations.aggregation('budget_per_year', 'budget', selectionString, 'year').then(function(data, status, headers, config){
+      Aggregations.aggregation('budget_year', 'budget', selectionString, 'budget_year').then(function(data, status, headers, config){
         vm.budget_by_year = data.data.results;
         vm.budget_total = 0;
         for (var i = vm.budget_by_year.length - 1; i >= 0; i--) {

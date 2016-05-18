@@ -123,7 +123,7 @@ switch ($_GET['type']) {
         }
         break;
 
-    case 'implementing-org-detail':
+    case 'receiver-org-detail':
         $code = $_GET['detail'];
         $budget = $_GET['budget'];
         $expenditure = $_GET['expenditure'];

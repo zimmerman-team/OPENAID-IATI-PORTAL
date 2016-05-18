@@ -13,37 +13,37 @@
 			</div>
 
 		</div>
-		<div class="row" ng-show="vm.implementingOrganisations.length == 0">
+		<div class="row" ng-show="vm.receiverOrganisations.length == 0">
 			<div class="svg-loader">
 				There are no project partners found within your current selection.
 			</div>
 		</div>
-		<div class="row" ng-show="vm.implementingOrganisations.length != 0">
+		<div class="row" ng-show="vm.receiverOrganisations.length != 0">
 			<div class="col-md-12">
 				<table class="table">
 					<thead>
 						<tr>
-							<td class="th-first">Select one or more project partners</td>
+							<td class="th-first">Select one or more receiving organisations</td>
 							<td>Projects</td>
 						</tr>
 					</thead>
 					<tbody>
 
 					    <tr 
-					    	dir-paginate="item in vm.implementingOrganisations | itemsPerPage: 4"  
+					    	dir-paginate="item in vm.receiverOrganisations | itemsPerPage: 4"  
 					    	total-items="vm.totalCount" 
 					    	current-page="pagination.current" 
-					    	pagination-id="implementingOrganisations">
+					    	pagination-id="receiverOrganisations">
 					    	<td>
 					    		<div class="checkbox">
 						    		<label class="switch">
-						    			<input type="checkbox" checklist-model="vm.selectedImplementingOrganisations" checklist-value="item"><i></i>
-						    			<span>{{ item.name | capitalize }}</span>
+						    			<input type="checkbox" checklist-model="vm.selectedreceiverOrganisations" checklist-value="item"><i></i>
+						    			<span>{{ item.receiver_org | capitalize }}</span>
 						    		</label>
 						    	</div>
 					    	</td>
 					    	<td>
-					    		{{ item.count }}
+					    		{{ item.activity_count }}
 					    	</td>
 					    </tr>
 
@@ -53,7 +53,7 @@
 			<div class="col-md-12 text-center">
 				<button class="btn btn-default btn-openaid btn-save" ng-click="vm.save()">Save</button>
 				<dir-pagination-controls 
-					pagination-id="implementingOrganisations"
+					pagination-id="receiverOrganisations"
 					on-page-change="vm.pageChanged(newPageNumber)"></dir-pagination-controls>
 			</div>
 		</div>

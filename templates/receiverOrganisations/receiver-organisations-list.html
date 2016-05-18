@@ -13,10 +13,12 @@
                         <select
                           ng-model="vm.order_by"
                           ng-change="vm.toggleOrder()">
-                          <option value="name">Name (A - Z)</option>
-                          <option value="-name">Name (Z - A)</option>
-                          <option value="total_disbursements">Expenditure (increasing)</option>
-                          <option value="-total_disbursements">Expenditure (decreasing)</option>
+                          <option value="receiver_org">Name (A - Z)</option>
+                          <option value="-receiver_org">Name (Z - A)</option>
+                          <option value="disbursement">Total disbursements (increasing)</option>
+                          <option value="-disbursement">Total disbursements (decreasing)</option>
+                          <option value="activity_count,disbursement">Total projects (increasing)</option>
+                          <option value="-activity_count,-disbursement">Total projects (decreasing)</option>
                         </select>
 <!--                       </div>
                     </label>
@@ -45,7 +47,7 @@
         <div class="sort headers hidden-xs">
             <div class="row">
                 <div class="col-sm-6">
-                    <small>Implementing organisation</small>
+                    <small>receiver organisation</small>
                 </div>
                 <div class="col-sm-3">
                     <small>Total disbursement</small>
@@ -62,13 +64,13 @@
             <div class="hp-block wit">
                 <div class="row organisations">
                     <div class="col-sm-6">
-                        <h3 class="no-margin"><a ui-sref="organisation({ organisation_id: item.receiver_organisation_id })">{{ item.name }}</a></h3>
+                        <h3 class="no-margin"><a ui-sref="organisation({ organisation_id: item.receiver_org })">{{ item.receiver_org }}</a></h3>
                     </div>
                     <div class="col-sm-3">
                         <h3 class="no-margin">{{item.disbursement  | shortcurrency :'€'}} <span class="visible-xs-inline">disbursement</span></h3>
                     </div>
                     <div class="col-sm-3">
-                        <h3 class="no-margin">{{item.count}} <span class="visible-xs-inline">projects</span></h3>
+                        <h3 class="no-margin">{{item.activity_count}} <span class="visible-xs-inline">projects</span></h3>
                     </div>
                 </div>
             </div>

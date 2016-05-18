@@ -30,7 +30,7 @@
             'oipa.budget',
             'oipa.activityStatus',
             'oipa.pages',
-            'oipa.implementingOrganisations',
+            'oipa.receiverOrganisations',
             'oipa.bubbleChart',
             'oipa.sunburst',
             'oipa.geovis',

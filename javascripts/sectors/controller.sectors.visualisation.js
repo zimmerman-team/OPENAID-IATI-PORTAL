@@ -9,12 +9,12 @@
     .module('oipa.sectors')
     .controller('SectorsVisualisationController', SectorsVisualisationController);
 
-  SectorsVisualisationController.$inject = ['$scope', 'FilterSelection', 'Aggregations', 'sectorMapping'];
+  SectorsVisualisationController.$inject = ['$scope', 'FilterSelection', 'TransactionAggregations', 'sectorMapping'];
 
   /**
   * @namespace SectorsVisualisationController
   */
-  function SectorsVisualisationController($scope, FilterSelection, Aggregations, sectorMapping) {
+  function SectorsVisualisationController($scope, FilterSelection, TransactionAggregations, sectorMapping) {
     var vm = this;
     vm.filterSelection = FilterSelection;
     vm.selectionString = '';
@@ -42,7 +42,7 @@
     }
 
     vm.activateSunburst = function(){
-      Aggregations.aggregation('sector', 'count,disbursement', vm.selectionString).then(successFn, errorFn);
+      TransactionAggregations.aggregation('sector', 'activity_count,disbursement', vm.selectionString).then(successFn, errorFn);
 
       function successFn(data, status, headers, config) {
         vm.reformatSunburstData(data.data.results);
@@ -57,7 +57,7 @@
 
       var sector5 = {};
       for(var i = 0;i < data.length;i++){
-        sector5[data[i].sector.code] = {'disbursement':data[i].disbursement, 'count': data[i].count};
+        sector5[data[i].sector.code] = {'disbursement':data[i].disbursement, 'activity_count': data[i].activity_count};
       }
 
       var mapping = angular.copy(sectorMapping);
@@ -69,10 +69,10 @@
           } else{
             if(sector5[arr[i].sector_id] != undefined){
               arr[i].disbursement = sector5[arr[i].sector_id].disbursement;
-              arr[i].count = sector5[arr[i].sector_id].count;
+              arr[i].activity_count = sector5[arr[i].sector_id].activity_count;
             } else {
               arr[i].disbursement = 0;
-              arr[i].count = 0;
+              arr[i].activity_count = 0;
             }
           }
         }

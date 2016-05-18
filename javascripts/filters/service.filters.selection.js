@@ -9,18 +9,18 @@
 		.module('oipa.filters')
 		.factory('FilterSelection', FilterSelection);
 
-	FilterSelection.$inject = ['$http', 'reportingOrganisationId', 'Countries', 'Regions', 'Budget', 'Sectors', 'Transaction', 'ImplementingOrganisations', 'ActivityStatus', 'Search'];
+	FilterSelection.$inject = ['$http', 'reportingOrganisationId', 'Countries', 'Regions', 'Budget', 'Sectors', 'Transaction', 'receiverOrganisations', 'ActivityStatus', 'Search'];
 
 	/**
 	* @namespace Filters
 	* @returns {Factory}
 	*/
-	function FilterSelection($http, reportingOrganisationId, Countries, Regions, Budget, Sectors, Transaction, ImplementingOrganisations, ActivityStatus, Search) {
+	function FilterSelection($http, reportingOrganisationId, Countries, Regions, Budget, Sectors, Transaction, receiverOrganisations, ActivityStatus, Search) {
 		var m = this;
 	    m.selectedCountries = Countries.selectedCountries;
 	    m.selectedRegions = Regions.selectedRegions;
 	    m.selectedSectors = Sectors.selectedSectors;
-	    m.selectedImplementingOrganisations = ImplementingOrganisations.selectedImplementingOrganisations;
+	    m.selectedreceiverOrganisations = receiverOrganisations.selectedreceiverOrganisations;
 	    m.selectedActivityStatuses = ActivityStatus.selectedActivityStatuses;
 	    m.selectedBudget = Budget.budget;
 	    m.selectedTransactionYear = Transaction.year;
@@ -78,16 +78,19 @@
 				m.selectArrayToString('recipient_country', 'code', m.selectedCountries),
 				m.selectArrayToString('recipient_region', 'code', m.selectedRegions),
 				// m.selectArrayToString('sector', 'code', m.selectedSectors),
-				// m.selectArrayToString('participating_organisations__organisation__code', 'name', m.selectedImplementingOrganisations),
+				// m.selectArrayToString('participating_organisations__organisation__code', 'name', m.selectedreceiverOrganisations),
 				m.selectArrayToString('activity_status', 'code', m.selectedActivityStatuses),
 			];
 
 			selectList.push(m.getSectors());
 
-			if(m.selectedImplementingOrganisations.length){
-				selectList.push("&participating_organisation_name=" + _.pluck(m.selectedImplementingOrganisations, 'name').map(function(name) {
-					return encodeURIComponent(name)
-				}).join(','));
+			if(m.selectedreceiverOrganisations.length){
+				var receiver_orgs = "&receiver_organisation_primary_name=" + m.selectedreceiverOrganisations.map(function(receiver_org) {
+					console.log(m.selectedreceiverOrganisations);
+					console.log(receiver_org);
+					return encodeURIComponent(receiver_org.code)
+				}).join(',');
+				selectList.push(receiver_orgs);
 			}
 
 			if(m.selectedBudget.on){
@@ -139,7 +142,7 @@
 				m.removeAll(m.selectedSectors);
 			}
 			if(pageName != 'organisation'){
-				m.removeAll(m.selectedImplementingOrganisations);
+				m.removeAll(m.selectedreceiverOrganisations);
 			}
 
 			m.removeAll(m.selectedActivityStatuses);
@@ -165,8 +168,6 @@
 		};
 
 		return FilterSelection;
-
-		////////////////////
 
 	}
 })();

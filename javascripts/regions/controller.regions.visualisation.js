@@ -9,12 +9,12 @@
     .module('oipa.regions')
     .controller('RegionsVisualisationController', RegionsVisualisationController);
 
-  RegionsVisualisationController.$inject = ['$scope', 'FilterSelection', 'Aggregations', 'templateBaseUrl', 'regionMapping'];
+  RegionsVisualisationController.$inject = ['$scope', 'FilterSelection', 'TransactionAggregations', 'templateBaseUrl', 'regionMapping'];
 
   /**
   * @namespace RegionsVisualisationController
   */
-  function RegionsVisualisationController($scope, FilterSelection, Aggregations, templateBaseUrl, regionMapping) {
+  function RegionsVisualisationController($scope, FilterSelection, TransactionAggregations, templateBaseUrl, regionMapping) {
     var vm = this;
     vm.filterSelection = FilterSelection;
     vm.selectionString = '';
@@ -41,8 +41,8 @@
 
     vm.activateGeovis = function(){
 
-      Aggregations.aggregation('recipient_country', 'disbursement', vm.selectionString, '', 400, 1).then(countrySuccessFn, errorFn);
-      Aggregations.aggregation('recipient_region', 'disbursement', vm.selectionString, '', 400, 1).then(regionSuccessFn, errorFn);
+      TransactionAggregations.aggregation('recipient_country', 'disbursement', vm.selectionString, '', 400, 1).then(countrySuccessFn, errorFn);
+      TransactionAggregations.aggregation('recipient_region', 'disbursement', vm.selectionString, '', 400, 1).then(regionSuccessFn, errorFn);
 
 
       function countrySuccessFn(data, status, headers, config){

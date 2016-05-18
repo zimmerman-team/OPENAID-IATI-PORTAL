@@ -6,19 +6,19 @@
   'use strict';
 
   angular
-    .module('oipa.implementingOrganisations')
-    .controller('ImplementingOrganisationsController', ImplementingOrganisationsController);
+    .module('oipa.receiverOrganisations')
+    .controller('receiverOrganisationsController', receiverOrganisationsController);
 
-  ImplementingOrganisationsController.$inject = ['$scope', 'Aggregations', 'ImplementingOrganisations', 'templateBaseUrl', 'FilterSelection'];
+  receiverOrganisationsController.$inject = ['$scope', 'TransactionAggregations', 'receiverOrganisations', 'templateBaseUrl', 'FilterSelection'];
 
   /**
-  * @namespace ImplementingOrganisationsController
+  * @namespace receiverOrganisationsController
   */
-  function ImplementingOrganisationsController($scope, Aggregations, ImplementingOrganisations, templateBaseUrl, FilterSelection) {
+  function receiverOrganisationsController($scope, TransactionAggregations, receiverOrganisations, templateBaseUrl, FilterSelection) {
     var vm = this;
     vm.templateBaseUrl = templateBaseUrl;
-    vm.implementingOrganisations = [];
-    vm.selectedImplementingOrganisations = ImplementingOrganisations.selectedImplementingOrganisations;
+    vm.receiverOrganisations = [];
+    vm.selectedreceiverOrganisations = receiverOrganisations.selectedreceiverOrganisations;
     vm.currentPage = 1;
     vm.q = '';
     vm.perPage = 4;
@@ -54,25 +54,25 @@
       // for each active country, get the results
       var filterString = FilterSelection.selectionString.split('&');
       for(var i = 0;i < filterString.length;i++){
-        if (filterString[i].indexOf('participating_organisation') > -1){
+        if (filterString[i].indexOf('receiver_organisation') > -1){
           delete filterString[i];
         }
       }
       filterString = filterString.join('&');
       
       if(vm.q != ''){
-        filterString += '&q_fields=participating_organisation&q=' + vm.q;
+        filterString += '&q_fields=receiver_organisation&q=' + vm.q;
       }
 
-      Aggregations.aggregation('participating_organisation', 'count', filterString + '&participating_organisation_role=4', 'participating_organisation', vm.perPage, vm.currentPage).then(successFn, errorFn);
+      TransactionAggregations.aggregation('receiver_org', 'activity_count', filterString, 'receiver_org', vm.perPage, vm.currentPage).then(successFn, errorFn);
 
       function successFn(data, status, headers, config) {
         vm.totalCount = data.data.count;
-        vm.implementingOrganisations = data.data.results;
+        vm.receiverOrganisations = data.data.results;
       }
 
       function errorFn(data, status, headers, config) {
-        console.log("getting implementing organisations failed");
+        console.log("getting receiving organisations failed");
       }
     }
 
@@ -81,7 +81,5 @@
     }
 
     activate();
-
-
   }
 })();

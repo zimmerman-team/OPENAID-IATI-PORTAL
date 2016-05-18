@@ -14,6 +14,8 @@
                         <option value="-recipient_country">Name (Z - A)</option>
                         <option value="disbursement">Disbursement (increasing)</option>
                         <option value="-disbursement">Disbursement (decreasing)</option>
+                        <option value="activity_count,disbursement">Total projects (increasing)</option>
+                        <option value="-activity_count,-disbursement">Total projects (decreasing)</option>
                     </select>
                 </div>
             </div>
@@ -65,7 +67,7 @@
                         <h3 class="no-margin">{{item.disbursement  | shortcurrency :'€'}} <span class="visible-xs-inline">disbursement</span></h3>
                     </div>
                     <div class="col-sm-3">
-                        <h3 class="no-margin">{{item.count}} <span class="visible-xs-inline">projects</span></h3>
+                        <h3 class="no-margin">{{item.activity_count}} <span class="visible-xs-inline">projects</span></h3>
                     </div>
                 </div>
             </div>

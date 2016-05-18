@@ -2,12 +2,12 @@
     'use strict';
 
     angular
-        .module('oipa.implementingOrganisations')
-        .controller('ImplementingOrganisationsExploreController', ImplementingOrganisationsExploreController);
+        .module('oipa.receiverOrganisations')
+        .controller('receiverOrganisationsExploreController', receiverOrganisationsExploreController);
 
-    ImplementingOrganisationsExploreController.$inject = ['$scope', 'FilterSelection'];
+    receiverOrganisationsExploreController.$inject = ['$scope', 'FilterSelection'];
 
-    function ImplementingOrganisationsExploreController($scope, FilterSelection){
+    function receiverOrganisationsExploreController($scope, FilterSelection){
         var vm = this;
         vm.openedPanel = ''; // panels: 
         vm.showSelection = false;

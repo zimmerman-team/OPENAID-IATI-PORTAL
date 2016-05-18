@@ -143,9 +143,9 @@
         .state({
             name:        'organisations',
             url:         '/organisations?filters',
-            controller:  'ImplementingOrganisationsExploreController',
+            controller:  'receiverOrganisationsExploreController',
             controllerAs: 'vm',
-            templateUrl: templateBaseUrl + '/templates/implementingOrganisations/implementing-organisations-view-list.html'
+            templateUrl: templateBaseUrl + '/templates/receiverOrganisations/receiver-organisations-view-list.html'
         })
         .state({
             name:         'organisations-with-slash-redirect',
@@ -155,16 +155,16 @@
         // .state({
         //     name:        'organisations',
         //     url:         '/organisaties/',
-        //     controller:  'ImplementingOrganisationsVisualisationController',
+        //     controller:  'receiverOrganisationsVisualisationController',
         //     controllerAs: 'vm',
-        //     templateUrl: templateBaseUrl + '/templates/implementingOrganisations/implementing-organisations-view-visualisation.html'
+        //     templateUrl: templateBaseUrl + '/templates/receiverOrganisations/receiver-organisations-view-visualisation.html'
         // })
         .state({
             name:        'organisation',
             url:         '/organisations/:organisation_id?filters',
-            controller:  'ImplementingOrganisationController',
+            controller:  'receiverOrganisationController',
             controllerAs: 'vm',
-            templateUrl: templateBaseUrl + '/templates/implementingOrganisations/implementing-organisation-view-detail.html'
+            templateUrl: templateBaseUrl + '/templates/receiverOrganisations/receiver-organisation-view-detail.html'
         })
         .state({
             name:         'organisation-with-slash-redirect',
@@ -209,13 +209,23 @@
         })
         .state({
             name:        'about',
-            url:         '/over',
-            controller:  'PagesController',
+            url:         '/about',
+            controller:  'AboutController',
             controllerAs: 'vm',
-            templateUrl: templateBaseUrl + '/templates/pages/pages.html',
+            templateUrl: templateBaseUrl + '/templates/pages/about.html',
         })
         .state({
             name:         'about-with-slash-redirect',
+            url:          '/about/',
+            redirectTo:   'about',
+        })
+        .state({
+            name:        'over',
+            url:         '/over',
+            redirectTo:   'about',
+        })
+        .state({
+            name:         'over-with-slash-redirect',
             url:          '/over/',
             redirectTo:   'about',
         })

@@ -5,12 +5,12 @@
     .module('oipa.locations')
     .controller('ActivitiesPolygonGeoMapController', ActivitiesPolygonGeoMapController);
 
-  ActivitiesPolygonGeoMapController.$inject = ['$scope', '$http', 'leafletData', 'Aggregations', 'templateBaseUrl', 'homeUrl', 'FilterSelection', '$filter'];
+  ActivitiesPolygonGeoMapController.$inject = ['$scope', '$http', 'leafletData', 'TransactionAggregations', 'templateBaseUrl', 'homeUrl', 'FilterSelection', '$filter'];
 
   /**
   * @namespace ActivitiesPolygonGeoMapController
   */
-  function ActivitiesPolygonGeoMapController($scope, $http, leafletData, Aggregations, templateBaseUrl, homeUrl, FilterSelection, $filter) {
+  function ActivitiesPolygonGeoMapController($scope, $http, leafletData, TransactionAggregations, templateBaseUrl, homeUrl, FilterSelection, $filter) {
     var vm = this;
     vm.templateBaseUrl = templateBaseUrl;
     vm.filterSelection = FilterSelection;
@@ -53,7 +53,7 @@
 
     vm.updateMap = function(){
 
-        Aggregations.aggregation('recipient_country', 'count,disbursement', vm.selectionString).then(countrySuccessFn, errorFn);
+        TransactionAggregations.aggregation('recipient_country', 'activity_count,disbursement', vm.selectionString).then(countrySuccessFn, errorFn);
 
         function countrySuccessFn(data, status, headers, config) {
             vm.updateCountryPolygons(data.data.results);
@@ -72,7 +72,7 @@
         };
         for(var i = 0;i < data.length;i++){
           var country = namedGeoJson[data[i].recipient_country.code];
-          country.properties.project_amount = data[i].count;
+          country.properties.project_amount = data[i].activity_count;
           country.properties.total_disbursements = data[i].disbursement;
           formattedCD.features.push(country);
         }

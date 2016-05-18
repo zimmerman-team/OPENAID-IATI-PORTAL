@@ -33,7 +33,7 @@
                     <table class="table table-striped">
                         <tbody>
                             <tr ng-repeat="disbursement in vm.disbursements_by_year">
-                                <td>{{disbursement.year}}</td>
+                                <td>{{disbursement.transaction_date_year}}</td>
                                 <td>{{disbursement.disbursement | shortcurrency :'€'}}</td>
                             </tr>
                             <tr class="total-calc">
@@ -51,7 +51,7 @@
                     <table class="table table-striped" ng-if="budget_by_year.budget__period_start_year != 0" >
                         <tbody>
                             <tr ng-repeat="budget in vm.budget_by_year">
-                                <td>{{budget.year}}</td>
+                                <td>{{budget.budget_year}}</td>
                                 <td>{{budget.budget | shortcurrency :'€'}}</td>
                             </tr>
                             <tr class="total-calc">
@@ -69,7 +69,7 @@
                     <table class="table table-striped">
                         <tbody>
                             <tr ng-repeat="commitment in vm.commitments_by_year">
-                                <td>{{commitment.year}}</td>
+                                <td>{{commitment.transaction_date_year}}</td>
                                 <td>{{commitment.commitment | shortcurrency :'€'}}</td>
                             </tr>
                             <tr class="total-calc">
@@ -97,11 +97,11 @@
             shown="vm.selectedTab == 'sectors'"></sector-list>
     </div>
 
-    <div ng-show="vm.selectedTab == 'implementing-organisations'">
-        <implementing-organisations-list 
+    <div ng-show="vm.selectedTab == 'receiver-organisations'">
+        <receiver-organisations-list 
             has-to-contain="recipient_country"
             count="vm.tabs[3].count"
-            shown="vm.selectedTab == 'implementing-organisations'"></implementing-organisations-list>
+            shown="vm.selectedTab == 'receiver-organisations'"></receiver-organisations-list>
     </div>
 
 </div>

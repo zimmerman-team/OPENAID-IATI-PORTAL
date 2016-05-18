@@ -24,8 +24,8 @@ function errorFn(data, status, headers, config){
     vm.filterSelection = FilterSelection;
     vm.activities = [];
     vm.order_by = '-planned_start_date';
-    vm.page_size = 5;
-    vm.offset = 0;
+    vm.pageSize = 5;
+    vm.page = 1;
     vm.totalActivities = 0;
     vm.hasToContain = $scope.hasToContain;
     vm.busy = false;
@@ -72,7 +72,6 @@ function errorFn(data, status, headers, config){
     vm.update = function(){
       if (!vm.hasContains()) return false;
 
-      vm.page = 1;
       Activities.list(vm.filterSelection.selectionString + vm.extraSelectionString, vm.pageSize, vm.order_by, vm.page).then(succesFn, errorFn);
 
       function succesFn(data, status, headers, config){

@@ -5,10 +5,10 @@
     .module('oipa.charts')
     .controller('FinancialsLinechartController', FinancialsLinechartController);
 
-  FinancialsLinechartController.$inject = ['$scope', 'Aggregations', 'FilterSelection', '$filter'];
+  FinancialsLinechartController.$inject = ['$scope', 'Aggregations', 'TransactionAggregations', 'FilterSelection', '$filter'];
 
 
-  function FinancialsLinechartController($scope, Aggregations, FilterSelection, $filter) {
+  function FinancialsLinechartController($scope, Aggregations, TransactionAggregations, FilterSelection, $filter) {
     var vm = this;
     vm.filterSelection = FilterSelection;
     var loadedCount = 0;
@@ -71,19 +71,18 @@
         console.log(data);
       }
 
-      var order_by = 'year';
 
-      Aggregations.aggregation('transaction_date_year', 'disbursement', selectionString, order_by).then(function(data, status, headers, config){
+      TransactionAggregations.aggregation('transaction_date_year', 'disbursement', selectionString, 'transaction_date_year').then(function(data, status, headers, config){
         vm.disbursements_by_year = data.data.results;
         vm.startReformatTransactionData();
       }, errorFn);
 
-      Aggregations.aggregation('transaction_date_year', 'commitment', selectionString, order_by).then(function(data, status, headers, config){
+      TransactionAggregations.aggregation('transaction_date_year', 'commitment', selectionString, 'transaction_date_year').then(function(data, status, headers, config){
         vm.commitments_by_year = data.data.results;
         vm.startReformatTransactionData();
       }, errorFn);
 
-      Aggregations.aggregation('budget_per_year', 'budget', selectionString, order_by).then(function(data, status, headers, config){
+      Aggregations.aggregation('budget_year', 'budget', selectionString, 'budget_year').then(function(data, status, headers, config){
         vm.budget_by_year = data.data.results;
         vm.startReformatTransactionData();
       }, errorFn);
@@ -124,28 +123,27 @@
       var max = 0;
 
       if(vm.commitments_by_year.length){
-        min = vm.commitments_by_year[0]['year'];
-        max = vm.commitments_by_year[(vm.commitments_by_year.length - 1)]['year'];
+        min = vm.commitments_by_year[0]['transaction_date_year'];
+        max = vm.commitments_by_year[(vm.commitments_by_year.length - 1)]['transaction_date_year'];
       }
 
       if(vm.disbursements_by_year.length){
         if(vm.disbursements_by_year[0]['year'] < min){
           min = vm.disbursements_by_year[0]['year'];
         }
-        if(vm.disbursements_by_year[(vm.disbursements_by_year.length - 1)]['year'] > max){
-          max = vm.disbursements_by_year[(vm.disbursements_by_year.length - 1)]['year'];
+        if(vm.disbursements_by_year[(vm.disbursements_by_year.length - 1)]['transaction_date_year'] > max){
+          max = vm.disbursements_by_year[(vm.disbursements_by_year.length - 1)]['transaction_date_year'];
         }
       }
 
       if(vm.budget_by_year.length){
-        if(vm.budget_by_year[0]['year'] < min){
-          min = vm.budget_by_year[0]['year'];
+        if(vm.budget_by_year[0]['budget_year'] < min){
+          min = vm.budget_by_year[0]['budget_year'];
         }
-        if(vm.budget_by_year[(vm.budget_by_year.length - 1)]['year'] > max){
-          max = vm.budget_by_year[(vm.budget_by_year.length - 1)]['year'];
+        if(vm.budget_by_year[(vm.budget_by_year.length - 1)]['budget_year'] > max){
+          max = vm.budget_by_year[(vm.budget_by_year.length - 1)]['budget_year'];
         }
       }
-
 
       function valuesObjToArr(min, max, variable, year_attr, value_attr){
         
@@ -169,9 +167,9 @@
         return values;
       }
 
-      data[0].values = valuesObjToArr(min, max, 'commitments_by_year', 'year', 'commitment');
-      data[1].values = valuesObjToArr(min, max, 'disbursements_by_year', 'year', 'disbursement');
-      data[2].values = valuesObjToArr(min, max, 'budget_by_year', 'year', 'budget');
+      data[0].values = valuesObjToArr(min, max, 'commitments_by_year', 'transaction_date_year', 'commitment');
+      data[1].values = valuesObjToArr(min, max, 'disbursements_by_year', 'transaction_date_year', 'disbursement');
+      data[2].values = valuesObjToArr(min, max, 'budget_by_year', 'budget_year', 'budget');
       
       return data;
     }

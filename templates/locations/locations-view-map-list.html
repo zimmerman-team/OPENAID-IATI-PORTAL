@@ -6,9 +6,16 @@
                 views="[{'id':'locations-map', 'name': 'Map & list view', 'class':'active'}]"
                 current-page="countries"></filter-bar>
 
-            <locations-geo-map geo-view="vm.geoView" map-height="480px" map-legend='true' map-dropdown='false'></locations-geo-map>
+            <locations-geo-map 
+                selected-country-relation="vm.selectedCountryRelation" 
+                geo-view="vm.geoView" 
+                map-height="480px" 
+                map-legend='true' 
+                map-dropdown='false'></locations-geo-map>
 
-            <country-list ng-show="vm.geoView == 'countries'"></country-list>
+            <country-main-list 
+                selected-country-relation="vm.selectedCountryRelation" 
+                ng-show="vm.geoView == 'countries'"></country-main-list>
             
             <region-list ng-show="vm.geoView == 'regions'"></region-list>
 

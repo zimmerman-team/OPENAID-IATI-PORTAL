@@ -5,7 +5,6 @@
 	            ng-model="vm.searchString" 
 	            type="text" 
 	            class="form-control" 
-                ng-change="vm.search()"
                 ng-focus="vm.focus()"
                 ng-blur="vm.blur()"
 	            placeholder="Search on location, projects, sector, organisatie, IATI ID, or keyword">
@@ -30,7 +29,7 @@
         <div class="results">
             <div class="row" ng-repeat="activity in vm.searchData.activities.data">
                 <div class="col-md-8">
-                    <a ui-sref='activiteit({"activity_id": activity.id})'>{{activity.titles[0].title}}</a>
+                    <a ui-sref='activiteit({"activity_id": activity.id})'>{{activity.title.narratives[0].text}}</a>
                 </div>
                 <div class="col-md-4">
                     {{activity.iati_identifier}}
@@ -61,10 +60,10 @@
         <div class="results">
             <div class="row" ng-repeat="country in vm.searchData.countries.data">
                 <div class="col-md-8">
-                    <a ui-sref='country({"country_id": country.country_id})'>{{country.name}}</a>
+                    <a ui-sref='country({"country_id": country.recipient_country.code})'>{{country.recipient_country.name}}</a>
                 </div>
                 <div class="col-md-4">
-                    {{country.activity_count}} projects
+                    {{country.count}} projects
                 </div>
             </div>
 
@@ -93,10 +92,10 @@
         <div class="results">
             <div class="row" ng-repeat="region in vm.searchData.regions.data">
                 <div class="col-md-8">
-                    <a ui-sref='region({"country_id": region.region_id})'>{{region.name}}</a>
+                    <a ui-sref='region({"region_id": region.recipient_region.code})'>{{region.recipient_region.name}}</a>
                 </div>
                 <div class="col-md-4">
-                    {{region.activity_count}} projects
+                    {{region.count}} projects
                 </div>
             </div>
 
@@ -126,10 +125,10 @@
         <div class="results">
             <div class="row" ng-repeat="sector in vm.searchData.sectors.data">
                 <div class="col-md-8">
-                    <a ui-sref='sector({"sector_id": sector.sector_id})'>{{sector.name}}</a>
+                    <a ui-sref='sector({"sector_id": sector.sector.code})'>{{sector.sector.name}}</a>
                 </div>
                 <div class="col-md-4">
-                    {{sector.activity_count}} projects
+                    {{sector.count}} projects
                 </div>
             </div>
 
@@ -144,7 +143,7 @@
                 </div>
             </div>
         </div>
-
+<!-- 
         <div class="header">
             <div class="row">
                 <div class="col-xs-8">
@@ -160,9 +159,6 @@
                 <div class="col-md-8">
                     <a ui-sref='organisation({"organisation_id": organisation.receiver_organisation_id})'>{{organisation.name}}</a>
                 </div>
-                <!-- <div class="col-md-4">
-                    {{organisation.activity_count}} transactions
-                </div> -->
             </div>
 
             <div class="row" ng-show="!vm.searchData.organisations.data.length">
@@ -176,6 +172,6 @@
                     <img ng-src="{{templateBaseUrl}}/images/spinning-circles.svg" width="50" alt="">
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 </div>

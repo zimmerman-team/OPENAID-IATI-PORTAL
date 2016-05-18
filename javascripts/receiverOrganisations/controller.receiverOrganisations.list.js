@@ -6,20 +6,20 @@
   'use strict';
 
   angular
-    .module('oipa.implementingOrganisations')
-    .controller('ImplementingOrganisationsListController', ImplementingOrganisationsListController);
+    .module('oipa.receiverOrganisations')
+    .controller('receiverOrganisationsListController', receiverOrganisationsListController);
 
-  ImplementingOrganisationsListController.$inject = ['$scope', 'Aggregations', 'FilterSelection', 'templateBaseUrl'];
+  receiverOrganisationsListController.$inject = ['$scope', 'TransactionAggregations', 'FilterSelection', 'templateBaseUrl'];
 
   /**
   * @namespace CountriesExploreController
   */
-  function ImplementingOrganisationsListController($scope, Aggregations, FilterSelection, templateBaseUrl) {
+  function receiverOrganisationsListController($scope, TransactionAggregations, FilterSelection, templateBaseUrl) {
     var vm = this;
     vm.filterSelection = FilterSelection;
     vm.organisations = [];
     vm.totalOrganisations = 0;
-    vm.order_by = 'name';
+    vm.order_by = 'receiver_org';
     vm.page = 1;
     vm.pageSize = 15;
     vm.busy = false;
@@ -40,7 +40,7 @@
       $scope.$watch("searchValue", function (searchValue, oldSearchValue) {
         if(searchValue == undefined) return;
         if(searchValue !== oldSearchValue){
-          searchValue == '' ? vm.extraSelectionString = '' : vm.extraSelectionString = '&name_query='+searchValue;
+          searchValue == '' ? vm.extraSelectionString = '' : vm.extraSelectionString = '&q_fields=receiver_organisation&q='+searchValue;
           vm.update();
           vm.loading = false;
           vm.searchPage = true;
@@ -75,7 +75,7 @@
       if (!vm.hasContains()) return false;
 
       vm.page = 1;
-      Aggregations.aggregation('participating_organisation', 'count,disbursement', vm.filterSelection.selectionString + '&participating_organisation_role=4' + vm.extraSelectionString, vm.order_by, vm.pageSize, vm.page).then(succesFn, errorFn);
+      TransactionAggregations.aggregation('receiver_org', 'activity_count,disbursement', vm.filterSelection.selectionString + vm.extraSelectionString, vm.order_by, vm.pageSize, vm.page).then(succesFn, errorFn);
 
       function succesFn(data, status, headers, config){
         vm.organisations = data.data.results;
@@ -85,7 +85,7 @@
       }
 
       function errorFn(data, status, headers, config){
-        console.warn('error getting data for implementing.orgs.block');
+        console.warn('error getting data for receiver.orgs.block');
         vm.loading = false;
       }
     }
@@ -95,7 +95,7 @@
 
       vm.busy = true;
       vm.page += 1;
-      Aggregations.aggregation('participating_organisation', 'count,disbursement', vm.filterSelection.selectionString + '&participating_organisation_role=4' + vm.extraSelectionString, vm.order_by, vm.pageSize, vm.page).then(succesFn, errorFn);
+      TransactionAggregations.aggregation('receiver_org', 'activity_count,disbursement', vm.filterSelection.selectionString + vm.extraSelectionString, vm.order_by, vm.pageSize, vm.page).then(succesFn, errorFn);
 
       function succesFn(data, status, headers, config){
         vm.organisations = vm.organisations.concat(data.data.results);

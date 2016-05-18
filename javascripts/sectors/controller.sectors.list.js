@@ -9,12 +9,12 @@
     .module('oipa.sectors')
     .controller('SectorListController', SectorListController);
 
-  SectorListController.$inject = ['$scope', 'Aggregations', 'FilterSelection', 'sectorMapping', 'templateBaseUrl'];
+  SectorListController.$inject = ['$scope', 'TransactionAggregations', 'FilterSelection', 'sectorMapping', 'templateBaseUrl'];
 
   /**
   * @namespace SectorListController
   */
-  function SectorListController($scope, Aggregations, FilterSelection, sectorMapping, templateBaseUrl) {
+  function SectorListController($scope, TransactionAggregations, FilterSelection, sectorMapping, templateBaseUrl) {
     var vm = this;
     vm.filterSelection = FilterSelection;
     vm.sectors = [];
@@ -72,7 +72,7 @@
       if (!vm.hasContains()) return false;
 
       vm.page = 1;
-      Aggregations.aggregation('sector', 'disbursement,count', vm.filterSelection.selectionString + vm.extraSelectionString, 'sector').then(succesFn, errorFn);
+      TransactionAggregations.aggregation('sector', 'disbursement,activity_count', vm.filterSelection.selectionString + vm.extraSelectionString, 'sector').then(succesFn, errorFn);
 
       function replaceDac5(arr){
         for (var i = 0;i < arr.length;i++){
@@ -95,18 +95,18 @@
 
       function updateTransactions(sector) { 
         if(!sector.hasOwnProperty('children')) {
-          return [sector.disbursement, sector.count];
+          return [sector.disbursement, sector.activity_count];
         }
         var disbursement = 0;
-        var count = 0;
+        var activity_count = 0;
         for (var i = 0; i < sector.children.length; i++) {
           var values = updateTransactions(sector.children[i])
           if (values[0]) disbursement += values[0];
-          if (values[1]) count += values[1];
+          if (values[1]) activity_count += values[1];
         }
         sector.disbursement = disbursement;
-        sector.count = count;
-        return [disbursement, count];
+        sector.activity_count = activity_count;
+        return [disbursement, activity_count];
       }
 
       function sortSectorChildren(sector, i, reverse) {

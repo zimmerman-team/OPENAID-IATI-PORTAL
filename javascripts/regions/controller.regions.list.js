@@ -9,12 +9,12 @@
     .module('oipa.regions')
     .controller('RegionListController', RegionListController);
 
-  RegionListController.$inject = ['$scope', 'Aggregations', 'FilterSelection', 'regionMapping', 'templateBaseUrl'];
+  RegionListController.$inject = ['$scope', 'TransactionAggregations', 'FilterSelection', 'regionMapping', 'templateBaseUrl'];
 
   /**
   * @namespace regionsExploreController
   */
-  function RegionListController($scope, Aggregations, FilterSelection, regionMapping, templateBaseUrl) {
+  function RegionListController($scope, TransactionAggregations, FilterSelection, regionMapping, templateBaseUrl) {
     var vm = this;
     vm.filterSelection = FilterSelection;
     vm.regions = [];
@@ -45,8 +45,6 @@
           vm.update();
           vm.loading = false;
           vm.searchPage = true;
-          console.log('called')
-          console.log(vm)
         }
         
       }, true);
@@ -76,7 +74,7 @@
       if (!vm.hasContains()) return false;
 
       vm.page = 1;
-      Aggregations.aggregation('recipient_region', 'count,disbursement', vm.filterSelection.selectionString + vm.extraSelectionString, vm.order_by, 400, 1).then(succesFn, errorFn);
+      TransactionAggregations.aggregation('recipient_region', 'activity_count,disbursement', vm.filterSelection.selectionString + vm.extraSelectionString, vm.order_by, 400, 1).then(succesFn, errorFn);
 
       function replaceDac5(arr){
         var i = arr.length;
@@ -101,19 +99,19 @@
 
       function updateDisbursements(region) {
         if(!region.hasOwnProperty('children')) {
-          return [region.disbursement, region.count];
+          return [region.disbursement, region.activity_count];
         }
         var disbursement = 0;
-        var count = 0;
+        var activity_count = 0;
         for (var i = 0; i < region.children.length; i++) {
           var values = updateDisbursements(region.children[i])
           if (values[0]) disbursement += values[0];
-          if (values[1]) count += values[1];
+          if (values[1]) activity_count += values[1];
           // disbursement += updateDisbursements(region.children[i]) 
         }
         region.disbursement = disbursement;
-        region.count = count;
-        return [disbursement, count]
+        region.activity_count = activity_count;
+        return [disbursement, activity_count]
       }
 
       function sortRegionChildren(region, i) {

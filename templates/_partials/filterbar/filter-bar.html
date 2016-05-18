@@ -66,8 +66,6 @@
               class="filter country-filter" 
               ng-click="vm.toggleOpenPanel('recipient_countries')" 
               ng-class="{'active': vm.isOpenedHeader('recipient_countries')}"
-              ng-mouseover="vm.hoverIn('recipient_countries')" 
-              ng-mouseleave="vm.hoverOut('recipient_countries')"
               ng-show="vm.isIncludedFilter('recipient_countries')">
             <i class="fa fa-chevron-down"></i>
             <span>Countries</span>
@@ -77,8 +75,6 @@
               class="filter region-filter" 
               ng-click="vm.toggleOpenPanel('recipient_regions')" 
               ng-class="{'active': vm.isOpenedHeader('recipient_regions')}"
-              ng-mouseover="vm.hoverIn('recipient_regions')" 
-              ng-mouseleave="vm.hoverOut('recipient_regions')"
               ng-show="vm.isIncludedFilter('recipient_regions')">
             <i class="fa fa-chevron-down"></i>
             <span>Regions</span>
@@ -87,8 +83,6 @@
               class="filter" 
               ng-click="vm.toggleOpenPanel('budget')" 
               ng-class="{'active': vm.isOpenedHeader('budget')}"
-              ng-mouseover="vm.hoverIn('recipient_budget')" 
-              ng-mouseleave="vm.hoverOut('recipient_budget')"
               ng-show="vm.isIncludedFilter('recipient_budget')">
             <i class="fa fa-chevron-down"></i>
             <span>Budget</span>
@@ -97,8 +91,6 @@
               class="filter sector-filter" 
               ng-click="vm.toggleOpenPanel('sectors')" 
               ng-class="{'active': vm.isOpenedHeader('sectors')}"
-              ng-mouseover="vm.hoverIn('recipient_sectors')" 
-              ng-mouseleave="vm.hoverOut('recipient_sectors')"
               ng-show="vm.isIncludedFilter('recipient_sectors')">
             <i class="fa fa-chevron-down"></i>
             <span>Sectors</span>
@@ -107,8 +99,6 @@
               class="filter" 
               ng-click="vm.toggleOpenPanel('activity_status')" 
               ng-class="{'active': vm.isOpenedHeader('activity_status')}"
-              ng-mouseover="vm.hoverIn('recipient_activity_status')" 
-              ng-mouseleave="vm.hoverOut('recipient_activity_status')"
               ng-show="vm.isIncludedFilter('recipient_activity_status')">
             <i class="fa fa-chevron-down"></i>
             <span>Activity status</span>
@@ -118,8 +108,6 @@
               class="filter"
               ng-click="vm.toggleOpenPanel('transaction_year')" 
               ng-class="{'active': vm.isOpenedHeader('transaction_year')}"
-              ng-mouseover="vm.hoverIn('transaction_year')" 
-              ng-mouseleave="vm.hoverOut('transaction_year')"
               ng-show="vm.isIncludedFilter('transaction_year')">
             <i class="fa fa-chevron-down"></i>
             <span>Transaction year</span>
@@ -127,21 +115,17 @@
 
           <span
               class="filter organisation-filter"
-              ng-click="vm.toggleOpenPanel('recipient_implementing_organisations')" 
-              ng-class="{'active': vm.isOpenedHeader('recipient_implementing_organisations')}"
-              ng-mouseover="vm.hoverIn('recipient_implementing_organisations')" 
-              ng-mouseleave="vm.hoverOut('recipient_implementing_organisations')"
-              ng-show="vm.isIncludedFilter('recipient_implementing_organisations')">
+              ng-click="vm.toggleOpenPanel('receiver_organisations')" 
+              ng-class="{'active': vm.isOpenedHeader('receiver_organisations')}"
+              ng-show="vm.isIncludedFilter('receiver_organisations')">
             <i class="fa fa-chevron-down"></i>
-            <span>Implementing organisations</span>
+            <span>Receiving organisations</span>
           </span>
 
 <!--           <span 
               class="filter" 
               ng-click="vm.toggleOpenPanel('search')" 
               ng-class="{'active': vm.isOpenedHeader('search')}"
-              ng-mouseover="vm.hoverIn('search')" 
-              ng-mouseleave="vm.hoverOut('search')"
               ng-show="vm.isIncludedFilter('search')">
             <i class="fa fa-chevron-down"></i>
             Search
@@ -149,8 +133,6 @@
 
           <span
             class="filter reset"
-            ng-mouseover="vm.hoverIn('reset')" 
-            ng-mouseleave="vm.hoverOut('reset')">
             <a ng-click="vm.resetFilters()">
               <!-- <i class="fa fa-refresh fa-inverse"></i>  -->
               <span>Reset filters</span>
@@ -169,7 +151,7 @@
                     <filter-panel-budget ng-show="vm.isOpenedHeader('budget')" class="ng-hide slideDown"></filter-panel-budget>
                     <filter-panel-sectors ng-show="vm.isOpenedHeader('sectors')" class="ng-hide slideDown"></filter-panel-sectors>
                     <filter-panel-transaction-year ng-show="vm.isOpenedHeader('transaction_year')" class="ng-hide slideDown"></filter-panel-transaction-year>
-                    <filter-panel-implementing-organisations ng-show="vm.isOpenedHeader('recipient_implementing_organisations')" class="ng-hide slideDown"></filter-panel-implementing-organisations>
+                    <filter-panel-receiver-organisations ng-show="vm.isOpenedHeader('receiver_organisations')" class="ng-hide slideDown"></filter-panel-receiver-organisations>
                     <filter-panel-activity-status ng-show="vm.isOpenedHeader('activity_status')" class="ng-hide slideDown"></filter-panel-activity-status>
                     <filter-panel-search ng-show="vm.isOpenedHeader('search')" class="ng-hide slideDown"></filter-panel-search>
                 </div>

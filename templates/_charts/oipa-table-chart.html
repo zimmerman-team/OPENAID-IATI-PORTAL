@@ -6,7 +6,7 @@
                     <div class="custom-select ff-hack wide first">
                         <select ng-model="topFive">
                             <option value='recipient_country'>Top 5 countries</option>
-                            <option value='participating_organisation'>Top 5 implementing organisations</option>
+                            <option value='receiver_org'>Top 5 receiving organisations</option>
                             <option value='sector'>Top 5 sectors</option>
                         </select>
                     </div>
@@ -52,7 +52,7 @@
             	</a>
             </td>
             <td>{{item.disbursement | shortcurrency :'€'}}</td>
-            <td><span>{{item.count}} projects</span></td>
+            <td><span>{{item.activity_count}} projects</span></td>
         </tr>
     </tbody>
 </table>

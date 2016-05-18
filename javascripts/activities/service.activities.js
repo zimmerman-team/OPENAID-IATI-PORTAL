@@ -17,6 +17,7 @@
         var Activities = {
             all: all,
             list: list,
+            searchList: searchList,
             getProvidedActivities: getProvidedActivities,
             get: get,
             getTransactions: getTransactions,
@@ -51,6 +52,21 @@
             }
             if(page_size !== undefined){
                 url += '&page_size=' + page_size;
+            }
+
+            return $http.get(url, { cache: true });
+        }
+
+        function searchList(filters){
+            var url = oipaUrl + '/activities/?format=json'
+            url += '&fields=id,iati_identifier,title,aggregations&page_size=3&ordering=title'
+
+            if(reportingOrganisationId){
+                url += '&reporting_organisation=' + reportingOrganisationId
+            }
+
+            if(filters !== undefined){
+                url += filters;
             }
 
             return $http.get(url, { cache: true });

@@ -2,12 +2,12 @@
     'use strict';
 
     angular
-        .module('oipa.implementingOrganisations')
-        .controller('ImplementingOrganisationsVisualisationController', ImplementingOrganisationsVisualisationController);
+        .module('oipa.receiverOrganisations')
+        .controller('receiverOrganisationsVisualisationController', receiverOrganisationsVisualisationController);
 
-    ImplementingOrganisationsVisualisationController.$inject = ['$scope', 'FilterSelection', 'templateBaseUrl'];
+    receiverOrganisationsVisualisationController.$inject = ['$scope', 'FilterSelection', 'templateBaseUrl'];
 
-    function ImplementingOrganisationsVisualisationController($scope, FilterSelection, templateBaseUrl){
+    function receiverOrganisationsVisualisationController($scope, FilterSelection, templateBaseUrl){
         var vm = this;
         vm.filterSelection = FilterSelection;
         vm.selectionString = '';

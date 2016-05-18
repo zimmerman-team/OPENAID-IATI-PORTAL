@@ -9,14 +9,14 @@
     .module('oipa.filters')
     .controller('FiltersSelectionController', FiltersSelectionController);
 
-  FiltersSelectionController.$inject = ['$scope', '$state', '$stateParams', '$location', 'FilterSelection', 'Countries', 'Regions', 'Budget', 'Sectors', 'Transaction', 'ImplementingOrganisations', 'ActivityStatus', 'Search'];
+  FiltersSelectionController.$inject = ['$scope', '$state', '$stateParams', '$location', 'FilterSelection', 'Countries', 'Regions', 'Budget', 'Sectors', 'Transaction', 'receiverOrganisations', 'ActivityStatus', 'Search'];
 
-  function FiltersSelectionController($scope, $state, $stateParams, $location, FilterSelection, Countries, Regions, Budget, Sectors, Transaction, ImplementingOrganisations, ActivityStatus, Search) {
+  function FiltersSelectionController($scope, $state, $stateParams, $location, FilterSelection, Countries, Regions, Budget, Sectors, Transaction, receiverOrganisations, ActivityStatus, Search) {
     var vm = this;
     vm.selectedCountries = Countries.selectedCountries;
     vm.selectedRegions = Regions.selectedRegions;
     vm.selectedSectors = Sectors.selectedSectors;
-    vm.selectedImplementingOrganisations = ImplementingOrganisations.selectedImplementingOrganisations;
+    vm.selectedreceiverOrganisations = receiverOrganisations.selectedreceiverOrganisations;
     vm.selectedActivityStatuses = ActivityStatus.selectedActivityStatuses;
     vm.selectedBudget = Budget.budget;
     vm.selectedTransactionYear = Transaction.year;
@@ -31,7 +31,7 @@
       if(vm.currentPage != 'country'){ count += vm.selectedCountries.length; }
       if(vm.currentPage != 'region'){ count += vm.selectedRegions.length; }
       if(vm.currentPage != 'sector'){ count += vm.selectedSectors.length; }
-      if(vm.currentPage != 'organisation'){ count += vm.selectedImplementingOrganisations.length; }
+      if(vm.currentPage != 'organisation'){ count += vm.selectedreceiverOrganisations.length; }
       count += vm.selectedActivityStatuses.length;
       count += vm.search.searchString.length;
       if(vm.selectedBudget.on){ count += 1; }
@@ -168,11 +168,11 @@
       }
       
       // add to filters under the right header (with the wrong name)
-      if(filter_obj['participating_organisation_name'] != undefined  && vm.selectedImplementingOrganisations.length == 0){
-        var participating_organisation_names = filter_obj['participating_organisation_name'].split(',');
+      if(filter_obj['receiver_organisation_primary_name'] != undefined  && vm.selectedreceiverOrganisations.length == 0){
+        var participating_organisation_names = filter_obj['receiver_organisation_primary_name'].split(',');
 
         for(var i = 0;i < participating_organisation_names.length; i++){
-          vm.selectedImplementingOrganisations.push({'name': participating_organisation_names[i]}); 
+          vm.selectedreceiverOrganisations.push({'name': participating_organisation_names[i]}); 
         } 
       }
 

@@ -9,9 +9,9 @@
     .module('oipa.charts')
     .controller('OipaTableChartController', OipaTableChartController);
 
-  OipaTableChartController.$inject = ['$scope', 'Aggregations', 'homeUrl'];
+  OipaTableChartController.$inject = ['$scope', 'TransactionAggregations', 'homeUrl'];
 
-  function OipaTableChartController($scope, Aggregations, homeUrl) {
+  function OipaTableChartController($scope, TransactionAggregations, homeUrl) {
 
     var vm = this;
     vm.chartData = [];
@@ -37,17 +37,18 @@
     }
 
     vm.loadData = function(){
-      Aggregations.aggregation(vm.groupBy, vm.aggregationKey, vm.aggregationFilters + vm.extraFilters).then(succesFn, errorFn);
+      TransactionAggregations.aggregation(vm.groupBy, vm.aggregationKey, vm.aggregationFilters + vm.extraFilters).then(succesFn, errorFn);
 
       function succesFn(data, status, headers, config){
 
         var results = data.data.results;
-
-        if(vm.groupBy == 'participating_organisation'){
+        var filterKey = vm.groupBy;
+        if(vm.groupBy == 'receiver_org'){
+          filterKey = 'receiver_organisation_primary_name';
           for(var i = 0;i < results.length;i++){
             results[i][vm.groupBy] = {
-              'code': results[i].ref,
-              'name': results[i].name
+              'code': results[i].receiver_org,
+              'name': results[i].receiver_org
             };
           }
         }
@@ -56,8 +57,11 @@
         for(var i = 0;i < results.length;i++){
           filter__in.push(results[i][vm.groupBy]['code']);
         }
+
         filter__in = filter__in.join();
-        $scope.shownIds = '&' + vm.groupBy + '=' + filter__in;
+
+        $scope.shownIds = '&' + filterKey + '=' + filter__in;
+        
         vm.chartData = vm.reformatData(results);
       }
     }
