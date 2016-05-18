@@ -9,12 +9,12 @@
     .module('oipa.countries')
     .controller('CountriesListController', CountriesListController);
 
-  CountriesListController.$inject = ['$scope', 'Aggregations', 'FilterSelection', 'templateBaseUrl'];
+  CountriesListController.$inject = ['$scope', 'TransactionAggregations', 'FilterSelection', 'templateBaseUrl'];
 
   /**
   * @namespace CountriesExploreController
   */
-  function CountriesListController($scope, Aggregations, FilterSelection, templateBaseUrl) {
+  function CountriesListController($scope, TransactionAggregations, FilterSelection, templateBaseUrl) {
     var vm = this;
     vm.filterSelection = FilterSelection;
     vm.countries = [];
@@ -78,7 +78,7 @@
       if (!vm.hasContains()) return false;
 
       vm.page = 1;
-      Aggregations.aggregation('recipient_country', 'count,disbursement', vm.filterSelection.selectionString + vm.extraSelectionString, vm.order_by, vm.perPage, vm.page).then(succesFn, errorFn);
+      TransactionAggregations.aggregation('recipient_country', 'activity_count,disbursement', vm.filterSelection.selectionString + vm.extraSelectionString, vm.order_by, vm.perPage, vm.page).then(succesFn, errorFn);
 
       function succesFn(data, status, headers, config){
         vm.countries = data.data.results;
@@ -98,7 +98,7 @@
 
       vm.busy = true;
       vm.page += 1;
-      Aggregations.aggregation('recipient_country', 'count,disbursement', vm.filterSelection.selectionString + vm.extraSelectionString, vm.order_by, vm.perPage, vm.page).then(succesFn, errorFn);
+      TransactionAggregations.aggregation('recipient_country', 'activity_count,disbursement', vm.filterSelection.selectionString + vm.extraSelectionString, vm.order_by, vm.perPage, vm.page).then(succesFn, errorFn);
 
       function succesFn(data, status, headers, config){
         vm.countries = vm.countries.concat(data.data.results);

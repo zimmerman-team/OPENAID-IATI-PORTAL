@@ -1,8 +1,3 @@
-/**
-* LocationsGeoMapController
-* @namespace oipa.locations
-*/
-
 (function () {
   'use strict';
 
@@ -10,12 +5,9 @@
     .module('oipa.locations')
     .controller('LocationsGeoMapController', LocationsGeoMapController);
 
-  LocationsGeoMapController.$inject = ['$scope', 'leafletData', 'Aggregations', 'templateBaseUrl', 'homeUrl', 'FilterSelection', '$sce', '$filter'];
+  LocationsGeoMapController.$inject = ['$scope', 'leafletData', 'TransactionAggregations', 'templateBaseUrl', 'homeUrl', 'FilterSelection', '$sce', '$filter'];
 
-  /**
-  * @namespace LocationsGeoMapController
-  */
-  function LocationsGeoMapController($scope, leafletData, Aggregations, templateBaseUrl, homeUrl, FilterSelection, $sce, $filter) {
+  function LocationsGeoMapController($scope, leafletData, TransactionAggregations, templateBaseUrl, homeUrl, FilterSelection, $sce, $filter) {
     var vm = this;
 
     vm.geoView = "countries";
@@ -27,13 +19,17 @@
       {'id':2, 'name': 'Transition relation'}, 
       {'id':3, 'name': 'EXIT relation'}, 
       {'id':4, 'name': 'Trade relation'}, 
-      {'id':5, 'name': 'Other'}];
-    vm.selectedCountryRelation = [
-      {'id':1, 'name': 'Aid relation'}, 
-      {'id':2, 'name': 'Transition relation'}, 
-      {'id':3, 'name': 'EXIT relation'}, 
-      {'id':4, 'name': 'Trade relation'}, 
-      {'id':5, 'name': 'Other'}];
+      {'id':5, 'name': 'Other'}
+    ];
+    vm.selectedCountryRelation = $scope.selectedCountryRelation;
+
+    vm.relationMapping = {
+      'Aidrelation': 'Aid relation',
+      'Transitionrelation': 'Transition relation',
+      'EXITrelation': 'EXIT relation',
+      'Traderelation': 'Trade relation',
+      'Other': 'Other'
+    }
 
     vm.currentHoverText = '';
     vm.defaults = {
@@ -51,7 +47,7 @@
         lng: 18.00,
         zoom: 3
     };
-    
+
     vm.markers = {};
     vm.markerIcons = {
       Aidrelation: { html: '<div class="fa fa-map-marker fa-stack-1x fa-inverse marker-circle marker-circle-Aidrelation"></div>',type: 'div',iconSize: [28, 35],iconAnchor: [14, 18],markerColor: 'blue',iconColor: 'white',},
@@ -72,11 +68,6 @@
 
     vm.firstLoad = true;
 
-    /**
-    * @name activate
-    * @desc Actions to be performed when this controller is instantiated
-    * @memberOf oipa.countries.controllers.CountriesController
-    */
     function activate() {
 
       $scope.$watch('vm.filterSelection.selectionString', function (selectionString) {
@@ -86,6 +77,7 @@
     }
 
     vm.changeSelectedCountryRelations = function(){
+      $scope.selectedCountryRelation = vm.selectedCountryRelation;
       vm.updateMap();
     }
 
@@ -96,10 +88,10 @@
 
     vm.updateMap = function(){
 
-        Aggregations.aggregation('recipient_country', 'count,disbursement', vm.filterSelection.selectionString, 'recipient_country', 400, 1).then(countrySuccessFn, errorFn);
-        
-        // Aggregations.aggregation('recipient_region', 'count,disbursement', vm.filterSelection.selectionString, 'recipient_country', 400, 1).then(countrySuccessFn, errorFn);
-        
+        TransactionAggregations.aggregation('recipient_country', 'activity_count,disbursement', vm.filterSelection.selectionString, 'recipient_country', 400, 1).then(countrySuccessFn, errorFn);
+
+        // TransactionAggregations.aggregation('recipient_region', 'activity_count,disbursement', vm.filterSelection.selectionString, 'recipient_country', 400, 1).then(countrySuccessFn, errorFn);
+
         function countrySuccessFn(data, status, headers, config) {
             vm.updateCountryMarkers(data.data.results);
         }
@@ -154,10 +146,7 @@
 
       for (var i = 0; i < markerData.length;i++){
        
-          var partnerType = 'Other';
-          if(partnerlanden[markerData[i].recipient_country.code] !== undefined){
-            partnerType = partnerlanden[markerData[i].recipient_country.code].replace(/\s/g, ''); 
-          }
+          var partnerType = partnerlanden[markerData[i].recipient_country.code]
 
           if (selectedCountryRelationMap[partnerType] === undefined){
 
@@ -168,11 +157,12 @@
           } else {
             var flag = markerData[i].recipient_country.code;
             var flag_lc = flag.toLowerCase();
+
             var message = '<span class="flag-icon flag-icon-'+flag_lc+'"></span>'+
                   '<h4>'+markerData[i].recipient_country.name+'</h4>'+
-                  '<p><b>Activities:</b> '+markerData[i]['count']+'</p>'+
+                  '<p><b>Activities:</b> '+markerData[i]['activity_count']+'</p>'+
                   '<p><b>Total expenditure:</b> '+ $filter('shortcurrency')(markerData[i]['disbursement'],'€') +'</p>'+
-                  '<p><b>Relationship type:</b> '+partnerType+'</p>'+
+                  '<p><b>Relationship type:</b> '+vm.relationMapping[partnerType]+'</p>'+
                   '<a class="btn btn-default" href="'+homeUrl+'/countries/'+markerData[i].recipient_country.code+'/">Go to country overview</a>';
 
             if(vm.markers[markerData[i].recipient_country.code] === undefined){
