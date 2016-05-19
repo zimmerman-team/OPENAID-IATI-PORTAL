@@ -7,7 +7,7 @@
         
     <div class="row">
         <div class="col-md-12">
-            <h1 class="title">{{vm.organisation.name}}</h1>
+            <h1 class="title">{{vm.organisation_id}}</h1>
         </div>
     </div>
 
@@ -21,7 +21,7 @@
         <div class="col-md-12">
 
             <div class="hp-block wit">
-                <h3>Transactions for organisation identifier {{vm.organisation.original_ref}}</h3>
+                <h3>Transactions for organisation {{vm.organisation_id}}</h3>
                 <financials-line-chart 
                     has-to-contain="receiver_organisation_primary_name">
                 </financials-line-chart>
