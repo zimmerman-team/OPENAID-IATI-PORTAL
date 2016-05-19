@@ -77,7 +77,7 @@
       function errorFn(data, status, headers, config){
         console.log(data);
       }
-      console.log('serach callled')
+
       // reset previous search, show results box with loaders
       for (var item in vm.searchData){
         vm.searchData[item].loaded = false;

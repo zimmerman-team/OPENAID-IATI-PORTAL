@@ -98,7 +98,6 @@ var sectorLayoutTest = null;
 
       TransactionAggregations.aggregation('transaction_date_year', 'commitment', selectionString, 'transaction_date_year').then(function(data, status, headers, config){
         vm.commitments_by_year = data.data.results;
-        console.log(vm.commitments_by_year)
         vm.commitments_total = 0;
         for (var i = vm.commitments_by_year.length - 1; i >= 0; i--) {
           vm.commitments_total += vm.commitments_by_year[i].commitment;

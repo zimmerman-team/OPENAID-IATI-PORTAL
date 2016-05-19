@@ -254,7 +254,7 @@
             redirectTo:   'search',
         })
         .state({
-            name:        'zeoken',
+            name:        'zoeken',
             url:         '/zoeken?search&tab',
             redirectTo:   'search',
         })

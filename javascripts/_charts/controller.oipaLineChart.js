@@ -72,6 +72,22 @@
       }
     };
 
+    vm.receiverOrgReMap = function(results){
+      console.log('receiverOrgReMap!');
+      var reformatted = [];
+      for (var i = 0;i < results.length;i++){
+        reformatted.push({
+          'disbursement': results[i].disbursement,
+          'transaction_date_year': results[i].transaction_date_year,
+          'receiver_org': {
+            'code': results[i].receiver_org,
+            'name': results[i].receiver_org
+          }
+        });
+      }
+      return reformatted;
+    }
+
     vm.loadData = function(){
 
       TransactionAggregations.aggregation(vm.groupBy, vm.aggregationKey, vm.aggregationFilters).then(succesFn, errorFn);
@@ -80,6 +96,8 @@
 
         if(vm.mapping != undefined){
           data.data.results = vm[vm.mapping + 'ReMap'](data.data.results);
+        } else if(vm.groupBy == 'receiver_org,transaction_date_year'){
+          data.data.results = vm.receiverOrgReMap(data.data.results);
         }
         vm.chartData = vm.reformatData(data.data.results);
         $scope.api.updateWithData(vm.chartData);
@@ -170,6 +188,7 @@
       var mappedData = {};
       
       var firstGroupBy = vm.groupBy.split(',')[0];
+      
       for (var i = 0; i < data.length;i++){
         if(mappedData[data[i][firstGroupBy][vm.groupById]] === undefined){
           mappedData[data[i][firstGroupBy][vm.groupById]] = {
@@ -217,8 +236,6 @@
     vm.stackedAreaChartReformatData = function(data){
       var mappedData = {};
       var years = {};
-
-
 
       for (var i = 0; i < data.length;i++){
         years[data[i]['year']] = data[i]['year'];

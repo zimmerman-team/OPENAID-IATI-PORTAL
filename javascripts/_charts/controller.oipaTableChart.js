@@ -1,7 +1,3 @@
-/**
-* OipaLineChartController
-* @namespace oipa.charts.controllers
-*/
 (function () {
   'use strict';
 

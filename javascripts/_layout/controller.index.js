@@ -94,7 +94,7 @@
       },
       'receiver_org': {
         groupBy: 'receiver_org,transaction_date_year',
-        groupById: 'receiver_org',
+        groupById: 'code',
         hasToContain: 'receiver_organisation_primary_name'
       },
       'sector': {
