@@ -1,5 +1,5 @@
 <script type="text/ng-template" id="sector-tree">
-    <div ng-if="item.children" class="hp-block wit parent collapsed">
+    <div ng-if="item.children && (item.activity_count != 0)" class="hp-block wit parent collapsed">
         <div class="row sectors">
             <div class="col-xs-1">
                 <span class="expandme" ng-click="vm.toggleHideChildren($event)"></span>
@@ -22,12 +22,12 @@
         </div>
     </div>
 
-    <div ng-if="!item.children" class="hp-block wit">
+    <div ng-if="!item.children && (item.activity_count != 0)" class="hp-block wit">
         <div class="row sectors">
             <div class="col-xs-11 col-xs-offset-1">
                 <div class="row">
                     <div class="col-sm-6">
-                        <h3 class="no-margin"><a ui-sref="sector({ sector_id: item.sector_id })">{{ item.sector.name }}</a></h3>
+                        <h3 class="no-margin"><a ui-sref="sector({ sector_id: item.sector.code })">{{ item.sector.name }}</a></h3>
                     </div>
                     <div class="col-sm-3">
                         <h3 class="no-margin">{{item.disbursement  | shortcurrency :'€'}} <span class="visible-xs-inline">disbursement</span></h3>
@@ -40,7 +40,7 @@
         </div>
     </div>
 
-    <div ng-if="item.children" class="children">
+    <div ng-if="item.children && (item.activity_count != 0)" class="children">
         <div collapse="vm.isCollapsed" ng-repeat="item in item.children" ng-include="'sector-tree'"></div>
     </div>    
 </script>

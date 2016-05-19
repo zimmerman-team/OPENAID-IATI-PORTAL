@@ -119,7 +119,7 @@
             shown="vm.selectedTab == 'receiver-organisations'"></receiver-organisations-list>
     </div>
 
-    <div ng-show="vm.selectedTab == 'sectors' && vm.sector_digit != 5">
+    <div ng-if="vm.sector_id < 10000" ng-show="vm.selectedTab == 'sectors'">
         <sector-list 
             has-to-contain="sector" 
             count="vm.tabs[5].count"
