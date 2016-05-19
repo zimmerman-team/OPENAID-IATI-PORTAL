@@ -39,6 +39,7 @@
 
         var results = data.data.results;
         var filterKey = vm.groupBy;
+
         if(vm.groupBy == 'receiver_org'){
           filterKey = 'receiver_organisation_primary_name';
           for(var i = 0;i < results.length;i++){
@@ -57,7 +58,6 @@
         filter__in = filter__in.join();
 
         $scope.shownIds = '&' + filterKey + '=' + filter__in;
-        
         vm.chartData = vm.reformatData(results);
       }
     }

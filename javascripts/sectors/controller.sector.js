@@ -67,6 +67,8 @@ var sectorLayoutTest = null;
         vm.sector_digit = 3;
       } else {
         vm.sector_digit = 5;
+        // remove sectors from tabs
+        delete vm.tabs[5];
       }
       findSector(vm.sector_id, sectorMapping.children);
 

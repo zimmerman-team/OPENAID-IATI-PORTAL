@@ -73,7 +73,6 @@
     };
 
     vm.receiverOrgReMap = function(results){
-      console.log('receiverOrgReMap!');
       var reformatted = [];
       for (var i = 0;i < results.length;i++){
         reformatted.push({

@@ -124,7 +124,6 @@
 
       function procesTransactions(data, status, headers, config){
         vm.transactionData = angular.copy(data.data.results);
-        console.log(vm.transactionData);
         vm.reformatTransactionData(data.data.results);
       }
 

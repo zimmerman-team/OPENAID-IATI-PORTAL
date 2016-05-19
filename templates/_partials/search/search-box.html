@@ -29,7 +29,7 @@
         <div class="results">
             <div class="row" ng-repeat="activity in vm.searchData.activities.data">
                 <div class="col-md-8">
-                    <a ui-sref='activiteit({"activity_id": activity.id})'>{{activity.title.narratives[0].text}}</a>
+                    <a ui-sref='activity({"activity_id": activity.iati_identifier})'>{{activity.title.narratives[0].text}}</a>
                 </div>
                 <div class="col-md-4">
                     {{activity.iati_identifier}}

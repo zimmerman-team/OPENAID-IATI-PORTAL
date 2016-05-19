@@ -67,21 +67,21 @@
         aggregationFilters: '&amp;order_by=-disbursement&amp;limit=5',
         groupBy: 'recipient_country',
         groupById: 'code',
-        groupSref: 'country',
+        groupSref: 'countries',
         aggregationKey: 'activity_count,disbursement',
       },
       'receiver_org': {
         aggregationFilters: '&amp;order_by=-disbursement&amp;limit=5',
         groupBy: 'receiver_org',
-        groupById: 'receiver_org',
-        groupSref: 'receiver_org',
+        groupById: 'code',
+        groupSref: 'organisations',
         aggregationKey: 'activity_count,disbursement',
       },
       'sector': {
         aggregationFilters: '&amp;order_by=-disbursement&amp;limit=5',
         groupBy: 'sector',
         groupById: 'code',
-        groupSref: 'sector',
+        groupSref: 'sectors',
         aggregationKey: 'activity_count,disbursement',
       }
     };
