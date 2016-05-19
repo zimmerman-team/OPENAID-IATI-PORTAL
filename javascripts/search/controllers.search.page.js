@@ -30,8 +30,6 @@
       if($stateParams.tab != undefined){
         vm.selectedTab = $stateParams.tab;
       }
-
     }
-
   }
 })();

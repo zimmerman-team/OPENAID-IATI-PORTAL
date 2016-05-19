@@ -10,6 +10,8 @@
                 </div>
             </div>
 
+            <h4 ng-show="vm.searchValue">Showing search results for '{{vm.searchValue}}'</h4>
+
             <div ng-hide="vm.searchValue == ''">
 
                  <sub-navbar 
@@ -19,7 +21,7 @@
 
                 <div ng-show="vm.selectedTab == 'activities'">
                     <activity-list 
-                        has-to-contain="query" 
+                        has-to-contain="q" 
                         count="vm.tabs[0].count"
                         shown="vm.selectedTab == 'activities'"
                         search-value="vm.searchValue"></activity-list>

@@ -86,8 +86,6 @@
 
 			if(m.selectedreceiverOrganisations.length){
 				var receiver_orgs = "&receiver_organisation_primary_name=" + m.selectedreceiverOrganisations.map(function(receiver_org) {
-					console.log(m.selectedreceiverOrganisations);
-					console.log(receiver_org);
 					return encodeURIComponent(receiver_org.code)
 				}).join(',');
 				selectList.push(receiver_orgs);

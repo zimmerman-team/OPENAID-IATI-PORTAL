@@ -143,7 +143,7 @@
                 </div>
             </div>
         </div>
-<!-- 
+
         <div class="header">
             <div class="row">
                 <div class="col-xs-8">
@@ -157,7 +157,10 @@
         <div class="results">
             <div class="row" ng-repeat="organisation in vm.searchData.organisations.data">
                 <div class="col-md-8">
-                    <a ui-sref='organisation({"organisation_id": organisation.receiver_organisation_id})'>{{organisation.name}}</a>
+                    <a ui-sref='organisation({"organisation_id": organisation.receiver_org})'>{{organisation.receiver_org}}</a>
+                </div>
+                <div class="col-md-4">
+                    {{organisation.activity_count}} projects
                 </div>
             </div>
 
@@ -172,6 +175,6 @@
                     <img ng-src="{{templateBaseUrl}}/images/spinning-circles.svg" width="50" alt="">
                 </div>
             </div>
-        </div> -->
+        </div>
     </div>
 </div>

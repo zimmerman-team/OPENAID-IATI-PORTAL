@@ -243,13 +243,23 @@
         })
         .state({
             name:        'search',
-            url:         '/zoeken?search&tab',
+            url:         '/search?search&tab',
             controller:  'SearchPageController',
             controllerAs: 'vm',
             templateUrl: templateBaseUrl + '/templates/search/search-page.html'
         })
         .state({
             name:         'search-with-slash-redirect',
+            url:          '/search/?search&tab',
+            redirectTo:   'search',
+        })
+        .state({
+            name:        'zeoken',
+            url:         '/zoeken?search&tab',
+            redirectTo:   'search',
+        })
+        .state({
+            name:         'zoeken-with-slash-redirect',
             url:          '/zoeken/?search&tab',
             redirectTo:   'search',
         })

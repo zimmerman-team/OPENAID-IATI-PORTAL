@@ -55,17 +55,16 @@
     vm.focus = function(){
       if(typeof vm.searchString == 'undefined' || vm.searchString.length < 2){
         vm.showResults = false;
-      }
-      else {
+      } else {
         vm.showResults = true;
+        vm.submit();
       }
     }
 
     vm.blur = function(){
-      //setTimeout(function(){ alert("Hello"); }, 3000);
       $timeout(function(){
-          vm.showResults = false;
-        }, 500);
+        vm.showResults = false;
+      }, 500);
     }
 
     vm.search = function(){
@@ -78,7 +77,7 @@
       function errorFn(data, status, headers, config){
         console.log(data);
       }
-
+      console.log('serach callled')
       // reset previous search, show results box with loaders
       for (var item in vm.searchData){
         vm.searchData[item].loaded = false;
@@ -116,12 +115,12 @@
         vm.searchData.sectors.loaded = true;
       }, errorFn);
 
-      // // get results from organisations aggregation
-      // TransactionAggregations.aggregation('receiver_org', 'activity_count', '&q=' + vm.searchString, '-count', 3).then(function(data, status, headers, config){
-      //   vm.searchData.organisations.data = data.data.results;
-      //   vm.searchData.organisations.total = data.data.count;
-      //   vm.searchData.organisations.loaded = true;
-      // }, errorFn);
+      // get results from organisations aggregation
+      TransactionAggregations.aggregation('receiver_org', 'activity_count', '&q_fields=participating_org&q=' + vm.searchString, '-activity_count', 3).then(function(data, status, headers, config){
+        vm.searchData.organisations.data = data.data.results;
+        vm.searchData.organisations.total = data.data.count;
+        vm.searchData.organisations.loaded = true;
+      }, errorFn);
     }
 
   }

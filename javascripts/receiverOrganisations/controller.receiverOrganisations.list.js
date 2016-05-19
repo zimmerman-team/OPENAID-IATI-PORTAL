@@ -40,7 +40,7 @@
       $scope.$watch("searchValue", function (searchValue, oldSearchValue) {
         if(searchValue == undefined) return;
         if(searchValue !== oldSearchValue){
-          searchValue == '' ? vm.extraSelectionString = '' : vm.extraSelectionString = '&q_fields=receiver_organisation&q='+searchValue;
+          searchValue == '' ? vm.extraSelectionString = '' : vm.extraSelectionString = '&q_fields=participating_org&q='+searchValue;
           vm.update();
           vm.loading = false;
           vm.searchPage = true;

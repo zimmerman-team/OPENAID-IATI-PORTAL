@@ -42,7 +42,7 @@
           return;
         }
         if(searchValue !== oldSearchValue){
-          searchValue == '' ? vm.extraSelectionString = '' : vm.extraSelectionString = '&q_field=recipient_country&q='+searchValue;
+          searchValue == '' ? vm.extraSelectionString = '' : vm.extraSelectionString = '&q_fields=recipient_country&q='+searchValue;
           vm.update();
           vm.loading = false;
           vm.searchPage = true;
