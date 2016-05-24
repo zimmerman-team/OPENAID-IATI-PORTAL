@@ -1,7 +1,3 @@
-/**
-* CountriesController
-* @namespace oipa.countries.controllers
-*/
 (function () {
   'use strict';
 
@@ -11,10 +7,8 @@
 
   ActivityController.$inject = ['Activities', '$stateParams', 'FilterSelection', '$filter', 'homeUrl', '$http', '$location', 'templateBaseUrl', '$sce'];
 
-  /**
-  * @namespace ActivitiesController
-  */
   function ActivityController(Activities, $stateParams, FilterSelection, $filter, homeUrl, $http, $location, templateBaseUrl, $sce) {
+
     var vm = this;
     vm.activity = null;
     vm.activityId = $stateParams.activity_id;
@@ -34,6 +28,7 @@
     vm.funding_organisations = [];
     vm.extending_organisations = [];
     vm.transactionData = [];
+    vm.isDGISProject = true;
 
     vm.selectedTab = 'summary';
 
@@ -42,13 +37,20 @@
       {'id': 'transactions', 'name': 'Transactions', 'count': -1},
       {'id': 'fullreport', 'name': 'Detailed report', 'count': -1},
       {'id': 'documents', 'name': 'Documents', 'count': -1},
-      {'id': 'thirdparty', 'name': 'Third-party data', 'count': -1},
+      {'id': 'thirdparty', 'name': 'Partners', 'count': -1},
       {'id': 'form', 'name': 'Ask a question about this project', 'count': -1},
     ]
 
     activate();
 
-    function activate() {      
+    function activate() {
+
+      var dgis_identifiers_start_with = ['XM-DAC-7', 'NL-1'];
+      console.log(vm.activityId.indexOf('NL-1'));
+      if (vm.activityId.indexOf('XM-DAC-7') == -1 && vm.activityId.indexOf('NL-1') == -1){
+        vm.isDGISProject = false;
+      }
+
       Activities.get(vm.activityId).then(successFn, errorFn);
       Activities.getTransactions(vm.activityId).then(procesTransactions, errorFn);
       Activities.getProvidedActivities(vm.activityId).then(providedSuccessFn, errorFn);
@@ -127,16 +129,16 @@
         vm.reformatTransactionData(data.data.results);
       }
 
-      var url = homeUrl + '/wp-admin/admin-ajax.php?action=rsr_call&iati_id=' + vm.activityId;
+      vm.rsrLoading = false;
+      // var url = homeUrl + '/wp-admin/admin-ajax.php?action=rsr_call&iati_id=' + vm.activityId;
       
-      return $http.get(url, {}).then(function(data, status, headers, config){
-        vm.rsrProjects = data.data.objects;
-        vm.rsrLoading = false;
-        // vm.tabs[3].count = vm.rsrProjects.length;
-      },function(data, status, headers, config){
-        //console.log(data);
-      });
-
+      // return $http.get(url, {}).then(function(data, status, headers, config){
+      //   vm.rsrProjects = data.data.objects;
+      //   vm.rsrLoading = false;
+      //   // vm.tabs[3].count = vm.rsrProjects.length;
+      // },function(data, status, headers, config){
+      //   //console.log(data);
+      // });
     }
 
     vm.reformatTransactionData = function(transactions){
@@ -192,7 +194,6 @@
 
       vm.transactionChartData = data;
     }
-
     
     vm.transactionChartOptions = {
       chart: {

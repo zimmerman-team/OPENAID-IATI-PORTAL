@@ -9,12 +9,12 @@
     .module('oipa.search')
     .controller('SearchController', SearchController);
 
-  SearchController.$inject = ['$scope', '$state', 'Aggregations', 'TransactionAggregations', 'Activities', 'templateBaseUrl', '$timeout'];
+  SearchController.$inject = ['$scope', '$state', 'Aggregations', 'TransactionAggregations', 'Activities', 'templateBaseUrl', '$timeout', '$location'];
 
   /**
   * @namespace SearchController
   */
-  function SearchController($scope, $state, Aggregations, TransactionAggregations, Activities, templateBaseUrl, $timeout) {
+  function SearchController($scope, $state, Aggregations, TransactionAggregations, Activities, templateBaseUrl, $timeout, $location) {
     var vm = this;
     $scope.templateBaseUrl = template_url;
     vm.searchString = '';
@@ -46,6 +46,8 @@
       if(vm.currentPage == 'search'){
         $scope.searchValue = vm.searchString;
         vm.showResults = false;
+
+        $location.search('search', vm.searchString);
       } else {
         vm.search();
         // $state.go('search', { search: vm.searchString });

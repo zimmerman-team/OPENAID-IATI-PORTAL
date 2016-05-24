@@ -15,6 +15,25 @@
         selected-tab='vm.selectedTab'>
     </sub-navbar>
 
+    <div class="row full-report" ng-show="!vm.isDGISProject">
+        <div class="col-sm-12">
+            <div class="hp-block wit">
+                <h5>
+                <b>Disclaimer</b>: The data for this page has been produced from IATI data reported by {{vm.activity.reporting_organisations[0].narratives[0].text}}. Please contact them if you have any questions about their data. This page might not show all their data appropriately since this page is made to show data reported by the Dutch Ministry of Foreign Affairs (DGIS).
+                </h5>
+            </div>
+        </div>
+    </div>
+
+    <div class="row full-report" ng-show="vm.selectedTab == 'thirdparty' && vm.providedActivities.length">
+        <div class="col-sm-12">
+            <div class="hp-block wit">
+                <h5>
+                <b>Disclaimer</b>: The data for this table has been produced from IATI data reported by other organisations. Those organisations reported {{vm.activity.title.narratives[0].text}} as provider of 1 or more transactions.
+                </h5>
+            </div>
+        </div>
+    </div>
     
     <div ng-show="vm.selectedTab == 'summary'">
 
@@ -486,79 +505,41 @@
         </div>
     </div>
 
-    <div class="row" ng-show="vm.selectedTab == 'thirdparty'">
-        <div class="col-md-12">
+    <div class="row full-report" ng-show="vm.selectedTab == 'thirdparty'">
+        <div class="col-sm-12">
 
-            <div class="hp-block wit" ng-if="vm.providedActivities.length">
-                <h3>Funded projects in IATI</h3>
-                <table class="table table-striped provided-activities-table">
-                    <thead>
-                        <th class="col-sm-6">
-                            Title
-                        </th>
-                        <th class="col-sm-3">
-                            Reporting organisation
-                        </th>
-                        <th class="col-sm-3">
-                            IATI identifier
-                        </th>
-                    </thead>
-                    <tbody>
-                        <tr ng-repeat="providerActivity in vm.providedActivities">
-                            <td class="col-sm-6">
-                                {{providerActivity.title.narratives[0].text}}
-                            </td>
-                            <td class="col-sm-3">
-                                {{providerActivity.reporting_organisations[0].narratives[0].text}}
-                            </td>
-                            <td class="col-sm-3">
-                                {{providerActivity.iati_identifier}}
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
 
-            <div class="hp-block wit rsr" ng-if="vm.rsrLoading || vm.rsrProjects.length">
-                <h3>Akvo Really Simple Reporting (RSR)</h3>
-                <p>
-                    The following RSR projects are funded by this OpenaidNL activity.
-                </p>
-                <div class="row" ng-if="vm.rsrLoading">
-                    <div class="svg-loader">
-                        <img ng-src="{{vm.templateBaseUrl}}/images/spinning-circles.svg" width="50" alt="">
-                    </div>
-                </div>
-            </div>
 
-            <div class="hp-block wit" ng-if="!vm.providedActivities.length && !vm.rsrLoading && !vm.rsrProjects.length">
-                <h3>Third-party data</h3>
-                No third-party data available.
-            </div>
-        </div>
-        <div 
-            class="activity-list-item col-sm-12" 
-            ng-show="vm.rsrProjects.length != 0"
-            ng-repeat="item in vm.rsrProjects">
+            <div class="hp-block wit with-table triple">
+                    <h3>Partner activities</h3>
+                    <h5 style="padding: 0 15px 12px 15px;" ng-if="!vm.providedActivities.length">No partner activities found in IATI data.</h4>
+                    <table class="table table-striped vertical-border" ng-if="vm.providedActivities.length">
+                        <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Reporting organisation</th>
+                                <th>IATI identifier</th>
+                            </tr>
+                        </thead>
+                         <tbody>
 
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="hp-block wit header">
-                        <div class="row">
-                            <div class="col-sm-2">
-
-                                <img ng-src="http://rsr.akvo.org{{item.current_image.thumbnails.map_thumb}}">
-                            </div>
-                            <div class="col-sm-10">
-                                <h2>
-                                    <a target="_blank" ng-href="http://rsr.akvo.org/en/project/{{item.id}}/">
-                                        {{ item.title }}
+                            <tr ng-repeat="providerActivity in vm.providedActivities">
+                            
+                                <td class="col-sm-6">
+                                <a ui-sref="activity({ activity_id: providerActivity.iati_identifier, tab: 'summary' })">
+                                    {{providerActivity.title.narratives[0].text}}
                                     </a>
-                                </h2>
-                                <p>{{item.project_plan_summary}}</p>
-                            </div>
-                        </div>
-                    </div>
+                                </td>
+                                <td class="col-sm-3">
+                                    {{providerActivity.reporting_organisations[0].narratives[0].text}}
+                                </td>
+                                <td class="col-sm-3">
+                                    {{providerActivity.iati_identifier}}
+                                </td>
+                                
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

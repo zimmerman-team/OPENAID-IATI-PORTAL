@@ -58,15 +58,15 @@
     run.$inject = ['$http', '$rootScope', '$urlRouter', '$location', '$state'];
 
     function run($http, $rootScope, $urlRouter, $location, $state) {
-        $http.defaults.xsrfHeaderName = 'X-CSRFToken';
-        $http.defaults.xsrfCookieName = 'csrftoken';
+        // $http.defaults.xsrfHeaderName = 'X-CSRFToken';
+        // $http.defaults.xsrfCookieName = 'csrftoken';
 
-        var original = $location.path;
-        $location.path = function (path, reload) {
+        // var original = $location.path;
+        // $location.path = function (path, reload) {
 
-            $location.reload = false;
-            return original.apply($location, [path]);
-        };
+        //     $location.reload = false;
+        //     return original.apply($location, [path]);
+        // };
 
         $rootScope.$on('$stateChangeStart', function(evt, to, params) {
           if (to.redirectTo) {
@@ -75,16 +75,16 @@
           }
         });
 
-        $rootScope.$on('$locationChangeSuccess', function(e, newUrl, oldUrl) {
-          e.preventDefault();
+        // $rootScope.$on('$locationChangeSuccess', function(e, newUrl, oldUrl) {
+        //   e.preventDefault();
 
-           if($location.reload != undefined){
-            delete $location['reload'];
-           } else {
-            $urlRouter.sync();
-           }
+        //    if($location.reload != undefined){
+        //     delete $location['reload'];
+        //    } else {
+        //     $urlRouter.sync();
+        //    }
 
-        });
+        // });
 
         $urlRouter.listen();
     }

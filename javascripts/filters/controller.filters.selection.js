@@ -71,15 +71,22 @@
 
       if(path.indexOf(':') !== -1){
 
-        var detail_pages = ['country_id','activity_id','organisation_id', 'sector_id'];
+        var detail_pages = ['country_id', 'region_id', 'activity_id','organisation_id', 'sector_id'];
         for(var i = 0;i < detail_pages.length;i++){
           if(path.indexOf(detail_pages[i]) !== -1){
-            path = path.replace(':' + detail_pages[i], $state.params[detail_pages[i]]);
 
             // we are at a detail page with name detail_pages[i]
             // remove sector filter from selection string
 
-            var single_filter_key = detail_pages[i].replace('_id', '');
+            var detail_mapping = {
+              'country_id': 'recipient_country',
+              'region_id': 'recipient_region',
+              'activity_id': 'activity',
+              'organisation_id': 'receiver_organisation_primary_name',
+              'sector_id': 'sector'
+            }
+
+            var single_filter_key = detail_mapping[detail_pages[i]];
           
             selectionString = _.map(selectionString.split('&'), function(single_filter){ 
               if(single_filter.length){
@@ -98,11 +105,11 @@
           }
         }
       }
-      
+
       if(selectionString.length){
-        $location.path(path).search('filters', selectionString);
+        $location.search('filters', selectionString);
       } else {
-        $location.path(path).search('filters',null);
+        $location.search('filters',null);
       }
     }
 
@@ -173,7 +180,7 @@
 
         for(var i = 0;i < participating_organisation_names.length; i++){
           vm.selectedreceiverOrganisations.push({'name': participating_organisation_names[i]}); 
-        } 
+        }
       }
 
       // transaction year filter
@@ -187,10 +194,10 @@
         vm.search.searchString = filter_obj['q'];
       }
 
-      if(filter_obj['total_incoming_funds_gte'] != undefined && filter_obj['total_incoming_funds_lte'] != undefined){
+      if(filter_obj['total_budget_gte'] != undefined && filter_obj['total_budget_lte'] != undefined){
 
         Budget.budget.on = true;
-        Budget.budget.value = [filter_obj['total_incoming_funds_gte'], filter_obj['total_incoming_funds_lte']];
+        Budget.budget.value = [filter_obj['total_budget_gte'], filter_obj['total_budget_lte']];
       }
 
       vm.filterSelection.save();

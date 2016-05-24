@@ -25,6 +25,8 @@
     activate();
 
     function activate(){
+      FilterSelection.reset();
+      
       if($stateParams.search != undefined){
         vm.searchValue = $stateParams.search;
         vm.search.searchString = $stateParams.search;
