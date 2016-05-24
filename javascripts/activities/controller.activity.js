@@ -37,7 +37,7 @@
       {'id': 'transactions', 'name': 'Transactions', 'count': -1},
       {'id': 'fullreport', 'name': 'Detailed report', 'count': -1},
       {'id': 'documents', 'name': 'Documents', 'count': -1},
-      {'id': 'thirdparty', 'name': 'Partners', 'count': -1},
+      {'id': 'partners', 'name': 'Partners', 'count': -1},
       {'id': 'form', 'name': 'Ask a question about this project', 'count': -1},
     ]
 
