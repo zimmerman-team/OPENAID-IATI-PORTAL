@@ -86,7 +86,7 @@
 
 			if(m.selectedreceiverOrganisations.length){
 				var receiver_orgs = "&receiver_organisation_primary_name=" + m.selectedreceiverOrganisations.map(function(receiver_org) {
-					return encodeURIComponent(receiver_org.code)
+					return encodeURIComponent(receiver_org.receiver_org)
 				}).join(',');
 				selectList.push(receiver_orgs);
 			}

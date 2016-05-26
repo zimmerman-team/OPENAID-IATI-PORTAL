@@ -179,7 +179,7 @@
         var participating_organisation_names = filter_obj['receiver_organisation_primary_name'].split(',');
 
         for(var i = 0;i < participating_organisation_names.length; i++){
-          vm.selectedreceiverOrganisations.push({'name': participating_organisation_names[i]}); 
+          vm.selectedreceiverOrganisations.push({'receiver_org': participating_organisation_names[i]}); 
         }
       }
 
