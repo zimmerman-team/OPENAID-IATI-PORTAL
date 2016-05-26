@@ -46,7 +46,6 @@
     function activate() {
 
       var dgis_identifiers_start_with = ['XM-DAC-7', 'NL-1'];
-      console.log(vm.activityId.indexOf('NL-1'));
       if (vm.activityId.indexOf('XM-DAC-7') == -1 && vm.activityId.indexOf('NL-1') == -1){
         vm.isDGISProject = false;
       }

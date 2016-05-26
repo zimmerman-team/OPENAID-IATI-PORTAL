@@ -447,7 +447,7 @@
                     </thead>
                      <tbody>
                         <tr ng-repeat="marker in vm.activity.policy_markers">
-                            <td>{{marker.policy_marker.name}}</td>
+                            <td>{{marker.narratives[0].text}}</td>
                             <td class="text-center">
                                 <span ng-if="marker.significance.code == 2"><i class="fa fa-check"></i></span>
                             </td>
