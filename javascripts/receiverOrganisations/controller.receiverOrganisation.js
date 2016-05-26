@@ -33,7 +33,7 @@
     activate();
 
     function activate() {
-      receiverOrganisations.selectedreceiverOrganisations.push({'code': vm.organisation_id, 'name': vm.organisation_id});
+      receiverOrganisations.selectedreceiverOrganisations.push({'code': vm.organisation_id, 'name': vm.organisation_id, 'receiver_org': vm.organisation_id});
       vm.filterSelection.save();
       
       $scope.$watch('vm.filterSelection.selectionString', function (selectionString) {
