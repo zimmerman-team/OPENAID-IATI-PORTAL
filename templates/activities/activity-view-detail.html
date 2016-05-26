@@ -91,7 +91,7 @@
                             </tr>
                             <tr>
                                 <td>Implementing organisation(s):</td>
-                                <td><span ng-repeat='org in vm.implementing_organisations'><a ui-sref="organisation({ organisation_id: org.ref })">{{org.narratives[0].text}}</a>{{$last ? '' : ', '}}</span></td>
+                                <td><span ng-repeat='org in vm.implementing_organisations'><a ui-sref="organisation({ organisation_id: org.narratives[0].text })">{{org.narratives[0].text}}</a>{{$last ? '' : ', '}}</span></td>
                             </tr>
                             <tr>
                                 <td>Status:</td>
@@ -283,19 +283,19 @@
                         </tr>
                         <tr>
                             <td>Funding organisations:</td>
-                            <td><span ng-repeat='org in vm.funding_organisations'><a ui-sref="organisation({ organisation_id: org.ref })">{{org.narratives[0].text}}</a>{{$last ? '' : ', '}}</span></td>
+                            <td><span ng-repeat='org in vm.funding_organisations'><a ui-sref="organisation({ organisation_id: org.narratives[0].text })">{{org.narratives[0].text}}</a>{{$last ? '' : ', '}}</span></td>
                         </tr>
                         <tr>
                             <td>Accountable organisations:</td>
-                            <td><span ng-repeat='org in vm.accountable_organisations'><a ui-sref="organisation({ organisation_id: org.ref })">{{org.narratives[0].text}}</a>{{$last ? '' : ', '}}</span></td>
+                            <td><span ng-repeat='org in vm.accountable_organisations'><a ui-sref="organisation({ organisation_id: org.narratives[0].text })">{{org.narratives[0].text}}</a>{{$last ? '' : ', '}}</span></td>
                         </tr>
                         <tr>
                             <td>Extending organisations:</td>
-                            <td><span ng-repeat='org in vm.extending_organisations'><a ui-sref="organisation({ organisation_id: org.ref })">{{org.narratives[0].text}}</a>{{$last ? '' : ', '}}</span></td>
+                            <td><span ng-repeat='org in vm.extending_organisations'><a ui-sref="organisation({ organisation_id: org.narratives[0].text })">{{org.narratives[0].text}}</a>{{$last ? '' : ', '}}</span></td>
                         </tr>
                         <tr>
                             <td>Implementing organisations:</td>
-                            <td><span ng-repeat='org in vm.implementing_organisations'><a ui-sref="organisation({ organisation_id: org.ref })">{{org.narratives[0].text}}</a>{{$last ? '' : ', '}}</span></td>
+                            <td><span ng-repeat='org in vm.implementing_organisations'><a ui-sref="organisation({ organisation_id: org.narratives[0].text })">{{org.narratives[0].text}}</a>{{$last ? '' : ', '}}</span></td>
                         </tr>
                         <tr>
                             <td>Tied status:</td>
