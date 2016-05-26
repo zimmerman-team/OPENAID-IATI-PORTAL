@@ -94,19 +94,18 @@
 
     vm.showExactLocation = function() {
 
-      if(!vm.geoLocation.center_longlat){
+      if(!vm.geoLocation.location){
         return false;
       }
 
-      var location = vm.geoLocation.center_longlat.replace('POINT (', '').replace(')', '');
-      location = location.split(' ');
+      var location = vm.geoLocation.location;
 
-      vm.center.lat = parseInt(location[1]);
-      vm.center.lng = parseInt(location[0]);
+      vm.center.lat = parseInt(location.coordinates[1]);
+      vm.center.lng = parseInt(location.coordinates[0]);
 
       vm.markers['location'] = {
-        lat: parseInt(location[1]),
-        lng: parseInt(location[0]),
+        lat: parseInt(location.coordinates[1]),
+        lng: parseInt(location.coordinates[0]),
       }
 
       if (vm.geoLocation.code === parseInt(vm.geoLocation.code, 10))
