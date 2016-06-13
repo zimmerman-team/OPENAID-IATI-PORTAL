@@ -157,7 +157,9 @@
         Sectors.getSectors(filter_obj['sector']).then(function(data, status, headers, config){
 
           for(var i = 0;i < data.data.results.length; i++){
-            vm.selectedSectors.push(data.data.results[i]);
+            if(filter_obj['sector'].indexOf(data.data.results[i].sector.code) > -1){
+              vm.selectedSectors.push(data.data.results[i]);
+            }
           }
           vm.filterSelection.save();
         }, errorFn);
