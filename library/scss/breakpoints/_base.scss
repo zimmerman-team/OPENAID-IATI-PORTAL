@@ -3219,6 +3219,50 @@ footer{
   opacity: .8;
 }
 
+/* .container.link {
+  position:fixed;
+  left:50%;
+  transform:translateX(-50%);
+  top:50px;
+} */
+
+#to-iati-studio {
+  position:fixed;
+  top:50px;
+  right:15px;
+  z-index: 10;
+  font-size: 11px;
+  transform-origin: 100% 0;
+  text-align: center;
+  padding:5px 7px;
+  background-color:$oranje;
+  color:#fff;
+  text-decoration: none;
+  display: block;
+  width: 50px;
+  &:before {
+    content: ' ';
+    display: block;
+    border-style:solid;
+    border-width: 5px 0px 0 50px;
+    border-color: $oranje transparent transparent transparent;
+    position: absolute;
+    bottom:-5px;
+    left:0;
+  }
+  .hideMe {
+    max-height: 0;
+    transition: all .3s ease;
+    display: block;
+    overflow:hidden;
+  }
+  &:hover {
+    .hideMe {
+      max-height: 100px;
+      margin:10px 0;
+    }
+  }
+}
 // svg.clip {
 //   height: 0;
 //   width: 0;
