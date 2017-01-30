@@ -60,6 +60,7 @@ angular.module('oipa').filter('cut', function () {
       } else if(input > 999999){
         out = (input / 1000000).toFixed(2) + ' mln';
       } else if(input > 1000){
+        input = input.toFixed(0);
         addDot = true;
       }else {
         out = input.toFixed(0); 

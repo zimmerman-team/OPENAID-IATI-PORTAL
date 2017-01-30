@@ -59,11 +59,11 @@
         };
       }, errorFn);
 
-      Aggregations.aggregation('budget_year', 'budget', selectionString, 'budget_year').then(function(data, status, headers, config){
+      Aggregations.aggregation('budget_period_end_year', 'value', selectionString, 'budget_period_end_year').then(function(data, status, headers, config){
         vm.budget_by_year = data.data.results;
         vm.budget_total = 0;
         for (var i = vm.budget_by_year.length - 1; i >= 0; i--) {
-          vm.budget_total += vm.budget_by_year[i].budget;
+          vm.budget_total += vm.budget_by_year[i].value;
         };
       }, errorFn);
     }

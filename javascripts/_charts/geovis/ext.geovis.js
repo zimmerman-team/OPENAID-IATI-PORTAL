@@ -856,11 +856,12 @@ ZzLocationVis = (function() {
         frontColor = '#444';
       }
 
-      if (d.id === parseInt(d.id, 10))
+      if (d.id == parseInt(d.id, 10)) {
           $("#"+tooltipId).html('<div class="tt-header" style="background-color:'+d.color+';color:'+frontColor+';">'+d.name+'</div><div class="tt-text">Regional expenditure: '+abbreviatedValue(d.value)+'<br><a style="pointer-events: all" href="'+home_url+'/regions/'+d.id+'/">Go to region page</a></div>');
-      else
+      } else {
           $("#"+tooltipId).html('<div class="tt-header" style="background-color:'+d.color+';color:'+frontColor+';">'+d.name+'</div><div class="tt-text">Direct expenditure: '+abbreviatedValue(d.value)+'<br><a style="pointer-events: all" href="'+home_url+'/countries/'+d.id+'/">Go to country page</a></div>');
-      
+      }
+
       $("#"+tooltipId).show(0);
       
       updatePosition(d3.event);

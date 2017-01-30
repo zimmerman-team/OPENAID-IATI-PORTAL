@@ -82,7 +82,7 @@
         vm.startReformatTransactionData();
       }, errorFn);
 
-      Aggregations.aggregation('budget_year', 'budget', selectionString, 'budget_year').then(function(data, status, headers, config){
+      Aggregations.aggregation('budget_period_end_year', 'value', selectionString, 'budget_period_end_year').then(function(data, status, headers, config){
         vm.budget_by_year = data.data.results;
         vm.startReformatTransactionData();
       }, errorFn);
@@ -137,11 +137,11 @@
       }
 
       if(vm.budget_by_year.length){
-        if(vm.budget_by_year[0]['budget_year'] < min){
-          min = vm.budget_by_year[0]['budget_year'];
+        if(vm.budget_by_year[0]['budget_period_end_year'] < min){
+          min = vm.budget_by_year[0]['budget_period_end_year'];
         }
-        if(vm.budget_by_year[(vm.budget_by_year.length - 1)]['budget_year'] > max){
-          max = vm.budget_by_year[(vm.budget_by_year.length - 1)]['budget_year'];
+        if(vm.budget_by_year[(vm.budget_by_year.length - 1)]['budget_period_end_year'] > max){
+          max = vm.budget_by_year[(vm.budget_by_year.length - 1)]['budget_period_end_year'];
         }
       }
 
@@ -169,7 +169,7 @@
 
       data[0].values = valuesObjToArr(min, max, 'commitments_by_year', 'transaction_date_year', 'commitment');
       data[1].values = valuesObjToArr(min, max, 'disbursements_by_year', 'transaction_date_year', 'disbursement');
-      data[2].values = valuesObjToArr(min, max, 'budget_by_year', 'budget_year', 'budget');
+      data[2].values = valuesObjToArr(min, max, 'budget_by_year', 'budget_period_end_year', 'value');
       
       return data;
     }
