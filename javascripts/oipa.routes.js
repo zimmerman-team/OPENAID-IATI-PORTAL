@@ -36,7 +36,7 @@
         })
         .state({
             name:         'activities',
-            url:          '/projects' + filters,
+            url:          '/projects/' + filters,
             reloadOnSearch: false,
             controller:   'ActivitiesExploreController',
             controllerAs: 'vm',
@@ -44,12 +44,12 @@
         })
         .state({
             name:         'activities-with-slash-redirect',
-            url:          '/projects/',
+            url:          '/projects' + filters,
             redirectTo:   'activities',
         })
         .state({
             name:         'activities-list',
-            url:          '/projects/list' + filters,
+            url:          '/projects/list/' + filters,
             reloadOnSearch: false,
             controller:   'ActivitiesExploreController',
             controllerAs: 'vm',
@@ -57,24 +57,24 @@
         })
         .state({
             name:         'activities-list-with-slash-redirect',
-            url:          '/projects/list/' + filters,
+            url:          '/projects/list' + filters,
             redirectTo:   'activities-list',
         })
         .state({
             name:        'activity',
-            url:         '/projects/:activity_id?tab',
+            url:         '/projects/:activity_id/?tab',
             controller:  'ActivityController',
             controllerAs: 'vm',
             templateUrl: templateBaseUrl + '/templates/activities/activity-view-detail.html',
         })
         .state({
             name:         'activity-with-slash-redirect',
-            url:          '/projects/:activity_id/',
+            url:          '/projects/:activity_id',
             redirectTo:   'activity',
         })
         .state({
             name:        'locations-map',
-            url:         '/locations/list' + filters,
+            url:         '/locations/list/' + filters,
             reloadOnSearch: false,
             controller:  'LocationsMapListController',
             controllerAs: 'vm',
@@ -82,12 +82,12 @@
         })
         .state({
             name:         'locations-list-with-slash-redirect',
-            url:          '/locations/list/' + filters,
+            url:          '/locations/list' + filters,
             redirectTo:   'locations-map',
         })
         .state({
             name:        'locations-polygonmap',
-            url:         '/locations/map' + filters,
+            url:         '/locations/map/' + filters,
             reloadOnSearch: false,
             controller:  'LocationsPolygonGeoMapController',
             controllerAs: 'vm',
@@ -95,12 +95,12 @@
         })
         .state({
             name:         'locations-polygonmap-with-slash-redirect',
-            url:          '/locations/map/' + filters,
+            url:          '/locations/map' + filters,
             redirectTo:   'locations-polygonmap',
         })
         .state({
             name:        'country',
-            url:         '/countries/:country_id' + filters,
+            url:         '/countries/:country_id/' + filters,
             reloadOnSearch: false,
             controller:  'CountryController',
             controllerAs: 'vm',
@@ -108,12 +108,12 @@
         })
         .state({
             name:         'country-with-slash-redirect',
-            url:          '/countries/:country_id/' + filters,
+            url:          '/countries/:country_id' + filters,
             redirectTo:   'country',
         })
         .state({
             name:        'regions-vis',
-            url:         '/regions' + filters,
+            url:         '/regions/' + filters,
             reloadOnSearch: false,
             controller:  'RegionsVisualisationController',
             controllerAs: 'vm',
@@ -121,12 +121,12 @@
         })
         .state({
             name:         'region-vis-with-slash-redirect',
-            url:          '/regions/' + filters,
+            url:          '/regions' + filters,
             redirectTo:   'regions-vis',
         })
         .state({
             name:        'regions-list',
-            url:         '/regions/list' + filters,
+            url:         '/regions/list/' + filters,
             reloadOnSearch: false,
             controller:  'RegionListController',
             controllerAs: 'vm',
@@ -134,12 +134,12 @@
         })
         .state({
             name:         'region-list-with-slash-redirect',
-            url:          '/regions/list/' + filters,
+            url:          '/regions/list' + filters,
             redirectTo:   'regions-list',
         })
         .state({
             name:        'region',
-            url:         '/regions/:region_id' + filters,
+            url:         '/regions/:region_id/' + filters,
             reloadOnSearch: false,
             controller:  'RegionController',
             controllerAs: 'vm',
@@ -147,12 +147,12 @@
         })
         .state({
             name:         'region-with-slash-redirect',
-            url:          '/regions/:region_id/' + filters,
+            url:          '/regions/:region_id' + filters,
             redirectTo:   'region',
         })
         .state({
             name:        'organisations',
-            url:         '/organisations' + filters,
+            url:         '/organisations/' + filters,
             reloadOnSearch: false,
             controller:  'receiverOrganisationsExploreController',
             controllerAs: 'vm',
@@ -160,12 +160,12 @@
         })
         .state({
             name:         'organisations-with-slash-redirect',
-            url:          '/organisations/' + filters,
+            url:          '/organisations' + filters,
             redirectTo:   'organisations',
         })
         .state({
             name:        'organisation',
-            url:         '/organisations/:organisation_id' + filters,
+            url:         '/organisations/:organisation_id/' + filters,
             reloadOnSearch: false,
             controller:  'receiverOrganisationController',
             controllerAs: 'vm',
@@ -173,12 +173,12 @@
         })
         .state({
             name:         'organisation-with-slash-redirect',
-            url:          '/organisations/:organisation_id/' + filters,
+            url:          '/organisations/:organisation_id' + filters,
             redirectTo:   'organisation',
         })
         .state({
             name:        'sector-list',
-            url:         '/sectors/list' + filters,
+            url:         '/sectors/list/' + filters,
             reloadOnSearch: false,
             controller:  'SectorsExploreController',
             controllerAs: 'vm',
@@ -186,12 +186,12 @@
         })
         .state({
             name:         'sector-list-with-slash-redirect',
-            url:          '/sectors/list/' + filters,
+            url:          '/sectors/list' + filters,
             redirectTo:   'sector-list',
         })
         .state({
             name:        'sectors',
-            url:         '/sectors' + filters,
+            url:         '/sectors/' + filters,
             reloadOnSearch: false,
             controller:  'SectorsVisualisationController',
             controllerAs: 'vm',
@@ -199,12 +199,12 @@
         })
         .state({
             name:         'sectors-with-slash-redirect',
-            url:          '/sectors/' + filters,
+            url:          '/sectors' + filters,
             redirectTo:   'sectors',
         })
         .state({
             name:        'sector',
-            url:         '/sectors/:sector_id' + filters,
+            url:         '/sectors/:sector_id/' + filters,
             reloadOnSearch: false,
             controller:  'SectorController',
             controllerAs: 'vm',
@@ -212,19 +212,19 @@
         })
         .state({
             name:         'sector-with-slash-redirect',
-            url:          '/sectors/:sector_id/' + filters,
+            url:          '/sectors/:sector_id' + filters,
             redirectTo:   'sector',
         })
         .state({
             name:        'about',
-            url:         '/about',
+            url:         '/about/',
             controller:  'AboutController',
             controllerAs: 'vm',
             templateUrl: templateBaseUrl + '/templates/pages/about.html',
         })
         .state({
             name:         'about-with-slash-redirect',
-            url:          '/about/',
+            url:          '/about',
             redirectTo:   'about',
         })
         .state({
@@ -239,19 +239,19 @@
         })
         .state({
             name:        'iati-publiceren',
-            url:         '/iati-publiceren',
+            url:         '/iati-publiceren/',
             controller:  'PagesController',
             controllerAs: 'vm.post.title',
             templateUrl: templateBaseUrl + '/templates/pages/pages.html'
         })
         .state({
             name:         'iati-publiceren-with-slash-redirect',
-            url:          '/iati-publiceren/',
+            url:          '/iati-publiceren',
             redirectTo:   'iati-publiceren',
         })
         .state({
             name:        'search',
-            url:         '/search?search&tab',
+            url:         '/search/?search&tab',
             reloadOnSearch: false,
             controller:  'SearchPageController',
             controllerAs: 'vm',
@@ -259,7 +259,7 @@
         })
         .state({
             name:         'search-with-slash-redirect',
-            url:          '/search/?search&tab',
+            url:          '/search?search&tab',
             redirectTo:   'search',
         })
         .state({
@@ -274,14 +274,14 @@
         })
         .state({
             name:        'contact',
-            url:         '/contact',
+            url:         '/contact/',
             controller:  'ContactController',
             controllerAs: 'vm',
             templateUrl: templateBaseUrl + '/templates/pages/contact.html',
         })
         .state({
             name:         'contact-with-slash-redirect',
-            url:          '/contact/',
+            url:          '/contact',
             redirectTo:   'contact',
         });
 
