@@ -479,23 +479,47 @@
         </div>
     </div>
 
+
+
     <!-- voor op documenten page -->
     <div class="row" ng-show="vm.selectedTab == 'documents'">
-        <div class="col-md-12">
-            <div class="hp-block wit">
-                <h3>Document links</h3>
+        <div class="col-md-12 activity-list-item">
+            <div class="hp-block wit financial extra">
+                <h3>Attached document links</h3>
 
                 <div ng-show="vm.activity.document_links.length == 0">
                     No documents available.
                 </div>
-                <table class="table documents" ng-if="vm.activity.document_links.length != 0">
+
+                <table class="table table-striped" ng-if="vm.activity.document_links.length != 0">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Category</th>
+                            <th>Format</th>
+                        </tr>
+                    </thead>
                     <tbody>
                         <tr ng-repeat="document in vm.activity.document_links">
                             
                             <td>
                                 <a target="_blank" href="{{document.url}}">
-                                    <i class="glyphicon glyphicon-download-alt"></i>{{document.title.narratives[0].text}}
+                                    <i class="glyphicon glyphicon-download-alt"></i> {{document.title.narratives[0].text}}
                                 </a>
+                            </td>
+
+                            <td>
+                                <ul>
+                                    <li ng-repeat="category in document.categories">
+
+                                        {{category.name}}
+
+                                    </li>
+                                </ul>
+                            </td>
+
+                            <td>
+                                {{document.format.name}}
                             </td>
                             
                         </tr>
