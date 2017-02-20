@@ -2050,8 +2050,14 @@ ACTIVITY DETAIL
         .glyphicon {
           margin-right: 8px;
         }
+
+        a{
+          display: inline-block;
+          padding: 0.5em 0;
+        }
       }
     }
+    margin-bottom: 0;
   }
 }
 

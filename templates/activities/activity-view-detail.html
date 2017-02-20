@@ -488,13 +488,13 @@
                 <div ng-show="vm.activity.document_links.length == 0">
                     No documents available.
                 </div>
-                <table class="table documents" ng-if="vm.activity.documents.length != 0">
+                <table class="table documents" ng-if="vm.activity.document_links.length != 0">
                     <tbody>
                         <tr ng-repeat="document in vm.activity.document_links">
                             
                             <td>
                                 <a target="_blank" href="{{document.url}}">
-                                    <i class="glyphicon glyphicon-download-alt"></i>{{document.title[0].narratives[0].text}}
+                                    <i class="glyphicon glyphicon-download-alt"></i>{{document.title.narratives[0].text}}
                                 </a>
                             </td>
                             
