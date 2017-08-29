@@ -37,6 +37,7 @@
 		<meta name="msapplication-TileColor" content="#444">
 		<meta name="msapplication-TileImage" content="<?php echo get_template_directory_uri(); ?>/favicon/ms-icon-144x144.png">
 		<meta name="theme-color" content="#444">
+		<meta name="google-site-verification" content="kg16hK4Zau7ML-7qPPGv2GLlDel1LRY8ynmo8AU7VzI" />
 
 		<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>">
 		
