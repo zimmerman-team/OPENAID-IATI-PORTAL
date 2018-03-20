@@ -29,7 +29,7 @@
         function all() {
             var url = oipaUrl + '/activities/?format=json&page_size=1&fields=iati_identifier,title'
             if(reportingOrganisationId){
-                url += '&reporting_organisation=' + reportingOrganisationId
+                url += '&reporting_organisation_identifier=' + reportingOrganisationId
             }
             return $http.get(url, { cache: true });
         }
@@ -39,7 +39,7 @@
             url += '&fields=title,recipient_countries,recipient_regions,iati_identifier,id,descriptions,activity_dates,activity_status,aggregations,sectors,reporting_organisations'
 
             if(reportingOrganisationId){
-                url += '&reporting_organisation=' + reportingOrganisationId
+                url += '&reporting_organisation_identifier=' + reportingOrganisationId
             }
             if(filters !== undefined){
                 url += filters;
@@ -62,7 +62,7 @@
             url += '&fields=id,iati_identifier,title,aggregations&page_size=3&ordering=title'
 
             if(reportingOrganisationId){
-                url += '&reporting_organisation=' + reportingOrganisationId
+                url += '&reporting_organisation_identifier=' + reportingOrganisationId
             }
 
             if(filters !== undefined){
@@ -92,7 +92,7 @@
             url += '&fields=id,title,locations&page=1&page_size=1000'
 
             if(reportingOrganisationId){
-                url += '&reporting_organisation=' + reportingOrganisationId
+                url += '&reporting_organisation_identifier=' + reportingOrganisationId
             }
             if(filters !== undefined){
                 url += filters;

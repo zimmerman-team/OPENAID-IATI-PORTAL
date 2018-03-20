@@ -12,7 +12,7 @@ function maybeEncodeCSVField($string) {
 
 switch ($_GET['type']) {
     case 'activity-list':
-        $oipa_url .= '?page_size=1000&fields=all&reporting_organisation=XM-DAC-7&format=' . $format;
+        $oipa_url .= '?page_size=1000&fields=all&reporting_organisation_identifier=XM-DAC-7&format=' . $format;
         $oipa_filter  = $_GET['filters'];
         $url = $oipa_url . urldecode($oipa_filter);
         break;

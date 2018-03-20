@@ -19,7 +19,7 @@
             
             var url = oipaUrl + '/transactions/aggregations/?format=json&group_by='+group_by+'&aggregations='+aggregations
             if(reportingOrganisationId){
-                url += '&reporting_organisation=' + reportingOrganisationId
+                url += '&reporting_organisation_identifier=' + reportingOrganisationId
             }
             if(filters !== undefined){
                 url += filters;

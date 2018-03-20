@@ -44,7 +44,7 @@
             if (group_field !== ''){
                 group_field = '&group_field=' + group_field;
             }
-            return $http.get(oipaUrl + '/aggregate/?format=json&reporting_organisation=NL-1&group_by='+group_by+group_field+'&aggregation_key='+aggregation_key);
+            return $http.get(oipaUrl + '/aggregate/?format=json&reporting_organisation_identifier=NL-1&group_by='+group_by+group_field+'&aggregation_key='+aggregation_key);
         }
     }
 })();
