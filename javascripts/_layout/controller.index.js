@@ -59,7 +59,7 @@
     vm.lineChartOptions = {};
     vm.shownIds = '';
     vm.activityStatus = '2';
-    vm.transactionYear = '2017';
+    vm.transactionYear = '2018';
 
     vm.refreshTableChart = false;
     vm.top5Options = {
