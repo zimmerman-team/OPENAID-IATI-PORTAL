@@ -1,10 +1,4 @@
 
-			
-<div align="center">
-  <a href="https://www.government.nl/ministries/ministry-of-foreign-affairs">
-    <img src="https://www.government.nl/binaries/svg/content/gallery/government/channel-afbeeldingen/logos/logo-government-of-the-netherlands.svg"/>
-  </a>
-</div>
 
 
 #### IATI data Portal for the Dutch Ministry of Foreign Affairs.
