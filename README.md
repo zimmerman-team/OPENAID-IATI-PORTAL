@@ -18,6 +18,21 @@ This Angular.JS User Interface makes use of the data-engine [OIPA] (http://www.o
 IATI is a global aid transparency standard and it makes information about aid spending easier to access, re-use and understand the underlying data using a unified open standard. You can find more about the IATA XML standard at: www.iatistandard.org
 
 
+#### Run locally
+1. Download MAMP Free Version https://www.mamp.info/en/
+2. Download WordPress version 4.9.6 https://make.wordpress.org/core/tag/4-9-6/
+3. Git pull this repository to directory `wp-content/themes/`.
+4. Install `bower` in your local machine then install package dependencies with command `bower install` in your terminal.
+5. Unzip file `plugins.zip` from this repository on directory `wordpress-plugins`. The unzip will be two directory `angular-wp-api2` and `json-rest-api`, then copy them to directory `wp-content/plugins/`.
+6. Run your MAMP, create a database with name `openaid_db` from this http://localhost:8888/MAMP/index.php?page=phpmyadmin&language=English   
+7. Rename wp-config-sample.php to wp-config.php, and change `database_name_here` to `openaid_db`, `username_here` to `root`, `password_here` to `root`, if you have others username & password for your MySQL then just change them to yours. 
+8. Change default directory MAMP Web-Server to your WordPress folder.
+9. Restart your MAMP.
+10. Go to http://localhost:8888 and follow step by step the installation WordPress.
+11. Go to dashboard WordPress or click this http://localhost:8888/wp-admin/
+12. Activate `angular-wp-api2` and `json-rest-api` on this http://localhost:8888/wp-admin/plugins.php
+13. If your follow all steps, the repository should be work on http://localhost:8888
+
 #### About the project
 --------
 
