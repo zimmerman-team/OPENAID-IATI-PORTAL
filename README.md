@@ -25,7 +25,7 @@ IATI is a global aid transparency standard and it makes information about aid sp
 4. Install `bower` in your local machine then install package dependencies with command `bower install` in your terminal.
 5. Unzip file `plugins.zip` from this repository on directory `wordpress-plugins`. The unzip will be two directory `angular-wp-api2` and `json-rest-api`, then copy them to directory `wp-content/plugins/`.
 6. Run your MAMP, create a database with name `openaid_db` from this http://localhost:8888/MAMP/index.php?page=phpmyadmin&language=English   
-7. Copy wp-config-sample.php to wp-config.php, and change `database_name_here` to `openaid_db`, `username_here` to `root`, `password_here` to `root`, if you have others username & password for your MySQL then just change them to yours. 
+7. Rename wp-config-sample.php to wp-config.php, and change `database_name_here` to `openaid_db`, `username_here` to `root`, `password_here` to `root`, if you have others username & password for your MySQL then just change them to yours. 
 8. Change default directory MAMP Web-Server to your WordPress folder.
 9. Restart your MAMP.
 10. Go to http://localhost:8888 and follow step by step the installation WordPress.
