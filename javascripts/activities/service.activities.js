@@ -36,7 +36,7 @@
 
         function list(filters, page_size, order_by, page){
             var url = oipaUrl + '/activities/?format=json'
-            url += '&fields=title,recipient_countries,recipient_regions,iati_identifier,id,descriptions,activity_dates,activity_status,aggregations,sectors,reporting_organisations'
+            url += '&fields=title,recipient_countries,recipient_regions,iati_identifier,id,descriptions,activity_dates,activity_status,aggregations,sectors,reporting_organisation'
 
             if(reportingOrganisationId){
                 url += '&reporting_organisation_identifier=' + reportingOrganisationId
@@ -74,7 +74,7 @@
 
         function getProvidedActivities(id){
             var url = oipaUrl + '/activities?format=json&transaction_provider_activity=' + id
-            url += '&fields=title,iati_identifier,id,descriptions,reporting_organisations&ordering=id&page_size=600'
+            url += '&fields=title,iati_identifier,id,descriptions,reporting_organisation&ordering=id&page_size=600'
 
             return $http.get(url, { cache: true });
         }

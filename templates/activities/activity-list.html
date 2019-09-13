@@ -45,13 +45,15 @@
     </div>
 
     <div class="row" infinite-scroll='vm.nextPage()' infinite-scroll-disabled='vm.busy' infinite-scroll-distance='1'>
-        <div class="activity-list-item col-sm-12" 
+        <div class="activity-list-item col-sm-12"
             ng-show="vm.activities.length != 0"
             ng-repeat="item in vm.activities">
                 <div class="col-md-12">
                     <div class="hp-block wit header">
-                        <h2><a ui-sref="activity({ activity_id: item.id })">{{ item.title.narratives[0].text }}</a></h2>
-                        <p>{{item.descriptions[0].narratives[0].text}}</p>
+                      <h2 ng-if="item.title.narratives[0].text.length > 1"><a ui-sref="activity({ activity_id: item.id })">{{ item.title.narratives[0].text }}</a></h2>
+                      <h2 ng-if="item.title.narratives[0].text.length < 2 && item.title.narratives[1]"><a ui-sref="activity({ activity_id: item.id })">{{ item.title.narratives[1].text }}</a></h2>
+                      <p ng-if="item.descriptions[0].narratives[0].text.length > 1">{{item.descriptions[0].narratives[0].text}}</p>
+                      <p ng-if="item.descriptions[0].narratives[0].text.length < 2 && item.descriptions[0].narratives[1]">{{item.descriptions[0].narratives[1].text}}</p>
                     </div>
                     <div class="hp-block wit">
                         <div class="row">
@@ -83,25 +85,25 @@
                                 </p>
                             </div>
                             <div class="col-md-4">
-                                <p class="hidden-xs"><b>Status</b><br>{{item.activity_status.name}}</p> 
+                                <p class="hidden-xs"><b>Status</b><br>{{item.activity_status.name}}</p>
                                 <p><b>Planned start</b><br>
-                                    <span 
-                                        ng-repeat="activity_date in item.activity_dates" 
+                                    <span
+                                        ng-repeat="activity_date in item.activity_dates"
                                         ng-if="activity_date.type.code == '1'">
                                         {{activity_date.iso_date | date : 'dd-MM-yyyy'}}
                                     </span>
                                 </p>
                                 <p class="hidden-xs"><b>End date planned</b><br>
-                                    <span 
-                                        ng-repeat="activity_date in item.activity_dates" 
+                                    <span
+                                        ng-repeat="activity_date in item.activity_dates"
                                         ng-if="activity_date.type.code == '3'">
                                         {{activity_date.iso_date | date : 'dd-MM-yyyy'}}
                                     </span>
                                 </p>
                             </div>
                             <div class="col-md-4 hidden-xs">
-                                <p><b>Reporting organisation</b><br>{{item.reporting_organisations[0].narratives[0].text}}</p> 
-                                <p><b>IATI identifier</b><br>{{item.iati_identifier}}</p> 
+                                <p><b>Reporting organisation</b><br>{{item.reporting_organisation.narratives[0].text}}</p>
+                                <p><b>IATI identifier</b><br>{{item.iati_identifier}}</p>
                             </div>
                         </div>
                     </div>

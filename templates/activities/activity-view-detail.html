@@ -1,17 +1,17 @@
 <div id="main-content" class="container activity">
-   
+
     <div class="row">
         <div class="col-xs-9">
             <h1 class="title">{{vm.activity.title.narratives[0].text}}</h1>
         </div>
-         <!-- <detail-filter-bar 
-            activity-id="vm.activityId" 
+         <!-- <detail-filter-bar
+            activity-id="vm.activityId"
             current-page="activity">
         </detail-filter-bar> -->
     </div>
 
-    <sub-navbar 
-        tabs='vm.tabs' 
+    <sub-navbar
+        tabs='vm.tabs'
         selected-tab='vm.selectedTab'>
     </sub-navbar>
 
@@ -19,7 +19,7 @@
         <div class="col-sm-12">
             <div class="hp-block wit">
                 <h5>
-                <b>Disclaimer</b>: The data for this page has been produced from IATI data reported by {{vm.activity.reporting_organisations[0].narratives[0].text}}. Please contact them if you have any questions about their data. This page might not show all their data appropriately since this page is made to show data reported by the Dutch Ministry of Foreign Affairs (DGIS).
+                <b>Disclaimer</b>: The data for this page has been produced from IATI data reported by {{vm.activity.reporting_organisation[0].narratives[0].text}}. Please contact them if you have any questions about their data. This page might not show all their data appropriately since this page is made to show data reported by the Dutch Ministry of Foreign Affairs (DGIS).
                 </h5>
             </div>
         </div>
@@ -34,7 +34,7 @@
             </div>
         </div>
     </div>
-    
+
     <div ng-show="vm.selectedTab == 'summary'">
 
         <activity-geomap map-height="350px" activity="vm.activity"></activity-geomap>
@@ -45,7 +45,8 @@
 
                 <div class="hp-block wit">
                     <h3>Description</h3>
-                    <p>{{vm.activity.descriptions[0].narratives[0].text}}</p>
+                    <p ng-if="vm.activity.descriptions[0].narratives[0].text.length > 1">{{vm.activity.descriptions[0].narratives[0].text}}</p>
+                    <p ng-if="vm.activity.descriptions[0].narratives[0].text.length < 2 && vm.activity.descriptions[0].narratives[1]">{{vm.activity.descriptions[0].narratives[1].text}}</p>
                 </div>
 
                 <div class="hp-block wit with-table">
@@ -130,7 +131,7 @@
                                     <a ng-click="vm.download('csv')" class="dld">
                                         <i class="fa fa-file-excel-o"></i>CSV
                                     </a>
-                                    <!-- <a ng-click="vm.download('xml')" class="dld">                  
+                                    <!-- <a ng-click="vm.download('xml')" class="dld">
                                         <i class="fa fa-file-text-o"></i>XML
                                     </a> -->
                                     <a ng-click="vm.download('json')" class="dld">
@@ -157,7 +158,7 @@
                             </tr>
                         </tbody>
                     </table>
-                </div>  
+                </div>
 
             </div>
         </div>
@@ -168,11 +169,11 @@
         <div class="col-sm-12">
             <div class="hp-block wit">
                 <h3>Transactions</h3>
-                <nvd3 
-                    options="vm.transactionChartOptions" 
-                    data="vm.transactionChartData" 
+                <nvd3
+                    options="vm.transactionChartOptions"
+                    data="vm.transactionChartData"
                     class="with-3d-shadow with-transitions"></nvd3>
-            </div>  
+            </div>
         </div>
 
         <div class="col-md-6 activity-list-item">
@@ -218,7 +219,7 @@
                 </table>
             </div>
         </div>
-    
+
     </div>
 
     <div class="row full-report" ng-if="vm.selectedTab == 'fullreport'">
@@ -279,7 +280,7 @@
                      <tbody>
                         <tr>
                             <td width="250">Reporting organisations:</td>
-                            <td>{{vm.activity.reporting_organisations[0].narratives[0].text}}</td>
+                            <td>{{vm.activity.reporting_organisation[0].narratives[0].text}}</td>
                         </tr>
                         <tr>
                             <td>Funding organisations:</td>
@@ -501,7 +502,7 @@
                     </thead>
                     <tbody>
                         <tr ng-repeat="document in vm.activity.document_links">
-                            
+
                             <td>
                                 <a target="_blank" href="{{document.url}}">
                                     <i class="glyphicon glyphicon-download-alt"></i> {{document.title.narratives[0].text}}
@@ -521,7 +522,7 @@
                             <td>
                                 {{document.format.name}}
                             </td>
-                            
+
                         </tr>
                     </tbody>
                 </table>
@@ -548,19 +549,19 @@
                          <tbody>
 
                             <tr ng-repeat="providerActivity in vm.providedActivities">
-                            
+
                                 <td class="col-sm-6">
                                 <a ui-sref="activity({ activity_id: providerActivity.iati_identifier, tab: 'summary' })">
                                     {{providerActivity.title.narratives[0].text}}
                                     </a>
                                 </td>
                                 <td class="col-sm-3">
-                                    {{providerActivity.reporting_organisations[0].narratives[0].text}}
+                                    {{providerActivity.reporting_organisation[0].narratives[0].text}}
                                 </td>
                                 <td class="col-sm-3">
                                     {{providerActivity.iati_identifier}}
                                 </td>
-                                
+
                             </tr>
                         </tbody>
                     </table>
@@ -575,7 +576,7 @@
                 <h3>Questions about this project?</h3>
                 <p>If you have a question or complaint about this project, or if you would like to report fraud, please contact the openaidNL team. They will handle your questions or reports with the highest confidentiality. Don't hesitate to contact us by filling out the form below. Your data will be transmitted using a secure connection. We aim to respond within two working days.</p>
             </div>
-            
+
             <div class="hp-block wit form">
                 <div class="row" ng-if="vm.submitted == false">
                     <div class="col-md-10">
@@ -594,10 +595,8 @@
                 <p>The openaidNL team, run by Zimmerman & Zimmerman, will process your contact form. Your personal details will only be used to respond to your message and will not be kept any longer than necessary.</p>
             </div>
 
-                
+
         </div>
     </div>
 
 </div>
-
-
