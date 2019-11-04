@@ -59,7 +59,7 @@
     vm.lineChartOptions = {};
     vm.shownIds = '';
     vm.activityStatus = '2';
-    vm.transactionYear = '2018';
+    vm.transactionYear = '2019';
 
     vm.refreshTableChart = false;
     vm.top5Options = {
@@ -86,7 +86,7 @@
       }
     };
 
-    vm.top5ListOptions = {  
+    vm.top5ListOptions = {
       'recipient_country': {
         groupBy: 'recipient_country,transaction_date_year',
         groupById: 'code',
