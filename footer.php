@@ -1,5 +1,5 @@
 
-		
+
 		<!-- <footer>
 		  <div class="container">
 		  	<div class="row">
@@ -7,7 +7,7 @@
 				    <img src="<?php echo get_template_directory_uri(); ?>/images/openaidnl-logo.png" />
 			    </div>
 		    </div>
-		     
+
 		  	<div class="row">
 		    	<div class="col-sm-12">
 		    		<br>
@@ -15,19 +15,19 @@
 
 		    	</div>
 		    </div>
-		    
-		    
+
+
 		  </div>
 		</footer> -->
-		
-		<script>
-		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-		  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+		<script type="text/javascript">
+			var _paq = window._paq || [];
+			/* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+			_paq.push(['trackPageView']);
+			_paq.push(['enableLinkTracking']);
+			(function()
 
-		  ga('create', 'UA-364056-21', 'auto');
-
+			{ var u="https://zimmermanzimmerman.matomo.cloud/"; _paq.push(['setTrackerUrl', u+'matomo.php']); _paq.push(['setSiteId', '4']); var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript'; g.async=true; g.defer=true; g.src='//cdn.matomo.cloud/zimmermanzimmerman.matomo.cloud/matomo.js'; s.parentNode.insertBefore(g,s); }
+			)();
 		</script>
 
 		<?php // all js scripts are loaded in library/bones.php ?>
