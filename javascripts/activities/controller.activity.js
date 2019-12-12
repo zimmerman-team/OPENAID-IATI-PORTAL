@@ -29,6 +29,8 @@
     vm.extending_organisations = [];
     vm.transactionData = [];
     vm.isDGISProject = true;
+    vm.pageUrl = encodeURIComponent(vm.pageUrlDecoded);
+    vm.shareDescription = encodeURIComponent('View the Aid projects of the Dutch Ministry of Foreign Affairs on ');
 
     vm.selectedTab = 'summary';
 
@@ -71,7 +73,7 @@
         }
 
         for(var i = 0;i < vm.activity.activity_dates.length;i++){
-          if(vm.activity.activity_dates[i].type.code == 1){ 
+          if(vm.activity.activity_dates[i].type.code == 1){
             vm.start_planned = vm.activity.activity_dates[i].iso_date;
           } else if(vm.activity.activity_dates[i].type.code == 2){
             vm.start_actual = vm.activity.activity_dates[i].iso_date;
@@ -130,7 +132,7 @@
 
       vm.rsrLoading = false;
       // var url = homeUrl + '/wp-admin/admin-ajax.php?action=rsr_call&iati_id=' + vm.activityId;
-      
+
       // return $http.get(url, {}).then(function(data, status, headers, config){
       //   vm.rsrProjects = data.data.objects;
       //   vm.rsrLoading = false;
@@ -145,7 +147,7 @@
       var data = [
         {
             values: [],
-            key: 'Commitment', 
+            key: 'Commitment',
             color: '#2077B4'
         },
         {
@@ -178,7 +180,7 @@
           } else {
               return (a[0] < b[0]) ? -1 : 1;
           }
-      }      
+      }
 
       data[0]['values'].sort(sortFunction);
       data[1]['values'].sort(sortFunction);
@@ -193,7 +195,7 @@
 
       vm.transactionChartData = data;
     }
-    
+
     vm.transactionChartOptions = {
       chart: {
         type: 'lineChart',
@@ -237,7 +239,7 @@
     vm.fields = '';
 
     vm.makeForm = function(){
-      // funcation assignment      
+      // funcation assignment
       vm.fields = [
         {
           key: 'iati_id',
