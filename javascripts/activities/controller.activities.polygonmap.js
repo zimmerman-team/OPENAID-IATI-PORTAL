@@ -17,7 +17,7 @@
     vm.selectionString = '';
 
     vm.defaults = {
-      tileLayer: 'https://{s}.tiles.mapbox.com/v3/zimmerman2014.deb5109d/{z}/{x}/{y}.png',
+      tileLayer: 'https://api.mapbox.com/styles/v1/zimmerman2014/ck7u9omkg459k1iryyuve5n0v/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiemltbWVybWFuMjAxNCIsImEiOiJhNUhFM2YwIn0.sedQBdUN7PJ1AjknVVyqZw',
       maxZoom: 4,
       minZoom: 2,
       attributionControl: false,
@@ -65,7 +65,7 @@
     }
 
     vm.updateCountryPolygons = function(data) {
-      
+
         var formattedCD = {
           type: "FeatureCollection",
           features: []

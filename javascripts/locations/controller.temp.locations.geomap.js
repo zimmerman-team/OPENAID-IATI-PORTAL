@@ -21,20 +21,20 @@
     vm.mapDropdown = $scope.mapDropdown;
     vm.templateBaseUrl = templateBaseUrl;
     vm.countryRelation = [
-      {'id':1, 'name': 'Aid relation'}, 
-      {'id':2, 'name': 'Transition relation'}, 
-      {'id':3, 'name': 'EXIT relation'}, 
-      {'id':4, 'name': 'Trade relation'}, 
+      {'id':1, 'name': 'Aid relation'},
+      {'id':2, 'name': 'Transition relation'},
+      {'id':3, 'name': 'EXIT relation'},
+      {'id':4, 'name': 'Trade relation'},
       {'id':5, 'name': 'Other'}];
     vm.selectedCountryRelation = [
-      {'id':1, 'name': 'Aid relation'}, 
-      {'id':2, 'name': 'Transition relation'}, 
-      {'id':3, 'name': 'EXIT relation'}, 
-      {'id':4, 'name': 'Trade relation'}, 
+      {'id':1, 'name': 'Aid relation'},
+      {'id':2, 'name': 'Transition relation'},
+      {'id':3, 'name': 'EXIT relation'},
+      {'id':4, 'name': 'Trade relation'},
       {'id':5, 'name': 'Other'}];
 
     vm.defaults = {
-      tileLayer: 'https://{s}.tiles.mapbox.com/v3/zimmerman2014.deb5109d/{z}/{x}/{y}.png',
+      tileLayer: 'https://api.mapbox.com/styles/v1/zimmerman2014/ck7u9omkg459k1iryyuve5n0v/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiemltbWVybWFuMjAxNCIsImEiOiJhNUhFM2YwIn0.sedQBdUN7PJ1AjknVVyqZw',
       maxZoom: 12,
       minZoom: 2,
       attributionControl: false,
@@ -59,7 +59,7 @@
 
     vm.countryMarkerData = [];
     vm.regionMarkerData = [];
-    
+
     vm.geoView = 'countries';
     vm.resultCounter = 0;
 
@@ -75,13 +75,13 @@
     function activate() {
 
       if($scope.exactLocation !== undefined){
-        
+
         $scope.$watch('exactLocation', function (exactLocation) {
           if(exactLocation){
             vm.geoLocation = exactLocation;
             vm.showExactLocation();
           }
-          
+
         }, true);
 
       } else {
@@ -112,8 +112,8 @@
         vm.markers['location'].icon = { html: '<div class="region-marker-circle"></div>' ,type: 'div',iconSize: [200, 200],iconAnchor: [100, 100],markerColor: 'blue',iconColor: 'white',};
       else
         vm.markers['location'].icon = { html: '<div class="fa fa-map-marker fa-stack-1x fa-inverse marker-circle marker-circle-Other2"></div>',type: 'div',iconSize: [28, 35],iconAnchor: [14, 18],markerColor: 'blue',iconColor: 'white',};
-      
-        
+
+
     };
 
 
@@ -178,7 +178,7 @@
         }
 
         for (var i = 0; i < vm.countryMarkerData.length;i++){
-         
+
             var partnerType = 'Other';
 
             if (selectedCountryRelationMap[partnerType] !== undefined){
@@ -237,7 +237,7 @@
 
             vm.markers[vm.regionMarkerData[i].region_id].message = message;
 
-            
+
           }
         }
     }

@@ -15,10 +15,10 @@
     vm.mapDropdown = ($scope.mapDropdown == 'true');
     vm.templateBaseUrl = templateBaseUrl;
     vm.countryRelation = [
-      {'id':1, 'name': 'Aid relation'}, 
-      {'id':2, 'name': 'Transition relation'}, 
-      {'id':3, 'name': 'EXIT relation'}, 
-      {'id':4, 'name': 'Trade relation'}, 
+      {'id':1, 'name': 'Aid relation'},
+      {'id':2, 'name': 'Transition relation'},
+      {'id':3, 'name': 'EXIT relation'},
+      {'id':4, 'name': 'Trade relation'},
       {'id':5, 'name': 'Other'}
     ];
     vm.selectedCountryRelation = $scope.selectedCountryRelation;
@@ -33,7 +33,7 @@
 
     vm.currentHoverText = '';
     vm.defaults = {
-      tileLayer: 'https://{s}.tiles.mapbox.com/v3/zimmerman2014.deb5109d/{z}/{x}/{y}.png',
+      tileLayer: 'https://api.mapbox.com/styles/v1/zimmerman2014/ck7u9omkg459k1iryyuve5n0v/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiemltbWVybWFuMjAxNCIsImEiOiJhNUhFM2YwIn0.sedQBdUN7PJ1AjknVVyqZw',
       maxZoom: 12,
       minZoom: 2,
       attributionControl: false,
@@ -134,7 +134,7 @@
     }
 
     vm.updateCountryMarkers = function(markerData) {
-      
+
       if(vm.geoView != 'countries'){ return false; }
 
       vm.deleteAllMarkers();
@@ -145,7 +145,7 @@
       }
 
       for (var i = 0; i < markerData.length;i++){
-       
+
           var partnerType = partnerlanden[markerData[i].recipient_country.code]
 
           if (selectedCountryRelationMap[partnerType] === undefined){
@@ -181,7 +181,7 @@
     }
 
     vm.updateRegionMarkers = function(markerData) {
-      
+
       if(vm.geoView != 'regions'){
         return false;
       }

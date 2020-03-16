@@ -22,7 +22,7 @@
 
     angular.extend($scope, {
       defaults: {
-          tileLayer: 'https://{s}.tiles.mapbox.com/v3/zimmerman2014.deb5109d/{z}/{x}/{y}.png',
+        tileLayer: 'https://api.mapbox.com/styles/v1/zimmerman2014/ck7u9omkg459k1iryyuve5n0v/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiemltbWVybWFuMjAxNCIsImEiOiJhNUhFM2YwIn0.sedQBdUN7PJ1AjknVVyqZw',
           maxZoom: 12,
           minZoom: 2,
           attributionControl: false,
@@ -45,7 +45,7 @@
       },
     });
 
- 
+
 
     /**
     * @name activate
@@ -73,9 +73,9 @@
     vm.updateMarkers = function() {
       for (var i = 0; i < vm.recipientCountries.length;i++){
         if(
-          typeof $scope.markers[vm.recipientCountries[i].code] == 'undefined' 
-          && vm.recipientCountries[i].location != null 
-          && vm.recipientCountries[i].aggregations != null 
+          typeof $scope.markers[vm.recipientCountries[i].code] == 'undefined'
+          && vm.recipientCountries[i].location != null
+          && vm.recipientCountries[i].aggregations != null
           && vm.recipientCountries[i].aggregations.count > 0){
 
           // create new
